@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GB.Models.Static;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,11 @@ namespace GB
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            // -- Autoriser la configuration de log4net -- //
+            log4net.Config.XmlConfigurator.Configure();
+
+            // -- Log du démarage de l'application -- //
+            GBClass.Log.Info("Démarrage de l'application");
         }
     }
 }

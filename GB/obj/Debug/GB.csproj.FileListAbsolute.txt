@@ -67,3 +67,5 @@ E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\Microsoft.Owin.Security.Twitt
 E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\GB.dll
 E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\GB.pdb
+E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\log4net.dll
+E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\log4net.xml
