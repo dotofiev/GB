@@ -6,25 +6,27 @@ using System.Web.Mvc;
 
 namespace GB.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : GBController
     {
-        public ActionResult Index()
+        #region HttpGet
+        [HttpGet]
+        public ActionResult Authentication()
         {
-            return View();
-        }
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"Global Bank - ({App_Lang.Lang.Authentication})";
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            // -- Identifiant de la page -- //
+            this.ViewBag.Id_page = "Home-Authentication";
 
             return View();
         }
+        #endregion
+
+        #region HttpPost
+        
+        #endregion
     }
 }
