@@ -117,17 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Application_language" xml:space="preserve">
+    <value>Application language</value>
+  </data>
   <data name="Authentication" xml:space="preserve">
     <value>Authentication</value>
   </data>
   <data name="Cookie_button" xml:space="preserve">
-    <value>Accepter et continuer</value>
+    <value>Accept and continue</value>
   </data>
   <data name="Cookie_message" xml:space="preserve">
-    <value>Afin de vous offrir la meilleure expérience, notre application utilise des cookies.
-        En continuant d'utiliser cette application, vous acceptez notre utilisation des cookies.</value>
+    <value>In order to offer you the best experience, our application uses cookies. By continuing to use this application, you agree to our use of cookies.</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>© 2018 Tous droits réservés à Better Planning</value>
+    <value>© 2018 All rights reserved Better Planning</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Error_message_notification" xml:space="preserve">
+    <value>An error occurred while processing, please contact the administrator.</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>French</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Login_application" xml:space="preserve">
+    <value>Login to the application</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Successful" xml:space="preserve">
+    <value>Successful</value>
+  </data>
+  <data name="To_log_in" xml:space="preserve">
+    <value>To log in</value>
   </data>
 </root>

@@ -12,7 +12,7 @@ namespace GB.Controllers
     public class GBController : Controller
     {
         #region Variables
-        public int id_lang { get { if (Session["CurrentCulture"] == null) { return 0; } else { return (int)Session["CurrentCulture"]; } } set { Session["CurrentCulture"] = value; } }
+        public int id_lang { get { if (Session["id_lang"] == null) { return 0; } else { return (int)Session["id_lang"]; } } set { Session["id_lang"] = value; } }
         #endregion
 
         // -- Code de gestion de la langue en session -- //
@@ -22,7 +22,8 @@ namespace GB.Controllers
             try
             {
                 int Culture = 0;
-                if (this.Session == null || Session["CurrentCulture"] == null)
+
+                if (this.Session == null || Session["id_lang"] == null)
                 {
                     int.TryParse(Thread.CurrentThread.CurrentCulture.Name, out Culture);
                     this.id_lang = Culture;
@@ -32,7 +33,7 @@ namespace GB.Controllers
                     Culture = this.id_lang;
                 }
 
-                // calling CultureHelper class properties for setting
+                // -- Mise à jour de l'etat de la langue -- //
                 LangHelper.CurrentCulture = Culture;
 
                 base.ExecuteCore();
@@ -49,6 +50,7 @@ namespace GB.Controllers
             get { return true; }
         }
 
+        [HttpGet]
         public ActionResult Set_Langue(int id_lang)
         {
             // Change the current culture for this user.
@@ -67,6 +69,8 @@ namespace GB.Controllers
 
         // -- Méthodes -- //
         #region Méthodes
+        public virtual void Charger_Langue(string id_page) { }
+
         public void Charger_Parametres()
         {
             // -- Versio nde l'application -- //

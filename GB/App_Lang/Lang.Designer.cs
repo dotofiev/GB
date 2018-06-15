@@ -61,6 +61,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Application language.
+        /// </summary>
+        public static string Application_language {
+            get {
+                return ResourceManager.GetString("Application_language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authentication.
         /// </summary>
         public static string Authentication {
@@ -70,7 +79,7 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Accepter et continuer.
+        ///   Looks up a localized string similar to Accept and continue.
         /// </summary>
         public static string Cookie_button {
             get {
@@ -79,8 +88,7 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Afin de vous offrir la meilleure expérience, notre application utilise des cookies.
-        ///        En continuant d&apos;utiliser cette application, vous acceptez notre utilisation des cookies..
+        ///   Looks up a localized string similar to In order to offer you the best experience, our application uses cookies. By continuing to use this application, you agree to our use of cookies..
         /// </summary>
         public static string Cookie_message {
             get {
@@ -89,11 +97,83 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to © 2018 Tous droits réservés à Better Planning.
+        ///   Looks up a localized string similar to © 2018 All rights reserved Better Planning.
         /// </summary>
         public static string Copyright {
             get {
                 return ResourceManager.GetString("Copyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred while processing, please contact the administrator..
+        /// </summary>
+        public static string Error_message_notification {
+            get {
+                return ResourceManager.GetString("Error_message_notification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to French.
+        /// </summary>
+        public static string French {
+            get {
+                return ResourceManager.GetString("French", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login to the application.
+        /// </summary>
+        public static string Login_application {
+            get {
+                return ResourceManager.GetString("Login_application", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successful.
+        /// </summary>
+        public static string Successful {
+            get {
+                return ResourceManager.GetString("Successful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To log in.
+        /// </summary>
+        public static string To_log_in {
+            get {
+                return ResourceManager.GetString("To_log_in", resourceCulture);
             }
         }
     }

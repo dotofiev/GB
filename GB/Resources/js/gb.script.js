@@ -1,6 +1,7 @@
 ﻿
 // -- Variables -- //
 var aes_key = "global_bank_aes";
+var cryptoJS_param = { key: CryptoJS.enc.Utf8.parse(aes_key), iv: CryptoJS.enc.Utf8.parse(aes_key) };
 var fonction_en_Timeout;
 var fonction_en_Interval;
 
@@ -8,7 +9,13 @@ var fonction_en_Interval;
 function gbAESEncrypt(value) {
 
     // -- Réccupérere la méthode encrypté -- //
-    var encrypted = CryptoJS.AES.encrypt(value, aes_key);
+    //var encrypted = CryptoJS.AES.encrypt(value, aes_key);
+    var encrypted = CryptoJS.AES.encrypt(value, cryptoJS_param.key, {
+        keySize: 128 / 8,
+        iv: cryptoJS_param.iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+    });
 
     // -- Renvoyer le résltat -- //
     return encrypted;
@@ -212,15 +219,22 @@ function gbConvert_Base64_En_ArrayBuffer(base64) {
     return null;
 }
 
-// -- Cacher ou afficher le frame de chargement -- //
-function gbAfficher_Page_Chargement(afficher) {
+// -- Afficher/Cacher l'etat de chargement de la page -- //
+function gbAfficher_Page_Chargement(afficher, id_bouton) {
     if (afficher) {
+        // -- Actualiser le bouton -- //
+        if (id_bouton != null) {
+            //$('#' + id_bouton).button('loading');
+        }
         // -- Affichier le progress bar -- //
         NProgress.start();
         // -- Afficher le frame de chargelent -- //
         $('#frame_chargement').show();
     } else {
-
+        // -- Actualiser le bouton -- //
+        if (id_bouton != null) {
+            //$('#' + id_bouton).button('reset');
+        }
         // -- Finaliser le chargement du progress bar -- //
         NProgress.done();
         // -- Cacher le frae de chargement -- //
@@ -634,12 +648,16 @@ function gbTo_String(value) {
 
 // -- Function de redirection à une localité spécifique -- //
 function gbHref(url) {
+
     window.location.href = url;
+
 }
 
 // -- Function d'écriture dans la console -- //
 function gbConsole(value) {
+
     console.log(value);
+
 }
 
 // -- Notificateur -- //
@@ -682,42 +700,17 @@ function gbMessage_Cookiees(titre, message, afficher_bouton_reconnexion) {
     $('#modal_message_cookiees').modal('show');
 }
 
-// -- Message box -- //
-function gbMessage_Box(titre, message, type, verouiller_ecran) {
-    // -- Vérouiller ecran -- //
-    if (verouiller_ecran) {
-        // -- Désactiver le clic en dehors du modal sortie -- //
-        $('#modal_message_box').modal({
-            backdrop: 'static',
-            keyboard: false
-        });
-    } else {
-        // -- Activer le clic en dehors du modal sortie -- //
-        $('#modal_message_box').modal({
-            backdrop: true,
-            keyboard: true
-        });
-    }
-
-    // -- Mise à jour de l'icone -- //
-    // -- Suppression -- //
-    $("#modal_message_box_icon").removeClass("glyphicon glyphicon-ok text-success");
-    $("#modal_message_box_icon").removeClass("glyphicon glyphicon-info-sign text-info");
-    $("#modal_message_box_icon").removeClass("glyphicon glyphicon-warning-sign text-warning");
-    $("#modal_message_box_icon").removeClass("glyphicon glyphicon-remove text-danger");
-    // -- Ajout -- //
-    $('#modal_message_box_icon').addClass(
-                                    ((type == 1) ? 'glyphicon glyphicon-ok text-success'
-                                        : (type == 2) ? 'glyphicon glyphicon-info-sign text-info'
-                                            : (type == 3) ? 'glyphicon glyphicon-warning-sign text-warning'
-                                                : 'glyphicon glyphicon-remove text-danger')
-                                );
-    // -- Mise à jour du titre -- //
-    $('#modal_message_box_titre').html(titre);
-    // -- Mise à jour du message -- //
-    $('#modal_message_box_message').html(message);
-    // -- Afficher le message box -- //
-    $('#modal_message_box').modal('show');
+// -- Message box de notification -- //
+function gbMessage_Box(type, message) {
+    // -- Mise à jour de la taille -- //
+    $('#modal_message_taille').removeClass('modal-dialog');
+    $('#modal_message_taille').addClass('modal-dialog modal-sm');
+    // -- Définir l'entête -- //
+    $('#modal_message_titre').html('<i class="glyphicon glyphicon-info-sign text-' + type + '"></i> Information');
+    // -- Definir le message -- //
+    $('#modal_message_text').html(message);
+    // -- Afficher -- //
+    $('#modal_message').modal('show');
 }
 
 // -- Afficher un pop overs sur un element -- //
@@ -762,13 +755,16 @@ function gbConvert_Date(date) {
 // -- Définir un cookies -- //
 function gbSetCookie(cookie_name, cookie_value, exdays) {
 
-    // -- Cryptage du paramètre valeur -- //
-    cookie_value = gbAESEncrypt(cookie_value);
+    // -- Vérifie que le paramètre n'est pas null -- //
+    if (cookie_value != null && cookie_value != undefined) {
+        // -- Cryptage du paramètre valeur -- //
+        cookie_value = gbAESEncrypt(cookie_value.toString());
 
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toUTCString();
-    document.cookie = cookie_name + "=" + cookie_value + ";" + expires + ";path=/";
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cookie_name + "=" + cookie_value + ";" + expires + ";path=/";
+    }
 
 }
 
@@ -798,16 +794,15 @@ function gbGetCookie(cookie_name) {
 
 // -- Retourne vrai ou faux si une valeur existe dans une chaine -- //
 function gbString_Existe(chaine, value) {
+
     return (chaine.indexOf(value) > 0) ? true
     								   : false;
+
 }
 
 // -- Lorsque le document est chargé -- //
 $(
     function () {
-
-        // -- Test -- //
-        gbConsole('Cookiee: ' + gbGetCookie('cookie_autorise'));
 
         // -- Affichier le progress bar -- //
         try {

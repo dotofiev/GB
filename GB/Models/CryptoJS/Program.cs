@@ -1,6 +1,7 @@
 ﻿using GB.Models.Static;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -10,56 +11,127 @@ namespace GB.Models.CryptoJS
 {
     public static class Program
     {
-        private static RijndaelManaged myRijndael = new RijndaelManaged();
-        private static int iterations;
-        private static byte[] salt;
-
-        private static void Authentification()
+        private static string DecryptStringFromBytes(byte[] cipherText, byte[] key, byte[] iv)
         {
-            myRijndael.BlockSize = 128;
-            myRijndael.KeySize = 128;
-            myRijndael.IV = HexStringToByteArray("e84ad660c4721ae0e84ad660c4721ae0");
-
-            myRijndael.Padding = PaddingMode.PKCS7;
-            myRijndael.Mode = CipherMode.CBC;
-            iterations = 1000;
-            salt = System.Text.Encoding.UTF8.GetBytes("insight123resultxyz");
-            myRijndael.Key = GenerateKey(AppSettings.ENCRYPTION_KEY_AES);
-        }
-
-        public static string Encrypt(string strPlainText)
-        {
-            byte[] strText = new System.Text.UTF8Encoding().GetBytes(strPlainText);
-            ICryptoTransform transform = myRijndael.CreateEncryptor();
-            byte[] cipherText = transform.TransformFinalBlock(strText, 0, strText.Length);
-
-            return Convert.ToBase64String(cipherText);
-        }
-
-        public static string Decrypt(string encryptedText)
-        {
-            byte[] encryptedBytes = Convert.FromBase64String(encryptedText);
-            var decryptor = myRijndael.CreateDecryptor(myRijndael.Key, myRijndael.IV);
-            byte[] originalBytes = decryptor.TransformFinalBlock(encryptedBytes, 0, encryptedBytes.Length);
-
-            return Encoding.UTF8.GetString(originalBytes);
-        }
-
-        public static byte[] HexStringToByteArray(string strHex)
-        {
-            dynamic r = new byte[strHex.Length / 2];
-            for (int i = 0; i <= strHex.Length - 1; i += 2)
+            // Check arguments.  
+            if (cipherText == null || cipherText.Length <= 0)
             {
-                r[i / 2] = Convert.ToByte(Convert.ToInt32(strHex.Substring(i, 2), 16));
+                throw new ArgumentNullException("cipherText");
             }
-            return r;
+            if (key == null || key.Length <= 0)
+            {
+                throw new ArgumentNullException("key");
+            }
+            if (iv == null || iv.Length <= 0)
+            {
+                throw new ArgumentNullException("key");
+            }
+
+            // Declare the string used to hold  
+            // the decrypted text.  
+            string plaintext = null;
+
+            // Create an RijndaelManaged object  
+            // with the specified key and IV.  
+            using (var rijAlg = new RijndaelManaged())
+            {
+                //Settings  
+                rijAlg.Mode = CipherMode.CBC;
+                rijAlg.Padding = PaddingMode.PKCS7;
+                rijAlg.FeedbackSize = 128;
+
+                rijAlg.Key = key;
+                rijAlg.IV = iv;
+
+                // Create a decrytor to perform the stream transform.  
+                var decryptor = rijAlg.CreateDecryptor(rijAlg.Key, rijAlg.IV);
+
+                try
+                {
+                    // Create the streams used for decryption.  
+                    using (var msDecrypt = new MemoryStream(cipherText))
+                    {
+                        using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                        {
+
+                            using (var srDecrypt = new StreamReader(csDecrypt))
+                            {
+                                // Read the decrypted bytes from the decrypting stream  
+                                // and place them in a string.  
+                                plaintext = srDecrypt.ReadToEnd();
+
+                            }
+
+                        }
+                    }
+                }
+                catch
+                {
+                    plaintext = "keyError";
+                }
+            }
+
+            return plaintext;
         }
 
-        private static byte[] GenerateKey(string strPassword)
+        private static byte[] EncryptStringToBytes(string plainText, byte[] key, byte[] iv)
         {
-            Rfc2898DeriveBytes rfc2898 = new Rfc2898DeriveBytes(System.Text.Encoding.UTF8.GetBytes(strPassword), salt, iterations);
+            // Check arguments.  
+            if (plainText == null || plainText.Length <= 0)
+            {
+                throw new ArgumentNullException("plainText");
+            }
+            if (key == null || key.Length <= 0)
+            {
+                throw new ArgumentNullException("key");
+            }
+            if (iv == null || iv.Length <= 0)
+            {
+                throw new ArgumentNullException("key");
+            }
+            byte[] encrypted;
+            // Create a RijndaelManaged object  
+            // with the specified key and IV.  
+            using (var rijAlg = new RijndaelManaged())
+            {
+                rijAlg.Mode = CipherMode.CBC;
+                rijAlg.Padding = PaddingMode.PKCS7;
+                rijAlg.FeedbackSize = 128;
 
-            return rfc2898.GetBytes(128 / 8);
+                rijAlg.Key = key;
+                rijAlg.IV = iv;
+
+                // Create a decrytor to perform the stream transform.  
+                var encryptor = rijAlg.CreateEncryptor(rijAlg.Key, rijAlg.IV);
+
+                // Create the streams used for encryption.  
+                using (var msEncrypt = new MemoryStream())
+                {
+                    using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (var swEncrypt = new StreamWriter(csEncrypt))
+                        {
+                            //Write all data to the stream.  
+                            swEncrypt.Write(plainText);
+                        }
+                        encrypted = msEncrypt.ToArray();
+                    }
+                }
+            }
+            // Return the encrypted bytes from the memory stream.  
+            return encrypted;
         }
+
+        public static string gbAESDecrypt(string cipherText)
+        {
+            var keybytes = Encoding.UTF8.GetBytes(AppSettings.ENCRYPTION_KEY_AES);
+            var iv = Encoding.UTF8.GetBytes(AppSettings.ENCRYPTION_KEY_AES);
+
+            var encrypted = Convert.FromBase64String(cipherText);
+            var decriptedFromJavascript = DecryptStringFromBytes(encrypted, keybytes, iv);
+
+            return string.Format(decriptedFromJavascript);
+        }
+
     }
 }

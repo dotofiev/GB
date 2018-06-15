@@ -2,6 +2,25 @@
     Layout = "~/Views/Shared/_LayoutAuthentication.cshtml";
 }
 
+@section scripts {
+
+    <script type="text/javascript">
+
+        // -- Lorsque le document est chargé -- //
+        $(
+            function () {
+
+                gbConsole(
+                    gbAESDecrypt('@(ViewBag.cryp_test)')
+                );
+
+            }
+        );
+
+    </script>
+
+}
+
 <div class="row">
 
     <div class="col-xs-12 col-sm-3 col-lg-4"></div>
@@ -11,7 +30,7 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <p class="lead">
-                    Se connecter à l'application
+                    @ViewBag.Lang.Login_application
                 </p>
             </div>
         </div>
@@ -25,27 +44,27 @@
                     <fieldset>
 
                         <div class="form-group has-feedback">
-                            <label style="font-weight: bold;" for="compte">Compte <small class="text-red">*</small>:</label>
-                            <input class="form-control" placeholder="Compte..." name="compte" id="compte" type="text" required autofocus />
+                            <label style="font-weight: bold;" for="compte">@ViewBag.Lang.Login <small class="text-red">*</small>:</label>
+                            <input class="form-control" placeholder="@ViewBag.Lang.Login..." name="compte" id="compte" type="text" required autofocus />
                             <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                         </div>
 
                         <div class="form-group has-feedback">
-                            <label style="font-weight: bold;" for="mot_de_passe">Mot de passe <small class="text-red">*</small>:</label>
-                            <input class="form-control" placeholder="Mot de passe..." name="mot_de_passe" id="mot_de_passe" type="password" required />
+                            <label style="font-weight: bold;" for="mot_de_passe">@ViewBag.Lang.Password <small class="text-red">*</small>:</label>
+                            <input class="form-control" placeholder="@(ViewBag.Lang.Password)..." name="mot_de_passe" id="mot_de_passe" type="password" required />
                             <span class="fa fa-lock form-control-feedback right" aria-hidden="true"></span>
                         </div>
 
                         <div class="form-group has-feedback">
-                            <label style="font-weight: bold;" for="mot_de_passe">Langue de l'application <small class="text-red">*</small>:</label>
-                            <select class="form-control" name="mot_de_passe" id="langue">
-                                <option value="1" title="Français" @Html.Raw((ViewBag.Lang.code != "en-US") ? "selected=\"selected\"" 
-                                                                                                            : string.Empty)>
-                                    Français
+                            <label style="font-weight: bold;" for="langue">@ViewBag.Lang.Application_language <small class="text-red">*</small>:</label>
+                            <select class="form-control" name="langue" id="langue">
+                                <option value="1" title="@ViewBag.Lang.French" @Html.Raw((ViewBag.Lang.code != "en-US") ? "selected=\"selected\"" 
+                                                                                                                        : string.Empty)>
+                                    @ViewBag.Lang.French
                                 </option>
-                                <option value="0" title="Anglais" @Html.Raw((ViewBag.Lang.code == "en-US") ? "selected=\"selected\"" 
-                                                                                                           : string.Empty)>
-                                    Anglais
+                                <option value="0" title="@ViewBag.Lang.English" @Html.Raw((ViewBag.Lang.code == "en-US") ? "selected=\"selected\"" 
+                                                                                                                         : string.Empty)>
+                                    @ViewBag.Lang.English
                                 </option>
                             </select>
                             <img src="~/Resources/images/png/flag/@(ViewBag.Lang.code).png" 
@@ -55,9 +74,9 @@
 
                         <br />
 
-                        <button id="bt_submit" type="submit" class="btn btn-lg btn-success btn-block"
+                        <button id="bt_submit" type="button" class="btn btn-lg btn-success btn-block"
                                 data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Authentification en cours...">
-                            <i class="fa fa-check"></i> Se connecter
+                            <i class="fa fa-check"></i> @ViewBag.Lang.To_log_in
                         </button>
 
                     </fieldset>
