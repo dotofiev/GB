@@ -180,12 +180,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\GBController.cs" />
+    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CryptoJS\Cryptage.cs" />
-    <Compile Include="Models\CryptoJS\Program.cs" />
+    <Compile Include="Models\Cryptage\Program.cs" />
+    <Compile Include="Models\GBException.cs" />
     <Compile Include="Models\GBNotification.cs" />
     <Compile Include="Models\Helper\LangHelper.cs" />
     <Compile Include="Models\Static\AppSettings.cs" />
@@ -575,7 +576,7 @@
     <Content Include="Plugins\parsleyjs\src\parsley\validator.js" />
     <Content Include="Plugins\parsleyjs\src\parsley\validator_registry.js" />
     <Content Include="Plugins\parsleyjs\src\vendor\inputevent.js" />
-    <Content Include="Plugins\parsley\ds.parsley.css" />
+    <Content Include="Plugins\parsley\gb.parsley.css" />
     <Content Include="Plugins\parsley\i18n\al.js" />
     <Content Include="Plugins\parsley\i18n\ar.js" />
     <Content Include="Plugins\parsley\i18n\bg.js" />
@@ -655,13 +656,17 @@
     <Content Include="Resources\css\custom.min.css" />
     <Content Include="Resources\css\gb.style.css" />
     <Content Include="Resources\css\gb.style.min.css" />
+    <Content Include="Resources\css\Views\Home-Authentication.css" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Resources\images\png\flag\en-US.png" />
     <Content Include="Resources\images\png\flag\fr-FR.png" />
     <Content Include="Resources\images\png\Grey.png" />
     <Content Include="Resources\js\bootstrap.js" />
     <Content Include="Resources\js\bootstrap.min.js" />
+    <Content Include="Resources\js\_references.js" />
     <Content Include="Resources\js\custom.js" />
     <Content Include="Resources\js\custom.min.js" />
+    <Content Include="Plugins\parsley\gb.parsley.js" />
     <Content Include="Resources\js\gb.script.js" />
     <Content Include="Resources\js\gb.script.min.js" />
     <Content Include="Resources\js\jquery-2.2.4.js" />
@@ -874,6 +879,12 @@
   <ItemGroup>
     <Content Include="Plugins\parsley\parsley.js.map" />
     <Content Include="Plugins\parsley\parsley.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

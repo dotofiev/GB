@@ -41,20 +41,17 @@ namespace GB
         {
             // -- Mise à jour de la langue en fonction du dernier utilisateur connecté -- //
             #region Gestion de langue
-            if (Request.Cookies.Get("connexion") != null)
+            if (Request.Cookies.Get("id_lang") != null)
             {
-                this.id_lang = Convert.ToInt32(
-                                    GBConvert.JSON_To<Dictionary<string, string>>(
-                                        GB.Models.CryptoJS.Program.gbAESDecrypt(
-                                            Request.Cookies.Get("cookie_autorise").Value
-                                        )
-                                    )["id_lang"]
-                               );
+                // -- Réccupération de l'identifian de la langue -- //
+                this.id_lang = Convert.ToInt32(Request.Cookies.Get("id_lang").Value);
             }
             else
             {
                 // -- Définition de la langue française par défaut -- //
                 this.id_lang = 0;
+                // -- Mise à jour de l'identification de la langue dans le cookie -- //
+                Response.Cookies["id_lang"].Value = "0";
             }
             #endregion
 

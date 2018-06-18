@@ -1,9 +1,21 @@
 ﻿
+// -- Variable global -- //
+var $GB_VAR = { aes_key: 'global_bank_aes', cookie_autorise: 'cookie_autorise' };
+
 // -- Variables -- //
-var aes_key = "global_bank_aes";
-var cryptoJS_param = { key: CryptoJS.enc.Utf8.parse(aes_key), iv: CryptoJS.enc.Utf8.parse(aes_key) };
+var cryptoJS_param = { key: CryptoJS.enc.Utf8.parse($GB_VAR.aes_key), iv: CryptoJS.enc.Utf8.parse($GB_VAR.aes_key) };
 var fonction_en_Timeout;
 var fonction_en_Interval;
+
+// -- Fonction de retour du message d'erreur serveur en fonction de la langue -- //
+function gbMessageErreurServeur()
+{
+
+    return
+        $('html').attr('lang') === 'en-US' ? 'A communication error has occurred.'
+                                           : 'Une erreur de communication est survenu.';
+
+}
 
 // -- Méthode de cryptage d'une valeur -- //
 function gbAESEncrypt(value) {
@@ -25,7 +37,7 @@ function gbAESEncrypt(value) {
 function gbAESDecrypt(value) {
 
     // -- Réccupérere la méthode décrypté -- //
-    var decrypted = CryptoJS.AES.decrypt(value, aes_key).toString(CryptoJS.enc.Utf8);
+    var decrypted = CryptoJS.AES.decrypt(value, $GB_VAR.aes_key).toString(CryptoJS.enc.Utf8);
     
     // -- Renvoyer le résltat -- //
     return decrypted;
@@ -137,7 +149,9 @@ function gbInitialiser_charger_evenement() {
 
     // -- Charger le mask de date -- //
     try {
+
         $("[data-mask]").inputmask();
+
     } catch (ex) {
         // -- Log -- //
         iConsole('Méthode: Charger le mask de date, Exception: ' + ex.message);
@@ -702,6 +716,13 @@ function gbMessage_Cookiees(titre, message, afficher_bouton_reconnexion) {
 
 // -- Message box de notification -- //
 function gbMessage_Box(type, message) {
+
+    // -- Mise à jour des variable en cas d'erreur serveur -- //
+    if (type === null && message === null) {
+        type = 'danger';
+        message = gbMessageErreurServeur();
+    }
+
     // -- Mise à jour de la taille -- //
     $('#modal_message_taille').removeClass('modal-dialog');
     $('#modal_message_taille').addClass('modal-dialog modal-sm');
@@ -711,6 +732,7 @@ function gbMessage_Box(type, message) {
     $('#modal_message_text').html(message);
     // -- Afficher -- //
     $('#modal_message').modal('show');
+
 }
 
 // -- Afficher un pop overs sur un element -- //
@@ -758,7 +780,7 @@ function gbSetCookie(cookie_name, cookie_value, exdays) {
     // -- Vérifie que le paramètre n'est pas null -- //
     if (cookie_value != null && cookie_value != undefined) {
         // -- Cryptage du paramètre valeur -- //
-        cookie_value = gbAESEncrypt(cookie_value.toString());
+        //cookie_value = gbAESEncrypt(cookie_value.toString());
 
         var d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -781,10 +803,11 @@ function gbGetCookie(cookie_name) {
         }
         if (c.indexOf(name) == 0) {
             return
+                c.substring(name.length, c.length);
                 // -- Décryptage de la valeur -- //
-                gbAESDecrypt(
-                    c.substring(name.length, c.length)
-                );
+                //gbAESDecrypt(
+                //    c.substring(name.length, c.length)
+                //);
         }
     }
 
@@ -849,7 +872,7 @@ $(
             $("#bt_valide_cookie_use").on("click",
                 function () {
                     // -- Définir l'autorisation d'exploitation des cookies -- //
-                    gbSetCookie('cookie_autorise', 1, 365);
+                    gbSetCookie($GB_VAR.cookie_autorise, 1, 365);
 
                     // -- Cacher le panel cookie -- //
                     $("#cookie_panel").slideToggle("slow");
@@ -857,7 +880,7 @@ $(
             );
 
             // -- Notifier l'utilisation des cookies -- //
-            if (gbGetCookie('cookie_autorise') === "") {
+            if (gbGetCookie($GB_VAR.cookie_autorise) === "") {
                 // -- Afficher le panel cookiees -- //
                 $("#cookie_panel").slideToggle("slow");
             }
@@ -868,23 +891,6 @@ $(
         try {
 
             $("[data-mask]").inputmask("dd/mm/yyyy", { "placeholder": "dd/mm/yyyy" });
-
-        } catch (e) { gbConsole(e.message); }
-
-        // -- Ajouter un nouveau validateur des format de téléphone -- //
-        try {
-
-            Parsley.addValidator('intltelinput', {
-                requirementType: 'string',
-                validateString: function (value, id_element) {
-                    var valide = $(id_element).intlTelInput("isValidNumber");
-                    return valide;
-                },
-                priority: 22,
-                messages: {
-                    fr: "Ce numéro de téléphone incorrect.",
-                }
-            });
 
         } catch (e) { gbConsole(e.message); }
 

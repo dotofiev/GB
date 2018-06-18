@@ -147,8 +147,14 @@
   <data name="Login_application" xml:space="preserve">
     <value>Login to the application</value>
   </data>
+  <data name="Main" xml:space="preserve">
+    <value>Main</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="Process_in_production" xml:space="preserve">
+    <value>Process in production</value>
   </data>
   <data name="Successful" xml:space="preserve">
     <value>Successful</value>

@@ -1,4 +1,5 @@
-﻿using GB.Models.CryptoJS;
+﻿using GB.Models;
+using GB.Models.CryptoJS;
 using GB.Models.Static;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,46 @@ namespace GB.Controllers
         #endregion
 
         #region HttpPost
+        [HttpPost]
+        public ActionResult Connexion(string compte, string mot_de_passe)
+        {
+            try
+            {
+                // -- Exception -- //
+                throw new GBException(App_Lang.Lang.Process_in_production);
 
+                // -- Notification -- //
+                this.ViewBag.notification = new GBNotification(
+                                                new {
+                                                    url = Url.Action("Application", "Main")
+                                                }
+                                            );
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(true);
+                }
+                else
+                {
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(ex.Message, true);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return Json(
+                GBConvert.To_Object(this.ViewBag)
+            );
+        }
         #endregion
 
         #region MyRegion

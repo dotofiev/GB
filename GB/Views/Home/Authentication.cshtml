@@ -2,25 +2,6 @@
     Layout = "~/Views/Shared/_LayoutAuthentication.cshtml";
 }
 
-@section scripts {
-
-    <script type="text/javascript">
-
-        // -- Lorsque le document est chargé -- //
-        $(
-            function () {
-
-                gbConsole(
-                    gbAESDecrypt('@(ViewBag.cryp_test)')
-                );
-
-            }
-        );
-
-    </script>
-
-}
-
 <div class="row">
 
     <div class="col-xs-12 col-sm-3 col-lg-4"></div>
@@ -39,7 +20,7 @@
 
             <div class="panel-body">
 
-                <form role="form" id="auth_form" class="form-label-left">
+                <form id="auth_form" class="form-label-left" data-parsley-validate>
 
                     <fieldset>
 
@@ -74,7 +55,7 @@
 
                         <br />
 
-                        <button id="bt_submit" type="button" class="btn btn-lg btn-success btn-block"
+                        <button id="btn_authentifier" type="submit" class="btn btn-lg btn-success btn-block"
                                 data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Authentification en cours...">
                             <i class="fa fa-check"></i> @ViewBag.Lang.To_log_in
                         </button>

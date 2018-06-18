@@ -148,8 +148,14 @@
   <data name="Login_application" xml:space="preserve">
     <value>Se connecter à l'application</value>
   </data>
+  <data name="Main" xml:space="preserve">
+    <value>Principale</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Mot de passe</value>
+  </data>
+  <data name="Process_in_production" xml:space="preserve">
+    <value>Processus en cours de production</value>
   </data>
   <data name="Successful" xml:space="preserve">
     <value>Réussi</value>

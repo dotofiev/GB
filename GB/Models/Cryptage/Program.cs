@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.CryptoJS
 {
-    public static class Cryptage
+    public static class Program
     {
         //  Call this function to remove the key from memory after use for security
         [System.Runtime.InteropServices.DllImport("KERNEL32.DLL", EntryPoint = "RtlZeroMemory")]

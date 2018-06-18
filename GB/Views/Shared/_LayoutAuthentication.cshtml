@@ -23,10 +23,14 @@
     <link href="@Url.Content("~/Plugins/nprogress/nprogress.css")" rel="stylesheet" />
     <!-- iCheck -->
     <link href="@Url.Content("~/Plugins/iCheck/skins/flat/blue.css")" rel="stylesheet" />
+    <!-- parsley -->
+    <link href="@Url.Content("~/Plugins/parsley/gb.parsley.css")" rel="stylesheet" />
     <!-- Custom Theme Style -->
     <link href="@Url.Content("~/Resources/css/custom.css")" rel="stylesheet" />
     <!-- gb.style.css -->
     <link href="@Url.Content("~/Resources/css/gb.style.css")" rel="stylesheet" />
+    <!-- Style de la page -->
+    <link href="@Url.Content("~/Resources/css/Views/" + ViewBag.Id_page + ".css")" rel="stylesheet" />
 
 </head>
 
@@ -53,6 +57,7 @@
     <!-- form validation -->
     <script src="@Url.Content("~/Plugins/parsley/parsley.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Plugins/parsley/i18n/" + (ViewBag.Lang.code == "en-US" ? "en" : "fr") + ".js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Plugins/parsley/gb.parsley.js")" type="text/javascript"></script>
     <!-- NProgress -->
     <script src="@Url.Content("~/Plugins/nprogress/nprogress.js")" type="text/javascript"></script>
     
@@ -64,8 +69,6 @@
     <script src="@Url.Content("~/Resources/js/gb.script.js")" type="text/javascript"></script>
     <!-- Script de la page -->
     <script src="@Url.Content("~/Resources/js/Views/" + ViewBag.Id_page + ".js")" type="text/javascript"></script>
-
-    @RenderSection("scripts", required: false)
 
 </body>
 

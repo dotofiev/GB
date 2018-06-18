@@ -60,10 +60,16 @@ namespace GB.Controllers
             this.id_lang = id_lang;
 
             // -- Mise à jour de la langue dans le cookie utilisateur -- //
-            //MiseAJourCookieLangue(id_lang);
+            Set_Cookie_Langue(id_lang);
 
             // -- Effectuer une redirection sur la même page -- // 
             return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        // -- Mise à jour du cookie de langue -- //
+        private void Set_Cookie_Langue(int id_lang)
+        {
+            Response.Cookies["id_lang"].Value = id_lang.ToString();
         }
         #endregion
 

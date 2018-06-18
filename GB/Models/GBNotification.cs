@@ -24,7 +24,9 @@ namespace GB.Models
                                 (est_echec) ? 3
                                             : 1
                                 );
-            this.message = message;
+            this.message = (!est_echec) ? message
+                                        : message.Contains(GBException.marqueur) ? message.Replace(GBException.marqueur, string.Empty)
+                                                                                 : message;
             this.est_echec = est_echec;
             this.donnee = null;
             this.dynamique = new ExpandoObject();
@@ -33,7 +35,9 @@ namespace GB.Models
         {
             this.titre = "Information";
             this.type = type;
-            this.message = message;
+            this.message = (!est_echec) ? message
+                                        : message.Contains(GBException.marqueur) ? message.Replace(GBException.marqueur, string.Empty)
+                                                                                 : message;
             this.est_echec = est_echec;
             this.donnee = null;
             this.dynamique = new ExpandoObject();
