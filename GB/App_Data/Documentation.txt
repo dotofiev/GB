@@ -1,0 +1,6 @@
+﻿/////////////////////////////////
+//// Documentation du projet ////
+/////////////////////////////////
+
+1. Framework Log4Net
+	- Commande d'intégration : Install-Package log4net -Version 2.0.8

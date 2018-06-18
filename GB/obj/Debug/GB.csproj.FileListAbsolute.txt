@@ -67,3 +67,10 @@ E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\Microsoft.Owin.Security.Twitt
 E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\GB.dll
 E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\GB.pdb
+E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\log4net.dll
+E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\log4net.xml
+E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\GB.App_Lang.Lang.resources
+E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\GB.App_Lang.Lang.fr.resources
+E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\GB.csproj.GenerateResource.Cache
+E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\fr\GB.resources.dll
+E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\fr\GB.resources.dll
