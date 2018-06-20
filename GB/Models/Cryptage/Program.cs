@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace GB.Models.CryptoJS
+namespace GB.Models.Cryptage
 {
     public static class Program
     {

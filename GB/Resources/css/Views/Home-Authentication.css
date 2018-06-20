@@ -16,3 +16,22 @@
     height: 40px;
 
 }
+
+.dg-body_auth {
+    font-family: Titilium web; background-color: #F7F7F7;
+    background-image: url(../../images/png/Grey.png);
+    /*background-color: lightgrey;*/
+    background-attachment: scroll;
+}
+
+/* Cookie notification */
+.cookiewarning {
+    padding: 1em;
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(0,0,0,.8);
+    color: white;
+}

@@ -123,6 +123,9 @@
   <data name="Authentication" xml:space="preserve">
     <value>Authentication</value>
   </data>
+  <data name="Authentication_failed" xml:space="preserve">
+    <value>Incorrect account or password</value>
+  </data>
   <data name="Cookie_button" xml:space="preserve">
     <value>Accept and continue</value>
   </data>
@@ -130,16 +133,22 @@
     <value>In order to offer you the best experience, our application uses cookies. By continuing to use this application, you agree to our use of cookies.</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>© 2018 All rights reserved Better Planning</value>
+    <value>© 2018 All rights reserved &lt;b&gt;Better Planning Ltd&lt;/b&gt;</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
   </data>
   <data name="Error_message_notification" xml:space="preserve">
     <value>An error occurred while processing, please contact the administrator.</value>
   </data>
   <data name="French" xml:space="preserve">
     <value>French</value>
+  </data>
+  <data name="Internal_error" xml:space="preserve">
+    <value>Internal error</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
@@ -150,16 +159,40 @@
   <data name="Main" xml:space="preserve">
     <value>Main</value>
   </data>
+  <data name="Page_not_found" xml:space="preserve">
+    <value>Page not found</value>
+  </data>
+  <data name="Page_not_found_message" xml:space="preserve">
+    <value>THE PAGE YOU TRY TO ACCESS IS NOT AVAILABLE</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="Process" xml:space="preserve">
+    <value>Process</value>
+  </data>
   <data name="Process_in_production" xml:space="preserve">
     <value>Process in production</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Reconnect" xml:space="preserve">
+    <value>Reconnect</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Sign_Out" xml:space="preserve">
+    <value>Sign Out</value>
   </data>
   <data name="Successful" xml:space="preserve">
     <value>Successful</value>
   </data>
   <data name="To_log_in" xml:space="preserve">
     <value>To log in</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome</value>
   </data>
 </root>

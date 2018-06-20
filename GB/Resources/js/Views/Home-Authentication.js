@@ -29,6 +29,9 @@ $(
                     // -- Variables -- //
                     var form = $(this);
 
+                    // -- Frame chargement -- //
+                    gbAfficher_Page_Chargement(true, 'btn_authentifier');
+
                     // -- Ajax -- //
                     $.ajax({
                         type: "POST",
@@ -43,8 +46,12 @@ $(
                                 // -- Redirection vers la page d'application -- //
                                 gbHref(resultat.notification.donnee.url);
                             }
+                            // -- Frame chargement -- //
+                            gbAfficher_Page_Chargement(false, 'btn_authentifier');
                         },
                         error: function () {
+                            // -- Frame chargement -- //
+                            gbAfficher_Page_Chargement(false, 'btn_authentifier');
                             // -- Message -- //
                             gbMessage_Box(null, null);
                         }

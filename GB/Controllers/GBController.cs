@@ -1,4 +1,5 @@
-﻿using GB.Models.Helper;
+﻿using GB.Models;
+using GB.Models.Helper;
 using GB.Models.Static;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace GB.Controllers
     public class GBController : Controller
     {
         #region Variables
+        public Connexion con { get { return Session["Connexion"] as Connexion; } set { Session["Connexion"] = value; } }
         public int id_lang { get { if (Session["id_lang"] == null) { return 0; } else { return (int)Session["id_lang"]; } } set { Session["id_lang"] = value; } }
         #endregion
 
@@ -79,11 +81,20 @@ namespace GB.Controllers
 
         public void Charger_Parametres()
         {
-            // -- Versio nde l'application -- //
+            // -- Version de l'application -- //
             this.ViewBag.VERSION_BUILD = AppSettings.VERSION_BUILD;
+
+            // -- Nom de l'application -- //
+            this.ViewBag.APP_NAME = AppSettings.APP_NAME;
 
             // -- Paramètres langue -- //
             this.ViewBag.Lang = new System.Dynamic.ExpandoObject();
+
+            // -- Initialisation des données à traiter -- //
+            this.ViewBag.donnee = new System.Dynamic.ExpandoObject();
+
+            // -- Paramètres de test -- //
+            this.ViewBag.Test = new System.Dynamic.ExpandoObject();
 
             // -- Langue de l'application -- //
             this.ViewBag.Lang.code = (this.id_lang == 0) ? GB_Enum_Langue.Anglais
@@ -93,6 +104,7 @@ namespace GB.Controllers
             this.ViewBag.Lang.Cookie_message    = App_Lang.Lang.Cookie_message;
             this.ViewBag.Lang.Cookie_button     = App_Lang.Lang.Cookie_button;
             this.ViewBag.Lang.Copyright         = App_Lang.Lang.Copyright;
+            this.ViewBag.Lang.Process           = App_Lang.Lang.Process;
         }
         #endregion
     }

@@ -79,6 +79,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incorrect account or password.
+        /// </summary>
+        public static string Authentication_failed {
+            get {
+                return ResourceManager.GetString("Authentication_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accept and continue.
         /// </summary>
         public static string Cookie_button {
@@ -97,7 +106,7 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to © 2018 All rights reserved Better Planning.
+        ///   Looks up a localized string similar to © 2018 All rights reserved &lt;b&gt;Better Planning Ltd&lt;/b&gt;.
         /// </summary>
         public static string Copyright {
             get {
@@ -111,6 +120,15 @@ namespace GB.App_Lang {
         public static string English {
             get {
                 return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
         
@@ -129,6 +147,15 @@ namespace GB.App_Lang {
         public static string French {
             get {
                 return ResourceManager.GetString("French", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Internal error.
+        /// </summary>
+        public static string Internal_error {
+            get {
+                return ResourceManager.GetString("Internal_error", resourceCulture);
             }
         }
         
@@ -160,6 +187,24 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page not found.
+        /// </summary>
+        public static string Page_not_found {
+            get {
+                return ResourceManager.GetString("Page_not_found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to THE PAGE YOU TRY TO ACCESS IS NOT AVAILABLE.
+        /// </summary>
+        public static string Page_not_found_message {
+            get {
+                return ResourceManager.GetString("Page_not_found_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
@@ -169,11 +214,56 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Process.
+        /// </summary>
+        public static string Process {
+            get {
+                return ResourceManager.GetString("Process", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Process in production.
         /// </summary>
         public static string Process_in_production {
             get {
                 return ResourceManager.GetString("Process_in_production", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        public static string Profile {
+            get {
+                return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reconnect.
+        /// </summary>
+        public static string Reconnect {
+            get {
+                return ResourceManager.GetString("Reconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Out.
+        /// </summary>
+        public static string Sign_Out {
+            get {
+                return ResourceManager.GetString("Sign_Out", resourceCulture);
             }
         }
         
@@ -192,6 +282,15 @@ namespace GB.App_Lang {
         public static string To_log_in {
             get {
                 return ResourceManager.GetString("To_log_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome.
+        /// </summary>
+        public static string Welcome {
+            get {
+                return ResourceManager.GetString("Welcome", resourceCulture);
             }
         }
     }

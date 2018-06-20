@@ -2,84 +2,74 @@
     Layout = "~/Views/Shared/_LayoutAuthentication.cshtml";
 }
 
-<div class="row">
+<div class="login_form">
 
-    <div class="col-xs-12 col-sm-3 col-lg-4"></div>
-
-    <div class="col-xs-12 col-sm-6 col-lg-4">
-
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <p class="lead">
-                    @ViewBag.Lang.Login_application
-                </p>
-            </div>
-        </div>
-
-        <div class="login-panel panel panel-default">
-
-            <div class="panel-body">
-
-                <form id="auth_form" class="form-label-left" data-parsley-validate>
-
-                    <fieldset>
-
-                        <div class="form-group has-feedback">
-                            <label style="font-weight: bold;" for="compte">@ViewBag.Lang.Login <small class="text-red">*</small>:</label>
-                            <input class="form-control" placeholder="@ViewBag.Lang.Login..." name="compte" id="compte" type="text" required autofocus />
-                            <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-                        </div>
-
-                        <div class="form-group has-feedback">
-                            <label style="font-weight: bold;" for="mot_de_passe">@ViewBag.Lang.Password <small class="text-red">*</small>:</label>
-                            <input class="form-control" placeholder="@(ViewBag.Lang.Password)..." name="mot_de_passe" id="mot_de_passe" type="password" required />
-                            <span class="fa fa-lock form-control-feedback right" aria-hidden="true"></span>
-                        </div>
-
-                        <div class="form-group has-feedback">
-                            <label style="font-weight: bold;" for="langue">@ViewBag.Lang.Application_language <small class="text-red">*</small>:</label>
-                            <select class="form-control" name="langue" id="langue">
-                                <option value="1" title="@ViewBag.Lang.French" @Html.Raw((ViewBag.Lang.code != "en-US") ? "selected=\"selected\"" 
-                                                                                                                        : string.Empty)>
-                                    @ViewBag.Lang.French
-                                </option>
-                                <option value="0" title="@ViewBag.Lang.English" @Html.Raw((ViewBag.Lang.code == "en-US") ? "selected=\"selected\"" 
-                                                                                                                         : string.Empty)>
-                                    @ViewBag.Lang.English
-                                </option>
-                            </select>
-                            <img src="~/Resources/images/png/flag/@(ViewBag.Lang.code).png" 
-                                 class="form-control-feedback right img-responsive" aria-hidden="true" 
-                                 style="height: 15px; padding-left: 7px; padding-right: 7px" />
-                        </div>
-
-                        <br />
-
-                        <button id="btn_authentifier" type="submit" class="btn btn-lg btn-success btn-block"
-                                data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Authentification en cours...">
-                            <i class="fa fa-check"></i> @ViewBag.Lang.To_log_in
-                        </button>
-
-                    </fieldset>
-
-                </form>
-
-            </div>
-
-        </div>
-
-        <div class="well well-sm text-center">
-            @ViewBag.Lang.Copyright
-        </div>
-
-        <div class="col-lg-12 text-center">
-            <p>
-                Version @ViewBag.VERSION_BUILD
+    <div class="row">
+        <div class="text-center">
+            <p class="lead">
+                @ViewBag.Lang.Login_application
             </p>
+        </div>
+    </div>
+
+    <div class="login-panel panel panel-default">
+
+        <div class="panel-body">
+
+            <form id="auth_form" class="form-label-left" data-parsley-validate>
+
+                <fieldset>
+
+                    <div class="form-group has-feedback">
+                        <label style="font-weight: bold;" for="compte">@ViewBag.Lang.Login <small class="text-red">*</small>:</label>
+                        <input class="form-control" placeholder="@ViewBag.Lang.Login..." name="compte" id="compte" type="text" value="@ViewBag.Test.compte" required autofocus />
+                        <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label style="font-weight: bold;" for="mot_de_passe">@ViewBag.Lang.Password <small class="text-red">*</small>:</label>
+                        <input class="form-control" placeholder="@(ViewBag.Lang.Password)..." name="mot_de_passe" id="mot_de_passe" type="password" value="@ViewBag.Test.mot_de_passe" required />
+                        <span class="fa fa-lock form-control-feedback right" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="form-group has-feedback">
+                        <label style="font-weight: bold;" for="langue">@ViewBag.Lang.Application_language <small class="text-red">*</small>:</label>
+                        <select class="form-control" name="langue" id="langue">
+                            <option value="1" title="@ViewBag.Lang.French" @Html.Raw((ViewBag.Lang.code != "en-US") ? "selected=\"selected\"" : string.Empty)>
+                                @ViewBag.Lang.French
+                            </option>
+                            <option value="0" title="@ViewBag.Lang.English" @Html.Raw((ViewBag.Lang.code == "en-US") ? "selected=\"selected\"" : string.Empty)>
+                                @ViewBag.Lang.English
+                            </option>
+                        </select>
+                        <img src="~/Resources/images/png/flag/@(ViewBag.Lang.code).png"
+                             class="form-control-feedback right img-responsive" aria-hidden="true"
+                             style="height: 15px; padding-left: 7px; padding-right: 7px" />
+                    </div>
+
+                    <br />
+
+                    <button id="btn_authentifier" type="submit" class="btn btn-lg btn-success btn-block"
+                            data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> @ViewBag.Lang.Process ...">
+                        <i class="fa fa-check"></i> @ViewBag.Lang.To_log_in
+                    </button>
+
+                </fieldset>
+
+            </form>
+
         </div>
 
     </div>
 
-    <div class="col-xs-12 col-sm-3 col-lg-4"></div>
+    <div class="well well-sm text-center">
+        @Html.Raw(ViewBag.Lang.Copyright)
+    </div>
+
+    <div class="text-center">
+        <p>
+            Version @ViewBag.VERSION_BUILD
+        </p>
+    </div>
 
 </div>

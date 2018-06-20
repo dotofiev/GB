@@ -3,7 +3,6 @@
 var $GB_VAR = { aes_key: 'global_bank_aes', cookie_autorise: 'cookie_autorise' };
 
 // -- Variables -- //
-var cryptoJS_param = { key: CryptoJS.enc.Utf8.parse($GB_VAR.aes_key), iv: CryptoJS.enc.Utf8.parse($GB_VAR.aes_key) };
 var fonction_en_Timeout;
 var fonction_en_Interval;
 
@@ -19,6 +18,9 @@ function gbMessageErreurServeur()
 
 // -- Méthode de cryptage d'une valeur -- //
 function gbAESEncrypt(value) {
+
+// -- Clés de cryptage -- //
+    var cryptoJS_param = { key: CryptoJS.enc.Utf8.parse($GB_VAR.aes_key), iv: CryptoJS.enc.Utf8.parse($GB_VAR.aes_key) };
 
     // -- Réccupérere la méthode encrypté -- //
     //var encrypted = CryptoJS.AES.encrypt(value, aes_key);
@@ -238,21 +240,21 @@ function gbAfficher_Page_Chargement(afficher, id_bouton) {
     if (afficher) {
         // -- Actualiser le bouton -- //
         if (id_bouton != null) {
-            //$('#' + id_bouton).button('loading');
+            $('#' + id_bouton).button('loading');
         }
         // -- Affichier le progress bar -- //
         NProgress.start();
         // -- Afficher le frame de chargelent -- //
-        $('#frame_chargement').show();
+        //$('#frame_chargement').show();
     } else {
         // -- Actualiser le bouton -- //
         if (id_bouton != null) {
-            //$('#' + id_bouton).button('reset');
+            $('#' + id_bouton).button('reset');
         }
         // -- Finaliser le chargement du progress bar -- //
         NProgress.done();
         // -- Cacher le frae de chargement -- //
-        $('#frame_chargement').hide();
+        //$('#frame_chargement').hide();
     }
 }
 
