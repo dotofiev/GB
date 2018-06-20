@@ -680,6 +680,7 @@
     <Content Include="Resources\css\Views\Application-Main.css" />
     <Content Include="Resources\css\Views\Home-Authentication.css" />
     <Content Include="Resources\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Resources\images\png\bg_grey.png" />
     <Content Include="Resources\images\png\flag\en-US.png" />
     <Content Include="Resources\images\png\flag\fr-FR.png" />
     <Content Include="Resources\images\png\Grey.png" />

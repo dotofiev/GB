@@ -138,7 +138,6 @@ namespace GB.Controllers
             #region Home-Authentication
             if (id_page == "Home-Authentication")
             {
-                this.ViewBag.Lang.Login_application = App_Lang.Lang.Login_application;
                 this.ViewBag.Lang.Login = App_Lang.Lang.Login;
                 this.ViewBag.Lang.Password = App_Lang.Lang.Password;
                 this.ViewBag.Lang.Application_language = App_Lang.Lang.Application_language;

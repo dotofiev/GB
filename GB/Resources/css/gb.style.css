@@ -402,3 +402,14 @@ body {
 /*.form-control.has-feedback-left {
     padding-left: 50px;
 }*/
+
+.form-control:focus {
+
+    font-weight: bold;
+    background-color: rgb(250, 255, 189);
+    border-color: #73879C;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(38, 185, 154, 0.25);
+    border-width: 2px;
+
+}

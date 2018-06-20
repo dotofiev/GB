@@ -4,14 +4,6 @@
 
 <div class="login_form">
 
-    <div class="row">
-        <div class="text-center">
-            <p class="lead">
-                @ViewBag.Lang.Login_application
-            </p>
-        </div>
-    </div>
-
     <div class="login-panel panel panel-default">
 
         <div class="panel-body">
@@ -20,34 +12,41 @@
 
                 <fieldset>
 
-                    <div class="form-group has-feedback">
-                        <label style="font-weight: bold;" for="compte">@ViewBag.Lang.Login <small class="text-red">*</small>:</label>
-                        <input class="form-control" placeholder="@ViewBag.Lang.Login..." name="compte" id="compte" type="text" value="@ViewBag.Test.compte" required autofocus />
-                        <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-                    </div>
+                    <div class="row pb-10">
 
-                    <div class="form-group has-feedback">
-                        <label style="font-weight: bold;" for="mot_de_passe">@ViewBag.Lang.Password <small class="text-red">*</small>:</label>
-                        <input class="form-control" placeholder="@(ViewBag.Lang.Password)..." name="mot_de_passe" id="mot_de_passe" type="password" value="@ViewBag.Test.mot_de_passe" required />
-                        <span class="fa fa-lock form-control-feedback right" aria-hidden="true"></span>
-                    </div>
+                        <label style="font-weight: bold;" for="compte" class="control-label col-md-3 col-sm-3 col-xs-12">
+                            @(ViewBag.Lang.Login):
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                            <input class="form-control has-feedback-right" placeholder="@ViewBag.Lang.Login..." name="compte" id="compte" type="text" value="@ViewBag.Test.compte" required autofocus />
+                            <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                        </div>
 
-                    <div class="form-group has-feedback">
-                        <label style="font-weight: bold;" for="langue">@ViewBag.Lang.Application_language <small class="text-red">*</small>:</label>
-                        <select class="form-control" name="langue" id="langue">
-                            <option value="1" title="@ViewBag.Lang.French" @Html.Raw((ViewBag.Lang.code != "en-US") ? "selected=\"selected\"" : string.Empty)>
-                                @ViewBag.Lang.French
-                            </option>
-                            <option value="0" title="@ViewBag.Lang.English" @Html.Raw((ViewBag.Lang.code == "en-US") ? "selected=\"selected\"" : string.Empty)>
-                                @ViewBag.Lang.English
-                            </option>
-                        </select>
-                        <img src="~/Resources/images/png/flag/@(ViewBag.Lang.code).png"
-                             class="form-control-feedback right img-responsive" aria-hidden="true"
-                             style="height: 15px; padding-left: 7px; padding-right: 7px" />
-                    </div>
+                        <label style="font-weight: bold;" for="compte" class="control-label col-md-3 col-sm-3 col-xs-12">
+                            @(ViewBag.Lang.Password):
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                            <input class="form-control has-feedback-right" placeholder="@(ViewBag.Lang.Password)..." name="mot_de_passe" id="mot_de_passe" type="password" value="@ViewBag.Test.mot_de_passe" required />
+                            <span class="fa fa-lock form-control-feedback right" aria-hidden="true"></span>
+                        </div>
 
-                    <br />
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            <select class="form-control has-feedback-right" name="langue" id="langue">
+                                <option value="1" title="@ViewBag.Lang.French" @Html.Raw((ViewBag.Lang.code != "en-US") ? "selected=\"selected\"" 
+                                                                                                                        : string.Empty)>
+                                    @ViewBag.Lang.French
+                                </option>
+                                <option value="0" title="@ViewBag.Lang.English" @Html.Raw((ViewBag.Lang.code == "en-US") ? "selected=\"selected\"" 
+                                                                                                                         : string.Empty)>
+                                    @ViewBag.Lang.English
+                                </option>
+                            </select>
+                            <img src="~/Resources/images/png/flag/@(ViewBag.Lang.code).png"
+                                 class="form-control-feedback right img-responsive" aria-hidden="true"
+                                 style="height: 15px; padding-left: 7px; padding-right: 7px" />
+                        </div>
+
+                    </div>
 
                     <button id="btn_authentifier" type="submit" class="btn btn-lg btn-success btn-block"
                             data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> @ViewBag.Lang.Process ...">
