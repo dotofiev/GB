@@ -17,17 +17,15 @@
                         <label style="font-weight: bold;" for="compte" class="control-label col-md-3 col-sm-3 col-xs-12">
                             @(ViewBag.Lang.Login):
                         </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-                            <input class="form-control has-feedback-right" placeholder="@ViewBag.Lang.Login..." name="compte" id="compte" type="text" value="@ViewBag.Test.compte" required autofocus />
-                            <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                        <div class="col-md-9 col-sm-9 col-xs-12 form-group">
+                            <input class="form-control" placeholder="@ViewBag.Lang.Login..." name="compte" id="compte" type="text" value="@ViewBag.Test.compte" required autofocus />
                         </div>
 
-                        <label style="font-weight: bold;" for="compte" class="control-label col-md-3 col-sm-3 col-xs-12">
+                        <label style="font-weight: bold;" for="mot_de_passe" class="control-label col-md-3 col-sm-3 col-xs-12">
                             @(ViewBag.Lang.Password):
                         </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
-                            <input class="form-control has-feedback-right" placeholder="@(ViewBag.Lang.Password)..." name="mot_de_passe" id="mot_de_passe" type="password" value="@ViewBag.Test.mot_de_passe" required />
-                            <span class="fa fa-lock form-control-feedback right" aria-hidden="true"></span>
+                        <div class="col-md-9 col-sm-9 col-xs-12 form-group">
+                            <input class="form-control" placeholder="@(ViewBag.Lang.Password)..." name="mot_de_passe" id="mot_de_passe" type="password" value="@ViewBag.Test.mot_de_passe" required />
                         </div>
 
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
