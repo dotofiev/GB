@@ -23,8 +23,16 @@
     <link href="@Url.Content("~/Plugins/nprogress/nprogress.css")" rel="stylesheet" />
     <!-- jQuery custom content scroller -->
     <link href="@Url.Content("~/Plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css")" rel="stylesheet" />
+    <!-- iCheck -->
+    <link href="@Url.Content("~/Plugins/iCheck/skins/flat/green.css")" rel="stylesheet" />
+    <!-- datatables -->
+    <link href="@Url.Content("~/Plugins/datatables/datatables/jquery.dataTables.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Plugins/datatables/datatables/buttons.bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Plugins/datatables/datatables/fixedHeader.bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Plugins/datatables/datatables/responsive.bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Plugins/datatables/datatables/scroller.bootstrap.min.css")" rel="stylesheet" />
     <!-- Custom Theme Style -->
-    <link href="@Url.Content("~/Resources/css/custom.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Resources/css/custom.css")" rel="stylesheet" />
     <!-- gb.style.css -->
     <link href="@Url.Content("~/Resources/css/gb.style.css")" rel="stylesheet" />
     <!-- Style de la page -->
@@ -53,10 +61,34 @@
     <script src="@Url.Content("~/Plugins/nprogress/nprogress.js")" type="text/javascript"></script>
     <!-- jQuery custom content scroller -->
     <script src="@Url.Content("~/Plugins/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js")" type="text/javascript"></script>
+    <!-- datatables -->
+    <script src="@Url.Content("~/Plugins/datatables/datatables/jquery.dataTables.min.js")"></script>
+    <script src="@Url.Content("~/Plugins/datatables/datatables/dataTables.bootstrap.js")"></script>
+    <script src="@Url.Content("~/Plugins/datatables/datatables/dataTables.buttons.min.js")"></script>
+    <script src="@Url.Content("~/Plugins/datatables/datatables/buttons.bootstrap.min.js")"></script>
+    <!--
+    <script src="@Url.Content("~/Plugins/datatables/datatables/jszip.min.js")"></script>
+    <script src="@Url.Content("~/Plugins/datatables/datatables/pdfmake.min.js")"></script>
+    <script src="@Url.Content("~/Plugins/datatables/datatables/vfs_fonts.js")"></script>
+    -->
+    <script src="@Url.Content("~/Plugins/datatables/datatables/buttons.html5.min.js")"></script>
+    <script src="@Url.Content("~/Plugins/datatables/datatables/buttons.print.min.js")"></script>
+    <script src="@Url.Content("~/Plugins/datatables/datatables/dataTables.fixedHeader.min.js")"></script>
+    <script src="@Url.Content("~/Plugins/datatables/datatables/dataTables.keyTable.min.js")"></script>
+    <script src="@Url.Content("~/Plugins/datatables/datatables/dataTables.responsive.min.js")"></script>
+    <script src="@Url.Content("~/Plugins/datatables/datatables/responsive.bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Plugins/datatables/datatables/dataTables.scroller.min.js")"></script>
+    <script src="@Url.Content("~/Plugins/datatables/datatables/dataTables.cellEdit.js")"></script>
     <!-- Custom Theme Scripts -->
-    <script src="@Url.Content("~/Resources/js/custom.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Resources/js/custom.js")" type="text/javascript"></script>
     <!-- gb.script.js -->
     <script src="@Url.Content("~/Resources/js/gb.script.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        // -- Réccupérer les données à exploiter dans les script du main -- //
+        $GB_DONNEE_PARAMETRES = JSON.parse('@Html.Raw(ViewBag.GB_DONNEE)');
+    </script>
+    <!-- gb.menu.js -->
+    <script src="@Url.Content("~/Resources/js/gb.menu.js")" type="text/javascript"></script>
     <!-- Script de la page -->
     <script src="@Url.Content("~/Resources/js/Views/" + ViewBag.Id_page + ".js")" type="text/javascript"></script>
 

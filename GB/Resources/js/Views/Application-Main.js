@@ -44,12 +44,5 @@ $(
             }
         );
 
-        // -- Affichier le progress bar -- //
-        try {
-
-            gbMessage_Box('success', 'Je suis là!');
-
-        } catch (e) { gbConsole(e.message); }
-
     }
 );

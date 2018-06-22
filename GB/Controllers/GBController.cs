@@ -1,6 +1,8 @@
 ﻿using GB.Models;
+using GB.Models.BO;
 using GB.Models.Helper;
 using GB.Models.Static;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,12 @@ namespace GB.Controllers
         #region Variables
         public Connexion con { get { return Session["Connexion"] as Connexion; } set { Session["Connexion"] = value; } }
         public int id_lang { get { if (Session["id_lang"] == null) { return 0; } else { return (int)Session["id_lang"]; } } set { Session["id_lang"] = value; } }
+        #endregion
+        
+        #region URLs
+        public string url_data { get { return Server.MapPath("~/App_Data/"); } }
+        public string url_resources { get { return Server.MapPath("~/Resources/"); } }
+        public string url_plugins { get { return Server.MapPath("~/Plugins/"); } }
         #endregion
 
         // -- Code de gestion de la langue en session -- //
@@ -78,6 +86,8 @@ namespace GB.Controllers
         // -- Méthodes -- //
         #region Méthodes
         public virtual void Charger_Langue(string id_page) { }
+        [HttpPost]
+        public virtual ActionResult Charger_Table(string id_page) { return null; }
 
         public void Charger_Parametres()
         {
@@ -105,6 +115,37 @@ namespace GB.Controllers
             this.ViewBag.Lang.Cookie_button     = App_Lang.Lang.Cookie_button;
             this.ViewBag.Lang.Copyright         = App_Lang.Lang.Copyright;
             this.ViewBag.Lang.Process           = App_Lang.Lang.Process;
+
+            // -- Lable bouton -- //
+            this.ViewBag.Lang.New       = App_Lang.Lang.New;
+            this.ViewBag.Lang.Delete    = App_Lang.Lang.Delete;
+            this.ViewBag.Lang.Save      = App_Lang.Lang.Save;
+            this.ViewBag.Lang.Print     = App_Lang.Lang.Print;
+            this.ViewBag.Lang.Close     = App_Lang.Lang.Close;
+            this.ViewBag.Lang.Form      = App_Lang.Lang.Form;
+
+            // -- Autre -- //
+            this.ViewBag.Lang.List_of_records = App_Lang.Lang.List_of_records;
+        }
+
+        // -- Retourner le fichier de la langue à affecter aux tables de données -- //
+        public object Langue_DataTable()
+        {
+            try
+            {
+                return
+                    JsonConvert.DeserializeObject(
+                        System.IO.File.ReadAllText(url_plugins + "datatables/" + ((LangHelper.CurrentCulture == 0) ? "English.json"
+                                                                                                                   : "French.json"))
+                    );
+            }
+            catch (Exception ex)
+            {
+                // -- Log -- //
+                GBClass.Log.Error(ex);
+
+                return null;
+            }
         }
         #endregion
     }

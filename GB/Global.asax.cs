@@ -1,5 +1,6 @@
 ﻿using GB.Models;
 using GB.Models.ActionFilter;
+using GB.Models.BO;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using System;

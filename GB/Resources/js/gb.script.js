@@ -1,10 +1,48 @@
 ﻿
 // -- Variable global -- //
 var $GB_VAR = { aes_key: 'global_bank_aes', cookie_autorise: 'cookie_autorise' };
+var $GB_DONNEE = null;
+var $GB_DONNEE_PARAMETRES = null;
 
 // -- Variables -- //
 var fonction_en_Timeout;
 var fonction_en_Interval;
+
+// -- Afficher une alerte sur un element -- //
+function gbAlert(type, message, id_element) {
+
+    // -- Mise à jour de id_element -- //
+    id_element = (id_element == null || id_element == undefined) ? 'gbAlert'
+                                                                 : id_element;
+
+    // -- Afficher l'alert -- //
+    $('#' + id_element).html(
+        '<div class="alert alert-' + type + '" alert-dismissible fade show role="alert">' +
+            '<b>Information</b><br/>' +
+            message +
+            '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                '<span aria-hidden="true">&times;</span>' +
+            '</button>' +
+        '</div>'
+    );
+
+    // -- Supprimer l'alert après un temps défini -- //
+    setTimeout(
+        function () {
+            // -- Fermer l'alert -- //
+            $('#' + id_element + ' .alert').alert('close');
+        },
+        10000
+    );
+
+}
+
+// -- Changer le titre de la page -- //
+function gbChangeTitle(value) {
+
+    document.title = value;
+
+}
 
 // -- Fonction de retour du message d'erreur serveur en fonction de la langue -- //
 function gbMessageErreurServeur()
@@ -457,11 +495,12 @@ function gbAfficher_Modal_Rechercher_Employe(url_donnee) {
 
 // -- Fonction pour initiliser les style css javascript des tables -- //
 function gbCharger_Css_Table(type_donnee) {
+
     // iCheck
     if ($("input.flat")[0]) {
         $('input.flat').iCheck({
-            checkboxClass: 'icheckbox_flat-blue',
-            radioClass: 'iradio_flat-blue'
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green'
         });
     }
 
@@ -469,12 +508,12 @@ function gbCharger_Css_Table(type_donnee) {
     $('table input').on('ifChecked', function () {
         checkState = '';
         $(this).parent().parent().parent().addClass('selected');
-        iCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
     });
     $('table input').on('ifUnchecked', function () {
         checkState = '';
         $(this).parent().parent().parent().removeClass('selected');
-        iCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
     });
 
     var checkState = '';
@@ -482,25 +521,27 @@ function gbCharger_Css_Table(type_donnee) {
     $('.bulk_action input').on('ifChecked', function () {
         checkState = '';
         $(this).parent().parent().parent().addClass('selected');
-        iCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
     });
     $('.bulk_action input').on('ifUnchecked', function () {
         checkState = '';
         $(this).parent().parent().parent().removeClass('selected');
-        iCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
     });
     $('.bulk_action input#check-all').on('ifChecked', function () {
         checkState = 'all';
-        iCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
     });
     $('.bulk_action input#check-all').on('ifUnchecked', function () {
         checkState = 'none';
-        iCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
     });
+
 }
 
 // -- Mettre à jour le label du nombre d'element selectionné -- //
 function gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState) {
+
     if (checkState === 'all') {
         $(".bulk_action input[name='" + type_donnee + "']").iCheck('check');
     }
@@ -518,6 +559,7 @@ function gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState) {
         $('.column-title').show();
         $('.bulk-actions').hide();
     }
+
 }
 
 // -- Fonction sur les actions de la description menu -- //
@@ -792,6 +834,14 @@ function gbSetCookie(cookie_name, cookie_value, exdays) {
 
 }
 
+// -- Suppression d'un cookies -- //
+function gbRemoveCookie(cookie_name) {
+
+    // -- Mise à jour de la valeur du cookie pour suppression -- //
+    document.cookie = cookie_name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+
+}
+
 // -- Réccupérer la valeur d'un cookie -- //
 function gbGetCookie(cookie_name) {
 
@@ -892,17 +942,7 @@ $(
         // -- Charger le masque sur les champ date -- //
         try {
 
-            $("[data-mask]").inputmask("dd/mm/yyyy", { "placeholder": "dd/mm/yyyy" });
-
-        } catch (e) { gbConsole(e.message); }
-
-        // -- Définir le pluging icheck sur les composants -- //
-        try {
-
-            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-                checkboxClass: 'icheckbox_flat-green',
-                radioClass: 'iradio_flat-green'
-            });
+            //$("[data-mask]").inputmask("dd/mm/yyyy", { "placeholder": "dd/mm/yyyy" });
 
         } catch (e) { gbConsole(e.message); }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using GB.Models.BO;
+using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;

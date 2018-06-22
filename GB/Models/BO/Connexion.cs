@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GB.Models
+namespace GB.Models.BO
 {
     public class Connexion
     {
@@ -16,6 +16,7 @@ namespace GB.Models
         private string _url_photo_profil { get; set; }
         private string _nom_utilisateur { get; set; }
         private dynamic _donnee { get; set; }
+        private List<Role_Menu> _role_menus { get; set; }
 
         // -- Public -- //
         public string compte { get { return _compte; } }
@@ -26,6 +27,7 @@ namespace GB.Models
         public DateTime date_connexion { get { return _date_connexion; } }
         public long id_utilisateur { get { return _id_utilisateur; } }
         public dynamic donnee { get { return _donnee; } }
+        public List<Role_Menu> role_menus { get { return _role_menus; } }
 
         // -- Constructeur -- //
         public Connexion(string session_id)
@@ -44,6 +46,7 @@ namespace GB.Models
             this._id_utilisateur = TestClass.id_utilisateur;
             this._nom_utilisateur = TestClass.nom_utilisateur;
             this._url_photo_profil = "~/Resources/images/png/Utilisateur.png";
+            this._role_menus = TestClass.role_menus.Where(l => l.role.id == 1).ToList();
         }
 
         public void Deconnexion()
@@ -54,6 +57,7 @@ namespace GB.Models
             this._id_utilisateur = TestClass.id_utilisateur;
             this._nom_utilisateur = TestClass.nom_utilisateur;
             this._url_photo_profil = "~/Resources/images/png/Utilisateur.png";
+            this._role_menus = new List<Role_Menu>();
         }
         #endregion
     }

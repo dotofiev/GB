@@ -187,6 +187,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\SecuriteController.cs" />
     <Compile Include="Controllers\ErreurController.cs" />
     <Compile Include="Controllers\GBController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
@@ -196,17 +197,22 @@
     </Compile>
     <Compile Include="Models\ActionFilter\AuthentificationRequis.cs" />
     <Compile Include="Models\ActionFilter\ResponseErreur.cs" />
-    <Compile Include="Models\Connexion.cs" />
+    <Compile Include="Models\BO\Connexion.cs" />
+    <Compile Include="Models\BO\GBBO.cs" />
+    <Compile Include="Models\BO\GroupeMenu.cs" />
+    <Compile Include="Models\BO\Menu.cs" />
+    <Compile Include="Models\BO\Module.cs" />
+    <Compile Include="Models\BO\Role.cs" />
+    <Compile Include="Models\BO\Role_Menu.cs" />
     <Compile Include="Models\Cryptage\Program.cs" />
-    <Compile Include="Models\GBException.cs" />
-    <Compile Include="Models\GBNotification.cs" />
+    <Compile Include="Models\BO\GBException.cs" />
+    <Compile Include="Models\BO\GBNotification.cs" />
     <Compile Include="Models\Helper\LangHelper.cs" />
     <Compile Include="Models\SignalR\Hubs\GBHub.cs" />
     <Compile Include="Models\Static\AppSettings.cs" />
     <Compile Include="Models\Static\Enumeration.cs" />
     <Compile Include="Models\Static\GBClass.cs" />
     <Compile Include="Models\Static\GBConvert.cs" />
-    <Compile Include="Models\Static\Menu.cs" />
     <Compile Include="Models\Static\TestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -220,6 +226,34 @@
     <Content Include="Plugins\animate.css\animate.min.css" />
     <Content Include="Plugins\animate.css\gulpfile.js" />
     <Content Include="Plugins\CryptoJS\CryptoJS.js" />
+    <Content Include="Plugins\datatables\dataTables.bootstrap.css" />
+    <Content Include="Plugins\datatables\dataTables.bootstrap.js" />
+    <Content Include="Plugins\datatables\datatables\buttons.bootstrap.min.css" />
+    <Content Include="Plugins\datatables\datatables\buttons.bootstrap.min.js" />
+    <Content Include="Plugins\datatables\datatables\buttons.html5.min.js" />
+    <Content Include="Plugins\datatables\datatables\buttons.print.min.js" />
+    <Content Include="Plugins\datatables\datatables\dataTables.bootstrap.js" />
+    <Content Include="Plugins\datatables\datatables\dataTables.buttons.min.js" />
+    <Content Include="Plugins\datatables\datatables\dataTables.cellEdit.js" />
+    <Content Include="Plugins\datatables\datatables\dataTables.fixedHeader.min.js" />
+    <Content Include="Plugins\datatables\datatables\dataTables.keyTable.min.js" />
+    <Content Include="Plugins\datatables\datatables\dataTables.responsive.min.js" />
+    <Content Include="Plugins\datatables\datatables\dataTables.scroller.min.js" />
+    <Content Include="Plugins\datatables\datatables\fixedHeader.bootstrap.min.css" />
+    <Content Include="Plugins\datatables\datatables\jquery.dataTables.min.css" />
+    <Content Include="Plugins\datatables\datatables\jquery.dataTables.min.js" />
+    <Content Include="Plugins\datatables\datatables\jszip.min.js" />
+    <Content Include="Plugins\datatables\datatables\pdfmake.min.js" />
+    <Content Include="Plugins\datatables\datatables\responsive.bootstrap.min.css" />
+    <Content Include="Plugins\datatables\datatables\responsive.bootstrap.min.js" />
+    <Content Include="Plugins\datatables\datatables\scroller.bootstrap.min.css" />
+    <Content Include="Plugins\datatables\datatables\vfs_fonts.js" />
+    <Content Include="Plugins\datatables\images\sort_asc.png" />
+    <Content Include="Plugins\datatables\images\sort_asc_disabled.png" />
+    <Content Include="Plugins\datatables\images\sort_both.png" />
+    <Content Include="Plugins\datatables\images\sort_desc.png" />
+    <Content Include="Plugins\datatables\images\sort_desc_disabled.png" />
+    <Content Include="Plugins\datatables\jquery.dataTables.js" />
     <Content Include="Plugins\fastclick\lib\fastclick.js" />
     <Content Include="Plugins\font-awesome\css\font-awesome.css" />
     <Content Include="Plugins\font-awesome\css\font-awesome.min.css" />
@@ -687,6 +721,9 @@
     <Content Include="Resources\images\png\Utilisateur.png" />
     <Content Include="Resources\js\bootstrap.js" />
     <Content Include="Resources\js\bootstrap.min.js" />
+    <Content Include="Resources\js\gb.menu.js" />
+    <Content Include="Resources\js\Views\Securite-Module.js" />
+    <Content Include="Resources\js\Views\Application-Principale.js" />
     <Content Include="Resources\js\Views\Application-Main.js" />
     <Content Include="Resources\js\_references.js" />
     <Content Include="Resources\js\custom.js" />
@@ -946,6 +983,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Application\Main\_Header.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Application\Principale.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Erreur\.Page.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Securite\Module\_Modals.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Securite\Module.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Plugins\datatables\datatables\json\scroller-demo.json" />
+    <Content Include="Plugins\datatables\English.json" />
+    <Content Include="Plugins\datatables\French.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

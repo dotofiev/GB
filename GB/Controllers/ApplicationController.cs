@@ -1,5 +1,6 @@
 ﻿using GB.Models;
 using GB.Models.ActionFilter;
+using GB.Models.BO;
 using GB.Models.Static;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,21 @@ namespace GB.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Principale()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"Global Bank - ({App_Lang.Lang.Main})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue("Application-Principale");
+
+            return View();
+        }
         #endregion
 
         #region HttpPost
@@ -38,7 +54,7 @@ namespace GB.Controllers
             // -- Identifiant de la page -- //
             this.ViewBag.Id_page = id_page;
 
-            #region Home-Authentication
+            #region Application-Main
             if (id_page == "Application-Main")
             {
                 // -- Nom de l'utilisateur connecté -- //
@@ -46,7 +62,7 @@ namespace GB.Controllers
                 // -- Photo de l'utilisateur connecté -- //
                 this.ViewBag.donnee.url_photo_profil = this.con.url_photo_profil;
                 // -- Charger les menus de l'utilisateur -- //
-                this.ViewBag.Menus = Menu.Source(this.con.id_utilisateur);
+                this.ViewBag.Menus = Menu.Source(this.con.role_menus);
 
                 // -- Langue -- //
                 #region Langue
@@ -58,6 +74,38 @@ namespace GB.Controllers
                                                     : 0;
                 this.ViewBag.Lang.Title = id_lang == 0 ? App_Lang.Lang.French
                                                        : App_Lang.Lang.English;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new {
+                                                    Lang = new {
+                                                            Maintenance_message = App_Lang.Lang.Process_in_production,
+                                                            All = App_Lang.Lang.All
+                                                    }
+                                                }
+                                            );
+                #endregion
+            }
+            #endregion
+
+            #region Application-Principale
+            else if (id_page == "Application-Principale")
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = App_Lang.Lang.Home;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new {
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title
+                                                }
+                                            );
                 #endregion
             }
             #endregion

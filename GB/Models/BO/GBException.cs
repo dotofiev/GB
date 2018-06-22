@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GB.Models
+namespace GB.Models.BO
 {
     public class GBException : Exception
     {
