@@ -13,7 +13,7 @@ var modal_form = $('#modal_form');
 var url_controlleur = '/Securite/';
 
 
-// -- Comportement des boutons des datatable -- //
+// -- Comportement des boutons des datatable -- // 
 try {
 
     // -- Modifier -- //
@@ -121,6 +121,24 @@ $(
                 ]
             });
 
+            // -- Recharger la table -- //
+            function table_recharger(frame) {
+
+                // -- Recharger la table -- //
+                table.DataTable().ajax.reload(
+                    function () {
+                        // -- Teste si c'est un seul element -- //
+                        if (frame) {
+                            // -- cacher le chargement -- //
+                            gbAfficher_Page_Chargement(false);
+                        }
+                        // -- Reset la taille de la table -- //
+                        table.DataTable().columns.adjust().draw();
+                    }
+                );
+
+            }
+
         } catch (e) { gbConsole(e.message); }
 
         // -- Soumission du formulaire ajout/modification -- //
@@ -145,6 +163,9 @@ $(
                             // -- Annuler l'action -- //
                             return false;
                         }
+
+                        // -- Définition de l'action de traitement -- //
+                        var action_ajouter = (parseInt($('#form_id').val()) == 0);
                         
                         // -- Afficher le chargement -- //
                         gbAfficher_Page_Chargement(true, btn_enregistrer.attr('id'));
@@ -152,17 +173,21 @@ $(
                         // -- Ajax -- //
                         $.ajax({
                             type: "POST",
-                            url: url_controlleur + ((parseInt($('#form_id').val()) == 0) ? 'Ajouter_Enregistrement'
-                                                                                         : 'Modifier_Enregistrement'),
+                            url: url_controlleur + (action_ajouter ? 'Ajouter_Enregistrement'
+                                                                   : 'Modifier_Enregistrement'),
                             data: form.serialize() + '&id_page=' + $GB_DONNEE.id_page,
                             success: function (resultat) {
                                 // -- Tester si le traitement s'est bien effectué -- //
                                 if (!resultat.notification.est_echec) {
-                                    // -- Reset le formulaire -- //
-                                    form[0].reset();
+                                    // -- Fermer le modal -- //
+                                    modal_form.modal('hide');
+                                    // -- Actualiser la table -- //
+                                    table_recharger(false);
                                 }
-                                // -- Afficher une alerte sur un element -- //
-                                gbAlert(resultat.notification, null);
+                                else {
+                                    // -- Afficher une alerte sur un element -- //
+                                    gbAlert(resultat.notification, null);
+                                }
                                 // -- Afficher le chargement -- //
                                 gbAfficher_Page_Chargement(false, btn_enregistrer.attr('id'));
                             },

@@ -13,7 +13,7 @@ namespace GB.Models.BO
 
         public Module(long id)
         {
-            this._id = id;
+            this.id = id;
             this.groupe_menus = new List<GroupeMenu>();
         }
 

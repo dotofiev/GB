@@ -15,7 +15,7 @@ namespace GB.Models.BO
 
         public Menu(long id, string route)
         {
-            this._id = id;
+            this.id = id;
             this.groupe_menu = new GroupeMenu(0);
             this.role_menus = new List<Role_Menu>();
             this.route = route;

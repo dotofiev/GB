@@ -14,7 +14,7 @@ namespace GB.Models.BO
 
         public GroupeMenu(long id)
         {
-            this._id = id;
+            this.id = id;
             this.menus = new List<Menu>();
             this.module = new Module(0);
         }

@@ -12,7 +12,7 @@ namespace GB.Models.BO
 
         public Role(long id)
         {
-            this._id = id;
+            this.id = id;
             this.role_menus = new List<Role_Menu>();
         }
 

@@ -186,8 +186,11 @@ namespace GB.Controllers
                 #region Securite-Module
                 if (id_page == "Securite-Module")
                 {
-                    // -- Notificication -- //
-                    this.ViewBag.notification = new GBNotification(true);
+                    // -- Définition de l'identifiant -- //
+                    obj.Crer_Id();
+
+                    // -- Enregistrement de la valeur -- //
+                    TestClass.db_modules.Add(obj);
                 }
                 #endregion
 
@@ -197,6 +200,9 @@ namespace GB.Controllers
                     throw new Exception("Le id_page n'a pas été retourné!");
                 }
                 #endregion
+
+                // -- Notificication -- //
+                this.ViewBag.notification = new GBNotification(false);
             }
             #region Catch
             catch (Exception ex)
@@ -234,8 +240,20 @@ namespace GB.Controllers
                 #region Securite-Module
                 if (id_page == "Securite-Module")
                 {
-                    // -- Notificication -- //
-                    this.ViewBag.notification = new GBNotification(true);
+                    // -- Enregistrement de la valeur -- //
+                    TestClass.db_modules
+                        // -- Spécifier la recherche -- //
+                        .Where(l => l.id == obj.id)
+                        // -- Lister le résultat -- //
+                        .ToList()
+                        // -- Parcourir les elements résultats -- //
+                        .ForEach(l =>
+                        {
+                            // -- Mise à jour de l'enregistrement -- //
+                            l.code = obj.code;
+                            l.libelle_en = obj.libelle_en;
+                            l.libelle_fr = obj.libelle_fr;
+                        });
                 }
                 #endregion
 
@@ -245,6 +263,9 @@ namespace GB.Controllers
                     throw new Exception("Le id_page n'a pas été retourné!");
                 }
                 #endregion
+
+                // -- Notificication -- //
+                this.ViewBag.notification = new GBNotification(false);
             }
             #region Catch
             catch (Exception ex)

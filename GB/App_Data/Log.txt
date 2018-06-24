@@ -161,3 +161,15 @@
 -----------------------
 24/06/2018 16:19:21.122 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:5n5fs0zsaxkkycnpyvg0qjtn} 
 -----------------------
+24/06/2018 16:53:12.703 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+24/06/2018 16:53:13.050 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:u1nlqwm1c3y55l524kfnkhw0} 
+-----------------------
+24/06/2018 17:19:15.079 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+24/06/2018 17:19:15.404 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:zfvu45vqypiziws5cgflr1cu} 
+-----------------------
+24/06/2018 17:25:20.842 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+24/06/2018 17:25:21.187 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:ieux3vvhbd5sibch4fq4soey} 
+-----------------------
