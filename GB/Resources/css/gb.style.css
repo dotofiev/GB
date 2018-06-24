@@ -280,7 +280,7 @@
 
 
 /********* Texte en gras *********/
-.itext-bold{
+.gbtext-bold{
     font-weight:bold;
 }
 .itext-italic{
@@ -381,7 +381,7 @@ body {
     padding: 10px;
 }
 
-.ialert {
+.gbalert {
     padding: 10px;
     border: 1px solid transparent;
     border-radius: 4px;
@@ -418,4 +418,8 @@ body {
 
     color: #333;
 
+}
+
+.close {
+    opacity: 1;
 }

@@ -41,9 +41,6 @@ namespace GB.Controllers
         {
             try
             {
-                // -- Exception -- //
-                //throw new GBException(App_Lang.Lang.Process_in_production);
-
                 // -- Vérifier la conformité des données -- //
                 if (compte != TestClass.compte || mot_de_passe != TestClass.mot_de_passe)
                 {
@@ -145,6 +142,21 @@ namespace GB.Controllers
                 this.ViewBag.Lang.English = App_Lang.Lang.English;
                 this.ViewBag.Lang.French = App_Lang.Lang.French;
                 this.ViewBag.Lang.To_log_in = App_Lang.Lang.To_log_in;
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    Lang = new
+                                                    {
+                                                        Error_server_message = App_Lang.Lang.Error_server_message,
+                                                    },
+                                                    // -- Paramètres -- //
+                                                    DUREE_VISIBILITE_MESSAGE_BOX = AppSettings.DUREE_VISIBILITE_MESSAGE_BOX,
+                                                }
+                                            );
+                #endregion
             }
             #endregion
 

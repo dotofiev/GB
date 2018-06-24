@@ -123,6 +123,8 @@ namespace GB.Controllers
             this.ViewBag.Lang.Print     = App_Lang.Lang.Print;
             this.ViewBag.Lang.Close     = App_Lang.Lang.Close;
             this.ViewBag.Lang.Form      = App_Lang.Lang.Form;
+            this.ViewBag.Lang.Yes       = App_Lang.Lang.Yes;
+            this.ViewBag.Lang.No        = App_Lang.Lang.No;
 
             // -- Autre -- //
             this.ViewBag.Lang.List_of_records = App_Lang.Lang.List_of_records;

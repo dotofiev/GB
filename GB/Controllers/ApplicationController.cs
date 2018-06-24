@@ -82,8 +82,17 @@ namespace GB.Controllers
                                                 new {
                                                     Lang = new {
                                                             Maintenance_message = App_Lang.Lang.Process_in_production,
-                                                            All = App_Lang.Lang.All
-                                                    }
+                                                            All = App_Lang.Lang.All,
+                                                            Update = App_Lang.Lang.Update,
+                                                            Save = App_Lang.Lang.Save,
+                                                            Confirm_action = App_Lang.Lang.Confirm_action.Replace("'", string.Empty),
+                                                            Error_server_message = App_Lang.Lang.Error_server_message,
+                                                            No = App_Lang.Lang.No,
+                                                            Yes = App_Lang.Lang.Yes,
+                                                            Close = App_Lang.Lang.Close,
+                                                    },
+                                                    // -- Paramètres -- //
+                                                    DUREE_VISIBILITE_MESSAGE_BOX = AppSettings.DUREE_VISIBILITE_MESSAGE_BOX,
                                                 }
                                             );
                 #endregion

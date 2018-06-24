@@ -33,3 +33,32 @@
     </div>
 </div>
 <!-- ./Modal Message -->
+
+<!-- Modal Message Question -->
+<div class="modal fade" id="modal_message_question" role="alert" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="gbalert alert-dark" role="alert">
+                    <!-- Bouton caché d'activation -->
+                    <span id="modal_message_question_reponse" hidden="hidden">false</span>
+                    <!-- ./Bouton caché d'activation -->
+                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                    <span class="sr-only"></span>
+                    <span class="gbtext-bold">Confirmation</span>
+                    <br />
+                    <span id="modal_message_question_message"></span> ?
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="modal_message_question_bouton_non" type="button" class="btn btn-default pull-left" data-dismiss="modal">
+                    <i class="fa fa-fw fa-close"></i> @ViewBag.Lang.No
+                </button>
+                <button id="modal_message_question_bouton_oui" type="button" class="btn btn-success pull-right" data-dismiss="modal">
+                    <i class="fa fa-fw fa-check"></i> @ViewBag.Lang.Yes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal -->

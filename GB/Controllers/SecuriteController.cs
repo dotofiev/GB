@@ -53,22 +53,21 @@ namespace GB.Controllers
                                 col_3 = val.code,
                                 col_4 = val.libelle_fr,
                                 col_5 = val.libelle_en,
-                                col_6 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}"" 
+                                col_6 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
                                                               title=""{Lang.Update}"" 
-                                                              onclick=""modifier_table_donnee({id})""
-                                                              class=""btn btn-xs btn-round btn-warning table-bouton-modifier-iroll""
+                                                              class=""btn btn-xs btn-round""
+                                                              onClick=""table_donnee_modifier({id})""
                                                               data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                          <i class=""fa fa-retweet""></i>
+                                          <i class=""fa fa-retweet text-warning""></i>
                                         </button>
-                                        <button type=""button"" id=""table_donnee_supprimer_id_{id}"" 
+                                        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
                                                               title=""{Lang.Delete}"" 
-                                                              onclick=""supprimer_table_donnee({id}, {ids})""
-                                                              class=""btn btn-xs btn-round btn-danger table-bouton-supprimer-iroll""
+                                                              class=""btn btn-xs btn-round""
+                                                              onClick=""table_donnee_supprimer({id})""
                                                               data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                          <i class=""fa fa-minus""></i>
+                                          <i class=""fa fa-minus text-danger""></i>
                                         </button>"
                                         .Replace("{id}", val.id.ToString())
-                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
                                         .Replace("{Lang.Update}", App_Lang.Lang.Update)
                                         .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
                             }
@@ -77,9 +76,17 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region Module introuvble
+                else
+                {
+                    throw new Exception("Le id_page n'a pas été retourné!");
+                }
+                #endregion
+
                 // -- Notification -- //
                 this.ViewBag.notification = new GBNotification(donnee);
             }
+            #region catch & finally
             catch (Exception ex)
             {
                 // -- Log -- //
@@ -96,6 +103,168 @@ namespace GB.Controllers
                     this.ViewBag.notification.donnee = new List<object>();
                 }
             }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return Json(
+                GBConvert.To_Object(this.ViewBag)
+            );
+        }
+
+        // -- Selectionner un nouvel enregistrement dans la liste -- //
+        [HttpPost]
+        public ActionResult Selection_Enregistrement(long id, string id_page)
+        {
+            try
+            {
+                // -- Selectionner en fonction du menu - //
+                #region Securite-Module
+                if (id_page == "Securite-Module")
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = TestClass.db_modules.FirstOrDefault(l => l.id == id);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle_en = obj.libelle_en,
+                                                        libelle_fr = obj.libelle_fr,
+                                                    }
+                                               );
+                }
+                #endregion
+
+                #region Module introuvble
+                else
+                {
+                    throw new Exception("Le id_page n'a pas été retourné!");
+                }
+                #endregion
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(true);
+                }
+                else
+                {
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(ex.Message, true);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return Json(
+                GBConvert.To_Object(this.ViewBag)
+            );
+        }
+
+        // -- Enregistrer un nouvel enregistrement dans la liste -- //
+        [HttpPost]
+        public ActionResult Ajouter_Enregistrement(string id_page, Module obj)
+        {
+            try
+            {
+                // -- Selectionner en fonction du menu - //
+                #region Securite-Module
+                if (id_page == "Securite-Module")
+                {
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(true);
+                }
+                #endregion
+
+                #region Module introuvble
+                else
+                {
+                    throw new Exception("Le id_page n'a pas été retourné!");
+                }
+                #endregion
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(true);
+                }
+                else
+                {
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(ex.Message, true);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return Json(
+                GBConvert.To_Object(this.ViewBag)
+            );
+        }
+
+        // -- Enregistrer un nouvel enregistrement dans la liste -- //
+        [HttpPost]
+        public ActionResult Modifier_Enregistrement(Module obj, string id_page)
+        {
+            try
+            {
+                // -- Selectionner en fonction du menu - //
+                #region Securite-Module
+                if (id_page == "Securite-Module")
+                {
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(true);
+                }
+                #endregion
+
+                #region Module introuvble
+                else
+                {
+                    throw new Exception("Le id_page n'a pas été retourné!");
+                }
+                #endregion
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(true);
+                }
+                else
+                {
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(ex.Message, true);
+                }
+            }
+            #endregion
 
             // -- Retoure le résultat en objet JSON -- //
             return Json(

@@ -14,7 +14,7 @@ $(
                 var form = $(this);
 
                 // -- Frame chargement -- //
-                gbAfficher_Page_Chargement(true, null);
+                gbAfficher_Page_Chargement(true);
 
                 // -- Ajax -- //
                 $.ajax({
@@ -25,19 +25,19 @@ $(
                         // -- Tester si le traitement s'est bien effectué -- //
                         if (resultat.notification.est_echec) {
                             // -- Message -- //
-                            gbMessage_Box('danger', resultat.notification.message);
+                            gbMessage_Box(resultat.notification);
                         } else {
                             // -- Redirection vers la page d'application -- //
                             gbHref(resultat.notification.donnee.url);
                         }
                         // -- Frame chargement -- //
-                        gbAfficher_Page_Chargement(false, null);
+                        gbAfficher_Page_Chargement(false);
                     },
                     error: function () {
                         // -- Frame chargement -- //
-                        gbAfficher_Page_Chargement(false, null);
+                        gbAfficher_Page_Chargement(false);
                         // -- Message -- //
-                        gbMessage_Box(null, null);
+                        gbMessage_Box();
                     }
                 });
 

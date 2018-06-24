@@ -132,6 +132,9 @@
   <data name="Close" xml:space="preserve">
     <value>Fermer</value>
   </data>
+  <data name="Confirm_action" xml:space="preserve">
+    <value>Confirmer l'action</value>
+  </data>
   <data name="Cookie_button" xml:space="preserve">
     <value>Accepter et continuer</value>
   </data>
@@ -153,6 +156,9 @@
   </data>
   <data name="Error_message_notification" xml:space="preserve">
     <value>Une erreur est survenue lors du traitement, veuillez contacter l'administrateur.</value>
+  </data>
+  <data name="Error_server_message" xml:space="preserve">
+    <value>Une erreur de communication est survenu</value>
   </data>
   <data name="Form" xml:space="preserve">
     <value>Formulaire</value>
@@ -186,6 +192,12 @@
   </data>
   <data name="New" xml:space="preserve">
     <value>Nouveau</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="Object_not_found" xml:space="preserve">
+    <value>Objet introuvable</value>
   </data>
   <data name="Page_not_found" xml:space="preserve">
     <value>Page introuvable</value>
@@ -231,5 +243,8 @@
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Bienvenue</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Oui</value>
   </data>
 </root>

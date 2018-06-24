@@ -41,7 +41,7 @@ $(
                             // -- Tester si le traitement s'est bien effectué -- //
                             if (resultat.notification.est_echec) {
                                 // -- Message -- //
-                                gbMessage_Box('danger', resultat.notification.message);
+                                gbMessage_Box(resultat.notification);
                             } else {
                                 // -- Redirection vers la page d'application -- //
                                 gbHref(resultat.notification.donnee.url);
@@ -53,7 +53,7 @@ $(
                             // -- Frame chargement -- //
                             gbAfficher_Page_Chargement(false, 'btn_authentifier');
                             // -- Message -- //
-                            gbMessage_Box(null, null);
+                            gbMessage_Box();
                         }
                     });
 

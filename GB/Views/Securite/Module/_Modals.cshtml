@@ -1,6 +1,6 @@
 ﻿
 <!-- form 1 -->
-<div class="modal fade bs-example-modal-lg" id="modal_form" tabindex="-1" role="dialog" aria-labelledby="modal_form_titre" aria-hidden="true" backdrop="static" keyboard="false">
+<div class="modal fade bs-example-modal-lg" id="modal_form" role="alert" data-backdrop="static" data-keyboard="false">
     
     <div id="modal_form_taille" class="modal-dialog">
         
@@ -28,7 +28,7 @@
                         <div class="row">
 
                             <!-- Id -->
-                            <input type="hidden" id="form_id" name="id" />
+                            <input type="hidden" id="form_id" name="id" value="0" />
 
                             <div class="col-xs-12 col-lg-12">
                                 <div class="form-group">
@@ -57,8 +57,11 @@
 
                 </div>
 
-                <!--Alert -->
+                <!--Alert Message -->
                 <div id="gbAlert"></div>
+
+                <!--Alert Message Box -->
+                <div id="dsAlert_Message_Box"></div>
 
             </div>
 
@@ -70,7 +73,8 @@
                 </button>
                 
                 <!-- Bouton d'enregistrement du formulaire -->
-                <button class="btn btn-default btn-success pull-right" id="btn-enregistrer" type="submit" form="form">
+                <button class="btn btn-default btn-success pull-right" id="btn-enregistrer" type="submit" form="form"
+                        data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> @ViewBag.Lang.Process ...">
                     <i class="fa fa-check"></i> @ViewBag.Lang.Save
                 </button>
 

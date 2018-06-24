@@ -285,17 +285,6 @@ $(document).ready(function() {
     });
 });
 
-// NProgress
-if (typeof NProgress != 'undefined') {
-    $(document).ready(function () {
-        NProgress.start();
-    });
-
-    $(window).load(function () {
-        NProgress.done();
-    });
-}
-
 	
 	  //hover and retain popover when on popover content
         var originalLeave = $.fn.popover.Constructor.prototype.leave;
@@ -5037,7 +5026,7 @@ if (typeof NProgress != 'undefined') {
 		init_IonRangeSlider();
 		init_ColorPicker();
 		init_TagsInput();
-		init_parsley();
+		//init_parsley();
 		init_daterangepicker();
 		init_daterangepicker_right();
 		init_daterangepicker_single_call();

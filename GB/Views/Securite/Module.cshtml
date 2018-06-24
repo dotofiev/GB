@@ -4,7 +4,7 @@
 
 <script type="text/javascript">
 
-    $GB_DONNEE = JSON.parse('@Html.Raw(ViewBag.GB_DONNEE)');
+    $GB_DONNEE = JSON.parse('@Html.Raw(ViewBag.GB_DONNEE)'); 
 
 </script>
 
@@ -47,7 +47,7 @@
                             data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
                         <i class="fa fa-remove text-danger"></i> <span class="hidden-xs">@ViewBag.Lang.Delete</span>
                     </button>
-                    <button class="btn btn-default" id="btn-imprimmer" type="button"
+                    <button class="btn btn-default" id="btn-imprimmer" type="button" onclick="gbConfirmation_OuiOuNon(null, null, function () { alert('Je suis la fonction'); })"
                             data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
                         <i class="fa fa-print text-info"></i> <span class="hidden-xs">@ViewBag.Lang.Print</span>
                     </button>

@@ -6,7 +6,7 @@ $(function () {
     try {
 
         // -- Frame chargement -- //
-        gbAfficher_Page_Chargement(true, null);
+        gbAfficher_Page_Chargement(true);
 
         $("#conteneur").load(
             // -- Lien de chargement de la page -- //
@@ -14,7 +14,7 @@ $(function () {
             // -- Fonction à éxecuter à la fin du chargement de la page -- //
             function () {
                 // -- Frame chargement -- //
-                gbAfficher_Page_Chargement(false, null);
+                gbAfficher_Page_Chargement(false);
             }
         );
 
@@ -37,14 +37,14 @@ $(function () {
                 // -- Check menu autorisé -- //
                 if (url != '/Securite/Module') {
                     // -- Message -- //
-                    gbMessage_Box('info', $GB_DONNEE_PARAMETRES.Lang.Maintenance_message);
+                    gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 
                     // -- Annuler l'action -- //
                     return false;
                 }
 
                 // -- Frame chargement -- //
-                gbAfficher_Page_Chargement(true, null);
+                gbAfficher_Page_Chargement(true);
 
                 // -- Charger le résultats dans la page -- //
                 $("#conteneur").load(
@@ -53,7 +53,7 @@ $(function () {
                         // -- Fonction à éxecuter à la fin du chargement de la page -- //
                         function () {
                             // -- Frame chargement -- //
-                            gbAfficher_Page_Chargement(false, null);
+                            gbAfficher_Page_Chargement(false);
                         }
                     );
 

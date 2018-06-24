@@ -106,6 +106,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm action.
+        /// </summary>
+        public static string Confirm_action {
+            get {
+                return ResourceManager.GetString("Confirm_action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accept and continue.
         /// </summary>
         public static string Cookie_button {
@@ -165,6 +174,15 @@ namespace GB.App_Lang {
         public static string Error_message_notification {
             get {
                 return ResourceManager.GetString("Error_message_notification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A communication error has occurred.
+        /// </summary>
+        public static string Error_server_message {
+            get {
+                return ResourceManager.GetString("Error_server_message", resourceCulture);
             }
         }
         
@@ -264,6 +282,24 @@ namespace GB.App_Lang {
         public static string New {
             get {
                 return ResourceManager.GetString("New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Object not found.
+        /// </summary>
+        public static string Object_not_found {
+            get {
+                return ResourceManager.GetString("Object_not_found", resourceCulture);
             }
         }
         
@@ -399,6 +435,15 @@ namespace GB.App_Lang {
         public static string Welcome {
             get {
                 return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }
