@@ -11,9 +11,10 @@ var btn_table;
 var form = $('#form');
 var modal_form = $('#modal_form');
 var url_controlleur = '/Securite/';
+var url_suppression = '/Securite/Supprimer_Enregistrement';
 
 
-// -- Comportement des boutons des datatable -- // 
+// -- Méthodes d'action sur les données -- // 
 try {
 
     // -- Modifier -- //
@@ -58,6 +59,81 @@ try {
 
                 // -- fin boutton d'actualisation -- //
                 btn_table.button('reset');
+            }
+        });
+
+    }
+
+    // -- Mise à jour des bouton de rafraichissement de la table -- //
+    function table_bouton_action_etat(bouton_table, activation, id_bouton) {
+
+        // -- Teste si c'est un element de la table -- //
+        if (bouton_table) {
+            // -- Si le bouton est activé -- //
+            if (activation) {
+                // -- Variables objet -- //
+                btn_table = $('#table_donnee_supprimer_id_' + id_bouton);
+            }
+            // -- bouton d'action -- //
+            btn_table.button((activation) ? 'loading'
+                                          : 'reset');
+        } else {
+            // -- boutton d'actualisation -- //
+            btn_supprimer.button((activation) ? 'loading'
+                                              : 'reset');
+        }
+
+        // -- Afficher le chargement -- //
+        gbAfficher_Page_Chargement(activation);
+
+    }
+
+    // -- Supprimer -- //
+    function table_donnee_supprimer(ids, bouton_table) {
+
+        // -- Ecouter la réponse du message de confirmation -- //
+        if (!$GB_DONNEE.Confirmation_message_box) {
+            // -- Afficher le message d'action -- //
+            gbConfirmation_OuiOuNon(null, null, function () { table_donnee_supprimer(ids, bouton_table); });
+            // -- Annuler l'action -- //
+            return false;
+        }
+
+        // -- Mise à jour des bouton de rafraichissement de la table -- //
+        table_bouton_action_etat(bouton_table, true, ids[0]);
+
+        // -- Ajax -- //
+        $.ajax({
+            type: "POST",
+            url: url_suppression,
+            data: {
+                ids: JSON.stringify(ids),
+                id_page: $GB_DONNEE.id_page
+            },
+            success: function (resultat) {
+                // -- Tester si le traitement s'est bien effectué -- //
+                if (!resultat.notification.est_echec) {
+                    // -- Actualiser la table -- //
+                    table.DataTable().ajax.reload(
+                        function () {
+                            // -- Reset la taille de la table -- //
+                            table.DataTable().columns.adjust().draw();
+                        }
+                    );
+                } else {
+                    // -- Message -- //
+                    gbMessage_Box(resultat.notification);
+                }
+
+                // -- Mise à jour des bouton de rafraichissement de la table -- //
+                table_bouton_action_etat(bouton_table, false, null);
+            },
+            error: function () {
+                // -- Message -- //
+                gbMessage_Box();
+
+                // -- Mise à jour des bouton de rafraichissement de la table -- //
+                table_bouton_action_etat(bouton_table, false, null);
             }
         });
 
@@ -222,6 +298,55 @@ $(
 
                     // -- Suppression de l'alert message box -- //
                     $('#gbAlert').html(null);
+
+                }
+            );
+
+        } catch (e) { gbConsole(e.message); }
+
+        // -- Action du bouton de suppression -- //
+        try {
+
+            // -- Mise à jour de l'action de suppression -- //
+            btn_supprimer.on("click",
+                function () {
+                    // -- Réccupérer les données electionné -- //
+                    var selection = $('input[name="module"]:checked');
+
+                    // -- Si la taille est supérieurs à 0 -- //
+                    if (selection.length == 0) {
+                        // -- Afficher message d'erreur -- //
+                        gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.No_item_selected });
+                        
+                        return false;
+                    }
+
+                    // -- Mise à jour de l'etat de la selection -- //
+                    selection = selection.serialize().split('&');
+
+                    // -- Appel de la fonction -- //
+                    var ids = [];
+                    // -- Réccupération des id -- //
+                    for (var i = 0; i < selection.length; i++) {
+                        ids.push(selection[i].replace('module=module_', ''));
+                    }
+
+                    // -- SOumettre les données au traitement -- //
+                    table_donnee_supprimer(ids, false);
+                }
+            );
+
+        } catch (e) { gbConsole(e.message); }
+
+        // -- Action du bouton d'impression -- //
+        try {
+
+            // -- Mise à jour de l'action de suppression -- //
+            btn_imprimmer.on("click",
+                function () {
+                    
+                    // -- Message -- //
+                    gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 
                 }
             );

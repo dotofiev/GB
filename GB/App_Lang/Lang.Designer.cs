@@ -295,6 +295,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No item selected.
+        /// </summary>
+        public static string No_item_selected {
+            get {
+                return ResourceManager.GetString("No_item_selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Object not found.
         /// </summary>
         public static string Object_not_found {

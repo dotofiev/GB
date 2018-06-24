@@ -40,6 +40,7 @@ namespace GB.Models.Static
                 libelle_en = "Configure security objets",
                 libelle_fr = "Configuration objets sécurité",
                 module = TestClass.modules[0],
+                icon = "fa fa-cogs",
                 //menus = new List<Menu>(),
             },
         };

@@ -90,6 +90,7 @@ namespace GB.Controllers
                                                             No = App_Lang.Lang.No,
                                                             Yes = App_Lang.Lang.Yes,
                                                             Close = App_Lang.Lang.Close,
+                                                            No_item_selected = App_Lang.Lang.No_item_selected,
                                                     },
                                                     // -- Paramètres -- //
                                                     DUREE_VISIBILITE_MESSAGE_BOX = AppSettings.DUREE_VISIBILITE_MESSAGE_BOX,

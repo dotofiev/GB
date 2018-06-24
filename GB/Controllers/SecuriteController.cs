@@ -63,11 +63,12 @@ namespace GB.Controllers
                                         <button type=""button"" id=""table_donnee_supprimer_id_{id}""
                                                               title=""{Lang.Delete}"" 
                                                               class=""btn btn-xs btn-round""
-                                                              onClick=""table_donnee_supprimer({id})""
+                                                              onClick=""table_donnee_supprimer({ids}, true)""
                                                               data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
                                           <i class=""fa fa-minus text-danger""></i>
                                         </button>"
                                         .Replace("{id}", val.id.ToString())
+                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
                                         .Replace("{Lang.Update}", App_Lang.Lang.Update)
                                         .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
                             }
@@ -230,7 +231,7 @@ namespace GB.Controllers
             );
         }
 
-        // -- Enregistrer un nouvel enregistrement dans la liste -- //
+        // -- Modifier un enregistrement dans la liste -- //
         [HttpPost]
         public ActionResult Modifier_Enregistrement(Module obj, string id_page)
         {
@@ -240,7 +241,7 @@ namespace GB.Controllers
                 #region Securite-Module
                 if (id_page == "Securite-Module")
                 {
-                    // -- Enregistrement de la valeur -- //
+                    // -- Modification de la valeur -- //
                     TestClass.db_modules
                         // -- Spécifier la recherche -- //
                         .Where(l => l.id == obj.id)
@@ -253,6 +254,63 @@ namespace GB.Controllers
                             l.code = obj.code;
                             l.libelle_en = obj.libelle_en;
                             l.libelle_fr = obj.libelle_fr;
+                        });
+                }
+                #endregion
+
+                #region Module introuvble
+                else
+                {
+                    throw new Exception("Le id_page n'a pas été retourné!");
+                }
+                #endregion
+
+                // -- Notificication -- //
+                this.ViewBag.notification = new GBNotification(false);
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(true);
+                }
+                else
+                {
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(ex.Message, true);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return Json(
+                GBConvert.To_Object(this.ViewBag)
+            );
+        }
+
+        // -- Modifier un enregistrement dans la liste -- //
+        [HttpPost]
+        public ActionResult Supprimer_Enregistrement(string ids, string id_page)
+        {
+            try
+            {
+                // -- Selectionner en fonction du menu - //
+                #region Securite-Module
+                if (id_page == "Securite-Module")
+                {
+                    // -- Convertion des identifiants -- //
+                    GBConvert.JSON_To<List<long>>(ids)
+                        // -- Parcours de la liste des id -- //
+                        .ForEach(id =>
+                        {
+                            // -- Suppression des valeurs -- //
+                            TestClass.db_modules.RemoveAll(l => l.id == id);
                         });
                 }
                 #endregion
@@ -305,7 +363,7 @@ namespace GB.Controllers
             {
                 // -- Langue -- //
                 #region Langue
-                this.ViewBag.Lang.Description_page  = App_Lang.Lang.Module_Management;
+                this.ViewBag.Lang.Description_page  = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Module_Management;
                 this.ViewBag.Lang.Name_french       = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
                 this.ViewBag.Lang.Name_english      = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
                 #endregion

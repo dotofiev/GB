@@ -24,7 +24,7 @@
         <div class="page-title">
 
             <h3>
-                <i class="fa fa-square"></i> @ViewBag.Lang.Description_page
+                @Html.Raw(ViewBag.Lang.Description_page)
             </h3>
 
         </div>
@@ -47,7 +47,7 @@
                             data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
                         <i class="fa fa-remove text-danger"></i> <span class="hidden-xs">@ViewBag.Lang.Delete</span>
                     </button>
-                    <button class="btn btn-default" id="btn-imprimmer" type="button" onclick="gbConfirmation_OuiOuNon(null, null, function () { alert('Je suis la fonction'); })"
+                    <button class="btn btn-default" id="btn-imprimmer" type="button"
                             data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
                         <i class="fa fa-print text-info"></i> <span class="hidden-xs">@ViewBag.Lang.Print</span>
                     </button>

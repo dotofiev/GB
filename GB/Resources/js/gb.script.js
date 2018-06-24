@@ -853,7 +853,7 @@ function gbMessage_Cookiees(titre, message, afficher_bouton_reconnexion) {
 function gbMessage_Box(notification) {
 
     // -- Mise à jour des variable en cas d'erreur serveur -- //
-    if (notification === null || notification === undefined) {
+    if (notification === undefined || notification === null) {
         notification = {
             est_echec: true,
             message: $GB_DONNEE_PARAMETRES.Lang.Error_server_message,

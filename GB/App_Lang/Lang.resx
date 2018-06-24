@@ -195,6 +195,9 @@
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="No_item_selected" xml:space="preserve">
+    <value>No item selected</value>
+  </data>
   <data name="Object_not_found" xml:space="preserve">
     <value>Object not found</value>
   </data>
