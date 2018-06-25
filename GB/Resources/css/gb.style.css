@@ -280,7 +280,7 @@
 
 
 /********* Texte en gras *********/
-.itext-bold{
+.gbtext-bold{
     font-weight:bold;
 }
 .itext-italic{
@@ -381,7 +381,7 @@ body {
     padding: 10px;
 }
 
-.ialert {
+.gbalert {
     padding: 10px;
     border: 1px solid transparent;
     border-radius: 4px;
@@ -399,29 +399,27 @@ body {
     margin-left: 0px;
 }
 
-.dg-body_auth {
-    font-family: Titilium web; background-color: #F7F7F7;
-    background-image: url(../images/png/Grey.png);
-    /*background-color: lightgrey;*/
-    background-attachment: scroll;
-}
-
-/* Cookie notification */
-.cookiewarning {
-    padding: 1em;
-    display: none;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 100;
-    background-color: rgba(0,0,0,.8);
-    color: white;
-}
-
-.container {
-    padding-top: 50px;
-}
-
 /*.form-control.has-feedback-left {
     padding-left: 50px;
 }*/
+
+.form-control:focus {
+
+    font-weight: bold;
+    background-color: rgb(250, 255, 189);
+    border-color: #73879C;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(38, 185, 154, 0.25);
+    border-width: 2px;
+
+}
+
+.x_title span {
+
+    color: #333;
+
+}
+
+.close {
+    opacity: 1;
+}

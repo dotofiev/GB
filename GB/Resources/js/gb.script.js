@@ -1,12 +1,78 @@
 ﻿
+// -- Variable global -- //
+var $GB_VAR = {
+    aes_key: 'global_bank_aes',
+    cookie_autorise: 'cookie_autorise',
+    url_language_dataTable: '/GB/Langue_DataTable'
+};
+var $GB_DONNEE = null;
+var $GB_DONNEE_PARAMETRES = null;
+
 // -- Variables -- //
-var aes_key = "global_bank_aes";
-var cryptoJS_param = { key: CryptoJS.enc.Utf8.parse(aes_key), iv: CryptoJS.enc.Utf8.parse(aes_key) };
 var fonction_en_Timeout;
 var fonction_en_Interval;
 
+// -- Afficher une alerte sur un element -- //
+function gbAlert(notification, id_element) {
+
+    // -- Mise à jour de id_element -- //
+    id_element = (id_element == null || id_element == undefined) ? 'gbAlert'
+                                                                 : id_element;
+
+    // -- Ecoute si le notificateur est soumis -- //
+    if (notification == null || notification == undefined) {
+        notification = {
+            est_echec: true,
+            message: $GB_DONNEE_PARAMETRES.Lang.Error_server_message,
+        }
+    }
+
+    // -- Afficher l'alert -- //
+    $('#' + id_element).html(
+        '<div class="gbalert alert alert-' + ((notification.est_echec) ? 'danger'
+                                                                       : 'success') + ' alert-dismissible fade in" role="alert">' +
+            '<div class="row">' +
+                '<div class="col-lg-12">' +
+                    '<div class="pull-left">' +
+                        '<b>Information</b><br/>' +
+                        notification.message +
+                    '</div>' +
+                    '<div class="pull-right">' +
+                        '<button type="button" class="btn btn-default" data-dismiss="alert" aria-label="Close">' +
+                            '<i class="fa fa-remove"></i> ' + $GB_DONNEE_PARAMETRES.Lang.Close +
+                        '</button>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+        '</div>'
+    );
+
+    // -- Ne pas fermer si la valeur est -1 -- //
+    if ($GB_DONNEE_PARAMETRES.DUREE_VISIBILITE_MESSAGE_BOX > 0) {
+        // -- Supprimer l'alert après un temps défini -- //
+        setTimeout(
+            function () {
+                // -- Fermer l'alert -- //
+                $('#' + id_element + ' .alert').alert('close');
+            },
+            $GB_DONNEE_PARAMETRES.DUREE_VISIBILITE_MESSAGE_BOX
+        );
+    }
+
+}
+
+// -- Changer le titre de la page -- //
+function gbChangeTitle(value) {
+
+    document.title = value;
+
+}
+
 // -- Méthode de cryptage d'une valeur -- //
 function gbAESEncrypt(value) {
+
+// -- Clés de cryptage -- //
+    var cryptoJS_param = { key: CryptoJS.enc.Utf8.parse($GB_VAR.aes_key), iv: CryptoJS.enc.Utf8.parse($GB_VAR.aes_key) };
 
     // -- Réccupérere la méthode encrypté -- //
     //var encrypted = CryptoJS.AES.encrypt(value, aes_key);
@@ -25,7 +91,7 @@ function gbAESEncrypt(value) {
 function gbAESDecrypt(value) {
 
     // -- Réccupérere la méthode décrypté -- //
-    var decrypted = CryptoJS.AES.decrypt(value, aes_key).toString(CryptoJS.enc.Utf8);
+    var decrypted = CryptoJS.AES.decrypt(value, $GB_VAR.aes_key).toString(CryptoJS.enc.Utf8);
     
     // -- Renvoyer le résltat -- //
     return decrypted;
@@ -137,7 +203,9 @@ function gbInitialiser_charger_evenement() {
 
     // -- Charger le mask de date -- //
     try {
+
         $("[data-mask]").inputmask();
+
     } catch (ex) {
         // -- Log -- //
         iConsole('Méthode: Charger le mask de date, Exception: ' + ex.message);
@@ -223,20 +291,20 @@ function gbConvert_Base64_En_ArrayBuffer(base64) {
 function gbAfficher_Page_Chargement(afficher, id_bouton) {
     if (afficher) {
         // -- Actualiser le bouton -- //
-        if (id_bouton != null) {
-            //$('#' + id_bouton).button('loading');
+        if (id_bouton != undefined && id_bouton != null) {
+            $('#' + id_bouton).button('loading');
         }
         // -- Affichier le progress bar -- //
-        NProgress.start();
+        //NProgress.start();
         // -- Afficher le frame de chargelent -- //
         $('#frame_chargement').show();
     } else {
         // -- Actualiser le bouton -- //
-        if (id_bouton != null) {
-            //$('#' + id_bouton).button('reset');
+        if (id_bouton != undefined && id_bouton != null) {
+            $('#' + id_bouton).button('reset');
         }
         // -- Finaliser le chargement du progress bar -- //
-        NProgress.done();
+        //NProgress.done();
         // -- Cacher le frae de chargement -- //
         $('#frame_chargement').hide();
     }
@@ -247,20 +315,15 @@ function gbLangue_Active() {
     return $('html').attr("lang");
 }
 
-// -- Dit si l'etat de confirmation est oui ou non -- //
-function gbConfirmation_Etat() {
-    return ($('#modal_message_question_reponse').html() == 'true') ? true
-                                                                   : false;
-}
-
 // -- Afficher un message de confirmation d'actionn -- //
 function gbConfirmation_OuiOuNon(message, id_soumission, fonction_execution) {
+
     // -- Initialisation de la réponse -- //
-    $('#modal_message_question_reponse').html('false');
+    $GB_DONNEE.Confirmation_message_box = false;
+
     // -- Mise à jour du message -- //
     $('#modal_message_question_message').html(
-        (message == null) ? (iLangue_Active() == 'en') ? "Confirm action"
-                                                       : "Confirmer l'action"
+        (message == null) ? $GB_DONNEE_PARAMETRES.Lang.Confirm_action
                           : message
     );
     // -- Annuler tous les evenement précédement chargé -- //
@@ -275,7 +338,7 @@ function gbConfirmation_OuiOuNon(message, id_soumission, fonction_execution) {
             // -- Cacher le message box -- //
             $('#modal_message_question').modal('hide');
             // -- Mise à jour de la réponse -- //
-            $('#modal_message_question_reponse').html('true');
+            $GB_DONNEE.Confirmation_message_box = true;
         }
     );
     // -- Comportement du bouton Non -- //
@@ -284,14 +347,14 @@ function gbConfirmation_OuiOuNon(message, id_soumission, fonction_execution) {
             // -- Cacher le message box -- //
             $('#modal_message_question').modal('hide');
             // -- Mise à jour de la réponse -- //
-            $('#modal_message_question_reponse').html('false');
+            $GB_DONNEE.Confirmation_message_box = false;
         }
     );
     // -- Méthode quand le message box se fermer -- //
     $("#modal_message_question").on('hidden.bs.modal',
         function () {
             // -- Si la réponse est non -- //
-            if (!iConfirmation_Etat()) {
+            if (!$GB_DONNEE.Confirmation_message_box) {
                 return false;
             }
 
@@ -305,12 +368,94 @@ function gbConfirmation_OuiOuNon(message, id_soumission, fonction_execution) {
             }
 
             // -- Initialisation de la réponse -- //
-            $('#modal_message_question_reponse').html('false');
+            $GB_DONNEE.Confirmation_message_box = false;
         }
     );
 
     // -- Afficher le message box -- //
     $('#modal_message_question').modal('show');
+
+}
+
+// -- Afficher un message de confirmation d'actionn -- //
+function gbConfirmationAlert_OuiOuNon(id_alert, message, id_form, fonction_execution) {
+
+    // -- Mise à jour de id_element -- //
+    id_alert = (id_alert == null || id_alert == undefined) ? 'dsAlert_Message_Box'
+                                                           : id_alert;
+
+    // -- Initialisation de la réponse -- //
+    $GB_DONNEE.Confirmation_message_box = false;
+
+    // -- Afficher l'alert -- //
+    $('#' + id_alert).html(
+        '<div id="dsAlert_Message_Box_id" class="gbalert alert alert-dismissible fade in" role="alert" style="border-color: rgba(38,185,154,.88);">' +
+            '<div class="row">' +
+                '<div class="col-lg-12">' +
+                    '<div class="pull-left">' +
+                        '<b>Information</b><br/>' +
+                        ((message == null) ? $GB_DONNEE_PARAMETRES.Lang.Confirm_action
+                                           : message) +
+                    '</div>' +
+                    '<div class="pull-right">' +
+                        '<button id="alert_message_question_bouton_non" type="button" class="btn btn-default" data-dismiss="alert" aria-label="Close">' +
+                            '<i class="fa fa-remove"></i> ' + $GB_DONNEE_PARAMETRES.Lang.No +
+                        '</button>' +
+                        '<button id="alert_message_question_bouton_oui" type="button" class="btn btn-success" data-dismiss="alert" aria-label="Close">' +
+                            '<i class="fa fa-check"></i> ' + $GB_DONNEE_PARAMETRES.Lang.Yes +
+                        '</button>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+        '</div>'
+    );
+
+    // -- Annuler tous les evenement précédement chargé -- //
+    $('#alert_message_question_bouton_oui').off('click');
+    $('#alert_message_question_bouton_non').off('click');
+    $('#dsAlert_Message_Box_id').off('closed.bs.alert');
+
+    // -- Définir les nouveaux evenements -- //
+    // -- Comportement du bouton Oui -- //
+    $("#alert_message_question_bouton_oui").on('click',
+        function () {
+            // -- Fermer le message box -- //
+            $('#dsAlert_Message_Box_id').alert('close');
+            // -- Mise à jour de la réponse -- //
+            $GB_DONNEE.Confirmation_message_box = true;
+        }
+    );
+    // -- Comportement du bouton Non -- //
+    $("#alert_message_question_bouton_non").on('click',
+        function () {
+            // -- Fermer le message box -- //
+            $('#dsAlert_Message_Box_id').alert('close');
+            // -- Mise à jour de la réponse -- //
+            $GB_DONNEE.Confirmation_message_box = false;
+        }
+    );
+    // -- Méthode quand le message box se fermer -- //
+    $('#dsAlert_Message_Box_id').on('closed.bs.alert',
+        function () {
+            // -- Si la réponse est non -- //
+            if (!$GB_DONNEE.Confirmation_message_box) {
+                return false;
+            }
+
+            // -- Si l'id est passé -- //
+            if (id_form != null) {
+                $("#" + id_form).submit();
+            }
+            // -- Executer la fonction -- //
+            else {
+                fonction_execution();
+            }
+
+            // -- Initialisation de la réponse -- //
+            $GB_DONNEE.Confirmation_message_box = false;
+        }
+    );
+
 }
 
 // -- Retourner un objetc location portant les détails sur mon emplacement -- //
@@ -441,11 +586,12 @@ function gbAfficher_Modal_Rechercher_Employe(url_donnee) {
 
 // -- Fonction pour initiliser les style css javascript des tables -- //
 function gbCharger_Css_Table(type_donnee) {
+
     // iCheck
     if ($("input.flat")[0]) {
         $('input.flat').iCheck({
-            checkboxClass: 'icheckbox_flat-blue',
-            radioClass: 'iradio_flat-blue'
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green'
         });
     }
 
@@ -453,12 +599,12 @@ function gbCharger_Css_Table(type_donnee) {
     $('table input').on('ifChecked', function () {
         checkState = '';
         $(this).parent().parent().parent().addClass('selected');
-        iCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
     });
     $('table input').on('ifUnchecked', function () {
         checkState = '';
         $(this).parent().parent().parent().removeClass('selected');
-        iCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
     });
 
     var checkState = '';
@@ -466,25 +612,27 @@ function gbCharger_Css_Table(type_donnee) {
     $('.bulk_action input').on('ifChecked', function () {
         checkState = '';
         $(this).parent().parent().parent().addClass('selected');
-        iCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
     });
     $('.bulk_action input').on('ifUnchecked', function () {
         checkState = '';
         $(this).parent().parent().parent().removeClass('selected');
-        iCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
     });
     $('.bulk_action input#check-all').on('ifChecked', function () {
         checkState = 'all';
-        iCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
     });
     $('.bulk_action input#check-all').on('ifUnchecked', function () {
         checkState = 'none';
-        iCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
     });
+
 }
 
 // -- Mettre à jour le label du nombre d'element selectionné -- //
 function gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState) {
+
     if (checkState === 'all') {
         $(".bulk_action input[name='" + type_donnee + "']").iCheck('check');
     }
@@ -502,6 +650,7 @@ function gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState) {
         $('.column-title').show();
         $('.bulk-actions').hide();
     }
+
 }
 
 // -- Fonction sur les actions de la description menu -- //
@@ -685,7 +834,7 @@ function gbMessage_Cookiees(titre, message, afficher_bouton_reconnexion) {
     $('#modal_message_cookiees_message').html('<div class="ipanel-msg-cookiees">' +
                                                 '<div class="ipanel-body text-center">' +
                                                     '<p>' +
-                                                        '<span class="itext-bold"><i class="fa fa-info-circle"></i> ' + titre + '</span><br/>' +
+                                                        '<span class="gbtext-bold"><i class="fa fa-info-circle"></i> ' + titre + '</span><br/>' +
                                                         message +
                                                     '</p>' +
                                                 '</div>' +
@@ -701,16 +850,41 @@ function gbMessage_Cookiees(titre, message, afficher_bouton_reconnexion) {
 }
 
 // -- Message box de notification -- //
-function gbMessage_Box(type, message) {
+function gbMessage_Box(notification) {
+
+    // -- Mise à jour des variable en cas d'erreur serveur -- //
+    if (notification === undefined || notification === null) {
+        notification = {
+            est_echec: true,
+            message: $GB_DONNEE_PARAMETRES.Lang.Error_server_message,
+        }
+    }
+
     // -- Mise à jour de la taille -- //
     $('#modal_message_taille').removeClass('modal-dialog');
     $('#modal_message_taille').addClass('modal-dialog modal-sm');
     // -- Définir l'entête -- //
-    $('#modal_message_titre').html('<i class="glyphicon glyphicon-info-sign text-' + type + '"></i> Information');
+    $('#modal_message_titre').html('<i class="glyphicon glyphicon-info-sign text-' + ((notification.est_echec != null) ? 
+                                                                                        (notification.est_echec) ? 'danger' 
+                                                                                                                 : 'success'
+                                                                                            : 'info') + '"></i> Information');
     // -- Definir le message -- //
-    $('#modal_message_text').html(message);
+    $('#modal_message_text').html(notification.message);
     // -- Afficher -- //
     $('#modal_message').modal('show');
+
+    // -- Ne pas fermer si la valeur est -1 -- //
+    if ($GB_DONNEE_PARAMETRES.DUREE_VISIBILITE_MESSAGE_BOX > 0) {
+        // -- Supprimer l'alert après un temps défini -- //
+        setTimeout(
+            function () {
+                // -- Fermer le modal -- //
+                $('#modal_message').modal('hide');
+            },
+            $GB_DONNEE_PARAMETRES.DUREE_VISIBILITE_MESSAGE_BOX
+        );
+    }
+
 }
 
 // -- Afficher un pop overs sur un element -- //
@@ -758,13 +932,21 @@ function gbSetCookie(cookie_name, cookie_value, exdays) {
     // -- Vérifie que le paramètre n'est pas null -- //
     if (cookie_value != null && cookie_value != undefined) {
         // -- Cryptage du paramètre valeur -- //
-        cookie_value = gbAESEncrypt(cookie_value.toString());
+        //cookie_value = gbAESEncrypt(cookie_value.toString());
 
         var d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
         var expires = "expires=" + d.toUTCString();
         document.cookie = cookie_name + "=" + cookie_value + ";" + expires + ";path=/";
     }
+
+}
+
+// -- Suppression d'un cookies -- //
+function gbRemoveCookie(cookie_name) {
+
+    // -- Mise à jour de la valeur du cookie pour suppression -- //
+    document.cookie = cookie_name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
 
 }
 
@@ -781,10 +963,11 @@ function gbGetCookie(cookie_name) {
         }
         if (c.indexOf(name) == 0) {
             return
+                c.substring(name.length, c.length);
                 // -- Décryptage de la valeur -- //
-                gbAESDecrypt(
-                    c.substring(name.length, c.length)
-                );
+                //gbAESDecrypt(
+                //    c.substring(name.length, c.length)
+                //);
         }
     }
 
@@ -807,7 +990,7 @@ $(
         // -- Affichier le progress bar -- //
         try {
 
-            NProgress.start();
+            //NProgress.start();
 
         } catch (e) { gbConsole(e.message); }
 
@@ -824,7 +1007,7 @@ $(
                 opacity: 0.4,
                 zIndex: 999999,
                 cursor: 'wait',
-                //background: 'lightgray url(../../Resources/images/gif/Logo_ds50x50.gif) no-repeat center'
+                background: 'lightgray url(../../Resources/images/gif/loading_1_50px.gif) no-repeat center'
             }).hide().appendTo('body');
 
             // -- Cacher la page en chargement -- //
@@ -837,7 +1020,7 @@ $(
                 opacity: 1,
                 zIndex: 999999,
                 cursor: 'wait',
-                //background: 'white url(../../Resources/images/gif/Logo_ds50x50.gif) no-repeat center'
+                background: 'lightgray url(../../Resources/images/gif/loading_1_50px.gif) no-repeat center'
             }).hide().appendTo('body');
 
         } catch (e) { gbConsole(e.message); }
@@ -846,62 +1029,35 @@ $(
         try {
 
             // -- Lors du click sr le bouton de validation -- //
-            $("#bt_valide_cookie_use").on("click",
-                function () {
-                    // -- Définir l'autorisation d'exploitation des cookies -- //
-                    gbSetCookie('cookie_autorise', 1, 365);
+            //$("#bt_valide_cookie_use").on("click",
+            //    function () {
+            //        // -- Définir l'autorisation d'exploitation des cookies -- //
+            //        gbSetCookie($GB_VAR.cookie_autorise, 1, 365);
 
-                    // -- Cacher le panel cookie -- //
-                    $("#cookie_panel").slideToggle("slow");
-                }
-            );
+            //        // -- Cacher le panel cookie -- //
+            //        $("#cookie_panel").slideToggle("slow");
+            //    }
+            //);
 
-            // -- Notifier l'utilisation des cookies -- //
-            if (gbGetCookie('cookie_autorise') === "") {
-                // -- Afficher le panel cookiees -- //
-                $("#cookie_panel").slideToggle("slow");
-            }
+            //// -- Notifier l'utilisation des cookies -- //
+            //if (gbGetCookie($GB_VAR.cookie_autorise) === "") {
+            //    // -- Afficher le panel cookiees -- //
+            //    $("#cookie_panel").slideToggle("slow");
+            //}
 
         } catch (e) { gbConsole(e.message); }
 
         // -- Charger le masque sur les champ date -- //
         try {
 
-            $("[data-mask]").inputmask("dd/mm/yyyy", { "placeholder": "dd/mm/yyyy" });
-
-        } catch (e) { gbConsole(e.message); }
-
-        // -- Ajouter un nouveau validateur des format de téléphone -- //
-        try {
-
-            Parsley.addValidator('intltelinput', {
-                requirementType: 'string',
-                validateString: function (value, id_element) {
-                    var valide = $(id_element).intlTelInput("isValidNumber");
-                    return valide;
-                },
-                priority: 22,
-                messages: {
-                    fr: "Ce numéro de téléphone incorrect.",
-                }
-            });
-
-        } catch (e) { gbConsole(e.message); }
-
-        // -- Définir le pluging icheck sur les composants -- //
-        try {
-
-            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-                checkboxClass: 'icheckbox_flat-green',
-                radioClass: 'iradio_flat-green'
-            });
+            //$("[data-mask]").inputmask("dd/mm/yyyy", { "placeholder": "dd/mm/yyyy" });
 
         } catch (e) { gbConsole(e.message); }
 
         // -- Finaliser le chargement du progress bar -- //
         try {
 
-            NProgress.done();
+            //NProgress.done();
 
         } catch (e) { gbConsole(e.message); }
 

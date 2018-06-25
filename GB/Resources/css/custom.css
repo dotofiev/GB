@@ -150,7 +150,7 @@ html , body{
     min-height: 100%;
     width: 70px;
     padding: 0;
-    z-index: 1000;
+    z-index: 9999;
     position: absolute
 }
 .nav-sm .container.body .col-md-3.left_col.menu_fixed {
@@ -470,10 +470,10 @@ body .container.body .right_col {
     border: 1px solid #50C1CF !important;
     color: #fff
 }
-/*.container {
+.container {
     width: 100%;
     padding: 0
-}*/
+}
 .navbar-nav>li>a,
 .navbar-brand,
 .navbar-nav>li>a {
@@ -1083,9 +1083,9 @@ h2 {
 .x_title h2 small {
     margin-left: 10px
 }
-/*.x_title span {
+.x_title span {
     color: #BDBDBD
-}*/
+}
 .x_content {
     padding: 0 5px 6px;
     position: relative;
@@ -1513,7 +1513,7 @@ ul.msg_list li a .message {
     position: absolute;
     text-shadow: none;
     top: 100%;
-    z-index: 1040;
+    z-index: 9998;
     border: 1px solid #D9DEE4;
     border-top-left-radius: 0;
     border-top-right-radius: 0

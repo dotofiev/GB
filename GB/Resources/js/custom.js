@@ -70,7 +70,7 @@ var setContentHeight = function () {
 };
 
   $SIDEBAR_MENU.find('a').on('click', function(ev) {
-	  ////console.log('clicked - sidebar_menu');
+
         var $li = $(this).parent();
 
         if ($li.is('.active')) {
@@ -101,7 +101,6 @@ var setContentHeight = function () {
 
 // toggle small or large menu 
 $MENU_TOGGLE.on('click', function() {
-		//console.log('clicked - menu toggle');
 		
 		if ($BODY.hasClass('nav-md')) {
 			$SIDEBAR_MENU.find('li.active ul').hide();
@@ -184,6 +183,12 @@ $(document).ready(function() {
 });
 // /Tooltip
 
+// Progressbar
+if ($(".progress .progress-bar")[0]) {
+    $('.progress .progress-bar').progressbar();
+}
+// /Progressbar
+
 // Switchery
 $(document).ready(function() {
     if ($(".js-switch")[0]) {
@@ -196,6 +201,74 @@ $(document).ready(function() {
     }
 });
 // /Switchery
+
+
+// iCheck
+$(document).ready(function() {
+    if ($("input.flat")[0]) {
+        $(document).ready(function () {
+            $('input.flat').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+        });
+    }
+});
+// /iCheck
+
+// Table
+$('table input').on('ifChecked', function () {
+    checkState = '';
+    $(this).parent().parent().parent().addClass('selected');
+    countChecked();
+});
+$('table input').on('ifUnchecked', function () {
+    checkState = '';
+    $(this).parent().parent().parent().removeClass('selected');
+    countChecked();
+});
+
+var checkState = '';
+
+$('.bulk_action input').on('ifChecked', function () {
+    checkState = '';
+    $(this).parent().parent().parent().addClass('selected');
+    countChecked();
+});
+$('.bulk_action input').on('ifUnchecked', function () {
+    checkState = '';
+    $(this).parent().parent().parent().removeClass('selected');
+    countChecked();
+});
+$('.bulk_action input#check-all').on('ifChecked', function () {
+    checkState = 'all';
+    countChecked();
+});
+$('.bulk_action input#check-all').on('ifUnchecked', function () {
+    checkState = 'none';
+    countChecked();
+});
+
+function countChecked() {
+    if (checkState === 'all') {
+        $(".bulk_action input[name='table_records']").iCheck('check');
+    }
+    if (checkState === 'none') {
+        $(".bulk_action input[name='table_records']").iCheck('uncheck');
+    }
+
+    var checkCount = $(".bulk_action input[name='table_records']:checked").length;
+
+    if (checkCount) {
+        $('.column-title').hide();
+        $('.bulk-actions').show();
+        $('.action-cnt').html(checkCount + ' Records Selected');
+    } else {
+        $('.column-title').show();
+        $('.bulk-actions').hide();
+    }
+}
+
 
 
 // Accordion
@@ -255,7 +328,7 @@ $(document).ready(function() {
 		
 		if( typeof ($.plot) === 'undefined'){ return; }
 		
-		//console.log('init_flot_chart');
+		console.log('init_flot_chart');
 		
 		
 		
@@ -461,14 +534,14 @@ $(document).ready(function() {
         
 		
         if ($("#chart_plot_01").length){
-			//console.log('Plot1');
+			console.log('Plot1');
 			
 			$.plot( $("#chart_plot_01"), [ arr_data1, arr_data2 ],  chart_plot_01_settings );
 		}
 		
 		
 		if ($("#chart_plot_02").length){
-			//console.log('Plot2');
+			console.log('Plot2');
 			
 			$.plot( $("#chart_plot_02"), 
 			[{ 
@@ -484,7 +557,7 @@ $(document).ready(function() {
 		}
 		
 		if ($("#chart_plot_03").length){
-			//console.log('Plot3');
+			console.log('Plot3');
 			
 			
 			$.plot($("#chart_plot_03"), [{
@@ -508,7 +581,7 @@ $(document).ready(function() {
 	function init_starrr() {
 		
 		if( typeof (starrr) === 'undefined'){ return; }
-		//console.log('init_starrr');
+		console.log('init_starrr');
 		
 		$(".stars").starrr();
 
@@ -529,11 +602,11 @@ $(document).ready(function() {
 	
 	function init_JQVmap(){
 
-		////console.log('check init_JQVmap [' + typeof (VectorCanvas) + '][' + typeof (jQuery.fn.vectorMap) + ']' );	
+		//console.log('check init_JQVmap [' + typeof (VectorCanvas) + '][' + typeof (jQuery.fn.vectorMap) + ']' );	
 		
 		if(typeof (jQuery.fn.vectorMap) === 'undefined'){ return; }
 		
-		//console.log('init_JQVmap');
+		console.log('init_JQVmap');
 	     
 			if ($('#world-map-gdp').length ){
 		 
@@ -575,7 +648,7 @@ $(document).ready(function() {
 	function init_skycons(){
 				
 			if( typeof (Skycons) === 'undefined'){ return; }
-			//console.log('init_skycons');
+			console.log('init_skycons');
 		
 			var icons = new Skycons({
 				"color": "#73879C"
@@ -599,7 +672,7 @@ $(document).ready(function() {
 				
 		if( typeof (Chart) === 'undefined'){ return; }
 		
-		//console.log('init_chart_doughnut');
+		console.log('init_chart_doughnut');
 	 
 		if ($('.canvasDoughnut').length){
 			
@@ -653,9 +726,9 @@ $(document).ready(function() {
 			
 		if( typeof (Gauge) === 'undefined'){ return; }
 		
-		//console.log('init_gauge [' + $('.gauge-chart').length + ']');
+		console.log('init_gauge [' + $('.gauge-chart').length + ']');
 		
-		//console.log('init_gauge');
+		console.log('init_gauge');
 		
 
 		  var chart_gauge_settings = {
@@ -717,7 +790,7 @@ $(document).ready(function() {
 		function init_sparklines() {
 			
 			if(typeof (jQuery.fn.sparkline) === 'undefined'){ return; }
-			//console.log('init_sparklines'); 
+			console.log('init_sparklines'); 
 			
 			
 			$(".sparkline_one").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 6, 4, 5, 6, 3, 5, 4, 5, 4, 5, 4, 3, 4, 5, 6, 7, 5, 4, 3, 5, 6], {
@@ -835,7 +908,7 @@ $(document).ready(function() {
 		function init_autocomplete() {
 			
 			if( typeof (autocomplete) === 'undefined'){ return; }
-			//console.log('init_autocomplete');
+			console.log('init_autocomplete');
 			
 			var countries = { AD:"Andorra",A2:"Andorra Test",AE:"United Arab Emirates",AF:"Afghanistan",AG:"Antigua and Barbuda",AI:"Anguilla",AL:"Albania",AM:"Armenia",AN:"Netherlands Antilles",AO:"Angola",AQ:"Antarctica",AR:"Argentina",AS:"American Samoa",AT:"Austria",AU:"Australia",AW:"Aruba",AX:"Åland Islands",AZ:"Azerbaijan",BA:"Bosnia and Herzegovina",BB:"Barbados",BD:"Bangladesh",BE:"Belgium",BF:"Burkina Faso",BG:"Bulgaria",BH:"Bahrain",BI:"Burundi",BJ:"Benin",BL:"Saint Barthélemy",BM:"Bermuda",BN:"Brunei",BO:"Bolivia",BQ:"British Antarctic Territory",BR:"Brazil",BS:"Bahamas",BT:"Bhutan",BV:"Bouvet Island",BW:"Botswana",BY:"Belarus",BZ:"Belize",CA:"Canada",CC:"Cocos [Keeling] Islands",CD:"Congo - Kinshasa",CF:"Central African Republic",CG:"Congo - Brazzaville",CH:"Switzerland",CI:"Côte d’Ivoire",CK:"Cook Islands",CL:"Chile",CM:"Cameroon",CN:"China",CO:"Colombia",CR:"Costa Rica",CS:"Serbia and Montenegro",CT:"Canton and Enderbury Islands",CU:"Cuba",CV:"Cape Verde",CX:"Christmas Island",CY:"Cyprus",CZ:"Czech Republic",DD:"East Germany",DE:"Germany",DJ:"Djibouti",DK:"Denmark",DM:"Dominica",DO:"Dominican Republic",DZ:"Algeria",EC:"Ecuador",EE:"Estonia",EG:"Egypt",EH:"Western Sahara",ER:"Eritrea",ES:"Spain",ET:"Ethiopia",FI:"Finland",FJ:"Fiji",FK:"Falkland Islands",FM:"Micronesia",FO:"Faroe Islands",FQ:"French Southern and Antarctic Territories",FR:"France",FX:"Metropolitan France",GA:"Gabon",GB:"United Kingdom",GD:"Grenada",GE:"Georgia",GF:"French Guiana",GG:"Guernsey",GH:"Ghana",GI:"Gibraltar",GL:"Greenland",GM:"Gambia",GN:"Guinea",GP:"Guadeloupe",GQ:"Equatorial Guinea",GR:"Greece",GS:"South Georgia and the South Sandwich Islands",GT:"Guatemala",GU:"Guam",GW:"Guinea-Bissau",GY:"Guyana",HK:"Hong Kong SAR China",HM:"Heard Island and McDonald Islands",HN:"Honduras",HR:"Croatia",HT:"Haiti",HU:"Hungary",ID:"Indonesia",IE:"Ireland",IL:"Israel",IM:"Isle of Man",IN:"India",IO:"British Indian Ocean Territory",IQ:"Iraq",IR:"Iran",IS:"Iceland",IT:"Italy",JE:"Jersey",JM:"Jamaica",JO:"Jordan",JP:"Japan",JT:"Johnston Island",KE:"Kenya",KG:"Kyrgyzstan",KH:"Cambodia",KI:"Kiribati",KM:"Comoros",KN:"Saint Kitts and Nevis",KP:"North Korea",KR:"South Korea",KW:"Kuwait",KY:"Cayman Islands",KZ:"Kazakhstan",LA:"Laos",LB:"Lebanon",LC:"Saint Lucia",LI:"Liechtenstein",LK:"Sri Lanka",LR:"Liberia",LS:"Lesotho",LT:"Lithuania",LU:"Luxembourg",LV:"Latvia",LY:"Libya",MA:"Morocco",MC:"Monaco",MD:"Moldova",ME:"Montenegro",MF:"Saint Martin",MG:"Madagascar",MH:"Marshall Islands",MI:"Midway Islands",MK:"Macedonia",ML:"Mali",MM:"Myanmar [Burma]",MN:"Mongolia",MO:"Macau SAR China",MP:"Northern Mariana Islands",MQ:"Martinique",MR:"Mauritania",MS:"Montserrat",MT:"Malta",MU:"Mauritius",MV:"Maldives",MW:"Malawi",MX:"Mexico",MY:"Malaysia",MZ:"Mozambique",NA:"Namibia",NC:"New Caledonia",NE:"Niger",NF:"Norfolk Island",NG:"Nigeria",NI:"Nicaragua",NL:"Netherlands",NO:"Norway",NP:"Nepal",NQ:"Dronning Maud Land",NR:"Nauru",NT:"Neutral Zone",NU:"Niue",NZ:"New Zealand",OM:"Oman",PA:"Panama",PC:"Pacific Islands Trust Territory",PE:"Peru",PF:"French Polynesia",PG:"Papua New Guinea",PH:"Philippines",PK:"Pakistan",PL:"Poland",PM:"Saint Pierre and Miquelon",PN:"Pitcairn Islands",PR:"Puerto Rico",PS:"Palestinian Territories",PT:"Portugal",PU:"U.S. Miscellaneous Pacific Islands",PW:"Palau",PY:"Paraguay",PZ:"Panama Canal Zone",QA:"Qatar",RE:"Réunion",RO:"Romania",RS:"Serbia",RU:"Russia",RW:"Rwanda",SA:"Saudi Arabia",SB:"Solomon Islands",SC:"Seychelles",SD:"Sudan",SE:"Sweden",SG:"Singapore",SH:"Saint Helena",SI:"Slovenia",SJ:"Svalbard and Jan Mayen",SK:"Slovakia",SL:"Sierra Leone",SM:"San Marino",SN:"Senegal",SO:"Somalia",SR:"Suriname",ST:"São Tomé and Príncipe",SU:"Union of Soviet Socialist Republics",SV:"El Salvador",SY:"Syria",SZ:"Swaziland",TC:"Turks and Caicos Islands",TD:"Chad",TF:"French Southern Territories",TG:"Togo",TH:"Thailand",TJ:"Tajikistan",TK:"Tokelau",TL:"Timor-Leste",TM:"Turkmenistan",TN:"Tunisia",TO:"Tonga",TR:"Turkey",TT:"Trinidad and Tobago",TV:"Tuvalu",TW:"Taiwan",TZ:"Tanzania",UA:"Ukraine",UG:"Uganda",UM:"U.S. Minor Outlying Islands",US:"United States",UY:"Uruguay",UZ:"Uzbekistan",VA:"Vatican City",VC:"Saint Vincent and the Grenadines",VD:"North Vietnam",VE:"Venezuela",VG:"British Virgin Islands",VI:"U.S. Virgin Islands",VN:"Vietnam",VU:"Vanuatu",WF:"Wallis and Futuna",WK:"Wake Island",WS:"Samoa",YD:"People's Democratic Republic of Yemen",YE:"Yemen",YT:"Mayotte",ZA:"South Africa",ZM:"Zambia",ZW:"Zimbabwe",ZZ:"Unknown or Invalid Region" };
 
@@ -847,7 +920,7 @@ $(document).ready(function() {
 			});
 
 			// initialize autocomplete with custom appendTo
-			$('#compte').autocomplete({
+			$('#autocomplete-custom-append').autocomplete({
 			  lookup: countriesArray
 			});
 			
@@ -869,46 +942,46 @@ $(document).ready(function() {
 			
 		function init_parsley() {
 			
-			//if( typeof (parsley) === 'undefined'){ return; }
-			////console.log('init_parsley');
+			if( typeof (parsley) === 'undefined'){ return; }
+			console.log('init_parsley');
 			
-			//$/*.listen*/('parsley:field:validate', function() {
-			//  validateFront();
-			//});
-			//$('#demo-form .btn').on('click', function() {
-			//  $('#demo-form').parsley().validate();
-			//  validateFront();
-			//});
-			//var validateFront = function() {
-			//  if (true === $('#demo-form').parsley().isValid()) {
-			//	$('.bs-callout-info').removeClass('hidden');
-			//	$('.bs-callout-warning').addClass('hidden');
-			//  } else {
-			//	$('.bs-callout-info').addClass('hidden');
-			//	$('.bs-callout-warning').removeClass('hidden');
-			//  }
-			//};
+			$/*.listen*/('parsley:field:validate', function() {
+			  validateFront();
+			});
+			$('#demo-form .btn').on('click', function() {
+			  $('#demo-form').parsley().validate();
+			  validateFront();
+			});
+			var validateFront = function() {
+			  if (true === $('#demo-form').parsley().isValid()) {
+				$('.bs-callout-info').removeClass('hidden');
+				$('.bs-callout-warning').addClass('hidden');
+			  } else {
+				$('.bs-callout-info').addClass('hidden');
+				$('.bs-callout-warning').removeClass('hidden');
+			  }
+			};
 		  
-			//$/*.listen*/('parsley:field:validate', function() {
-			//  validateFront();
-			//});
-			//$('#demo-form2 .btn').on('click', function() {
-			//  $('#demo-form2').parsley().validate();
-			//  validateFront();
-			//});
-			//var validateFront = function() {
-			//  if (true === $('#demo-form2').parsley().isValid()) {
-			//	$('.bs-callout-info').removeClass('hidden');
-			//	$('.bs-callout-warning').addClass('hidden');
-			//  } else {
-			//	$('.bs-callout-info').addClass('hidden');
-			//	$('.bs-callout-warning').removeClass('hidden');
-			//  }
-			//};
+			$/*.listen*/('parsley:field:validate', function() {
+			  validateFront();
+			});
+			$('#demo-form2 .btn').on('click', function() {
+			  $('#demo-form2').parsley().validate();
+			  validateFront();
+			});
+			var validateFront = function() {
+			  if (true === $('#demo-form2').parsley().isValid()) {
+				$('.bs-callout-info').removeClass('hidden');
+				$('.bs-callout-warning').addClass('hidden');
+			  } else {
+				$('.bs-callout-info').addClass('hidden');
+				$('.bs-callout-warning').removeClass('hidden');
+			  }
+			};
 			
-			//  try {
-			//	hljs.initHighlightingOnLoad();
-			//  } catch (err) {}
+			  try {
+				hljs.initHighlightingOnLoad();
+			  } catch (err) {}
 			
 		};
 	   
@@ -945,7 +1018,7 @@ $(document).ready(function() {
 		function init_select2() {
 			 
 			if( typeof (select2) === 'undefined'){ return; }
-			//console.log('init_toolbox');
+			console.log('init_toolbox');
 			 
 			$(".select2_single").select2({
 			  placeholder: "Select a state",
@@ -964,61 +1037,59 @@ $(document).ready(function() {
 
 		function init_wysiwyg() {
 			
-		    if( typeof ($.fn.wysiwyg) === 'undefined'){ return; }	
+		if( typeof ($.fn.wysiwyg) === 'undefined'){ return; }
+		console.log('init_wysiwyg');	
 			
-		    //function init_ToolbarBootstrapBindings() {
-		        var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
-                    'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
-                    'Times New Roman', 'Verdana'
-		        ],
-                fontTarget = $('#bt_pense_bete_police').siblings('.dropdown-menu');
-		        for (var i = 0; i < fonts.length; i++) {
-		            fontTarget.append($('<li><a data-edit="fontName ' + fonts[i] + '" style="font-family:\'' + fonts[i] + '\'">' + fonts[i] + '</a></li>'));
-		        }
+        function init_ToolbarBootstrapBindings() {
+          var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
+              'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
+              'Times New Roman', 'Verdana'
+            ],
+            fontTarget = $('[title=Font]').siblings('.dropdown-menu');
+          $.each(fonts, function(idx, fontName) {
+            fontTarget.append($('<li><a data-edit="fontName ' + fontName + '" style="font-family:\'' + fontName + '\'">' + fontName + '</a></li>'));
+          });
+          $('a[title]').tooltip({
+            container: 'body'
+          });
+          $('.dropdown-menu input').click(function() {
+              return false;
+            })
+            .change(function() {
+              $(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');
+            })
+            .keydown('esc', function() {
+              this.value = '';
+              $(this).change();
+            });
 
-		        $('a[title]').tooltip({
-		            container: 'body'
-		        });
-		        $('.dropdown-menu input').click(function () {
-		            return false;
-		        })
-                  .change(function () {
-                      $(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');
-                  })
-                  .keydown('esc', function () {
-                      this.value = '';
-                      $(this).change();
-                  });
+          $('[data-role=magic-overlay]').each(function() {
+            var overlay = $(this),
+              target = $(overlay.data('target'));
+            overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
+          });
 
-		        $('[data-role=magic-overlay]').each(function () {
-		            var overlay = $(this),
-                      target = $(overlay.data('target'));
-		            overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
-		        });
+          if ("onwebkitspeechchange" in document.createElement("input")) {
+            var editorOffset = $('#editor').offset();
 
-		        if ("onwebkitspeechchange" in document.createElement("input")) {
-		            var editorOffset = $('#editor').offset();
-
-		            $('.voiceBtn').css('position', 'absolute').offset({
-		                top: editorOffset.top,
-		                left: editorOffset.left + $('#editor').innerWidth() - 35
-		            });
-		        } else {
-		            $('.voiceBtn').hide();
-		        }
-		    //}
+            $('.voiceBtn').css('position', 'absolute').offset({
+              top: editorOffset.top,
+              left: editorOffset.left + $('#editor').innerWidth() - 35
+            });
+          } else {
+            $('.voiceBtn').hide();
+          }
+        }
 
         function showErrorAlert(reason, detail) {
           var msg = '';
           if (reason === 'unsupported-file-type') {
             msg = "Unsupported format " + detail;
           } else {
-            //console.log("error uploading file", reason, detail);
+            console.log("error uploading file", reason, detail);
           }
-          $('<div class="alert alert-danger alert-dismissible fade in" role="alert">' +
-                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>' +
-                         msg +
-                     '</div>').prependTo('#alerts');
+          $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
+            '<strong>File upload error</strong> ' + msg + ' </div>').prependTo('#alerts');
         }
 
        $('.editor-wrapper').each(function(){
@@ -1042,7 +1113,7 @@ $(document).ready(function() {
 			
 			
 			if( typeof ($.fn.cropper) === 'undefined'){ return; }
-			//console.log('init_cropper');
+			console.log('init_cropper');
 			
 			var $image = $('#image');
 			var $download = $('#download');
@@ -1075,25 +1146,25 @@ $(document).ready(function() {
 			// Cropper
 			$image.on({
 			  'build.cropper': function (e) {
-				//console.log(e.type);
+				console.log(e.type);
 			  },
 			  'built.cropper': function (e) {
-				//console.log(e.type);
+				console.log(e.type);
 			  },
 			  'cropstart.cropper': function (e) {
-				//console.log(e.type, e.action);
+				console.log(e.type, e.action);
 			  },
 			  'cropmove.cropper': function (e) {
-				//console.log(e.type, e.action);
+				console.log(e.type, e.action);
 			  },
 			  'cropend.cropper': function (e) {
-				//console.log(e.type, e.action);
+				console.log(e.type, e.action);
 			  },
 			  'crop.cropper': function (e) {
-				//console.log(e.type, e.x, e.y, e.width, e.height, e.rotate, e.scaleX, e.scaleY);
+				console.log(e.type, e.x, e.y, e.width, e.height, e.rotate, e.scaleX, e.scaleY);
 			  },
 			  'zoom.cropper': function (e) {
-				//console.log(e.type, e.ratio);
+				console.log(e.type, e.ratio);
 			  }
 			}).cropper(options);
 
@@ -1165,7 +1236,7 @@ $(document).ready(function() {
 					try {
 					  data.option = JSON.parse($target.val());
 					} catch (e) {
-					  //console.log(e.message);
+					  console.log(e.message);
 					}
 				  }
 				}
@@ -1196,7 +1267,7 @@ $(document).ready(function() {
 				  try {
 					$target.val(JSON.stringify(result));
 				  } catch (e) {
-					//console.log(e.message);
+					console.log(e.message);
 				  }
 				}
 
@@ -1276,18 +1347,18 @@ $(document).ready(function() {
 		function init_knob() {
 		
 				if( typeof ($.fn.knob) === 'undefined'){ return; }
-				//console.log('init_knob');
+				console.log('init_knob');
 	
 				$(".knob").knob({
 				  change: function(value) {
-					////console.log("change : " + value);
+					//console.log("change : " + value);
 				  },
 				  release: function(value) {
-					////console.log(this.$.attr('value'));
-					//console.log("release : " + value);
+					//console.log(this.$.attr('value'));
+					console.log("release : " + value);
 				  },
 				  cancel: function() {
-					//console.log("cancel : ", this);
+					console.log("cancel : ", this);
 				  },
 				  /*format : function (value) {
 				   return value + '%';
@@ -1382,7 +1453,7 @@ $(document).ready(function() {
 		function init_InputMask() {
 			
 			if( typeof ($.fn.inputmask) === 'undefined'){ return; }
-			//console.log('init_InputMask');
+			console.log('init_InputMask');
 			
 				$(":input").inputmask();
 				
@@ -1393,7 +1464,7 @@ $(document).ready(function() {
 		function init_ColorPicker() {
 			
 			if( typeof ($.fn.colorpicker) === 'undefined'){ return; }
-			//console.log('init_ColorPicker');
+			console.log('init_ColorPicker');
 			
 				$('.demo1').colorpicker();
 				$('.demo2').colorpicker();
@@ -1417,7 +1488,7 @@ $(document).ready(function() {
 		function init_IonRangeSlider() {
 			
 			if( typeof ($.fn.ionRangeSlider) === 'undefined'){ return; }
-			//console.log('init_IonRangeSlider');
+			console.log('init_IonRangeSlider');
 			
 			$("#range_27").ionRangeSlider({
 			  type: "double",
@@ -1488,10 +1559,10 @@ $(document).ready(function() {
 		function init_daterangepicker() {
 
 			if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
-			//console.log('init_daterangepicker');
+			console.log('init_daterangepicker');
 		
 			var cb = function(start, end, label) {
-			  //console.log(start.toISOString(), end.toISOString(), label);
+			  console.log(start.toISOString(), end.toISOString(), label);
 			  $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
 			};
 
@@ -1537,16 +1608,16 @@ $(document).ready(function() {
 			$('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
 			$('#reportrange').daterangepicker(optionSet1, cb);
 			$('#reportrange').on('show.daterangepicker', function() {
-			  //console.log("show event fired");
+			  console.log("show event fired");
 			});
 			$('#reportrange').on('hide.daterangepicker', function() {
-			  //console.log("hide event fired");
+			  console.log("hide event fired");
 			});
 			$('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-			  //console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+			  console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
 			});
 			$('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
-			  //console.log("cancel event fired");
+			  console.log("cancel event fired");
 			});
 			$('#options1').click(function() {
 			  $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
@@ -1563,10 +1634,10 @@ $(document).ready(function() {
 	   function init_daterangepicker_right() {
 	      
 				if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
-				//console.log('init_daterangepicker_right');
+				console.log('init_daterangepicker_right');
 		  
 				var cb = function(start, end, label) {
-				  //console.log(start.toISOString(), end.toISOString(), label);
+				  console.log(start.toISOString(), end.toISOString(), label);
 				  $('#reportrange_right span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
 				};
 
@@ -1614,16 +1685,16 @@ $(document).ready(function() {
 				$('#reportrange_right').daterangepicker(optionSet1, cb);
 
 				$('#reportrange_right').on('show.daterangepicker', function() {
-				  //console.log("show event fired");
+				  console.log("show event fired");
 				});
 				$('#reportrange_right').on('hide.daterangepicker', function() {
-				  //console.log("hide event fired");
+				  console.log("hide event fired");
 				});
 				$('#reportrange_right').on('apply.daterangepicker', function(ev, picker) {
-				  //console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+				  console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
 				});
 				$('#reportrange_right').on('cancel.daterangepicker', function(ev, picker) {
-				  //console.log("cancel event fired");
+				  console.log("cancel event fired");
 				});
 
 				$('#options1').click(function() {
@@ -1643,31 +1714,31 @@ $(document).ready(function() {
 	    function init_daterangepicker_single_call() {
 	      
 			if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
-			//console.log('init_daterangepicker_single_call');
+			console.log('init_daterangepicker_single_call');
 		   
 			$('#single_cal1').daterangepicker({
 			  singleDatePicker: true,
 			  singleClasses: "picker_1"
 			}, function(start, end, label) {
-			  //console.log(start.toISOString(), end.toISOString(), label);
+			  console.log(start.toISOString(), end.toISOString(), label);
 			});
 			$('#single_cal2').daterangepicker({
 			  singleDatePicker: true,
 			  singleClasses: "picker_2"
 			}, function(start, end, label) {
-			  //console.log(start.toISOString(), end.toISOString(), label);
+			  console.log(start.toISOString(), end.toISOString(), label);
 			});
 			$('#single_cal3').daterangepicker({
 			  singleDatePicker: true,
 			  singleClasses: "picker_3"
 			}, function(start, end, label) {
-			  //console.log(start.toISOString(), end.toISOString(), label);
+			  console.log(start.toISOString(), end.toISOString(), label);
 			});
 			$('#single_cal4').daterangepicker({
 			  singleDatePicker: true,
 			  singleClasses: "picker_4"
 			}, function(start, end, label) {
-			  //console.log(start.toISOString(), end.toISOString(), label);
+			  console.log(start.toISOString(), end.toISOString(), label);
 			});
   
   
@@ -1677,10 +1748,10 @@ $(document).ready(function() {
 		function init_daterangepicker_reservation() {
 	      
 			if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
-			//console.log('init_daterangepicker_reservation');
+			console.log('init_daterangepicker_reservation');
 		 
 			$('#reservation').daterangepicker(null, function(start, end, label) {
-			  //console.log(start.toISOString(), end.toISOString(), label);
+			  console.log(start.toISOString(), end.toISOString(), label);
 			});
 
 			$('#reservation-time').daterangepicker({
@@ -1695,22 +1766,22 @@ $(document).ready(function() {
 	   
 	   /* SMART WIZARD */
 		
-		//function init_SmartWizard() {
+		function init_SmartWizard() {
 			
-		//	if( typeof ($.fn.smartWizard) === 'undefined'){ return; }
-		//	//console.log('init_SmartWizard');
+			if( typeof ($.fn.smartWizard) === 'undefined'){ return; }
+			console.log('init_SmartWizard');
 			
-		//	$('#wizard').smartWizard();
+			$('#wizard').smartWizard();
 
-		//	$('#wizard_verticle').smartWizard({
-		//	  transitionEffect: 'slide'
-		//	});
+			$('#wizard_verticle').smartWizard({
+			  transitionEffect: 'slide'
+			});
 
-		//	$('.buttonNext').addClass('btn btn-success');
-		//	$('.buttonPrevious').addClass('btn btn-primary');
-		//	$('.buttonFinish').addClass('btn btn-default');
+			$('.buttonNext').addClass('btn btn-success');
+			$('.buttonPrevious').addClass('btn btn-primary');
+			$('.buttonFinish').addClass('btn btn-default');
 			
-		//};
+		};
 	   
 	   
 	  /* VALIDATOR */
@@ -1718,7 +1789,7 @@ $(document).ready(function() {
 	  function init_validator () {
 		 
 		if( typeof (validator) === 'undefined'){ return; }
-		//console.log('init_validator'); 
+		console.log('init_validator'); 
 	  
 	  // initialize the validator function
       validator.message.date = 'not a real date';
@@ -1754,8 +1825,9 @@ $(document).ready(function() {
 			
 		function init_PNotify() {
 			
-		    if (typeof (PNotify) === 'undefined') { return; }
-
+			if( typeof (PNotify) === 'undefined'){ return; }
+			console.log('init_PNotify');
+			
 			new PNotify({
 			  title: "PNotify",
 			  type: "info",
@@ -1785,8 +1857,11 @@ $(document).ready(function() {
 			
 		function init_CustomNotification() {
 			
+			console.log('run_customtabs');
+			
 			if( typeof (CustomTabs) === 'undefined'){ return; }
-			console.log('init_PNotify');
+			console.log('init_CustomTabs');
+			
 			var cnt = 10;
 
 			TabbedNotification = function(options) {
@@ -1840,7 +1915,7 @@ $(document).ready(function() {
 			function init_EasyPieChart() {
 				
 				if( typeof ($.fn.easyPieChart) === 'undefined'){ return; }
-				//console.log('init_EasyPieChart');
+				console.log('init_EasyPieChart');
 				
 				$('.chart').easyPieChart({
 				  easing: 'easeOutElastic',
@@ -1897,11 +1972,11 @@ $(document).ready(function() {
 		
 		function init_charts() {
 			
-				//console.log('run_charts  typeof [' + typeof (Chart) + ']');
+				console.log('run_charts  typeof [' + typeof (Chart) + ']');
 			
 				if( typeof (Chart) === 'undefined'){ return; }
 				
-				//console.log('init_charts');
+				console.log('init_charts');
 			
 				
 				Chart.defaults.global.legend = {
@@ -2297,13 +2372,26 @@ $(document).ready(function() {
 			
 			}
 		}
+
+		/* COMPOSE */
+		
+		function init_compose() {
+		
+			if( typeof ($.fn.slideToggle) === 'undefined'){ return; }
+			console.log('init_compose');
+		
+			$('#compose, .compose-close').click(function(){
+				$('.compose').slideToggle();
+			});
+		
+		};
 	   
 	   	/* CALENDAR */
 		  
 		    function  init_calendar() {
 					
 				if( typeof ($.fn.fullCalendar) === 'undefined'){ return; }
-				//console.log('init_calendar');
+				console.log('init_calendar');
 					
 				var date = new Date(),
 					d = date.getDate(),
@@ -2405,10 +2493,10 @@ $(document).ready(function() {
 			
 			function init_DataTables() {
 				
-				//console.log('run_datatables');
+				console.log('run_datatables');
 				
 				if( typeof ($.fn.DataTable) === 'undefined'){ return; }
-				//console.log('init_DataTables');
+				console.log('init_DataTables');
 				
 				var handleDataTableButtons = function() {
 				  if ($("#datatable-buttons").length) {
@@ -2480,7 +2568,7 @@ $(document).ready(function() {
 				});
 				$datatable.on('draw.dt', function() {
 				  $('checkbox input').iCheck({
-					checkboxClass: 'icheckbox_flat-blue'
+					checkboxClass: 'icheckbox_flat-green'
 				  });
 				});
 
@@ -2493,7 +2581,7 @@ $(document).ready(function() {
 		function init_morris_charts() {
 			
 			if( typeof (Morris) === 'undefined'){ return; }
-			//console.log('init_morris_charts');
+			console.log('init_morris_charts');
 			
 			if ($('#graph_bar').length){ 
 			
@@ -2567,7 +2655,7 @@ $(document).ready(function() {
 				  labels: ['Y', 'Z', 'A'],
 				  resize: true
 				}).on('click', function (i, row) {
-					//console.log(i, row);
+					console.log(i, row);
 				});
 
 			}
@@ -2653,7 +2741,7 @@ $(document).ready(function() {
 		function init_echarts() {
 		
 				if( typeof (echarts) === 'undefined'){ return; }
-				//console.log('init_echarts');
+				console.log('init_echarts');
 			
 		
 				  var theme = {
@@ -4938,25 +5026,26 @@ $(document).ready(function() {
 		init_IonRangeSlider();
 		init_ColorPicker();
 		init_TagsInput();
-		init_parsley();
+		//init_parsley();
 		init_daterangepicker();
 		init_daterangepicker_right();
 		init_daterangepicker_single_call();
 		init_daterangepicker_reservation();
 		//init_SmartWizard();
-		init_EasyPieChart();
-		init_charts();
+		//init_EasyPieChart();
+		//init_charts();
 		init_echarts();
 		init_morris_charts();
 		init_skycons();
 		init_select2();
 		init_validator();
-		init_DataTables();
+		//init_DataTables();
 		init_chart_doughnut();
 		init_gauge();
-		//init_PNotify();
+		init_PNotify();
 		init_starrr();
 		init_calendar();
+		//init_compose();
 		//init_CustomNotification();
 		init_autosize();
 		init_autocomplete();

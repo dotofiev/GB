@@ -9,7 +9,8 @@ namespace GB
     {
         public void Configuration(IAppBuilder app)
         {
-
+            // -- SignalR -- //
+            app.MapSignalR();
         }
     }
 }

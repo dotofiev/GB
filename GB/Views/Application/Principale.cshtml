@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+
+<script type="text/javascript">
+
+    $GB_DONNEE = JSON.parse('@Html.Raw(ViewBag.GB_DONNEE)');
+
+</script>
+
+<!-- Script de la page -->
+<script src="@Url.Content("~/Resources/js/Views/" + ViewBag.Id_page + ".js")" type="text/javascript"></script>
+
+<div class="row">
+
+    <div class="col-lg-12">
+
+        <div class="page-title">
+
+            <h3>@ViewBag.Lang.Description_page</h3>
+
+        </div>
+
+    </div>
+
+</div>
