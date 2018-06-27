@@ -12,26 +12,21 @@ var form = $('#form');
 var modal_form = $('#modal_form');
 var url_controlleur = '/Securite/';
 var url_suppression = '/Securite/Supprimer_Enregistrement';
+var class_table_selection = 'gb-table-success';
 
 
 // -- Méthodes d'action sur les données -- // 
 try {
 
     // -- Modifier -- //
-    function table_donnee_modifier(id) {
-
-        // -- Variables objet -- //
-        btn_table = $('#table_donnee_modifier_id_' + id);
-
-        // -- Actualiser le bouton d'action -- //
-        btn_table.button('loading');
+    function table_donnee_modifier(code) {
 
         // -- Ajax -- //
         $.ajax({
             type: "POST",
             url: url_ajax_selection_enregistrement,
             data: {
-                id: id,
+                code: code,
                 id_page: $GB_DONNEE.id_page
             },
             success: function (resultat) {
@@ -50,15 +45,10 @@ try {
                     // -- Message -- //
                     gbMessage_Box(resultat.notification);
                 }
-                // -- fin boutton d'actualisation -- //
-                btn_table.button('reset');
             },
             error: function () {
                 // -- Message -- //
                 gbMessage_Box();
-
-                // -- fin boutton d'actualisation -- //
-                btn_table.button('reset');
             }
         });
 
@@ -113,13 +103,8 @@ try {
             success: function (resultat) {
                 // -- Tester si le traitement s'est bien effectué -- //
                 if (!resultat.notification.est_echec) {
-                    // -- Actualiser la table -- //
-                    table.DataTable().ajax.reload(
-                        function () {
-                            // -- Reset la taille de la table -- //
-                            table.DataTable().columns.adjust().draw();
-                        }
-                    );
+                    // -- Recharger la table -- //
+                    table_recharger(false);
                 } else {
                     // -- Message -- //
                     gbMessage_Box(resultat.notification);
@@ -136,6 +121,50 @@ try {
                 table_bouton_action_etat(bouton_table, false, null);
             }
         });
+
+    }
+
+    // -- Recharger la table -- //
+    function table_recharger(frame) {
+
+        // -- Recharger la table -- //
+        table.DataTable().ajax.reload(
+            function () {
+                // -- Teste si c'est un seul element -- //
+                if (frame) {
+                    // -- cacher le chargement -- //
+                    gbAfficher_Page_Chargement(false);
+                }
+                // -- Reset la taille de la table -- //
+                table.DataTable().columns.adjust().draw();
+                // -- Selectionner une ligne de la table -- //
+                table_selection_ligne();
+                // -- Désactiver le multiselect -- //
+                $("#check-all").iCheck('uncheck');
+                $('.column-title').show();
+                $('.bulk-actions').hide();
+            }
+        );
+
+    }
+
+    // -- Selectionner une ligne de la table -- //
+    function table_selection_ligne(ligne) {
+
+        // -- Suppression de toutes les lignes delectionnées -- //
+        $('#table-donnee tbody tr').each(
+            function () {
+                // -- Si l'element n'a pas la classe passer -- //
+                if ($(this).hasClass(class_table_selection)) {
+                    $(this).removeClass(class_table_selection);
+                }
+            }
+        );
+
+        // -- Mise à jour de la couleur de la ligne -- //
+        if (ligne != undefined && ligne != null) {
+            ligne.addClass(class_table_selection);
+        }
 
     }
 
@@ -189,31 +218,34 @@ $(
                 },
                 "columns": [
                     { "data": "col_1", "width": "20px" },           // -- Checkbox -- //
-                    { "data": "col_2" },                            // -- id -- //
-                    { "data": "col_3" },                            // -- code -- //
-                    { "data": "col_4" },                            // -- libelle_fr -- //
-                    { "data": "col_5" },                            // -- libelle_en -- //
-                    { "data": "col_6", "class": "text-center" }     // -- Action -- //
+                    { "data": "col_2" },                            // -- code -- //
+                    { "data": "col_3" },                            // -- libelle_fr -- //
+                    { "data": "col_4" },                            // -- libelle_en -- //
+                    { "data": "col_5", "class": "text-center" }     // -- Action -- //
                 ]
             });
 
-            // -- Recharger la table -- //
-            function table_recharger(frame) {
+            // -- Lorsqu'un click survient sur une ligne de la table -- //
+            $('#table-donnee tbody').on('click', 'tr',
+                function () {
+                    // -- Selectionner une ligne de la table -- //
+                    table_selection_ligne($(this));
+                }
+            );
 
-                // -- Recharger la table -- //
-                table.DataTable().ajax.reload(
-                    function () {
-                        // -- Teste si c'est un seul element -- //
-                        if (frame) {
-                            // -- cacher le chargement -- //
-                            gbAfficher_Page_Chargement(false);
-                        }
-                        // -- Reset la taille de la table -- //
-                        table.DataTable().columns.adjust().draw();
+            // -- Lorsqu'un double click survient sur une ligne de la table -- //
+            $('#table-donnee tbody').on('dblclick', 'tr',
+                function () {
+                    // -- Réccupération des données de la table -- //
+                    var donnees = table.DataTable().row(this).data();
+
+                    // -- Vérifie qu'un enregistrement est sélectionné -- //
+                    if (donnees != undefined && donnees != null) {
+                        // -- Modifier l'enregistrement -- //
+                        table_donnee_modifier(donnees.col_2);
                     }
-                );
-
-            }
+                }
+            );
 
         } catch (e) { gbConsole(e.message); }
 
@@ -298,6 +330,9 @@ $(
 
                     // -- Suppression de l'alert message box -- //
                     $('#gbAlert').html(null);
+
+                    // -- Suppression de l'alert de confirmation -- //
+                    $('#dsAlert_Message_Box').html(null);
 
                 }
             );

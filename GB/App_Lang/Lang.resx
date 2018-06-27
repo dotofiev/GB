@@ -159,6 +159,9 @@
   <data name="Error_server_message" xml:space="preserve">
     <value>A communication error has occurred</value>
   </data>
+  <data name="Existing_data" xml:space="preserve">
+    <value>Existing data</value>
+  </data>
   <data name="Form" xml:space="preserve">
     <value>Form</value>
   </data>

@@ -49,18 +49,10 @@ namespace GB.Controllers
                             new
                             {
                                 col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"module\" value=\"module_{val.id}\">",
-                                col_2 = val.id,
-                                col_3 = val.code,
-                                col_4 = val.libelle_fr,
-                                col_5 = val.libelle_en,
-                                col_6 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
-                                                              title=""{Lang.Update}"" 
-                                                              class=""btn btn-xs btn-round""
-                                                              onClick=""table_donnee_modifier({id})""
-                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                          <i class=""fa fa-retweet text-warning""></i>
-                                        </button>
-                                        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                col_2 = val.code,
+                                col_3 = val.libelle_fr,
+                                col_4 = val.libelle_en,
+                                col_5 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
                                                               title=""{Lang.Delete}"" 
                                                               class=""btn btn-xs btn-round""
                                                               onClick=""table_donnee_supprimer({ids}, true)""
@@ -71,6 +63,24 @@ namespace GB.Controllers
                                         .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
                                         .Replace("{Lang.Update}", App_Lang.Lang.Update)
                                         .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                                //                              title=""{Lang.Update}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_modifier({id})""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-retweet text-warning""></i>
+                                //        </button>
+                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                //                              title=""{Lang.Delete}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_supprimer({ids}, true)""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-minus text-danger""></i>
+                                //        </button>"
+                                //        .Replace("{id}", val.id.ToString())
+                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
                             }
                         );
                     }
@@ -114,7 +124,7 @@ namespace GB.Controllers
 
         // -- Selectionner un nouvel enregistrement dans la liste -- //
         [HttpPost]
-        public ActionResult Selection_Enregistrement(long id, string id_page)
+        public ActionResult Selection_Enregistrement(string code, string id_page)
         {
             try
             {
@@ -123,7 +133,7 @@ namespace GB.Controllers
                 if (id_page == "Securite-Module")
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = TestClass.db_modules.FirstOrDefault(l => l.id == id);
+                    var obj = TestClass.db_modules.FirstOrDefault(l => l.code == code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -187,6 +197,12 @@ namespace GB.Controllers
                 #region Securite-Module
                 if (id_page == "Securite-Module")
                 {
+                    // -- Unicité du code -- //
+                    if (TestClass.db_modules.Exists(l => l.code == obj.code))
+                    {
+                        throw new GBException(App_Lang.Lang.Existing_data + " [code]");
+                    }
+
                     // -- Définition de l'identifiant -- //
                     obj.Crer_Id();
 
@@ -241,6 +257,12 @@ namespace GB.Controllers
                 #region Securite-Module
                 if (id_page == "Securite-Module")
                 {
+                    // -- Unicité du code -- //
+                    if (TestClass.db_modules.Exists(l => l.id != obj.id && l.code == obj.code))
+                    {
+                        throw new GBException(App_Lang.Lang.Existing_data + " [code]");
+                    }
+
                     // -- Modification de la valeur -- //
                     TestClass.db_modules
                         // -- Spécifier la recherche -- //

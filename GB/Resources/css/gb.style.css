@@ -423,3 +423,15 @@ body {
 .close {
     opacity: 1;
 }
+
+.gb-table-success {
+
+    background: #26B99A;
+    color: white;
+    font-weight: bold;
+
+}
+
+tr {
+    cursor:pointer;
+}

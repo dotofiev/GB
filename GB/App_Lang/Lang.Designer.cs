@@ -187,6 +187,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Existing data.
+        /// </summary>
+        public static string Existing_data {
+            get {
+                return ResourceManager.GetString("Existing_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Form.
         /// </summary>
         public static string Form {
