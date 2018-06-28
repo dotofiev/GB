@@ -98,5 +98,14 @@ namespace GB.Models.Static
                 libelle_fr = "Groupe sécurité",
             },
         };
+        public static List<Role> db_roles = new List<Role>()
+        {
+            new Role(1)
+            {
+                code = "1",
+                libelle_en = "Admin",
+                libelle_fr = "Administrateur",
+            },
+        };
     }
 }

@@ -229,6 +229,9 @@
   <data name="Reconnect" xml:space="preserve">
     <value>Se reconnecter</value>
   </data>
+  <data name="Rule_Management" xml:space="preserve">
+    <value>Gestion des rôles</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Enregistrer</value>
   </data>

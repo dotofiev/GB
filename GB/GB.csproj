@@ -723,6 +723,7 @@
     <Content Include="Resources\js\bootstrap.js" />
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\gb.menu.js" />
+    <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
     <Content Include="Resources\js\Views\Application-Principale.js" />
     <Content Include="Resources\js\Views\Application-Main.js" />
@@ -1001,6 +1002,12 @@
     <Content Include="Plugins\datatables\datatables\json\scroller-demo.json" />
     <Content Include="Plugins\datatables\English.json" />
     <Content Include="Plugins\datatables\French.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Securite\Role\_Modals.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Securite\Role.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

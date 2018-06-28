@@ -16,9 +16,6 @@ namespace GB.Models.BO
         public string libelle_en { get; set; }
         public string libelle_fr { get; set; }
 
-        public void Crer_Id()
-        {
-            this.id = TestClass.db_modules.Count + 1;
-        }
+        public abstract void Crer_Id();
     }
 }

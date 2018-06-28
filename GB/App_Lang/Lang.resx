@@ -228,6 +228,9 @@
   <data name="Reconnect" xml:space="preserve">
     <value>Reconnect</value>
   </data>
+  <data name="Rule_Management" xml:space="preserve">
+    <value>Rule management</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>

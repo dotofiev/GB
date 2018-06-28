@@ -394,6 +394,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rule management.
+        /// </summary>
+        public static string Rule_Management {
+            get {
+                return ResourceManager.GetString("Rule_Management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {

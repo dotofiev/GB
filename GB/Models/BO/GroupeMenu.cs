@@ -57,5 +57,10 @@ namespace GB.Models.BO
                                                                          : this.libelle_fr)
                 : string.Empty;
         }
+
+        public override void Crer_Id()
+        {
+
+        }
     }
 }

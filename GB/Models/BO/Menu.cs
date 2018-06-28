@@ -130,5 +130,10 @@ namespace GB.Models.BO
 
             return HTML;
         }
+
+        public override void Crer_Id()
+        {
+
+        }
     }
 }

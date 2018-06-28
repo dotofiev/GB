@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.Static;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,11 @@ namespace GB.Models.BO
         public Role()
         {
             this.role_menus = new List<Role_Menu>();
+        }
+
+        public override void Crer_Id()
+        {
+            this.id = TestClass.db_roles.Count + 1;
         }
     }
 }
