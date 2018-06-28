@@ -107,5 +107,29 @@ namespace GB.Models.Static
                 libelle_fr = "Administrateur",
             },
         };
+        public static List<Menu> db_menus = new List<Menu>()
+        {
+            new Menu(1, "/Securite/Module")
+            {
+                code = "1",
+                libelle_en = "Manage GBK modules",
+                libelle_fr = "Gestion des modules GB",
+                groupe_menu = TestClass.group_menus[0],
+            },
+            new Menu(2, "/Securite/Menu")
+            {
+                code = "2",
+                libelle_en = "Manage GBK menu",
+                libelle_fr = "Gestion des menu GB",
+                groupe_menu = TestClass.group_menus[0],
+            },
+            new Menu(3, "/Securite/Role")
+            {
+                code = "3",
+                libelle_en = "Manage GBK roles",
+                libelle_fr = "Gestion des roles GB",
+                groupe_menu = TestClass.group_menus[0],
+            },
+        };
     }
 }

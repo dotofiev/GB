@@ -187,6 +187,9 @@
   <data name="Main" xml:space="preserve">
     <value>Principale</value>
   </data>
+  <data name="Menu_Management" xml:space="preserve">
+    <value>Gestion des menus</value>
+  </data>
   <data name="Module_Management" xml:space="preserve">
     <value>Gestion des modules</value>
   </data>

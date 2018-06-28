@@ -36,7 +36,8 @@ $(function () {
 
                 // -- Check menu autorisé -- //
                 if (url != '/Securite/Module' &&
-                    url != '/Securite/Role') {
+                    url != '/Securite/Role' &&
+                    url != '/Securite/Menu') {
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 

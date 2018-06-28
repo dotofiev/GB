@@ -268,6 +268,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Menu management.
+        /// </summary>
+        public static string Menu_Management {
+            get {
+                return ResourceManager.GetString("Menu_Management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Module management.
         /// </summary>
         public static string Module_Management {
