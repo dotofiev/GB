@@ -15,6 +15,9 @@ var fonction_en_Interval;
 // -- Afficher une alerte sur un element -- //
 function gbAlert(notification, id_element) {
 
+    // -- Annuler le time out actuel -- //
+    clearTimeout(fonction_en_Timeout);
+
     // -- Mise à jour de id_element -- //
     id_element = (id_element == null || id_element == undefined) ? 'gbAlert'
                                                                  : id_element;
@@ -50,13 +53,14 @@ function gbAlert(notification, id_element) {
     // -- Ne pas fermer si la valeur est -1 -- //
     if ($GB_DONNEE_PARAMETRES.DUREE_VISIBILITE_MESSAGE_BOX > 0) {
         // -- Supprimer l'alert après un temps défini -- //
-        setTimeout(
-            function () {
-                // -- Fermer l'alert -- //
-                $('#' + id_element + ' .alert').alert('close');
-            },
-            $GB_DONNEE_PARAMETRES.DUREE_VISIBILITE_MESSAGE_BOX
-        );
+        fonction_en_Timeout =
+            setTimeout(
+                function () {
+                    // -- Fermer l'alert -- //
+                    $('#' + id_element + ' .alert').alert('close');
+                },
+                $GB_DONNEE_PARAMETRES.DUREE_VISIBILITE_MESSAGE_BOX
+            );
     }
 
 }
@@ -380,8 +384,11 @@ function gbConfirmation_OuiOuNon(message, id_soumission, fonction_execution) {
 // -- Afficher un message de confirmation d'actionn -- //
 function gbConfirmationAlert_OuiOuNon(id_alert, message, id_form, fonction_execution) {
 
+    // -- Annuler le time out actuel -- //
+    clearTimeout(fonction_en_Timeout);
+
     // -- Mise à jour de id_element -- //
-    id_alert = (id_alert == null || id_alert == undefined) ? 'dsAlert_Message_Box'
+    id_alert = (id_alert == null || id_alert == undefined) ? 'gbAlert'
                                                            : id_alert;
 
     // -- Initialisation de la réponse -- //
@@ -389,7 +396,7 @@ function gbConfirmationAlert_OuiOuNon(id_alert, message, id_form, fonction_execu
 
     // -- Afficher l'alert -- //
     $('#' + id_alert).html(
-        '<div id="dsAlert_Message_Box_id" class="gbalert alert alert-dismissible fade in" role="alert" style="border-color: rgba(38,185,154,.88);">' +
+        '<div id="gbAlert_id" class="gbalert alert alert-dismissible fade in" role="alert" style="border-color: rgba(38,185,154,.88);">' +
             '<div class="row">' +
                 '<div class="col-lg-12">' +
                     '<div class="pull-left">' +
@@ -413,14 +420,14 @@ function gbConfirmationAlert_OuiOuNon(id_alert, message, id_form, fonction_execu
     // -- Annuler tous les evenement précédement chargé -- //
     $('#alert_message_question_bouton_oui').off('click');
     $('#alert_message_question_bouton_non').off('click');
-    $('#dsAlert_Message_Box_id').off('closed.bs.alert');
+    $('#gbAlert_id').off('closed.bs.alert');
 
     // -- Définir les nouveaux evenements -- //
     // -- Comportement du bouton Oui -- //
     $("#alert_message_question_bouton_oui").on('click',
         function () {
             // -- Fermer le message box -- //
-            $('#dsAlert_Message_Box_id').alert('close');
+            $('#gbAlert_id').alert('close');
             // -- Mise à jour de la réponse -- //
             $GB_DONNEE.Confirmation_message_box = true;
         }
@@ -429,13 +436,13 @@ function gbConfirmationAlert_OuiOuNon(id_alert, message, id_form, fonction_execu
     $("#alert_message_question_bouton_non").on('click',
         function () {
             // -- Fermer le message box -- //
-            $('#dsAlert_Message_Box_id').alert('close');
+            $('#gbAlert_id').alert('close');
             // -- Mise à jour de la réponse -- //
             $GB_DONNEE.Confirmation_message_box = false;
         }
     );
     // -- Méthode quand le message box se fermer -- //
-    $('#dsAlert_Message_Box_id').on('closed.bs.alert',
+    $('#gbAlert_id').on('closed.bs.alert',
         function () {
             // -- Si la réponse est non -- //
             if (!$GB_DONNEE.Confirmation_message_box) {
@@ -455,6 +462,19 @@ function gbConfirmationAlert_OuiOuNon(id_alert, message, id_form, fonction_execu
             $GB_DONNEE.Confirmation_message_box = false;
         }
     );
+
+    // -- Ne pas fermer si la valeur est -1 -- //
+    if ($GB_DONNEE_PARAMETRES.DUREE_VISIBILITE_MESSAGE_BOX > 0) {
+        // -- Supprimer l'alert après un temps défini -- //
+        fonction_en_Timeout =
+            setTimeout(
+                function () {
+                    // -- Fermer l'alert -- //
+                    $('#gbAlert_id').alert('close');
+                },
+                $GB_DONNEE_PARAMETRES.DUREE_VISIBILITE_MESSAGE_BOX
+            );
+    }
 
 }
 
