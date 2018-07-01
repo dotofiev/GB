@@ -64,5 +64,14 @@ namespace GB.Models.BO
             this.donnee = donnee;
             this.dynamique = new ExpandoObject();
         }
+        public GBNotification(object donnee, string message)
+        {
+            this.titre = "Information";
+            this.type = 1;
+            this.message = message;
+            this.est_echec = false;
+            this.donnee = donnee;
+            this.dynamique = new ExpandoObject();
+        }
     }
 }
