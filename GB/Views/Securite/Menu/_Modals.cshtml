@@ -51,6 +51,24 @@
                                 </div>
                             </div>
 
+                            <div class="col-xs-12 col-lg-6">
+                                <div class="form-group">
+                                    <label for="form_id_controller">@ViewBag.Lang.Menu_group (Controller) :</label>
+                                    <select class="form-control" name="id_controller" id="form_id_controller" required>
+                                        @Html.Raw(ViewBag.donnee.HTML_Select_id_controller)
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-lg-6">
+                                <div class="form-group">
+                                    <label for="form_view">@ViewBag.Lang.Views :</label>
+                                    <select class="form-control" name="view" id="form_view" required>
+                                        <option value="" title="@(ViewBag.Lang.Select)...">@(ViewBag.Lang.Select)...</option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
 
                     </form>

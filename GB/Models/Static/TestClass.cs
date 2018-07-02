@@ -34,7 +34,7 @@ namespace GB.Models.Static
         };
         public static List<GroupeMenu> group_menus = new List<GroupeMenu>()
         {
-            new GroupeMenu(1)
+            new GroupeMenu(1, "Securite")
             {
                 code = "1",
                 libelle_en = "Configure security objets",
@@ -46,7 +46,7 @@ namespace GB.Models.Static
         };
         public static List<Menu> menus = new List<Menu>()
         {
-            new Menu(1, "/Securite/Module")
+            new Menu(1, "Module")
             {
                 code = "1",
                 libelle_en = "Manage GBK modules",
@@ -54,7 +54,7 @@ namespace GB.Models.Static
                 groupe_menu = TestClass.group_menus[0],
                 //role_menus = TestClass.role_menus.Where(l => l.menu.id == 1).ToList(),
             },
-            new Menu(2, "/Securite/Menu")
+            new Menu(2, "Menu")
             {
                 code = "2",
                 libelle_en = "Manage GBK menu",
@@ -62,7 +62,7 @@ namespace GB.Models.Static
                 groupe_menu = TestClass.group_menus[0],
                 //role_menus = TestClass.role_menus.Where(l => l.menu.id == 2).ToList(),
             },
-            new Menu(3, "/Securite/Role")
+            new Menu(3, "Role")
             {
                 code = "3",
                 libelle_en = "Manage GBK roles",
@@ -73,17 +73,17 @@ namespace GB.Models.Static
         };
         public static List<Role_Menu> role_menus = new List<Role_Menu>()
         {
-            new Role_Menu(1, 1, "/Securite/Module")
+            new Role_Menu(1, 1, "Module")
             {
                 role = TestClass.roles[0],
                 menu = TestClass.menus[0],
             },
-            new Role_Menu(1, 2, "/Securite/Menu")
+            new Role_Menu(1, 2, "Menu")
             {
                 role = TestClass.roles[0],
                 menu = TestClass.menus[1],
             },
-            new Role_Menu(1, 3, "/Securite/Role")
+            new Role_Menu(1, 3, "Role")
             {
                 role = TestClass.roles[0],
                 menu = TestClass.menus[2],
@@ -109,21 +109,21 @@ namespace GB.Models.Static
         };
         public static List<Menu> db_menus = new List<Menu>()
         {
-            new Menu(1, "/Securite/Module")
+            new Menu(1, "Module")
             {
                 code = "1",
                 libelle_en = "Manage GBK modules",
                 libelle_fr = "Gestion des modules GB",
                 groupe_menu = TestClass.group_menus[0],
             },
-            new Menu(2, "/Securite/Menu")
+            new Menu(2, "Menu")
             {
                 code = "2",
                 libelle_en = "Manage GBK menu",
                 libelle_fr = "Gestion des menu GB",
                 groupe_menu = TestClass.group_menus[0],
             },
-            new Menu(3, "/Securite/Role")
+            new Menu(3, "Role")
             {
                 code = "3",
                 libelle_en = "Manage GBK roles",

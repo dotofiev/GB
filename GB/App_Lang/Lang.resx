@@ -186,6 +186,9 @@
   <data name="Main" xml:space="preserve">
     <value>Main</value>
   </data>
+  <data name="Menu_group" xml:space="preserve">
+    <value>Menu group</value>
+  </data>
   <data name="Menu_Management" xml:space="preserve">
     <value>Menu management</value>
   </data>
@@ -237,6 +240,9 @@
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
@@ -251,6 +257,9 @@
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>Views</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome</value>

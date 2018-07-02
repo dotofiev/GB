@@ -9,6 +9,8 @@ var btn_imprimmer = $('#btn-imprimmer');
 var btn_enregistrer = $('#btn-enregistrer');
 var btn_table;
 var form = $('#form');
+var form_id_controller = $('#form_id_controller');
+var form_view = $('#form_view');
 var modal_form = $('#modal_form');
 var url_controlleur = '/Securite/';
 var url_suppression = '/Securite/Supprimer_Enregistrement';
@@ -32,11 +34,14 @@ try {
             success: function (resultat) {
                 // -- Tester si le traitement s'est bien effectué -- //
                 if (!resultat.notification.est_echec) {
+                    // -- Réccépération de la valeur -- //
+                    $GB_DONNEE.form_view_valeur = resultat.notification.donnee.view;
                     // -- Mise à jour de sa valeur dans le formulaire -- //
                     $('#form_id').val(resultat.notification.donnee.id);
                     $('#form_code').val(resultat.notification.donnee.code);
                     $('#form_libelle_en').val(resultat.notification.donnee.libelle_en);
                     $('#form_libelle_fr').val(resultat.notification.donnee.libelle_fr);
+                    form_id_controller.val(resultat.notification.donnee.id_controller).change();
                     // -- Mise à jour du label du bouton d'enregistrement -- //
                     btn_enregistrer.html('<i class="fa fa-check"></i>' + $GB_DONNEE_PARAMETRES.Lang.Update);
                     // -- Afficher le modal formulaire -- //
@@ -174,10 +179,11 @@ try {
 $(
     function () {
 
-        // -- Initialiser le message box de confirmation -- //
+        // -- Initialiser le message box de confirmation et autres paramètres -- //
         try {
 
             $GB_DONNEE.Confirmation_message_box = false;
+            $GB_DONNEE.form_view_valeur = null;
 
         } catch (e) { gbConsole(e.message); }
 
@@ -221,7 +227,9 @@ $(
                     { "data": "col_2" },                            // -- code -- //
                     { "data": "col_3" },                            // -- libelle_fr -- //
                     { "data": "col_4" },                            // -- libelle_en -- //
-                    { "data": "col_5", "class": "text-center" }     // -- Action -- //
+                    { "data": "col_5" },                            // -- groupe_menu -- //
+                    { "data": "col_6" },                            // -- vues -- //
+                    { "data": "col_7", "class": "text-center" }     // -- Action -- //
                 ]
             });
 
@@ -337,6 +345,12 @@ $(
                     // -- Suppression de l'alert de confirmation -- //
                     $('#dsAlert_Message_Box').html(null);
 
+                    // -- Suppression des combo box dynamique -- //
+                    form_view.html('<option value="" title="' + $GB_DONNEE_PARAMETRES.Lang.Select + '...">' + $GB_DONNEE_PARAMETRES.Lang.Select + '...</option>');
+
+                    // -- Suppression des paramètres -- //
+                    $GB_DONNEE.form_view_valeur = null;
+
                 }
             );
 
@@ -385,6 +399,45 @@ $(
                     
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
+
+                }
+            );
+
+        } catch (e) { gbConsole(e.message); }
+
+        // -- Action de selection d'un groupe menu -- //
+        try {
+
+            form_id_controller.on("change",
+                function () {
+
+                    // -- Ajax -- //
+                    $.ajax({
+                        type: "POST",
+                        url: url_controlleur + 'Arbre_Menu',
+                        data: {
+                            id_controller: $(this).val()
+                        },
+                        success: function (resultat) {
+                            // -- Tester si le traitement s'est bien effectué -- //
+                            if (!resultat.notification.est_echec) {
+                                // -- Mise à jour du composant select -- //
+                                form_view.html(resultat.notification.donnee);
+                                // -- Mettre à jour la valeur si elle est défini -- //
+                                if ($GB_DONNEE.form_view_valeur != null) {
+                                    form_view.val($GB_DONNEE.form_view_valeur);
+                                }
+                            }
+                            else {
+                                // -- Afficher une alerte sur un element -- //
+                                gbAlert(resultat.notification, null);
+                            }
+                        },
+                        error: function () {
+                            // -- Afficher une alerte sur un element -- //
+                            gbAlert();
+                        }
+                    });
 
                 }
             );

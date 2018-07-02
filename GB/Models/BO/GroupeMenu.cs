@@ -12,13 +12,15 @@ namespace GB.Models.BO
         public Module module { get; set; }
         public List<Menu> menus { get; set; }
         public string icon { get; set; }
+        public string controller { get; set; }
 
-        public GroupeMenu(long id)
+        public GroupeMenu(long id, string controller)
         {
             this.id = id;
             this.menus = new List<Menu>();
             this.module = new Module(0);
             this.icon = string.Empty;
+            this.controller = controller;
         }
 
         public GroupeMenu()
@@ -26,6 +28,7 @@ namespace GB.Models.BO
             this.menus = new List<Menu>();
             this.module = new Module();
             this.icon = string.Empty;
+            this.controller = string.Empty;
         }
 
         public string HTML()

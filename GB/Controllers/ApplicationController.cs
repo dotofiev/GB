@@ -24,7 +24,7 @@ namespace GB.Controllers
             this.ViewBag.Title = $"Global Bank - ({App_Lang.Lang.Main})";
 
             // -- Charger les paramètres de langue de la page -- //
-            Charger_Langue("Application-Main");
+            Charger_Langue_Et_Donnees("Application-Main");
 
             return View();
         }
@@ -39,7 +39,7 @@ namespace GB.Controllers
             this.ViewBag.Title = $"Global Bank - ({App_Lang.Lang.Main})";
 
             // -- Charger les paramètres de langue de la page -- //
-            Charger_Langue("Application-Principale");
+            Charger_Langue_Et_Donnees("Application-Principale");
 
             return View();
         }
@@ -49,7 +49,7 @@ namespace GB.Controllers
         #endregion
 
         #region Méthodes
-        public override void Charger_Langue(string id_page)
+        public override void Charger_Langue_Et_Donnees(string id_page)
         {
             // -- Identifiant de la page -- //
             this.ViewBag.Id_page = id_page;
@@ -91,6 +91,7 @@ namespace GB.Controllers
                                                             Yes = App_Lang.Lang.Yes,
                                                             Close = App_Lang.Lang.Close,
                                                             No_item_selected = App_Lang.Lang.No_item_selected,
+                                                            Select = App_Lang.Lang.Select,
                                                     },
                                                     // -- Paramètres -- //
                                                     DUREE_VISIBILITE_MESSAGE_BOX = AppSettings.DUREE_VISIBILITE_MESSAGE_BOX,

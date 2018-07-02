@@ -435,3 +435,7 @@ body {
 tr {
     cursor:pointer;
 }
+
+.modal {
+    z-index: 9999;
+}

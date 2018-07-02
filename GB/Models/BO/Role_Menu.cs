@@ -10,10 +10,10 @@ namespace GB.Models.BO
         public Role role { get; set; }
         public Menu menu { get; set; }
 
-        public Role_Menu(long id_role, long id_menu, string route)
+        public Role_Menu(long id_role, long id_menu, string view)
         {
             this.role = new Role(id_role);
-            this.menu = new Menu(id_menu, route);
+            this.menu = new Menu(id_menu, view);
         }
 
         public Role_Menu()

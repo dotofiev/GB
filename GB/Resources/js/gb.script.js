@@ -854,6 +854,7 @@ function gbConsole(value) {
 
 // -- Notificateur -- //
 function gbNotification(notification) {
+
     new PNotify({
         title: notification.titre,
         type: (notification.type == 3) ? 'error'
@@ -869,10 +870,12 @@ function gbNotification(notification) {
                                                                                                  : 'dark',
         styling: 'bootstrap3'
     });
+
 }
 
 // -- Message Cookiees -- //
 function gbMessage_Cookiees(titre, message, afficher_bouton_reconnexion) {
+
     // -- Mise à jour du message -- //
     $('#modal_message_cookiees_message').html('<div class="ipanel-msg-cookiees">' +
                                                 '<div class="ipanel-body text-center">' +
@@ -890,6 +893,7 @@ function gbMessage_Cookiees(titre, message, afficher_bouton_reconnexion) {
     }
     // -- Afficher le message box -- //
     $('#modal_message_cookiees').modal('show');
+
 }
 
 // -- Message box de notification -- //

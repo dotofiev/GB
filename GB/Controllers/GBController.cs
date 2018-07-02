@@ -85,7 +85,8 @@ namespace GB.Controllers
 
         // -- Méthodes -- //
         #region Méthodes
-        public virtual void Charger_Langue(string id_page) { }
+        public virtual void Charger_Langue_Et_Donnees(string id_page) { }
+
         [HttpPost]
         public virtual ActionResult Charger_Table(string id_page) { return null; }
 
@@ -149,6 +150,9 @@ namespace GB.Controllers
                 return null;
             }
         }
+        #endregion
+
+        #region [HttpPost]
         #endregion
     }
 }

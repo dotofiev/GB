@@ -22,7 +22,7 @@ namespace GB.Controllers
             this.ViewBag.Title = $"Global Bank - ({App_Lang.Lang.Authentication})";
 
             // -- Charger les paramètres de langue de la page -- //
-            Charger_Langue("Home-Authentication");
+            Charger_Langue_Et_Donnees("Home-Authentication");
 
             // -- Initialiser l'object connexion de l'utilisateur -- //
             this.con = new Connexion(Session.SessionID);
@@ -128,7 +128,7 @@ namespace GB.Controllers
         #endregion
 
         #region Méthodes
-        public override void Charger_Langue(string id_page)
+        public override void Charger_Langue_Et_Donnees(string id_page)
         {
             // -- Identifiant de la page -- //
             this.ViewBag.Id_page = id_page;

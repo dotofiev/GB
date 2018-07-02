@@ -2,6 +2,7 @@
 using GB.Models.ActionFilter;
 using GB.Models.BO;
 using GB.Models.Static;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace GB.Controllers
             this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Module_Management})";
 
             // -- Charger les paramètres de langue de la page -- //
-            Charger_Langue("Securite-Module");
+            Charger_Langue_Et_Donnees("Securite-Module");
 
             return View();
         }
@@ -39,7 +40,7 @@ namespace GB.Controllers
             this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Rule_Management})";
 
             // -- Charger les paramètres de langue de la page -- //
-            Charger_Langue("Securite-Role");
+            Charger_Langue_Et_Donnees("Securite-Role");
 
             return View();
         }
@@ -54,7 +55,7 @@ namespace GB.Controllers
             this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Menu_Management})";
 
             // -- Charger les paramètres de langue de la page -- //
-            Charger_Langue("Securite-Menu");
+            Charger_Langue_Et_Donnees("Securite-Menu");
 
             return View();
         }
@@ -158,7 +159,10 @@ namespace GB.Controllers
                                 col_2 = val.code,
                                 col_3 = val.libelle_fr,
                                 col_4 = val.libelle_en,
-                                col_5 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                col_5 = (id_lang == 0) ? val.groupe_menu.libelle_en 
+                                                       : val.libelle_fr,
+                                col_6 = val.view,
+                                col_7 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
                                                               title=""{Lang.Delete}"" 
                                                               class=""btn btn-xs btn-round""
                                                               onClick=""table_donnee_supprimer({ids}, true)""
@@ -287,6 +291,8 @@ namespace GB.Controllers
                                                         code = obj.code,
                                                         libelle_en = obj.libelle_en,
                                                         libelle_fr = obj.libelle_fr,
+                                                        id_controller = obj.id_controller,
+                                                        view = obj.view,
                                                     }
                                                );
                 }
@@ -383,6 +389,9 @@ namespace GB.Controllers
                     {
                         throw new GBException(App_Lang.Lang.Existing_data + " [code]");
                     }
+
+                    // -- Mise à jour Groupe -- //
+                    obj_type.groupe_menu = TestClass.group_menus.FirstOrDefault(l => l.id == obj_type.id_controller);
 
                     // -- Définition de l'identifiant -- //
                     obj_type.Crer_Id();
@@ -505,6 +514,9 @@ namespace GB.Controllers
                         throw new GBException(App_Lang.Lang.Existing_data + " [code]");
                     }
 
+                    // -- Mise à jour Groupe -- //
+                    obj_type.groupe_menu = TestClass.group_menus.FirstOrDefault(l => l.id == obj_type.id_controller);
+
                     // -- Modification de la valeur -- //
                     TestClass.db_menus
                         // -- Spécifier la recherche -- //
@@ -518,6 +530,8 @@ namespace GB.Controllers
                             l.code = obj_type.code;
                             l.libelle_en = obj_type.libelle_en;
                             l.libelle_fr = obj_type.libelle_fr;
+                            l.id_controller = obj_type.id_controller;
+                            l.groupe_menu = obj_type.groupe_menu;
                         });
                 }
                 #endregion
@@ -642,10 +656,61 @@ namespace GB.Controllers
                 GBConvert.To_Object(this.ViewBag)
             );
         }
+
+
+        // -- Retourner le fichier de la langue à affecter aux tables de données -- //
+        [HttpPost]
+        public ActionResult Arbre_Menu(long? id_controller)
+        {
+            try
+            {
+                // -- Resultat -- //
+                string donnee = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+
+                if (id_controller.HasValue)
+                {
+                    // -- réccupération du contenu JSON -- //
+                    dynamic dynamic_obj = JsonConvert.DeserializeObject(System.IO.File.ReadAllText(url_data + "Arbre_menu.json"));
+
+                    // -- Parcours de la liste -- //
+                    for (int i = 0; i < (dynamic_obj as Newtonsoft.Json.Linq.JArray).Count; i++)
+                    {
+                        // -- Vérifier si c'est le bon controlleur -- //
+                        if (id_controller.Value == Convert.ToInt64((dynamic_obj[i]["controller"]["id"] as Newtonsoft.Json.Linq.JValue).Value))
+                        {
+                            // -- Parcourir les vues -- //
+                            foreach (var vue in (dynamic_obj[i]["views"] as Newtonsoft.Json.Linq.JArray))
+                            {
+                                // -- AJouter les vues -- //
+                                donnee += $"<option value=\"{(vue as Newtonsoft.Json.Linq.JValue).Value}\" title=\"{(vue as Newtonsoft.Json.Linq.JValue).Value}\">{(vue as Newtonsoft.Json.Linq.JValue).Value}</option>";
+                            }
+                        }
+                    }
+                }
+
+                // -- Notificication -- //
+                this.ViewBag.notification = new GBNotification(donnee);
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Log -- //
+                GBClass.Log.Error(ex);
+
+                // -- Notificication -- //
+                this.ViewBag.notification = new GBNotification(true);
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return Json(
+                GBConvert.To_Object(this.ViewBag)
+            );
+        }
         #endregion
 
         #region Méthodes
-        public override void Charger_Langue(string id_page)
+        public override void Charger_Langue_Et_Donnees(string id_page)
         {
             // -- Identifiant de la page -- //
             this.ViewBag.Id_page = id_page;
@@ -703,10 +768,22 @@ namespace GB.Controllers
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Menu_Management;
                 this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
                 this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
+                this.ViewBag.Lang.Menu_group = App_Lang.Lang.Menu_group;
+                this.ViewBag.Lang.Views = App_Lang.Lang.Views;
+                this.ViewBag.Lang.Select = App_Lang.Lang.Select;
                 #endregion
 
                 // -- Données -- //
                 #region Données
+                #region HTML_Select_id_controller
+                this.ViewBag.donnee.HTML_Select_id_controller =
+                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                foreach (var val in TestClass.group_menus)
+                {
+                    this.ViewBag.donnee.HTML_Select_id_controller += 
+                        $"<option value=\"{val.id}\" title=\"{((id_lang == 0) ? val.libelle_en : val.libelle_fr)}\">{((id_lang == 0) ? val.libelle_en : val.libelle_fr)}</option>";
+                }
+                #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
