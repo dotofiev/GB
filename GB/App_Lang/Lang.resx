@@ -267,4 +267,7 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="Rules" xml:space="preserve">
+    <value>Rules</value>
+  </data>
 </root>

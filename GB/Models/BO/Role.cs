@@ -9,22 +9,22 @@ namespace GB.Models.BO
 {
     public class Role : GBBO
     {
-        public List<Role_Menu> role_menus { get; set; }
+        public List<Autorisation> role_menus { get; set; }
 
         public Role(long id)
         {
             this.id = id;
-            this.role_menus = new List<Role_Menu>();
+            this.role_menus = new List<Autorisation>();
         }
 
         public Role()
         {
-            this.role_menus = new List<Role_Menu>();
+            this.role_menus = new List<Autorisation>();
         }
 
         public override void Crer_Id()
         {
-            this.id = TestClass.db_roles.Count + 1;
+            this.id = Program.db.roles.Count + 1;
         }
     }
 }

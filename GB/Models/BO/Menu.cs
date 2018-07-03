@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.Helper;
+using GB.Models.Static;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace GB.Models.BO
                 this.id_controller = value.id;
             }
         }
-        public List<Role_Menu> role_menus { get; set; }
+        public List<Autorisation> autorisations { get; set; }
         public string view { get; set; }
         public long id_controller { get; set; }
 
@@ -29,14 +30,14 @@ namespace GB.Models.BO
         {
             this.id = id;
             this.groupe_menu = new GroupeMenu();
-            this.role_menus = new List<Role_Menu>();
+            this.autorisations = new List<Autorisation>();
             this.view = view;
         }
 
         public Menu()
         {
             this.groupe_menu = new GroupeMenu();
-            this.role_menus = new List<Role_Menu>();
+            this.autorisations = new List<Autorisation>();
         }
 
         public string HTML()
@@ -51,7 +52,7 @@ namespace GB.Models.BO
                                                                      : this.libelle_fr);
         }
 
-        //public static string Source(List<Role_Menu> role_menus)
+        //public static string Source(List<Autorisation> role_menus)
         //{
         //    string menus = "";
 
@@ -91,7 +92,7 @@ namespace GB.Models.BO
         //    return menus;
         //}
 
-        public static string Source(List<Role_Menu> role_menus)
+        public static string Source(List<Autorisation> role_menus)
         {
             string HTML = string.Empty;
             List<Module> modules = new List<Module>();
@@ -145,7 +146,7 @@ namespace GB.Models.BO
 
         public override void Crer_Id()
         {
-
+            this.id = Program.db.menus.Count + 1;
         }
     }
 }

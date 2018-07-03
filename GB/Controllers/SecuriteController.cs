@@ -1,6 +1,7 @@
 ﻿using GB.Models;
 using GB.Models.ActionFilter;
 using GB.Models.BO;
+using GB.Models.DAO;
 using GB.Models.Static;
 using Newtonsoft.Json;
 using System;
@@ -74,7 +75,7 @@ namespace GB.Controllers
                 #region Securite-Module
                 if (id_page == "Securite-Module")
                 {
-                    foreach (var val in TestClass.db_modules)
+                    foreach (var val in ModuleDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -121,7 +122,7 @@ namespace GB.Controllers
                 #region Securite-Role
                 else if (id_page == "Securite-Role")
                 {
-                    foreach (var val in TestClass.db_roles)
+                    foreach (var val in RoleDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -150,7 +151,7 @@ namespace GB.Controllers
                 #region Securite-Menu
                 else if (id_page == "Securite-Menu")
                 {
-                    foreach (var val in TestClass.db_menus)
+                    foreach (var val in MenuDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -225,7 +226,7 @@ namespace GB.Controllers
                 if (id_page == "Securite-Module")
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = TestClass.db_modules.FirstOrDefault(l => l.code == code);
+                    var obj = ModuleDAO.Object(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -250,7 +251,7 @@ namespace GB.Controllers
                 else if (id_page == "Securite-Role")
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = TestClass.db_roles.FirstOrDefault(l => l.code == code);
+                    var obj = RoleDAO.Object(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -275,7 +276,7 @@ namespace GB.Controllers
                 else if (id_page == "Securite-Menu")
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = TestClass.db_menus.FirstOrDefault(l => l.code == code);
+                    var obj = MenuDAO.Object(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -341,63 +342,24 @@ namespace GB.Controllers
                 #region Securite-Module
                 if (id_page == "Securite-Module")
                 {
-                    // -- Cast en objet type -- //
-                    Module obj_type = GBConvert.JSON_To<Module>(obj);
-
-                    // -- Unicité du code -- //
-                    if (TestClass.db_modules.Exists(l => l.code == obj_type.code))
-                    {
-                        throw new GBException(App_Lang.Lang.Existing_data + " [code]");
-                    }
-
-                    // -- Définition de l'identifiant -- //
-                    obj_type.Crer_Id();
-
-                    // -- Enregistrement de la valeur -- //
-                    TestClass.db_modules.Add(obj_type);
+                    // -- Service d'enregistrement -- //
+                    ModuleDAO.Ajouter(GBConvert.JSON_To<Module>(obj));
                 }
                 #endregion
 
                 #region Securite-Role
                 else if (id_page == "Securite-Role")
                 {
-                    // -- Cast en objet type -- //
-                    Role obj_type = GBConvert.JSON_To<Role>(obj);
-
-                    // -- Unicité du code -- //
-                    if (TestClass.db_roles.Exists(l => l.code == obj_type.code))
-                    {
-                        throw new GBException(App_Lang.Lang.Existing_data + " [code]");
-                    }
-
-                    // -- Définition de l'identifiant -- //
-                    obj_type.Crer_Id();
-
-                    // -- Enregistrement de la valeur -- //
-                    TestClass.db_roles.Add(obj_type);
+                    // -- Service d'enregistrement -- //
+                    RoleDAO.Ajouter(GBConvert.JSON_To<Role>(obj));
                 }
                 #endregion
 
                 #region Securite-Menu
                 else if (id_page == "Securite-Menu")
                 {
-                    // -- Cast en objet type -- //
-                    Menu obj_type = GBConvert.JSON_To<Menu>(obj);
-
-                    // -- Unicité du code -- //
-                    if (TestClass.db_menus.Exists(l => l.code == obj_type.code))
-                    {
-                        throw new GBException(App_Lang.Lang.Existing_data + " [code]");
-                    }
-
-                    // -- Mise à jour Groupe -- //
-                    obj_type.groupe_menu = TestClass.group_menus.FirstOrDefault(l => l.id == obj_type.id_controller);
-
-                    // -- Définition de l'identifiant -- //
-                    obj_type.Crer_Id();
-
-                    // -- Enregistrement de la valeur -- //
-                    TestClass.db_menus.Add(obj_type);
+                    // -- Service d'enregistrement -- //
+                    MenuDAO.Ajouter(GBConvert.JSON_To<Menu>(obj));
                 }
                 #endregion
 
@@ -447,92 +409,24 @@ namespace GB.Controllers
                 #region Securite-Module
                 if (id_page == "Securite-Module")
                 {
-                    // -- Cast en objet type -- //
-                    Module obj_type = GBConvert.JSON_To<Module>(obj);
-
-                    // -- Unicité du code -- //
-                    if (TestClass.db_modules.Exists(l => l.id != obj_type.id && l.code == obj_type.code))
-                    {
-                        throw new GBException(App_Lang.Lang.Existing_data + " [code]");
-                    }
-
-                    // -- Modification de la valeur -- //
-                    TestClass.db_modules
-                        // -- Spécifier la recherche -- //
-                        .Where(l => l.id == obj_type.id)
-                        // -- Lister le résultat -- //
-                        .ToList()
-                        // -- Parcourir les elements résultats -- //
-                        .ForEach(l =>
-                        {
-                            // -- Mise à jour de l'enregistrement -- //
-                            l.code = obj_type.code;
-                            l.libelle_en = obj_type.libelle_en;
-                            l.libelle_fr = obj_type.libelle_fr;
-                        });
+                    // -- Service de modification -- //
+                    ModuleDAO.Modifier(GBConvert.JSON_To<Module>(obj));
                 }
                 #endregion
 
                 #region Securite-Role
                 else if (id_page == "Securite-Role")
                 {
-                    // -- Cast en objet type -- //
-                    Role obj_type = GBConvert.JSON_To<Role>(obj);
-
-                    // -- Unicité du code -- //
-                    if (TestClass.db_roles.Exists(l => l.id != obj_type.id && l.code == obj_type.code))
-                    {
-                        throw new GBException(App_Lang.Lang.Existing_data + " [code]");
-                    }
-
-                    // -- Modification de la valeur -- //
-                    TestClass.db_roles
-                        // -- Spécifier la recherche -- //
-                        .Where(l => l.id == obj_type.id)
-                        // -- Lister le résultat -- //
-                        .ToList()
-                        // -- Parcourir les elements résultats -- //
-                        .ForEach(l =>
-                        {
-                            // -- Mise à jour de l'enregistrement -- //
-                            l.code = obj_type.code;
-                            l.libelle_en = obj_type.libelle_en;
-                            l.libelle_fr = obj_type.libelle_fr;
-                        });
+                    // -- Service de modification -- //
+                    RoleDAO.Modifier(GBConvert.JSON_To<Role>(obj));
                 }
                 #endregion
 
                 #region Securite-Menu
                 else if (id_page == "Securite-Menu")
                 {
-                    // -- Cast en objet type -- //
-                    Menu obj_type = GBConvert.JSON_To<Menu>(obj);
-
-                    // -- Unicité du code -- //
-                    if (TestClass.db_menus.Exists(l => l.id != obj_type.id && l.code == obj_type.code))
-                    {
-                        throw new GBException(App_Lang.Lang.Existing_data + " [code]");
-                    }
-
-                    // -- Mise à jour Groupe -- //
-                    obj_type.groupe_menu = TestClass.group_menus.FirstOrDefault(l => l.id == obj_type.id_controller);
-
-                    // -- Modification de la valeur -- //
-                    TestClass.db_menus
-                        // -- Spécifier la recherche -- //
-                        .Where(l => l.id == obj_type.id)
-                        // -- Lister le résultat -- //
-                        .ToList()
-                        // -- Parcourir les elements résultats -- //
-                        .ForEach(l =>
-                        {
-                            // -- Mise à jour de l'enregistrement -- //
-                            l.code = obj_type.code;
-                            l.libelle_en = obj_type.libelle_en;
-                            l.libelle_fr = obj_type.libelle_fr;
-                            l.id_controller = obj_type.id_controller;
-                            l.groupe_menu = obj_type.groupe_menu;
-                        });
+                    // -- Service de modification -- //
+                    MenuDAO.Modifier(GBConvert.JSON_To<Menu>(obj));
                 }
                 #endregion
 
@@ -582,42 +476,24 @@ namespace GB.Controllers
                 #region Securite-Module
                 if (id_page == "Securite-Module")
                 {
-                    // -- Convertion des identifiants -- //
-                    GBConvert.JSON_To<List<long>>(ids)
-                        // -- Parcours de la liste des id -- //
-                        .ForEach(id =>
-                        {
-                            // -- Suppression des valeurs -- //
-                            TestClass.db_modules.RemoveAll(l => l.id == id);
-                        });
+                    // -- Service de suppression -- //
+                    ModuleDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
                 #region Securite-Role
                 else if (id_page == "Securite-Role")
                 {
-                    // -- Convertion des identifiants -- //
-                    GBConvert.JSON_To<List<long>>(ids)
-                        // -- Parcours de la liste des id -- //
-                        .ForEach(id =>
-                        {
-                            // -- Suppression des valeurs -- //
-                            TestClass.db_roles.RemoveAll(l => l.id == id);
-                        });
+                    // -- Service de suppression -- //
+                    RoleDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
                 #region Securite-Menu
                 else if (id_page == "Securite-Menu")
                 {
-                    // -- Convertion des identifiants -- //
-                    GBConvert.JSON_To<List<long>>(ids)
-                        // -- Parcours de la liste des id -- //
-                        .ForEach(id =>
-                        {
-                            // -- Suppression des valeurs -- //
-                            TestClass.db_menus.RemoveAll(l => l.id == id);
-                        });
+                    // -- Service de suppression -- //
+                    MenuDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -670,7 +546,7 @@ namespace GB.Controllers
                 if (id_controller.HasValue)
                 {
                     // -- réccupération du contenu JSON -- //
-                    dynamic dynamic_obj = JsonConvert.DeserializeObject(System.IO.File.ReadAllText(url_data + "Arbre_menu.json"));
+                    dynamic dynamic_obj = JsonConvert.DeserializeObject(System.IO.File.ReadAllText(url_data + "arbre_menu.json"));
 
                     // -- Parcours de la liste -- //
                     for (int i = 0; i < (dynamic_obj as Newtonsoft.Json.Linq.JArray).Count; i++)
@@ -745,6 +621,7 @@ namespace GB.Controllers
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Rule_Management;
                 this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
                 this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
+                this.ViewBag.Lang.Rules = App_Lang.Lang.Rules;
                 #endregion
 
                 // -- Données -- //
@@ -778,7 +655,7 @@ namespace GB.Controllers
                 #region HTML_Select_id_controller
                 this.ViewBag.donnee.HTML_Select_id_controller =
                     $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                foreach (var val in TestClass.group_menus)
+                foreach (var val in Program.db.groupe_menus)
                 {
                     this.ViewBag.donnee.HTML_Select_id_controller += 
                         $"<option value=\"{val.id}\" title=\"{((id_lang == 0) ? val.libelle_en : val.libelle_fr)}\">{((id_lang == 0) ? val.libelle_en : val.libelle_fr)}</option>";

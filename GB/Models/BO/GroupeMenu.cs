@@ -47,7 +47,7 @@ namespace GB.Models.BO
                     @"<ul class=""nav side-menu"">
                         <li>
                             <a title=""{libelle}"">
-                                <i class=""{icon}""></i> {libelle} <span class=""fa fa-chevron-down""></span>
+                                <i class=""{icon}""></i> {libelle}
                             </a>
                             <ul class=""nav child_menu"">
                                 {menus}

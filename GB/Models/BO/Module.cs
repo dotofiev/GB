@@ -49,7 +49,7 @@ namespace GB.Models.BO
 
         public override void Crer_Id()
         {
-            this.id = TestClass.db_modules.Count + 1;
+            this.id = Program.db.modules.Count + 1;
         }
     }
 }

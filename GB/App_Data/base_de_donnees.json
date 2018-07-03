@@ -1,0 +1,156 @@
+﻿{
+  "utilisateurs": [
+    {
+      "id_utilisateur": "99999",
+      "compte": "admin",
+      "mot_de_passe": "admin",
+      "nom_utilisateur": "Administrateur"
+    },
+    {
+      "id_utilisateur": "99998",
+      "compte": "prog",
+      "mot_de_passe": "prog",
+      "nom_utilisateur": "Programmeur"
+    }
+  ],
+  "modules": [
+    {
+      "id": "1",
+      "code": "1",
+      "libelle_en": "Security group",
+      "libelle_fr": "Groupe sécurité"
+    }
+  ],
+  "roles": [
+    {
+      "id": "1",
+      "code": "1",
+      "libelle_en": "Admin",
+      "libelle_fr": "Administrateur"
+    }
+  ],
+  "menus": [
+    {
+      "id": "1",
+      "code": "1",
+      "libelle_en": "Manage GBK modules",
+      "libelle_fr": "Gestion des modules GB",
+      "view": "Module",
+      "id_controller": "1"
+    },
+    {
+      "id": "2",
+      "code": "2",
+      "libelle_en": "Manage GBK menu",
+      "libelle_fr": "Gestion des menu GB",
+      "view": "Menu",
+      "id_controller": "1"
+    },
+    {
+      "id": "3",
+      "code": "3",
+      "libelle_en": "Manage GBK roles",
+      "libelle_fr": "Gestion des roles GB",
+      "view": "Role",
+      "id_controller": "1"
+    },
+    {
+      "id": "4",
+      "code": "4",
+      "libelle_en": "Menu 4",
+      "libelle_fr": "Menu 4",
+      "view": "...",
+      "id_controller": "2"
+    },
+    {
+      "id": "5",
+      "code": "5",
+      "libelle_en": "Menu 5",
+      "libelle_fr": "Menu 5",
+      "view": "...",
+      "id_controller": "2"
+    },
+    {
+      "id": "6",
+      "code": "6",
+      "libelle_en": "Menu 6",
+      "libelle_fr": "Menu 6",
+      "view": "...",
+      "id_controller": "2"
+    }
+  ],
+  "autorisations": [
+    {
+      "id_role": "1",
+      "id_menu": "1",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id_role": "1",
+      "id_menu": "2",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id_role": "1",
+      "id_menu": "3",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id_role": "1",
+      "id_menu": "4",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id_role": "1",
+      "id_menu": "5",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id_role": "1",
+      "id_menu": "6",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    }
+  ],
+  "groupe_menus": [
+    {
+      "id": "1",
+      "code": "1",
+      "libelle_en": "Configure security objets",
+      "libelle_fr": "Configuration objets sécurité",
+      "icon": "fa fa-cogs",
+      "controller": "Securite"
+    },
+    {
+      "id": "2",
+      "code": "2",
+      "libelle_en": "Manage employee's security",
+      "libelle_fr": "Gestion de la sécurité des employés",
+      "icon": "fa fa-cogs",
+      "controller": "SecuriteUtilisateur"
+    }
+  ],
+}

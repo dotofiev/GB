@@ -12,6 +12,23 @@ var $GB_DONNEE_PARAMETRES = null;
 var fonction_en_Timeout;
 var fonction_en_Interval;
 
+// -- Activer/Desactiver formulaire -- //
+function gbActiverDesactiverForm(id_form, activer) {
+
+    // -- Si le id_form n'est pas soumis ne rien faire -- //
+    if (id_form == undefined || id_form == null) {
+        return false;
+    }
+
+    // -- Si il s'agit d'une activation -- //
+    if (activer) {
+        $("#" + id_form + " :input").attr("disabled", true);
+    } else {
+        $("#" + id_form + " :input").attr("disabled", false);
+    }
+
+}
+
 // -- Fonction native -- //
 try {
 
@@ -467,6 +484,9 @@ function gbConfirmationAlert_OuiOuNon(id_alert, message, id_form, fonction_execu
     // -- Méthode quand le message box se fermer -- //
     $('#gbAlert_id').on('closed.bs.alert',
         function () {
+            // -- Activer/Desactiver formulaire -- //
+            gbActiverDesactiverForm(id_form, false);
+
             // -- Si la réponse est non -- //
             if (!$GB_DONNEE.Confirmation_message_box) {
                 return false;
@@ -485,6 +505,9 @@ function gbConfirmationAlert_OuiOuNon(id_alert, message, id_form, fonction_execu
             $GB_DONNEE.Confirmation_message_box = false;
         }
     );
+
+    // -- Activer/Desactiver formulaire -- //
+    gbActiverDesactiverForm(id_form, true);
 
     // -- Ne pas fermer si la valeur est -1 -- //
     if ($GB_DONNEE_PARAMETRES.DUREE_VISIBILITE_MESSAGE_BOX > 0) {

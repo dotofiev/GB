@@ -1,6 +1,8 @@
 ﻿using GB.Models;
 using GB.Models.BO;
+using GB.Models.DAO;
 using GB.Models.Static;
+using GB.Models.Tests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +30,9 @@ namespace GB.Controllers
             this.con = new Connexion(Session.SessionID);
 
             // -- Test -- //
-            this.ViewBag.Test.compte = TestClass.compte;
-            this.ViewBag.Test.mot_de_passe = TestClass.mot_de_passe;
+            Program.Initialiser_BD(url_data + "base_de_donnees.json");
+            this.ViewBag.Test.compte = Program.db?.utilisateurs?[0]?.compte ?? string.Empty;
+            this.ViewBag.Test.mot_de_passe = Program.db?.utilisateurs?[0]?.mot_de_passe ?? string.Empty;
 
             return View();
         }
@@ -41,15 +44,18 @@ namespace GB.Controllers
         {
             try
             {
+                // -- Réccupération du l'utilisateur authentifié -- //
+                Utilisateur utilisateur = UtilisateurDAO.Object(compte, mot_de_passe);
+
                 // -- Vérifier la conformité des données -- //
-                if (compte != TestClass.compte || mot_de_passe != TestClass.mot_de_passe)
+                if (utilisateur == null)
                 {
                     // -- Exception -- //
                     throw new GBException(App_Lang.Lang.Authentication_failed);
                 }
 
                 // -- Authentifier l'objet connexion -- //
-                this.con.Authentification(compte, mot_de_passe);
+                this.con.Authentification(utilisateur);
 
                 // -- Notification -- //
                 this.ViewBag.notification = new GBNotification(

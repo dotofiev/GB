@@ -33,63 +33,121 @@
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-        <div class="x_panel">
+        <div role="tabpanel" data-example-id="togglable-tabs">
 
-            <div class="x_title">
+            <ul class="nav nav-tabs bar_tabs" role="tablist">
 
-                <!-- Boutons d'actions -->
-                <div class="pull-left">
+                <li role="presentation" class="active">
+                    <a href="#tab_content1" id="gestion-role" role="tab" data-toggle="tab" aria-expanded="true">
+                        <i class="fa fa-square"></i> @ViewBag.Lang.Rules
+                    </a>
+                </li>
 
-                    <button class="btn btn-default" id="btn-ajouter" data-toggle="modal" data-target=".bs-example-modal-lg" type="button">
-                        <i class="fa fa-plus"></i> <span class="hidden-xs">@ViewBag.Lang.New</span>
-                    </button>
-                    <button class="btn btn-default" id="btn-supprimer" type="button"
-                            data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
-                        <i class="fa fa-remove text-danger"></i> <span class="hidden-xs">@ViewBag.Lang.Delete</span>
-                    </button>
-                    <button class="btn btn-default" id="btn-imprimmer" type="button"
-                            data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
-                        <i class="fa fa-print text-info"></i> <span class="hidden-xs">@ViewBag.Lang.Print</span>
-                    </button>
+                <li role="presentation" class="">
+                    <a href="#tab_content2" role="tab" id="configuration-role" data-toggle="tab" aria-expanded="false">
+                        <i class="fa fa-cubes"></i> Configurations
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="tab-content">
+
+                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="gestion-role">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                        <div class="x_panel">
+
+                            <div class="x_title">
+
+                                <!-- Boutons d'actions -->
+                                <div class="pull-left">
+
+                                    <button class="btn btn-default" id="btn-ajouter" data-toggle="modal" data-target=".bs-example-modal-lg" type="button">
+                                        <i class="fa fa-plus"></i> <span class="hidden-xs">@ViewBag.Lang.New</span>
+                                    </button>
+                                    <button class="btn btn-default" id="btn-supprimer" type="button"
+                                            data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
+                                        <i class="fa fa-remove text-danger"></i> <span class="hidden-xs">@ViewBag.Lang.Delete</span>
+                                    </button>
+                                    <button class="btn btn-default" id="btn-imprimmer" type="button"
+                                            data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
+                                        <i class="fa fa-print text-info"></i> <span class="hidden-xs">@ViewBag.Lang.Print</span>
+                                    </button>
+
+                                </div>
+
+                                <div class="clearfix"></div>
+
+                            </div>
+
+                            <!-- Formulaire modals -->
+                            @Html.Partial("Role/_Modals")
+
+                            <div class="x_content">
+
+                                <!-- Table des données -->
+                                <table id="table-donnee" class="table table-condensed jambo_table bulk_action dt-responsive nowrap" cellspacing="0" width="100%;">
+
+                                    <thead class="headings">
+                                        <tr>
+                                            <th width="20px">
+                                                <input type="checkbox" id="check-all" class="flat">
+                                            </th>
+                                            <th class="column-title">Code</th>
+                                            <th class="column-title">@ViewBag.Lang.Name_french</th>
+                                            <th class="column-title">@ViewBag.Lang.Name_english</th>
+                                            <th class="column-title last" width="50px">Action</th>
+                                            <th class="bulk-actions" colspan="4">
+                                                <a class="antoo" style="color:#fff; font-weight:500;">
+                                                    Selection(s) ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i>
+                                                </a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody></tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
-                <div class="clearfix"></div>
+                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="configuration-role">
+                    
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-            </div>
+                        <div class="x_panel">
 
-            <!-- Formulaire modals -->
-            @Html.Partial("Role/_Modals")
+                            <div class="x_title">
 
-            <div class="x_content">
+                                <!-- Boutons d'actions -->
+                                <div class="pull-left">
 
-                <!-- Table des données -->
-                <h4 class="hidden-xs">
-                    <i class="fa fa-reorder"></i> @ViewBag.Lang.List_of_records
-                </h4>
+                                </div>
 
-                <table id="table-donnee" class="table table-condensed jambo_table bulk_action dt-responsive nowrap" cellspacing="0" width="100%;">
+                                <div class="clearfix"></div>
 
-                    <thead class="headings">
-                        <tr>
-                            <th width="20px">
-                                <input type="checkbox" id="check-all" class="flat">
-                            </th>
-                            <th class="column-title">Code</th>
-                            <th class="column-title">@ViewBag.Lang.Name_french</th>
-                            <th class="column-title">@ViewBag.Lang.Name_english</th>
-                            <th class="column-title last" width="50px">Action</th>
-                            <th class="bulk-actions" colspan="4">
-                                <a class="antoo" style="color:#fff; font-weight:500;">
-                                    Selection(s) ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i>
-                                </a>
-                            </th>
-                        </tr>
-                    </thead>
+                            </div>
 
-                    <tbody></tbody>
+                            <div class="x_content">
 
-                </table>
+                                <!-- Table des données -->
+                                
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 

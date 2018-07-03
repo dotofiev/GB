@@ -36,6 +36,7 @@ try {
                 if (!resultat.notification.est_echec) {
                     // -- Réccépération de la valeur -- //
                     $GB_DONNEE.form_view_valeur = resultat.notification.donnee.view;
+                    $GB_DONNEE.form_id_controller_valeur = resultat.notification.donnee.id_controller;
                     // -- Mise à jour de sa valeur dans le formulaire -- //
                     $('#form_id').val(resultat.notification.donnee.id);
                     $('#form_code').val(resultat.notification.donnee.code);
@@ -184,6 +185,7 @@ $(
 
             $GB_DONNEE.Confirmation_message_box = false;
             $GB_DONNEE.form_view_valeur = null;
+            $GB_DONNEE.form_id_controller_valeur = 0;
 
         } catch (e) { gbConsole(e.message); }
 
@@ -350,6 +352,7 @@ $(
 
                     // -- Suppression des paramètres -- //
                     $GB_DONNEE.form_view_valeur = null;
+                    $GB_DONNEE.form_id_controller_valeur = 0;
 
                 }
             );
@@ -425,7 +428,12 @@ $(
                                 form_view.html(resultat.notification.donnee);
                                 // -- Mettre à jour la valeur si elle est défini -- //
                                 if ($GB_DONNEE.form_view_valeur != null) {
-                                    form_view.val($GB_DONNEE.form_view_valeur);
+                                    // -- Teste si c'est la valeur d'origine -- //
+                                    if (parseInt(form_id_controller.val()) === parseInt($GB_DONNEE.form_id_controller_valeur)) {
+                                        form_view.val($GB_DONNEE.form_view_valeur);
+                                    }
+                                } else {
+                                    form_view.val('');
                                 }
                             }
                             else {
