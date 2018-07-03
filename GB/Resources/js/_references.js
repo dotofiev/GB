@@ -162,4 +162,6 @@
 /// <reference path="views/application-main.js" />
 /// <reference path="views/application-principale.js" />
 /// <reference path="Views/Home-Authentication.js" />
+/// <reference path="views/securite-menu.js" />
 /// <reference path="views/securite-module.js" />
+/// <reference path="views/securite-role.js" />

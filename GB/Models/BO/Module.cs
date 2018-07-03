@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.Helper;
+using GB.Models.Static;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,11 @@ namespace GB.Models.BO
                     .Replace("{libelle}", LangHelper.CurrentCulture == 0 ? this.libelle_en
                                                                          : this.libelle_fr)
                 : string.Empty;
+        }
+
+        public override void Crer_Id()
+        {
+            this.id = Program.db.modules.Count + 1;
         }
     }
 }

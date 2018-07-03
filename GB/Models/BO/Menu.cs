@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.Helper;
+using GB.Models.Static;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,22 +10,34 @@ namespace GB.Models.BO
 {
     public class Menu : GBBO
     {
-        public GroupeMenu groupe_menu { get; set; }
-        public List<Role_Menu> role_menus { get; set; }
-        public string route { get; set; }
+        // -- Privé -- //
+        private GroupeMenu _groupe_menu { get; set; }
 
-        public Menu(long id, string route)
+        // -- Public -- //
+        public GroupeMenu groupe_menu {
+            get { return _groupe_menu; }
+            set {
+                this._groupe_menu = value;
+                // -- Mise à jour de l'identifiant du controlleur -- //
+                this.id_controller = value.id;
+            }
+        }
+        public List<Autorisation> autorisations { get; set; }
+        public string view { get; set; }
+        public long id_controller { get; set; }
+
+        public Menu(long id, string view)
         {
             this.id = id;
-            this.groupe_menu = new GroupeMenu(0);
-            this.role_menus = new List<Role_Menu>();
-            this.route = route;
+            this.groupe_menu = new GroupeMenu();
+            this.autorisations = new List<Autorisation>();
+            this.view = view;
         }
 
         public Menu()
         {
             this.groupe_menu = new GroupeMenu();
-            this.role_menus = new List<Role_Menu>();
+            this.autorisations = new List<Autorisation>();
         }
 
         public string HTML()
@@ -34,12 +47,12 @@ namespace GB.Models.BO
                     <a href=""javascript:;"" class=""menu-gb"" id=""{id}"" name=""{route}"" title=""{libelle}"">{libelle}</a>
                 </li>"
                 .Replace("{id}", this.id + "-" + this.groupe_menu.id)
-                .Replace("{route}", this.route)
+                .Replace("{route}", $"/{this.groupe_menu.controller}/{this.view}")
                 .Replace("{libelle}", LangHelper.CurrentCulture == 0 ? this.libelle_en
                                                                      : this.libelle_fr);
         }
 
-        //public static string Source(List<Role_Menu> role_menus)
+        //public static string Source(List<Autorisation> role_menus)
         //{
         //    string menus = "";
 
@@ -79,7 +92,7 @@ namespace GB.Models.BO
         //    return menus;
         //}
 
-        public static string Source(List<Role_Menu> role_menus)
+        public static string Source(List<Autorisation> role_menus)
         {
             string HTML = string.Empty;
             List<Module> modules = new List<Module>();
@@ -129,6 +142,11 @@ namespace GB.Models.BO
 
 
             return HTML;
+        }
+
+        public override void Crer_Id()
+        {
+            this.id = Program.db.menus.Count + 1;
         }
     }
 }

@@ -160,6 +160,9 @@
   <data name="Error_server_message" xml:space="preserve">
     <value>Une erreur de communication est survenu</value>
   </data>
+  <data name="Existing_data" xml:space="preserve">
+    <value>Donnée existante</value>
+  </data>
   <data name="Form" xml:space="preserve">
     <value>Formulaire</value>
   </data>
@@ -183,6 +186,12 @@
   </data>
   <data name="Main" xml:space="preserve">
     <value>Principale</value>
+  </data>
+  <data name="Menu_group" xml:space="preserve">
+    <value>Groupe de menus</value>
+  </data>
+  <data name="Menu_Management" xml:space="preserve">
+    <value>Gestion des menus</value>
   </data>
   <data name="Module_Management" xml:space="preserve">
     <value>Gestion des modules</value>
@@ -226,8 +235,14 @@
   <data name="Reconnect" xml:space="preserve">
     <value>Se reconnecter</value>
   </data>
+  <data name="Rule_Management" xml:space="preserve">
+    <value>Gestion des rôles</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Enregistrer</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Selectionner</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Paramètres</value>
@@ -244,10 +259,16 @@
   <data name="Update" xml:space="preserve">
     <value>Modifier</value>
   </data>
+  <data name="Views" xml:space="preserve">
+    <value>Vues</value>
+  </data>
   <data name="Welcome" xml:space="preserve">
     <value>Bienvenue</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Oui</value>
+  </data>
+  <data name="Rules" xml:space="preserve">
+    <value>Rôles</value>
   </data>
 </root>

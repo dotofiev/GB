@@ -423,3 +423,33 @@ body {
 .close {
     opacity: 1;
 }
+
+.gb-table-success {
+
+    background: #26B99A;
+    color: white;
+    font-weight: bold;
+
+}
+
+tr {
+    cursor:pointer;
+}
+
+.modal {
+    z-index: 9999;
+}
+
+.site_title {
+    font-weight: bold;
+}
+
+.nav.side-menu>li>a {
+    margin-bottom: 0px;
+}
+
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px 12px;
+}

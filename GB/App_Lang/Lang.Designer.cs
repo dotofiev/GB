@@ -187,6 +187,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Existing data.
+        /// </summary>
+        public static string Existing_data {
+            get {
+                return ResourceManager.GetString("Existing_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Form.
         /// </summary>
         public static string Form {
@@ -255,6 +264,24 @@ namespace GB.App_Lang {
         public static string Main {
             get {
                 return ResourceManager.GetString("Main", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu group.
+        /// </summary>
+        public static string Menu_group {
+            get {
+                return ResourceManager.GetString("Menu_group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu management.
+        /// </summary>
+        public static string Menu_Management {
+            get {
+                return ResourceManager.GetString("Menu_Management", resourceCulture);
             }
         }
         
@@ -385,11 +412,38 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rule management.
+        /// </summary>
+        public static string Rule_Management {
+            get {
+                return ResourceManager.GetString("Rule_Management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rules.
+        /// </summary>
+        public static string Rules {
+            get {
+                return ResourceManager.GetString("Rules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        public static string Select {
+            get {
+                return ResourceManager.GetString("Select", resourceCulture);
             }
         }
         
@@ -435,6 +489,15 @@ namespace GB.App_Lang {
         public static string Update {
             get {
                 return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Views.
+        /// </summary>
+        public static string Views {
+            get {
+                return ResourceManager.GetString("Views", resourceCulture);
             }
         }
         

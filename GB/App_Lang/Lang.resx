@@ -159,6 +159,9 @@
   <data name="Error_server_message" xml:space="preserve">
     <value>A communication error has occurred</value>
   </data>
+  <data name="Existing_data" xml:space="preserve">
+    <value>Existing data</value>
+  </data>
   <data name="Form" xml:space="preserve">
     <value>Form</value>
   </data>
@@ -182,6 +185,12 @@
   </data>
   <data name="Main" xml:space="preserve">
     <value>Main</value>
+  </data>
+  <data name="Menu_group" xml:space="preserve">
+    <value>Menu group</value>
+  </data>
+  <data name="Menu_Management" xml:space="preserve">
+    <value>Menu management</value>
   </data>
   <data name="Module_Management" xml:space="preserve">
     <value>Module management</value>
@@ -225,8 +234,14 @@
   <data name="Reconnect" xml:space="preserve">
     <value>Reconnect</value>
   </data>
+  <data name="Rule_Management" xml:space="preserve">
+    <value>Rule management</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
@@ -243,10 +258,16 @@
   <data name="Update" xml:space="preserve">
     <value>Update</value>
   </data>
+  <data name="Views" xml:space="preserve">
+    <value>Views</value>
+  </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="Rules" xml:space="preserve">
+    <value>Rules</value>
   </data>
 </root>

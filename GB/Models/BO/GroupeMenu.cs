@@ -12,13 +12,15 @@ namespace GB.Models.BO
         public Module module { get; set; }
         public List<Menu> menus { get; set; }
         public string icon { get; set; }
+        public string controller { get; set; }
 
-        public GroupeMenu(long id)
+        public GroupeMenu(long id, string controller)
         {
             this.id = id;
             this.menus = new List<Menu>();
             this.module = new Module(0);
             this.icon = string.Empty;
+            this.controller = controller;
         }
 
         public GroupeMenu()
@@ -26,6 +28,7 @@ namespace GB.Models.BO
             this.menus = new List<Menu>();
             this.module = new Module();
             this.icon = string.Empty;
+            this.controller = string.Empty;
         }
 
         public string HTML()
@@ -44,7 +47,7 @@ namespace GB.Models.BO
                     @"<ul class=""nav side-menu"">
                         <li>
                             <a title=""{libelle}"">
-                                <i class=""{icon}""></i> {libelle} <span class=""fa fa-chevron-down""></span>
+                                <i class=""{icon}""></i> {libelle}
                             </a>
                             <ul class=""nav child_menu"">
                                 {menus}
@@ -56,6 +59,11 @@ namespace GB.Models.BO
                     .Replace("{libelle}", LangHelper.CurrentCulture == 0 ? this.libelle_en
                                                                          : this.libelle_fr)
                 : string.Empty;
+        }
+
+        public override void Crer_Id()
+        {
+
         }
     }
 }
