@@ -125,27 +125,27 @@
       "supprimer": "true",
       "imprimer": "true",
       "lister": "true"
-    },
-    {
-      "id": "5",
-      "id_role": "1",
-      "id_menu": "5",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "6",
-      "id_role": "1",
-      "id_menu": "6",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
     }
+    //{
+    //  "id": "5",
+    //  "id_role": "1",
+    //  "id_menu": "5",
+    //  "ajouter": "true",
+    //  "modifier": "true",
+    //  "supprimer": "true",
+    //  "imprimer": "true",
+    //  "lister": "true"
+    //},
+    //{
+    //  "id": "6",
+    //  "id_role": "1",
+    //  "id_menu": "6",
+    //  "ajouter": "true",
+    //  "modifier": "true",
+    //  "supprimer": "true",
+    //  "imprimer": "true",
+    //  "lister": "true"
+    //}
   ],
   "groupe_menus": [
     {

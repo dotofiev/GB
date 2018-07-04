@@ -70,6 +70,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Add_ {
+            get {
+                return ResourceManager.GetString("Add_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string All {
@@ -151,6 +160,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Del.
+        /// </summary>
+        public static string Del_ {
+            get {
+                return ResourceManager.GetString("Del_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {
@@ -174,6 +192,15 @@ namespace GB.App_Lang {
         public static string Disable {
             get {
                 return ResourceManager.GetString("Disable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display.
+        /// </summary>
+        public static string Display {
+            get {
+                return ResourceManager.GetString("Display", resourceCulture);
             }
         }
         
@@ -304,6 +331,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lst.
+        /// </summary>
+        public static string Lst_ {
+            get {
+                return ResourceManager.GetString("Lst_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Main.
         /// </summary>
         public static string Main {
@@ -327,6 +363,15 @@ namespace GB.App_Lang {
         public static string Menu_Management {
             get {
                 return ResourceManager.GetString("Menu_Management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mod.
+        /// </summary>
+        public static string Mod_ {
+            get {
+                return ResourceManager.GetString("Mod_", resourceCulture);
             }
         }
         
@@ -471,6 +516,15 @@ namespace GB.App_Lang {
         public static string Profile {
             get {
                 return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prt.
+        /// </summary>
+        public static string Prt_ {
+            get {
+                return ResourceManager.GetString("Prt_", resourceCulture);
             }
         }
         

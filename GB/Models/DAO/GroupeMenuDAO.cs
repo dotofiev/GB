@@ -8,14 +8,14 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public abstract class AutorisationDAO : GBDAO
+    public abstract class GroupeMenuDAO : GBDAO
     {
-        public static void Ajouter(Autorisation obj)
+        public static void Ajouter(GroupeMenu obj)
         {
             try
             {
                 //// -- Unicité du code -- //
-                //if (Program.db.autorisations.Exists(l => l.code == obj.code))
+                //if (Program.db.groupe_menu.Exists(l => l.code == obj.code))
                 //{
                 //    throw new GBException(App_Lang.Lang.Existing_data + " [code]");
                 //}
@@ -24,7 +24,7 @@ namespace GB.Models.DAO
                 //obj.Crer_Id();
 
                 //// -- Enregistrement de la valeur -- //
-                //Program.db.autorisations.Add(obj);
+                //Program.db.groupe_menu.Add(obj);
             }
             #region Catch
             catch (Exception ex)
@@ -47,18 +47,18 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(Autorisation obj)
+        public static void Modifier(GroupeMenu obj)
         {
             try
             {
                 //// -- Unicité du code -- //
-                //if (Program.db.autorisations.Exists(l => l.id != obj.id && l.code == obj.code))
+                //if (Program.db.groupe_menu.Exists(l => l.id != obj.id && l.code == obj.code))
                 //{
                 //    throw new GBException(App_Lang.Lang.Existing_data + " [code]");
                 //}
 
                 //// -- Modification de la valeur -- //
-                //Program.db.autorisations
+                //Program.db.groupe_menu
                 //    // -- Spécifier la recherche -- //
                 //    .Where(l => l.id == obj.id)
                 //    // -- Lister le résultat -- //
@@ -101,7 +101,7 @@ namespace GB.Models.DAO
                 //ids.ForEach(id =>
                 //{
                 //    // -- Suppression des valeurs -- //
-                //    Program.db.autorisations.RemoveAll(l => l.id == id);
+                //    Program.db.groupe_menu.RemoveAll(l => l.id == id);
                 //});
             }
             #region Catch
@@ -125,13 +125,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Autorisation> Lister()
+        public static List<GroupeMenu> Lister()
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.autorisations;
+                    Program.db.groupe_menus;
             }
             #region Catch
             catch (Exception ex)
@@ -154,43 +154,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Autorisation> Lister(long id_role)
-        {
-            try
-            {
-                // -- Parcours de la liste -- //
-                return
-                    Program.db.autorisations.Where(l => l.id_role == id_role).ToList();
-            }
-            #region Catch
-            catch (Exception ex)
-            {
-                // -- Vérifier la nature de l'exception -- //
-                if (!GBException.Est_GBexception(ex))
-                {
-                    // -- Log -- //
-                    GBClass.Log.Error(ex);
-
-                    // -- Renvoyer l'exception -- //
-                    throw new GBException(App_Lang.Lang.Error_message_notification);
-                }
-                else
-                {
-                    // -- Renvoyer l'exception -- //
-                    throw new GBException(ex.Message);
-                }
-            }
-            #endregion
-        }
-
-        public static Autorisation Object(string code)
+        public static GroupeMenu Object(string code)
         {
             try
             {
                 //// -- Parcours de la liste -- //
-                //return
-                //    Program.db.autorisations.FirstOrDefault(l => l.code == code);
-                return null;
+                return
+                    Program.db.groupe_menus.FirstOrDefault(l => l.code == code);
             }
             #region Catch
             catch (Exception ex)
@@ -213,12 +183,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static long Crer_Id()
+        public static GroupeMenu Object(long id)
         {
             try
             {
-                // -- Créer un identifian pour une nouvelle liste -- //
-                return Program.db.autorisations.Max(ll => ll.id) + 1;
+                // -- Parcours de la liste -- //
+                return
+                    Program.db.groupe_menus.FirstOrDefault(l => l.id == id);
             }
             #region Catch
             catch (Exception ex)

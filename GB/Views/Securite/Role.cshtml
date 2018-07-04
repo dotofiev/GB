@@ -2,6 +2,9 @@
     Layout = null;
 }
 
+<!-- iCheck -->
+<link href="@Url.Content("~/Plugins/iCheck/skins/flat/blue.css")" rel="stylesheet" />
+
 <script type="text/javascript">
 
     $GB_DONNEE = JSON.parse('@Html.Raw(ViewBag.GB_DONNEE)');  
@@ -82,9 +85,6 @@
 
                             </div>
 
-                            <!-- Formulaire modals -->
-                            @Html.Partial("Role/_Modals")
-
                             <div class="x_content">
 
                                 <!-- Table des données -->
@@ -93,7 +93,7 @@
                                     <thead class="headings">
                                         <tr>
                                             <th width="20px">
-                                                <input type="checkbox" id="check-all" class="flat">
+                                                <input type="checkbox" id="check-all" class="flat gb-temps-icheck-role">
                                             </th>
                                             <th class="column-title">Code</th>
                                             <th class="column-title">@ViewBag.Lang.Name_french</th>
@@ -129,14 +129,6 @@
 
                                 <!-- Boutons d'actions -->
                                 <div class="pull-left">
-
-                                    <button class="btn btn-info" id="btn-autorisation-ajouter-menu" type="button" onclick="gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message })">
-                                        <i class="fa fa-plus"></i> @ViewBag.Lang.New_menus
-                                    </button>
-                                    <button class="btn btn-danger" id="btn-autorisation-supprimer-menu" type="button" onclick="gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message })"
-                                            data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
-                                        <i class="fa fa-remove"></i> @ViewBag.Lang.Delete_menus
-                                    </button>
 
                                     <div class="btn-group">
                                         <button data-toggle="dropdown" id="btn-autorisation-ajouter" class="btn btn-default dropdown-toggle" type="button" aria-expanded="false">
@@ -252,32 +244,33 @@
 
                                         <div class="row">
 
-                                            <div class="col-xs-12 col-lg-4">
+                                            <div class="col-xs-12 col-lg-3">
                                                 <div class="form-group">
-                                                    <label for="form_role_code">@ViewBag.Lang.Search_by Code :</label>
                                                     <select class="form-control" name="id_role" id="form_role_code" onchange="$('#form_role_libelle').val($('#form_role_code').val());" required>
                                                         @Html.Raw(ViewBag.donnee.HTML_Select_code_role)
                                                     </select>
                                                 </div>
                                             </div>
 
-                                            <div class="col-xs-12 col-lg-4">
+                                            <div class="col-xs-12 col-lg-3">
                                                 <div class="form-group">
-                                                    <label for="form_role_libelle">@ViewBag.Lang.Search_by @ViewBag.Lang.Name :</label>
                                                     <select class="form-control" name="libelle" id="form_role_libelle" onchange="$('#form_role_code').val($('#form_role_libelle').val());" required>
                                                         @Html.Raw(ViewBag.donnee.HTML_Select_code_libelle)
                                                     </select>
                                                 </div>
                                             </div>
 
-                                            <div class="col-xs-12 col-lg-4">
-                                                <!-- #region Espacement -->
-                                                <label class="hidden-xs">&nbsp;</label>
-                                                <br class="hidden-xs" />
-                                                <!-- #endregion -->
+                                            <div class="col-xs-12 col-lg-6">
+                                                <button class="btn btn-info" id="btn-autorisation-ajouter-menu" data-toggle="modal" data-target=".gb-temp-modal-menu" type="button">
+                                                    <i class="fa fa-plus"></i> @ViewBag.Lang.New_menus
+                                                </button>
+                                                <button class="btn btn-danger" id="btn-autorisation-supprimer-menu" type="button" onclick="gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message })"
+                                                        data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
+                                                    <i class="fa fa-remove"></i> @ViewBag.Lang.Delete_menus
+                                                </button>
                                                 <button class="btn btn-default pull-right" id="btn-configuration-rechercher-role" type="submit"
                                                         data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
-                                                    <i class="fa fa-check"></i> @ViewBag.Lang.Search
+                                                    <i class="fa fa-list-ul"></i> @ViewBag.Lang.Display
                                                 </button>
                                             </div>
 
@@ -299,7 +292,7 @@
                                     <thead class="headings">
                                         <tr>
                                             <th width="20px">
-                                                <input type="checkbox" id="check-configuration-all" class="flat">
+                                                <input type="checkbox" id="check-configuration-all" class="flat gb-temps-icheck-autorisation">
                                             </th>
                                             <th class="column-title">Code menu</th>
                                             <th class="column-title">@ViewBag.Lang.Name menu</th>
@@ -333,5 +326,8 @@
         </div>
 
     </div>
+
+    <!-- Formulaire modals -->
+    @Html.Partial("Role/_Modals")
 
 </div>

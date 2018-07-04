@@ -4,8 +4,9 @@ using System.Linq;
 using System.Web;
 using GB.Models.BO;
 using GB.Models.Tests;
+using GB.Models.Static;
 
-namespace GB.Models.Static
+namespace GB.Models.Tests
 {
     public static class Program
     {

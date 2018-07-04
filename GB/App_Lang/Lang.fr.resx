@@ -307,4 +307,22 @@
   <data name="New_menus" xml:space="preserve">
     <value>Nouveaux menus</value>
   </data>
+  <data name="Add_" xml:space="preserve">
+    <value>Ajt</value>
+  </data>
+  <data name="Del_" xml:space="preserve">
+    <value>Sup</value>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>Afficher</value>
+  </data>
+  <data name="Lst_" xml:space="preserve">
+    <value>Lst</value>
+  </data>
+  <data name="Mod_" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="Prt_" xml:space="preserve">
+    <value>Imp</value>
+  </data>
 </root>

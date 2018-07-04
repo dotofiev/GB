@@ -84,7 +84,7 @@
 </div>
 
 <!-- form 1 -->
-<div class="modal fade gb-temp-modal-menu" role="alert" data-backdrop="static" data-keyboard="false">
+<div class="modal fade gb-temp-modal-menu" id="modal_menu" role="alert" data-backdrop="static" data-keyboard="false">
 
     <div class="modal-dialog modal-lg">
 
@@ -104,12 +104,34 @@
                     </button>
                 </p>
 
-                <!-- Body -->
-                <div>
+                <!-- Table des données -->
+                <table id="table-menu-donnee" class="table table-condensed jambo_table bulk_action dt-responsive nowrap temps" 
+                       typedonnee="menu" idcheckall="check-menu-all" idtable="table-menu-donnee" cellspacing="0" width="100%;">
 
+                    <thead class="headings">
+                        <tr>
+                            <th width="20px">
+                                <input type="checkbox" id="check-menu-all" class="flat gb-temps-icheck-menu">
+                            </th>
+                            <th class="column-title">@ViewBag.Lang.Name</th>
+                            <th class="column-title">@ViewBag.Lang.Menu_group</th>
+                            <th class="column-title">@ViewBag.Lang.Name module</th>
+                            <th class="column-title">@ViewBag.Lang.Add_</th>
+                            <th class="column-title">@ViewBag.Lang.Mod_</th>
+                            <th class="column-title">@ViewBag.Lang.Del_</th>
+                            <th class="column-title">@ViewBag.Lang.Prt_</th>
+                            <th class="column-title last">@ViewBag.Lang.Lst_</th>
+                            <th class="bulk-actions" colspan="8">
+                                <a class="antoo" style="color:#fff; font-weight:500;">
+                                    Selection(s) ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i>
+                                </a>
+                            </th>
+                        </tr>
+                    </thead>
 
+                    <tbody></tbody>
 
-                </div>
+                </table>
 
                 <!--Alert Message -->
                 <div id="gbAlert2"></div>

@@ -3,6 +3,7 @@ using GB.Models.ActionFilter;
 using GB.Models.BO;
 using GB.Models.DAO;
 using GB.Models.Static;
+using GB.Models.Tests;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -80,7 +81,7 @@ namespace GB.Controllers
                         donnee.Add(
                             new
                             {
-                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"module\" value=\"module_{val.id}\">",
+                                col_1 = $"<input type=\"checkbox\" class=\"flat gb-temps-icheck-module\" name=\"module\" value=\"module_{val.id}\">",
                                 col_2 = val.code,
                                 col_3 = val.libelle_fr,
                                 col_4 = val.libelle_en,
@@ -130,7 +131,7 @@ namespace GB.Controllers
                             donnee.Add(
                                 new
                                 {
-                                    col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"role\" value=\"role_{val.id}\">",
+                                    col_1 = $"<input type=\"checkbox\" class=\"flat gb-temps-icheck-role\" name=\"role\" value=\"role_{val.id}\">",
                                     col_2 = val.code,
                                     col_3 = val.libelle_fr,
                                     col_4 = val.libelle_en,
@@ -157,7 +158,7 @@ namespace GB.Controllers
                             donnee.Add(
                                 new
                                 {
-                                    col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"autorisation\" value=\"autorisation_{val.id}\">",
+                                    col_1 = $"<input type=\"checkbox\" class=\"flat gb-temps-icheck-autorisation\" name=\"autorisation\" value=\"autorisation_{val.id}\">",
                                     col_2 = val.menu.code,
                                     col_3 = (id_lang == 0) ? val.menu.libelle_en 
                                                            : val.menu.libelle_fr,
@@ -175,6 +176,30 @@ namespace GB.Controllers
                             );
                         }
                     }
+                    // -- Si c'est la vue configuration -- //
+                    else if (id_vue == "menu")
+                    {
+                        foreach (var val in (this.con.donnee.autorisation_disponible as List<Autorisation>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    col_1 = $"<input type=\"checkbox\" class=\"flat gb-temps-icheck-menu\" name=\"menu\" value=\"menu_{val.id}\" >",
+                                    col_2 = (id_lang == 0) ? val.menu.libelle_en
+                                                           : val.menu.libelle_fr,
+                                    col_3 = (id_lang == 0) ? val.menu.groupe_menu.libelle_en
+                                                           : val.menu.groupe_menu.libelle_fr,
+                                    col_4 = (id_lang == 0) ? val.menu.groupe_menu.module.libelle_en
+                                                           : val.menu.groupe_menu.module.libelle_fr,
+                                    col_5 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" name=\"ajouter\"     value=\"{val.ajouter}\">",
+                                    col_6 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" name=\"modifier\"    value=\"{val.modifier}\">",
+                                    col_7 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" name=\"supprimer\"   value=\"{val.supprimer}\">",
+                                    col_8 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" name=\"imprimer\"    value=\"{val.imprimer}\">",
+                                    col_9 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" name=\"lister\"      value=\"{val.lister}\">",
+                                }
+                            );
+                        }
+                    }
                 }
                 #endregion
 
@@ -186,7 +211,7 @@ namespace GB.Controllers
                         donnee.Add(
                             new
                             {
-                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"menu\" value=\"menu_{val.id}\">",
+                                col_1 = $"<input type=\"checkbox\" class=\"flat gb-temps-icheck-menu\" name=\"menu\" value=\"menu_{val.id}\">",
                                 col_2 = val.code,
                                 col_3 = val.libelle_fr,
                                 col_4 = val.libelle_en,
@@ -364,12 +389,39 @@ namespace GB.Controllers
 
         // -- Rchercher les autorisations d'un role -- //
         [HttpPost]
-        public ActionResult Role_Rechercher_Autorisation(string id_role)
+        public ActionResult Role_Rechercher_Autorisation(long id_role)
         {
             try
             {
                 // -- Définition de l'id_role rechercher -- //
                 this.con.donnee.id_role = id_role;
+                // -- Mise à jour des autorisation -- //
+                this.con.donnee.autorisation = new List<Autorisation>();
+                (this.con.donnee.autorisation as List<Autorisation>).AddRange(AutorisationDAO.Lister(id_role));
+                // -- Mise à jour des autorisation disponible -- //
+                this.con.donnee.autorisation_disponible = new List<Autorisation>();
+                (this.con.donnee.autorisation_disponible as List<Autorisation>).AddRange(
+                    MenuDAO.Lister()
+                           .Where(l =>
+                                (this.con.donnee.autorisation as List<Autorisation>).Count(ll => ll.id == l.id) == 0
+                           )
+                           .Select(l =>
+                                new Autorisation()
+                                {
+                                    id = AutorisationDAO.Crer_Id(),
+                                    code = "000",
+                                    ajouter = false,
+                                    modifier = false,
+                                    supprimer = false,
+                                    imprimer = false,
+                                    lister = false,
+                                    id_menu = l.id,
+                                    id_role = id_role,
+                                    menu = l,
+                                    role = RoleDAO.Object(id_role)
+                                }
+                            )
+                );
 
                 // -- Notificication -- //
                 this.ViewBag.notification = new GBNotification(false);
@@ -767,16 +819,24 @@ namespace GB.Controllers
                 this.ViewBag.Lang.New_menus = App_Lang.Lang.New_menus;
                 this.ViewBag.Lang.Delete_menus = App_Lang.Lang.Delete_menus;
                 this.ViewBag.Lang.Select = App_Lang.Lang.Select;
+                this.ViewBag.Lang.Menu_group = App_Lang.Lang.Menu_group;
+                this.ViewBag.Lang.Add_ = App_Lang.Lang.Add_;
+                this.ViewBag.Lang.Mod_ = App_Lang.Lang.Mod_;
+                this.ViewBag.Lang.Del_ = App_Lang.Lang.Del_;
+                this.ViewBag.Lang.Prt_ = App_Lang.Lang.Prt_;
+                this.ViewBag.Lang.Lst_ = App_Lang.Lang.Lst_;
+                this.ViewBag.Lang.Display = App_Lang.Lang.Display;
+                
                 #endregion
 
                 // -- Données -- //
                 #region Données
                 #region HTML_Select_Role
                 this.ViewBag.donnee.HTML_Select_code_role =
-                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                    $"<option value=\"\" title=\"{App_Lang.Lang.Select} code...\">{App_Lang.Lang.Select} code...</option>";
                 this.ViewBag.donnee.HTML_Select_code_libelle =
-                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                foreach (var val in Program.db.roles)
+                    $"<option value=\"\" title=\"{App_Lang.Lang.Select} {App_Lang.Lang.Name.ToLower()}...\">{App_Lang.Lang.Select} {App_Lang.Lang.Name.ToLower()}...</option>";
+                foreach (var val in RoleDAO.Lister())
                 {
                     this.ViewBag.donnee.HTML_Select_code_role +=
                         $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
@@ -794,9 +854,12 @@ namespace GB.Controllers
                 // -- Vider les données temporaire -- //
                 this.con.Vider_Donnee();
                 // - Mise à jour des données de vue -- //
-                this.con.donnee.autorisation = new List<Autorisation>();
-                (this.con.donnee.autorisation as List<Autorisation>).AddRange(this.con.autorisation);
+                // -- id_role -- //
                 this.con.donnee.id_role = 0;
+                // -- Autorisations -- //
+                this.con.donnee.autorisation = new List<Autorisation>();
+                // -- autorisation_disponible -- //
+                this.con.donnee.autorisation_disponible = new List<Autorisation>();
                 #endregion
             }
             #endregion
@@ -819,7 +882,7 @@ namespace GB.Controllers
                 #region HTML_Select_id_controller
                 this.ViewBag.donnee.HTML_Select_id_controller =
                     $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                foreach (var val in Program.db.groupe_menus)
+                foreach (var val in GroupeMenuDAO.Lister())
                 {
                     this.ViewBag.donnee.HTML_Select_id_controller += 
                         $"<option value=\"{val.id}\" title=\"{((id_lang == 0) ? val.libelle_en : val.libelle_fr)}\">{((id_lang == 0) ? val.libelle_en : val.libelle_fr)}</option>";

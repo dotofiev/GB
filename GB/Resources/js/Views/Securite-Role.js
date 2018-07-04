@@ -2,6 +2,7 @@
 // -- Variables -- //
 var table = $('#table-donnee');
 var table_configuration = $('#table-configuration-donnee');
+var table_menu = $('#table-menu-donnee');
 var url_ajax_dataTable = '/Securite/Charger_Table/?id_page=' + $GB_DONNEE.id_page;
 var url_ajax_selection_enregistrement = '/Securite/Selection_Enregistrement/';
 var btn_ajouter = $('#btn-ajouter');
@@ -9,10 +10,12 @@ var btn_supprimer = $('#btn-supprimer');
 var btn_imprimmer = $('#btn-imprimmer');
 var btn_enregistrer = $('#btn-enregistrer');
 var btn_rechercher_role = $('#btn-configuration-rechercher-role');
+var btn_selectionner_menu = $('#btn-configuration-selectionner');
 var btn_table;
 var form = $('#form');
 var form_configuration = $('#form-configuration');
 var modal_form = $('#modal_form');
+var modal_menu = $('#modal_menu');
 var url_controlleur = '/Securite/';
 var url_suppression = '/Securite/Supprimer_Enregistrement';
 var class_table_selection = 'gb-table-success';
@@ -163,6 +166,31 @@ $(
                     gbCharger_Css_Table('autorisation', 'check-configuration-all', 'table-configuration-donnee');
                 }
             );
+            table_menu.on('draw.dt',
+                function () {
+
+                    // -- Fonction pour initiliser les style css javascript des tables -- //
+                    gbCharger_Css_Table('menu', 'check-menu-all', 'table-menu-donnee');
+                                        
+                    try {
+
+                        // -- Lorsque un élement de la liste de menus est sélectionné -- //
+                        $('.gb-temp-autorisation').on('ifChecked',
+                            function () {
+                                gbConsole('Je suis bien sélectionné');
+                            }
+                        );
+
+                        // -- Lorsque un élement de la liste de menus est désélectionné -- //
+                        $('.gb-temp-autorisation').on('ifUnchecked',
+                            function () {
+                                gbConsole('Je suis bien désélectionné');
+                            }
+                        );
+
+                    } catch (e) { gbConsole(e.message); }
+                }
+            );
 
             // -- Table d'affichage des données -- //
             table.DataTable({
@@ -216,6 +244,34 @@ $(
                     { "data": "col_8", "class": "text-center" },    // -- Lister -- //
                 ]
             });
+            table_menu.DataTable({
+                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, $GB_DONNEE_PARAMETRES.Lang.All]],
+                "scrollCollapse": true,
+                "paging": true,
+                "searching": true,
+                "autoWidth": false,
+                "language": {
+                    "url": $GB_VAR.url_language_dataTable
+                },
+                "ajax": {
+                    "url": url_ajax_dataTable + '&id_vue=menu',
+                    "type": 'POST',
+                    "dataSrc": function (resultat) {
+                        return resultat.notification.donnee;
+                    }
+                },
+                "columns": [
+                    { "data": "col_1", "width": "20px" },           // -- Checkbox -- //
+                    { "data": "col_2" },                            // -- libelle -- //
+                    { "data": "col_3" },                            // -- groupe_menu -- //
+                    { "data": "col_4" },                            // -- module -- //
+                    { "data": "col_5", "class": "text-center" },                            // -- ajouter -- //
+                    { "data": "col_6", "class": "text-center" },                            // -- modifier -- //
+                    { "data": "col_7", "class": "text-center" },                            // -- suprimer -- //
+                    { "data": "col_8", "class": "text-center" },                            // -- imprimer -- //
+                    { "data": "col_9", "class": "text-center" },                            // -- lister -- //
+                ]
+            });
 
             // -- Lorsqu'un click survient sur une ligne de la table -- //
             $('#table-donnee tbody').on('click', 'tr',
@@ -228,6 +284,12 @@ $(
                 function () {
                     // -- Selectionner une ligne de la table -- //
                     gbTableSelectionLigne($(this), 'table-configuration-donnee');
+                }
+            );
+            $('#table-menu-donnee tbody').on('click', 'tr',
+                function () {
+                    // -- Selectionner une ligne de la table -- //
+                    gbTableSelectionLigne($(this), 'table-menu-donnee');
                 }
             );
 
@@ -335,6 +397,7 @@ $(
                                 if (!resultat.notification.est_echec) {
                                     // -- Actualiser la table -- //
                                     gbRechargerTable(false, 'check-configuration-all', 'table-configuration-donnee');
+                                    gbRechargerTable(false, 'check-menu-all', 'table-menu-donnee');
                                 }
                                 else {
                                     // -- Afficher une alerte sur un element -- //
@@ -483,6 +546,74 @@ $(
 
                 }
             );
+
+        } catch (e) { gbConsole(e.message); }
+
+        // -- Action de selection des menus à ajouter -- //
+        try {
+
+            btn_selectionner_menu.on("click",
+                function () {
+
+                    // -- Réccupérer les données electionné -- //
+                    var ids = gbSelectionIdsTable('menu');
+
+                    // -- Si la taille est supérieurs à 0 -- //
+                    if (ids.length == 0) {
+                        // -- Afficher message d'erreur -- //
+                        gbAlert({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.No_item_selected }, 'gbAlert2');
+
+                        return false;
+                    }
+
+                    // -- Afficher le chargement -- //
+                    gbAfficher_Page_Chargement(true);
+
+                    // -- Ajax -- //
+                    $.ajax({
+                        type: "POST",
+                        url: url_controlleur + 'Role_Ajouter_Supprimer_Menu',
+                        data: {
+                            ids: JSON.stringify(ids),
+                            ajouter: true
+                        },
+                        success: function (resultat) {
+                            // -- Tester si le traitement s'est bien effectué -- //
+                            if (!resultat.notification.est_echec) {
+                                // -- Fermer le modal -- //
+                                modal_menu.modal('hide');
+                                // -- Recharger la table des autorisations -- //
+                                gbRechargerTable(false, 'check-configuration-all', 'table-configuration-donnee');
+                            } else {
+                                // -- Message -- //
+                                gbAlert(resultat.notification, 'gbAlert2');
+                            }
+                            // -- Afficher le chargement -- //
+                            gbAfficher_Page_Chargement(false);
+                        },
+                        error: function () {
+                            // -- Message -- //
+                            gbAlert(null, 'gbAlert2');
+                            // -- Afficher le chargement -- //
+                            gbAfficher_Page_Chargement(false);
+                        }
+                    });
+
+                }
+            );
+
+        } catch (e) { gbConsole(e.message); }
+
+        // -- Appliquer le icheck sur tous les elements flat de la page -- //
+        try {
+
+            // -- Green -- //
+            if ($("input.flat")[0]) {
+                $('input.flat').iCheck({
+                    checkboxClass: 'icheckbox_flat-green',
+                    radioClass: 'iradio_flat-green'
+                });
+            }
 
         } catch (e) { gbConsole(e.message); }
 
