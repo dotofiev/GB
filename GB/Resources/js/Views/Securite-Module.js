@@ -104,7 +104,7 @@ try {
                 // -- Tester si le traitement s'est bien effectué -- //
                 if (!resultat.notification.est_echec) {
                     // -- Recharger la table -- //
-                    table_recharger(false);
+                    gbRechargerTable(false);
                 } else {
                     // -- Message -- //
                     gbMessage_Box(resultat.notification);
@@ -121,50 +121,6 @@ try {
                 table_bouton_action_etat(bouton_table, false, null);
             }
         });
-
-    }
-
-    // -- Recharger la table -- //
-    function table_recharger(frame) {
-
-        // -- Recharger la table -- //
-        table.DataTable().ajax.reload(
-            function () {
-                // -- Teste si c'est un seul element -- //
-                if (frame) {
-                    // -- cacher le chargement -- //
-                    gbAfficher_Page_Chargement(false);
-                }
-                // -- Reset la taille de la table -- //
-                table.DataTable().columns.adjust().draw();
-                // -- Selectionner une ligne de la table -- //
-                table_selection_ligne();
-                // -- Désactiver le multiselect -- //
-                $("#check-all").iCheck('uncheck');
-                $('.column-title').show();
-                $('.bulk-actions').hide();
-            }
-        );
-
-    }
-
-    // -- Selectionner une ligne de la table -- //
-    function table_selection_ligne(ligne) {
-
-        // -- Suppression de toutes les lignes delectionnées -- //
-        $('#table-donnee tbody tr').each(
-            function () {
-                // -- Si l'element n'a pas la classe passer -- //
-                if ($(this).hasClass(class_table_selection)) {
-                    $(this).removeClass(class_table_selection);
-                }
-            }
-        );
-
-        // -- Mise à jour de la couleur de la ligne -- //
-        if (ligne != undefined && ligne != null) {
-            ligne.addClass(class_table_selection);
-        }
 
     }
 
@@ -229,7 +185,7 @@ $(
             $('#table-donnee tbody').on('click', 'tr',
                 function () {
                     // -- Selectionner une ligne de la table -- //
-                    table_selection_ligne($(this));
+                    gbTableSelectionLigne($(this));
                 }
             );
 
@@ -293,7 +249,7 @@ $(
                                     // -- Fermer le modal -- //
                                     modal_form.modal('hide');
                                     // -- Actualiser la table -- //
-                                    table_recharger(false);
+                                    gbRechargerTable(false);
                                 }
                                 else {
                                     // -- Afficher une alerte sur un element -- //

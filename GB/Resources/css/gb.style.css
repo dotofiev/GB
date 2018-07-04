@@ -453,3 +453,7 @@ tr {
     display: block;
     padding: 10px 15px 12px;
 }
+
+legend {
+    margin-bottom: 10px;
+}

@@ -88,7 +88,7 @@ namespace GB.Controllers
         public virtual void Charger_Langue_Et_Donnees(string id_page) { }
 
         [HttpPost]
-        public virtual ActionResult Charger_Table(string id_page) { return null; }
+        public virtual ActionResult Charger_Table(string id_page, string id_vue) { return null; }
 
         public void Charger_Parametres()
         {

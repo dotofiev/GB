@@ -270,4 +270,40 @@
   <data name="Rules" xml:space="preserve">
     <value>Rules</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="Listing" xml:space="preserve">
+    <value>Listing</value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="Privilege_management" xml:space="preserve">
+    <value>Privilege management</value>
+  </data>
+  <data name="Role_and_privilege_management" xml:space="preserve">
+    <value>Role and privilege management</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Search_a_role" xml:space="preserve">
+    <value>Search a role</value>
+  </data>
+  <data name="Search_by" xml:space="preserve">
+    <value>Search by</value>
+  </data>
+  <data name="Delete_menus" xml:space="preserve">
+    <value>Delete menus</value>
+  </data>
+  <data name="New_menus" xml:space="preserve">
+    <value>New menus</value>
+  </data>
 </root>

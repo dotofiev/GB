@@ -30,7 +30,6 @@ namespace GB.Controllers
             this.con = new Connexion(Session.SessionID);
 
             // -- Test -- //
-            Program.Initialiser_BD(url_data + "base_de_donnees.json");
             this.ViewBag.Test.compte = Program.db?.utilisateurs?[0]?.compte ?? string.Empty;
             this.ViewBag.Test.mot_de_passe = Program.db?.utilisateurs?[0]?.mot_de_passe ?? string.Empty;
 

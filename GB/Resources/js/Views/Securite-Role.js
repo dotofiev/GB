@@ -1,14 +1,17 @@
 ﻿
 // -- Variables -- //
 var table = $('#table-donnee');
+var table_configuration = $('#table-configuration-donnee');
 var url_ajax_dataTable = '/Securite/Charger_Table/?id_page=' + $GB_DONNEE.id_page;
 var url_ajax_selection_enregistrement = '/Securite/Selection_Enregistrement/';
 var btn_ajouter = $('#btn-ajouter');
 var btn_supprimer = $('#btn-supprimer');
 var btn_imprimmer = $('#btn-imprimmer');
 var btn_enregistrer = $('#btn-enregistrer');
+var btn_rechercher_role = $('#btn-configuration-rechercher-role');
 var btn_table;
 var form = $('#form');
+var form_configuration = $('#form-configuration');
 var modal_form = $('#modal_form');
 var url_controlleur = '/Securite/';
 var url_suppression = '/Securite/Supprimer_Enregistrement';
@@ -104,7 +107,7 @@ try {
                 // -- Tester si le traitement s'est bien effectué -- //
                 if (!resultat.notification.est_echec) {
                     // -- Recharger la table -- //
-                    table_recharger(false);
+                    gbRechargerTable(false);
                 } else {
                     // -- Message -- //
                     gbMessage_Box(resultat.notification);
@@ -121,50 +124,6 @@ try {
                 table_bouton_action_etat(bouton_table, false, null);
             }
         });
-
-    }
-
-    // -- Recharger la table -- //
-    function table_recharger(frame) {
-
-        // -- Recharger la table -- //
-        table.DataTable().ajax.reload(
-            function () {
-                // -- Teste si c'est un seul element -- //
-                if (frame) {
-                    // -- cacher le chargement -- //
-                    gbAfficher_Page_Chargement(false);
-                }
-                // -- Reset la taille de la table -- //
-                table.DataTable().columns.adjust().draw();
-                // -- Selectionner une ligne de la table -- //
-                table_selection_ligne();
-                // -- Désactiver le multiselect -- //
-                $("#check-all").iCheck('uncheck');
-                $('.column-title').show();
-                $('.bulk-actions').hide();
-            }
-        );
-
-    }
-
-    // -- Selectionner une ligne de la table -- //
-    function table_selection_ligne(ligne) {
-
-        // -- Suppression de toutes les lignes delectionnées -- //
-        $('#table-donnee tbody tr').each(
-            function () {
-                // -- Si l'element n'a pas la classe passer -- //
-                if ($(this).hasClass(class_table_selection)) {
-                    $(this).removeClass(class_table_selection);
-                }
-            }
-        );
-
-        // -- Mise à jour de la couleur de la ligne -- //
-        if (ligne != undefined && ligne != null) {
-            ligne.addClass(class_table_selection);
-        }
 
     }
 
@@ -198,6 +157,12 @@ $(
                     gbCharger_Css_Table('role');
                 }
             );
+            table_configuration.on('draw.dt',
+                function () {
+                    // -- Fonction pour initiliser les style css javascript des tables -- //
+                    gbCharger_Css_Table('autorisation', 'check-configuration-all', 'table-configuration-donnee');
+                }
+            );
 
             // -- Table d'affichage des données -- //
             table.DataTable({
@@ -224,12 +189,45 @@ $(
                     { "data": "col_5", "class": "text-center" }     // -- Action -- //
                 ]
             });
+            table_configuration.DataTable({
+                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, $GB_DONNEE_PARAMETRES.Lang.All]],
+                "scrollCollapse": true,
+                "paging": true,
+                "searching": true,
+                "autoWidth": false,
+                "language": {
+                    "url": $GB_VAR.url_language_dataTable
+                },
+                "ajax": {
+                    "url": url_ajax_dataTable + '&id_vue=autorisation',
+                    "type": 'POST',
+                    "dataSrc": function (resultat) {
+                        return resultat.notification.donnee;
+                    }
+                },
+                "columns": [
+                    { "data": "col_1", "width": "20px" },           // -- Checkbox -- //
+                    { "data": "col_2" },                            // -- code -- //
+                    { "data": "col_3" },                            // -- libelle -- //
+                    { "data": "col_4", "class": "text-center" },    // -- Ajouter -- //
+                    { "data": "col_5", "class": "text-center" },    // -- Modifier -- //
+                    { "data": "col_6", "class": "text-center" },    // -- Supprimer -- //
+                    { "data": "col_7", "class": "text-center" },    // -- Imprimer -- //
+                    { "data": "col_8", "class": "text-center" },    // -- Lister -- //
+                ]
+            });
 
             // -- Lorsqu'un click survient sur une ligne de la table -- //
             $('#table-donnee tbody').on('click', 'tr',
                 function () {
                     // -- Selectionner une ligne de la table -- //
-                    table_selection_ligne($(this));
+                    gbTableSelectionLigne($(this));
+                }
+            );
+            $('#table-configuration-donnee tbody').on('click', 'tr',
+                function () {
+                    // -- Selectionner une ligne de la table -- //
+                    gbTableSelectionLigne($(this), 'table-configuration-donnee');
                 }
             );
 
@@ -293,7 +291,7 @@ $(
                                     // -- Fermer le modal -- //
                                     modal_form.modal('hide');
                                     // -- Actualiser la table -- //
-                                    table_recharger(false);
+                                    gbRechargerTable(false);
                                 }
                                 else {
                                     // -- Afficher une alerte sur un element -- //
@@ -307,6 +305,49 @@ $(
                                 gbAfficher_Page_Chargement(false, btn_enregistrer.attr('id'));
                                 // -- Afficher une alerte sur un element -- //
                                 gbAlert();
+                            }
+                        });
+
+                    }
+                }
+            );
+            form_configuration.on("submit",
+                function (e) {
+                    // -- Désactiver la soumission -- //
+                    e.preventDefault();
+
+                    // -- Variables -- //
+                    form_configuration.parsley().validate();
+
+                    // If the form is valid
+                    if (form_configuration.parsley().isValid()) {
+
+                        // -- Afficher le chargement -- //
+                        gbAfficher_Page_Chargement(true, btn_rechercher_role.attr('id'));
+
+                        // -- Ajax -- //
+                        $.ajax({
+                            type: "POST",
+                            url: url_controlleur + 'Role_Rechercher_Autorisation',
+                            data: form_configuration.serialize(),
+                            success: function (resultat) {
+                                // -- Tester si le traitement s'est bien effectué -- //
+                                if (!resultat.notification.est_echec) {
+                                    // -- Actualiser la table -- //
+                                    gbRechargerTable(false, 'check-configuration-all', 'table-configuration-donnee');
+                                }
+                                else {
+                                    // -- Afficher une alerte sur un element -- //
+                                    gbMessage_Box(resultat.notification);
+                                }
+                                // -- Afficher le chargement -- //
+                                gbAfficher_Page_Chargement(false, btn_rechercher_role.attr('id'));
+                            },
+                            error: function () {
+                                // -- Afficher le chargement -- //
+                                gbAfficher_Page_Chargement(false, btn_rechercher_role.attr('id'));
+                                // -- Afficher une alerte sur un element -- //
+                                gbMessage_Box();
                             }
                         });
 
@@ -385,6 +426,60 @@ $(
                     
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
+
+                }
+            );
+
+        } catch (e) { gbConsole(e.message); }
+
+        // -- Action de lactivation/désactivation d'une action-- //
+        try {
+
+            $('.btn-group .gbtemp').on("click",
+                function () {
+
+                    // -- Réccupérer les données electionné -- //
+                    var ids = gbSelectionIdsTable('autorisation');
+
+                    // -- Si la taille est supérieurs à 0 -- //
+                    if (ids.length == 0) {
+                        // -- Afficher message d'erreur -- //
+                        gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.No_item_selected });
+
+                        return false;
+                    }
+
+                    // -- Afficher le chargement -- //
+                    gbAfficher_Page_Chargement(true);
+
+                    // -- Ajax -- //
+                    $.ajax({
+                        type: "POST",
+                        url: url_controlleur + 'Role_Modifier_Autorisation',
+                        data: {
+                            ids: JSON.stringify(ids),
+                            id_action: $(this).attr('name').split(',')[0],
+                            etat: $(this).attr('name').split(',')[1],
+                        },
+                        success: function (resultat) {
+                            // -- Tester si le traitement s'est bien effectué -- //
+                            if (!resultat.notification.est_echec) {
+                                // -- Recharger la table -- //
+                                gbRechargerTable(false, 'check-configuration-all', 'table-configuration-donnee');
+                            } else {
+                                // -- Message -- //
+                                gbMessage_Box(resultat.notification);
+                            }
+                            // -- Afficher le chargement -- //
+                            gbAfficher_Page_Chargement(false);
+                        },
+                        error: function () {
+                            // -- Message -- //
+                            gbMessage_Box();
+                            // -- Afficher le chargement -- //
+                            gbAfficher_Page_Chargement(false);
+                        }
+                    });
 
                 }
             );

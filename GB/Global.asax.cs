@@ -22,6 +22,10 @@ namespace GB
         public int id_lang { get { if (Session["id_lang"] == null) { return 0; } else { return (int)Session["id_lang"]; } } set { Session["id_lang"] = value; } }
         #endregion
 
+        #region URLs
+        public string url_data { get { return Server.MapPath("~/App_Data/"); } }
+        #endregion
+
         #region Methodes
         protected void Application_Start()
         {
@@ -35,6 +39,9 @@ namespace GB
 
             // -- Autoriser la configuration de log4net -- //
             log4net.Config.XmlConfigurator.Configure();
+
+            // -- Test -- //
+            Program.Initialiser_BD(url_data + "base_de_donnees.json");
 
             // -- Log du démarage de l'application -- //
             GBClass.Log.Info("Démarrage de l'application");

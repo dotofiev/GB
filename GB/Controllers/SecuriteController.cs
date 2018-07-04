@@ -38,7 +38,7 @@ namespace GB.Controllers
             Charger_Parametres();
 
             // -- Titre de la page -- //
-            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Rule_Management})";
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Role_and_privilege_management})";
 
             // -- Charger les paramètres de langue de la page -- //
             Charger_Langue_Et_Donnees("Securite-Role");
@@ -65,7 +65,7 @@ namespace GB.Controllers
         #region HttpPost
         // -- Charger les données dans la table -- //
         [HttpPost]
-        public override ActionResult Charger_Table(string id_page)
+        public override ActionResult Charger_Table(string id_page, string id_vue)
         {
             try
             {
@@ -122,28 +122,58 @@ namespace GB.Controllers
                 #region Securite-Role
                 else if (id_page == "Securite-Role")
                 {
-                    foreach (var val in RoleDAO.Lister())
+                    // -- Si la vue n'est pas soumies -- //
+                    if (string.IsNullOrEmpty(id_vue))
                     {
-                        donnee.Add(
-                            new
-                            {
-                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"role\" value=\"role_{val.id}\">",
-                                col_2 = val.code,
-                                col_3 = val.libelle_fr,
-                                col_4 = val.libelle_en,
-                                col_5 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                        foreach (var val in RoleDAO.Lister())
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"role\" value=\"role_{val.id}\">",
+                                    col_2 = val.code,
+                                    col_3 = val.libelle_fr,
+                                    col_4 = val.libelle_en,
+                                    col_5 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
                                                               title=""{Lang.Delete}"" 
                                                               class=""btn btn-xs btn-round""
                                                               onClick=""table_donnee_supprimer({ids}, true)""
                                                               data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
                                           <i class=""fa fa-minus text-danger""></i>
                                         </button>"
-                                        .Replace("{id}", val.id.ToString())
-                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
-                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
-                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
-                            }
-                        );
+                                            .Replace("{id}", val.id.ToString())
+                                            .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                            .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                            .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                }
+                            );
+                        }
+                    }
+                    // -- Si c'est la vue configuration -- //
+                    else if (id_vue == "autorisation")
+                    {
+                        foreach (var val in (this.con.donnee.autorisation as List<Autorisation>).Where(l => l.id_role == Convert.ToInt64(this.con.donnee.id_role)))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"autorisation\" value=\"autorisation_{val.id}\">",
+                                    col_2 = val.menu.code,
+                                    col_3 = (id_lang == 0) ? val.menu.libelle_en 
+                                                           : val.menu.libelle_fr,
+                                    col_4 = (val.ajouter) ? @"<i class=""fa fa-check fa-2x""></i>"
+                                                          : @"<i class=""fa fa-remove fa-2x""></i>",
+                                    col_5 = (val.modifier) ? @"<i class=""fa fa-check fa-2x""></i>"
+                                                           : @"<i class=""fa fa-remove fa-2x""></i>",
+                                    col_6 = (val.supprimer) ? @"<i class=""fa fa-check fa-2x""></i>"
+                                                            : @"<i class=""fa fa-remove fa-2x""></i>",
+                                    col_7 = (val.imprimer) ? @"<i class=""fa fa-check fa-2x""></i>"
+                                                           : @"<i class=""fa fa-remove fa-2x""></i>",
+                                    col_8 = (val.lister) ? @"<i class=""fa fa-check fa-2x""></i>"
+                                                         : @"<i class=""fa fa-remove fa-2x""></i>"
+                                }
+                            );
+                        }
                     }
                 }
                 #endregion
@@ -305,6 +335,104 @@ namespace GB.Controllers
                     throw new Exception("Le id_page n'a pas été retourné!");
                 }
                 #endregion
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(true);
+                }
+                else
+                {
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(ex.Message, true);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return Json(
+                GBConvert.To_Object(this.ViewBag)
+            );
+        }
+
+        // -- Rchercher les autorisations d'un role -- //
+        [HttpPost]
+        public ActionResult Role_Rechercher_Autorisation(string id_role)
+        {
+            try
+            {
+                // -- Définition de l'id_role rechercher -- //
+                this.con.donnee.id_role = id_role;
+
+                // -- Notificication -- //
+                this.ViewBag.notification = new GBNotification(false);
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(true);
+                }
+                else
+                {
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(ex.Message, true);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return Json(
+                GBConvert.To_Object(this.ViewBag)
+            );
+        }
+
+        // -- Rchercher les autorisations d'un role -- //
+        [HttpPost]
+        public ActionResult Role_Modifier_Autorisation(string ids, string id_action, string etat)
+        {
+            try
+            {
+                // -- Mise à jour des autorisation en session -- //
+                GBConvert.JSON_To<List<long>>(ids).ForEach(id =>
+                {
+                    if (id_action == "1")
+                    {
+                        (this.con.donnee.autorisation as List<Autorisation>).FirstOrDefault(l => l.id == id).ajouter = (etat == "1");
+                    }
+                    else if (id_action == "2")
+                    {
+                        (this.con.donnee.autorisation as List<Autorisation>).FirstOrDefault(l => l.id == id).modifier = (etat == "1");
+                    }
+                    else if (id_action == "3")
+                    {
+                        (this.con.donnee.autorisation as List<Autorisation>).FirstOrDefault(l => l.id == id).supprimer = (etat == "1");
+                    }
+                    else if (id_action == "4")
+                    {
+                        (this.con.donnee.autorisation as List<Autorisation>).FirstOrDefault(l => l.id == id).imprimer = (etat == "1");
+                    }
+                    else
+                    {
+                        (this.con.donnee.autorisation as List<Autorisation>).FirstOrDefault(l => l.id == id).lister = (etat == "1");
+                    }
+                });
+
+                // -- Notificication -- //
+                this.ViewBag.notification = new GBNotification(false);
             }
             #region Catch
             catch (Exception ex)
@@ -618,14 +746,44 @@ namespace GB.Controllers
             {
                 // -- Langue -- //
                 #region Langue
-                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Rule_Management;
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Role_and_privilege_management;
                 this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
                 this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
                 this.ViewBag.Lang.Rules = App_Lang.Lang.Rules;
+                this.ViewBag.Lang.Enable = App_Lang.Lang.Enable;
+                this.ViewBag.Lang.Disable = App_Lang.Lang.Disable;
+                this.ViewBag.Lang.Add = App_Lang.Lang.Add;
+                this.ViewBag.Lang.Modify = App_Lang.Lang.Modify;
+                this.ViewBag.Lang.Delete = App_Lang.Lang.Delete;
+                this.ViewBag.Lang.Print = App_Lang.Lang.Print;
+                this.ViewBag.Lang.Listing = App_Lang.Lang.Listing;
+                this.ViewBag.Lang.Save = App_Lang.Lang.Save;
+                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
+                this.ViewBag.Lang.Rule_Management = App_Lang.Lang.Rule_Management;
+                this.ViewBag.Lang.Privilege_management = App_Lang.Lang.Privilege_management;
+                this.ViewBag.Lang.Search_a_role = App_Lang.Lang.Search_a_role;
+                this.ViewBag.Lang.Search = App_Lang.Lang.Search;
+                this.ViewBag.Lang.Search_by = App_Lang.Lang.Search_by;
+                this.ViewBag.Lang.New_menus = App_Lang.Lang.New_menus;
+                this.ViewBag.Lang.Delete_menus = App_Lang.Lang.Delete_menus;
+                this.ViewBag.Lang.Select = App_Lang.Lang.Select;
                 #endregion
 
                 // -- Données -- //
                 #region Données
+                #region HTML_Select_Role
+                this.ViewBag.donnee.HTML_Select_code_role =
+                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                this.ViewBag.donnee.HTML_Select_code_libelle =
+                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                foreach (var val in Program.db.roles)
+                {
+                    this.ViewBag.donnee.HTML_Select_code_role +=
+                        $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
+                    this.ViewBag.donnee.HTML_Select_code_libelle +=
+                        $"<option value=\"{val.id}\" title=\"{((id_lang == 0) ? val.libelle_en : val.libelle_fr)}\">{((id_lang == 0) ? val.libelle_en : val.libelle_fr)}</option>";
+                }
+                #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
@@ -633,6 +791,12 @@ namespace GB.Controllers
                                                     titre = this.ViewBag.Title,
                                                 }
                                             );
+                // -- Vider les données temporaire -- //
+                this.con.Vider_Donnee();
+                // - Mise à jour des données de vue -- //
+                this.con.donnee.autorisation = new List<Autorisation>();
+                (this.con.donnee.autorisation as List<Autorisation>).AddRange(this.con.autorisation);
+                this.con.donnee.id_role = 0;
                 #endregion
             }
             #endregion

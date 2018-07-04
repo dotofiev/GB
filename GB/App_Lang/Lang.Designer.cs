@@ -61,6 +61,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string All {
@@ -147,6 +156,33 @@ namespace GB.App_Lang {
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete menus.
+        /// </summary>
+        public static string Delete_menus {
+            get {
+                return ResourceManager.GetString("Delete_menus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable.
+        /// </summary>
+        public static string Disable {
+            get {
+                return ResourceManager.GetString("Disable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable.
+        /// </summary>
+        public static string Enable {
+            get {
+                return ResourceManager.GetString("Enable", resourceCulture);
             }
         }
         
@@ -241,6 +277,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Listing.
+        /// </summary>
+        public static string Listing {
+            get {
+                return ResourceManager.GetString("Listing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string Login {
@@ -286,6 +331,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modify.
+        /// </summary>
+        public static string Modify {
+            get {
+                return ResourceManager.GetString("Modify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Module management.
         /// </summary>
         public static string Module_Management {
@@ -309,6 +363,15 @@ namespace GB.App_Lang {
         public static string New {
             get {
                 return ResourceManager.GetString("New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New menus.
+        /// </summary>
+        public static string New_menus {
+            get {
+                return ResourceManager.GetString("New_menus", resourceCulture);
             }
         }
         
@@ -376,6 +439,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Privilege management.
+        /// </summary>
+        public static string Privilege_management {
+            get {
+                return ResourceManager.GetString("Privilege_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Process.
         /// </summary>
         public static string Process {
@@ -412,6 +484,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role and privilege management.
+        /// </summary>
+        public static string Role_and_privilege_management {
+            get {
+                return ResourceManager.GetString("Role_and_privilege_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rule management.
         /// </summary>
         public static string Rule_Management {
@@ -435,6 +516,33 @@ namespace GB.App_Lang {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search a role.
+        /// </summary>
+        public static string Search_a_role {
+            get {
+                return ResourceManager.GetString("Search_a_role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search by.
+        /// </summary>
+        public static string Search_by {
+            get {
+                return ResourceManager.GetString("Search_by", resourceCulture);
             }
         }
         

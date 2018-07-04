@@ -39,13 +39,13 @@
 
                 <li role="presentation" class="active">
                     <a href="#tab_content1" id="gestion-role" role="tab" data-toggle="tab" aria-expanded="true">
-                        <i class="fa fa-square"></i> @ViewBag.Lang.Rules
+                        <i class="fa fa-square"></i> @ViewBag.Lang.Rule_Management
                     </a>
                 </li>
 
                 <li role="presentation" class="">
                     <a href="#tab_content2" role="tab" id="configuration-role" data-toggle="tab" aria-expanded="false">
-                        <i class="fa fa-cubes"></i> Configurations
+                        <i class="fa fa-cubes"></i> @ViewBag.Lang.Privilege_management
                     </a>
                 </li>
 
@@ -130,7 +130,162 @@
                                 <!-- Boutons d'actions -->
                                 <div class="pull-left">
 
+                                    <button class="btn btn-info" id="btn-autorisation-ajouter-menu" type="button" onclick="gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message })">
+                                        <i class="fa fa-plus"></i> @ViewBag.Lang.New_menus
+                                    </button>
+                                    <button class="btn btn-danger" id="btn-autorisation-supprimer-menu" type="button" onclick="gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message })"
+                                            data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
+                                        <i class="fa fa-remove"></i> @ViewBag.Lang.Delete_menus
+                                    </button>
+
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" id="btn-autorisation-ajouter" class="btn btn-default dropdown-toggle" type="button" aria-expanded="false">
+                                            <i class="fa fa-plus"></i> <span class="hidden-xs">@ViewBag.Lang.Add</span> <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <ul role="menu" class="dropdown-menu">
+                                            <li>
+                                                <a href="javascript:;" class="gbtemp" name="1,1">
+                                                    <i class="fa fa-lock"></i> @ViewBag.Lang.Enable
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" class="gbtemp" name="1,0">
+                                                    <i class="fa fa-unlock-alt"></i> @ViewBag.Lang.Disable
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" id="btn-autorisation-modifier" class="btn btn-default dropdown-toggle" type="button" aria-expanded="false">
+                                            <i class="fa fa-refresh"></i> <span class="hidden-xs">@ViewBag.Lang.Modify</span> <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <ul role="menu" class="dropdown-menu">
+                                            <li>
+                                                <a href="javascript:;" class="gbtemp" name="2,1">
+                                                    <i class="fa fa-lock"></i> @ViewBag.Lang.Enable
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" class="gbtemp" name="2,0">
+                                                    <i class="fa fa-unlock-alt"></i> @ViewBag.Lang.Disable
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" id="btn-autorisation-supprimer" class="btn btn-default dropdown-toggle" type="button" aria-expanded="false">
+                                            <i class="fa fa-remove"></i> <span class="hidden-xs">@ViewBag.Lang.Delete</span> <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <ul role="menu" class="dropdown-menu">
+                                            <li>
+                                                <a href="javascript:;" class="gbtemp" name="3,1">
+                                                    <i class="fa fa-lock"></i> @ViewBag.Lang.Enable
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" class="gbtemp" name="3,0">
+                                                    <i class="fa fa-unlock-alt"></i> @ViewBag.Lang.Disable
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" id="btn-autorisation-imprimmer" class="btn btn-default dropdown-toggle" type="button" aria-expanded="false">
+                                            <i class="fa fa-print"></i> <span class="hidden-xs">@ViewBag.Lang.Print</span> <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <ul role="menu" class="dropdown-menu">
+                                            <li>
+                                                <a href="javascript:;" class="gbtemp" name="4,1">
+                                                    <i class="fa fa-lock"></i> @ViewBag.Lang.Enable
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" class="gbtemp" name="4,0">
+                                                    <i class="fa fa-unlock-alt"></i> @ViewBag.Lang.Disable
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button data-toggle="dropdown" id="btn-autorisation-lister" class="btn btn-default dropdown-toggle" type="button" aria-expanded="false">
+                                            <i class="fa fa-list"></i> <span class="hidden-xs">@ViewBag.Lang.Listing</span> <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <ul role="menu" class="dropdown-menu">
+                                            <li>
+                                                <a href="javascript:;" class="gbtemp" name="5,1">
+                                                    <i class="fa fa-lock"></i> @ViewBag.Lang.Enable
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" class="gbtemp" name="5,0">
+                                                    <i class="fa fa-unlock-alt"></i> @ViewBag.Lang.Disable
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
                                 </div>
+
+                                <div class="pull-right">
+
+                                    <button class="btn btn-success" id="btn-autorisation-enregistrer" type="button" onclick="gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message })"
+                                            data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
+                                            <i class="fa fa-check"></i> <span class="hidden-xs" style="color: white;font-weight: bold;">@ViewBag.Lang.Save</span>    
+                                    </button>
+
+                                </div>
+
+                                <div class="clearfix"></div>
+
+                            </div>
+
+                            <!-- Formulaire de recherche des rôles -->
+                            <div class="x_title">
+
+                                <form method="post" id="form-configuration" name="form" data-parsley-validate>
+
+                                    <fieldset>
+                                        <!-- Libellé du fieldset -->
+                                        <legend>
+                                            <i class="fa fa-search"></i> @ViewBag.Lang.Search_a_role
+                                        </legend>
+
+                                        <div class="row">
+
+                                            <div class="col-xs-12 col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="form_role_code">@ViewBag.Lang.Search_by Code :</label>
+                                                    <select class="form-control" name="id_role" id="form_role_code" onchange="$('#form_role_libelle').val($('#form_role_code').val());" required>
+                                                        @Html.Raw(ViewBag.donnee.HTML_Select_code_role)
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="form_role_libelle">@ViewBag.Lang.Search_by @ViewBag.Lang.Name :</label>
+                                                    <select class="form-control" name="libelle" id="form_role_libelle" onchange="$('#form_role_code').val($('#form_role_libelle').val());" required>
+                                                        @Html.Raw(ViewBag.donnee.HTML_Select_code_libelle)
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-lg-4">
+                                                <!-- #region Espacement -->
+                                                <label class="hidden-xs">&nbsp;</label>
+                                                <br class="hidden-xs" />
+                                                <!-- #endregion -->
+                                                <button class="btn btn-default pull-right" id="btn-configuration-rechercher-role" type="submit"
+                                                        data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
+                                                    <i class="fa fa-check"></i> @ViewBag.Lang.Search
+                                                </button>
+                                            </div>
+
+                                        </div>
+
+                                    </fieldset>
+
+                                </form>
 
                                 <div class="clearfix"></div>
 
@@ -139,7 +294,31 @@
                             <div class="x_content">
 
                                 <!-- Table des données -->
-                                
+                                <table id="table-configuration-donnee" class="table table-condensed jambo_table bulk_action dt-responsive nowrap" cellspacing="0" width="100%;">
+
+                                    <thead class="headings">
+                                        <tr>
+                                            <th width="20px">
+                                                <input type="checkbox" id="check-configuration-all" class="flat">
+                                            </th>
+                                            <th class="column-title">Code menu</th>
+                                            <th class="column-title">@ViewBag.Lang.Name menu</th>
+                                            <th class="column-title">@ViewBag.Lang.Add</th>
+                                            <th class="column-title">@ViewBag.Lang.Modify</th>
+                                            <th class="column-title">@ViewBag.Lang.Delete</th>
+                                            <th class="column-title">@ViewBag.Lang.Print</th>
+                                            <th class="column-title last">@ViewBag.Lang.Listing</th>
+                                            <th class="bulk-actions" colspan="7">
+                                                <a class="antoo" style="color:#fff; font-weight:500;">
+                                                    Selection(s) ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i>
+                                                </a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody></tbody>
+
+                                </table>
 
                             </div>
 

@@ -12,6 +12,90 @@ var $GB_DONNEE_PARAMETRES = null;
 var fonction_en_Timeout;
 var fonction_en_Interval;
 
+// -- Récupérer la liste des identifiants sélectionné dans une table -- //
+function gbSelectionIdsTable(name) {
+
+    // -- Réccupérer les données electionné -- //
+    var selection = $('input[name="' + name + '"]:checked');
+
+    // -- Si la taille est supérieurs à 0 -- //
+    if (selection.length == 0) {
+        return [];
+    }
+
+    // -- Mise à jour de l'etat de la selection -- //
+    selection = selection.serialize().split('&');
+
+    // -- Appel de la fonction -- //
+    var ids = [];
+    // -- Réccupération des id -- //
+    for (var i = 0; i < selection.length; i++) {
+        ids.push(selection[i].replace(name + '=' + name + '_', ''));
+    }
+
+    return ids;
+
+}
+
+// -- Recharger la table -- //
+function gbRechargerTable(frame, id_check_all, id_table) {
+
+    // -- Mise à jour paramètre id_check_all -- //
+    if (id_check_all == undefined || id_check_all == null) {
+        id_check_all = 'check-all';
+    }
+
+    // -- Mise à jour paramètre id_check_all -- //
+    if (id_table == undefined || id_table == null) {
+        id_table = 'table-donnee';
+    }
+
+    // -- Recharger la table -- //
+    $('#' + id_table).DataTable().ajax.reload(
+        function () {
+            // -- Teste si c'est un seul element -- //
+            if (frame) {
+                // -- cacher le chargement -- //
+                gbAfficher_Page_Chargement(false);
+            }
+            // -- Reset la taille de la table -- //
+            $('#' + id_table).DataTable().columns.adjust().draw();
+            // -- Selectionner une ligne de la table -- //
+            gbTableSelectionLigne(null, id_table);
+            // -- Désactiver le multiselect -- //
+            $('#' + id_check_all).iCheck('uncheck');
+            $('#' + id_table + ' .column-title').show();
+            $('#' + id_table + ' .bulk-actions').hide();
+        }
+    );
+
+}
+
+// -- Selectionner une ligne de la table -- //
+function gbTableSelectionLigne(ligne, id_table) {
+
+    // -- Mise à jour du id_table si celui ci n'est pas soumis -- //
+    if (id_table == undefined || id_table == null) {
+        id_table = 'table-donnee';
+    }
+
+    // -- Suppression de toutes les lignes delectionnées -- //
+    $('#' + id_table + ' tbody tr').each(
+        function () {
+            // -- Si l'element n'a pas la classe passer -- //
+            if ($(this).hasClass(class_table_selection)) {
+                $(this).removeClass(class_table_selection);
+            }
+        }
+    );
+
+    // -- Mise à jour de la couleur de la ligne -- //
+    if (ligne != undefined && ligne != null) {
+        ligne.addClass(class_table_selection);
+    }
+
+}
+
 // -- Activer/Desactiver formulaire -- //
 function gbActiverDesactiverForm(id_form, activer) {
 
@@ -651,7 +735,17 @@ function gbAfficher_Modal_Rechercher_Employe(url_donnee) {
 }
 
 // -- Fonction pour initiliser les style css javascript des tables -- //
-function gbCharger_Css_Table(type_donnee) {
+function gbCharger_Css_Table(type_donnee, id_check_all, id_table) {
+
+    // -- Mise à jour paramètre id_check_all -- //
+    if (id_check_all == undefined || id_check_all == null) {
+        id_check_all = 'check-all';
+    }
+
+    // -- Mise à jour paramètre id_check_all -- //
+    if (id_table == undefined || id_table == null) {
+        id_table = 'table-donnee';
+    }
 
     // iCheck
     if ($("input.flat")[0]) {
@@ -665,12 +759,12 @@ function gbCharger_Css_Table(type_donnee) {
     $('table input').on('ifChecked', function () {
         checkState = '';
         $(this).parent().parent().parent().addClass('selected');
-        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState, id_check_all, id_table);
     });
     $('table input').on('ifUnchecked', function () {
         checkState = '';
         $(this).parent().parent().parent().removeClass('selected');
-        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState, id_check_all, id_table);
     });
 
     var checkState = '';
@@ -678,26 +772,26 @@ function gbCharger_Css_Table(type_donnee) {
     $('.bulk_action input').on('ifChecked', function () {
         checkState = '';
         $(this).parent().parent().parent().addClass('selected');
-        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState, id_check_all, id_table);
     });
     $('.bulk_action input').on('ifUnchecked', function () {
         checkState = '';
         $(this).parent().parent().parent().removeClass('selected');
-        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState, id_check_all, id_table);
     });
-    $('.bulk_action input#check-all').on('ifChecked', function () {
+    $('.bulk_action input#' + id_check_all).on('ifChecked', function () {
         checkState = 'all';
-        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState, id_check_all, id_table);
     });
-    $('.bulk_action input#check-all').on('ifUnchecked', function () {
+    $('.bulk_action input#' + id_check_all).on('ifUnchecked', function () {
         checkState = 'none';
-        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState, id_check_all, id_table);
     });
 
 }
 
 // -- Mettre à jour le label du nombre d'element selectionné -- //
-function gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState) {
+function gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState, id_check_all, id_table) {
 
     if (checkState === 'all') {
         $(".bulk_action input[name='" + type_donnee + "']").iCheck('check');
@@ -709,12 +803,12 @@ function gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState) {
     var checkCount = $(".bulk_action input[name='" + type_donnee + "']:checked").length;
 
     if (checkCount) {
-        $('.column-title').hide();
-        $('.bulk-actions').show();
-        $('.action-cnt').html(checkCount);
+        $('#' + id_table + ' .column-title').hide();
+        $('#' + id_table + ' .bulk-actions').show();
+        $('#' + id_table + ' .action-cnt').html(checkCount);
     } else {
-        $('.column-title').show();
-        $('.bulk-actions').hide();
+        $('#' + id_table + ' .column-title').show();
+        $('#' + id_table + ' .bulk-actions').hide();
     }
 
 }

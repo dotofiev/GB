@@ -16,7 +16,7 @@ namespace GB.Models.BO
         private string _url_photo_profil { get; set; }
         private string _nom_utilisateur { get; set; }
         private dynamic _donnee { get; set; }
-        private List<Autorisation> _role_menus { get; set; }
+        private List<Autorisation> _autorisation { get; set; }
 
         // -- Public -- //
         public string compte { get { return _compte; } }
@@ -27,7 +27,7 @@ namespace GB.Models.BO
         public DateTime date_connexion { get { return _date_connexion; } }
         public long id_utilisateur { get { return _id_utilisateur; } }
         public dynamic donnee { get { return _donnee; } }
-        public List<Autorisation> role_menus { get { return _role_menus; } }
+        public List<Autorisation> autorisation { get { return _autorisation; } }
 
         // -- Constructeur -- //
         public Connexion(string session_id)
@@ -46,7 +46,7 @@ namespace GB.Models.BO
             this._id_utilisateur = utilisateur.id_utilisateur;
             this._nom_utilisateur = utilisateur.nom_utilisateur;
             this._url_photo_profil = "~/Resources/images/png/Utilisateur.png";
-            this._role_menus = Program.db.autorisations.Where(l => l.role.id == 1).ToList();
+            this._autorisation = Program.db.autorisations.Where(l => l.role.id == 1).ToList();
         }
 
         public void Deconnexion()
@@ -57,7 +57,12 @@ namespace GB.Models.BO
             this._id_utilisateur = 0;
             this._nom_utilisateur = string.Empty;
             this._url_photo_profil = "~/Resources/images/png/Utilisateur.png";
-            this._role_menus = new List<Autorisation>();
+            this._autorisation = new List<Autorisation>();
+        }
+
+        public void Vider_Donnee()
+        {
+            this._donnee = new System.Dynamic.ExpandoObject();
         }
         #endregion
     }
