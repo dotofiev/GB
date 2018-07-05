@@ -324,4 +324,16 @@
   <data name="Prt_" xml:space="preserve">
     <value>Prt</value>
   </data>
+  <data name="Necessary_privilege_loading_action" xml:space="preserve">
+    <value>Necessary privilege load action</value>
+  </data>
+  <data name="Permission_denied" xml:space="preserve">
+    <value>Permission denied</value>
+  </data>
+  <data name="Permission_to_list_records_denied" xml:space="preserve">
+    <value>Permission to list records denied</value>
+  </data>
+  <data name="No_changes_have_been_made" xml:space="preserve">
+    <value>No changes have been made</value>
+  </data>
 </root>

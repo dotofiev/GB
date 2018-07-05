@@ -10,6 +10,89 @@ namespace GB.Models.DAO
 {
     public abstract class AutorisationDAO : GBDAO
     {
+        public static void Verification(long id_menu, long id_role, GB_Enum_Action_Controller action)
+        {
+            try
+            {
+                // -- Réccupérer l'autorisation -- //
+                Autorisation autorisation = Program.db.autorisations.FirstOrDefault(l => l.id_menu == id_menu && l.id_role == id_role);
+
+                // -- Verifier la nature de l'autorisation -- //
+                if (!((action == GB_Enum_Action_Controller.Ajouter) ? autorisation?.ajouter ?? false
+                        : (action == GB_Enum_Action_Controller.Modifier) ? autorisation?.modifier ?? false
+                            : (action == GB_Enum_Action_Controller.Supprimer) ? autorisation?.supprimer ?? false
+                                : (action == GB_Enum_Action_Controller.Imprimer) ? autorisation?.imprimer ?? false
+                                    : (action == GB_Enum_Action_Controller.Lister) ? autorisation?.lister ?? false
+                                        : false))
+                {
+                    // -- Jeter l'exception -- //
+                    throw new GBException(App_Lang.Lang.Permission_denied);
+                }
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(App_Lang.Lang.Error_message_notification);
+                }
+                else
+                {
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(ex.Message);
+                }
+            }
+            #endregion
+        }
+
+        public static void Verification_Autorisation(long id_menu, long id_role, GB_Enum_Action_Controller action, ref Boolean autorisation_refuse)
+        {
+            try
+            {
+                // -- Réccupérer l'autorisation -- //
+                Autorisation autorisation = Program.db.autorisations.FirstOrDefault(l => l.id_menu == id_menu && l.id_role == id_role);
+
+                // -- Verifier la nature de l'autorisation -- //
+                if (!((action == GB_Enum_Action_Controller.Ajouter) ? autorisation?.ajouter ?? false
+                        : (action == GB_Enum_Action_Controller.Modifier) ? autorisation?.modifier ?? false
+                            : (action == GB_Enum_Action_Controller.Supprimer) ? autorisation?.supprimer ?? false
+                                : (action == GB_Enum_Action_Controller.Imprimer) ? autorisation?.imprimer ?? false
+                                    : (action == GB_Enum_Action_Controller.Lister) ? autorisation?.lister ?? false
+                                        : false))
+                {
+                    // -- Mise à jour de l'etat de la variable -- //
+                    autorisation_refuse = true;
+
+                    // -- Jeter l'exception -- //
+                    throw new GBException(App_Lang.Lang.Permission_denied);
+                }
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(App_Lang.Lang.Error_message_notification);
+                }
+                else
+                {
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(ex.Message);
+                }
+            }
+            #endregion
+        }
+
         public static void Ajouter(Autorisation obj)
         {
             try
@@ -47,30 +130,28 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(Autorisation obj)
+        public static void Modifier(List<Autorisation> obj, long id_role)
         {
             try
             {
-                //// -- Unicité du code -- //
-                //if (Program.db.autorisations.Exists(l => l.id != obj.id && l.code == obj.code))
-                //{
-                //    throw new GBException(App_Lang.Lang.Existing_data + " [code]");
-                //}
+                // -- Vérifier si des modification sont à effectuer -- //
+                if (obj.Count == 0)
+                {
+                    throw new GBException(App_Lang.Lang.No_changes_have_been_made);
+                }
 
-                //// -- Modification de la valeur -- //
-                //Program.db.autorisations
-                //    // -- Spécifier la recherche -- //
-                //    .Where(l => l.id == obj.id)
-                //    // -- Lister le résultat -- //
-                //    .ToList()
-                //    // -- Parcourir les elements résultats -- //
-                //    .ForEach(l =>
-                //    {
-                //        // -- Mise à jour de l'enregistrement -- //
-                //        l.code = obj.code;
-                //        l.libelle_en = obj.libelle_en;
-                //        l.libelle_fr = obj.libelle_fr;
-                //    });
+                // -- Suppression des anciennes valeurs -- //
+                Program.db.autorisations.RemoveAll(l => l.id_role == id_role);
+
+                // -- Mise à jour des identifiant et objets -- //
+                long id = 1;
+                obj.ForEach(autorisation =>
+                {
+                    autorisation.id = (id++);
+                });
+
+                // -- Modification de la valeur -- //
+                Program.db.autorisations.AddRange(obj);
             }
             #region Catch
             catch (Exception ex)

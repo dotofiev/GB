@@ -325,4 +325,16 @@
   <data name="Prt_" xml:space="preserve">
     <value>Imp</value>
   </data>
+  <data name="Necessary_privilege_loading_action" xml:space="preserve">
+    <value>Action de chargement de privilège nécessaire</value>
+  </data>
+  <data name="Permission_denied" xml:space="preserve">
+    <value>Autorisation refusée</value>
+  </data>
+  <data name="Permission_to_list_records_denied" xml:space="preserve">
+    <value>Autorisation de lister les enregistrements refusés</value>
+  </data>
+  <data name="No_changes_have_been_made" xml:space="preserve">
+    <value>Aucune modification n'a été effectuée</value>
+  </data>
 </root>

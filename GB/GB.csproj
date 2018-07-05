@@ -387,6 +387,10 @@
     <Content Include="Plugins\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.js" />
     <Content Include="Plugins\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.min.css" />
     <Content Include="Plugins\malihu-custom-scrollbar-plugin\mCSB_buttons.png" />
+    <Content Include="Plugins\notify\pnotify.buttons.js" />
+    <Content Include="Plugins\notify\pnotify.core.js" />
+    <Content Include="Plugins\notify\pnotify.nonblock.js" />
+    <Content Include="Plugins\notify\pnotity.css" />
     <Content Include="Plugins\nprogress\index.html" />
     <Content Include="Plugins\nprogress\nprogress.css" />
     <Content Include="Plugins\nprogress\nprogress.js" />

@@ -12,6 +12,45 @@ var $GB_DONNEE_PARAMETRES = null;
 var fonction_en_Timeout;
 var fonction_en_Interval;
 
+// -- Notifier en cas d'autorisation de liste refusé -- //
+function gbNotificationListerRefuser(notification) {
+
+    if (notification.dynamique.autorisation_refuse) {
+        gbMessage_Box({ est_echec: true, message: $GB_DONNEE_PARAMETRES.Lang.Permission_to_list_records_denied });
+    }
+
+}
+
+// -- AJouter un element dans une liste -- //
+function gbAddInList(list, element) {
+
+    // -- Initialiser la liste si elle est vide -- //
+    if (list == undefined || list == null) {
+        list = [];
+    }
+
+    // -- AJouter -- //
+    list.push(element);
+
+    return list;
+
+}
+
+// -- Retirer un element dans une liste -- //
+function gbRemoveInList(list, element) {
+
+    // -- Initialiser la liste si elle est vide -- //
+    if (list == undefined || list == null) {
+        return [];
+    }
+
+    // -- Supprimer -- //
+    list.splice($.inArray(element, list), 1);
+
+    return list;
+
+}
+
 // -- Récupérer la liste des identifiants sélectionné dans une table -- //
 function gbSelectionIdsTable(name) {
 
@@ -690,6 +729,9 @@ function gbAfficher_Modal_Rechercher_Employe(url_donnee) {
                 "url": url_donnee,
                 "type": 'POST',
                 "dataSrc": function (resultat) {
+                    // -- Notifier -- //
+                    gbNotificationListerRefuser(resultat.notification);
+                    // -- Retourner les données -- //
                     return resultat.notification.donnee;
                 }
             },
@@ -971,22 +1013,24 @@ function gbConsole(value) {
 }
 
 // -- Notificateur -- //
-function gbNotification(notification) {
+function gbNotification(notification, titre) {
 
+    // -- Ecoute si le notificateur est soumis -- //
+    if (notification == null || notification == undefined) {
+        notification = {
+            est_echec: true,
+            message: $GB_DONNEE_PARAMETRES.Lang.Error_server_message,
+        }
+    }
+
+    // - Notifier -- //
     new PNotify({
-        title: notification.titre,
-        type: (notification.type == 3) ? 'error'
-                                       : (notification.type == 2) ? 'info'
-                                                                  : 'success',
+        title: titre == undefined || titre == null ? 'Information'
+                                                   : titre,
         text: notification.message,
-        nonblock: {
-            nonblock: true
-        },
-        addclass: (notification.type == 3) ? 'error'
-                                           : (notification.type == 2) ? 'info'
-                                                                      : (notification.type == 1) ? 'success'
-                                                                                                 : 'dark',
-        styling: 'bootstrap3'
+        type: (notification.est_echec === null) ? 'info'
+                                                : (notification.est_echec) ? 'error'
+                                                                           : 'success'
     });
 
 }

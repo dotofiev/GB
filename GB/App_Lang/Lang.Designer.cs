@@ -403,6 +403,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Necessary privilege load action.
+        /// </summary>
+        public static string Necessary_privilege_loading_action {
+            get {
+                return ResourceManager.GetString("Necessary_privilege_loading_action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New.
         /// </summary>
         public static string New {
@@ -426,6 +435,15 @@ namespace GB.App_Lang {
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No changes have been made.
+        /// </summary>
+        public static string No_changes_have_been_made {
+            get {
+                return ResourceManager.GetString("No_changes_have_been_made", resourceCulture);
             }
         }
         
@@ -471,6 +489,24 @@ namespace GB.App_Lang {
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permission denied.
+        /// </summary>
+        public static string Permission_denied {
+            get {
+                return ResourceManager.GetString("Permission_denied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permission to list records denied.
+        /// </summary>
+        public static string Permission_to_list_records_denied {
+            get {
+                return ResourceManager.GetString("Permission_to_list_records_denied", resourceCulture);
             }
         }
         

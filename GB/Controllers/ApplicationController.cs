@@ -1,6 +1,7 @@
 ﻿using GB.Models;
 using GB.Models.ActionFilter;
 using GB.Models.BO;
+using GB.Models.DAO;
 using GB.Models.Static;
 using System;
 using System.Collections.Generic;
@@ -62,7 +63,7 @@ namespace GB.Controllers
                 // -- Photo de l'utilisateur connecté -- //
                 this.ViewBag.donnee.url_photo_profil = this.con.url_photo_profil;
                 // -- Charger les menus de l'utilisateur -- //
-                this.ViewBag.Menus = Menu.Source(this.con.autorisation);
+                this.ViewBag.Menus = Menu.Source(AutorisationDAO.Lister(this.con.id_role));
 
                 // -- Langue -- //
                 #region Langue
@@ -92,6 +93,8 @@ namespace GB.Controllers
                                                             Close = App_Lang.Lang.Close,
                                                             No_item_selected = App_Lang.Lang.No_item_selected,
                                                             Select = App_Lang.Lang.Select,
+                                                            Necessary_privilege_loading_action = App_Lang.Lang.Necessary_privilege_loading_action,
+                                                            Permission_to_list_records_denied = App_Lang.Lang.Permission_to_list_records_denied
                                                     },
                                                     // -- Paramètres -- //
                                                     DUREE_VISIBILITE_MESSAGE_BOX = AppSettings.DUREE_VISIBILITE_MESSAGE_BOX,

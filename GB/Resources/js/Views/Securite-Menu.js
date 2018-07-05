@@ -177,6 +177,9 @@ $(
                     "url": url_ajax_dataTable,
                     "type": 'POST',
                     "dataSrc": function (resultat) {
+                        // -- Notifier -- //
+                        gbNotificationListerRefuser(resultat.notification);
+                        // -- Retourner les données -- //
                         return resultat.notification.donnee;
                     }
                 },

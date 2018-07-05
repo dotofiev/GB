@@ -27,7 +27,7 @@ namespace GB.Controllers
             this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Module_Management})";
 
             // -- Charger les paramètres de langue de la page -- //
-            Charger_Langue_Et_Donnees("Securite-Module");
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.Securite_Module);
 
             return View();
         }
@@ -42,7 +42,7 @@ namespace GB.Controllers
             this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Role_and_privilege_management})";
 
             // -- Charger les paramètres de langue de la page -- //
-            Charger_Langue_Et_Donnees("Securite-Role");
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.Securite_Role);
 
             return View();
         }
@@ -57,7 +57,7 @@ namespace GB.Controllers
             this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Menu_Management})";
 
             // -- Charger les paramètres de langue de la page -- //
-            Charger_Langue_Et_Donnees("Securite-Menu");
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.Securite_Menu);
 
             return View();
         }
@@ -68,13 +68,19 @@ namespace GB.Controllers
         [HttpPost]
         public override ActionResult Charger_Table(string id_page, string id_vue)
         {
+            // -- Variable temporaire de refu d'autorisation -- //
+            Boolean autorisation_refuse = false;
+
             try
             {
+                // -- Vérifier l'autorisation de l'action -- //
+                AutorisationDAO.Verification_Autorisation(id_menu_actif, this.con.id_role, GB_Enum_Action_Controller.Lister, ref autorisation_refuse);
+
                 List<object> donnee = new List<object>();
 
                 // -- Selectionner en fonction du menu - //
                 #region Securite-Module
-                if (id_page == "Securite-Module")
+                if (id_page == GB_Enum_Menu.Securite_Module)
                 {
                     foreach (var val in ModuleDAO.Lister())
                     {
@@ -121,7 +127,7 @@ namespace GB.Controllers
                 #endregion
 
                 #region Securite-Role
-                else if (id_page == "Securite-Role")
+                else if (id_page == GB_Enum_Menu.Securite_Role)
                 {
                     // -- Si la vue n'est pas soumies -- //
                     if (string.IsNullOrEmpty(id_vue))
@@ -158,7 +164,7 @@ namespace GB.Controllers
                             donnee.Add(
                                 new
                                 {
-                                    col_1 = $"<input type=\"checkbox\" class=\"flat gb-temps-icheck-autorisation\" name=\"autorisation\" value=\"autorisation_{val.id}\">",
+                                    col_1 = $"<input type=\"checkbox\" class=\"flat gb-temps-icheck-autorisation\" name=\"autorisation\" value=\"autorisation_{val.id_menu}\">",
                                     col_2 = val.menu.code,
                                     col_3 = (id_lang == 0) ? val.menu.libelle_en 
                                                            : val.menu.libelle_fr,
@@ -184,18 +190,18 @@ namespace GB.Controllers
                             donnee.Add(
                                 new
                                 {
-                                    col_1 = $"<input type=\"checkbox\" class=\"flat gb-temps-icheck-menu\" name=\"menu\" value=\"menu_{val.id}\" >",
+                                    col_1 = $"<input type=\"checkbox\" class=\"flat gb-temps-icheck-menu\" id_menu=\"{val.id_menu}\" name=\"menu\" value=\"menu_{val.id_menu}\" etat=\"false\" >",
                                     col_2 = (id_lang == 0) ? val.menu.libelle_en
                                                            : val.menu.libelle_fr,
                                     col_3 = (id_lang == 0) ? val.menu.groupe_menu.libelle_en
                                                            : val.menu.groupe_menu.libelle_fr,
                                     col_4 = (id_lang == 0) ? val.menu.groupe_menu.module.libelle_en
                                                            : val.menu.groupe_menu.module.libelle_fr,
-                                    col_5 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" name=\"ajouter\"     value=\"{val.ajouter}\">",
-                                    col_6 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" name=\"modifier\"    value=\"{val.modifier}\">",
-                                    col_7 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" name=\"supprimer\"   value=\"{val.supprimer}\">",
-                                    col_8 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" name=\"imprimer\"    value=\"{val.imprimer}\">",
-                                    col_9 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" name=\"lister\"      value=\"{val.lister}\">",
+                                    col_5 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" id_menu=\"{val.id_menu}\" name=\"ajouter\" etat=\"false\" />",
+                                    col_6 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" id_menu=\"{val.id_menu}\" name=\"modifier\" etat=\"false\" />",
+                                    col_7 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" id_menu=\"{val.id_menu}\" name=\"supprimer\" etat=\"false\" />",
+                                    col_8 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" id_menu=\"{val.id_menu}\" name=\"imprimer\" etat=\"false\" />",
+                                    col_9 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" id_menu=\"{val.id_menu}\" name=\"lister\" etat=\"false\" />",
                                 }
                             );
                         }
@@ -204,7 +210,7 @@ namespace GB.Controllers
                 #endregion
 
                 #region Securite-Menu
-                else if (id_page == "Securite-Menu")
+                else if (id_page == GB_Enum_Menu.Securite_Menu)
                 {
                     foreach (var val in MenuDAO.Lister())
                     {
@@ -248,11 +254,20 @@ namespace GB.Controllers
             #region catch & finally
             catch (Exception ex)
             {
-                // -- Log -- //
-                GBClass.Log.Error(ex);
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
 
-                // -- Réccupération du message d'exception -- //
-                this.ViewBag.notification = new GBNotification(true);
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(true);
+                }
+                else
+                {
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(ex.Message, true);
+                }
             }
             finally
             {
@@ -260,6 +275,9 @@ namespace GB.Controllers
                 if (this.ViewBag.notification.est_echec)
                 {
                     this.ViewBag.notification.donnee = new List<object>();
+
+                    // -- Envoi du paramètre si l'autorisation a été refusé -- //
+                    this.ViewBag.notification.dynamique.autorisation_refuse = autorisation_refuse;
                 }
             }
             #endregion
@@ -278,7 +296,7 @@ namespace GB.Controllers
             {
                 // -- Selectionner en fonction du menu - //
                 #region Securite-Module
-                if (id_page == "Securite-Module")
+                if (id_page == GB_Enum_Menu.Securite_Module)
                 {
                     // -- Mise à jour de l'role dans la session -- //
                     var obj = ModuleDAO.Object(code);
@@ -303,7 +321,7 @@ namespace GB.Controllers
                 #endregion
 
                 #region Securite-Role
-                else if (id_page == "Securite-Role")
+                else if (id_page == GB_Enum_Menu.Securite_Role)
                 {
                     // -- Mise à jour de l'role dans la session -- //
                     var obj = RoleDAO.Object(code);
@@ -328,7 +346,7 @@ namespace GB.Controllers
                 #endregion
 
                 #region Securite-Menu
-                else if (id_page == "Securite-Menu")
+                else if (id_page == GB_Enum_Menu.Securite_Menu)
                 {
                     // -- Mise à jour de l'role dans la session -- //
                     var obj = MenuDAO.Object(code);
@@ -393,6 +411,8 @@ namespace GB.Controllers
         {
             try
             {
+                // -- Départ de l'id session -- //
+                long id_autorisation = AutorisationDAO.Crer_Id() + 1;
                 // -- Définition de l'id_role rechercher -- //
                 this.con.donnee.id_role = id_role;
                 // -- Mise à jour des autorisation -- //
@@ -408,8 +428,8 @@ namespace GB.Controllers
                            .Select(l =>
                                 new Autorisation()
                                 {
-                                    id = AutorisationDAO.Crer_Id(),
-                                    code = "000",
+                                    id = (id_autorisation++),
+                                    code = (id_autorisation - 1).ToString(),
                                     ajouter = false,
                                     modifier = false,
                                     supprimer = false,
@@ -459,29 +479,168 @@ namespace GB.Controllers
             try
             {
                 // -- Mise à jour des autorisation en session -- //
-                GBConvert.JSON_To<List<long>>(ids).ForEach(id =>
+                GBConvert.JSON_To<List<long>>(ids).ForEach(id_menu =>
                 {
                     if (id_action == "1")
                     {
-                        (this.con.donnee.autorisation as List<Autorisation>).FirstOrDefault(l => l.id == id).ajouter = (etat == "1");
+                        (this.con.donnee.autorisation as List<Autorisation>).FirstOrDefault(l => l.id_menu == id_menu).ajouter = (etat == "1");
                     }
                     else if (id_action == "2")
                     {
-                        (this.con.donnee.autorisation as List<Autorisation>).FirstOrDefault(l => l.id == id).modifier = (etat == "1");
+                        (this.con.donnee.autorisation as List<Autorisation>).FirstOrDefault(l => l.id_menu == id_menu).modifier = (etat == "1");
                     }
                     else if (id_action == "3")
                     {
-                        (this.con.donnee.autorisation as List<Autorisation>).FirstOrDefault(l => l.id == id).supprimer = (etat == "1");
+                        (this.con.donnee.autorisation as List<Autorisation>).FirstOrDefault(l => l.id_menu == id_menu).supprimer = (etat == "1");
                     }
                     else if (id_action == "4")
                     {
-                        (this.con.donnee.autorisation as List<Autorisation>).FirstOrDefault(l => l.id == id).imprimer = (etat == "1");
+                        (this.con.donnee.autorisation as List<Autorisation>).FirstOrDefault(l => l.id_menu == id_menu).imprimer = (etat == "1");
                     }
                     else
                     {
-                        (this.con.donnee.autorisation as List<Autorisation>).FirstOrDefault(l => l.id == id).lister = (etat == "1");
+                        (this.con.donnee.autorisation as List<Autorisation>).FirstOrDefault(l => l.id_menu == id_menu).lister = (etat == "1");
                     }
                 });
+
+                // -- Notificication -- //
+                this.ViewBag.notification = new GBNotification(false);
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(true);
+                }
+                else
+                {
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(ex.Message, true);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return Json(
+                GBConvert.To_Object(this.ViewBag)
+            );
+        }
+
+        // -- Ajouter ou supprimer des menus à un rôle -- //
+        [HttpPost]
+        public ActionResult Role_Ajouter_Supprimer_Menu(string data, Boolean ajouter)
+        {
+            try
+            {
+                // -- Traitement en fonction de l'action -- //
+                #region ajouter
+                if (ajouter)
+                {
+                    // -- Convertion de la selection -- //
+                    List<Autorisation> selection = GBConvert.JSON_To<List<Autorisation>>(data);
+
+                    // -- Suppression des autorisation non configuré -- //
+                    selection.RemoveAll(l => !l.ajouter && !l.modifier && !l.supprimer && !l.imprimer && !l.lister);
+
+                    // -- Vérifier si la liste contient encore des données -- //
+                    if (selection.Count == 0)
+                    {
+                        throw new GBException("Aucun menu configuré!");
+                    }
+
+                    // -- Suppression des autorisations disponible -- //
+                    (this.con.donnee.autorisation_disponible as List<Autorisation>).RemoveAll(l => selection.Count(ll => ll.id_menu == l.id_menu) != 0);
+
+                    // -- Mise à jour des references de la selection -- //
+                    selection.ForEach(l =>
+                    {
+                        l.id_role = Convert.ToInt64(this.con.donnee.id_role);
+                        l.role = RoleDAO.Object(Convert.ToInt64(this.con.donnee.id_role));
+                        l.menu = MenuDAO.Object(l.id_menu);
+                    });
+
+                    // -- AJout dans les autorisation temporaire -- //
+                    (this.con.donnee.autorisation as List<Autorisation>).AddRange(selection);
+                }
+                #endregion
+
+                #region supprimer
+                else
+                {
+                    // -- Convertion de la selection -- //
+                    List<long> ids = GBConvert.JSON_To<List<long>>(data);
+
+                    // -- Suppression dans les autorisation temporaire -- //
+                    (this.con.donnee.autorisation as List<Autorisation>).RemoveAll(l => ids.Count(ll => ll == l.id_menu) != 0);
+
+                    // -- Ajout à la liste des autorisations disponible -- //
+                    ids.ForEach(id_menu =>
+                    {
+                        (this.con.donnee.autorisation_disponible as List<Autorisation>).Add(
+                            new Autorisation
+                            {
+                                id = 0,
+                                id_menu = id_menu,
+                                id_role = Convert.ToInt64(this.con.donnee.id_role),
+                                ajouter = false,
+                                modifier = false,
+                                supprimer = false,
+                                imprimer = false,
+                                lister = false,
+                                role = RoleDAO.Object(Convert.ToInt64(this.con.donnee.id_role)),
+                                menu = MenuDAO.Object(id_menu)
+                            }
+                        );
+                    });
+                }
+                #endregion
+
+                // -- Notificication -- //
+                this.ViewBag.notification = new GBNotification(false);
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(true);
+                }
+                else
+                {
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(ex.Message, true);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return Json(
+                GBConvert.To_Object(this.ViewBag)
+            );
+        }
+
+        // -- Enregistrer les modifications survenue sur les autorisations -- //
+        [HttpPost]
+        public ActionResult Role_Enregistrer_Modification()
+        {
+            try
+            {
+                // -- Vérifier l'autorisation de l'action -- //
+                Verifier_Autorisation(GB_Enum_Action_Controller.Modifier);
+
+                // -- Mise à jour des traitements -- //
+                AutorisationDAO.Modifier((this.con.donnee.autorisation as List<Autorisation>), (long)this.con.donnee.id_role);
 
                 // -- Notificication -- //
                 this.ViewBag.notification = new GBNotification(false);
@@ -518,9 +677,12 @@ namespace GB.Controllers
         {
             try
             {
+                // -- Vérifier l'autorisation de l'action -- //
+                Verifier_Autorisation(GB_Enum_Action_Controller.Ajouter);
+
                 // -- Selectionner en fonction du menu - //
                 #region Securite-Module
-                if (id_page == "Securite-Module")
+                if (id_page == GB_Enum_Menu.Securite_Module)
                 {
                     // -- Service d'enregistrement -- //
                     ModuleDAO.Ajouter(GBConvert.JSON_To<Module>(obj));
@@ -528,7 +690,7 @@ namespace GB.Controllers
                 #endregion
 
                 #region Securite-Role
-                else if (id_page == "Securite-Role")
+                else if (id_page == GB_Enum_Menu.Securite_Role)
                 {
                     // -- Service d'enregistrement -- //
                     RoleDAO.Ajouter(GBConvert.JSON_To<Role>(obj));
@@ -536,7 +698,7 @@ namespace GB.Controllers
                 #endregion
 
                 #region Securite-Menu
-                else if (id_page == "Securite-Menu")
+                else if (id_page == GB_Enum_Menu.Securite_Menu)
                 {
                     // -- Service d'enregistrement -- //
                     MenuDAO.Ajouter(GBConvert.JSON_To<Menu>(obj));
@@ -585,9 +747,12 @@ namespace GB.Controllers
         {
             try
             {
+                // -- Vérifier l'autorisation de l'action -- //
+                Verifier_Autorisation(GB_Enum_Action_Controller.Modifier);
+
                 // -- Selectionner en fonction du menu - //
                 #region Securite-Module
-                if (id_page == "Securite-Module")
+                if (id_page == GB_Enum_Menu.Securite_Module)
                 {
                     // -- Service de modification -- //
                     ModuleDAO.Modifier(GBConvert.JSON_To<Module>(obj));
@@ -595,7 +760,7 @@ namespace GB.Controllers
                 #endregion
 
                 #region Securite-Role
-                else if (id_page == "Securite-Role")
+                else if (id_page == GB_Enum_Menu.Securite_Role)
                 {
                     // -- Service de modification -- //
                     RoleDAO.Modifier(GBConvert.JSON_To<Role>(obj));
@@ -603,7 +768,7 @@ namespace GB.Controllers
                 #endregion
 
                 #region Securite-Menu
-                else if (id_page == "Securite-Menu")
+                else if (id_page == GB_Enum_Menu.Securite_Menu)
                 {
                     // -- Service de modification -- //
                     MenuDAO.Modifier(GBConvert.JSON_To<Menu>(obj));
@@ -652,9 +817,12 @@ namespace GB.Controllers
         {
             try
             {
+                // -- Vérifier l'autorisation de l'action -- //
+                Verifier_Autorisation(GB_Enum_Action_Controller.Supprimer);
+
                 // -- Selectionner en fonction du menu - //
                 #region Securite-Module
-                if (id_page == "Securite-Module")
+                if (id_page == GB_Enum_Menu.Securite_Module)
                 {
                     // -- Service de suppression -- //
                     ModuleDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
@@ -662,7 +830,7 @@ namespace GB.Controllers
                 #endregion
 
                 #region Securite-Role
-                else if (id_page == "Securite-Role")
+                else if (id_page == GB_Enum_Menu.Securite_Role)
                 {
                     // -- Service de suppression -- //
                     RoleDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
@@ -670,7 +838,7 @@ namespace GB.Controllers
                 #endregion
 
                 #region Securite-Menu
-                else if (id_page == "Securite-Menu")
+                else if (id_page == GB_Enum_Menu.Securite_Menu)
                 {
                     // -- Service de suppression -- //
                     MenuDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
@@ -770,9 +938,12 @@ namespace GB.Controllers
         {
             // -- Identifiant de la page -- //
             this.ViewBag.Id_page = id_page;
+            
+            // -- Définition du menu actif -- //
+            id_menu_actif = MenuDAO.Object(id_page.Split('-')[0], id_page.Split('-')[1]).id;
 
             #region Securite-Module
-            if (id_page == "Securite-Module")
+            if (id_page == GB_Enum_Menu.Securite_Module)
             {
                 // -- Langue -- //
                 #region Langue
@@ -794,7 +965,7 @@ namespace GB.Controllers
             #endregion
 
             #region Securite-Role
-            else if (id_page == "Securite-Role")
+            else if (id_page == GB_Enum_Menu.Securite_Role)
             {
                 // -- Langue -- //
                 #region Langue
@@ -865,7 +1036,7 @@ namespace GB.Controllers
             #endregion
 
             #region Securite-Menu
-            else if (id_page == "Securite-Menu")
+            else if (id_page == GB_Enum_Menu.Securite_Menu)
             {
                 // -- Langue -- //
                 #region Langue

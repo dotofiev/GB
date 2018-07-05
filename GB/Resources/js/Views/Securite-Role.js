@@ -11,6 +11,9 @@ var btn_imprimmer = $('#btn-imprimmer');
 var btn_enregistrer = $('#btn-enregistrer');
 var btn_rechercher_role = $('#btn-configuration-rechercher-role');
 var btn_selectionner_menu = $('#btn-configuration-selectionner');
+var btn_ajouter_menu = $('#btn-autorisation-ajouter-menu');
+var btn_supprimer_menu = $('#btn-autorisation-supprimer-menu');
+var btn_synchronisation_autorisation = $('#btn-autorisation-enregistrer');
 var btn_table;
 var form = $('#form');
 var form_configuration = $('#form-configuration');
@@ -130,6 +133,39 @@ try {
 
     }
 
+    // -- Mise à jour objet du panie menu -- //
+    function panier_menu_mise_a_jour(action, id_menu, etat) {
+
+        // -- Vérifier les paramètres -- //
+        if (action != undefined && action != null && id_menu != undefined && id_menu != null) {
+            // -- Parcourir la liste -- //
+            for (var i = 0; i <= $GB_DONNEE.Panier_menu.length; i++) {
+                // -- Vérifier l'element -- //
+                if ($GB_DONNEE.Panier_menu[i].id_menu != undefined && $GB_DONNEE.Panier_menu[i].id_menu === id_menu) {
+                    // -- Mettre à jour l'objet -- //
+                    if (action === 'ajouter') {
+                        $GB_DONNEE.Panier_menu[i].ajouter = etat;
+                    }
+                    else if (action === 'modifier') {
+                        $GB_DONNEE.Panier_menu[i].modifier = etat;
+                    }
+                    else if (action === 'supprimer') {
+                        $GB_DONNEE.Panier_menu[i].supprimer = etat;
+                    }
+                    else if (action === 'imprimer') {
+                        $GB_DONNEE.Panier_menu[i].imprimer = etat;
+                    }
+                    else if (action === 'lister') {
+                        $GB_DONNEE.Panier_menu[i].lister = etat;
+                    }
+                    // -- QUItter la boucle -- //
+                    break;
+                }
+            }
+        }
+
+    }
+
 } catch (e) { gbConsole(e.message); }
 
 // -- Lorsque le document est chargé -- //
@@ -140,6 +176,7 @@ $(
         try {
 
             $GB_DONNEE.Confirmation_message_box = false;
+            $GB_DONNEE.Panier_menu = [];
 
         } catch (e) { gbConsole(e.message); }
 
@@ -174,17 +211,102 @@ $(
                                         
                     try {
 
-                        // -- Lorsque un élement de la liste de menus est sélectionné -- //
-                        $('.gb-temp-autorisation').on('ifChecked',
+                        // -- Lorsque un élement de la liste est sélectionné -- //
+                        $('.flat.gb-temps-icheck-menu').on('ifChecked',
                             function () {
-                                gbConsole('Je suis bien sélectionné');
+                                // -- Réccupérer l'identifiant -- //
+                                var id_menu = $(this).attr('id_menu');
+                                // -- Annuler l'action si le id_menu n'est pas défini -- //
+                                if (id_menu === undefined || id_menu === null || id_menu === '') {
+                                    return false;
+                                }
+                                // -- Ajouter dans le panie menu -- //
+                                $GB_DONNEE.Panier_menu.push({
+                                    id_menu     : id_menu,
+                                    ajouter     : $('input[name="ajouter"][id_menu="'   + id_menu + '"].flat-blue.gb-temps-icheck-menu').attr("etat"),
+                                    modifier    : $('input[name="modifier"][id_menu="'  + id_menu + '"].flat-blue.gb-temps-icheck-menu').attr("etat"),
+                                    supprimer   : $('input[name="supprimer"][id_menu="' + id_menu + '"].flat-blue.gb-temps-icheck-menu').attr("etat"),
+                                    imprimer    : $('input[name="imprimer"][id_menu="'  + id_menu + '"].flat-blue.gb-temps-icheck-menu').attr("etat"),
+                                    lister      : $('input[name="lister"][id_menu="'    + id_menu + '"].flat-blue.gb-temps-icheck-menu').attr("etat"),
+                                });
+                                // -- Mise à jour de la valeur -- //
+                                $(this).attr('etat', 'true');
+
+                                gbConsole('Check all');
+                                gbConsole(JSON.stringify($GB_DONNEE.Panier_menu));
+                            }
+                        );
+
+                        // -- Lorsque un élement de la liste est désélectionné -- //
+                        $('.flat.gb-temps-icheck-menu').on('ifUnchecked',
+                            function () {
+                                // -- Réccupérer l'identifiant -- //
+                                var id_menu = $(this).attr('id_menu');
+                                // -- Annuler l'action si le id_menu n'est pas défini -- //
+                                if (id_menu === undefined || id_menu === null || id_menu === '') { return false; }
+                                // -- Parcourir la liste -- //
+                                for (var i = 0; i <= $GB_DONNEE.Panier_menu.length; i++) {
+                                    // -- Vérifier l'element -- //
+                                    if ($GB_DONNEE.Panier_menu[i].id_menu === id_menu) {
+                                        // -- Supprimer l'element -- //
+                                        $GB_DONNEE.Panier_menu.splice(i, 1);
+                                        // -- QUItter la boucle -- //
+                                        break;
+                                    }
+                                }
+                                // -- Mise à jour de la valeur -- //
+                                $(this).attr('etat', 'false');
+
+                                gbConsole('UnCheck all');
+                                gbConsole(JSON.stringify($GB_DONNEE.Panier_menu));
+                                // -- Désactiver tous les elements actif -- //
+                                $('input[etat="true"][id_menu="' + id_menu + '"].flat-blue.gb-temps-icheck-menu').iCheck('uncheck');
+                            }
+                        );
+
+                        // -- Lorsque un élement de la liste de menus est sélectionné -- //
+                        $('.flat-blue.gb-temps-icheck-menu').on('ifChecked',
+                            function () {
+                                // -- Réccupérer l'identifiant -- //
+                                var id_menu = $(this).attr('id_menu');
+                                // -- Annuler l'action si le id_menu n'est pas défini -- //
+                                if (id_menu === undefined || id_menu === null || id_menu === '') { return false; }
+                                // -- Mise à jour de la valeur -- //
+                                $(this).attr('etat', 'true');
+                                // -- Réccupéler le check de la ligne -- //
+                                var check_ligne = $('input[id_menu="' + id_menu + '"].flat.gb-temps-icheck-menu');
+                                // -- Check la ligne si celui ci ne l'est pas encore -- //
+                                if (check_ligne.attr('etat') === 'false') {
+                                    // -- Activer -- //
+                                    check_ligne.iCheck('check');
+                                }
+                                else {
+                                    // -- Mettre à jour la valeur de l'objet en mémoire -- //
+                                    panier_menu_mise_a_jour($(this).attr('name'), id_menu, true);
+                                }
                             }
                         );
 
                         // -- Lorsque un élement de la liste de menus est désélectionné -- //
-                        $('.gb-temp-autorisation').on('ifUnchecked',
+                        $('.flat-blue.gb-temps-icheck-menu').on('ifUnchecked',
                             function () {
-                                gbConsole('Je suis bien désélectionné');
+                                // -- Réccupérer l'identifiant -- //
+                                var id_menu = $(this).attr('id_menu');
+                                // -- Annuler l'action si le id_menu n'est pas défini -- //
+                                if (id_menu === undefined || id_menu === null || id_menu === '') { return false; }
+                                // -- Mise à jour de la valeur -- //
+                                $(this).attr('etat', 'false');
+                                // -- Réccupéler le check de la ligne -- //
+                                var check_ligne = $('input[id_menu="' + id_menu + '"].flat.gb-temps-icheck-menu');
+                                // -- Check la ligne si celui ci ne l'est pas encore -- //
+                                if (check_ligne.attr('etat') === 'true' && $('input[etat="true"][id_menu="' + id_menu + '"].flat-blue.gb-temps-icheck-menu').length === 0) {
+                                    // -- Désactiver -- //
+                                    check_ligne.iCheck('uncheck');
+                                }
+                                else {
+                                    // -- Mettre à jour la valeur de l'objet en mémoire -- //
+                                    panier_menu_mise_a_jour($(this).attr('name'), id_menu, false);
+                                }
                             }
                         );
 
@@ -206,6 +328,9 @@ $(
                     "url": url_ajax_dataTable,
                     "type": 'POST',
                     "dataSrc": function (resultat) {
+                        // -- Notifier -- //
+                        gbNotificationListerRefuser(resultat.notification);
+                        // -- Retourner les données -- //
                         return resultat.notification.donnee;
                     }
                 },
@@ -230,6 +355,9 @@ $(
                     "url": url_ajax_dataTable + '&id_vue=autorisation',
                     "type": 'POST',
                     "dataSrc": function (resultat) {
+                        // -- Notifier -- //
+                        gbNotificationListerRefuser(resultat.notification);
+                        // -- Retourner les données -- //
                         return resultat.notification.donnee;
                     }
                 },
@@ -257,6 +385,11 @@ $(
                     "url": url_ajax_dataTable + '&id_vue=menu',
                     "type": 'POST',
                     "dataSrc": function (resultat) {
+                        // -- Initialiser le panier menu -- //
+                        $GB_DONNEE.Panier_menu = [];
+                        // -- Notifier -- //
+                        gbNotificationListerRefuser(resultat.notification);
+                        // -- Retourner les données -- //
                         return resultat.notification.donnee;
                     }
                 },
@@ -398,6 +531,8 @@ $(
                                     // -- Actualiser la table -- //
                                     gbRechargerTable(false, 'check-configuration-all', 'table-configuration-donnee');
                                     gbRechargerTable(false, 'check-menu-all', 'table-menu-donnee');
+                                    // -- Activer les bouton de gestion des privilèges -- //
+                                    $('.gb-temps-btn-action-menu').prop('disabled', false);
                                 }
                                 else {
                                     // -- Afficher une alerte sur un element -- //
@@ -554,14 +689,32 @@ $(
 
             btn_selectionner_menu.on("click",
                 function () {
-
-                    // -- Réccupérer les données electionné -- //
-                    var ids = gbSelectionIdsTable('menu');
+                    gbConsole('Avant');
+                    gbConsole(JSON.stringify($GB_DONNEE.Panier_menu));
+                    // -- Réccupération des positions des objets à supprimer -- //
+                    var id_menus = [];
+                    for (var i = 0; i < $GB_DONNEE.Panier_menu.length; i++) {
+                        if ($GB_DONNEE.Panier_menu[i].id_menu != undefined &&
+                            ($GB_DONNEE.Panier_menu[i].ajouter === 'false' && $GB_DONNEE.Panier_menu[i].modifier === 'false' &&
+                             $GB_DONNEE.Panier_menu[i].supprimer === 'false' && $GB_DONNEE.Panier_menu[i].imprimer === 'false' && $GB_DONNEE.Panier_menu[i].lister === 'false'))
+                        {
+                            // -- Enregistrer la position -- //
+                            id_menus.push($GB_DONNEE.Panier_menu[i].id_menu);
+                        }
+                    }
+                    // -- Parcours des positions et suppressio ndes elements -- //
+                    for (var i = 0; i < id_menus.length; i++)
+                    {
+                        // -- Supprimer l'element -- //
+                        $('input[id_menu="' + id_menus[i] + '"].flat.gb-temps-icheck-menu').iCheck('uncheck');
+                    }
+                    gbConsole('Après');
+                    gbConsole(JSON.stringify($GB_DONNEE.Panier_menu));
 
                     // -- Si la taille est supérieurs à 0 -- //
-                    if (ids.length == 0) {
+                    if ($GB_DONNEE.Panier_menu.length === 0) {
                         // -- Afficher message d'erreur -- //
-                        gbAlert({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.No_item_selected }, 'gbAlert2');
+                        gbAlert({ est_echec: true, message: $GB_DONNEE_PARAMETRES.Lang.No_item_selected }, 'gbAlert2');
 
                         return false;
                     }
@@ -574,7 +727,7 @@ $(
                         type: "POST",
                         url: url_controlleur + 'Role_Ajouter_Supprimer_Menu',
                         data: {
-                            ids: JSON.stringify(ids),
+                            data: JSON.stringify($GB_DONNEE.Panier_menu),
                             ajouter: true
                         },
                         success: function (resultat) {
@@ -582,8 +735,9 @@ $(
                             if (!resultat.notification.est_echec) {
                                 // -- Fermer le modal -- //
                                 modal_menu.modal('hide');
-                                // -- Recharger la table des autorisations -- //
+                                // -- Recharger la table -- //
                                 gbRechargerTable(false, 'check-configuration-all', 'table-configuration-donnee');
+                                gbRechargerTable(false, 'check-menu-all', 'table-menu-donnee');
                             } else {
                                 // -- Message -- //
                                 gbAlert(resultat.notification, 'gbAlert2');
@@ -604,6 +758,108 @@ $(
 
         } catch (e) { gbConsole(e.message); }
 
+        // -- Action de selection des menus à supprimer -- //
+        try {
+
+            btn_supprimer_menu.on("click",
+                function () {
+
+                    // -- Réccupérer les données electionné -- //
+                    var ids = gbSelectionIdsTable('autorisation');
+
+                    // -- Si la taille est supérieurs à 0 -- //
+                    if (ids.length == 0) {
+                        // -- Afficher message d'erreur -- //
+                        gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.No_item_selected });
+
+                        return false;
+                    }
+
+                    // -- Afficher le chargement -- //
+                    gbAfficher_Page_Chargement(true);
+
+                    // -- Ajax -- //
+                    $.ajax({
+                        type: "POST",
+                        url: url_controlleur + 'Role_Ajouter_Supprimer_Menu',
+                        data: {
+                            data: JSON.stringify(ids),
+                            ajouter: false
+                        },
+                        success: function (resultat) {
+                            // -- Tester si le traitement s'est bien effectué -- //
+                            if (!resultat.notification.est_echec) {
+                                // -- Fermer le modal -- //
+                                modal_menu.modal('hide');
+                                // -- Recharger la table -- //
+                                gbRechargerTable(false, 'check-configuration-all', 'table-configuration-donnee');
+                                gbRechargerTable(false, 'check-menu-all', 'table-menu-donnee');
+                            } else {
+                                // -- Message -- //
+                                gbMessage_Box(resultat.notification);
+                            }
+                            // -- Afficher le chargement -- //
+                            gbAfficher_Page_Chargement(false);
+                        },
+                        error: function () {
+                            // -- Message -- //
+                            gbMessage_Box();
+                            // -- Afficher le chargement -- //
+                            gbAfficher_Page_Chargement(false);
+                        }
+                    });
+
+                }
+            );
+
+        } catch (e) { gbConsole(e.message); }
+
+        // -- Action d'enregistrement des modifications survenue sur les autorisations -- //
+        try {
+
+            btn_synchronisation_autorisation.on("click",
+                function () {
+
+                    // -- Ecouter la réponse du message de confirmation -- //
+                    if (!$GB_DONNEE.Confirmation_message_box) {
+                        // -- Afficher le message d'action -- //
+                        gbConfirmation_OuiOuNon(null, null, function () { btn_synchronisation_autorisation.trigger('click'); });
+                        // -- Annuler l'action -- //
+                        return false;
+                    }
+
+                    // -- Afficher le chargement -- //
+                    gbAfficher_Page_Chargement(true);
+
+                    // -- Ajax -- //
+                    $.ajax({
+                        type: "POST",
+                        url: url_controlleur + 'Role_Enregistrer_Modification',
+                        success: function (resultat) {
+                            // -- Tester si le traitement s'est bien effectué -- //
+                            if (!resultat.notification.est_echec) {
+                                // -- Notification -- //
+                                gbNotification(resultat.notification);
+                            } else {
+                                // -- Message -- //
+                                gbMessage_Box(resultat.notification);
+                            }
+                            // -- Afficher le chargement -- //
+                            gbAfficher_Page_Chargement(false);
+                        },
+                        error: function () {
+                            // -- Message -- //
+                            gbMessage_Box();
+                            // -- Afficher le chargement -- //
+                            gbAfficher_Page_Chargement(false);
+                        }
+                    });
+
+                }
+            );
+
+        } catch (e) { gbConsole(e.message); }        
+
         // -- Appliquer le icheck sur tous les elements flat de la page -- //
         try {
 
@@ -614,6 +870,13 @@ $(
                     radioClass: 'iradio_flat-green'
                 });
             }
+
+        } catch (e) { gbConsole(e.message); }
+
+        // -- Désactiver tous les bouton d'action -- //
+        try {
+
+            $('.gb-temps-btn-action-menu').prop('disabled', true);
 
         } catch (e) { gbConsole(e.message); }
 
