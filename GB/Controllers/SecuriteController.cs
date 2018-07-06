@@ -87,7 +87,7 @@ namespace GB.Controllers
                         donnee.Add(
                             new
                             {
-                                col_1 = $"<input type=\"checkbox\" class=\"flat gb-temps-icheck-module\" name=\"module\" value=\"module_{val.id}\">",
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"module\" value=\"module_{val.id}\">",
                                 col_2 = val.code,
                                 col_3 = val.libelle_fr,
                                 col_4 = val.libelle_en,
@@ -137,7 +137,7 @@ namespace GB.Controllers
                             donnee.Add(
                                 new
                                 {
-                                    col_1 = $"<input type=\"checkbox\" class=\"flat gb-temps-icheck-role\" name=\"role\" value=\"role_{val.id}\">",
+                                    col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"role\" value=\"role_{val.id}\">",
                                     col_2 = val.code,
                                     col_3 = val.libelle_fr,
                                     col_4 = val.libelle_en,
@@ -164,7 +164,7 @@ namespace GB.Controllers
                             donnee.Add(
                                 new
                                 {
-                                    col_1 = $"<input type=\"checkbox\" class=\"flat gb-temps-icheck-autorisation\" name=\"autorisation\" value=\"autorisation_{val.id_menu}\">",
+                                    col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"autorisation\" value=\"autorisation_{val.id_menu}\">",
                                     col_2 = val.menu.code,
                                     col_3 = (id_lang == 0) ? val.menu.libelle_en 
                                                            : val.menu.libelle_fr,
@@ -190,18 +190,18 @@ namespace GB.Controllers
                             donnee.Add(
                                 new
                                 {
-                                    col_1 = $"<input type=\"checkbox\" class=\"flat gb-temps-icheck-menu\" id_menu=\"{val.id_menu}\" name=\"menu\" value=\"menu_{val.id_menu}\" etat=\"false\" >",
+                                    col_1 = $"<input type=\"checkbox\" class=\"flat\" id_menu=\"{val.id_menu}\" name=\"menu\" value=\"menu_{val.id_menu}\" etat=\"false\" >",
                                     col_2 = (id_lang == 0) ? val.menu.libelle_en
                                                            : val.menu.libelle_fr,
                                     col_3 = (id_lang == 0) ? val.menu.groupe_menu.libelle_en
                                                            : val.menu.groupe_menu.libelle_fr,
                                     col_4 = (id_lang == 0) ? val.menu.groupe_menu.module.libelle_en
                                                            : val.menu.groupe_menu.module.libelle_fr,
-                                    col_5 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" id_menu=\"{val.id_menu}\" name=\"ajouter\" etat=\"false\" />",
-                                    col_6 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" id_menu=\"{val.id_menu}\" name=\"modifier\" etat=\"false\" />",
-                                    col_7 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" id_menu=\"{val.id_menu}\" name=\"supprimer\" etat=\"false\" />",
-                                    col_8 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" id_menu=\"{val.id_menu}\" name=\"imprimer\" etat=\"false\" />",
-                                    col_9 = $"<input type=\"checkbox\" class=\"flat-blue gb-temps-icheck-menu\" id_menu=\"{val.id_menu}\" name=\"lister\" etat=\"false\" />",
+                                    col_5 = $"<input type=\"checkbox\" class=\"flat-blue\" id_menu=\"{val.id_menu}\" name=\"ajouter\" etat=\"false\" />",
+                                    col_6 = $"<input type=\"checkbox\" class=\"flat-blue\" id_menu=\"{val.id_menu}\" name=\"modifier\" etat=\"false\" />",
+                                    col_7 = $"<input type=\"checkbox\" class=\"flat-blue\" id_menu=\"{val.id_menu}\" name=\"supprimer\" etat=\"false\" />",
+                                    col_8 = $"<input type=\"checkbox\" class=\"flat-blue\" id_menu=\"{val.id_menu}\" name=\"imprimer\" etat=\"false\" />",
+                                    col_9 = $"<input type=\"checkbox\" class=\"flat-blue\" id_menu=\"{val.id_menu}\" name=\"lister\" etat=\"false\" />",
                                 }
                             );
                         }
@@ -217,7 +217,7 @@ namespace GB.Controllers
                         donnee.Add(
                             new
                             {
-                                col_1 = $"<input type=\"checkbox\" class=\"flat gb-temps-icheck-menu\" name=\"menu\" value=\"menu_{val.id}\">",
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"menu\" value=\"menu_{val.id}\">",
                                 col_2 = val.code,
                                 col_3 = val.libelle_fr,
                                 col_4 = val.libelle_en,

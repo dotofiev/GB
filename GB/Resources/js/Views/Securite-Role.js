@@ -212,7 +212,7 @@ $(
                     try {
 
                         // -- Lorsque un élement de la liste est sélectionné -- //
-                        $('.flat.gb-temps-icheck-menu').on('ifChecked',
+                        $('#table-menu-donnee .flat').on('ifChecked',
                             function () {
                                 // -- Réccupérer l'identifiant -- //
                                 var id_menu = $(this).attr('id_menu');
@@ -223,22 +223,19 @@ $(
                                 // -- Ajouter dans le panie menu -- //
                                 $GB_DONNEE.Panier_menu.push({
                                     id_menu     : id_menu,
-                                    ajouter     : $('input[name="ajouter"][id_menu="'   + id_menu + '"].flat-blue.gb-temps-icheck-menu').attr("etat"),
-                                    modifier    : $('input[name="modifier"][id_menu="'  + id_menu + '"].flat-blue.gb-temps-icheck-menu').attr("etat"),
-                                    supprimer   : $('input[name="supprimer"][id_menu="' + id_menu + '"].flat-blue.gb-temps-icheck-menu').attr("etat"),
-                                    imprimer    : $('input[name="imprimer"][id_menu="'  + id_menu + '"].flat-blue.gb-temps-icheck-menu').attr("etat"),
-                                    lister      : $('input[name="lister"][id_menu="'    + id_menu + '"].flat-blue.gb-temps-icheck-menu').attr("etat"),
+                                    ajouter     : $('input[name="ajouter"][id_menu="'   + id_menu + '"].flat-blue').attr("etat"),
+                                    modifier    : $('input[name="modifier"][id_menu="'  + id_menu + '"].flat-blue').attr("etat"),
+                                    supprimer   : $('input[name="supprimer"][id_menu="' + id_menu + '"].flat-blue').attr("etat"),
+                                    imprimer    : $('input[name="imprimer"][id_menu="'  + id_menu + '"].flat-blue').attr("etat"),
+                                    lister      : $('input[name="lister"][id_menu="'    + id_menu + '"].flat-blue').attr("etat"),
                                 });
                                 // -- Mise à jour de la valeur -- //
                                 $(this).attr('etat', 'true');
-
-                                gbConsole('Check all');
-                                gbConsole(JSON.stringify($GB_DONNEE.Panier_menu));
                             }
                         );
 
                         // -- Lorsque un élement de la liste est désélectionné -- //
-                        $('.flat.gb-temps-icheck-menu').on('ifUnchecked',
+                        $('#table-menu-donnee .flat').on('ifUnchecked',
                             function () {
                                 // -- Réccupérer l'identifiant -- //
                                 var id_menu = $(this).attr('id_menu');
@@ -256,16 +253,13 @@ $(
                                 }
                                 // -- Mise à jour de la valeur -- //
                                 $(this).attr('etat', 'false');
-
-                                gbConsole('UnCheck all');
-                                gbConsole(JSON.stringify($GB_DONNEE.Panier_menu));
                                 // -- Désactiver tous les elements actif -- //
-                                $('input[etat="true"][id_menu="' + id_menu + '"].flat-blue.gb-temps-icheck-menu').iCheck('uncheck');
+                                $('input[etat="true"][id_menu="' + id_menu + '"].flat-blue').iCheck('uncheck');
                             }
                         );
 
                         // -- Lorsque un élement de la liste de menus est sélectionné -- //
-                        $('.flat-blue.gb-temps-icheck-menu').on('ifChecked',
+                        $('#table-menu-donnee .flat-blue').on('ifChecked',
                             function () {
                                 // -- Réccupérer l'identifiant -- //
                                 var id_menu = $(this).attr('id_menu');
@@ -274,7 +268,7 @@ $(
                                 // -- Mise à jour de la valeur -- //
                                 $(this).attr('etat', 'true');
                                 // -- Réccupéler le check de la ligne -- //
-                                var check_ligne = $('input[id_menu="' + id_menu + '"].flat.gb-temps-icheck-menu');
+                                var check_ligne = $('input[id_menu="' + id_menu + '"].flat');
                                 // -- Check la ligne si celui ci ne l'est pas encore -- //
                                 if (check_ligne.attr('etat') === 'false') {
                                     // -- Activer -- //
@@ -288,7 +282,7 @@ $(
                         );
 
                         // -- Lorsque un élement de la liste de menus est désélectionné -- //
-                        $('.flat-blue.gb-temps-icheck-menu').on('ifUnchecked',
+                        $('#table-menu-donnee .flat-blue').on('ifUnchecked',
                             function () {
                                 // -- Réccupérer l'identifiant -- //
                                 var id_menu = $(this).attr('id_menu');
@@ -297,9 +291,9 @@ $(
                                 // -- Mise à jour de la valeur -- //
                                 $(this).attr('etat', 'false');
                                 // -- Réccupéler le check de la ligne -- //
-                                var check_ligne = $('input[id_menu="' + id_menu + '"].flat.gb-temps-icheck-menu');
+                                var check_ligne = $('input[id_menu="' + id_menu + '"].flat');
                                 // -- Check la ligne si celui ci ne l'est pas encore -- //
-                                if (check_ligne.attr('etat') === 'true' && $('input[etat="true"][id_menu="' + id_menu + '"].flat-blue.gb-temps-icheck-menu').length === 0) {
+                                if (check_ligne.attr('etat') === 'true' && $('input[etat="true"][id_menu="' + id_menu + '"].flat-blue').length === 0) {
                                     // -- Désactiver -- //
                                     check_ligne.iCheck('uncheck');
                                 }
@@ -689,8 +683,6 @@ $(
 
             btn_selectionner_menu.on("click",
                 function () {
-                    gbConsole('Avant');
-                    gbConsole(JSON.stringify($GB_DONNEE.Panier_menu));
                     // -- Réccupération des positions des objets à supprimer -- //
                     var id_menus = [];
                     for (var i = 0; i < $GB_DONNEE.Panier_menu.length; i++) {
@@ -706,11 +698,8 @@ $(
                     for (var i = 0; i < id_menus.length; i++)
                     {
                         // -- Supprimer l'element -- //
-                        $('input[id_menu="' + id_menus[i] + '"].flat.gb-temps-icheck-menu').iCheck('uncheck');
+                        $('input[id_menu="' + id_menus[i] + '"].flat').iCheck('uncheck');
                     }
-                    gbConsole('Après');
-                    gbConsole(JSON.stringify($GB_DONNEE.Panier_menu));
-
                     // -- Si la taille est supérieurs à 0 -- //
                     if ($GB_DONNEE.Panier_menu.length === 0) {
                         // -- Afficher message d'erreur -- //

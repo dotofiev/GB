@@ -15,9 +15,9 @@ var fonction_en_Interval;
 // -- Notifier en cas d'autorisation de liste refusé -- //
 function gbNotificationListerRefuser(notification) {
 
-    if (notification.dynamique.autorisation_refuse) {
-        gbMessage_Box({ est_echec: true, message: $GB_DONNEE_PARAMETRES.Lang.Permission_to_list_records_denied });
-    }
+    //if (notification.dynamique.autorisation_refuse) {
+    //    gbMessage_Box({ est_echec: true, message: $GB_DONNEE_PARAMETRES.Lang.Permission_to_list_records_denied });
+    //}
 
 }
 
@@ -791,15 +791,15 @@ function gbCharger_Css_Table(type_donnee, id_check_all, id_table) { //
 
     // iCheck
     // -- Green -- //
-    if ($('.gb-temps-icheck-' + type_donnee + '')[0]) {
-        $('.gb-temps-icheck-' + type_donnee + '').iCheck({
+    if ($('#' + id_table + ' .flat')[0]) {
+        $('#' + id_table + ' .flat').iCheck({
             checkboxClass: 'icheckbox_flat-green',
             radioClass: 'iradio_flat-green'
         });
     }
     // -- blue -- //
-    if ($('.flat-blue.gb-temps-icheck-' + type_donnee + '')[0]) {
-        $('.flat-blue.gb-temps-icheck-' + type_donnee + '').iCheck({
+    if ($('#' + id_table + ' .flat-blue')[0]) {
+        $('#' + id_table + ' .flat-blue').iCheck({
             checkboxClass: 'icheckbox_flat-blue',
             radioClass: 'iradio_flat-blue'
         });
