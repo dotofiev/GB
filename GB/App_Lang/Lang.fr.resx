@@ -126,7 +126,7 @@
   <data name="Authentication" xml:space="preserve">
     <value>Authentication</value>
   </data>
-  <data name="Authentication_failed" xml:space="preserve">
+  <data name="Authentication_failed_1" xml:space="preserve">
     <value>Compte ou mot de passe erroné</value>
   </data>
   <data name="Close" xml:space="preserve">
@@ -336,5 +336,68 @@
   </data>
   <data name="No_changes_have_been_made" xml:space="preserve">
     <value>Aucune modification n'a été effectuée</value>
+  </data>
+  <data name="User_Management" xml:space="preserve">
+    <value>Gestion des utilisateurs</value>
+  </data>
+  <data name="Activated" xml:space="preserve">
+    <value>Activé</value>
+  </data>
+  <data name="Activate_edit" xml:space="preserve">
+    <value>Activer modification</value>
+  </data>
+  <data name="Agency" xml:space="preserve">
+    <value>Agence</value>
+  </data>
+  <data name="Authentication_failed_2" xml:space="preserve">
+    <value>Ce compte est suspendu</value>
+  </data>
+  <data name="Authentication_failed_3" xml:space="preserve">
+    <value>Le mot de passe a expiré</value>
+  </data>
+  <data name="Authentication_failed_4" xml:space="preserve">
+    <value>Vous n'avez pas d'autorisations dans le système</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirmer</value>
+  </data>
+  <data name="Connection_status" xml:space="preserve">
+    <value>Statut de connexion</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>Désactivé</value>
+  </data>
+  <data name="Employee_historical_access" xml:space="preserve">
+    <value>Accès historique des employés</value>
+  </data>
+  <data name="Expiration_duration" xml:space="preserve">
+    <value>Durée d'expiration</value>
+  </data>
+  <data name="Job" xml:space="preserve">
+    <value>Profession</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Mois</value>
+  </data>
+  <data name="Open_back_date" xml:space="preserve">
+    <value>Date de retour</value>
+  </data>
+  <data name="Open_back_working_date" xml:space="preserve">
+    <value>Ouvrir la date de travail</value>
+  </data>
+  <data name="Open_branch" xml:space="preserve">
+    <value>Branche ouverte</value>
+  </data>
+  <data name="Password_expiration" xml:space="preserve">
+    <value>Expiration mot de passe</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>Suspendu</value>
+  </data>
+  <data name="This_account_is_suspended" xml:space="preserve">
+    <value>Ce compte est suspendu</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Valeur</value>
   </data>
 </root>

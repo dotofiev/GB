@@ -44,14 +44,7 @@ namespace GB.Controllers
             try
             {
                 // -- Réccupération du l'utilisateur authentifié -- //
-                Utilisateur utilisateur = UtilisateurDAO.Object(compte, mot_de_passe);
-
-                // -- Vérifier la conformité des données -- //
-                if (utilisateur == null)
-                {
-                    // -- Exception -- //
-                    throw new GBException(App_Lang.Lang.Authentication_failed);
-                }
+                Utilisateur utilisateur = UtilisateurDAO.Authentification(compte, mot_de_passe);
 
                 // -- Authentifier l'objet connexion -- //
                 this.con.Authentification(utilisateur);

@@ -460,7 +460,7 @@ $(
                         }
 
                         // -- Définition de l'action de traitement -- //
-                        var action_ajouter = (parseInt($('#form_id').val()) == 0);
+                        var action_ajouter = (parseInt($('#form_id').val()) === 0);
                         
                         // -- Afficher le chargement -- //
                         gbAfficher_Page_Chargement(true, btn_enregistrer.attr('id'));
@@ -569,6 +569,9 @@ $(
 
                     // -- Suppression de l'alert de confirmation -- //
                     $('#dsAlert_Message_Box').html(null);
+
+                    // -- Activer/Desactiver formulaire -- //
+                    gbActiverDesactiverForm(form.attr('id'), false);
 
                 }
             );

@@ -242,7 +242,7 @@ $(
                         }
 
                         // -- Définition de l'action de traitement -- //
-                        var action_ajouter = (parseInt($('#form_id').val()) == 0);
+                        var action_ajouter = (parseInt($('#form_id').val()) === 0);
                         
                         // -- Afficher le chargement -- //
                         gbAfficher_Page_Chargement(true, btn_enregistrer.attr('id'));
@@ -312,6 +312,9 @@ $(
                     // -- Suppression des paramètres -- //
                     $GB_DONNEE.form_view_valeur = null;
                     $GB_DONNEE.form_id_controller_valeur = 0;
+
+                    // -- Activer/Desactiver formulaire -- //
+                    gbActiverDesactiverForm(form.attr('id'), false);
 
                 }
             );

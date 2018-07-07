@@ -18,6 +18,12 @@ namespace GB.Models.Tests
             db = GBConvert.JSON_To<BD>(System.IO.File.ReadAllText(url_base_de_donnees));
             // -- Mise à jour des references objet -- //
             // -- Groupe menu -- //
+            db.utilisateurs.ForEach(l => {
+                l.agence = db.agences.FirstOrDefault(ll => ll.id == l.id_agence);
+                l.profession = db.professions.FirstOrDefault(ll => ll.id == l.id_profession);
+                l.date_mise_a_jour_mot_de_passe = DateTime.Now.AddMonths(1).Ticks;
+            });
+            // -- Groupe menu -- //
             db.groupe_menus.ForEach(l => { l.module = db.modules[0]; });
             // -- Menu -- //
             db.menus.ForEach(l => { l.groupe_menu = db.groupe_menus[(l.id < 4) ? 0 : 1]; });

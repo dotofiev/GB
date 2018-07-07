@@ -61,6 +61,24 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activate edit.
+        /// </summary>
+        public static string Activate_edit {
+            get {
+                return ResourceManager.GetString("Activate_edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activated.
+        /// </summary>
+        public static string Activated {
+            get {
+                return ResourceManager.GetString("Activated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Add {
@@ -75,6 +93,15 @@ namespace GB.App_Lang {
         public static string Add_ {
             get {
                 return ResourceManager.GetString("Add_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agency.
+        /// </summary>
+        public static string Agency {
+            get {
+                return ResourceManager.GetString("Agency", resourceCulture);
             }
         }
         
@@ -108,9 +135,36 @@ namespace GB.App_Lang {
         /// <summary>
         ///   Looks up a localized string similar to Incorrect account or password.
         /// </summary>
-        public static string Authentication_failed {
+        public static string Authentication_failed_1 {
             get {
-                return ResourceManager.GetString("Authentication_failed", resourceCulture);
+                return ResourceManager.GetString("Authentication_failed_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This account is suspended.
+        /// </summary>
+        public static string Authentication_failed_2 {
+            get {
+                return ResourceManager.GetString("Authentication_failed_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password has expired.
+        /// </summary>
+        public static string Authentication_failed_3 {
+            get {
+                return ResourceManager.GetString("Authentication_failed_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have permissions in the system.
+        /// </summary>
+        public static string Authentication_failed_4 {
+            get {
+                return ResourceManager.GetString("Authentication_failed_4", resourceCulture);
             }
         }
         
@@ -124,11 +178,29 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm action.
         /// </summary>
         public static string Confirm_action {
             get {
                 return ResourceManager.GetString("Confirm_action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connection status.
+        /// </summary>
+        public static string Connection_status {
+            get {
+                return ResourceManager.GetString("Connection_status", resourceCulture);
             }
         }
         
@@ -196,11 +268,29 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disabled.
+        /// </summary>
+        public static string Disabled {
+            get {
+                return ResourceManager.GetString("Disabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display.
         /// </summary>
         public static string Display {
             get {
                 return ResourceManager.GetString("Display", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee historical access.
+        /// </summary>
+        public static string Employee_historical_access {
+            get {
+                return ResourceManager.GetString("Employee_historical_access", resourceCulture);
             }
         }
         
@@ -259,6 +349,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expiration duration.
+        /// </summary>
+        public static string Expiration_duration {
+            get {
+                return ResourceManager.GetString("Expiration_duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Form.
         /// </summary>
         public static string Form {
@@ -291,6 +390,15 @@ namespace GB.App_Lang {
         public static string Internal_error {
             get {
                 return ResourceManager.GetString("Internal_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Job.
+        /// </summary>
+        public static string Job {
+            get {
+                return ResourceManager.GetString("Job", resourceCulture);
             }
         }
         
@@ -394,6 +502,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Month.
+        /// </summary>
+        public static string Month {
+            get {
+                return ResourceManager.GetString("Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -466,6 +583,33 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open back date.
+        /// </summary>
+        public static string Open_back_date {
+            get {
+                return ResourceManager.GetString("Open_back_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open back working date.
+        /// </summary>
+        public static string Open_back_working_date {
+            get {
+                return ResourceManager.GetString("Open_back_working_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open branch.
+        /// </summary>
+        public static string Open_branch {
+            get {
+                return ResourceManager.GetString("Open_branch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page not found.
         /// </summary>
         public static string Page_not_found {
@@ -489,6 +633,15 @@ namespace GB.App_Lang {
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password expiration.
+        /// </summary>
+        public static string Password_expiration {
+            get {
+                return ResourceManager.GetString("Password_expiration", resourceCulture);
             }
         }
         
@@ -673,6 +826,24 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Suspended.
+        /// </summary>
+        public static string Suspended {
+            get {
+                return ResourceManager.GetString("Suspended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This account is suspended.
+        /// </summary>
+        public static string This_account_is_suspended {
+            get {
+                return ResourceManager.GetString("This_account_is_suspended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To log in.
         /// </summary>
         public static string To_log_in {
@@ -687,6 +858,24 @@ namespace GB.App_Lang {
         public static string Update {
             get {
                 return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User management.
+        /// </summary>
+        public static string User_Management {
+            get {
+                return ResourceManager.GetString("User_Management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string Value {
+            get {
+                return ResourceManager.GetString("Value", resourceCulture);
             }
         }
         

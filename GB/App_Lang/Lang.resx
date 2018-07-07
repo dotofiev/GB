@@ -126,7 +126,7 @@
   <data name="Authentication" xml:space="preserve">
     <value>Authentication</value>
   </data>
-  <data name="Authentication_failed" xml:space="preserve">
+  <data name="Authentication_failed_1" xml:space="preserve">
     <value>Incorrect account or password</value>
   </data>
   <data name="Close" xml:space="preserve">
@@ -335,5 +335,68 @@
   </data>
   <data name="No_changes_have_been_made" xml:space="preserve">
     <value>No changes have been made</value>
+  </data>
+  <data name="User_Management" xml:space="preserve">
+    <value>User management</value>
+  </data>
+  <data name="Activated" xml:space="preserve">
+    <value>Activated</value>
+  </data>
+  <data name="Activate_edit" xml:space="preserve">
+    <value>Activate edit</value>
+  </data>
+  <data name="Agency" xml:space="preserve">
+    <value>Agency</value>
+  </data>
+  <data name="Authentication_failed_2" xml:space="preserve">
+    <value>This account is suspended</value>
+  </data>
+  <data name="Authentication_failed_3" xml:space="preserve">
+    <value>The password has expired</value>
+  </data>
+  <data name="Authentication_failed_4" xml:space="preserve">
+    <value>You do not have permissions in the system</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Connection_status" xml:space="preserve">
+    <value>Connection status</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="Employee_historical_access" xml:space="preserve">
+    <value>Employee historical access</value>
+  </data>
+  <data name="Expiration_duration" xml:space="preserve">
+    <value>Expiration duration</value>
+  </data>
+  <data name="Job" xml:space="preserve">
+    <value>Job</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="Open_back_date" xml:space="preserve">
+    <value>Open back date</value>
+  </data>
+  <data name="Open_back_working_date" xml:space="preserve">
+    <value>Open back working date</value>
+  </data>
+  <data name="Open_branch" xml:space="preserve">
+    <value>Open branch</value>
+  </data>
+  <data name="Password_expiration" xml:space="preserve">
+    <value>Password expiration</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>Suspended</value>
+  </data>
+  <data name="This_account_is_suspended" xml:space="preserve">
+    <value>This account is suspended</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
   </data>
 </root>

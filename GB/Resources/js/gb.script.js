@@ -136,7 +136,7 @@ function gbTableSelectionLigne(ligne, id_table) {
 }
 
 // -- Activer/Desactiver formulaire -- //
-function gbActiverDesactiverForm(id_form, activer) {
+function gbActiverDesactiverForm(id_form, desactiver) {
 
     // -- Si le id_form n'est pas soumis ne rien faire -- //
     if (id_form == undefined || id_form == null) {
@@ -144,7 +144,7 @@ function gbActiverDesactiverForm(id_form, activer) {
     }
 
     // -- Si il s'agit d'une activation -- //
-    if (activer) {
+    if (desactiver) {
         $("#" + id_form + " :input").attr("disabled", true);
     } else {
         $("#" + id_form + " :input").attr("disabled", false);

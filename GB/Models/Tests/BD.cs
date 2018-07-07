@@ -14,6 +14,8 @@ namespace GB.Models.Tests
         public List<Autorisation> autorisations { get; set; }
         public List<Utilisateur> utilisateurs { get; set; }
         public List<GroupeMenu> groupe_menus { get; set; }
+        public List<Agence> agences { get; set; }
+        public List<Profession> professions { get; set; }
 
         public BD() { }
     }

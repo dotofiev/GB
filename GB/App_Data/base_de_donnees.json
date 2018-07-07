@@ -3,16 +3,34 @@
     {
       "id_utilisateur": "99999",
       "id_role": "1",
+      "id_agence": "1",
+      "id_profession": "1",
       "compte": "admin",
       "mot_de_passe": "admin",
-      "nom_utilisateur": "Administrateur"
+      "nom_utilisateur": "Administrateur",
+      "ouverture_back_date": "false",
+      "ouverture_back_date_travail": "false",
+      "ouverture_branch": "false",
+      "est_connecte": "false",
+      "est_suspendu": "false",
+      "duree_mot_de_passe": "1",
+      "date_mise_a_jour_mot_de_passe": "0"
     },
     {
       "id_utilisateur": "99998",
       "id_role": "2",
+      "id_agence": "1",
+      "id_profession": "1",
       "compte": "prog",
       "mot_de_passe": "prog",
-      "nom_utilisateur": "Programmeur"
+      "nom_utilisateur": "Programmeur",
+      "ouverture_back_date": "false",
+      "ouverture_back_date_travail": "false",
+      "ouverture_branch": "false",
+      "est_connecte": "false",
+      "est_suspendu": "false",
+      "duree_mot_de_passe": "1",
+      "date_mise_a_jour_mot_de_passe": "0"
     }
   ],
   "modules": [
@@ -129,26 +147,26 @@
       "imprimer": "true",
       "lister": "true"
     },
-    //{
-    //  "id": "5",
-    //  "id_role": "1",
-    //  "id_menu": "5",
-    //  "ajouter": "true",
-    //  "modifier": "true",
-    //  "supprimer": "true",
-    //  "imprimer": "true",
-    //  "lister": "true"
-    //},
-    //{
-    //  "id": "6",
-    //  "id_role": "1",
-    //  "id_menu": "6",
-    //  "ajouter": "true",
-    //  "modifier": "true",
-    //  "supprimer": "true",
-    //  "imprimer": "true",
-    //  "lister": "true"
-    //}
+    {
+      "id": "5",
+      "id_role": "1",
+      "id_menu": "5",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "6",
+      "id_role": "1",
+      "id_menu": "6",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
     // -- Role 2 -- //
     {
       "id": "7",
@@ -187,6 +205,30 @@
       "libelle_fr": "Gestion de la sécurité des employés",
       "icon": "fa fa-cogs",
       "controller": "SecuriteUtilisateur"
+    }
+  ],
+  "agences": [
+    {
+      "id": "1",
+      "code": "0001",
+      "libelle": "Agence 1"
+    },
+    {
+      "id": "2",
+      "code": "0002",
+      "libelle": "Agence 2"
+    }
+  ],
+  "professions": [
+    {
+      "id": "1",
+      "code": "0001",
+      "libelle": "Caissier"
+    },
+    {
+      "id": "2",
+      "code": "0002",
+      "libelle": "Chef d'agence"
     }
   ]
 }

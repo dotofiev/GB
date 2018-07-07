@@ -16,6 +16,7 @@ namespace GB.Models.Static
         public static string Securite_Role = "Securite-Role";
         public static string Securite_Module = "Securite-Module";
         public static string Securite_Menu = "Securite-Menu";
+        public static string SecuriteUtilisateur_Utilisateur = "SecuriteUtilisateur-Utilisateur";        
     }
 
     public enum GB_Enum_Action_Controller

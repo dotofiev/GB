@@ -1,8 +1,8 @@
 ﻿
 // -- Variables -- //
 var table = $('#table-donnee');
-var url_ajax_dataTable = '/Securite/Charger_Table/?id_page=' + $GB_DONNEE.id_page;
-var url_ajax_selection_enregistrement = '/Securite/Selection_Enregistrement/';
+var url_ajax_dataTable = '/SecuriteUtilisateur/Charger_Table/?id_page=' + $GB_DONNEE.id_page;
+var url_ajax_selection_enregistrement = '/SecuriteUtilisateur/Selection_Enregistrement/';
 var btn_ajouter = $('#btn-ajouter');
 var btn_supprimer = $('#btn-supprimer');
 var btn_imprimmer = $('#btn-imprimmer');
@@ -10,8 +10,8 @@ var btn_enregistrer = $('#btn-enregistrer');
 var btn_table;
 var form = $('#form');
 var modal_form = $('#modal_form');
-var url_controlleur = '/Securite/';
-var url_suppression = '/Securite/Supprimer_Enregistrement';
+var url_controlleur = '/SecuriteUtilisateur/';
+var url_suppression = '/SecuriteUtilisateur/Supprimer_Enregistrement';
 var class_table_selection = 'gb-table-success';
 
 
@@ -19,26 +19,43 @@ var class_table_selection = 'gb-table-success';
 try {
 
     // -- Modifier -- //
-    function table_donnee_modifier(code) {
+    function table_donnee_modifier(compte) {
 
         // -- Ajax -- //
         $.ajax({
             type: "POST",
             url: url_ajax_selection_enregistrement,
             data: {
-                code: code,
+                compte: compte,
                 id_page: $GB_DONNEE.id_page
             },
             success: function (resultat) {
                 // -- Tester si le traitement s'est bien effectué -- //
                 if (!resultat.notification.est_echec) {
                     // -- Mise à jour de sa valeur dans le formulaire -- //
-                    $('#form_id').val(resultat.notification.donnee.id);
-                    $('#form_code').val(resultat.notification.donnee.code);
-                    $('#form_libelle_en').val(resultat.notification.donnee.libelle_en);
-                    $('#form_libelle_fr').val(resultat.notification.donnee.libelle_fr);
+                    $('#form_id_utilisateur').val(resultat.notification.donnee.id_utilisateur);
+                    $('#form_id_agence').val(resultat.notification.donnee.id_agence);
+                    $('#form_libelle_agence').val(resultat.notification.donnee.id_agence);
+                    $('#form_id_profession').val(resultat.notification.donnee.id_profession);
+                    $('#form_libelle_profession').val(resultat.notification.donnee.id_profession);
+                    $('#form_nom_utilisateur').val(resultat.notification.donnee.nom_utilisateur);
+                    $('#form_compte').val(resultat.notification.donnee.compte);
+                    $('#form_ouverture_back_date').val(resultat.notification.donnee.ouverture_back_date);
+                    $('#form_ouverture_back_date_travail').val(resultat.notification.donnee.ouverture_back_date_travail);
+                    $('#form_ouverture_branch').val(resultat.notification.donnee.ouverture_branch);
+                    $('#form_est_connecte').val(resultat.notification.donnee.est_connecte);
+                    $('#form_est_suspendu').val(resultat.notification.donnee.est_suspendu);
+                    $('#form_duree_mot_de_passe').val(resultat.notification.donnee.duree_mot_de_passe);
+                    $('#form_acces_historique_compte').val(resultat.notification.donnee.acces_historique_compte);
+                    $('#form_mot_de_passe').val(resultat.notification.donnee.mot_de_passe);
+                    $('#form_mot_de_passe_confirm').val(resultat.notification.donnee.mot_de_passe);
+                    $('#form_modifier_mot_de_passe').val('False');
                     // -- Mise à jour du label du bouton d'enregistrement -- //
                     btn_enregistrer.html('<i class="fa fa-check"></i>' + $GB_DONNEE_PARAMETRES.Lang.Update);
+                    // -- Activer le champ d'activation de la modification -- //
+                    $('#form_modifier_mot_de_passe').attr('disabled', false);
+                    // -- Désactiver la modification des mot de passe -- //
+                    $('.gb-temp-mot_de_passe').attr('disabled', true);
                     // -- Afficher le modal formulaire -- //
                     modal_form.modal('show');
                 } else {
@@ -151,7 +168,7 @@ $(
             table.on('draw.dt',
                 function () {
                     // -- Fonction pour initiliser les style css javascript des tables -- //
-                    gbCharger_Css_Table('module');
+                    gbCharger_Css_Table('utilisateur');
                 }
             );
 
@@ -177,10 +194,17 @@ $(
                 },
                 "columns": [
                     { "data": "col_1", "width": "20px" },           // -- Checkbox -- //
-                    { "data": "col_2" },                            // -- code -- //
-                    { "data": "col_3" },                            // -- libelle_fr -- //
-                    { "data": "col_4" },                            // -- libelle_en -- //
-                    { "data": "col_5", "class": "text-center" }     // -- Action -- //
+                    { "data": "col_4" },                            // -- agence -- //
+                    { "data": "col_2" },                            // -- compte -- //
+                    { "data": "col_3" },                            // -- nom_utilisateur -- //
+                    { "data": "col_5" },                            // -- profession -- //
+                    { "data": "col_6", "class": "text-center" },     // -- ouverture_back_date -- //
+                    { "data": "col_7", "class": "text-center" },     // -- ouverture_branch -- //
+                    { "data": "col_8", "class": "text-center" },     // -- ouverture_back_date_travail -- //
+                    { "data": "col_9", "class": "text-center" },     // -- est_suspendu -- //
+                    { "data": "col_10", "class": "text-center" },     // -- acces_historique_compte -- //
+                    { "data": "col_11", "class": "text-center" },     // -- duree_mot_de_passe -- //
+                    { "data": "col_12", "class": "text-center" }     // -- Action -- //
                 ]
             });
 
@@ -232,7 +256,7 @@ $(
                         }
 
                         // -- Définition de l'action de traitement -- //
-                        var action_ajouter = (parseInt($('#form_id').val()) === 0);
+                        var action_ajouter = (parseInt($('#form_id_utilisateur').val()) === 0);
                         
                         // -- Afficher le chargement -- //
                         gbAfficher_Page_Chargement(true, btn_enregistrer.attr('id'));
@@ -285,7 +309,7 @@ $(
                     form[0].reset();
 
                     // -- Reinitialiser le id -- //
-                    $('#form_id').val(0);
+                    $('#form_id_utilisateur').val(0);
 
                     // -- Mise à jour du label du bouton d'enregistrement -- //
                     btn_enregistrer.html('<i class="fa fa-check"></i>' + $GB_DONNEE_PARAMETRES.Lang.Save);
@@ -295,6 +319,10 @@ $(
 
                     // -- Suppression de l'alert de confirmation -- //
                     $('#dsAlert_Message_Box').html(null);
+
+                    // -- Désactiver le champ d'activation de la modification -- //
+                    $('#form_modifier_mot_de_passe').val('True');
+                    $('#form_modifier_mot_de_passe').attr('disabled', true);
 
                     // -- Activer/Desactiver formulaire -- //
                     gbActiverDesactiverForm(form.attr('id'), false);
@@ -311,7 +339,7 @@ $(
             btn_supprimer.on("click",
                 function () {
                     // -- Réccupérer les données electionné -- //
-                    var selection = $('input[name="module"]:checked');
+                    var selection = $('input[name="utilisateur"]:checked');
 
                     // -- Si la taille est supérieurs à 0 -- //
                     if (selection.length == 0) {
@@ -328,7 +356,7 @@ $(
                     var ids = [];
                     // -- Réccupération des id -- //
                     for (var i = 0; i < selection.length; i++) {
-                        ids.push(selection[i].replace('module=module_', ''));
+                        ids.push(selection[i].replace('utilisateur=utilisateur_', ''));
                     }
 
                     // -- SOumettre les données au traitement -- //

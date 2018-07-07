@@ -168,3 +168,4 @@
 /// <reference path="views/securite-menu.js" />
 /// <reference path="views/securite-module.js" />
 /// <reference path="views/securite-role.js" />
+/// <reference path="views/securiteutilisateur-utilisateur.js" />
