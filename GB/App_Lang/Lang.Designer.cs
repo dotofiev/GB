@@ -61,6 +61,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abbreviation.
+        /// </summary>
+        public static string Abbreviation {
+            get {
+                return ResourceManager.GetString("Abbreviation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Activate edit.
         /// </summary>
         public static string Activate_edit {
@@ -165,6 +174,15 @@ namespace GB.App_Lang {
         public static string Authentication_failed_4 {
             get {
                 return ResourceManager.GetString("Authentication_failed_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse.
+        /// </summary>
+        public static string Browse {
+            get {
+                return ResourceManager.GetString("Browse", resourceCulture);
             }
         }
         
@@ -295,6 +313,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Empty.
+        /// </summary>
+        public static string Empty {
+            get {
+                return ResourceManager.GetString("Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable.
         /// </summary>
         public static string Enable {
@@ -381,6 +408,15 @@ namespace GB.App_Lang {
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Institution management.
+        /// </summary>
+        public static string Institution_management {
+            get {
+                return ResourceManager.GetString("Institution_management", resourceCulture);
             }
         }
         
@@ -831,6 +867,15 @@ namespace GB.App_Lang {
         public static string Suspended {
             get {
                 return ResourceManager.GetString("Suspended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file must not exceed.
+        /// </summary>
+        public static string The_file_must_not_exceed {
+            get {
+                return ResourceManager.GetString("The_file_must_not_exceed", resourceCulture);
             }
         }
         

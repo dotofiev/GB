@@ -16,6 +16,7 @@ namespace GB.Models.Tests
         {
             // -- Lire la base de données -- //
             db = GBConvert.JSON_To<BD>(System.IO.File.ReadAllText(url_base_de_donnees));
+
             // -- Mise à jour des references objet -- //
             // -- Groupe menu -- //
             db.utilisateurs.ForEach(l => {
@@ -24,13 +25,17 @@ namespace GB.Models.Tests
                 l.date_mise_a_jour_mot_de_passe = DateTime.Now.AddMonths(1).Ticks;
             });
             // -- Groupe menu -- //
-            db.groupe_menus.ForEach(l => { l.module = db.modules[0]; });
+            db.groupe_menus.ForEach(l => {
+                l.module = db.modules.FirstOrDefault(ll => ll.id == l.id_module);
+            });
             // -- Menu -- //
-            db.menus.ForEach(l => { l.groupe_menu = db.groupe_menus[(l.id < 4) ? 0 : 1]; });
+            db.menus.ForEach(l => {
+                l.groupe_menu = db.groupe_menus.FirstOrDefault(ll => ll.id == l.id_groupe_menu);
+            });
             // -- Autorisation -- //
             db.autorisations.ForEach(l => {
-                l.role = db.roles[0];
-                l.menu = db.menus[Convert.ToInt32(l.id_menu - 1)];
+                l.role = db.roles.FirstOrDefault(ll => ll.id == l.id_role);
+                l.menu = db.menus.FirstOrDefault(ll => ll.id == l.id_menu);
             });
         }
 

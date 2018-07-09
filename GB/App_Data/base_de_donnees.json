@@ -1,4 +1,126 @@
 ﻿{
+  "modules": [
+    {
+      "id": "1",
+      "code": "1",
+      "libelle_en": "Security group",
+      "libelle_fr": "Groupe sécurité"
+    },
+    {
+      "id": "2",
+      "code": "2",
+      "libelle_en": "Configuration",
+      "libelle_fr": "Configuration"
+    }
+  ],
+  "groupe_menus": [
+    {
+      "id": "1",
+      "id_module": "1",
+      "code": "1",
+      "libelle_en": "Configure security objets",
+      "libelle_fr": "Configuration objets sécurité",
+      "icon": "fa fa-cogs",
+      "controller": "Securite"
+    },
+    {
+      "id": "2",
+      "id_module": "1",
+      "code": "2",
+      "libelle_en": "Manage employee's security",
+      "libelle_fr": "Gestion de la sécurité des employés",
+      "icon": "fa fa-cogs",
+      "controller": "SecuriteUtilisateur"
+    },
+    {
+      "id": "3",
+      "id_module": "2",
+      "code": "3",
+      "libelle_en": "Bank",
+      "libelle_fr": "Banque",
+      "icon": "fa fa-cogs",
+      "controller": "ConfigurationBanque"
+    }
+  ],
+  "menus": [
+    {
+      "id": "1",
+      "code": "1",
+      "id_groupe_menu": "1",
+      "libelle_en": "Manage GBK modules",
+      "libelle_fr": "Gestion des modules GB",
+      "view": "Module",
+      "id_controller": "1"
+    },
+    {
+      "id": "2",
+      "code": "2",
+      "id_groupe_menu": "1",
+      "libelle_en": "Manage GBK menu",
+      "libelle_fr": "Gestion des menu GB",
+      "view": "Menu",
+      "id_controller": "1"
+    },
+    {
+      "id": "3",
+      "code": "3",
+      "id_groupe_menu": "1",
+      "libelle_en": "Manage GBK roles",
+      "libelle_fr": "Gestion des roles GB",
+      "view": "Role",
+      "id_controller": "1"
+    },
+    {
+      "id": "4",
+      "code": "4",
+      "id_groupe_menu": "2",
+      "libelle_en": "Employee management",
+      "libelle_fr": "Gestion des employés",
+      "view": "Utilisateur",
+      "id_controller": "2"
+    },
+    {
+      "id": "5",
+      "code": "5",
+      "id_groupe_menu": "2",
+      "libelle_en": "Assigning roles and menus",
+      "libelle_fr": "Attribution des rôles et menus",
+      "view": "Privilege",
+      "id_controller": "2"
+    },
+    {
+      "id": "6",
+      "code": "6",
+      "id_groupe_menu": "2",
+      "libelle_en": "System Audit",
+      "libelle_fr": "Audit du système",
+      "view": "Audit",
+      "id_controller": "2"
+    },
+    {
+      "id": "7",
+      "code": "7",
+      "id_groupe_menu": "3",
+      "libelle_en": "Institution",
+      "libelle_fr": "Institution",
+      "view": "Institution",
+      "id_controller": "3"
+    }
+  ],
+  "roles": [
+    {
+      "id": "1",
+      "code": "1",
+      "libelle_en": "Admin",
+      "libelle_fr": "Administrateur"
+    },
+    {
+      "id": "2",
+      "code": "2",
+      "libelle_en": "Programer",
+      "libelle_fr": "Programmeur"
+    }
+  ],
   "utilisateurs": [
     {
       "id_utilisateur": "99999",
@@ -31,78 +153,6 @@
       "est_suspendu": "false",
       "duree_mot_de_passe": "1",
       "date_mise_a_jour_mot_de_passe": "0"
-    }
-  ],
-  "modules": [
-    {
-      "id": "1",
-      "code": "1",
-      "libelle_en": "Security group",
-      "libelle_fr": "Groupe sécurité"
-    }
-  ],
-  "roles": [
-    {
-      "id": "1",
-      "code": "1",
-      "libelle_en": "Admin",
-      "libelle_fr": "Administrateur"
-    },
-    {
-      "id": "2",
-      "code": "2",
-      "libelle_en": "Programer",
-      "libelle_fr": "Programmeur"
-    }
-  ],
-  "menus": [
-    {
-      "id": "1",
-      "code": "1",
-      "libelle_en": "Manage GBK modules",
-      "libelle_fr": "Gestion des modules GB",
-      "view": "Module",
-      "id_controller": "1"
-    },
-    {
-      "id": "2",
-      "code": "2",
-      "libelle_en": "Manage GBK menu",
-      "libelle_fr": "Gestion des menu GB",
-      "view": "Menu",
-      "id_controller": "1"
-    },
-    {
-      "id": "3",
-      "code": "3",
-      "libelle_en": "Manage GBK roles",
-      "libelle_fr": "Gestion des roles GB",
-      "view": "Role",
-      "id_controller": "1"
-    },
-    {
-      "id": "4",
-      "code": "4",
-      "libelle_en": "Employee management",
-      "libelle_fr": "Gestion des employés",
-      "view": "Utilisateur",
-      "id_controller": "2"
-    },
-    {
-      "id": "5",
-      "code": "5",
-      "libelle_en": "Assigning roles and menus",
-      "libelle_fr": "Attribution des rôles et menus",
-      "view": "Privilege",
-      "id_controller": "2"
-    },
-    {
-      "id": "6",
-      "code": "6",
-      "libelle_en": "System Audit",
-      "libelle_fr": "Audit du système",
-      "view": "Audit",
-      "id_controller": "2"
     }
   ],
   "autorisations": [
@@ -167,6 +217,16 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "9",
+      "id_role": "1",
+      "id_menu": "7",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
     // -- Role 2 -- //
     {
       "id": "7",
@@ -187,24 +247,6 @@
       "supprimer": "true",
       "imprimer": "true",
       "lister": "true"
-    }
-  ],
-  "groupe_menus": [
-    {
-      "id": "1",
-      "code": "1",
-      "libelle_en": "Configure security objets",
-      "libelle_fr": "Configuration objets sécurité",
-      "icon": "fa fa-cogs",
-      "controller": "Securite"
-    },
-    {
-      "id": "2",
-      "code": "2",
-      "libelle_en": "Manage employee's security",
-      "libelle_fr": "Gestion de la sécurité des employés",
-      "icon": "fa fa-cogs",
-      "controller": "SecuriteUtilisateur"
     }
   ],
   "agences": [
@@ -229,6 +271,21 @@
       "id": "2",
       "code": "0002",
       "libelle": "Chef d'agence"
+    }
+  ],
+  "institutions": [
+    {
+      "id": "1",
+      "code": "OPESECS. LTD",
+      "libelle": "OPUS SECURITATIS SOLIDARITY LIMITED",
+      "motto": "WORKING FOR FINANCIAL SECURITY",
+      "pub": "WORKING FOR FINANCIAL SECURITY",
+      "cobac_id": "16157",
+      "type": "S.A.",
+      "logo": {
+        "fichier": [ ],
+        "libelle": ""
+      }
     }
   ]
 }

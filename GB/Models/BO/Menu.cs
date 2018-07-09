@@ -20,12 +20,13 @@ namespace GB.Models.BO
             set {
                 this._groupe_menu = value;
                 // -- Mise à jour de l'identifiant du controlleur -- //
-                this.id_controller = value.id;
+                this.id_controller = value?.id ?? 0;
             }
         }
         public List<Autorisation> autorisations { get; set; }
         public string view { get; set; }
         public long id_controller { get; set; }
+        public long id_groupe_menu { get; set; }
 
         public Menu(long id, string view)
         {

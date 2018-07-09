@@ -12,6 +12,66 @@ var $GB_DONNEE_PARAMETRES = null;
 var fonction_en_Timeout;
 var fonction_en_Interval;
 
+// -- Configurer le processus d'importation des ifhcier sur le formulaire -- //
+function gbConfigurerImportationFichier(id_input, id_button_select, id_button_delete, id_label, id_image) {
+
+    // -- Lorsque le bouton est cliqué -- //
+    $('#' + id_button_select).on('click',
+        function () {
+            // -- Déclencher le click sur le file upload -- //
+            $('#' + id_input).trigger('click');
+        }
+    );
+
+    // -- Lorsque le file uplaod change -- //
+    $('#' + id_input).on('change',
+        function () {
+            // -- Réccupérer le fichier - //
+            var fichier = this.files[0];
+
+            // -- Si le fichier n'est pas soumis -- //
+            if (fichier == undefined || fichier == null) {
+                return false;
+            }
+
+            // -- vérifier la taille de l'image -- //
+            if ((fichier.size / 1024) > $GB_DONNEE_PARAMETRES.TAILLE_MAX_IMAGE_IMPORTATION) {
+                // -- Message -- //
+                gbAlert({ est_echec: true, message: $GB_DONNEE_PARAMETRES.Lang.The_file_must_not_exceed + ' (' + $GB_DONNEE_PARAMETRES.TAILLE_MAX_IMAGE_IMPORTATION + ' Kb).' });
+                return false;
+            }
+
+            // -- Afficher l'image -- //
+            img = new Image();
+            img.onload = function () {
+                // -- Mise à jour de la taille de l'image -- //
+                this.width = (this.width * 138) / this.height;
+            };
+            img.src = (window.URL || window.webkitURL).createObjectURL(fichier);
+            // -- Mise àj our de l'image dans le document -- //
+            document.getElementById(id_image).src = img.src;
+
+            // -- Réccupération du nom du document -- //
+            $('#' + id_label).html(fichier.name);
+        }
+    );
+
+    // -- Lorsque le bouton annuler est cliqué -- //
+    $('#' + id_button_delete).on('click',
+        function () {
+            // -- Mise àj our de l'image dans le document -- //
+            document.getElementById(id_image).src = '/Resources/images/png/Utilisateur.png';
+
+            // -- Mise à jour du nom de l'image -- //
+            $('#' + id_label).html($GB_DONNEE_PARAMETRES.Lang.Empty + ' ...');
+
+            // -- Vider l'image chargé -- //
+            $('#' + id_input).val(null);
+        }
+    );
+
+}
+
 // -- Notifier en cas d'autorisation de liste refusé -- //
 function gbNotificationListerRefuser(notification) {
 

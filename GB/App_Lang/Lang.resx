@@ -399,4 +399,19 @@
   <data name="Value" xml:space="preserve">
     <value>Value</value>
   </data>
+  <data name="Abbreviation" xml:space="preserve">
+    <value>Abbreviation</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Empty</value>
+  </data>
+  <data name="Institution_management" xml:space="preserve">
+    <value>Institution management</value>
+  </data>
+  <data name="The_file_must_not_exceed" xml:space="preserve">
+    <value>The file must not exceed</value>
+  </data>
 </root>
