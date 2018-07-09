@@ -140,6 +140,7 @@ namespace GB.Controllers
                 this.ViewBag.Lang.English = App_Lang.Lang.English;
                 this.ViewBag.Lang.French = App_Lang.Lang.French;
                 this.ViewBag.Lang.To_log_in = App_Lang.Lang.To_log_in;
+                this.ViewBag.Lang.Erasing = App_Lang.Lang.Erasing;
 
                 // -- Données -- //
                 #region Données

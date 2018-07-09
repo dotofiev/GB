@@ -31,6 +31,21 @@ namespace GB.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Agence()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Agence_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationBanque_Agence);
+
+            return View();
+        }
         #endregion
 
         #region HttpPost
@@ -66,6 +81,63 @@ namespace GB.Controllers
                                 col_7 = val.motto,
                                 col_8 = val.logo?.libelle ?? App_Lang.Lang.Empty,
                                 col_9 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                                              title=""{Lang.Delete}"" 
+                                                              class=""btn btn-xs btn-round""
+                                                              onClick=""table_donnee_supprimer({ids}, true)""
+                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                          <i class=""fa fa-minus text-danger""></i>
+                                        </button>"
+                                        .Replace("{id}", val.id.ToString())
+                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                                //                              title=""{Lang.Update}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_modifier({id})""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-retweet text-warning""></i>
+                                //        </button>
+                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                //                              title=""{Lang.Delete}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_supprimer({ids}, true)""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-minus text-danger""></i>
+                                //        </button>"
+                                //        .Replace("{id}", val.id.ToString())
+                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
+                #region ConfigurationBanque-Agence
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
+                {
+                    foreach (var val in AgenceDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"agence\" value=\"agence_{val.id}\">",
+                                col_2 = val.code,
+                                col_3 = val.libelle,
+                                col_4 = val.pays,
+                                col_5 = val.ville,
+                                col_6 = val.adresse,
+                                col_7 = val.telephone,
+                                col_8 = val.bp,
+                                col_9 = val.fax,
+                                col_10 = val.cobac_id,
+                                col_11 = val.beac_id,
+                                col_12 = val.utilisateur?.nom_utilisateur?? App_Lang.Lang.Empty,
+                                col_13 = val.ip,
+                                col_14 = val.mot_de_passe,
+                                col_15 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
                                                               title=""{Lang.Delete}"" 
                                                               class=""btn btn-xs btn-round""
                                                               onClick=""table_donnee_supprimer({ids}, true)""
@@ -187,6 +259,41 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-Agence
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = AgenceDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle = obj.libelle,
+                                                        pays = obj.pays,
+                                                        ville = obj.ville,
+                                                        adresse = obj.adresse,
+                                                        telephone = obj.telephone,
+                                                        bp = obj.bp,
+                                                        fax = obj.fax,
+                                                        cobac_id = obj.cobac_id,
+                                                        beac_id = obj.beac_id,
+                                                        id_utilisateur = obj.id_utilisateur,
+                                                        ip = obj.ip,
+                                                        mot_de_passe = obj.mot_de_passe,
+                                                    }
+                                               );
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -259,6 +366,14 @@ namespace GB.Controllers
 
                     // -- Service d'enregistrement -- //
                     InstitutionDAO.Ajouter(obj_type);
+                }
+                #endregion
+
+                #region ConfigurationBanque-Agence
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
+                {
+                    // -- Service d'enregistrement -- //
+                    AgenceDAO.Ajouter(GBConvert.JSON_To<Agence>(obj));
                 }
                 #endregion
 
@@ -357,6 +472,14 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-Agence
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
+                {
+                    // -- Service de modification -- //
+                    AgenceDAO.Modifier(GBConvert.JSON_To<Agence>(obj));
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -408,6 +531,14 @@ namespace GB.Controllers
                 {
                     // -- Service de suppression -- //
                     InstitutionDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationBanque-Agence
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
+                {
+                    // -- Service de suppression -- //
+                    AgenceDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -473,6 +604,39 @@ namespace GB.Controllers
                 #region Données
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new {
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                }
+                                            );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationBanque-Agence
+            else if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Agence_management;
+                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
+                this.ViewBag.Lang.Countrie = App_Lang.Lang.Countrie;
+                this.ViewBag.Lang.Town = App_Lang.Lang.Town;
+                this.ViewBag.Lang.Address = App_Lang.Lang.Address;
+                this.ViewBag.Lang.Phone = App_Lang.Lang.Phone;
+                this.ViewBag.Lang.Postal_code = App_Lang.Lang.Postal_code;
+                this.ViewBag.Lang.User = App_Lang.Lang.User;
+                this.ViewBag.Lang.IP_Address = App_Lang.Lang.IP_Address;
+                this.ViewBag.Lang.Password = App_Lang.Lang.Password;
+                this.ViewBag.Lang.Server = App_Lang.Lang.Server;
+                this.ViewBag.Lang.Branch_manager = App_Lang.Lang.Branch_manager;
+                this.ViewBag.Lang.Login = App_Lang.Lang.Login;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                 }

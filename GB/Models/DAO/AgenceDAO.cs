@@ -69,6 +69,18 @@ namespace GB.Models.DAO
                         // -- Mise à jour de l'enregistrement -- //
                         l.code = obj.code;
                         l.libelle = obj.libelle;
+                        l.id_utilisateur = obj.id_utilisateur;
+                        l.utilisateur = UtilisateurDAO.Object(obj.id_utilisateur);
+                        l.adresse = obj.adresse;
+                        l.ville = obj.ville;
+                        l.bp = obj.bp;
+                        l.telephone = obj.telephone;
+                        l.pays = obj.pays;
+                        l.fax = obj.fax;
+                        l.cobac_id = obj.cobac_id;
+                        l.beac_id = obj.beac_id;
+                        l.ip = obj.ip;
+                        l.mot_de_passe = obj.mot_de_passe;
                     });
             }
             #region Catch

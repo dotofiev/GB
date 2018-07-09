@@ -39,7 +39,8 @@ $(function () {
                     url != '/Securite/Role' &&
                     url != '/Securite/Menu' &&
                     url != '/SecuriteUtilisateur/Utilisateur' &&
-                    url != '/ConfigurationBanque/Institution') {
+                    url != '/ConfigurationBanque/Institution' &&
+                    url != '/ConfigurationBanque/Agence') {
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 

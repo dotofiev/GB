@@ -414,4 +414,37 @@
   <data name="The_file_must_not_exceed" xml:space="preserve">
     <value>The file must not exceed</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Agence_management" xml:space="preserve">
+    <value>Agence management</value>
+  </data>
+  <data name="Branch_manager" xml:space="preserve">
+    <value>Branch manager</value>
+  </data>
+  <data name="Countrie" xml:space="preserve">
+    <value>Countrie</value>
+  </data>
+  <data name="Erasing" xml:space="preserve">
+    <value>Erasing</value>
+  </data>
+  <data name="IP_Address" xml:space="preserve">
+    <value>IP Address</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Postal_code" xml:space="preserve">
+    <value>P.O. Box</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="Town" xml:space="preserve">
+    <value>Town</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
 </root>

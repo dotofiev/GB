@@ -105,6 +105,15 @@
       "libelle_fr": "Institution",
       "view": "Institution",
       "id_controller": "3"
+    },
+    {
+      "id": "8",
+      "code": "8",
+      "id_groupe_menu": "3",
+      "libelle_en": "Branch",
+      "libelle_fr": "Agence",
+      "view": "Agence",
+      "id_controller": "3"
     }
   ],
   "roles": [
@@ -227,6 +236,16 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "10",
+      "id_role": "1",
+      "id_menu": "8",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
     // -- Role 2 -- //
     {
       "id": "7",
@@ -253,12 +272,18 @@
     {
       "id": "1",
       "code": "0001",
-      "libelle": "Agence 1"
-    },
-    {
-      "id": "2",
-      "code": "0002",
-      "libelle": "Agence 2"
+      "libelle": "Agence 1",
+      "id_utilisateur": "0",
+      "adresse": "Logpom",
+      "ville": "Douala",
+      "bp": "00000",
+      "telephone": "699999999",
+      "pays": "Cameroun",
+      "fax": "00000",
+      "cobac_id": "00000",
+      "beac_id": "00000",
+      "ip": "http://localhost:4409/",
+      "mot_de_passe": "root"
     }
   ],
   "professions": [
