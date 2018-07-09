@@ -13,7 +13,7 @@ var fonction_en_Timeout;
 var fonction_en_Interval;
 
 // -- Configurer le processus d'importation des ifhcier sur le formulaire -- //
-function gbConfigurerImportationFichier(id_input, id_button_select, id_button_delete, id_label, id_image) {
+function gbConfigurerImportationFichier(id_input, id_button_select, id_button_delete, id_label, id_image, id_image_statut) {
 
     // -- Lorsque le bouton est cliqué -- //
     $('#' + id_button_select).on('click',
@@ -53,6 +53,11 @@ function gbConfigurerImportationFichier(id_input, id_button_select, id_button_de
 
             // -- Réccupération du nom du document -- //
             $('#' + id_label).html(fichier.name);
+
+            // -- Mise à jour du statut de l'image -- //
+            if (id_image_statut != undefined && id_image_statut != null) {
+                $('#' + id_image_statut).val(1);
+            }
         }
     );
 
@@ -67,6 +72,11 @@ function gbConfigurerImportationFichier(id_input, id_button_select, id_button_de
 
             // -- Vider l'image chargé -- //
             $('#' + id_input).val(null);
+
+            // -- Mise à jour du statut de l'image -- //
+            if (id_image_statut != undefined && id_image_statut != null) {
+                $('#' + id_image_statut).val(0);
+            }
         }
     );
 

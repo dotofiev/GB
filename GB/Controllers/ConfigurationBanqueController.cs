@@ -64,7 +64,8 @@ namespace GB.Controllers
                                 col_5 = val.cobac_id,
                                 col_6 = val.pub,
                                 col_7 = val.motto,
-                                col_8 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                col_8 = val.logo?.libelle ?? App_Lang.Lang.Empty,
+                                col_9 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
                                                               title=""{Lang.Delete}"" 
                                                               class=""btn btn-xs btn-round""
                                                               onClick=""table_donnee_supprimer({ids}, true)""
@@ -176,7 +177,10 @@ namespace GB.Controllers
                                                         pub = obj.pub,
                                                         cobac_id = obj.cobac_id,
                                                         type = obj.type,
-                                                        image = GBConvert.To_Base64Image(obj.logo.fichier, ".jpg"),
+                                                        image = (obj.logo.fichier != null && obj.logo.fichier.Length != 0) ? GBConvert.To_Base64Image(obj.logo.fichier, ".jpg") 
+                                                                                                                           : null,
+                                                        image_statut = (obj.logo?.fichier?.Count() ?? 0) != 0 ? 2 
+                                                                                                              : 0, 
                                                         image_libelle = obj.logo.libelle?? App_Lang.Lang.Empty + " ...",
                                                     }
                                                );
@@ -305,10 +309,51 @@ namespace GB.Controllers
 
                 // -- Selectionner en fonction du menu - //
                 #region ConfigurationBanque-Institution
-                if (id_page == GB_Enum_Menu.ConfigurationBanque_Institution)
+                if (obj == null)
                 {
+                    // -- Mise à jour de l'identifiant de la page -- //
+                    id_page = GB_Enum_Menu.ConfigurationBanque_Institution;
+
+                    // -- Statut de la modification de l'aimge -- //
+                    string image_statut = Request.Params.Get("image_statut");
+
+                    // -- Réccupération des données -- //
+                    Institution obj_type = new Institution()
+                    {
+                        cobac_id = Request.Params.Get("cobac_id"),
+                        code = Request.Params.Get("code"),
+                        id = (int)Convert.ToDouble(Request.Params.Get("id")),
+                        libelle = Request.Params.Get("libelle"),
+                        type = Request.Params.Get("type"),
+                        pub = Request.Params.Get("cobac_id"),
+                        motto = Request.Params.Get("motto")
+                    };
+
+                    // -- Mise à jour du fichier soumis -- //
+                    // -- AJouter l'image -- //
+                    if (image_statut == "1")
+                    {
+                        if (Request.Files.Count > 0)
+                        {
+                            // -- Réccuération du contenur du fichier -- //
+                            obj_type.logo.fichier = GBConvert.To_ByteArray(Request.Files[0].InputStream);
+                            // -- Réccupération du nom du fichier -- //
+                            obj_type.logo.libelle = Request.Files[0].FileName;
+                        }
+                    }
+                    // -- Supprimer l'image -- //
+                    else if(image_statut == "0")
+                    {
+                        obj_type.logo = null;
+                    }
+                    // -- Si non garder la même image -- //
+                    else
+                    {
+                        obj_type.logo = new GBFichier();
+                    }
+
                     // -- Service de modification -- //
-                    InstitutionDAO.Modifier(GBConvert.JSON_To<Institution>(obj));
+                    InstitutionDAO.Modifier(obj_type);
                 }
                 #endregion
 

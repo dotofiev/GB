@@ -70,7 +70,10 @@ namespace GB.Models.DAO
                         l.code = obj.code;
                         l.libelle = obj.libelle;
                         l.cobac_id = obj.cobac_id;
-                        l.logo = obj.logo;
+                        // -- Mise à jour de l'image -- //
+                        l.logo = (obj.logo == null) ? null 
+                                                    : (obj.logo.fichier.Count() == 0) ? l.logo 
+                                                                                      : obj.logo;
                         l.motto = obj.motto;
                         l.pub = obj.pub;
                         l.type = obj.type;

@@ -41,8 +41,12 @@ try {
                     $('#form_pub').val(resultat.notification.donnee.pub);
                     $('#form_cobac_id').val(resultat.notification.donnee.cobac_id);
                     $('#form_type').val(resultat.notification.donnee.type);
-                    $('#form_image_label').val(resultat.notification.donnee.image_libelle);
-                    $('#form_image_fichier').val(resultat.notification.donnee.image).trigger('change');
+                    // -- Mise à jour de l'image -- //
+                    if (resultat.notification.donnee.image != undefined && resultat.notification.donnee.image != null) {
+                        $('#form_image').attr('src', resultat.notification.donnee.image);
+                        $('#form_image_label').html(resultat.notification.donnee.image_libelle);
+                        $('#form_image_statut').val(resultat.notification.donnee.image_statut);
+                    }
                     // -- Mise à jour du label du bouton d'enregistrement -- //
                     btn_enregistrer.html('<i class="fa fa-check"></i>' + $GB_DONNEE_PARAMETRES.Lang.Update);
                     // -- Afficher le modal formulaire -- //
@@ -189,7 +193,8 @@ $(
                     { "data": "col_5" },                            // -- cobac_id -- //
                     { "data": "col_6" },                            // -- pub -- //
                     { "data": "col_7" },                            // -- motto -- //
-                    { "data": "col_8", "class": "text-center" }     // -- Action -- //
+                    { "data": "col_8" },                            // -- image -- //
+                    { "data": "col_9", "class": "text-center" }     // -- Action -- //
                 ]
             });
 
@@ -250,9 +255,9 @@ $(
                         var form_data = new FormData(this);
 
                         // -- AJout des paramètre du formulaire -- //
-                        $.each(form.serializeArray(), function () {
-                            form_data.append(this.name, this.value);
-                        });
+                        //$.each(form.serializeArray(), function () {
+                        //    form_data.append(this.name, this.value);
+                        //});
 
                         // -- Ajax -- //
                         $.ajax({
@@ -376,7 +381,7 @@ $(
         // -- Configurer le processus d'importation des ifhcier sur le formulaire -- //
         try {
 
-            gbConfigurerImportationFichier('form_image_fichier', 'form_image_btn', 'form_image_btn_delete', 'form_image_label', 'form_image');
+            gbConfigurerImportationFichier('form_image_fichier', 'form_image_btn', 'form_image_btn_delete', 'form_image_label', 'form_image', 'form_image_statut');
 
         } catch (e) { gbConsole(e.message); }
 
