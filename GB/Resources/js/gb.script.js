@@ -12,8 +12,191 @@ var $GB_DONNEE_PARAMETRES = null;
 var fonction_en_Timeout;
 var fonction_en_Interval;
 
+// -- Configurer le processus d'importation des ifhcier sur le formulaire -- //
+function gbConfigurerImportationFichier(id_input, id_button_select, id_button_delete, id_label, id_image) {
+
+    // -- Lorsque le bouton est cliqué -- //
+    $('#' + id_button_select).on('click',
+        function () {
+            // -- Déclencher le click sur le file upload -- //
+            $('#' + id_input).trigger('click');
+        }
+    );
+
+    // -- Lorsque le file uplaod change -- //
+    $('#' + id_input).on('change',
+        function () {
+            // -- Réccupérer le fichier - //
+            var fichier = this.files[0];
+
+            // -- Si le fichier n'est pas soumis -- //
+            if (fichier == undefined || fichier == null) {
+                return false;
+            }
+
+            // -- vérifier la taille de l'image -- //
+            if ((fichier.size / 1024) > $GB_DONNEE_PARAMETRES.TAILLE_MAX_IMAGE_IMPORTATION) {
+                // -- Message -- //
+                gbAlert({ est_echec: true, message: $GB_DONNEE_PARAMETRES.Lang.The_file_must_not_exceed + ' (' + $GB_DONNEE_PARAMETRES.TAILLE_MAX_IMAGE_IMPORTATION + ' Kb).' });
+                return false;
+            }
+
+            // -- Afficher l'image -- //
+            img = new Image();
+            img.onload = function () {
+                // -- Mise à jour de la taille de l'image -- //
+                this.width = (this.width * 138) / this.height;
+            };
+            img.src = (window.URL || window.webkitURL).createObjectURL(fichier);
+            // -- Mise àj our de l'image dans le document -- //
+            document.getElementById(id_image).src = img.src;
+
+            // -- Réccupération du nom du document -- //
+            $('#' + id_label).html(fichier.name);
+        }
+    );
+
+    // -- Lorsque le bouton annuler est cliqué -- //
+    $('#' + id_button_delete).on('click',
+        function () {
+            // -- Mise àj our de l'image dans le document -- //
+            document.getElementById(id_image).src = '/Resources/images/png/Utilisateur.png';
+
+            // -- Mise à jour du nom de l'image -- //
+            $('#' + id_label).html($GB_DONNEE_PARAMETRES.Lang.Empty + ' ...');
+
+            // -- Vider l'image chargé -- //
+            $('#' + id_input).val(null);
+        }
+    );
+
+}
+
+// -- Notifier en cas d'autorisation de liste refusé -- //
+function gbNotificationListerRefuser(notification) {
+
+    //if (notification.dynamique.autorisation_refuse) {
+    //    gbMessage_Box({ est_echec: true, message: $GB_DONNEE_PARAMETRES.Lang.Permission_to_list_records_denied });
+    //}
+
+}
+
+// -- AJouter un element dans une liste -- //
+function gbAddInList(list, element) {
+
+    // -- Initialiser la liste si elle est vide -- //
+    if (list == undefined || list == null) {
+        list = [];
+    }
+
+    // -- AJouter -- //
+    list.push(element);
+
+    return list;
+
+}
+
+// -- Retirer un element dans une liste -- //
+function gbRemoveInList(list, element) {
+
+    // -- Initialiser la liste si elle est vide -- //
+    if (list == undefined || list == null) {
+        return [];
+    }
+
+    // -- Supprimer -- //
+    list.splice($.inArray(element, list), 1);
+
+    return list;
+
+}
+
+// -- Récupérer la liste des identifiants sélectionné dans une table -- //
+function gbSelectionIdsTable(name) {
+
+    // -- Réccupérer les données electionné -- //
+    var selection = $('input[name="' + name + '"]:checked');
+
+    // -- Si la taille est supérieurs à 0 -- //
+    if (selection.length == 0) {
+        return [];
+    }
+
+    // -- Mise à jour de l'etat de la selection -- //
+    selection = selection.serialize().split('&');
+
+    // -- Appel de la fonction -- //
+    var ids = [];
+    // -- Réccupération des id -- //
+    for (var i = 0; i < selection.length; i++) {
+        ids.push(selection[i].replace(name + '=' + name + '_', ''));
+    }
+
+    return ids;
+
+}
+
+// -- Recharger la table -- //
+function gbRechargerTable(frame, id_check_all, id_table) {
+
+    // -- Mise à jour paramètre id_check_all -- //
+    if (id_check_all == undefined || id_check_all == null) {
+        id_check_all = 'check-all';
+    }
+
+    // -- Mise à jour paramètre id_check_all -- //
+    if (id_table == undefined || id_table == null) {
+        id_table = 'table-donnee';
+    }
+
+    // -- Recharger la table -- //
+    $('#' + id_table).DataTable().ajax.reload(
+        function () {
+            // -- Teste si c'est un seul element -- //
+            if (frame) {
+                // -- cacher le chargement -- //
+                gbAfficher_Page_Chargement(false);
+            }
+            // -- Reset la taille de la table -- //
+            $('#' + id_table).DataTable().columns.adjust().draw();
+            // -- Selectionner une ligne de la table -- //
+            gbTableSelectionLigne(null, id_table);
+            // -- Désactiver le multiselect -- //
+            $('#' + id_check_all).iCheck('uncheck');
+            $('#' + id_table + ' .column-title').show();
+            $('#' + id_table + ' .bulk-actions').hide();
+        }
+    );
+
+}
+
+// -- Selectionner une ligne de la table -- //
+function gbTableSelectionLigne(ligne, id_table) {
+
+    // -- Mise à jour du id_table si celui ci n'est pas soumis -- //
+    if (id_table == undefined || id_table == null) {
+        id_table = 'table-donnee';
+    }
+
+    // -- Suppression de toutes les lignes delectionnées -- //
+    $('#' + id_table + ' tbody tr').each(
+        function () {
+            // -- Si l'element n'a pas la classe passer -- //
+            if ($(this).hasClass(class_table_selection)) {
+                $(this).removeClass(class_table_selection);
+            }
+        }
+    );
+
+    // -- Mise à jour de la couleur de la ligne -- //
+    if (ligne != undefined && ligne != null) {
+        ligne.addClass(class_table_selection);
+    }
+
+}
+
 // -- Activer/Desactiver formulaire -- //
-function gbActiverDesactiverForm(id_form, activer) {
+function gbActiverDesactiverForm(id_form, desactiver) {
 
     // -- Si le id_form n'est pas soumis ne rien faire -- //
     if (id_form == undefined || id_form == null) {
@@ -21,7 +204,7 @@ function gbActiverDesactiverForm(id_form, activer) {
     }
 
     // -- Si il s'agit d'une activation -- //
-    if (activer) {
+    if (desactiver) {
         $("#" + id_form + " :input").attr("disabled", true);
     } else {
         $("#" + id_form + " :input").attr("disabled", false);
@@ -606,6 +789,9 @@ function gbAfficher_Modal_Rechercher_Employe(url_donnee) {
                 "url": url_donnee,
                 "type": 'POST',
                 "dataSrc": function (resultat) {
+                    // -- Notifier -- //
+                    gbNotificationListerRefuser(resultat.notification);
+                    // -- Retourner les données -- //
                     return resultat.notification.donnee;
                 }
             },
@@ -651,53 +837,64 @@ function gbAfficher_Modal_Rechercher_Employe(url_donnee) {
 }
 
 // -- Fonction pour initiliser les style css javascript des tables -- //
-function gbCharger_Css_Table(type_donnee) {
+function gbCharger_Css_Table(type_donnee, id_check_all, id_table) { //
+    
+    // -- Mise à jour paramètre id_check_all -- //
+    if (id_check_all == undefined || id_check_all == null) {
+        id_check_all = 'check-all';
+    }
+
+    // -- Mise à jour paramètre id_check_all -- //
+    if (id_table == undefined || id_table == null) {
+        id_table = 'table-donnee';
+    }
 
     // iCheck
-    if ($("input.flat")[0]) {
-        $('input.flat').iCheck({
+    // -- Green -- //
+    if ($('#' + id_table + ' .flat')[0]) {
+        $('#' + id_table + ' .flat').iCheck({
             checkboxClass: 'icheckbox_flat-green',
             radioClass: 'iradio_flat-green'
         });
     }
+    // -- blue -- //
+    if ($('#' + id_table + ' .flat-blue')[0]) {
+        $('#' + id_table + ' .flat-blue').iCheck({
+            checkboxClass: 'icheckbox_flat-blue',
+            radioClass: 'iradio_flat-blue'
+        });
+    }
 
     // Table
-    $('table input').on('ifChecked', function () {
-        checkState = '';
+    $("table input[name='" + type_donnee + "']").on('ifChecked', function () {
         $(this).parent().parent().parent().addClass('selected');
-        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, '', id_check_all, id_table);
     });
-    $('table input').on('ifUnchecked', function () {
-        checkState = '';
+    $("table input[name='" + type_donnee + "']").on('ifUnchecked', function () {
         $(this).parent().parent().parent().removeClass('selected');
-        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, '', id_check_all, id_table);
     });
 
-    var checkState = '';
-
-    $('.bulk_action input').on('ifChecked', function () {
-        checkState = '';
+    $(".bulk_action input[name='" + type_donnee + "']").on('ifChecked', function () {
         $(this).parent().parent().parent().addClass('selected');
-        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, '', id_check_all, id_table);
     });
-    $('.bulk_action input').on('ifUnchecked', function () {
-        checkState = '';
+    $(".bulk_action input[name='" + type_donnee + "']").on('ifUnchecked', function () {
         $(this).parent().parent().parent().removeClass('selected');
-        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, '', id_check_all, id_table);
     });
-    $('.bulk_action input#check-all').on('ifChecked', function () {
-        checkState = 'all';
-        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+
+    $('.bulk_action input#' + id_check_all).on('ifChecked', function () {
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, 'all', id_check_all, id_table);
     });
-    $('.bulk_action input#check-all').on('ifUnchecked', function () {
-        checkState = 'none';
-        gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState);
+    $('.bulk_action input#' + id_check_all).on('ifUnchecked', function () {
+        gbCharger_Css_Table_Nombre_Selection(type_donnee, 'none', id_check_all, id_table);
     });
 
 }
 
 // -- Mettre à jour le label du nombre d'element selectionné -- //
-function gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState) {
+function gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState, id_check_all, id_table) {
 
     if (checkState === 'all') {
         $(".bulk_action input[name='" + type_donnee + "']").iCheck('check');
@@ -706,16 +903,16 @@ function gbCharger_Css_Table_Nombre_Selection(type_donnee, checkState) {
         $(".bulk_action input[name='" + type_donnee + "']").iCheck('uncheck');
     }
 
-    var checkCount = $(".bulk_action input[name='" + type_donnee + "']:checked").length;
+    //var checkCount = $(".bulk_action input[name='" + type_donnee + "']:checked").length;
 
-    if (checkCount) {
-        $('.column-title').hide();
-        $('.bulk-actions').show();
-        $('.action-cnt').html(checkCount);
-    } else {
-        $('.column-title').show();
-        $('.bulk-actions').hide();
-    }
+    //if (checkCount) {
+    //    $('#' + id_table + ' .column-title').hide();
+    //    $('#' + id_table + ' .bulk-actions').show();
+    //    $('#' + id_table + ' .action-cnt').html(checkCount);
+    //} else {
+    //    $('#' + id_table + ' .column-title').show();
+    //    $('#' + id_table + ' .bulk-actions').hide();
+    //}
 
 }
 
@@ -876,22 +1073,24 @@ function gbConsole(value) {
 }
 
 // -- Notificateur -- //
-function gbNotification(notification) {
+function gbNotification(notification, titre) {
 
+    // -- Ecoute si le notificateur est soumis -- //
+    if (notification == null || notification == undefined) {
+        notification = {
+            est_echec: true,
+            message: $GB_DONNEE_PARAMETRES.Lang.Error_server_message,
+        }
+    }
+
+    // - Notifier -- //
     new PNotify({
-        title: notification.titre,
-        type: (notification.type == 3) ? 'error'
-                                       : (notification.type == 2) ? 'info'
-                                                                  : 'success',
+        title: titre == undefined || titre == null ? 'Information'
+                                                   : titre,
         text: notification.message,
-        nonblock: {
-            nonblock: true
-        },
-        addclass: (notification.type == 3) ? 'error'
-                                           : (notification.type == 2) ? 'info'
-                                                                      : (notification.type == 1) ? 'success'
-                                                                                                 : 'dark',
-        styling: 'bootstrap3'
+        type: (notification.est_echec === null) ? 'info'
+                                                : (notification.est_echec) ? 'error'
+                                                                           : 'success'
     });
 
 }

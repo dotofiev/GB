@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.Static;
+using GB.Models.Tests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -169,6 +170,64 @@ namespace GB.Models.DAO
                 // -- Parcours de la liste -- //
                 return
                     Program.db.menus.FirstOrDefault(l => l.code == code);
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(App_Lang.Lang.Error_message_notification);
+                }
+                else
+                {
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(ex.Message);
+                }
+            }
+            #endregion
+        }
+
+        public static Menu Object(string controller, string view)
+        {
+            try
+            {
+                // -- Parcours de la liste -- //
+                return
+                    Program.db.menus.FirstOrDefault(l => l.groupe_menu.controller == controller && l.view == view);
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(App_Lang.Lang.Error_message_notification);
+                }
+                else
+                {
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(ex.Message);
+                }
+            }
+            #endregion
+        }
+
+        public static Menu Object(long id_menu)
+        {
+            try
+            {
+                // -- Parcours de la liste -- //
+                return
+                    Program.db.menus.FirstOrDefault(l => l.id == id_menu);
             }
             #region Catch
             catch (Exception ex)

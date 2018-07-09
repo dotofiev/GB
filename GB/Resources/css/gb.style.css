@@ -453,3 +453,24 @@ tr {
     display: block;
     padding: 10px 15px 12px;
 }
+
+legend {
+    margin-bottom: 10px;
+}
+
+.menu_section {
+    margin-bottom: 10px;
+}
+
+.gb-hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.thumbnail {
+    height: auto;
+    overflow: visible;
+    margin-bottom: 0px;
+}

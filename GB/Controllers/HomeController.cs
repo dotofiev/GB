@@ -30,7 +30,6 @@ namespace GB.Controllers
             this.con = new Connexion(Session.SessionID);
 
             // -- Test -- //
-            Program.Initialiser_BD(url_data + "base_de_donnees.json");
             this.ViewBag.Test.compte = Program.db?.utilisateurs?[0]?.compte ?? string.Empty;
             this.ViewBag.Test.mot_de_passe = Program.db?.utilisateurs?[0]?.mot_de_passe ?? string.Empty;
 
@@ -45,14 +44,7 @@ namespace GB.Controllers
             try
             {
                 // -- Réccupération du l'utilisateur authentifié -- //
-                Utilisateur utilisateur = UtilisateurDAO.Object(compte, mot_de_passe);
-
-                // -- Vérifier la conformité des données -- //
-                if (utilisateur == null)
-                {
-                    // -- Exception -- //
-                    throw new GBException(App_Lang.Lang.Authentication_failed);
-                }
+                Utilisateur utilisateur = UtilisateurDAO.Authentification(compte, mot_de_passe);
 
                 // -- Authentifier l'objet connexion -- //
                 this.con.Authentification(utilisateur);

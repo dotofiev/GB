@@ -1,5 +1,6 @@
 ﻿using GB.Models;
 using GB.Models.BO;
+using GB.Models.DAO;
 using GB.Models.Helper;
 using GB.Models.Static;
 using Newtonsoft.Json;
@@ -17,8 +18,9 @@ namespace GB.Controllers
         #region Variables
         public Connexion con { get { return Session["Connexion"] as Connexion; } set { Session["Connexion"] = value; } }
         public int id_lang { get { if (Session["id_lang"] == null) { return 0; } else { return (int)Session["id_lang"]; } } set { Session["id_lang"] = value; } }
+        public long id_menu_actif { get { if (Session["id_menu_actif"] == null) { return 0; } else { return (long)Session["id_menu_actif"]; } } set { Session["id_menu_actif"] = value; } }
         #endregion
-        
+
         #region URLs
         public string url_data { get { return Server.MapPath("~/App_Data/"); } }
         public string url_resources { get { return Server.MapPath("~/Resources/"); } }
@@ -88,7 +90,7 @@ namespace GB.Controllers
         public virtual void Charger_Langue_Et_Donnees(string id_page) { }
 
         [HttpPost]
-        public virtual ActionResult Charger_Table(string id_page) { return null; }
+        public virtual ActionResult Charger_Table(string id_page, string id_vue) { return null; }
 
         public void Charger_Parametres()
         {
@@ -149,6 +151,13 @@ namespace GB.Controllers
 
                 return null;
             }
+        }
+
+        // -- Vérifier l'autorisation sur une action -- //
+        public void Verifier_Autorisation(GB_Enum_Action_Controller action)
+        {
+            // -- Vérifier l'autorisation de l'action -- //
+            AutorisationDAO.Verification(this.id_menu_actif, this.con.id_role, action);
         }
         #endregion
 

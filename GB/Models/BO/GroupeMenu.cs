@@ -9,6 +9,7 @@ namespace GB.Models.BO
 {
     public class GroupeMenu : GBBO
     {
+        public long id_module { get; set; }
         public Module module { get; set; }
         public List<Menu> menus { get; set; }
         public string icon { get; set; }

@@ -65,5 +65,25 @@ namespace GB.Models.Static
             return
                 string.Empty;
         }
+        
+        /// <summary>
+        /// Obtenir les options de combo box OUI ou NON
+        /// </summary>
+        public static string HTML_Oui_Non()
+        {
+            return
+                $"<option value=\"{true}\" title=\"{App_Lang.Lang.Yes}\">{App_Lang.Lang.Yes}</option>" +
+                $"<option value=\"{false}\" title=\"{App_Lang.Lang.No}\">{App_Lang.Lang.No}</option>";
+        }
+
+        /// <summary>
+        /// Obtenir les options de combo box OUI ou NON
+        /// </summary>
+        public static string HTML_Non_Oui()
+        {
+            return
+                $"<option value=\"{false}\" title=\"{App_Lang.Lang.No}\">{App_Lang.Lang.No}</option>" +
+                $"<option value=\"{true}\" title=\"{App_Lang.Lang.Yes}\">{App_Lang.Lang.Yes}</option>";
+        }
     }
 }

@@ -12,5 +12,12 @@
       "libelle": "SecuriteUtilisateur"
     },
     "views": [ "Utilisateur", "Privilege", "Audit" ]
+  },
+  {
+    "controller": {
+      "id": "3",
+      "libelle": "ConfigurationBanque"
+    },
+    "views": [ "Institution" ]
   }
 ]

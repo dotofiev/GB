@@ -126,7 +126,7 @@
   <data name="Authentication" xml:space="preserve">
     <value>Authentication</value>
   </data>
-  <data name="Authentication_failed" xml:space="preserve">
+  <data name="Authentication_failed_1" xml:space="preserve">
     <value>Incorrect account or password</value>
   </data>
   <data name="Close" xml:space="preserve">
@@ -269,5 +269,149 @@
   </data>
   <data name="Rules" xml:space="preserve">
     <value>Rules</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="Listing" xml:space="preserve">
+    <value>Listing</value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="Privilege_management" xml:space="preserve">
+    <value>Privilege management</value>
+  </data>
+  <data name="Role_and_privilege_management" xml:space="preserve">
+    <value>Role and privilege management</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Search_a_role" xml:space="preserve">
+    <value>Search a role</value>
+  </data>
+  <data name="Search_by" xml:space="preserve">
+    <value>Search by</value>
+  </data>
+  <data name="Delete_menus" xml:space="preserve">
+    <value>Delete menus</value>
+  </data>
+  <data name="New_menus" xml:space="preserve">
+    <value>New menus</value>
+  </data>
+  <data name="Add_" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Del_" xml:space="preserve">
+    <value>Del</value>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>Display</value>
+  </data>
+  <data name="Lst_" xml:space="preserve">
+    <value>Lst</value>
+  </data>
+  <data name="Mod_" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="Prt_" xml:space="preserve">
+    <value>Prt</value>
+  </data>
+  <data name="Necessary_privilege_loading_action" xml:space="preserve">
+    <value>Necessary privilege load action</value>
+  </data>
+  <data name="Permission_denied" xml:space="preserve">
+    <value>Permission denied</value>
+  </data>
+  <data name="Permission_to_list_records_denied" xml:space="preserve">
+    <value>Permission to list records denied</value>
+  </data>
+  <data name="No_changes_have_been_made" xml:space="preserve">
+    <value>No changes have been made</value>
+  </data>
+  <data name="User_Management" xml:space="preserve">
+    <value>User management</value>
+  </data>
+  <data name="Activated" xml:space="preserve">
+    <value>Activated</value>
+  </data>
+  <data name="Activate_edit" xml:space="preserve">
+    <value>Activate edit</value>
+  </data>
+  <data name="Agency" xml:space="preserve">
+    <value>Agency</value>
+  </data>
+  <data name="Authentication_failed_2" xml:space="preserve">
+    <value>This account is suspended</value>
+  </data>
+  <data name="Authentication_failed_3" xml:space="preserve">
+    <value>The password has expired</value>
+  </data>
+  <data name="Authentication_failed_4" xml:space="preserve">
+    <value>You do not have permissions in the system</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Connection_status" xml:space="preserve">
+    <value>Connection status</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="Employee_historical_access" xml:space="preserve">
+    <value>Employee historical access</value>
+  </data>
+  <data name="Expiration_duration" xml:space="preserve">
+    <value>Expiration duration</value>
+  </data>
+  <data name="Job" xml:space="preserve">
+    <value>Job</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="Open_back_date" xml:space="preserve">
+    <value>Open back date</value>
+  </data>
+  <data name="Open_back_working_date" xml:space="preserve">
+    <value>Open back working date</value>
+  </data>
+  <data name="Open_branch" xml:space="preserve">
+    <value>Open branch</value>
+  </data>
+  <data name="Password_expiration" xml:space="preserve">
+    <value>Password expiration</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>Suspended</value>
+  </data>
+  <data name="This_account_is_suspended" xml:space="preserve">
+    <value>This account is suspended</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Abbreviation" xml:space="preserve">
+    <value>Abbreviation</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Empty</value>
+  </data>
+  <data name="Institution_management" xml:space="preserve">
+    <value>Institution management</value>
+  </data>
+  <data name="The_file_must_not_exceed" xml:space="preserve">
+    <value>The file must not exceed</value>
   </data>
 </root>

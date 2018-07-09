@@ -30,13 +30,16 @@
                             <!-- Id -->
                             <input type="hidden" id="form_id" name="id" value="0" />
 
+                            <!-- ligne -->
                             <div class="col-xs-12 col-lg-12">
                                 <div class="form-group">
                                     <label for="form_code">Code :</label>
                                     <input class="form-control" type="text" id="form_code" name="code" placeholder="Code.*" required />
                                 </div>
                             </div>
+                            <!-- ./ligne -->
 
+                            <!-- ligne -->
                             <div class="col-xs-12 col-lg-6">
                                 <div class="form-group">
                                     <label for="form_libelle_fr">@ViewBag.Lang.Name_french :</label>
@@ -50,6 +53,7 @@
                                     <input class="form-control" type="text" id="form_libelle_en" name="libelle_en" placeholder="@ViewBag.Lang.Name_english .*" required />
                                 </div>
                             </div>
+                            <!-- ./ligne -->
 
                         </div>
 
@@ -73,6 +77,82 @@
                 <button class="btn btn-default btn-success pull-right" id="btn-enregistrer" type="submit" form="form"
                         data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> @ViewBag.Lang.Process ...">
                     <i class="fa fa-check"></i> @ViewBag.Lang.Save
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- form 1 -->
+<div class="modal fade gb-temp-modal-menu" id="modal_menu" role="alert" data-backdrop="static" data-keyboard="false">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-body">
+
+                <!-- Header -->
+                <p style="font-weight: bold; font-size: 18px;">
+                    <!-- Title -->
+                    <span>
+                        <i class="fa fa-list text-info"></i> Menus
+                    </span>
+                    <!-- Close bouton -->
+                    <button type="button" class="close float-right" data-dismiss="modal" aria-hidden="true" style="font-weight: bold;">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </p>
+
+                <!-- Table des données -->
+                <table id="table-menu-donnee" class="table table-condensed jambo_table bulk_action dt-responsive nowrap temps" 
+                       typedonnee="menu" idcheckall="check-menu-all" idtable="table-menu-donnee" cellspacing="0" width="100%;">
+
+                    <thead class="headings">
+                        <tr>
+                            <th width="20px">
+                                <input type="checkbox" id="check-menu-all" class="flat">
+                            </th>
+                            <th class="column-title">@ViewBag.Lang.Name</th>
+                            <th class="column-title">@ViewBag.Lang.Menu_group</th>
+                            <th class="column-title">@ViewBag.Lang.Name module</th>
+                            <th class="column-title">@ViewBag.Lang.Add_</th>
+                            <th class="column-title">@ViewBag.Lang.Mod_</th>
+                            <th class="column-title">@ViewBag.Lang.Del_</th>
+                            <th class="column-title">@ViewBag.Lang.Prt_</th>
+                            <th class="column-title last">@ViewBag.Lang.Lst_</th>
+                            <th class="bulk-actions" colspan="8">
+                                <a class="antoo" style="color:#fff; font-weight:500;">
+                                    Selection(s) ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i>
+                                </a>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody></tbody>
+
+                </table>
+
+                <!--Alert Message -->
+                <div id="gbAlert2"></div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <!-- Bouton de fermiture du modal -->
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">
+                    <i class="glyphicon glyphicon-remove"></i> @ViewBag.Lang.Close
+                </button>
+
+                <!-- Bouton d'enregistrement du formulaire -->
+                <button class="btn btn-default btn-success pull-right" id="btn-configuration-selectionner" type="button"
+                        data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> @ViewBag.Lang.Process ...">
+                    <i class="fa fa-check"></i> @ViewBag.Lang.Select
                 </button>
 
             </div>

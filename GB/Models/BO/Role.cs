@@ -24,7 +24,7 @@ namespace GB.Models.BO
 
         public override void Crer_Id()
         {
-            this.id = Program.db.roles.Count + 1;
+            this.id = Tests.Program.db.roles.Count + 1;
         }
     }
 }

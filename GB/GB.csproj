@@ -187,6 +187,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ConfigurationBanqueController.cs" />
+    <Compile Include="Controllers\SecuriteUtilisateurController.cs" />
     <Compile Include="Controllers\SecuriteController.cs" />
     <Compile Include="Controllers\ErreurController.cs" />
     <Compile Include="Controllers\GBController.cs" />
@@ -197,20 +199,29 @@
     </Compile>
     <Compile Include="Models\ActionFilter\AuthentificationRequis.cs" />
     <Compile Include="Models\ActionFilter\ResponseErreur.cs" />
+    <Compile Include="Models\BO\GBFichier.cs" />
+    <Compile Include="Models\BO\Profession.cs" />
     <Compile Include="Models\BO\Autorisation.cs" />
     <Compile Include="Models\BO\Connexion.cs" />
     <Compile Include="Models\BO\GBBO.cs" />
     <Compile Include="Models\BO\GroupeMenu.cs" />
     <Compile Include="Models\BO\Menu.cs" />
     <Compile Include="Models\BO\Module.cs" />
+    <Compile Include="Models\BO\Agence.cs" />
+    <Compile Include="Models\BO\Institution.cs" />
     <Compile Include="Models\BO\Role.cs" />
     <Compile Include="Models\BO\Utilisateur.cs" />
     <Compile Include="Models\Cryptage\Program.cs" />
     <Compile Include="Models\BO\GBException.cs" />
     <Compile Include="Models\BO\GBNotification.cs" />
+    <Compile Include="Models\DAO\ProfessionDAO.cs" />
     <Compile Include="Models\DAO\GBDAO.cs" />
     <Compile Include="Models\DAO\ModuleDAO.cs" />
     <Compile Include="Models\DAO\MenuDAO.cs" />
+    <Compile Include="Models\DAO\AutorisationDAO.cs" />
+    <Compile Include="Models\DAO\GroupeMenuDAO.cs" />
+    <Compile Include="Models\DAO\AgenceDAO.cs" />
+    <Compile Include="Models\DAO\InstitutionDAO.cs" />
     <Compile Include="Models\DAO\RoleDAO.cs" />
     <Compile Include="Models\DAO\UtilisateurDAO.cs" />
     <Compile Include="Models\Helper\LangHelper.cs" />
@@ -219,6 +230,7 @@
     <Compile Include="Models\Static\Enumeration.cs" />
     <Compile Include="Models\Static\GBClass.cs" />
     <Compile Include="Models\Static\GBConvert.cs" />
+    <Compile Include="Models\Static\GBToString.cs" />
     <Compile Include="Models\Tests\BD.cs" />
     <Compile Include="Models\Tests\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -385,6 +397,10 @@
     <Content Include="Plugins\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.js" />
     <Content Include="Plugins\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.min.css" />
     <Content Include="Plugins\malihu-custom-scrollbar-plugin\mCSB_buttons.png" />
+    <Content Include="Plugins\notify\pnotify.buttons.js" />
+    <Content Include="Plugins\notify\pnotify.core.js" />
+    <Content Include="Plugins\notify\pnotify.nonblock.js" />
+    <Content Include="Plugins\notify\pnotity.css" />
     <Content Include="Plugins\nprogress\index.html" />
     <Content Include="Plugins\nprogress\nprogress.css" />
     <Content Include="Plugins\nprogress\nprogress.js" />
@@ -731,6 +747,8 @@
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\gb.menu.js" />
     <Content Include="Resources\js\Views\Securite-Menu.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-Institution.js" />
+    <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
     <Content Include="Resources\js\Views\Application-Principale.js" />
@@ -1028,6 +1046,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\base_de_donnees.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SecuriteUtilisateur\Utilisateur\_Modals.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SecuriteUtilisateur\Utilisateur.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationBanque\Institution\_Modals.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationBanque\Institution.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
