@@ -448,4 +448,16 @@
   <data name="User" xml:space="preserve">
     <value>Utilisateur</value>
   </data>
+  <data name="Current_currency" xml:space="preserve">
+    <value>Devise actuelle</value>
+  </data>
+  <data name="Devise_management" xml:space="preserve">
+    <value>Gestion des devises</value>
+  </data>
+  <data name="Sign" xml:space="preserve">
+    <value>Signe</value>
+  </data>
+  <data name="The_object_must_have_a_unique_id" xml:space="preserve">
+    <value>L'objet doit avoir un identifiant unique</value>
+  </data>
 </root>

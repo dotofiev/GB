@@ -447,4 +447,16 @@
   <data name="User" xml:space="preserve">
     <value>User</value>
   </data>
+  <data name="Current_currency" xml:space="preserve">
+    <value>Current currency</value>
+  </data>
+  <data name="Devise_management" xml:space="preserve">
+    <value>Devise management</value>
+  </data>
+  <data name="Sign" xml:space="preserve">
+    <value>Sign</value>
+  </data>
+  <data name="The_object_must_have_a_unique_id" xml:space="preserve">
+    <value>The object must have a unique id</value>
+  </data>
 </root>

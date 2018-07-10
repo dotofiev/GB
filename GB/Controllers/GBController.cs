@@ -133,6 +133,10 @@ namespace GB.Controllers
 
             // -- Autre -- //
             this.ViewBag.Lang.List_of_records = App_Lang.Lang.List_of_records;
+
+            // -- Rendu html dans les combo box -- //
+            this.ViewBag.donnee.HTML_Non_Oui = GBClass.HTML_Non_Oui();
+            this.ViewBag.donnee.HTML_Oui_Non = GBClass.HTML_Oui_Non();
         }
 
         // -- Retourner le fichier de la langue à affecter aux tables de données -- //

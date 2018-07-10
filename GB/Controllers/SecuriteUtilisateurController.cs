@@ -449,8 +449,6 @@ namespace GB.Controllers
                         $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                 }
                 #endregion
-                this.ViewBag.donnee.HTML_Non_Oui = GBClass.HTML_Non_Oui();
-                this.ViewBag.donnee.HTML_Oui_Non = GBClass.HTML_Oui_Non();
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new {
                                                     id_page = id_page,

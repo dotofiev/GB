@@ -114,6 +114,24 @@
       "libelle_fr": "Agence",
       "view": "Agence",
       "id_controller": "3"
+    },
+    {
+      "id": "9",
+      "code": "9",
+      "id_groupe_menu": "3",
+      "libelle_en": "Branch Accounts",
+      "libelle_fr": "Comptes de succursale",
+      "view": "CompteAgence",
+      "id_controller": "3"
+    },
+    {
+      "id": "10",
+      "code": "10",
+      "id_groupe_menu": "3",
+      "libelle_en": "Currency",
+      "libelle_fr": "Devise",
+      "view": "Devise",
+      "id_controller": "3"
     }
   ],
   "roles": [
@@ -246,6 +264,26 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "11",
+      "id_role": "1",
+      "id_menu": "9",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "12",
+      "id_role": "1",
+      "id_menu": "10",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
     // -- Role 2 -- //
     {
       "id": "7",
@@ -311,6 +349,15 @@
         "fichier": [ ],
         "libelle": ""
       }
+    }
+  ],
+  "devises": [
+    {
+      "id": "1",
+      "code": "001",
+      "libelle": "Franc Communautaire Financière Africain",
+      "signe": "FCFA",
+      "devise_actuelle": "true"
     }
   ]
 }

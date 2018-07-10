@@ -17,6 +17,7 @@ namespace GB.Models.Tests
         public List<Agence> agences { get; set; }
         public List<Profession> professions { get; set; }
         public List<Institution> institutions { get; set; }
+        public List<Devise> devises { get; set; }
         
         public BD() { }
     }

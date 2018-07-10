@@ -200,6 +200,7 @@
     <Compile Include="Models\ActionFilter\AuthentificationRequis.cs" />
     <Compile Include="Models\ActionFilter\ResponseErreur.cs" />
     <Compile Include="Models\BO\GBFichier.cs" />
+    <Compile Include="Models\BO\Devise.cs" />
     <Compile Include="Models\BO\Profession.cs" />
     <Compile Include="Models\BO\Autorisation.cs" />
     <Compile Include="Models\BO\Connexion.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Models\Cryptage\Program.cs" />
     <Compile Include="Models\BO\GBException.cs" />
     <Compile Include="Models\BO\GBNotification.cs" />
+    <Compile Include="Models\DAO\DeviseDAO.cs" />
     <Compile Include="Models\DAO\ProfessionDAO.cs" />
     <Compile Include="Models\DAO\GBDAO.cs" />
     <Compile Include="Models\DAO\ModuleDAO.cs" />
@@ -507,6 +509,7 @@
     <Content Include="Resources\js\Views\Securite-Menu.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Institution.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Agence.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-Devise.js" />
     <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
@@ -763,6 +766,12 @@
     <Content Include="Plugins\EasyAutocomplete-1.3.5\maps\easy-autocomplete.min.css.map" />
     <Content Include="Plugins\EasyAutocomplete-1.3.5\maps\easy-autocomplete.themes.css.map" />
     <Content Include="Plugins\EasyAutocomplete-1.3.5\maps\easy-autocomplete.themes.min.css.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationBanque\Devise\_Modals.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationBanque\Devise.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -286,6 +286,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current currency.
+        /// </summary>
+        public static string Current_currency {
+            get {
+                return ResourceManager.GetString("Current_currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Del.
         /// </summary>
         public static string Del_ {
@@ -309,6 +318,15 @@ namespace GB.App_Lang {
         public static string Delete_menus {
             get {
                 return ResourceManager.GetString("Delete_menus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Devise management.
+        /// </summary>
+        public static string Devise_management {
+            get {
+                return ResourceManager.GetString("Devise_management", resourceCulture);
             }
         }
         
@@ -925,6 +943,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sign.
+        /// </summary>
+        public static string Sign {
+            get {
+                return ResourceManager.GetString("Sign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign Out.
         /// </summary>
         public static string Sign_Out {
@@ -957,6 +984,15 @@ namespace GB.App_Lang {
         public static string The_file_must_not_exceed {
             get {
                 return ResourceManager.GetString("The_file_must_not_exceed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The object must have a unique id.
+        /// </summary>
+        public static string The_object_must_have_a_unique_id {
+            get {
+                return ResourceManager.GetString("The_object_must_have_a_unique_id", resourceCulture);
             }
         }
         
