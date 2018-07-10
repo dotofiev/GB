@@ -2,6 +2,7 @@
 // -- Variables -- //
 var table = $('#table-donnee');
 var url_ajax_dataTable = '/ConfigurationBanque/Charger_Table/?id_page=' + $GB_DONNEE.id_page;
+var url_ajax_easyAutocomplete = '/ConfigurationBanque/Charger_EasyAutocomplete/?id_page=' + $GB_DONNEE.id_page;
 var url_ajax_selection_enregistrement = '/ConfigurationBanque/Selection_Enregistrement/';
 var btn_ajouter = $('#btn-ajouter');
 var btn_supprimer = $('#btn-supprimer');
@@ -9,6 +10,9 @@ var btn_imprimmer = $('#btn-imprimmer');
 var btn_enregistrer = $('#btn-enregistrer');
 var btn_table;
 var form = $('#form');
+var form_utilisateur_id = $('#form_utilisateur_id');
+var form_utilisateur_compte = $('#form_utilisateur_compte');
+var form_utilisateur_nom = $('#form_utilisateur_nom');
 var modal_form = $('#modal_form');
 var url_controlleur = '/ConfigurationBanque/';
 var url_suppression = '/ConfigurationBanque/Supprimer_Enregistrement';
@@ -46,7 +50,9 @@ try {
                     $('#form_beac_id').val(resultat.notification.donnee.beac_id);
                     $('#form_ip').val(resultat.notification.donnee.ip);
                     $('#form_mot_de_passe').val(resultat.notification.donnee.mot_de_passe);
-                    $('#form_id_utilisateur').val(resultat.notification.donnee.id_utilisateur);
+                    form_utilisateur_id.val(resultat.notification.donnee.id_utilisateur);
+                    form_utilisateur_compte.val(resultat.notification.donnee.utilisateur_compte);
+                    form_utilisateur_nom.val(resultat.notification.donnee.utilisateur_nom);
                     // -- Mise à jour du label du bouton d'enregistrement -- //
                     btn_enregistrer.html('<i class="fa fa-check"></i>' + $GB_DONNEE_PARAMETRES.Lang.Update);
                     // -- Afficher le modal formulaire -- //
@@ -370,6 +376,65 @@ $(
 
                 }
             );
+
+        } catch (e) { gbConsole(e.message); }
+
+        // -- Charger le sur les utilisateur -- //
+        try {
+
+            // -- Recherche par compte -- //
+            form_utilisateur_compte.easyAutocomplete({
+                url: url_ajax_easyAutocomplete,
+                getValue: function (obj) {
+                    return obj.compte;
+                },
+                list: {
+                    onSelectItemEvent: function () {
+                        // -- Mise à jour du champ nom utilisateur -- //
+                        form_utilisateur_nom.val(form_utilisateur_compte.getSelectedItemData().nom_utilisateur);
+                        // -- Mise à jour de l'identifiant de l'utilisateur -- //
+                        form_utilisateur_id.val(form_utilisateur_compte.getSelectedItemData().id_utilisateur);
+                    },
+                    match: {
+                        enabled: true
+                    }
+                },
+                template: {
+                    type: "custom",
+                    method: function(value, item) {
+                        return "<i class=\"fa fa-caret-right\"></i> " + value +
+                               "<br />" +
+                               "<i><b>" + item.nom_utilisateur + "</b></i>";
+                    }
+                }
+            });
+
+            // -- Recherche par nom_utilisateur -- //
+            form_utilisateur_nom.easyAutocomplete({
+                url: url_ajax_easyAutocomplete,
+                getValue: function (obj) {
+                    return obj.nom_utilisateur;
+                },
+                list: {
+                    onSelectItemEvent: function () {
+                        // -- Mise à jour du champ nom utilisateur -- //
+                        form_utilisateur_compte.val(form_utilisateur_nom.getSelectedItemData().compte);
+                        // -- Mise à jour de l'identifiant de l'utilisateur -- //
+                        form_utilisateur_id.val(form_utilisateur_nom.getSelectedItemData().id_utilisateur);
+                    },
+                    match: {
+                        enabled: true
+                    }
+                },
+                template: {
+                    type: "custom",
+                    method: function (value, item) {
+                        return "<i class=\"fa fa-caret-right\"></i> " + value +
+                               "<br />" +
+                               "<i><b>" + item.compte + "</b></i>";
+                    }
+                }
+            });
 
         } catch (e) { gbConsole(e.message); }
 

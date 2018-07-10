@@ -219,6 +219,53 @@ namespace GB.Controllers
             );
         }
 
+        // -- Charger les données dans le auto complete -- //
+        public override object Charger_EasyAutocomplete(string id_page, string id_vue)
+        {
+            List<object> donnee = new List<object>();
+
+            try
+            {
+                #region ConfigurationBanque-Agence
+                if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
+                {
+                    // -- Si la liste des utilisateurs en session est vide, la mettre à jour -- //
+                    if ((this.con.donnee.utilisateurs as List<Utilisateur>).Count == 0)
+                    {
+                        this.con.donnee.utilisateurs = UtilisateurDAO.Lister();
+                    }
+
+                    // -- Charger la liste des résultats -- //
+                    foreach (var val in (this.con.donnee.utilisateurs as List<Utilisateur>))
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                id_utilisateur = val.id_utilisateur,
+                                compte = val.compte,
+                                nom_utilisateur = val.nom_utilisateur
+                            }
+                        );
+                    }
+                }
+                #endregion
+            }
+            #region catch & finally
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return GBConvert.To_JSONString(donnee);
+        }
+
         // -- Selectionner un nouvel enregistrement dans la liste -- //
         [HttpPost]
         public ActionResult Selection_Enregistrement(string code, string id_page)
@@ -286,9 +333,11 @@ namespace GB.Controllers
                                                         fax = obj.fax,
                                                         cobac_id = obj.cobac_id,
                                                         beac_id = obj.beac_id,
-                                                        id_utilisateur = obj.id_utilisateur,
                                                         ip = obj.ip,
                                                         mot_de_passe = obj.mot_de_passe,
+                                                        id_utilisateur = obj.id_utilisateur,
+                                                        utilisateur_compte = obj.utilisateur?.compte ?? null,
+                                                        utilisateur_nom = obj.utilisateur?.nom_utilisateur?? null,
                                                     }
                                                );
                 }
@@ -630,6 +679,7 @@ namespace GB.Controllers
                 this.ViewBag.Lang.Server = App_Lang.Lang.Server;
                 this.ViewBag.Lang.Branch_manager = App_Lang.Lang.Branch_manager;
                 this.ViewBag.Lang.Login = App_Lang.Lang.Login;
+                this.ViewBag.Lang.Search_by = App_Lang.Lang.Search_by;
                 #endregion
 
                 // -- Données -- //
@@ -638,9 +688,14 @@ namespace GB.Controllers
                                                 new
                                                 {
                                                     id_page = id_page,
-                                                    titre = this.ViewBag.Title,
+                                                    titre = this.ViewBag.Title
                                                 }
                                             );
+                // -- Vider les données temporaire -- //
+                this.con.Vider_Donnee();
+                // - Mise à jour des données de vue -- //
+                // -- Utilisateur -- //
+                this.con.donnee.utilisateurs = new List<Utilisateur>();
                 #endregion
             }
             #endregion

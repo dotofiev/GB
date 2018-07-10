@@ -91,6 +91,8 @@ namespace GB.Controllers
 
         [HttpPost]
         public virtual ActionResult Charger_Table(string id_page, string id_vue) { return null; }
+        
+        public virtual object Charger_EasyAutocomplete(string id_page, string id_vue) { return null; }
 
         public void Charger_Parametres()
         {

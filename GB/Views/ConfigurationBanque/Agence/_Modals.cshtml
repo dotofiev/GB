@@ -139,17 +139,20 @@
                                 </legend>
                             </div>
 
+                            <!-- Id -->
+                            <input type="hidden" id="form_utilisateur_id" name="id_utilisateur" value="0" />
+
                             <div class="col-xs-12 col-lg-6">
                                 <div class="form-group">
-                                    <label for="form_id_utilisateur">@ViewBag.Lang.Login :</label>
-                                    <input class="form-control" type="text" id="form_id_utilisateur" name="id_utilisateur" placeholder="@ViewBag.Lang.Login .*" onchange="$('#form_utilisateur_nom').val($(this).val());" required />
+                                    <label for="form_utilisateur_compte">@ViewBag.Lang.Login :</label>
+                                    <input class="form-control" type="text" id="form_utilisateur_compte" placeholder="@ViewBag.Lang.Search_by @((ViewBag.Lang.Login as string).ToLower()) .*" required />
                                 </div>
                             </div>
 
                             <div class="col-xs-12 col-lg-6">
                                 <div class="form-group">
                                     <label for="form_utilisateur_nom">@ViewBag.Lang.Name :</label>
-                                    <input class="form-control" type="text" id="form_utilisateur_nom" name="utilisateur_nom" placeholder="@ViewBag.Lang.Name .*" onchange="$('#form_id_utilisateur').val($(this).val());" required />
+                                    <input class="form-control" type="text" id="form_utilisateur_nom" placeholder="@ViewBag.Lang.Search_by @((ViewBag.Lang.Name as string).ToLower()) .*" required />
                                 </div>
                             </div>
                             <!-- ./ligne -->

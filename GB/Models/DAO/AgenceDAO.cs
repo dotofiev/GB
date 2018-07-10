@@ -23,6 +23,9 @@ namespace GB.Models.DAO
                 // -- Définition de l'identifiant -- //
                 obj.Crer_Id();
 
+                // -- Mise à jour des references -- //
+                obj.utilisateur = UtilisateurDAO.Object(obj.id_utilisateur);
+
                 // -- Enregistrement de la valeur -- //
                 Program.db.agences.Add(obj);
             }

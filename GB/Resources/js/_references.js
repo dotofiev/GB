@@ -18,6 +18,7 @@
 /// <reference path="../../plugins/datatables/datatables/responsive.bootstrap.min.js" />
 /// <reference path="../../plugins/datatables/datatables/vfs_fonts.js" />
 /// <reference path="../../plugins/datatables/jquery.datatables.js" />
+/// <reference path="../../plugins/easyautocomplete-1.3.5/jquery.easy-autocomplete.js" />
 /// <reference path="../../plugins/fastclick/lib/fastclick.js" />
 /// <reference path="../../Plugins/iCheck/icheck.js" />
 /// <reference path="../../plugins/malihu-custom-scrollbar-plugin/jquery.mcustomscrollbar.concat.min.js" />
