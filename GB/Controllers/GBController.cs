@@ -130,6 +130,7 @@ namespace GB.Controllers
             this.ViewBag.Lang.Form      = App_Lang.Lang.Form;
             this.ViewBag.Lang.Yes       = App_Lang.Lang.Yes;
             this.ViewBag.Lang.No        = App_Lang.Lang.No;
+            this.ViewBag.Lang.Modify    = App_Lang.Lang.Modify;
 
             // -- Autre -- //
             this.ViewBag.Lang.List_of_records = App_Lang.Lang.List_of_records;

@@ -72,8 +72,8 @@ namespace GB.Models.Static
         public static string HTML_Oui_Non()
         {
             return
-                $"<option value=\"{true}\" title=\"{App_Lang.Lang.Yes}\">{App_Lang.Lang.Yes}</option>" +
-                $"<option value=\"{false}\" title=\"{App_Lang.Lang.No}\">{App_Lang.Lang.No}</option>";
+                $"<option value=\"true\" title=\"{App_Lang.Lang.Yes}\">{App_Lang.Lang.Yes}</option>" +
+                $"<option value=\"false\" title=\"{App_Lang.Lang.No}\">{App_Lang.Lang.No}</option>";
         }
 
         /// <summary>
@@ -82,8 +82,28 @@ namespace GB.Models.Static
         public static string HTML_Non_Oui()
         {
             return
-                $"<option value=\"{false}\" title=\"{App_Lang.Lang.No}\">{App_Lang.Lang.No}</option>" +
-                $"<option value=\"{true}\" title=\"{App_Lang.Lang.Yes}\">{App_Lang.Lang.Yes}</option>";
+                $"<option value=\"false\" title=\"{App_Lang.Lang.No}\">{App_Lang.Lang.No}</option>" +
+                $"<option value=\"true\" title=\"{App_Lang.Lang.Yes}\">{App_Lang.Lang.Yes}</option>";
+        }
+
+        /// <summary>
+        /// Obtenir les options de combo box FULL ou DIFFERENTIAL
+        /// </summary>
+        public static string HTML_Methode_de_sauvegarde()
+        {
+            return
+                $"<option value=\"{"FULL"}\" title=\"{App_Lang.Lang.Full}\">{App_Lang.Lang.Full}</option>" +
+                $"<option value=\"{"DIFFERENTIAL"}\" title=\"{App_Lang.Lang.Differential}\">{App_Lang.Lang.Differential}</option>";
+        }
+
+        /// <summary>
+        /// Obtenir les options de combo box FULL ou DIFFERENTIAL
+        /// </summary>
+        public static string HTML_methode_de_post_interet_reserver()
+        {
+            return
+                $"<option value=\"{"SOLDE"}\" title=\"{App_Lang.Lang.Balance}\">{App_Lang.Lang.Balance}</option>" +
+                $"<option value=\"{"DERNIERMVT"}\" title=\"{App_Lang.Lang.Last_transaction}\">{App_Lang.Lang.Last_transaction}</option>";
         }
     }
 }

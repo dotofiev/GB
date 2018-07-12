@@ -453,6 +453,11 @@ namespace GB.Controllers
                                                 new {
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.User_Management
+                                                    }
                                                 }
                                             );
                 #endregion

@@ -42,6 +42,7 @@
 /// <reference path="views/configurationbanque-agence.js" />
 /// <reference path="views/configurationbanque-devise.js" />
 /// <reference path="views/configurationbanque-institution.js" />
+/// <reference path="views/configurationbanque-parametre.js" />
 /// <reference path="Views/Home-Authentication.js" />
 /// <reference path="views/securite-menu.js" />
 /// <reference path="views/securite-module.js" />

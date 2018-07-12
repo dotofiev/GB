@@ -150,7 +150,7 @@ $(
         // -- Changer le titre de la page -- //
         try {
 
-            gbChangeTitle($GB_DONNEE.titre);
+            gbChangeTitle($GB_DONNEE.titre, $GB_DONNEE.description);
 
         } catch (e) { gbConsole(e.message); }
 
@@ -323,6 +323,9 @@ $(
 
                     // -- Réinitialiser l'image -- //
                     $('#form_image_btn_delete').trigger('click');
+
+                    // -- Supprimer les validations parsley -- //
+                    gbSupprimerMessageValidationForm(form.attr('id'));
 
                 }
             );

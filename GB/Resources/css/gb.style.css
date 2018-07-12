@@ -483,3 +483,31 @@ legend {
     box-shadow: 0 0 0 0.2rem rgba(38, 185, 154, 0.25);
     border-width: 2px;
 }
+
+.top_nav .navbar-right {
+    width: 25%;
+}
+
+.main_container .top_nav {
+    margin-left: 0px;
+}
+
+.left_col {
+    margin-top: 56px;
+}
+
+.left_col.scroll-view {
+    margin-top: 0px;
+}
+
+.site_title {
+    color: black !important;
+}
+
+.navbar.nav_title {
+    background: #ededed;
+}
+
+.nav_title {
+    width:auto;
+}

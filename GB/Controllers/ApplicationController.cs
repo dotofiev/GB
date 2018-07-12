@@ -118,9 +118,15 @@ namespace GB.Controllers
                 // -- Données -- //
                 #region Données
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
-                                                new {
+                                                new
+                                                {
                                                     id_page = id_page,
-                                                    titre = this.ViewBag.Title
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-home",
+                                                        message = App_Lang.Lang.Home
+                                                    }
                                                 }
                                             );
                 #endregion

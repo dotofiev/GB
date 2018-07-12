@@ -22,6 +22,7 @@
                                    onfocus="$('#form_mot_de_passe_label').removeClass('gb-focus');" />
                         </div>
 
+                        @*
                         <label style="font-weight: bold;" for="mot_de_passe" class="control-label col-md-3 col-sm-3 col-xs-12">
                             @(ViewBag.Lang.Password):
                         </label>
@@ -33,6 +34,14 @@
                             <!-- mot_de_passe -->
                             <input name="mot_de_passe" id="form_mot_de_passe" type="hidden" value="@ViewBag.Test.mot_de_passe" 
                                    onchange="$('#form_mot_de_passe_label').html(''); $.each($(this).val().split(''), function () { $('#form_mot_de_passe_label').html($('#form_mot_de_passe_label').html() + '*'); });" />
+                        </div>
+                        *@
+
+                        <label style="font-weight: bold;" for="mot_de_passe" class="control-label col-md-3 col-sm-3 col-xs-12">
+                            @(ViewBag.Lang.Password):
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12 form-group">
+                            <input class="form-control" placeholder="@(ViewBag.Lang.Password)..." name="mot_de_passe" id="mot_de_passe" type="password" value="@ViewBag.Test.mot_de_passe" required />
                         </div>
 
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
@@ -53,7 +62,7 @@
 
                     </div>
 
-                    <button id="btn_authentifier" type="submit" class="btn btn-lg btn-success btn-block"
+                    <button id="btn_authentifier" type="submit" class="btn btn-lg btn-primary btn-block"
                             data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> @ViewBag.Lang.Process ...">
                             <b>
                                 @ViewBag.Lang.To_log_in

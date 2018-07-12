@@ -19,7 +19,8 @@ namespace GB.Models.Static
         public static string SecuriteUtilisateur_Utilisateur = "SecuriteUtilisateur-Utilisateur";
         public static string ConfigurationBanque_Institution = "ConfigurationBanque-Institution";
         public static string ConfigurationBanque_Agence = "ConfigurationBanque-Agence";
-        public static string ConfigurationBanque_Devise = "ConfigurationBanque-Devise";        
+        public static string ConfigurationBanque_Devise = "ConfigurationBanque-Devise";
+        public static string ConfigurationBanque_Parametre = "ConfigurationBanque-Parametre";
     }
 
     public enum GB_Enum_Action_Controller

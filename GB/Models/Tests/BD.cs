@@ -18,7 +18,8 @@ namespace GB.Models.Tests
         public List<Profession> professions { get; set; }
         public List<Institution> institutions { get; set; }
         public List<Devise> devises { get; set; }
-        
+        public List<Parametre> parametres { get; set; }
+
         public BD() { }
     }
 }

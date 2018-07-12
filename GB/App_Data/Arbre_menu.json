@@ -18,6 +18,6 @@
       "id": "3",
       "libelle": "ConfigurationBanque"
     },
-    "views": [ "Institution", "Agence", "CompteAgence", "Devise" ]
+    "views": [ "Institution", "Agence", "CompteAgence", "Devise", "Parametre" ]
   }
 ]

@@ -2,7 +2,7 @@
 <!-- form 1 -->
 <div class="modal fade bs-example-modal-lg" id="modal_form" role="alert" data-backdrop="static" data-keyboard="false">
     
-    <div id="modal_form_taille" class="modal-dialog">
+    <div id="modal_form_taille" class="modal-dialog modal-lg">
         
         <div class="modal-content">
             
@@ -31,78 +31,28 @@
                             <input type="hidden" id="form_id" name="id" value="0" />
 
                             <!-- ligne -->
-                            <div class="col-xs-12 col-lg-6">
+                            <div class="col-xs-12 col-lg-3">
                                 <div class="form-group">
                                     <label for="form_code">Code :</label>
                                     <input class="form-control" type="text" id="form_code" name="code" placeholder="Code.*" required />
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 col-lg-6">
+                            <div class="col-xs-12 col-lg-3">
                                 <div class="form-group">
                                     <label for="form_libelle">@ViewBag.Lang.Name :</label>
                                     <input class="form-control" type="text" id="form_libelle" name="libelle" placeholder="@ViewBag.Lang.Name .*" required />
                                 </div>
                             </div>
-                            <!-- ./ligne -->
 
-                            <!-- ligne -->
-                            <div class="col-xs-12 col-lg-6">
-                                <div class="form-group">
-                                    <label for="form_adresse">@ViewBag.Lang.Address :</label>
-                                    <input class="form-control" type="text" id="form_adresse" name="adresse" placeholder="@ViewBag.Lang.Address .*" required />
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 col-lg-6">
-                                <div class="form-group">
-                                    <label for="form_fax">Fax :</label>
-                                    <input class="form-control" type="text" id="form_fax" name="fax" placeholder="Fax.*" required />
-                                </div>
-                            </div>
-                            <!-- ./ligne -->
-
-                            <!-- ligne -->
-                            <div class="col-xs-12 col-lg-6">
-                                <div class="form-group">
-                                    <label for="form_ville">@ViewBag.Lang.Town :</label>
-                                    <input class="form-control" type="text" id="form_ville" name="ville" placeholder="@ViewBag.Lang.Town .*" required />
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 col-lg-6">
-                                <div class="form-group">
-                                    <label for="form_telephone">@ViewBag.Lang.Phone :</label>
-                                    <input class="form-control" type="text" id="form_telephone" name="telephone" placeholder="@ViewBag.Lang.Phone .*" required />
-                                </div>
-                            </div>
-                            <!-- ./ligne 
-
-                            <!-- ligne -->
-                            <div class="col-xs-12 col-lg-6">
-                                <div class="form-group">
-                                    <label for="form_bp">@ViewBag.Lang.Postal_code :</label>
-                                    <input class="form-control" type="text" id="form_bp" name="bp" placeholder="@ViewBag.Lang.Postal_code .*" required />
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 col-lg-6">
-                                <div class="form-group">
-                                    <label for="form_pays">@ViewBag.Lang.Countrie :</label>
-                                    <input class="form-control" type="text" id="form_pays" name="pays" placeholder="@ViewBag.Lang.Countrie .*" required />
-                                </div>
-                            </div>
-                            <!-- ./ligne -->
-
-                            <!-- ligne -->
-                            <div class="col-xs-12 col-lg-6">
+                            <div class="col-xs-12 col-lg-3">
                                 <div class="form-group">
                                     <label for="form_cobac_id">Cobac Id :</label>
                                     <input class="form-control" type="text" id="form_cobac_id" name="cobac_id" placeholder="Cobac Id .*" required />
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 col-lg-6">
+                            <div class="col-xs-12 col-lg-3">
                                 <div class="form-group">
                                     <label for="form_beac_id">BEAC Id :</label>
                                     <input class="form-control" type="text" id="form_beac_id" name="beac_id" placeholder="BEAC Id.*" required />
@@ -111,49 +61,112 @@
                             <!-- ./ligne -->
 
                             <!-- ligne -->
-                            <div class="col-lg-12">
-                                <legend>
-                                    <i class="fa fa-server"></i> @ViewBag.Lang.Server
-                                </legend>
-                            </div>
-
-                            <div class="col-xs-12 col-lg-6">
+                            <div class="col-xs-12 col-lg-4">
                                 <div class="form-group">
-                                    <label for="form_ip">@ViewBag.Lang.IP_Address :</label>
-                                    <input class="form-control" type="text" id="form_ip" name="ip" placeholder="@ViewBag.Lang.IP_Address .*" required />
+                                    <label for="form_pays">@ViewBag.Lang.Countrie :</label>
+                                    <input class="form-control" type="text" id="form_pays" name="pays" placeholder="@ViewBag.Lang.Countrie .*" required />
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 col-lg-6">
+                            <div class="col-xs-12 col-lg-4">
                                 <div class="form-group">
-                                    <label for="form_mot_de_passe">@ViewBag.Lang.Password :</label>
-                                    <input class="form-control" type="text" id="form_mot_de_passe" name="mot_de_passe" placeholder="@ViewBag.Lang.Password .*" required />
+                                    <label for="form_ville">@ViewBag.Lang.Town :</label>
+                                    <input class="form-control" type="text" id="form_ville" name="ville" placeholder="@ViewBag.Lang.Town .*" required />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-lg-4">
+                                <div class="form-group">
+                                    <label for="form_adresse">@ViewBag.Lang.Address :</label>
+                                    <input class="form-control" type="text" id="form_adresse" name="adresse" placeholder="@ViewBag.Lang.Address .*" required />
                                 </div>
                             </div>
                             <!-- ./ligne -->
 
                             <!-- ligne -->
-                            <div class="col-lg-12">
-                                <legend>
-                                    <i class="fa fa-user"></i> @ViewBag.Lang.Branch_manager
-                                </legend>
-                            </div>
-
-                            <!-- Id -->
-                            <input type="hidden" id="form_utilisateur_id" name="id_utilisateur" value="0" />
-
-                            <div class="col-xs-12 col-lg-6">
+                            <div class="col-xs-12 col-lg-4">
                                 <div class="form-group">
-                                    <label for="form_utilisateur_compte">@ViewBag.Lang.Login :</label>
-                                    <input class="form-control" type="text" id="form_utilisateur_compte" placeholder="@ViewBag.Lang.Search_by @((ViewBag.Lang.Login as string).ToLower()) .*" required />
+                                    <label for="form_telephone">@ViewBag.Lang.Phone :</label>
+                                    <input class="form-control" type="text" id="form_telephone" name="telephone" placeholder="@ViewBag.Lang.Phone .*" required />
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 col-lg-6">
+                            <div class="col-xs-12 col-lg-4">
                                 <div class="form-group">
-                                    <label for="form_utilisateur_nom">@ViewBag.Lang.Name :</label>
-                                    <input class="form-control" type="text" id="form_utilisateur_nom" placeholder="@ViewBag.Lang.Search_by @((ViewBag.Lang.Name as string).ToLower()) .*" required />
+                                    <label for="form_bp">@ViewBag.Lang.Postal_code :</label>
+                                    <input class="form-control" type="text" id="form_bp" name="bp" placeholder="@ViewBag.Lang.Postal_code .*" required />
                                 </div>
+                            </div>
+
+                            <div class="col-xs-12 col-lg-4">
+                                <div class="form-group">
+                                    <label for="form_fax">Fax :</label>
+                                    <input class="form-control" type="text" id="form_fax" name="fax" placeholder="Fax.*" required />
+                                </div>
+                            </div>
+                            <!-- ./ligne -->
+
+                            <!-- ligne -->
+                            <div class="col-lg-6">
+
+                                <div class="row">
+
+                                    <!-- ligne -->
+                                    <div class="col-lg-12">
+                                        <legend>
+                                            <i class="fa fa-server"></i> @ViewBag.Lang.Server
+                                        </legend>
+                                    </div>
+
+                                    <div class="col-xs-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="form_ip">@ViewBag.Lang.IP_Address :</label>
+                                            <input class="form-control" type="text" id="form_ip" name="ip" placeholder="@ViewBag.Lang.IP_Address .*" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="form_mot_de_passe">@ViewBag.Lang.Password :</label>
+                                            <input class="form-control" type="text" id="form_mot_de_passe" name="mot_de_passe" placeholder="@ViewBag.Lang.Password .*" required />
+                                        </div>
+                                    </div>
+                                    <!-- ./ligne -->
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-6">
+
+                                <div class="row">
+                                    
+                                    <!-- ligne -->
+                                    <div class="col-lg-12">
+                                        <legend>
+                                            <i class="fa fa-user"></i> @ViewBag.Lang.Branch_manager
+                                        </legend>
+                                    </div>
+
+                                    <!-- Id -->
+                                    <input type="hidden" id="form_utilisateur_id" name="id_utilisateur" value="0" />
+
+                                    <div class="col-xs-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="form_utilisateur_compte">@ViewBag.Lang.Login :</label>
+                                            <input class="form-control" type="text" id="form_utilisateur_compte" placeholder="@ViewBag.Lang.Search_by @((ViewBag.Lang.Login as string).ToLower()) .*" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="form_utilisateur_nom">@ViewBag.Lang.Name :</label>
+                                            <input class="form-control" type="text" id="form_utilisateur_nom" placeholder="@ViewBag.Lang.Search_by @((ViewBag.Lang.Name as string).ToLower()) .*" required />
+                                        </div>
+                                    </div>
+                                    <!-- ./ligne -->
+                                </div>
+
                             </div>
                             <!-- ./ligne -->
 

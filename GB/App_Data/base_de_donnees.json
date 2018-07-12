@@ -132,6 +132,15 @@
       "libelle_fr": "Devise",
       "view": "Devise",
       "id_controller": "3"
+    },
+    {
+      "id": "11",
+      "code": "11",
+      "id_groupe_menu": "3",
+      "libelle_en": "General bank parameters",
+      "libelle_fr": "Paramètres bancaires généraux",
+      "view": "Parametre",
+      "id_controller": "3"
     }
   ],
   "roles": [
@@ -284,6 +293,16 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "12",
+      "id_role": "1",
+      "id_menu": "11",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
     // -- Role 2 -- //
     {
       "id": "7",
@@ -358,6 +377,39 @@
       "libelle": "Franc Communautaire Financière Africain",
       "signe": "FCFA",
       "devise_actuelle": "true"
+    }
+  ],
+  "parametres": [
+    {
+      "id": "1",
+      "code": "001",
+      "nombre_ligne_historique_compte": "26",
+      "utilisation_chequier": "true",
+      "nombre_jour_avant_apuration_credit": "0",
+      "periode_dormante": "3",
+      "periode_litige": "360",
+      "utilisation_version_centrale": "true",
+      "periode_de_non_paiement": "150",
+      "controler_le_nombre_de_pret": "false",
+      "controler_le_nombre_de_comptes": "false",
+      "tva": "false",
+      "controler_session": "false",
+      "duree_session": "0",
+      "sms_banking": "true",
+      "nombre_de_jour_ouverture_back_date": "0",
+      "methode_de_post_interet_reserver": "DERNIERMVT",
+      "utilisation_litige_methode_cobac": "false",
+      "modifier_les_attributs_client_dans_la_branch": "true",
+      "conter_le_nombre_de_page_dans_historique": "true",
+      "mise_a_jour_position_client": "false",
+      "poster_credit": "true",
+      "poster_litige_pret": "true",
+      "poster_collection_locale": "true",
+      "western_union": "false",
+      "poster_bon_de_caisse_et_depot_a_terme": "true",
+      "methode_de_sauvegarde": "FULL",
+      "lien_sauvegarde_numero_1": "",
+      "lien_sauvegarde_numero_2": ""
     }
   ]
 }

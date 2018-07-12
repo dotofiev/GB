@@ -71,13 +71,14 @@ $(
         // -- Appeler le trigger de changement du mot de passe -- //
         try {
 
-            form_mot_de_passe.trigger('change');
+            //form_mot_de_passe.trigger('change');
 
         } catch (e) { gbConsole(e.message); }
 
         // -- Action l'arsqu'un click est effectué sur la page -- //
         try {
 
+            /*
             $(document).on('keypress',
                 function (e) {
 
@@ -122,6 +123,7 @@ $(
                     }
                 }
             );
+            */
 
         } catch (e) { gbConsole(e.message); }
 

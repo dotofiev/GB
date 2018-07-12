@@ -196,6 +196,33 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup.
+        /// </summary>
+        public static string Backup {
+            get {
+                return ResourceManager.GetString("Backup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup method.
+        /// </summary>
+        public static string Backup_method {
+            get {
+                return ResourceManager.GetString("Backup_method", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Balance.
+        /// </summary>
+        public static string Balance {
+            get {
+                return ResourceManager.GetString("Balance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Branch manager.
         /// </summary>
         public static string Branch_manager {
@@ -250,6 +277,24 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Control number of loans.
+        /// </summary>
+        public static string Control_number_of_loans {
+            get {
+                return ResourceManager.GetString("Control_number_of_loans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Control session.
+        /// </summary>
+        public static string Control_session {
+            get {
+                return ResourceManager.GetString("Control_session", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accept and continue.
         /// </summary>
         public static string Cookie_button {
@@ -277,6 +322,24 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Count account.
+        /// </summary>
+        public static string Count_account {
+            get {
+                return ResourceManager.GetString("Count_account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count page number statement.
+        /// </summary>
+        public static string Count_page_number_statement {
+            get {
+                return ResourceManager.GetString("Count_page_number_statement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Countrie.
         /// </summary>
         public static string Countrie {
@@ -291,6 +354,24 @@ namespace GB.App_Lang {
         public static string Current_currency {
             get {
                 return ResourceManager.GetString("Current_currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day.
+        /// </summary>
+        public static string Day {
+            get {
+                return ResourceManager.GetString("Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Days.
+        /// </summary>
+        public static string Days {
+            get {
+                return ResourceManager.GetString("Days", resourceCulture);
             }
         }
         
@@ -331,6 +412,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Differential.
+        /// </summary>
+        public static string Differential {
+            get {
+                return ResourceManager.GetString("Differential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disable.
         /// </summary>
         public static string Disable {
@@ -354,6 +444,15 @@ namespace GB.App_Lang {
         public static string Display {
             get {
                 return ResourceManager.GetString("Display", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dormant period.
+        /// </summary>
+        public static string Dormant_period {
+            get {
+                return ResourceManager.GetString("Dormant_period", resourceCulture);
             }
         }
         
@@ -466,6 +565,33 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full.
+        /// </summary>
+        public static string Full {
+            get {
+                return ResourceManager.GetString("Full", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General banking parameters.
+        /// </summary>
+        public static string General_banking_parameters {
+            get {
+                return ResourceManager.GetString("General_banking_parameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General parameters.
+        /// </summary>
+        public static string General_parameters {
+            get {
+                return ResourceManager.GetString("General_parameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
@@ -511,6 +637,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last transaction.
+        /// </summary>
+        public static string Last_transaction {
+            get {
+                return ResourceManager.GetString("Last_transaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to List of records.
         /// </summary>
         public static string List_of_records {
@@ -525,6 +660,15 @@ namespace GB.App_Lang {
         public static string Listing {
             get {
                 return ResourceManager.GetString("Listing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Litigation period.
+        /// </summary>
+        public static string Litigation_period {
+            get {
+                return ResourceManager.GetString("Litigation_period", resourceCulture);
             }
         }
         
@@ -601,6 +745,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modify custom attributes in branch.
+        /// </summary>
+        public static string Modify_custom_attributes_in_branch {
+            get {
+                return ResourceManager.GetString("Modify_custom_attributes_in_branch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Module management.
         /// </summary>
         public static string Module_Management {
@@ -655,6 +808,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Night run posting options.
+        /// </summary>
+        public static string Night_run_posting_options {
+            get {
+                return ResourceManager.GetString("Night_run_posting_options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string No {
@@ -678,6 +840,24 @@ namespace GB.App_Lang {
         public static string No_item_selected {
             get {
                 return ResourceManager.GetString("No_item_selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No payment period.
+        /// </summary>
+        public static string No_payment_period {
+            get {
+                return ResourceManager.GetString("No_payment_period", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number day before write off.
+        /// </summary>
+        public static string Number_day_before_write_off {
+            get {
+                return ResourceManager.GetString("Number_day_before_write_off", resourceCulture);
             }
         }
         
@@ -754,6 +934,24 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Path first backup.
+        /// </summary>
+        public static string Path_first_backup {
+            get {
+                return ResourceManager.GetString("Path_first_backup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path last backup.
+        /// </summary>
+        public static string Path_last_backup {
+            get {
+                return ResourceManager.GetString("Path_last_backup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Permission denied.
         /// </summary>
         public static string Permission_denied {
@@ -777,6 +975,33 @@ namespace GB.App_Lang {
         public static string Phone {
             get {
                 return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post loan litigation.
+        /// </summary>
+        public static string Post_loan_litigation {
+            get {
+                return ResourceManager.GetString("Post_loan_litigation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post local collection.
+        /// </summary>
+        public static string Post_local_collection {
+            get {
+                return ResourceManager.GetString("Post_local_collection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post term and time deposits.
+        /// </summary>
+        public static string Post_term_and_time_deposits {
+            get {
+                return ResourceManager.GetString("Post_term_and_time_deposits", resourceCulture);
             }
         }
         
@@ -849,6 +1074,15 @@ namespace GB.App_Lang {
         public static string Reconnect {
             get {
                 return ResourceManager.GetString("Reconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reserve interest post method.
+        /// </summary>
+        public static string Reserve_interest_post_method {
+            get {
+                return ResourceManager.GetString("Reserve_interest_post_method", resourceCulture);
             }
         }
         
@@ -934,6 +1168,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Session duration.
+        /// </summary>
+        public static string Session_duration {
+            get {
+                return ResourceManager.GetString("Session_duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {
@@ -957,6 +1200,24 @@ namespace GB.App_Lang {
         public static string Sign_Out {
             get {
                 return ResourceManager.GetString("Sign_Out", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMS banking.
+        /// </summary>
+        public static string SMS_banking {
+            get {
+                return ResourceManager.GetString("SMS_banking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statement page count.
+        /// </summary>
+        public static string Statement_page_count {
+            get {
+                return ResourceManager.GetString("Statement_page_count", resourceCulture);
             }
         }
         
@@ -1033,6 +1294,42 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update customer position.
+        /// </summary>
+        public static string Update_customer_position {
+            get {
+                return ResourceManager.GetString("Update_customer_position", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use central version.
+        /// </summary>
+        public static string Use_central_version {
+            get {
+                return ResourceManager.GetString("Use_central_version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use check booklet.
+        /// </summary>
+        public static string Use_check_booklet {
+            get {
+                return ResourceManager.GetString("Use_check_booklet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use cobac litigation method.
+        /// </summary>
+        public static string Use_cobac_litigation_method {
+            get {
+                return ResourceManager.GetString("Use_cobac_litigation_method", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User.
         /// </summary>
         public static string User {
@@ -1056,6 +1353,15 @@ namespace GB.App_Lang {
         public static string Value {
             get {
                 return ResourceManager.GetString("Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to V.A.T..
+        /// </summary>
+        public static string VAT {
+            get {
+                return ResourceManager.GetString("VAT", resourceCulture);
             }
         }
         

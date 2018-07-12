@@ -459,4 +459,106 @@
   <data name="The_object_must_have_a_unique_id" xml:space="preserve">
     <value>The object must have a unique id</value>
   </data>
+  <data name="Backup" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="Backup_method" xml:space="preserve">
+    <value>Backup method</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="Control_number_of_loans" xml:space="preserve">
+    <value>Control number of loans</value>
+  </data>
+  <data name="Control_session" xml:space="preserve">
+    <value>Control session</value>
+  </data>
+  <data name="Count_account" xml:space="preserve">
+    <value>Count account</value>
+  </data>
+  <data name="Count_page_number_statement" xml:space="preserve">
+    <value>Count page number statement</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="Differential" xml:space="preserve">
+    <value>Differential</value>
+  </data>
+  <data name="Dormant_period" xml:space="preserve">
+    <value>Dormant period</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>Full</value>
+  </data>
+  <data name="General_banking_parameters" xml:space="preserve">
+    <value>General banking parameters</value>
+  </data>
+  <data name="General_parameters" xml:space="preserve">
+    <value>General parameters</value>
+  </data>
+  <data name="Last_transaction" xml:space="preserve">
+    <value>Last transaction</value>
+  </data>
+  <data name="Litigation_period" xml:space="preserve">
+    <value>Litigation period</value>
+  </data>
+  <data name="Modify_custom_attributes_in_branch" xml:space="preserve">
+    <value>Modify custom attributes in branch</value>
+  </data>
+  <data name="Night_run_posting_options" xml:space="preserve">
+    <value>Night run posting options</value>
+  </data>
+  <data name="No_payment_period" xml:space="preserve">
+    <value>No payment period</value>
+  </data>
+  <data name="Number_day_before_write_off" xml:space="preserve">
+    <value>Number day before write off</value>
+  </data>
+  <data name="Post_loan_litigation" xml:space="preserve">
+    <value>Post loan litigation</value>
+  </data>
+  <data name="Post_local_collection" xml:space="preserve">
+    <value>Post local collection</value>
+  </data>
+  <data name="Post_term_and_time_deposits" xml:space="preserve">
+    <value>Post term and time deposits</value>
+  </data>
+  <data name="Reserve_interest_post_method" xml:space="preserve">
+    <value>Reserve interest post method</value>
+  </data>
+  <data name="Session_duration" xml:space="preserve">
+    <value>Session duration</value>
+  </data>
+  <data name="SMS_banking" xml:space="preserve">
+    <value>SMS banking</value>
+  </data>
+  <data name="Statement_page_count" xml:space="preserve">
+    <value>Statement page count</value>
+  </data>
+  <data name="Update_customer_position" xml:space="preserve">
+    <value>Update customer position</value>
+  </data>
+  <data name="Use_central_version" xml:space="preserve">
+    <value>Use central version</value>
+  </data>
+  <data name="Use_check_booklet" xml:space="preserve">
+    <value>Use check booklet</value>
+  </data>
+  <data name="Use_cobac_litigation_method" xml:space="preserve">
+    <value>Use cobac litigation method</value>
+  </data>
+  <data name="VAT" xml:space="preserve">
+    <value>V.A.T.</value>
+  </data>
+  <data name="Path_first_backup" xml:space="preserve">
+    <value>Path first backup</value>
+  </data>
+  <data name="Path_last_backup" xml:space="preserve">
+    <value>Path last backup</value>
+  </data>
 </root>

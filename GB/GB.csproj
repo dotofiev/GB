@@ -201,6 +201,7 @@
     <Compile Include="Models\ActionFilter\ResponseErreur.cs" />
     <Compile Include="Models\BO\GBFichier.cs" />
     <Compile Include="Models\BO\Devise.cs" />
+    <Compile Include="Models\BO\Parametre.cs" />
     <Compile Include="Models\BO\Profession.cs" />
     <Compile Include="Models\BO\Autorisation.cs" />
     <Compile Include="Models\BO\Connexion.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Models\BO\GBException.cs" />
     <Compile Include="Models\BO\GBNotification.cs" />
     <Compile Include="Models\DAO\DeviseDAO.cs" />
+    <Compile Include="Models\DAO\ParametreDAO.cs" />
     <Compile Include="Models\DAO\ProfessionDAO.cs" />
     <Compile Include="Models\DAO\GBDAO.cs" />
     <Compile Include="Models\DAO\ModuleDAO.cs" />
@@ -510,6 +512,7 @@
     <Content Include="Resources\js\Views\ConfigurationBanque-Institution.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Agence.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Devise.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-Parametre.js" />
     <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
@@ -772,6 +775,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ConfigurationBanque\Devise.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationBanque\Parametre.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

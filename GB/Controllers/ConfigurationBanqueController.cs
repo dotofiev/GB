@@ -61,6 +61,21 @@ namespace GB.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Parametre()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.General_banking_parameters})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationBanque_Parametre);
+
+            return View();
+        }
         #endregion
 
         #region HttpPost
@@ -634,6 +649,14 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-Parametre
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Parametre)
+                {
+                    // -- Service de modification -- //
+                    ParametreDAO.Modifier(GBConvert.JSON_To<Parametre>(obj));
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -768,6 +791,11 @@ namespace GB.Controllers
                                                 new {
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Institution_management
+                                                    }
                                                 }
                                             );
                 #endregion
@@ -814,7 +842,7 @@ namespace GB.Controllers
             #endregion
 
             #region ConfigurationBanque-Devise
-            if (id_page == GB_Enum_Menu.ConfigurationBanque_Devise)
+            else if (id_page == GB_Enum_Menu.ConfigurationBanque_Devise)
             {
                 // -- Langue -- //
                 #region Langue
@@ -831,6 +859,73 @@ namespace GB.Controllers
                                                 {
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Devise_management
+                                                    }
+                                                }
+                                            );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationBanque-Parametre
+            else if (id_page == GB_Enum_Menu.ConfigurationBanque_Parametre)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.General_banking_parameters;
+                this.ViewBag.Lang.General_parameters = App_Lang.Lang.General_parameters;
+                this.ViewBag.Lang.Statement_page_count = App_Lang.Lang.Statement_page_count;
+                this.ViewBag.Lang.Use_check_booklet = App_Lang.Lang.Use_check_booklet;
+                this.ViewBag.Lang.Number_day_before_write_off = App_Lang.Lang.Number_day_before_write_off;
+                this.ViewBag.Lang.Dormant_period = App_Lang.Lang.Dormant_period;
+                this.ViewBag.Lang.Litigation_period = App_Lang.Lang.Litigation_period;
+                this.ViewBag.Lang.Use_central_version = App_Lang.Lang.Use_central_version;
+                this.ViewBag.Lang.No_payment_period = App_Lang.Lang.No_payment_period;
+                this.ViewBag.Lang.Control_number_of_loans = App_Lang.Lang.Control_number_of_loans;
+                this.ViewBag.Lang.Count_account = App_Lang.Lang.Count_account;
+                this.ViewBag.Lang.VAT = App_Lang.Lang.VAT;
+                this.ViewBag.Lang.Control_session = App_Lang.Lang.Control_session;
+                this.ViewBag.Lang.Session_duration = App_Lang.Lang.Session_duration;
+                this.ViewBag.Lang.SMS_banking = App_Lang.Lang.SMS_banking;
+                this.ViewBag.Lang.Open_back_date = App_Lang.Lang.Open_back_date;
+                this.ViewBag.Lang.Days = App_Lang.Lang.Days;
+                this.ViewBag.Lang.Reserve_interest_post_method = App_Lang.Lang.Reserve_interest_post_method;
+                this.ViewBag.Lang.Use_cobac_litigation_method = App_Lang.Lang.Use_cobac_litigation_method;
+                this.ViewBag.Lang.Modify_custom_attributes_in_branch = App_Lang.Lang.Modify_custom_attributes_in_branch;
+                this.ViewBag.Lang.Count_page_number_statement = App_Lang.Lang.Count_page_number_statement;
+                this.ViewBag.Lang.Night_run_posting_options = App_Lang.Lang.Night_run_posting_options;
+                this.ViewBag.Lang.Update_customer_position = App_Lang.Lang.Update_customer_position;
+                this.ViewBag.Lang.Post_loan_litigation = App_Lang.Lang.Post_loan_litigation;
+                this.ViewBag.Lang.Post_local_collection = App_Lang.Lang.Post_local_collection;
+                this.ViewBag.Lang.Post_term_and_time_deposits = App_Lang.Lang.Post_term_and_time_deposits;
+                this.ViewBag.Lang.Backup = App_Lang.Lang.Backup;
+                this.ViewBag.Lang.Backup_method = App_Lang.Lang.Backup_method;
+                this.ViewBag.Lang.Browse = App_Lang.Lang.Browse;
+                this.ViewBag.Lang.Empty = App_Lang.Lang.Empty;
+                this.ViewBag.Lang.Path_first_backup = App_Lang.Lang.Path_first_backup;
+                this.ViewBag.Lang.Path_last_backup = App_Lang.Lang.Path_last_backup;
+                
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                // -- Rendu html dans les combo box -- //
+                this.ViewBag.donnee.HTML_methode_de_sauvegarde = GBClass.HTML_Methode_de_sauvegarde();
+                this.ViewBag.donnee.HTML_methode_de_post_interet_reserver = GBClass.HTML_methode_de_post_interet_reserver();
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.General_banking_parameters
+                                                    },
+                                                    parametre = ParametreDAO.Object()
                                                 }
                                             );
                 #endregion
