@@ -142,6 +142,33 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string Amount {
+            get {
+                return ResourceManager.GetString("Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount max.
+        /// </summary>
+        public static string Amount_max {
+            get {
+                return ResourceManager.GetString("Amount_max", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount min.
+        /// </summary>
+        public static string Amount_min {
+            get {
+                return ResourceManager.GetString("Amount_min", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application language.
         /// </summary>
         public static string Application_language {
@@ -345,6 +372,15 @@ namespace GB.App_Lang {
         public static string Countrie {
             get {
                 return ResourceManager.GetString("Countrie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        public static string Currency {
+            get {
+                return ResourceManager.GetString("Currency", resourceCulture);
             }
         }
         
@@ -709,6 +745,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Management of banking parameters.
+        /// </summary>
+        public static string Management_of_banking_parameters {
+            get {
+                return ResourceManager.GetString("Management_of_banking_parameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Menu group.
         /// </summary>
         public static string Menu_group {
@@ -1065,6 +1110,15 @@ namespace GB.App_Lang {
         public static string Prt_ {
             get {
                 return ResourceManager.GetString("Prt_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate.
+        /// </summary>
+        public static string Rate {
+            get {
+                return ResourceManager.GetString("Rate", resourceCulture);
             }
         }
         

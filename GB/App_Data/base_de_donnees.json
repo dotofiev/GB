@@ -141,6 +141,15 @@
       "libelle_fr": "Paramètres bancaires généraux",
       "view": "Parametre",
       "id_controller": "3"
+    },
+    {
+      "id": "12",
+      "code": "12",
+      "id_groupe_menu": "3",
+      "libelle_en": "Bank parameters",
+      "libelle_fr": "Paramètres bancaires",
+      "view": "ParametreBanque",
+      "id_controller": "3"
     }
   ],
   "roles": [
@@ -303,6 +312,16 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "13",
+      "id_role": "1",
+      "id_menu": "12",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
     // -- Role 2 -- //
     {
       "id": "7",
@@ -410,6 +429,28 @@
       "methode_de_sauvegarde": "FULL",
       "lien_sauvegarde_numero_1": "",
       "lien_sauvegarde_numero_2": ""
+    }
+  ],
+  "parametre_bancaires": [
+    {
+      "id": "1",
+      "id_devise": "1",
+      "code": "IMPAYE",
+      "libelle": "Charge on unpaid bills",
+      "taux": "0",
+      "montant": "0",
+      "montant_minimal": "0",
+      "montant_maximal": "0"
+    },
+    {
+      "id": "2",
+      "id_devise": "1",
+      "code": "COMM",
+      "libelle": "Other commission",
+      "taux": "0",
+      "montant": "0",
+      "montant_minimal": "0",
+      "montant_maximal": "0"
     }
   ]
 }

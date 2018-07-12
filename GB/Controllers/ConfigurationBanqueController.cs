@@ -76,6 +76,21 @@ namespace GB.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult ParametreBanque()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Management_of_banking_parameters})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationBanque_ParametreBanque);
+
+            return View();
+        }
         #endregion
 
         #region HttpPost
@@ -216,6 +231,57 @@ namespace GB.Controllers
                                 col_4 = val.signe,
                                 col_5 = GBToString.Oui_Non(val.devise_actuelle),
                                 col_6 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                                              title=""{Lang.Delete}"" 
+                                                              class=""btn btn-xs btn-round""
+                                                              onClick=""table_donnee_supprimer({ids}, true)""
+                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                          <i class=""fa fa-minus text-danger""></i>
+                                        </button>"
+                                        .Replace("{id}", val.id.ToString())
+                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                                //                              title=""{Lang.Update}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_modifier({id})""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-retweet text-warning""></i>
+                                //        </button>
+                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                //                              title=""{Lang.Delete}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_supprimer({ids}, true)""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-minus text-danger""></i>
+                                //        </button>"
+                                //        .Replace("{id}", val.id.ToString())
+                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
+                #region ConfigurationBanque-ParametreBanque
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
+                {
+                    foreach (var val in ParametreBancaireDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"parametreBanque\" value=\"parametreBanque_{val.id}\">",
+                                col_2 = val.code,
+                                col_3 = val.libelle,
+                                col_4 = val.taux,
+                                col_5 = val.montant,
+                                col_6 = val.montant_minimal,
+                                col_7 = val.montant_maximal,
+                                col_8 = val.devise.libelle,
+                                col_9 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
                                                               title=""{Lang.Delete}"" 
                                                               class=""btn btn-xs btn-round""
                                                               onClick=""table_donnee_supprimer({ids}, true)""
@@ -447,6 +513,35 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-ParametreBanque
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = ParametreBancaireDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle = obj.libelle,
+                                                        taux = obj.taux,
+                                                        montant = obj.montant,
+                                                        montant_maximal = obj.montant_maximal,
+                                                        montant_minimal = obj.montant_minimal,
+                                                        id_devise = obj.id_devise,
+                                                    }
+                                               );
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -535,6 +630,14 @@ namespace GB.Controllers
                 {
                     // -- Service d'enregistrement -- //
                     DeviseDAO.Ajouter(GBConvert.JSON_To<Devise>(obj));
+                }
+                #endregion
+
+                #region ConfigurationBanque-ParametreBanque
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
+                {
+                    // -- Service d'enregistrement -- //
+                    ParametreBancaireDAO.Ajouter(GBConvert.JSON_To<ParametreBancaire>(obj));
                 }
                 #endregion
 
@@ -657,6 +760,14 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-ParametreBanque
+                if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
+                {
+                    // -- Service de modification -- //
+                    ParametreBancaireDAO.Modifier(GBConvert.JSON_To<ParametreBancaire>(obj));
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -724,6 +835,14 @@ namespace GB.Controllers
                 {
                     // -- Service de suppression -- //
                     DeviseDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationBanque-ParametreBanque
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
+                {
+                    // -- Service de suppression -- //
+                    ParametreBancaireDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -926,6 +1045,51 @@ namespace GB.Controllers
                                                         message = App_Lang.Lang.General_banking_parameters
                                                     },
                                                     parametre = ParametreDAO.Object()
+                                                }
+                                            );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationBanque-ParametreBanque
+            else if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Management_of_banking_parameters;
+                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
+                this.ViewBag.Lang.Rate = App_Lang.Lang.Rate;
+                this.ViewBag.Lang.Amount = App_Lang.Lang.Amount;
+                this.ViewBag.Lang.Amount_min = App_Lang.Lang.Amount_min;
+                this.ViewBag.Lang.Amount_max = App_Lang.Lang.Amount_max;
+                this.ViewBag.Lang.Currency = App_Lang.Lang.Currency;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                #region HTML_Select_devise
+                this.ViewBag.donnee.HTML_Select_code_devise =
+                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                this.ViewBag.donnee.HTML_Select_libelle_devise =
+                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                foreach (var val in DeviseDAO.Lister())
+                {
+                    this.ViewBag.donnee.HTML_Select_code_devise +=
+                        $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
+                    this.ViewBag.donnee.HTML_Select_libelle_devise +=
+                        $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
+                }
+                #endregion
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Management_of_banking_parameters
+                                                    }
                                                 }
                                             );
                 #endregion

@@ -8,14 +8,14 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public abstract class DeviseDAO : GBDAO
+    public abstract class ParametreBancaireDAO : GBDAO
     {
-        public static void Ajouter(Devise obj)
+        public static void Ajouter(ParametreBancaire obj)
         {
             try
             {
                 // -- Unicité du code -- //
-                if (Program.db.devises.Exists(l => l.code == obj.code))
+                if (Program.db.parametre_bancaires.Exists(l => l.code == obj.code))
                 {
                     throw new GBException(App_Lang.Lang.Existing_data + " [code]");
                 }
@@ -23,14 +23,11 @@ namespace GB.Models.DAO
                 // -- Définition de l'identifiant -- //
                 obj.Crer_Id();
 
-                // -- Enregistrement de la valeur -- //
-                Program.db.devises.Add(obj);
+                // -- Mise à jour des references -- //
+                obj.devise = DeviseDAO.Object(obj.id_devise);
 
-                // -- Mise à jour de la devise atuelle -- //
-                if (obj.devise_actuelle)
-                {
-                    Mise_a_jour_devise_actuelle(obj.id);
-                }
+                // -- Enregistrement de la valeur -- //
+                Program.db.parametre_bancaires.Add(obj);
             }
             #region Catch
             catch (Exception ex)
@@ -53,18 +50,18 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(Devise obj)
+        public static void Modifier(ParametreBancaire obj)
         {
             try
             {
                 // -- Unicité du code -- //
-                if (Program.db.devises.Exists(l => l.id != obj.id && l.code == obj.code))
+                if (Program.db.parametre_bancaires.Exists(l => l.id != obj.id && l.code == obj.code))
                 {
                     throw new GBException(App_Lang.Lang.Existing_data + " [code]");
                 }
 
                 // -- Modification de la valeur -- //
-                Program.db.devises
+                Program.db.parametre_bancaires
                     // -- Spécifier la recherche -- //
                     .Where(l => l.id == obj.id)
                     // -- Lister le résultat -- //
@@ -75,15 +72,13 @@ namespace GB.Models.DAO
                         // -- Mise à jour de l'enregistrement -- //
                         l.code = obj.code;
                         l.libelle = obj.libelle;
-                        l.signe = obj.signe;
-                        l.devise_actuelle = obj.devise_actuelle;
+                        l.taux = obj.taux;
+                        l.montant = obj.montant;
+                        l.montant_minimal = obj.montant_minimal;
+                        l.montant_maximal = obj.montant_maximal;
+                        l.id_devise = obj.id_devise;
+                        l.devise = DeviseDAO.Object(obj.id_devise);
                     });
-
-                // -- Mise à jour de la devise atuelle -- //
-                if (obj.devise_actuelle)
-                {
-                    Mise_a_jour_devise_actuelle(obj.id);
-                }
             }
             #region Catch
             catch (Exception ex)
@@ -114,7 +109,7 @@ namespace GB.Models.DAO
                 ids.ForEach(id =>
                 {
                     // -- Suppression des valeurs -- //
-                    Program.db.devises.RemoveAll(l => l.id == id);
+                    Program.db.parametre_bancaires.RemoveAll(l => l.id == id);
                 });
             }
             #region Catch
@@ -138,13 +133,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Devise> Lister()
+        public static List<ParametreBancaire> Lister()
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.devises;
+                    Program.db.parametre_bancaires;
             }
             #region Catch
             catch (Exception ex)
@@ -167,13 +162,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Devise Object(string code)
+        public static ParametreBancaire Object(string code)
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.devises.FirstOrDefault(l => l.code == code);
+                    Program.db.parametre_bancaires.FirstOrDefault(l => l.code == code);
             }
             #region Catch
             catch (Exception ex)
@@ -194,51 +189,6 @@ namespace GB.Models.DAO
                 }
             }
             #endregion
-        }
-        public static Devise Object(long id)
-        {
-            try
-            {
-                // -- Parcours de la liste -- //
-                return
-                    Program.db.devises.FirstOrDefault(l => l.id == id);
-            }
-            #region Catch
-            catch (Exception ex)
-            {
-                // -- Vérifier la nature de l'exception -- //
-                if (!GBException.Est_GBexception(ex))
-                {
-                    // -- Log -- //
-                    GBClass.Log.Error(ex);
-
-                    // -- Renvoyer l'exception -- //
-                    throw new GBException(App_Lang.Lang.Error_message_notification);
-                }
-                else
-                {
-                    // -- Renvoyer l'exception -- //
-                    throw new GBException(ex.Message);
-                }
-            }
-            #endregion
-        }
-
-        private static void Mise_a_jour_devise_actuelle(long id)
-        {
-            // -- Vérification de la nature de l'identifiant -- //
-            if (id <= 0)
-            {
-                throw new GBException(App_Lang.Lang.The_object_must_have_a_unique_id);
-            }
-
-            Program.db.devises
-                .Where(l => l.id != id)
-                .ToList()
-                .ForEach(l => {
-                    l.devise_actuelle = false;
-                }
-            );
         }
 
     }

@@ -21,6 +21,7 @@ namespace GB.Models.Static
         public static string ConfigurationBanque_Agence = "ConfigurationBanque-Agence";
         public static string ConfigurationBanque_Devise = "ConfigurationBanque-Devise";
         public static string ConfigurationBanque_Parametre = "ConfigurationBanque-Parametre";
+        public static string ConfigurationBanque_ParametreBanque = "ConfigurationBanque-ParametreBanque";        
     }
 
     public enum GB_Enum_Action_Controller

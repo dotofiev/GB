@@ -37,6 +37,10 @@ namespace GB.Models.Tests
                 l.role = db.roles.FirstOrDefault(ll => ll.id == l.id_role);
                 l.menu = db.menus.FirstOrDefault(ll => ll.id == l.id_menu);
             });
+            // -- Parametre_bancaires -- //
+            db.parametre_bancaires.ForEach(l => {
+                l.devise = db.devises.FirstOrDefault(ll => ll.id == l.id_devise);
+            });
         }
 
         /*

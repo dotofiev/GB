@@ -19,7 +19,8 @@ namespace GB.Models.Tests
         public List<Institution> institutions { get; set; }
         public List<Devise> devises { get; set; }
         public List<Parametre> parametres { get; set; }
-
+        public List<ParametreBancaire> parametre_bancaires { get; set; }
+        
         public BD() { }
     }
 }

@@ -561,4 +561,22 @@
   <data name="Path_last_backup" xml:space="preserve">
     <value>Path last backup</value>
   </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="Amount_max" xml:space="preserve">
+    <value>Amount max</value>
+  </data>
+  <data name="Amount_min" xml:space="preserve">
+    <value>Amount min</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="Management_of_banking_parameters" xml:space="preserve">
+    <value>Management of banking parameters</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Rate</value>
+  </data>
 </root>
