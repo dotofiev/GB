@@ -580,4 +580,7 @@
   <data name="Rate" xml:space="preserve">
     <value>Taux</value>
   </data>
+  <data name="Physical_products_management" xml:space="preserve">
+    <value>Gestion des produits physiques</value>
+  </data>
 </root>

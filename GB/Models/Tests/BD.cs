@@ -20,6 +20,7 @@ namespace GB.Models.Tests
         public List<Devise> devises { get; set; }
         public List<Parametre> parametres { get; set; }
         public List<ParametreBancaire> parametre_bancaires { get; set; }
+        public List<Produit> produits { get; set; }
         
         public BD() { }
     }

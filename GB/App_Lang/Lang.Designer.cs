@@ -1024,6 +1024,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Physical products management.
+        /// </summary>
+        public static string Physical_products_management {
+            get {
+                return ResourceManager.GetString("Physical_products_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post loan litigation.
         /// </summary>
         public static string Post_loan_litigation {

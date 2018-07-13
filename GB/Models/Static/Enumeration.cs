@@ -21,7 +21,8 @@ namespace GB.Models.Static
         public static string ConfigurationBanque_Agence = "ConfigurationBanque-Agence";
         public static string ConfigurationBanque_Devise = "ConfigurationBanque-Devise";
         public static string ConfigurationBanque_Parametre = "ConfigurationBanque-Parametre";
-        public static string ConfigurationBanque_ParametreBanque = "ConfigurationBanque-ParametreBanque";        
+        public static string ConfigurationBanque_ParametreBanque = "ConfigurationBanque-ParametreBanque";
+        public static string ConfigurationBanque_ProduitClientPhysique = "ConfigurationBanque-ProduitClientPhysique";        
     }
 
     public enum GB_Enum_Action_Controller
@@ -31,5 +32,10 @@ namespace GB.Models.Static
         Supprimer = 3,
         Imprimer = 4,
         Lister = 5,
+    }
+
+    public enum GB_Enum_Type_Produit
+    {
+        Physique,
     }
 }

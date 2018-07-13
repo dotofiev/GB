@@ -579,4 +579,7 @@
   <data name="Rate" xml:space="preserve">
     <value>Rate</value>
   </data>
+  <data name="Physical_products_management" xml:space="preserve">
+    <value>Physical products management</value>
+  </data>
 </root>
