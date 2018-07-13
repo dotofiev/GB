@@ -376,6 +376,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creation date.
+        /// </summary>
+        public static string Creation_date {
+            get {
+                return ResourceManager.GetString("Creation_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Currency.
         /// </summary>
         public static string Currency {

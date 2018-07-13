@@ -23,6 +23,9 @@ namespace GB.Models.DAO
                 // -- Définition de l'identifiant -- //
                 obj.Crer_Id();
 
+                // -- Mise à jour de la date de creation -- //
+                obj.date_creation = DateTime.Now.Ticks;
+
                 // -- Enregistrement de la valeur -- //
                 Program.db.produits_judiciare.Add(obj);
             }

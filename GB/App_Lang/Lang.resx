@@ -609,4 +609,7 @@
   <data name="Unpaid" xml:space="preserve">
     <value>Unpaid</value>
   </data>
+  <data name="Creation_date" xml:space="preserve">
+    <value>Creation date</value>
+  </data>
 </root>

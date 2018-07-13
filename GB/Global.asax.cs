@@ -43,7 +43,7 @@ namespace GB
 
             // -- Test -- //
             Program.Initialiser_BD(url_data + "base_de_donnees.json");
-
+            var val = DateTime.Now.Ticks;
             // -- Log du démarage de l'application -- //
             GBClass.Log.Info("Démarrage de l'application");
         }

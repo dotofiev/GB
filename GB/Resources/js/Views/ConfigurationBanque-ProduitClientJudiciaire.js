@@ -180,7 +180,8 @@ $(
                     { "data": "col_2" },                            // -- code -- //
                     { "data": "col_3" },                            // -- libelle_fr -- //
                     { "data": "col_4" },                            // -- libelle_en -- //
-                    { "data": "col_5", "class": "text-center" }     // -- Action -- //
+                    { "data": "col_5", "class": "text-center" },    // -- date_creation -- //
+                    { "data": "col_6", "class": "text-center" }     // -- Action -- //
                 ]
             });
 

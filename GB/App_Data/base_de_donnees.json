@@ -557,37 +557,43 @@
       "id": "1",
       "code": "AFJ",
       "libelle_en": "",
-      "libelle_fr": "Autres formes juridique"
+      "libelle_fr": "Autres formes juridique",
+      "date_creation":  "636670881645418146"
     },
     {
       "id": "2",
       "code": "AP",
       "libelle_en": "",
-      "libelle_fr": "Affaires personnelle"
+      "libelle_fr": "Affaires personnelle",
+      "date_creation":  "636670881645418146"
     },
     {
       "id": "3",
       "code": "ASS",
       "libelle_en": "",
-      "libelle_fr": "Association à but non lucratif"
+      "libelle_fr": "Association à but non lucratif",
+      "date_creation":  "636670881645418146"
     },
     {
       "id": "4",
       "code": "ENTR",
       "libelle_en": "",
-      "libelle_fr": "Entreprise"
+      "libelle_fr": "Entreprise",
+      "date_creation":  "636670881645418146"
     },
     {
       "id": "5",
       "code": "ETAT",
       "libelle_en": "",
-      "libelle_fr": "Etat"
+      "libelle_fr": "Etat",
+      "date_creation":  "636670881645418146"
     },
     {
       "id": "6",
       "code": "GPE",
       "libelle_en": "",
-      "libelle_fr": "Groupement"
+      "libelle_fr": "Groupement",
+      "date_creation":  "636670881645418146"
     }
   ]
 }

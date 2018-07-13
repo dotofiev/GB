@@ -405,7 +405,8 @@ namespace GB.Controllers
                                 col_2 = val.code,
                                 col_3 = val.libelle_fr,
                                 col_4 = val.libelle_en,
-                                col_5 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
+                                col_6 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
                                                               title=""{Lang.Delete}"" 
                                                               class=""btn btn-xs btn-round""
                                                               onClick=""table_donnee_supprimer({ids}, true)""
@@ -1352,6 +1353,7 @@ namespace GB.Controllers
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Judicial_products_management;
                 this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
                 this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
+                this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
                 #endregion
 
                 // -- Données -- //

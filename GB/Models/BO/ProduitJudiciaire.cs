@@ -11,6 +11,8 @@ namespace GB.Models.BO
 {
     public class ProduitJudiciaire : GBBO
     {
+        public long date_creation { get; set; }
+
         public ProduitJudiciaire(long id)
         {
             this.id = id;
