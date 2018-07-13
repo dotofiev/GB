@@ -612,4 +612,13 @@
   <data name="Creation_date" xml:space="preserve">
     <value>Creation date</value>
   </data>
+  <data name="Product_information" xml:space="preserve">
+    <value>Product information</value>
+  </data>
+  <data name="This_product_will_be_apply_to_the_following_transactions" xml:space="preserve">
+    <value>This product will be apply to the following transactions</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Employee</value>
+  </data>
 </root>

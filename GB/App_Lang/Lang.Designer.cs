@@ -511,6 +511,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee.
+        /// </summary>
+        public static string Employee {
+            get {
+                return ResourceManager.GetString("Employee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee historical access.
         /// </summary>
         public static string Employee_historical_access {
@@ -1159,6 +1168,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product information.
+        /// </summary>
+        public static string Product_information {
+            get {
+                return ResourceManager.GetString("Product_information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profile.
         /// </summary>
         public static string Profile {
@@ -1398,6 +1416,15 @@ namespace GB.App_Lang {
         public static string This_account_is_suspended {
             get {
                 return ResourceManager.GetString("This_account_is_suspended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This product will be apply to the following transactions.
+        /// </summary>
+        public static string This_product_will_be_apply_to_the_following_transactions {
+            get {
+                return ResourceManager.GetString("This_product_will_be_apply_to_the_following_transactions", resourceCulture);
             }
         }
         

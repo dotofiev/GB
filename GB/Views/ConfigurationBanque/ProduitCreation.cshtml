@@ -61,7 +61,7 @@
             </div>
 
             <!-- Formulaire modals -->
-            @Html.Partial("ProduitClientJudiciaire/_Modals")
+            @Html.Partial("ProduitCreation/_Modals")
 
             <div class="x_content">
 
@@ -75,11 +75,10 @@
                             </th>
                             <th class="column-title">Code</th>
                             <th class="column-title">@ViewBag.Lang.Name_french</th>
-                            <th class="column-title">@ViewBag.Lang.Name_english</th>
+                            <th class="column-title">Type</th>
                             <th class="column-title">@ViewBag.Lang.Creation_date</th>
-                            <th class="column-title">@ViewBag.Lang.Employee</th>
                             <th class="column-title last" width="50px">Action</th>
-                            <th class="bulk-actions" colspan="6">
+                            <th class="bulk-actions" colspan="4">
                                 <a class="antoo" style="color:#fff; font-weight:500;">
                                     Selection(s) ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i>
                                 </a>

@@ -36,14 +36,14 @@ namespace GB
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             // -- Initialisation des hubs de connexion -- //
-            GBHub.Dictionaire_ConnectionId = new Dictionary<Connexion, string>();
+            Application.Add("Hubs_Connexion", new List<Connexion>());
 
             // -- Autoriser la configuration de log4net -- //
             log4net.Config.XmlConfigurator.Configure();
 
             // -- Test -- //
             Program.Initialiser_BD(url_data + "base_de_donnees.json");
-            var val = DateTime.Now.Ticks;
+
             // -- Log du démarage de l'application -- //
             GBClass.Log.Info("Démarrage de l'application");
         }
@@ -69,7 +69,46 @@ namespace GB
 
             // -- Gestion de l'objet connexio nde lutilisateur -- //
             #region Gestion de l'utilisateur
+
+            // -- Traitement de l'identifiant du client -- //
+            #region Traitement de l'identifiant du client
+            string client_id = (this.Request.Cookies["id_client"]?.Value ?? string.Empty);
+            if (client_id == string.Empty)
+            {
+                // -- Mise à jour de l'identifiant du client -- //
+                client_id = DateTime.Now.Ticks.ToString();
+                // -- Envoi de l'identifiant du client en cookie -- //
+                this.Response.Cookies["id_client"].Value = client_id;
+            }
+            #endregion
+
+            // -- Initialise une nouvelle session -- //
+            this.con = new Connexion(this.Session.SessionID, client_id);
+
+            // -- Mise à jour de l'utilisateur dans le hub -- //
+            if(GBHub.Hubs_Connexion.Exists(l => l.client_id == client_id))
+            {
+                // -- Réccupération de ka refenrece -- //
+                GBHub.Hubs_Connexion
+                    .Where(l => l.client_id == client_id)
+                    .ToList()
+                    .ForEach(l => {
+                        l = this.con;
+                    }
+                );
+            }
+            // -- AJouter le client au hub -- //
+            else
+            {
+                GBHub.Hubs_Connexion.Add(this.con);
+            }
+            
+            // -- Définition de la nouvelle session_id dans le cookie -- //
+            this.Response.Cookies["id_session"].Value = this.con.session_id;
+
             // -- Teste si la session est vide -- //
+            #region Commentaire
+            /*
             if (this.con == null)
             {
                 // -- Initialise une nouvelle session -- //
@@ -100,6 +139,9 @@ namespace GB
                 // -- Définition de la nouvelle session_id dans le cookie -- //
                 this.Response.Cookies["id_session"].Value = this.con.session_id;
             }
+            */
+            #endregion
+
             #endregion
 
             // -- Log du début d'une session -- //

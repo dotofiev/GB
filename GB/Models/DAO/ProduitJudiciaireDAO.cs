@@ -10,7 +10,7 @@ namespace GB.Models.DAO
 {
     public abstract class ProduitJudiciaireDAO : GBDAO
     {
-        public static void Ajouter(ProduitJudiciaire obj)
+        public static void Ajouter(ProduitJudiciaire obj, long id_utilisateur)
         {
             try
             {
@@ -25,6 +25,10 @@ namespace GB.Models.DAO
 
                 // -- Mise à jour de la date de creation -- //
                 obj.date_creation = DateTime.Now.Ticks;
+
+                // -- Mise à jour des refenreces -- //
+                obj.id_utilisateur = id_utilisateur;
+                obj.utilisateur_createur = UtilisateurDAO.Object(id_utilisateur);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.produits_judiciare.Add(obj);
