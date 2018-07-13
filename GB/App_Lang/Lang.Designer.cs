@@ -1060,6 +1060,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pays management.
+        /// </summary>
+        public static string Pays_management {
+            get {
+                return ResourceManager.GetString("Pays_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Permission denied.
         /// </summary>
         public static string Permission_denied {
@@ -1083,6 +1092,15 @@ namespace GB.App_Lang {
         public static string Phone {
             get {
                 return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone id.
+        /// </summary>
+        public static string Phone_id {
+            get {
+                return ResourceManager.GetString("Phone_id", resourceCulture);
             }
         }
         

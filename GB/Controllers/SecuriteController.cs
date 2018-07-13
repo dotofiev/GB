@@ -241,7 +241,7 @@ namespace GB.Controllers
                 }
                 #endregion
 
-                #region Module introuvble
+                #region Module introuvable
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -372,7 +372,7 @@ namespace GB.Controllers
                 }
                 #endregion
 
-                #region Module introuvble
+                #region Module introuvable
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -705,7 +705,7 @@ namespace GB.Controllers
                 }
                 #endregion
 
-                #region Module introuvble
+                #region Module introuvable
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -775,7 +775,7 @@ namespace GB.Controllers
                 }
                 #endregion
 
-                #region Module introuvble
+                #region Module introuvable
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -845,7 +845,7 @@ namespace GB.Controllers
                 }
                 #endregion
 
-                #region Module introuvble
+                #region Module introuvable
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");

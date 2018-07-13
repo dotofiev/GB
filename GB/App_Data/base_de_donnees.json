@@ -189,6 +189,28 @@
       "libelle_fr": "Créer un produit",
       "view": "ProduitCreation",
       "id_controller": "3"
+    },
+
+
+
+    {
+      "id": "17",
+      "code": "17",
+      "id_groupe_menu": "3",
+      "libelle_en": "Institutionnal attributes",
+      "libelle_fr": "Attributs institutionnel",
+      "view": "",
+      "id_controller": "3"
+    },
+    {
+      "id": "18",
+      "code": "18",
+      "id_menu_parent": "17",
+      "id_groupe_menu": "3",
+      "libelle_en": "Countries",
+      "libelle_fr": "Pays",
+      "view": "Pays",
+      "id_controller": "3"
     }
   ],
   "roles": [
@@ -401,6 +423,29 @@
       "imprimer": "true",
       "lister": "true"
     },
+
+
+
+    {
+      "id": "18",
+      "id_role": "1",
+      "id_menu": "17",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "19",
+      "id_role": "1",
+      "id_menu": "18",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
     // -- Role 2 -- //
     {
       "id": "7",
@@ -559,7 +604,7 @@
       "id_utilisateur": "99999",
       "libelle_en": "",
       "libelle_fr": "Autres formes juridique",
-      "date_creation":  "636670881645418146"
+      "date_creation": "636670881645418146"
     },
     {
       "id": "2",
@@ -567,7 +612,7 @@
       "id_utilisateur": "99999",
       "libelle_en": "",
       "libelle_fr": "Affaires personnelle",
-      "date_creation":  "636670881645418146"
+      "date_creation": "636670881645418146"
     },
     {
       "id": "3",
@@ -575,7 +620,7 @@
       "id_utilisateur": "99999",
       "libelle_en": "",
       "libelle_fr": "Association à but non lucratif",
-      "date_creation":  "636670881645418146"
+      "date_creation": "636670881645418146"
     },
     {
       "id": "4",
@@ -583,7 +628,7 @@
       "id_utilisateur": "99999",
       "libelle_en": "",
       "libelle_fr": "Entreprise",
-      "date_creation":  "636670881645418146"
+      "date_creation": "636670881645418146"
     },
     {
       "id": "5",
@@ -591,7 +636,7 @@
       "id_utilisateur": "99999",
       "libelle_en": "",
       "libelle_fr": "Etat",
-      "date_creation":  "636670881645418146"
+      "date_creation": "636670881645418146"
     },
     {
       "id": "6",
@@ -599,6 +644,16 @@
       "id_utilisateur": "99999",
       "libelle_en": "",
       "libelle_fr": "Groupement",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "pays": [
+    {
+      "id": "1",
+      "code": "CM",
+      "id_utilisateur": "99999",
+      "libelle": "Cameroun",
+      "code_telephone": "+237",
       "date_creation":  "636670881645418146"
     }
   ]

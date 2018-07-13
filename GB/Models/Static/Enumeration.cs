@@ -23,7 +23,8 @@ namespace GB.Models.Static
         public static string ConfigurationBanque_Parametre = "ConfigurationBanque-Parametre";
         public static string ConfigurationBanque_ParametreBanque = "ConfigurationBanque-ParametreBanque";
         public static string ConfigurationBanque_ProduitClientPhysique = "ConfigurationBanque-ProduitClientPhysique";
-        public static string ConfigurationBanque_ProduitClientJudiciaire = "ConfigurationBanque-ProduitClientJudiciaire";        
+        public static string ConfigurationBanque_ProduitClientJudiciaire = "ConfigurationBanque-ProduitClientJudiciaire";
+        public static string ConfigurationBanque_Pays = "ConfigurationBanque-Pays";
     }
 
     public enum GB_Enum_Action_Controller

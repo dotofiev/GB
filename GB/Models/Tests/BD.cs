@@ -22,6 +22,7 @@ namespace GB.Models.Tests
         public List<ParametreBancaire> parametre_bancaires { get; set; }
         public List<ProduitPhysique> produits_physique { get; set; }
         public List<ProduitJudiciaire> produits_judiciare { get; set; }
+        public List<Pays> pays { get; set; }
         
         public BD() { }
     }

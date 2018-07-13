@@ -121,6 +121,21 @@ namespace GB.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Pays()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Pays_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationBanque_Pays);
+
+            return View();
+        }
         #endregion
 
         #region HttpPost
@@ -406,7 +421,56 @@ namespace GB.Controllers
                                 col_3 = val.libelle_fr,
                                 col_4 = val.libelle_en,
                                 col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
-                                col_6 = val.utilisateur_createur.nom_utilisateur,
+                                col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
+                                col_7 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                                              title=""{Lang.Delete}"" 
+                                                              class=""btn btn-xs btn-round""
+                                                              onClick=""table_donnee_supprimer({ids}, true)""
+                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                          <i class=""fa fa-minus text-danger""></i>
+                                        </button>"
+                                        .Replace("{id}", val.id.ToString())
+                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                                //                              title=""{Lang.Update}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_modifier({id})""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-retweet text-warning""></i>
+                                //        </button>
+                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                //                              title=""{Lang.Delete}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_supprimer({ids}, true)""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-minus text-danger""></i>
+                                //        </button>"
+                                //        .Replace("{id}", val.id.ToString())
+                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
+                #region ConfigurationBanque-Pays
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Pays)
+                {
+                    foreach (var val in PaysDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"pays\" value=\"pays_{val.id}\">",
+                                col_2 = val.code,
+                                col_3 = val.libelle,
+                                col_4 = val.code,
+                                col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
+                                col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
                                 col_7 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
                                                               title=""{Lang.Delete}"" 
                                                               class=""btn btn-xs btn-round""
@@ -717,6 +781,31 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-Pays
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Pays)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = PaysDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle = obj.libelle,
+                                                        code_telephone = obj.code_telephone,
+                                                    }
+                                               );
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -829,6 +918,14 @@ namespace GB.Controllers
                 {
                     // -- Service d'enregistrement -- //
                     ProduitJudiciaireDAO.Ajouter(GBConvert.JSON_To<ProduitJudiciaire>(obj), this.con.id_utilisateur);
+                }
+                #endregion
+
+                #region ConfigurationBanque-Pays
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Pays)
+                {
+                    // -- Service d'enregistrement -- //
+                    PaysDAO.Ajouter(GBConvert.JSON_To<Pays>(obj), this.con.id_utilisateur);
                 }
                 #endregion
 
@@ -975,6 +1072,14 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-Pays
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Pays)
+                {
+                    // -- Service de modification -- //
+                    PaysDAO.Modifier(GBConvert.JSON_To<Pays>(obj));
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -1066,6 +1171,14 @@ namespace GB.Controllers
                 {
                     // -- Service de suppression -- //
                     ProduitJudiciaireDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationBanque-Pays
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Pays)
+                {
+                    // -- Service de suppression -- //
+                    PaysDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1369,6 +1482,36 @@ namespace GB.Controllers
                                                     {
                                                         icon = "fa fa-cogs",
                                                         message = App_Lang.Lang.Judicial_products_management
+                                                    }
+                                                }
+                                            );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationBanque-Pays
+            else if (id_page == GB_Enum_Menu.ConfigurationBanque_Pays)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Pays_management;
+                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
+                this.ViewBag.Lang.Phone_id = App_Lang.Lang.Phone_id;
+                this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
+                this.ViewBag.Lang.Employee = App_Lang.Lang.Employee;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Pays_management
                                                     }
                                                 }
                                             );

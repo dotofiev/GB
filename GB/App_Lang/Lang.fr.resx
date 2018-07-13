@@ -622,4 +622,10 @@
   <data name="Employee" xml:space="preserve">
     <value>Employé</value>
   </data>
+  <data name="Pays_management" xml:space="preserve">
+    <value>Gestion des pays</value>
+  </data>
+  <data name="Phone_id" xml:space="preserve">
+    <value>Code téléphone</value>
+  </data>
 </root>

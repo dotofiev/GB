@@ -621,4 +621,10 @@
   <data name="Employee" xml:space="preserve">
     <value>Employee</value>
   </data>
+  <data name="Pays_management" xml:space="preserve">
+    <value>Pays management</value>
+  </data>
+  <data name="Phone_id" xml:space="preserve">
+    <value>Phone id</value>
+  </data>
 </root>
