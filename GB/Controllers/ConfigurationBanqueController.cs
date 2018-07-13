@@ -349,12 +349,12 @@ namespace GB.Controllers
                 #region ConfigurationBanque-ProduitClientPhysique
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientPhysique)
                 {
-                    foreach (var val in ProduitDAO.Lister())
+                    foreach (var val in ProduitPhysiqueDAO.Lister())
                     {
                         donnee.Add(
                             new
                             {
-                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"produit\" value=\"produit_{val.id}\">",
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"produitPhysique\" value=\"produitPhysique_{val.id}\">",
                                 col_2 = val.code,
                                 col_3 = val.libelle,
                                 col_4 = val.type,
@@ -670,7 +670,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientPhysique)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ProduitDAO.Object(code);
+                    var obj = ProduitPhysiqueDAO.Object(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -818,7 +818,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientPhysique)
                 {
                     // -- Service d'enregistrement -- //
-                    ProduitDAO.Ajouter(GBConvert.JSON_To<Produit>(obj));
+                    ProduitPhysiqueDAO.Ajouter(GBConvert.JSON_To<ProduitPhysique>(obj));
                 }
                 #endregion
 
@@ -961,7 +961,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientPhysique)
                 {
                     // -- Service de modification -- //
-                    ProduitDAO.Modifier(GBConvert.JSON_To<Produit>(obj));
+                    ProduitPhysiqueDAO.Modifier(GBConvert.JSON_To<ProduitPhysique>(obj));
                 }
                 #endregion
 
@@ -1055,7 +1055,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientPhysique)
                 {
                     // -- Service de suppression -- //
-                    ProduitDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    ProduitPhysiqueDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 

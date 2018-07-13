@@ -9,20 +9,20 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Produit : GBBO
+    public class ProduitPhysique : GBBO
     {
         public string type { get; set; }
 
-        public Produit(long id)
+        public ProduitPhysique(long id)
         {
             this.id = id;
         }
 
-        public Produit() { }
+        public ProduitPhysique() { }
 
         public override void Crer_Id()
         {
-            this.id = Program.db.produits.Count + 1;
+            this.id = Program.db.produits_physique.Count + 1;
         }
     }
 }

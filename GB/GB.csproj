@@ -202,7 +202,7 @@
     <Compile Include="Models\BO\GBFichier.cs" />
     <Compile Include="Models\BO\Devise.cs" />
     <Compile Include="Models\BO\ProduitJudiciaire.cs" />
-    <Compile Include="Models\BO\Produit.cs" />
+    <Compile Include="Models\BO\ProduitPhysique.cs" />
     <Compile Include="Models\BO\ParametreBancaire.cs" />
     <Compile Include="Models\BO\Parametre.cs" />
     <Compile Include="Models\BO\Profession.cs" />
@@ -221,7 +221,7 @@
     <Compile Include="Models\BO\GBNotification.cs" />
     <Compile Include="Models\DAO\DeviseDAO.cs" />
     <Compile Include="Models\DAO\ProduitJudiciaireDAO.cs" />
-    <Compile Include="Models\DAO\ProduitDAO.cs" />
+    <Compile Include="Models\DAO\ProduitPhysiqueDAO.cs" />
     <Compile Include="Models\DAO\ParametreBanqueDAO.cs" />
     <Compile Include="Models\DAO\ParametreDAO.cs" />
     <Compile Include="Models\DAO\ProfessionDAO.cs" />

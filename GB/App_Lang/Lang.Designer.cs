@@ -385,6 +385,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current.
+        /// </summary>
+        public static string Current {
+            get {
+                return ResourceManager.GetString("Current", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current currency.
         /// </summary>
         public static string Current_currency {
@@ -610,6 +619,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Garantie deposit.
+        /// </summary>
+        public static string Garantie_deposit {
+            get {
+                return ResourceManager.GetString("Garantie_deposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to General banking parameters.
         /// </summary>
         public static string General_banking_parameters {
@@ -709,11 +727,29 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Litigation.
+        /// </summary>
+        public static string Litigation {
+            get {
+                return ResourceManager.GetString("Litigation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Litigation period.
         /// </summary>
         public static string Litigation_period {
             get {
                 return ResourceManager.GetString("Litigation_period", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loan.
+        /// </summary>
+        public static string Loan {
+            get {
+                return ResourceManager.GetString("Loan", resourceCulture);
             }
         }
         
@@ -1150,6 +1186,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reserve interest.
+        /// </summary>
+        public static string Reserve_interest {
+            get {
+                return ResourceManager.GetString("Reserve_interest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reserve interest post method.
         /// </summary>
         public static string Reserve_interest_post_method {
@@ -1191,6 +1236,15 @@ namespace GB.App_Lang {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving.
+        /// </summary>
+        public static string Saving {
+            get {
+                return ResourceManager.GetString("Saving", resourceCulture);
             }
         }
         
@@ -1339,6 +1393,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Time deposit.
+        /// </summary>
+        public static string Time_deposit {
+            get {
+                return ResourceManager.GetString("Time_deposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To log in.
         /// </summary>
         public static string To_log_in {
@@ -1353,6 +1416,15 @@ namespace GB.App_Lang {
         public static string Town {
             get {
                 return ResourceManager.GetString("Town", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unpaid.
+        /// </summary>
+        public static string Unpaid {
+            get {
+                return ResourceManager.GetString("Unpaid", resourceCulture);
             }
         }
         

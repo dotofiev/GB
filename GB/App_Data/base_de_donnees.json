@@ -179,6 +179,16 @@
       "libelle_fr": "Client judiciaire",
       "view": "ProduitClientJudiciaire",
       "id_controller": "3"
+    },
+    {
+      "id": "16",
+      "code": "16",
+      "id_menu_parent": "13",
+      "id_groupe_menu": "3",
+      "libelle_en": "Create product",
+      "libelle_fr": "Créer un produit",
+      "view": "ProduitCreation",
+      "id_controller": "3"
     }
   ],
   "roles": [
@@ -381,6 +391,16 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "17",
+      "id_role": "1",
+      "id_menu": "16",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
     // -- Role 2 -- //
     {
       "id": "7",
@@ -512,7 +532,7 @@
       "montant_maximal": "0"
     }
   ],
-  "produits": [
+  "produits_physique": [
     {
       "id": "1",
       "code": "CIVIL",

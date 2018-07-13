@@ -8,14 +8,14 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public abstract class ProduitDAO : GBDAO
+    public abstract class ProduitPhysiqueDAO : GBDAO
     {
-        public static void Ajouter(Produit obj)
+        public static void Ajouter(ProduitPhysique obj)
         {
             try
             {
                 // -- Unicité du code -- //
-                if (Program.db.produits.Exists(l => l.code == obj.code))
+                if (Program.db.produits_physique.Exists(l => l.code == obj.code))
                 {
                     throw new GBException(App_Lang.Lang.Existing_data + " [code]");
                 }
@@ -27,7 +27,7 @@ namespace GB.Models.DAO
                 obj.type = GB_Enum_Type_Produit.Physique.ToString();
 
                 // -- Enregistrement de la valeur -- //
-                Program.db.produits.Add(obj);
+                Program.db.produits_physique.Add(obj);
             }
             #region Catch
             catch (Exception ex)
@@ -50,18 +50,18 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(Produit obj)
+        public static void Modifier(ProduitPhysique obj)
         {
             try
             {
                 // -- Unicité du code -- //
-                if (Program.db.produits.Exists(l => l.id != obj.id && l.code == obj.code))
+                if (Program.db.produits_physique.Exists(l => l.id != obj.id && l.code == obj.code))
                 {
                     throw new GBException(App_Lang.Lang.Existing_data + " [code]");
                 }
 
                 // -- Modification de la valeur -- //
-                Program.db.produits
+                Program.db.produits_physique
                     // -- Spécifier la recherche -- //
                     .Where(l => l.id == obj.id)
                     // -- Lister le résultat -- //
@@ -103,7 +103,7 @@ namespace GB.Models.DAO
                 ids.ForEach(id =>
                 {
                     // -- Suppression des valeurs -- //
-                    Program.db.produits.RemoveAll(l => l.id == id);
+                    Program.db.produits_physique.RemoveAll(l => l.id == id);
                 });
             }
             #region Catch
@@ -127,13 +127,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Produit> Lister()
+        public static List<ProduitPhysique> Lister()
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.produits;
+                    Program.db.produits_physique;
             }
             #region Catch
             catch (Exception ex)
@@ -156,13 +156,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Produit Object(string code)
+        public static ProduitPhysique Object(string code)
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.produits.FirstOrDefault(l => l.code == code);
+                    Program.db.produits_physique.FirstOrDefault(l => l.code == code);
             }
             #region Catch
             catch (Exception ex)

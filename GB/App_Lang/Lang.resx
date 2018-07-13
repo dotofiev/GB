@@ -585,4 +585,28 @@
   <data name="Judicial_products_management" xml:space="preserve">
     <value>Judicial products management</value>
   </data>
+  <data name="Current" xml:space="preserve">
+    <value>Current</value>
+  </data>
+  <data name="Garantie_deposit" xml:space="preserve">
+    <value>Garantie deposit</value>
+  </data>
+  <data name="Litigation" xml:space="preserve">
+    <value>Litigation</value>
+  </data>
+  <data name="Loan" xml:space="preserve">
+    <value>Loan</value>
+  </data>
+  <data name="Reserve_interest" xml:space="preserve">
+    <value>Reserve interest</value>
+  </data>
+  <data name="Saving" xml:space="preserve">
+    <value>Saving</value>
+  </data>
+  <data name="Time_deposit" xml:space="preserve">
+    <value>Time deposit</value>
+  </data>
+  <data name="Unpaid" xml:space="preserve">
+    <value>Unpaid</value>
+  </data>
 </root>

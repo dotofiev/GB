@@ -4,20 +4,38 @@
       "id": "1",
       "libelle": "Securite"
     },
-    "views": [ "Module", "Menu", "Role" ]
+    "views": [
+      "Module",
+      "Menu",
+      "Role" 
+    ]
   },
   {
     "controller": {
       "id": "2",
       "libelle": "SecuriteUtilisateur"
     },
-    "views": [ "Utilisateur", "Privilege", "Audit" ]
+    "views": [
+      "Utilisateur",
+      "Privilege",
+      "Audit" 
+    ]
   },
   {
     "controller": {
       "id": "3",
       "libelle": "ConfigurationBanque"
     },
-    "views": [ "Institution", "Agence", "CompteAgence", "Devise", "Parametre", "ParametreBanque", "ProduitClientPhysique", "ProduitClientJudiciaire" ]
+    "views": [
+      "Institution",
+      "Agence",
+      "CompteAgence",
+      "Devise",
+      "Parametre",
+      "ParametreBanque",
+      "ProduitClientPhysique",
+      "ProduitClientJudiciaire",
+      "ProduitCreation"
+    ]
   }
 ]

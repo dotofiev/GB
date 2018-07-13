@@ -151,7 +151,7 @@ $(
             table.on('draw.dt',
                 function () {
                     // -- Fonction pour initiliser les style css javascript des tables -- //
-                    gbCharger_Css_Table('produit');
+                    gbCharger_Css_Table('produitPhysique');
                 }
             );
 
@@ -314,7 +314,7 @@ $(
             btn_supprimer.on("click",
                 function () {
                     // -- Réccupérer les données electionné -- //
-                    var selection = $('input[name="produit"]:checked');
+                    var selection = $('input[name="produitPhysique"]:checked');
 
                     // -- Si la taille est supérieurs à 0 -- //
                     if (selection.length == 0) {
@@ -331,7 +331,7 @@ $(
                     var ids = [];
                     // -- Réccupération des id -- //
                     for (var i = 0; i < selection.length; i++) {
-                        ids.push(selection[i].replace('produit=produit_', ''));
+                        ids.push(selection[i].replace('produitPhysique=produitPhysique_', ''));
                     }
 
                     // -- SOumettre les données au traitement -- //
