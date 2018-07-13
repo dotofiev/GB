@@ -673,6 +673,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Judicial products management.
+        /// </summary>
+        public static string Judicial_products_management {
+            get {
+                return ResourceManager.GetString("Judicial_products_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last transaction.
         /// </summary>
         public static string Last_transaction {

@@ -44,7 +44,8 @@ $(function () {
                     url != '/ConfigurationBanque/Devise' &&
                     url != '/ConfigurationBanque/Parametre' &&
                     url != '/ConfigurationBanque/ParametreBanque' &&
-                    url != '/ConfigurationBanque/ProduitClientPhysique') {
+                    url != '/ConfigurationBanque/ProduitClientPhysique' &&
+                    url != '/ConfigurationBanque/ProduitClientJudiciaire') {
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 

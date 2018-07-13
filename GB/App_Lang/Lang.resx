@@ -582,4 +582,7 @@
   <data name="Physical_products_management" xml:space="preserve">
     <value>Physical products management</value>
   </data>
+  <data name="Judicial_products_management" xml:space="preserve">
+    <value>Judicial products management</value>
+  </data>
 </root>

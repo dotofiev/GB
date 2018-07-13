@@ -106,6 +106,21 @@ namespace GB.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult ProduitClientJudiciaire()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Judicial_products_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationBanque_ProduitClientJudiciaire);
+
+            return View();
+        }
         #endregion
 
         #region HttpPost
@@ -343,6 +358,53 @@ namespace GB.Controllers
                                 col_2 = val.code,
                                 col_3 = val.libelle,
                                 col_4 = val.type,
+                                col_5 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                                              title=""{Lang.Delete}"" 
+                                                              class=""btn btn-xs btn-round""
+                                                              onClick=""table_donnee_supprimer({ids}, true)""
+                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                          <i class=""fa fa-minus text-danger""></i>
+                                        </button>"
+                                        .Replace("{id}", val.id.ToString())
+                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                                //                              title=""{Lang.Update}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_modifier({id})""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-retweet text-warning""></i>
+                                //        </button>
+                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                //                              title=""{Lang.Delete}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_supprimer({ids}, true)""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-minus text-danger""></i>
+                                //        </button>"
+                                //        .Replace("{id}", val.id.ToString())
+                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
+                #region ConfigurationBanque-ProduitClientJudiciaire
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientJudiciaire)
+                {
+                    foreach (var val in ProduitJudiciaireDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"produitJudiciaire\" value=\"produitJudiciaire_{val.id}\">",
+                                col_2 = val.code,
+                                col_3 = val.libelle_fr,
+                                col_4 = val.libelle_en,
                                 col_5 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
                                                               title=""{Lang.Delete}"" 
                                                               class=""btn btn-xs btn-round""
@@ -628,6 +690,31 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-ProduitClientJudiciaire
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientJudiciaire)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = ProduitJudiciaireDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle_en = obj.libelle_en,
+                                                        libelle_fr = obj.libelle_fr,
+                                                    }
+                                               );
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -732,6 +819,14 @@ namespace GB.Controllers
                 {
                     // -- Service d'enregistrement -- //
                     ProduitDAO.Ajouter(GBConvert.JSON_To<Produit>(obj));
+                }
+                #endregion
+
+                #region ConfigurationBanque-ProduitClientJudiciaire
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientJudiciaire)
+                {
+                    // -- Service d'enregistrement -- //
+                    ProduitJudiciaireDAO.Ajouter(GBConvert.JSON_To<ProduitJudiciaire>(obj));
                 }
                 #endregion
 
@@ -870,6 +965,14 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-ProduitClientJudiciaire
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientJudiciaire)
+                {
+                    // -- Service de modification -- //
+                    ProduitJudiciaireDAO.Modifier(GBConvert.JSON_To<ProduitJudiciaire>(obj));
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -953,6 +1056,14 @@ namespace GB.Controllers
                 {
                     // -- Service de suppression -- //
                     ProduitDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationBanque-ProduitClientJudiciaire
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientJudiciaire)
+                {
+                    // -- Service de suppression -- //
+                    ProduitJudiciaireDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1226,6 +1337,34 @@ namespace GB.Controllers
                                                     {
                                                         icon = "fa fa-cogs",
                                                         message = App_Lang.Lang.Physical_products_management
+                                                    }
+                                                }
+                                            );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationBanque-ProduitClientJudiciaire
+            else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientJudiciaire)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Judicial_products_management;
+                this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
+                this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Judicial_products_management
                                                     }
                                                 }
                                             );

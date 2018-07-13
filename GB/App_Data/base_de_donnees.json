@@ -169,6 +169,16 @@
       "libelle_fr": "Client physique",
       "view": "ProduitClientPhysique",
       "id_controller": "3"
+    },
+    {
+      "id": "15",
+      "code": "15",
+      "id_menu_parent": "13",
+      "id_groupe_menu": "3",
+      "libelle_en": "Judicial customer",
+      "libelle_fr": "Client judiciaire",
+      "view": "ProduitClientJudiciaire",
+      "id_controller": "3"
     }
   ],
   "roles": [
@@ -361,6 +371,16 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "16",
+      "id_role": "1",
+      "id_menu": "15",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
     // -- Role 2 -- //
     {
       "id": "7",
@@ -510,6 +530,44 @@
       "code": "BROTHER",
       "type": "Physique",
       "libelle": "BROTHER"
+    }
+  ],
+  "produits_judiciare": [
+    {
+      "id": "1",
+      "code": "AFJ",
+      "libelle_en": "",
+      "libelle_fr": "Autres formes juridique"
+    },
+    {
+      "id": "2",
+      "code": "AP",
+      "libelle_en": "",
+      "libelle_fr": "Affaires personnelle"
+    },
+    {
+      "id": "3",
+      "code": "ASS",
+      "libelle_en": "",
+      "libelle_fr": "Association à but non lucratif"
+    },
+    {
+      "id": "4",
+      "code": "ENTR",
+      "libelle_en": "",
+      "libelle_fr": "Entreprise"
+    },
+    {
+      "id": "5",
+      "code": "ETAT",
+      "libelle_en": "",
+      "libelle_fr": "Etat"
+    },
+    {
+      "id": "6",
+      "code": "GPE",
+      "libelle_en": "",
+      "libelle_fr": "Groupement"
     }
   ]
 }

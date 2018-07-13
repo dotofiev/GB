@@ -583,4 +583,7 @@
   <data name="Physical_products_management" xml:space="preserve">
     <value>Gestion des produits physiques</value>
   </data>
+  <data name="Judicial_products_management" xml:space="preserve">
+    <value>Gestion des produits judiciaires</value>
+  </data>
 </root>
