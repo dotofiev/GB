@@ -207,6 +207,16 @@
       "code": "18",
       "id_menu_parent": "17",
       "id_groupe_menu": "3",
+      "libelle_en": "Towns",
+      "libelle_fr": "Villes",
+      "view": "Ville",
+      "id_controller": "3"
+    },
+    {
+      "id": "19",
+      "code": "19",
+      "id_menu_parent": "17",
+      "id_groupe_menu": "3",
       "libelle_en": "Countries",
       "libelle_fr": "Pays",
       "view": "Pays",
@@ -446,6 +456,16 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "20",
+      "id_role": "1",
+      "id_menu": "19",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
     // -- Role 2 -- //
     {
       "id": "7",
@@ -654,6 +674,22 @@
       "id_utilisateur": "99999",
       "libelle": "Cameroun",
       "code_telephone": "+237",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "villes": [
+    {
+      "id": "1",
+      "code": "1",
+      "id_utilisateur": "99999",
+      "libelle": "Yaounde",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "2",
+      "id_utilisateur": "99999",
+      "libelle": "Douala",
       "date_creation":  "636670881645418146"
     }
   ]

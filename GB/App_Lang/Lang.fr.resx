@@ -628,4 +628,7 @@
   <data name="Phone_id" xml:space="preserve">
     <value>Code téléphone</value>
   </data>
+  <data name="Town_management" xml:space="preserve">
+    <value>Gestion des villes</value>
+  </data>
 </root>

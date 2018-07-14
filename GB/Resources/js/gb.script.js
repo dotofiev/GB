@@ -3,7 +3,8 @@
 var $GB_VAR = {
     aes_key: 'global_bank_aes',
     cookie_autorise: 'cookie_autorise',
-    url_language_dataTable: '/GB/Langue_DataTable'
+    url_language_dataTable: '/GB/Langue_DataTable',
+    class_table_selection: 'gb-table-success'
 };
 var $GB_DONNEE = null;
 var $GB_DONNEE_PARAMETRES = null;
@@ -216,15 +217,15 @@ function gbTableSelectionLigne(ligne, id_table) {
     $('#' + id_table + ' tbody tr').each(
         function () {
             // -- Si l'element n'a pas la classe passer -- //
-            if ($(this).hasClass(class_table_selection)) {
-                $(this).removeClass(class_table_selection);
+            if ($(this).hasClass($GB_VAR.class_table_selection)) {
+                $(this).removeClass($GB_VAR.class_table_selection);
             }
         }
     );
 
     // -- Mise à jour de la couleur de la ligne -- //
     if (ligne != undefined && ligne != null) {
-        ligne.addClass(class_table_selection);
+        ligne.addClass($GB_VAR.class_table_selection);
     }
 
 }

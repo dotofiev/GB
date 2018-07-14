@@ -16,7 +16,6 @@ var form_utilisateur_nom = $('#form_utilisateur_nom');
 var modal_form = $('#modal_form');
 var url_controlleur = '/ConfigurationBanque/';
 var url_suppression = '/ConfigurationBanque/Supprimer_Enregistrement';
-var class_table_selection = 'gb-table-success';
 
 
 // -- Méthodes d'action sur les données -- // 

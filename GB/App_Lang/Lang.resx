@@ -627,4 +627,7 @@
   <data name="Phone_id" xml:space="preserve">
     <value>Phone id</value>
   </data>
+  <data name="Town_management" xml:space="preserve">
+    <value>Town management</value>
+  </data>
 </root>

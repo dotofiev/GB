@@ -21,7 +21,6 @@ var modal_form = $('#modal_form');
 var modal_menu = $('#modal_menu');
 var url_controlleur = '/Securite/';
 var url_suppression = '/Securite/Supprimer_Enregistrement';
-var class_table_selection = 'gb-table-success';
 
 
 // -- Méthodes d'action sur les données -- // 

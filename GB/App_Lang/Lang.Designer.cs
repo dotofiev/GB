@@ -1474,6 +1474,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Town management.
+        /// </summary>
+        public static string Town_management {
+            get {
+                return ResourceManager.GetString("Town_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unpaid.
         /// </summary>
         public static string Unpaid {

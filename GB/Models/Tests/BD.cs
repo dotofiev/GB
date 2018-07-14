@@ -23,7 +23,8 @@ namespace GB.Models.Tests
         public List<ProduitPhysique> produits_physique { get; set; }
         public List<ProduitJudiciaire> produits_judiciare { get; set; }
         public List<Pays> pays { get; set; }
-        
+        public List<Ville> villes { get; set; }
+
         public BD() { }
     }
 }

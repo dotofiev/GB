@@ -47,6 +47,7 @@
 /// <reference path="views/configurationbanque-pays.js" />
 /// <reference path="views/configurationbanque-produitclientjudiciaire.js" />
 /// <reference path="views/configurationbanque-produitclientphysique.js" />
+/// <reference path="views/configurationbanque-ville.js" />
 /// <reference path="Views/Home-Authentication.js" />
 /// <reference path="views/securite-menu.js" />
 /// <reference path="views/securite-module.js" />
