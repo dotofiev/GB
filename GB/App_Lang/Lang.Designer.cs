@@ -511,6 +511,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Economic activities management.
+        /// </summary>
+        public static string Economic_activities_management {
+            get {
+                return ResourceManager.GetString("Economic_activities_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee.
         /// </summary>
         public static string Employee {

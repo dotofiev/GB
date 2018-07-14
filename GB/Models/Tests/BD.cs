@@ -24,7 +24,8 @@ namespace GB.Models.Tests
         public List<ProduitJudiciaire> produits_judiciare { get; set; }
         public List<Pays> pays { get; set; }
         public List<Ville> villes { get; set; }
-
+        public List<ActiviteEconomique> activites_economique { get; set; }
+        
         public BD() { }
     }
 }

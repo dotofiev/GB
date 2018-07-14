@@ -631,4 +631,7 @@
   <data name="Town_management" xml:space="preserve">
     <value>Gestion des villes</value>
   </data>
+  <data name="Economic_activities_management" xml:space="preserve">
+    <value>Gestion des activités économique</value>
+  </data>
 </root>

@@ -25,7 +25,8 @@ namespace GB.Models.Static
         public static string ConfigurationBanque_ProduitClientPhysique = "ConfigurationBanque-ProduitClientPhysique";
         public static string ConfigurationBanque_ProduitClientJudiciaire = "ConfigurationBanque-ProduitClientJudiciaire";
         public static string ConfigurationBanque_Pays = "ConfigurationBanque-Pays";
-        public static string ConfigurationBanque_Ville = "ConfigurationBanque-Ville";        
+        public static string ConfigurationBanque_Ville = "ConfigurationBanque-Ville";
+        public static string ConfigurationBanque_ActiviteEconomique = "ConfigurationBanque-ActiviteEconomique";        
     }
 
     public enum GB_Enum_Action_Controller

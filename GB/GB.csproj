@@ -201,6 +201,7 @@
     <Compile Include="Models\ActionFilter\ResponseErreur.cs" />
     <Compile Include="Models\BO\GBFichier.cs" />
     <Compile Include="Models\BO\Devise.cs" />
+    <Compile Include="Models\BO\ActiviteEconomique.cs" />
     <Compile Include="Models\BO\Ville.cs" />
     <Compile Include="Models\BO\Pays.cs" />
     <Compile Include="Models\BO\ProduitJudiciaire.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="Models\BO\GBException.cs" />
     <Compile Include="Models\BO\GBNotification.cs" />
     <Compile Include="Models\DAO\DeviseDAO.cs" />
+    <Compile Include="Models\DAO\ActiviteEconomiqueDAO.cs" />
     <Compile Include="Models\DAO\VilleDAO.cs" />
     <Compile Include="Models\DAO\PaysDAO.cs" />
     <Compile Include="Models\DAO\ProduitJudiciaireDAO.cs" />
@@ -528,6 +530,7 @@
     <Content Include="Resources\js\Views\ConfigurationBanque-ProduitClientPhysique.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-ProduitClientJudiciaire.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Pays.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-ActiviteEconomique.js" />
     <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
@@ -829,6 +832,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ConfigurationBanque\Ville.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationBanque\ActiviteEconomique\_Modals.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationBanque\ActiviteEconomique.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

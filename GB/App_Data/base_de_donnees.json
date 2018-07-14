@@ -207,14 +207,24 @@
       "code": "18",
       "id_menu_parent": "17",
       "id_groupe_menu": "3",
+      "libelle_en": "Economic activities",
+      "libelle_fr": "Activités économique",
+      "view": "ActiviteEconomique",
+      "id_controller": "3"
+    },
+    {
+      "id": "19",
+      "code": "19",
+      "id_menu_parent": "17",
+      "id_groupe_menu": "3",
       "libelle_en": "Towns",
       "libelle_fr": "Villes",
       "view": "Ville",
       "id_controller": "3"
     },
     {
-      "id": "19",
-      "code": "19",
+      "id": "20",
+      "code": "20",
       "id_menu_parent": "17",
       "id_groupe_menu": "3",
       "libelle_en": "Countries",
@@ -466,6 +476,16 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "21",
+      "id_role": "1",
+      "id_menu": "20",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
     // -- Role 2 -- //
     {
       "id": "7",
@@ -690,6 +710,32 @@
       "code": "2",
       "id_utilisateur": "99999",
       "libelle": "Douala",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "activites_economique": [
+    {
+      "id": "1",
+      "code": "1",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Agriculture - Elevage - Chasse",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "11",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Agriculture",
+      "date_creation":  "636670881645418146"
+    },
+    {
+      "id": "3",
+      "code": "110",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Production agricole",
       "date_creation":  "636670881645418146"
     }
   ]
