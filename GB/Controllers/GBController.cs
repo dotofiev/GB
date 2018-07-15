@@ -91,6 +91,8 @@ namespace GB.Controllers
 
         [HttpPost]
         public virtual ActionResult Charger_Table(string id_page, string id_vue) { return null; }
+        
+        public virtual object Charger_EasyAutocomplete(string id_page, string id_vue) { return null; }
 
         public void Charger_Parametres()
         {
@@ -128,9 +130,14 @@ namespace GB.Controllers
             this.ViewBag.Lang.Form      = App_Lang.Lang.Form;
             this.ViewBag.Lang.Yes       = App_Lang.Lang.Yes;
             this.ViewBag.Lang.No        = App_Lang.Lang.No;
+            this.ViewBag.Lang.Modify    = App_Lang.Lang.Modify;
 
             // -- Autre -- //
             this.ViewBag.Lang.List_of_records = App_Lang.Lang.List_of_records;
+
+            // -- Rendu html dans les combo box -- //
+            this.ViewBag.donnee.HTML_Non_Oui = GBClass.HTML_Non_Oui();
+            this.ViewBag.donnee.HTML_Oui_Non = GBClass.HTML_Oui_Non();
         }
 
         // -- Retourner le fichier de la langue à affecter aux tables de données -- //

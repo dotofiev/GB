@@ -10,7 +10,7 @@ namespace GB.Models.SignalR.Hubs
     public abstract class GBHub : Hub
     {
         // -- Variables -- //
-        public static Dictionary<Connexion, string> Dictionaire_ConnectionId = new Dictionary<Connexion, string>();
+        public static List<Connexion> Hubs_Connexion { get { return System.Web.HttpContext.Current.Application["Hubs_Connexion"] as List<Connexion>; } }
 
         // -- Initialiser la connexion -- //
         public abstract void initConnexion();

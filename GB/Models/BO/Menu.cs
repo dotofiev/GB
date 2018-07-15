@@ -27,6 +27,9 @@ namespace GB.Models.BO
         public string view { get; set; }
         public long id_controller { get; set; }
         public long id_groupe_menu { get; set; }
+        public Nullable<long> id_menu_parent { get; set; }
+        public Menu menu_parent { get; set; }
+        public List<Menu> menus_enfant { get; set; }
 
         public Menu(long id, string view)
         {
@@ -44,55 +47,41 @@ namespace GB.Models.BO
 
         public string HTML()
         {
-            return
-                @"<li>
-                    <a href=""javascript:;"" class=""menu-gb"" id=""{id}"" name=""{route}"" title=""{libelle}"">{libelle}</a>
-                </li>"
-                .Replace("{id}", this.id + "-" + this.groupe_menu.id)
-                .Replace("{route}", $"/{this.groupe_menu.controller}/{this.view}")
-                .Replace("{libelle}", LangHelper.CurrentCulture == 0 ? this.libelle_en
-                                                                     : this.libelle_fr);
+            if (this.menus_enfant.Count == 0)
+            {
+                return
+                    @"<li>
+                        <a href=""javascript:;"" class=""menu-gb"" id=""{id}"" name=""{route}"" title=""{libelle}"">{libelle}</a>
+                    </li>"
+                    .Replace("{id}", this.id + "-" + this.groupe_menu.id)
+                    .Replace("{route}", $"/{this.groupe_menu.controller}/{this.view}")
+                    .Replace("{libelle}", LangHelper.CurrentCulture == 0 ? this.libelle_en
+                                                                         : this.libelle_fr);
+            }
+            else
+            {
+                // -- Construction des sous menus -- //
+                string HTML_Sous_menu = string.Empty;
+                this.menus_enfant.ForEach(menu =>
+                {
+                    HTML_Sous_menu += menu.HTML();
+                });
+
+                // -- Renvoyer le résultat -- //
+                return
+                    @"<li>
+                        <a title=""{libelle}"">
+                            {libelle} <span class=""fa fa-chevron-down""></span>
+                        </a>
+                        <ul class=""nav child_menu"">
+                            {sous_menus}
+                        </ul>
+                    </li>"
+                    .Replace("{sous_menus}", HTML_Sous_menu)
+                    .Replace("{libelle}", LangHelper.CurrentCulture == 0 ? this.libelle_en
+                                                                         : this.libelle_fr);
+            }
         }
-
-        //public static string Source(List<Autorisation> role_menus)
-        //{
-        //    string menus = "";
-
-        //    for (int i = 1; i <= 3; i++)
-        //    {
-        //        menus +=
-        //        @"<div class=""menu_section"">
-                    
-        //            <h3>{groupe_menu}</h3>
-                    
-        //            <ul class=""nav side-menu"">".Replace("{groupe_menu}", "Groupe menu " + i);
-
-        //        for (int ii = 1; ii <= 3; ii++)
-        //        {
-        //            menus +=
-        //            @"<li>
-        //                        <a>
-        //                            <i class=""fa fa-square""></i> {menu} <span class=""fa fa-chevron-down""></span>
-        //                        </a>
-        //                        <ul class=""nav child_menu"">".Replace("{menu}", "Menu " + ii);
-
-        //            for (int iii = 1; iii <= 3; iii++)
-        //            {
-        //                menus += $"<li><a href=\"#\" class=\"menu-gb\" id=\"{i + "-" + ii + "-" + iii}\" name=\"{"/" + i + "/" + ii + "/" + iii}\">{"Sous menu " + iii}</a></li>";
-        //            }
-
-        //            menus +=
-        //                @"</ul>
-        //                    </li>";
-        //        }
-
-        //        menus +=
-        //    @"</ul>
-        //        </div>";
-        //    }
-
-        //    return menus;
-        //}
 
         public static string Source(List<Autorisation> role_menus)
         {
@@ -117,8 +106,11 @@ namespace GB.Models.BO
                     {
                         groupe_menus.Add(role_menu.menu.groupe_menu);
                     }
-                    // -- Ajout des menus distincs -- //
-                    menus.Add(role_menu.menu);
+                    // -- Ajout des menus distincs qui n'ont pas de parent -- //
+                    if (!role_menu.menu.id_menu_parent.HasValue)
+                    {
+                        menus.Add(role_menu.menu);
+                    }
                 });
 
             // -- Mise à jour des menus dans les groupes -- //

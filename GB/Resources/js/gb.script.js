@@ -3,7 +3,8 @@
 var $GB_VAR = {
     aes_key: 'global_bank_aes',
     cookie_autorise: 'cookie_autorise',
-    url_language_dataTable: '/GB/Langue_DataTable'
+    url_language_dataTable: '/GB/Langue_DataTable',
+    class_table_selection: 'gb-table-success'
 };
 var $GB_DONNEE = null;
 var $GB_DONNEE_PARAMETRES = null;
@@ -12,8 +13,26 @@ var $GB_DONNEE_PARAMETRES = null;
 var fonction_en_Timeout;
 var fonction_en_Interval;
 
+// -- Vérifie qu'un element est présent dans la liste -- //
+function gbExist(obj, liste) {
+
+    return (liste.indexOf(obj) > -1) ? true
+                                     : false;
+
+}
+
+// -- Supprimer les validations parsley -- //
+function gbSupprimerMessageValidationForm(id_form) {
+
+    // -- Suppression des css sur les champs -- //
+    $('#' + id_form + ' .parsley-error').removeClass('parsley-error');
+    // -- Supprimer les messages label -- //
+    $('ul.parsley-errors-list.filled').remove();
+
+}
+
 // -- Configurer le processus d'importation des ifhcier sur le formulaire -- //
-function gbConfigurerImportationFichier(id_input, id_button_select, id_button_delete, id_label, id_image) {
+function gbConfigurerImportationFichier(id_input, id_button_select, id_button_delete, id_label, id_image, id_image_statut) {
 
     // -- Lorsque le bouton est cliqué -- //
     $('#' + id_button_select).on('click',
@@ -42,17 +61,24 @@ function gbConfigurerImportationFichier(id_input, id_button_select, id_button_de
             }
 
             // -- Afficher l'image -- //
-            img = new Image();
-            img.onload = function () {
-                // -- Mise à jour de la taille de l'image -- //
-                this.width = (this.width * 138) / this.height;
-            };
-            img.src = (window.URL || window.webkitURL).createObjectURL(fichier);
-            // -- Mise àj our de l'image dans le document -- //
-            document.getElementById(id_image).src = img.src;
+            if (id_image != undefined && id_image != null) {
+                img = new Image();
+                img.onload = function () {
+                    // -- Mise à jour de la taille de l'image -- //
+                    this.width = (this.width * 138) / this.height;
+                };
+                img.src = (window.URL || window.webkitURL).createObjectURL(fichier);
+                // -- Mise àj our de l'image dans le document -- //
+                document.getElementById(id_image).src = img.src;
+            }
 
             // -- Réccupération du nom du document -- //
             $('#' + id_label).html(fichier.name);
+
+            // -- Mise à jour du statut de l'image -- //
+            if (id_image_statut != undefined && id_image_statut != null) {
+                $('#' + id_image_statut).val(1);
+            }
         }
     );
 
@@ -60,13 +86,22 @@ function gbConfigurerImportationFichier(id_input, id_button_select, id_button_de
     $('#' + id_button_delete).on('click',
         function () {
             // -- Mise àj our de l'image dans le document -- //
-            document.getElementById(id_image).src = '/Resources/images/png/Utilisateur.png';
+            if (id_image != undefined && id_image != null) {
+                document.getElementById(id_image).src = '/Resources/images/png/Utilisateur.png';
+            }
 
             // -- Mise à jour du nom de l'image -- //
             $('#' + id_label).html($GB_DONNEE_PARAMETRES.Lang.Empty + ' ...');
 
             // -- Vider l'image chargé -- //
-            $('#' + id_input).val(null);
+            if (id_input != undefined && id_input != null) {
+                $('#' + id_input).val(null);
+            }
+
+            // -- Mise à jour du statut de l'image -- //
+            if (id_image_statut != undefined && id_image_statut != null) {
+                $('#' + id_image_statut).val(0);
+            }
         }
     );
 
@@ -182,15 +217,15 @@ function gbTableSelectionLigne(ligne, id_table) {
     $('#' + id_table + ' tbody tr').each(
         function () {
             // -- Si l'element n'a pas la classe passer -- //
-            if ($(this).hasClass(class_table_selection)) {
-                $(this).removeClass(class_table_selection);
+            if ($(this).hasClass($GB_VAR.class_table_selection)) {
+                $(this).removeClass($GB_VAR.class_table_selection);
             }
         }
     );
 
     // -- Mise à jour de la couleur de la ligne -- //
     if (ligne != undefined && ligne != null) {
-        ligne.addClass(class_table_selection);
+        ligne.addClass($GB_VAR.class_table_selection);
     }
 
 }
@@ -289,9 +324,19 @@ function gbAlert(notification, id_element) {
 }
 
 // -- Changer le titre de la page -- //
-function gbChangeTitle(value) {
+function gbChangeTitle(titre, description) {
 
-    document.title = value;
+    // -- Mise à joru des variables -- //
+    if (description == undefined || description == null) {
+        description = { icon: '', message: '' };
+    }
+
+    // -- Modifier le titre du document -- //
+    document.title = titre;
+    // -- Modifier la description de la page -- //
+    $('#titre_description_page').html(
+        '<i class="' + description.icon + '"></i> ' + description.message
+    );
 
 }
 

@@ -1,4 +1,1 @@
-﻿29/06/2018 01:06:50.880 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
------------------------
-29/06/2018 01:06:56.122 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:5ltjla3rr0mcaox0s1k13tar} 
------------------------
+﻿

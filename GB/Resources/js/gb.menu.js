@@ -39,7 +39,18 @@ $(function () {
                     url != '/Securite/Role' &&
                     url != '/Securite/Menu' &&
                     url != '/SecuriteUtilisateur/Utilisateur' &&
-                    url != '/ConfigurationBanque/Institution') {
+                    url != '/ConfigurationBanque/Institution' &&
+                    url != '/ConfigurationBanque/Agence' &&
+                    url != '/ConfigurationBanque/Devise' &&
+                    url != '/ConfigurationBanque/Parametre' &&
+                    url != '/ConfigurationBanque/ParametreBanque' &&
+                    url != '/ConfigurationBanque/ProduitClientPhysique' &&
+                    url != '/ConfigurationBanque/ProduitClientJudiciaire' &&
+                    url != '/ConfigurationBanque/Pays' &&
+                    url != '/ConfigurationBanque/Ville' &&
+                    url != '/ConfigurationBanque/ActiviteEconomique' &&
+                    url != '/ConfigurationBanque/Titre' &&
+                    url != '/ConfigurationBanque/UniteInstitutionnelle') {
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 

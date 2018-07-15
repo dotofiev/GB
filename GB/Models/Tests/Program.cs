@@ -32,10 +32,52 @@ namespace GB.Models.Tests
             db.menus.ForEach(l => {
                 l.groupe_menu = db.groupe_menus.FirstOrDefault(ll => ll.id == l.id_groupe_menu);
             });
+            // -- Parent -- //
+            db.menus.ForEach(l => {
+                l.menu_parent = db.menus.FirstOrDefault(ll => ll.id == (l.id_menu_parent ?? 0));
+            });
+            // -- Enfant -- //
+            db.menus.ForEach(l => {
+                l.menus_enfant = db.menus.Where(ll => (ll.id_menu_parent?? 0) == l.id).ToList();
+            });
             // -- Autorisation -- //
             db.autorisations.ForEach(l => {
                 l.role = db.roles.FirstOrDefault(ll => ll.id == l.id_role);
                 l.menu = db.menus.FirstOrDefault(ll => ll.id == l.id_menu);
+            });
+            // -- Parametre_bancaires -- //
+            db.parametre_bancaires.ForEach(l => {
+                l.devise = db.devises.FirstOrDefault(ll => ll.id == l.id_devise);
+            });
+            // -- Produit judiciaire -- //
+            db.produits_judiciare.ForEach(l =>
+            {
+                l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
+            });
+            // -- Pays -- //
+            db.pays.ForEach(l =>
+            {
+                l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
+            });
+            // -- Ville -- //
+            db.villes.ForEach(l =>
+            {
+                l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
+            });
+            // -- Activité économique -- //
+            db.activites_economique.ForEach(l =>
+            {
+                l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
+            });
+            // -- Titre -- //
+            db.titres.ForEach(l =>
+            {
+                l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
+            });
+            // -- Unite Institutionnelle -- //
+            db.unites_institutionnelle.ForEach(l =>
+            {
+                l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
             });
         }
 

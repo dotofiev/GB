@@ -1,33 +1,22 @@
 ﻿
+// -- Variables -- //
+var form_mot_de_passe = $('#form_mot_de_passe');
+var form_mot_de_passe_label = $('#form_mot_de_passe_label');
+var form = $('#form');
+
+
 // -- Lorsque le document est chargé -- //
 $(
     function () {
 
-        // -- Affichier le progress bar -- //
+        // -- Lorsque le formulaire d'authentification est soumis -- //
         try {
 
-            // -- Lorsqu'une nouvelle langue est selectionnée -- //
-            $("#langue").on("change",
-                function () {
-
-                    // -- Variables -- //
-                    var value = $(this).val();
-
-                    // -- Recharger la page -- //
-                    gbHref('/GB/Set_Langue/?id_lang=' + value);
-
-                }
-            );
-
-            // -- Lorsque le formulaire d'authentification est soumis -- //
-            $("#auth_form").on("submit",
+            form.on("submit",
                 function (event) {
 
                     // -- Annuler l'action de soumission -- //
                     event.preventDefault();
-                    
-                    // -- Variables -- //
-                    var form = $(this);
 
                     // -- Frame chargement -- //
                     gbAfficher_Page_Chargement(true, 'btn_authentifier');
@@ -59,6 +48,82 @@ $(
 
                 }
             );
+
+        } catch (e) { gbConsole(e.message); }
+
+        // -- Lorsqu'une nouvelle langue est selectionnée -- //
+        try {
+
+            $("#form_langue").on("change",
+                function () {
+
+                    // -- Variables -- //
+                    var value = $(this).val();
+
+                    // -- Recharger la page -- //
+                    gbHref('/GB/Set_Langue/?id_lang=' + value);
+
+                }
+            );
+
+        } catch (e) { gbConsole(e.message); }
+
+        // -- Appeler le trigger de changement du mot de passe -- //
+        try {
+
+            //form_mot_de_passe.trigger('change');
+
+        } catch (e) { gbConsole(e.message); }
+
+        // -- Action l'arsqu'un click est effectué sur la page -- //
+        try {
+
+            /*
+            $(document).on('keypress',
+                function (e) {
+
+                    // -- Si le champ mot de passe est focus -- //
+                    if (form_mot_de_passe_label.hasClass('gb-focus')) {
+                        // -- Variables -- //
+                        var valeur = String.fromCharCode(e.which || e.keyCode);
+
+                        // -- Si il faut reinitialiser le champ -- //
+                        if (valeur === 'c') {
+                            // -- Vider la mot de passe défini -- //
+                            form_mot_de_passe.val('');
+                            // -- Vider le label des mots de passe -- //
+                            form_mot_de_passe_label.html('...');
+                        }
+                        // -- Incrémenter -- //
+                        else {
+                            // -- Si on incrémenter le mot de passe -- //
+                            form_mot_de_passe.val(
+                                form_mot_de_passe.val() + valeur
+                            ).trigger('change');
+                        }
+                    }
+                }
+            );
+
+            $(document).on('keydown',
+                function (e) {
+
+                    // -- Si le champ mot de passe est focus -- //
+                    if (form_mot_de_passe_label.hasClass('gb-focus')) {
+                        // -- Si il s'agit d'une suppression -- //
+                        if (e.keyCode === 8) {
+                            // -- Si on décrémenter le mot de passe -- //
+                            form_mot_de_passe.val(form_mot_de_passe.val().slice(0, -1)).trigger('change');
+                            // -- Mise à jour de la taille du label -- //
+                            if (form_mot_de_passe.val() === undefined || form_mot_de_passe.val() === null || form_mot_de_passe.val() === '') {
+                                // -- Vider le label des mots de passe -- //
+                                form_mot_de_passe_label.html('...');
+                            }
+                        }
+                    }
+                }
+            );
+            */
 
         } catch (e) { gbConsole(e.message); }
 

@@ -12,7 +12,6 @@ var form = $('#form');
 var modal_form = $('#modal_form');
 var url_controlleur = '/Securite/';
 var url_suppression = '/Securite/Supprimer_Enregistrement';
-var class_table_selection = 'gb-table-success';
 
 
 // -- Méthodes d'action sur les données -- // 
@@ -140,7 +139,7 @@ $(
         // -- Changer le titre de la page -- //
         try {
 
-            gbChangeTitle($GB_DONNEE.titre);
+            gbChangeTitle($GB_DONNEE.titre, $GB_DONNEE.description);
 
         } catch (e) { gbConsole(e.message); }
 
@@ -298,6 +297,9 @@ $(
 
                     // -- Activer/Desactiver formulaire -- //
                     gbActiverDesactiverForm(form.attr('id'), false);
+
+                    // -- Supprimer les validations parsley -- //
+                    gbSupprimerMessageValidationForm(form.attr('id'));
 
                 }
             );

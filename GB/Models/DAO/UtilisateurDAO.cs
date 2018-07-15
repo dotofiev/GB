@@ -75,7 +75,9 @@ namespace GB.Models.DAO
                         l.compte = obj.compte;
                         l.nom_utilisateur = obj.nom_utilisateur;
                         l.id_agence = obj.id_agence;
+                        l.agence = AgenceDAO.Object(obj.id_agence);
                         l.id_profession = obj.id_profession;
+                        l.profession = ProfessionDAO.Object(obj.id_profession);
                         l.ouverture_back_date = obj.ouverture_back_date;
                         l.ouverture_back_date_travail = obj.ouverture_back_date_travail;
                         l.ouverture_branch = obj.ouverture_branch;
@@ -236,6 +238,34 @@ namespace GB.Models.DAO
                 // -- Vérifier l'existance -- //
                 return
                     Program.db.utilisateurs.FirstOrDefault(l => l.compte == compte);
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(App_Lang.Lang.Error_message_notification);
+                }
+                else
+                {
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(ex.Message);
+                }
+            }
+            #endregion
+        }
+        public static Utilisateur Object(long id_utilisateur)
+        {
+            try
+            {
+                // -- Vérifier l'existance -- //
+                return
+                    Program.db.utilisateurs.FirstOrDefault(l => l.id_utilisateur == id_utilisateur);
             }
             #region Catch
             catch (Exception ex)

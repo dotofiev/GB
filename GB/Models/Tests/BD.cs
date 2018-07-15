@@ -17,6 +17,16 @@ namespace GB.Models.Tests
         public List<Agence> agences { get; set; }
         public List<Profession> professions { get; set; }
         public List<Institution> institutions { get; set; }
+        public List<Devise> devises { get; set; }
+        public List<Parametre> parametres { get; set; }
+        public List<ParametreBancaire> parametre_bancaires { get; set; }
+        public List<ProduitPhysique> produits_physique { get; set; }
+        public List<ProduitJudiciaire> produits_judiciare { get; set; }
+        public List<Pays> pays { get; set; }
+        public List<Ville> villes { get; set; }
+        public List<ActiviteEconomique> activites_economique { get; set; }
+        public List<Titre> titres { get; set; }
+        public List<UniteInstitutionnelle> unites_institutionnelle { get; set; }
         
         public BD() { }
     }

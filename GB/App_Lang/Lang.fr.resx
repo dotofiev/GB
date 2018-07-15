@@ -415,4 +415,229 @@
   <data name="The_file_must_not_exceed" xml:space="preserve">
     <value>Le fichier ne doit pas dépasser</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="Agence_management" xml:space="preserve">
+    <value>Gestion des agences</value>
+  </data>
+  <data name="Branch_manager" xml:space="preserve">
+    <value>Chef d'agence</value>
+  </data>
+  <data name="Countrie" xml:space="preserve">
+    <value>Pays</value>
+  </data>
+  <data name="Erasing" xml:space="preserve">
+    <value>Effacer</value>
+  </data>
+  <data name="IP_Address" xml:space="preserve">
+    <value>Adresse IP</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Téléphone</value>
+  </data>
+  <data name="Postal_code" xml:space="preserve">
+    <value>B.P.</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Serveur</value>
+  </data>
+  <data name="Town" xml:space="preserve">
+    <value>Ville</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Utilisateur</value>
+  </data>
+  <data name="Current_currency" xml:space="preserve">
+    <value>Devise actuelle</value>
+  </data>
+  <data name="Devise_management" xml:space="preserve">
+    <value>Gestion des devises</value>
+  </data>
+  <data name="Sign" xml:space="preserve">
+    <value>Signe</value>
+  </data>
+  <data name="The_object_must_have_a_unique_id" xml:space="preserve">
+    <value>L'objet doit avoir un identifiant unique</value>
+  </data>
+  <data name="Backup" xml:space="preserve">
+    <value>Sauvegarde</value>
+  </data>
+  <data name="Backup_method" xml:space="preserve">
+    <value>Méthode de sauvegarde</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="Control_number_of_loans" xml:space="preserve">
+    <value>Contrôler le nombre de prêts</value>
+  </data>
+  <data name="Control_session" xml:space="preserve">
+    <value>Controler la session</value>
+  </data>
+  <data name="Count_account" xml:space="preserve">
+    <value>Comptes</value>
+  </data>
+  <data name="Count_page_number_statement" xml:space="preserve">
+    <value>Compte le numéro de page</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Jour</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Jours</value>
+  </data>
+  <data name="Differential" xml:space="preserve">
+    <value>Différentiel</value>
+  </data>
+  <data name="Dormant_period" xml:space="preserve">
+    <value>Période dormante</value>
+  </data>
+  <data name="Full" xml:space="preserve">
+    <value>Complet</value>
+  </data>
+  <data name="General_banking_parameters" xml:space="preserve">
+    <value>Paramètres bancaires généraux</value>
+  </data>
+  <data name="General_parameters" xml:space="preserve">
+    <value>Paramètres généreaux</value>
+  </data>
+  <data name="Last_transaction" xml:space="preserve">
+    <value>Dernier mouvement</value>
+  </data>
+  <data name="Litigation_period" xml:space="preserve">
+    <value>Période de litige</value>
+  </data>
+  <data name="Modify_custom_attributes_in_branch" xml:space="preserve">
+    <value>Modifier les attributs personnalisés dans la branche</value>
+  </data>
+  <data name="Night_run_posting_options" xml:space="preserve">
+    <value>Options d'affichage de nuit</value>
+  </data>
+  <data name="No_payment_period" xml:space="preserve">
+    <value>Période de non paiement</value>
+  </data>
+  <data name="Number_day_before_write_off" xml:space="preserve">
+    <value>Nombre de jours avant de radier</value>
+  </data>
+  <data name="Post_loan_litigation" xml:space="preserve">
+    <value>Litige post-prêt</value>
+  </data>
+  <data name="Post_local_collection" xml:space="preserve">
+    <value>Publier la collection locale</value>
+  </data>
+  <data name="Post_term_and_time_deposits" xml:space="preserve">
+    <value>Poster les bons de caisse</value>
+  </data>
+  <data name="Reserve_interest_post_method" xml:space="preserve">
+    <value>Méthode de comptabilisation des intérêts de réserve</value>
+  </data>
+  <data name="Session_duration" xml:space="preserve">
+    <value>Durée de la session</value>
+  </data>
+  <data name="SMS_banking" xml:space="preserve">
+    <value>SMS bancaires</value>
+  </data>
+  <data name="Statement_page_count" xml:space="preserve">
+    <value>Nombre de pages d'instructions</value>
+  </data>
+  <data name="Update_customer_position" xml:space="preserve">
+    <value>Mettre à jour la position client</value>
+  </data>
+  <data name="Use_central_version" xml:space="preserve">
+    <value>Utiliser la version centrale</value>
+  </data>
+  <data name="Use_check_booklet" xml:space="preserve">
+    <value>Utilisation chéquier</value>
+  </data>
+  <data name="Use_cobac_litigation_method" xml:space="preserve">
+    <value>Utiliser la méthode de contestation cobac</value>
+  </data>
+  <data name="VAT" xml:space="preserve">
+    <value>T.V.A.</value>
+  </data>
+  <data name="Path_first_backup" xml:space="preserve">
+    <value>Premier lien de sauvegarde</value>
+  </data>
+  <data name="Path_last_backup" xml:space="preserve">
+    <value>Dernier lien de sauvegarde</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="Amount_max" xml:space="preserve">
+    <value>Montant max</value>
+  </data>
+  <data name="Amount_min" xml:space="preserve">
+    <value>Montant min</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="Management_of_banking_parameters" xml:space="preserve">
+    <value>Gestion des paramètres bancaires</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Taux</value>
+  </data>
+  <data name="Physical_products_management" xml:space="preserve">
+    <value>Gestion des produits physiques</value>
+  </data>
+  <data name="Judicial_products_management" xml:space="preserve">
+    <value>Gestion des produits judiciaires</value>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>Actuel</value>
+  </data>
+  <data name="Garantie_deposit" xml:space="preserve">
+    <value>Dépôt de garantie</value>
+  </data>
+  <data name="Litigation" xml:space="preserve">
+    <value>Litige</value>
+  </data>
+  <data name="Loan" xml:space="preserve">
+    <value>Prêt</value>
+  </data>
+  <data name="Reserve_interest" xml:space="preserve">
+    <value>Réserve d'intérêt</value>
+  </data>
+  <data name="Saving" xml:space="preserve">
+    <value>Économie</value>
+  </data>
+  <data name="Time_deposit" xml:space="preserve">
+    <value>Dépôt à terme</value>
+  </data>
+  <data name="Unpaid" xml:space="preserve">
+    <value>Impayé</value>
+  </data>
+  <data name="Creation_date" xml:space="preserve">
+    <value>Date de création</value>
+  </data>
+  <data name="Product_information" xml:space="preserve">
+    <value>Information du produit</value>
+  </data>
+  <data name="This_product_will_be_apply_to_the_following_transactions" xml:space="preserve">
+    <value>Ce produit sera applicable aux transactions suivantes</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Employé</value>
+  </data>
+  <data name="Pays_management" xml:space="preserve">
+    <value>Gestion des pays</value>
+  </data>
+  <data name="Phone_id" xml:space="preserve">
+    <value>Code téléphone</value>
+  </data>
+  <data name="Town_management" xml:space="preserve">
+    <value>Gestion des villes</value>
+  </data>
+  <data name="Economic_activities_management" xml:space="preserve">
+    <value>Gestion des activités économique</value>
+  </data>
+  <data name="Title_management" xml:space="preserve">
+    <value>Gestion des titres et appélations</value>
+  </data>
+  <data name="Institutional_unit_management" xml:space="preserve">
+    <value>Institutional unit management</value>
+  </data>
 </root>

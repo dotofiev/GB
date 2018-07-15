@@ -241,7 +241,7 @@ namespace GB.Controllers
                 }
                 #endregion
 
-                #region Module introuvble
+                #region Module introuvable
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -372,7 +372,7 @@ namespace GB.Controllers
                 }
                 #endregion
 
-                #region Module introuvble
+                #region Module introuvable
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -705,7 +705,7 @@ namespace GB.Controllers
                 }
                 #endregion
 
-                #region Module introuvble
+                #region Module introuvable
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -775,7 +775,7 @@ namespace GB.Controllers
                 }
                 #endregion
 
-                #region Module introuvble
+                #region Module introuvable
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -845,7 +845,7 @@ namespace GB.Controllers
                 }
                 #endregion
 
-                #region Module introuvble
+                #region Module introuvable
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -958,6 +958,11 @@ namespace GB.Controllers
                                                 new {
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Module_Management
+                                                    }
                                                 }
                                             );
                 #endregion
@@ -1020,6 +1025,11 @@ namespace GB.Controllers
                                                 {
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Role_and_privilege_management
+                                                    }
                                                 }
                                             );
                 // -- Vider les données temporaire -- //
@@ -1064,6 +1074,11 @@ namespace GB.Controllers
                                                 {
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Menu_Management
+                                                    }
                                                 }
                                             );
                 #endregion

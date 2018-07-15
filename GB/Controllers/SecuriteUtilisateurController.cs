@@ -103,7 +103,7 @@ namespace GB.Controllers
                 }
                 #endregion
 
-                #region Module introuvble
+                #region Module introuvable
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -192,7 +192,7 @@ namespace GB.Controllers
                 }
                 #endregion
 
-                #region Module introuvble
+                #region Module introuvable
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -243,7 +243,7 @@ namespace GB.Controllers
                 }
                 #endregion
 
-                #region Module introuvble
+                #region Module introuvable
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -297,7 +297,7 @@ namespace GB.Controllers
                 }
                 #endregion
 
-                #region Module introuvble
+                #region Module introuvable
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -351,7 +351,7 @@ namespace GB.Controllers
                 }
                 #endregion
 
-                #region Module introuvble
+                #region Module introuvable
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -449,12 +449,15 @@ namespace GB.Controllers
                         $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                 }
                 #endregion
-                this.ViewBag.donnee.HTML_Non_Oui = GBClass.HTML_Non_Oui();
-                this.ViewBag.donnee.HTML_Oui_Non = GBClass.HTML_Oui_Non();
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new {
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.User_Management
+                                                    }
                                                 }
                                             );
                 #endregion

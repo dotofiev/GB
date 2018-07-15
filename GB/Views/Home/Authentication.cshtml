@@ -8,7 +8,7 @@
 
         <div class="panel-body">
 
-            <form id="auth_form" class="form-label-left" data-parsley-validate>
+            <form id="form" class="form-label-left" data-parsley-validate>
 
                 <fieldset>
 
@@ -18,8 +18,24 @@
                             @(ViewBag.Lang.Login):
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12 form-group">
-                            <input class="form-control" placeholder="@ViewBag.Lang.Login..." name="compte" id="compte" type="text" value="@ViewBag.Test.compte" required autofocus />
+                            <input class="form-control" placeholder="@ViewBag.Lang.Login..." name="compte" id="form_compte" type="text" value="@ViewBag.Test.compte" required autofocus
+                                   onfocus="$('#form_mot_de_passe_label').removeClass('gb-focus');" />
                         </div>
+
+                        @*
+                        <label style="font-weight: bold;" for="mot_de_passe" class="control-label col-md-3 col-sm-3 col-xs-12">
+                            @(ViewBag.Lang.Password):
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12 form-group">
+                            <div id="form_mot_de_passe_label" class="btn btn-block btn-default text-center" style="margin-bottom: 5px; overflow-x: hidden;"
+                                 onclick="if(!$(this).hasClass('gb-focus')) { $(this).addClass('gb-focus'); }">
+                                ...
+                            </div>
+                            <!-- mot_de_passe -->
+                            <input name="mot_de_passe" id="form_mot_de_passe" type="hidden" value="@ViewBag.Test.mot_de_passe" 
+                                   onchange="$('#form_mot_de_passe_label').html(''); $.each($(this).val().split(''), function () { $('#form_mot_de_passe_label').html($('#form_mot_de_passe_label').html() + '*'); });" />
+                        </div>
+                        *@
 
                         <label style="font-weight: bold;" for="mot_de_passe" class="control-label col-md-3 col-sm-3 col-xs-12">
                             @(ViewBag.Lang.Password):
@@ -29,7 +45,7 @@
                         </div>
 
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                            <select class="form-control has-feedback-right" name="langue" id="langue">
+                            <select class="form-control has-feedback-right" name="langue" id="form_langue">
                                 <option value="1" title="@ViewBag.Lang.French" @Html.Raw((ViewBag.Lang.code != "en-US") ? "selected=\"selected\"" 
                                                                                                                         : string.Empty)>
                                     @ViewBag.Lang.French
@@ -46,7 +62,7 @@
 
                     </div>
 
-                    <button id="btn_authentifier" type="submit" class="btn btn-lg btn-success btn-block"
+                    <button id="btn_authentifier" type="submit" class="btn btn-lg btn-primary btn-block"
                             data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> @ViewBag.Lang.Process ...">
                             <b>
                                 @ViewBag.Lang.To_log_in

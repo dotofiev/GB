@@ -20,6 +20,12 @@ namespace GB.Models.DAO
                     throw new GBException(App_Lang.Lang.Existing_data + " [code]");
                 }
 
+                // -- Unicité de la vue -- //
+                if (Program.db.menus.Exists(l => l.view == obj.view))
+                {
+                    throw new GBException(App_Lang.Lang.Existing_data + $" [{App_Lang.Lang.Views}]");
+                }
+
                 // -- Mise à jour Groupe -- //
                 obj.groupe_menu = Program.db.groupe_menus.FirstOrDefault(l => l.id == obj.id_controller);
 
@@ -60,8 +66,11 @@ namespace GB.Models.DAO
                     throw new GBException(App_Lang.Lang.Existing_data + " [code]");
                 }
 
-                // -- Mise à jour Groupe -- //
-                obj.groupe_menu = Program.db.groupe_menus.FirstOrDefault(l => l.id == obj.id_controller);
+                // -- Unicité de la vue -- //
+                if (Program.db.menus.Exists(l => l.id != obj.id && l.view == obj.view))
+                {
+                    throw new GBException(App_Lang.Lang.Existing_data + $" [{App_Lang.Lang.Views}]");
+                }
 
                 // -- Modification de la valeur -- //
                 Program.db.menus
@@ -78,7 +87,7 @@ namespace GB.Models.DAO
                         l.libelle_fr = obj.libelle_fr;
                         l.view = obj.view;
                         l.id_controller = obj.id_controller;
-                        l.groupe_menu = obj.groupe_menu;
+                        l.groupe_menu = Program.db.groupe_menus.FirstOrDefault(ll => ll.id == obj.id_controller);
                     });
             }
             #region Catch

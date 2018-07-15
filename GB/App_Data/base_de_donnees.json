@@ -105,6 +105,152 @@
       "libelle_fr": "Institution",
       "view": "Institution",
       "id_controller": "3"
+    },
+    {
+      "id": "8",
+      "code": "8",
+      "id_groupe_menu": "3",
+      "libelle_en": "Branch",
+      "libelle_fr": "Agence",
+      "view": "Agence",
+      "id_controller": "3"
+    },
+    {
+      "id": "9",
+      "code": "9",
+      "id_groupe_menu": "3",
+      "libelle_en": "Branch Accounts",
+      "libelle_fr": "Comptes de succursale",
+      "view": "CompteAgence",
+      "id_controller": "3"
+    },
+    {
+      "id": "10",
+      "code": "10",
+      "id_groupe_menu": "3",
+      "libelle_en": "Currency",
+      "libelle_fr": "Devise",
+      "view": "Devise",
+      "id_controller": "3"
+    },
+    {
+      "id": "11",
+      "code": "11",
+      "id_groupe_menu": "3",
+      "libelle_en": "General bank parameters",
+      "libelle_fr": "Paramètres bancaires généraux",
+      "view": "Parametre",
+      "id_controller": "3"
+    },
+    {
+      "id": "12",
+      "code": "12",
+      "id_groupe_menu": "3",
+      "libelle_en": "Bank parameters",
+      "libelle_fr": "Paramètres bancaires",
+      "view": "ParametreBanque",
+      "id_controller": "3"
+    },
+    {
+      "id": "13",
+      "code": "13",
+      "id_groupe_menu": "3",
+      "libelle_en": "Bank product",
+      "libelle_fr": "Produit bancaires",
+      "view": "",
+      "id_controller": "3"
+    },
+    {
+      "id": "14",
+      "code": "14",
+      "id_menu_parent": "13",
+      "id_groupe_menu": "3",
+      "libelle_en": "Physical customer",
+      "libelle_fr": "Client physique",
+      "view": "ProduitClientPhysique",
+      "id_controller": "3"
+    },
+    {
+      "id": "15",
+      "code": "15",
+      "id_menu_parent": "13",
+      "id_groupe_menu": "3",
+      "libelle_en": "Judicial customer",
+      "libelle_fr": "Client judiciaire",
+      "view": "ProduitClientJudiciaire",
+      "id_controller": "3"
+    },
+    {
+      "id": "16",
+      "code": "16",
+      "id_menu_parent": "13",
+      "id_groupe_menu": "3",
+      "libelle_en": "Create product",
+      "libelle_fr": "Créer un produit",
+      "view": "ProduitCreation",
+      "id_controller": "3"
+    },
+
+
+
+    {
+      "id": "17",
+      "code": "17",
+      "id_groupe_menu": "3",
+      "libelle_en": "Institutionnal attributes",
+      "libelle_fr": "Attributs institutionnel",
+      "view": "",
+      "id_controller": "3"
+    },
+    {
+      "id": "18",
+      "code": "18",
+      "id_menu_parent": "17",
+      "id_groupe_menu": "3",
+      "libelle_en": "Institutional unit",
+      "libelle_fr": "Unité institutionnelle",
+      "view": "UniteInstitutionnelle",
+      "id_controller": "3"
+    },
+    {
+      "id": "19",
+      "code": "19",
+      "id_menu_parent": "17",
+      "id_groupe_menu": "3",
+      "libelle_en": "Title",
+      "libelle_fr": "Titre",
+      "view": "Titre",
+      "id_controller": "3"
+    },
+    {
+      "id": "20",
+      "code": "20",
+      "id_menu_parent": "17",
+      "id_groupe_menu": "3",
+      "libelle_en": "Economic activities",
+      "libelle_fr": "Activités économique",
+      "view": "ActiviteEconomique",
+      "id_controller": "3"
+    },
+    {
+      "id": "21",
+      "code": "21",
+      "id_menu_parent": "17",
+      "id_groupe_menu": "3",
+      "libelle_en": "Towns",
+      "libelle_fr": "Villes",
+      "view": "Ville",
+      "id_controller": "3"
+    },
+    {
+      "id": "22",
+      "code": "22",
+      "id_menu_parent": "17",
+      "id_groupe_menu": "3",
+      "libelle_en": "Countries",
+      "libelle_fr": "Pays",
+      "view": "Pays",
+      "id_controller": "3"
     }
   ],
   "roles": [
@@ -227,6 +373,159 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "10",
+      "id_role": "1",
+      "id_menu": "8",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "11",
+      "id_role": "1",
+      "id_menu": "9",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "12",
+      "id_role": "1",
+      "id_menu": "10",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "12",
+      "id_role": "1",
+      "id_menu": "11",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "13",
+      "id_role": "1",
+      "id_menu": "12",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "14",
+      "id_role": "1",
+      "id_menu": "13",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "15",
+      "id_role": "1",
+      "id_menu": "14",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "16",
+      "id_role": "1",
+      "id_menu": "15",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "17",
+      "id_role": "1",
+      "id_menu": "16",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+
+
+
+    {
+      "id": "18",
+      "id_role": "1",
+      "id_menu": "17",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "19",
+      "id_role": "1",
+      "id_menu": "18",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "20",
+      "id_role": "1",
+      "id_menu": "19",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "21",
+      "id_role": "1",
+      "id_menu": "20",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "22",
+      "id_role": "1",
+      "id_menu": "21",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "23",
+      "id_role": "1",
+      "id_menu": "22",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
     // -- Role 2 -- //
     {
       "id": "7",
@@ -253,12 +552,18 @@
     {
       "id": "1",
       "code": "0001",
-      "libelle": "Agence 1"
-    },
-    {
-      "id": "2",
-      "code": "0002",
-      "libelle": "Agence 2"
+      "libelle": "Agence 1",
+      "id_utilisateur": "0",
+      "adresse": "Logpom",
+      "ville": "Douala",
+      "bp": "00000",
+      "telephone": "699999999",
+      "pays": "Cameroun",
+      "fax": "00000",
+      "cobac_id": "00000",
+      "beac_id": "00000",
+      "ip": "http://localhost:4409/",
+      "mot_de_passe": "root"
     }
   ],
   "professions": [
@@ -287,5 +592,243 @@
         "libelle": ""
       }
     }
-  ]
+  ],
+  "devises": [
+    {
+      "id": "1",
+      "code": "001",
+      "libelle": "Franc Communautaire Financière Africain",
+      "signe": "FCFA",
+      "devise_actuelle": "true"
+    }
+  ],
+  "parametres": [
+    {
+      "id": "1",
+      "code": "001",
+      "nombre_ligne_historique_compte": "26",
+      "utilisation_chequier": "true",
+      "nombre_jour_avant_apuration_credit": "0",
+      "periode_dormante": "3",
+      "periode_litige": "360",
+      "utilisation_version_centrale": "true",
+      "periode_de_non_paiement": "150",
+      "controler_le_nombre_de_pret": "false",
+      "controler_le_nombre_de_comptes": "false",
+      "tva": "false",
+      "controler_session": "false",
+      "duree_session": "0",
+      "sms_banking": "true",
+      "nombre_de_jour_ouverture_back_date": "0",
+      "methode_de_post_interet_reserver": "DERNIERMVT",
+      "utilisation_litige_methode_cobac": "false",
+      "modifier_les_attributs_client_dans_la_branch": "true",
+      "conter_le_nombre_de_page_dans_historique": "true",
+      "mise_a_jour_position_client": "false",
+      "poster_credit": "true",
+      "poster_litige_pret": "true",
+      "poster_collection_locale": "true",
+      "western_union": "false",
+      "poster_bon_de_caisse_et_depot_a_terme": "true",
+      "methode_de_sauvegarde": "FULL",
+      "lien_sauvegarde_numero_1": "",
+      "lien_sauvegarde_numero_2": ""
+    }
+  ],
+  "parametre_bancaires": [
+    {
+      "id": "1",
+      "id_devise": "1",
+      "code": "IMPAYE",
+      "libelle": "Charge on unpaid bills",
+      "taux": "0",
+      "montant": "0",
+      "montant_minimal": "0",
+      "montant_maximal": "0"
+    },
+    {
+      "id": "2",
+      "id_devise": "1",
+      "code": "COMM",
+      "libelle": "Other commission",
+      "taux": "0",
+      "montant": "0",
+      "montant_minimal": "0",
+      "montant_maximal": "0"
+    }
+  ],
+  "produits_physique": [
+    {
+      "id": "1",
+      "code": "CIVIL",
+      "type": "Physique",
+      "libelle": "Civil servant"
+    },
+    {
+      "id": "2",
+      "code": "DRIVER",
+      "type": "Physique",
+      "libelle": "DRIVER"
+    },
+    {
+      "id": "3",
+      "code": "BROTHER",
+      "type": "Physique",
+      "libelle": "BROTHER"
+    }
+  ],
+  "produits_judiciare": [
+    {
+      "id": "1",
+      "code": "AFJ",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Autres formes juridique",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "AP",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Affaires personnelle",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "3",
+      "code": "ASS",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Association à but non lucratif",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "4",
+      "code": "ENTR",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Entreprise",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "5",
+      "code": "ETAT",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Etat",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "6",
+      "code": "GPE",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Groupement",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "pays": [
+    {
+      "id": "1",
+      "code": "CM",
+      "id_utilisateur": "99999",
+      "libelle": "Cameroun",
+      "code_telephone": "+237",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "villes": [
+    {
+      "id": "1",
+      "code": "1",
+      "id_utilisateur": "99999",
+      "libelle": "Yaounde",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "2",
+      "id_utilisateur": "99999",
+      "libelle": "Douala",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "activites_economique": [
+    {
+      "id": "1",
+      "code": "1",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Agriculture - Elevage - Chasse",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "11",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Agriculture",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "3",
+      "code": "110",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Production agricole",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "titres": [
+    {
+      "id": "1",
+      "code": "DIR",
+      "id_utilisateur": "99999",
+      "libelle_en": "Director",
+      "libelle_fr": "DIrecteur",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "DR",
+      "id_utilisateur": "99999",
+      "libelle_en": "Doctor",
+      "libelle_fr": "Docteur",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "3",
+      "code": "DG",
+      "id_utilisateur": "99999",
+      "libelle_en": "General manager",
+      "libelle_fr": "Directeur general",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "unites_institutionnelle": [
+    {
+      "id": "1",
+      "code": "1",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Agent economique financier",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "11",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Banques centrales",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "3",
+      "code": "1101",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "B.E.A.C.",
+      "date_creation": "636670881645418146"
+    }
+  ],
 }
