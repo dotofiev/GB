@@ -181,6 +181,21 @@ namespace GB.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult UniteInstitutionnelle()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Institutional_unit_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationBanque_UniteInstitutionnelle);
+
+            return View();
+        }
         #endregion
 
         #region HttpPost
@@ -697,6 +712,55 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-UniteInstitutionnelle
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_UniteInstitutionnelle)
+                {
+                    foreach (var val in UniteInstitutionnelleDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"uniteInstitutionnelle\" value=\"uniteInstitutionnelle_{val.id}\">",
+                                col_2 = val.code,
+                                col_3 = val.libelle_fr,
+                                col_4 = val.libelle_en,
+                                col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
+                                col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
+                                col_7 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                                              title=""{Lang.Delete}"" 
+                                                              class=""btn btn-xs btn-round""
+                                                              onClick=""table_donnee_supprimer({ids}, true)""
+                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                          <i class=""fa fa-minus text-danger""></i>
+                                        </button>"
+                                        .Replace("{id}", val.id.ToString())
+                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                                //                              title=""{Lang.Update}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_modifier({id})""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-retweet text-warning""></i>
+                                //        </button>
+                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                //                              title=""{Lang.Delete}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_supprimer({ids}, true)""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-minus text-danger""></i>
+                                //        </button>"
+                                //        .Replace("{id}", val.id.ToString())
+                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -1071,6 +1135,31 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-UniteInstitutionnelle
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_UniteInstitutionnelle)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = UniteInstitutionnelleDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle_en = obj.libelle_en,
+                                                        libelle_fr = obj.libelle_fr,
+                                                    }
+                                               );
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -1215,6 +1304,14 @@ namespace GB.Controllers
                 {
                     // -- Service d'enregistrement -- //
                     TitreDAO.Ajouter(GBConvert.JSON_To<Titre>(obj), this.con.id_utilisateur);
+                }
+                #endregion
+
+                #region ConfigurationBanque-UniteInstitutionnelle
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_UniteInstitutionnelle)
+                {
+                    // -- Service d'enregistrement -- //
+                    UniteInstitutionnelleDAO.Ajouter(GBConvert.JSON_To<UniteInstitutionnelle>(obj), this.con.id_utilisateur);
                 }
                 #endregion
 
@@ -1393,6 +1490,14 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-UniteInstitutionnelle
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_UniteInstitutionnelle)
+                {
+                    // -- Service de modification -- //
+                    UniteInstitutionnelleDAO.Modifier(GBConvert.JSON_To<UniteInstitutionnelle>(obj));
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -1516,6 +1621,14 @@ namespace GB.Controllers
                 {
                     // -- Service de suppression -- //
                     TitreDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationBanque-UniteInstitutionnelle
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_UniteInstitutionnelle)
+                {
+                    // -- Service de suppression -- //
+                    UniteInstitutionnelleDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1938,6 +2051,36 @@ namespace GB.Controllers
                                                     {
                                                         icon = "fa fa-cogs",
                                                         message = App_Lang.Lang.Title_management
+                                                    }
+                                                }
+                                            );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationBanque-UniteInstitutionnelle
+            else if (id_page == GB_Enum_Menu.ConfigurationBanque_UniteInstitutionnelle)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Institutional_unit_management;
+                this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
+                this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
+                this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
+                this.ViewBag.Lang.Employee = App_Lang.Lang.Employee;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Institutional_unit_management
                                                     }
                                                 }
                                             );

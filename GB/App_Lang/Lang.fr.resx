@@ -637,4 +637,7 @@
   <data name="Title_management" xml:space="preserve">
     <value>Gestion des titres et appélations</value>
   </data>
+  <data name="Institutional_unit_management" xml:space="preserve">
+    <value>Institutional unit management</value>
+  </data>
 </root>

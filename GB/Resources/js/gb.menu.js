@@ -49,7 +49,8 @@ $(function () {
                     url != '/ConfigurationBanque/Pays' &&
                     url != '/ConfigurationBanque/Ville' &&
                     url != '/ConfigurationBanque/ActiviteEconomique' &&
-                    url != '/ConfigurationBanque/Titre') {
+                    url != '/ConfigurationBanque/Titre' &&
+                    url != '/ConfigurationBanque/UniteInstitutionnelle') {
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 

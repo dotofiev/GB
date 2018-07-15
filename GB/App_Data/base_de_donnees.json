@@ -207,14 +207,24 @@
       "code": "18",
       "id_menu_parent": "17",
       "id_groupe_menu": "3",
+      "libelle_en": "Institutional unit",
+      "libelle_fr": "Unité institutionnelle",
+      "view": "UniteInstitutionnelle",
+      "id_controller": "3"
+    },
+    {
+      "id": "19",
+      "code": "19",
+      "id_menu_parent": "17",
+      "id_groupe_menu": "3",
       "libelle_en": "Title",
       "libelle_fr": "Titre",
       "view": "Titre",
       "id_controller": "3"
     },
     {
-      "id": "19",
-      "code": "19",
+      "id": "20",
+      "code": "20",
       "id_menu_parent": "17",
       "id_groupe_menu": "3",
       "libelle_en": "Economic activities",
@@ -223,8 +233,8 @@
       "id_controller": "3"
     },
     {
-      "id": "20",
-      "code": "20",
+      "id": "21",
+      "code": "21",
       "id_menu_parent": "17",
       "id_groupe_menu": "3",
       "libelle_en": "Towns",
@@ -233,8 +243,8 @@
       "id_controller": "3"
     },
     {
-      "id": "21",
-      "code": "21",
+      "id": "22",
+      "code": "22",
       "id_menu_parent": "17",
       "id_groupe_menu": "3",
       "libelle_en": "Countries",
@@ -500,6 +510,16 @@
       "id": "22",
       "id_role": "1",
       "id_menu": "21",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "23",
+      "id_role": "1",
+      "id_menu": "22",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -774,7 +794,7 @@
       "id_utilisateur": "99999",
       "libelle_en": "Doctor",
       "libelle_fr": "Docteur",
-      "date_creation":  "636670881645418146"
+      "date_creation": "636670881645418146"
     },
     {
       "id": "3",
@@ -782,7 +802,33 @@
       "id_utilisateur": "99999",
       "libelle_en": "General manager",
       "libelle_fr": "Directeur general",
-      "date_creation":  "636670881645418146"
+      "date_creation": "636670881645418146"
     }
-  ]
+  ],
+  "unites_institutionnelle": [
+    {
+      "id": "1",
+      "code": "1",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Agent economique financier",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "11",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Banques centrales",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "3",
+      "code": "1101",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "B.E.A.C.",
+      "date_creation": "636670881645418146"
+    }
+  ],
 }

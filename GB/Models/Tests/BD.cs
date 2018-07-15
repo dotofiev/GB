@@ -26,6 +26,7 @@ namespace GB.Models.Tests
         public List<Ville> villes { get; set; }
         public List<ActiviteEconomique> activites_economique { get; set; }
         public List<Titre> titres { get; set; }
+        public List<UniteInstitutionnelle> unites_institutionnelle { get; set; }
         
         public BD() { }
     }

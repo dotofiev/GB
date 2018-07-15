@@ -74,6 +74,11 @@ namespace GB.Models.Tests
             {
                 l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
             });
+            // -- Unite Institutionnelle -- //
+            db.unites_institutionnelle.ForEach(l =>
+            {
+                l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
+            });
         }
 
         /*

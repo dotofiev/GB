@@ -691,6 +691,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Institutional unit management.
+        /// </summary>
+        public static string Institutional_unit_management {
+            get {
+                return ResourceManager.GetString("Institutional_unit_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Internal error.
         /// </summary>
         public static string Internal_error {
