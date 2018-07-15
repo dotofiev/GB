@@ -1465,6 +1465,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Title management.
+        /// </summary>
+        public static string Title_management {
+            get {
+                return ResourceManager.GetString("Title_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To log in.
         /// </summary>
         public static string To_log_in {

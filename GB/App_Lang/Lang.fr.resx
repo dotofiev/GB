@@ -634,4 +634,7 @@
   <data name="Economic_activities_management" xml:space="preserve">
     <value>Gestion des activités économique</value>
   </data>
+  <data name="Title_management" xml:space="preserve">
+    <value>Gestion des titres et appélations</value>
+  </data>
 </root>

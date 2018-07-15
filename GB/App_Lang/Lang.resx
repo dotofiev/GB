@@ -633,4 +633,7 @@
   <data name="Economic_activities_management" xml:space="preserve">
     <value>Economic activities management</value>
   </data>
+  <data name="Title_management" xml:space="preserve">
+    <value>Title management</value>
+  </data>
 </root>
