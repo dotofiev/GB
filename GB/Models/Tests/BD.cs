@@ -29,6 +29,7 @@ namespace GB.Models.Tests
         public List<UniteInstitutionnelle> unites_institutionnelle { get; set; }
         public List<BEACNationalite> nationalites_beac { get; set; }
         public List<ExerciceFiscal> exercices_fiscal { get; set; }
+        public List<DirectionBudget> direction_dudget { get; set; }
         
         public BD() { }
     }

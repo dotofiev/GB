@@ -202,6 +202,7 @@
     </Compile>
     <Compile Include="Models\ActionFilter\AuthentificationRequis.cs" />
     <Compile Include="Models\ActionFilter\ResponseErreur.cs" />
+    <Compile Include="Models\BO\DirectionBudget.cs" />
     <Compile Include="Models\BO\BEACNationalite.cs" />
     <Compile Include="Models\BO\ExerciceFiscal.cs" />
     <Compile Include="Models\BO\UniteInstitutionnelle.cs" />
@@ -229,6 +230,7 @@
     <Compile Include="Models\Cryptage\Program.cs" />
     <Compile Include="Models\BO\GBException.cs" />
     <Compile Include="Models\BO\GBNotification.cs" />
+    <Compile Include="Models\DAO\DirectionBudgetDAO.cs" />
     <Compile Include="Models\DAO\BEACNationaliteDAO.cs" />
     <Compile Include="Models\DAO\UniteInstitutionnelleDAO.cs" />
     <Compile Include="Models\DAO\TitreDAO.cs" />
@@ -871,6 +873,7 @@
     <Content Include="Resources\js\Views\ConfigurationBanque-Pays.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-ActiviteEconomique.js" />
     <Content Include="Resources\js\Views\ConfigurationBudget-ExerciceFiscal.js" />
+    <Content Include="Resources\js\Views\ConfigurationBudget-DirectionBudget.js" />
     <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
@@ -1223,6 +1226,12 @@
     <Content Include="Plugins\bootstrap-daterangepicker\example\browserify\README.md" />
     <Content Include="Plugins\bootstrap-daterangepicker\package.json" />
     <Content Include="Plugins\bootstrap-daterangepicker\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationBudget\DirectionBudget\_Modals.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationBudget\DirectionBudget.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

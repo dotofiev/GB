@@ -657,4 +657,13 @@
   <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="Budget_directionate_management" xml:space="preserve">
+    <value>Budget directionate management</value>
+  </data>
+  <data name="Directionate_head" xml:space="preserve">
+    <value>Directionate head</value>
+  </data>
+  <data name="Remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
 </root>

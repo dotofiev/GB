@@ -267,6 +267,7 @@
 /// <reference path="views/configurationbanque-titre.js" />
 /// <reference path="views/configurationbanque-uniteinstitutionnelle.js" />
 /// <reference path="views/configurationbanque-ville.js" />
+/// <reference path="views/configurationbudget-directionbudget.js" />
 /// <reference path="views/configurationbudget-exercicefiscal.js" />
 /// <reference path="Views/Home-Authentication.js" />
 /// <reference path="views/securite-menu.js" />

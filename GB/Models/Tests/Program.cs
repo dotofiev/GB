@@ -84,6 +84,11 @@ namespace GB.Models.Tests
             {
                 l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
             });
+            // -- Direction budget -- //
+            db.direction_dudget.ForEach(l =>
+            {
+                l.exercice_fiscal = db.exercices_fiscal.FirstOrDefault(ll => ll.id == l.id_exercice_fiscal);
+            });
         }
 
         /*

@@ -50,7 +50,8 @@
       "libelle": "ConfigurationBudget"
     },
     "views": [
-      "ExerciceFiscal"
+      "ExerciceFiscal",
+      "DirectionBudget"
     ]
   }
 ]

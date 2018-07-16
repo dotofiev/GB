@@ -658,4 +658,13 @@
   <data name="Status" xml:space="preserve">
     <value>Statut</value>
   </data>
+  <data name="Budget_directionate_management" xml:space="preserve">
+    <value>Gestion de la direction du budget</value>
+  </data>
+  <data name="Directionate_head" xml:space="preserve">
+    <value>Chef de direction</value>
+  </data>
+  <data name="Remark" xml:space="preserve">
+    <value>Remarque</value>
+  </data>
 </root>

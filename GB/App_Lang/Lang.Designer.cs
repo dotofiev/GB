@@ -277,6 +277,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Budget directionate management.
+        /// </summary>
+        public static string Budget_directionate_management {
+            get {
+                return ResourceManager.GetString("Budget_directionate_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Close {
@@ -480,6 +489,15 @@ namespace GB.App_Lang {
         public static string Differential {
             get {
                 return ResourceManager.GetString("Differential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directionate head.
+        /// </summary>
+        public static string Directionate_head {
+            get {
+                return ResourceManager.GetString("Directionate_head", resourceCulture);
             }
         }
         
@@ -1281,6 +1299,15 @@ namespace GB.App_Lang {
         public static string Reconnect {
             get {
                 return ResourceManager.GetString("Reconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remark.
+        /// </summary>
+        public static string Remark {
+            get {
+                return ResourceManager.GetString("Remark", resourceCulture);
             }
         }
         
