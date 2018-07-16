@@ -43,5 +43,14 @@
       "Ville",
       "Pays"
     ]
+  },
+  {
+    "controller": {
+      "id": "4",
+      "libelle": "ConfigurationBudget"
+    },
+    "views": [
+      "ExerciceFiscal"
+    ]
   }
 ]

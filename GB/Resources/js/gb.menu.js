@@ -51,7 +51,8 @@ $(function () {
                     url != '/ConfigurationBanque/ActiviteEconomique' &&
                     url != '/ConfigurationBanque/Titre' &&
                     url != '/ConfigurationBanque/UniteInstitutionnelle' &&
-                    url != '/ConfigurationBanque/BEACNationalite') {
+                    url != '/ConfigurationBanque/BEACNationalite' &&
+                    url != '/ConfigurationBudget/ExerciceFiscal') {
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 

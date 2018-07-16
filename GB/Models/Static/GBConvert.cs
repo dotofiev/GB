@@ -178,7 +178,7 @@ namespace GB.Models.Static
             return (T)objet;
         }
 
-        /// <summary>COnverti un object JSON en type_tredefini </summary>
+        /// <summary>COnverti un fichier JSON en type_predefini </summary>
         public static T JSON_To<T>(string objet)
         {
             return

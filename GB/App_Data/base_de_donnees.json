@@ -40,6 +40,15 @@
       "libelle_fr": "Banque",
       "icon": "fa fa-cogs",
       "controller": "ConfigurationBanque"
+    },
+    {
+      "id": "4",
+      "id_module": "2",
+      "code": "4",
+      "libelle_en": "Budget Parameters",
+      "libelle_fr": "Paramètres du budget",
+      "icon": "fa fa-cogs",
+      "controller": "ConfigurationBudget"
     }
   ],
   "menus": [
@@ -261,6 +270,15 @@
       "libelle_fr": "Pays",
       "view": "Pays",
       "id_controller": "3"
+    },
+    {
+      "id": "24",
+      "code": "24",
+      "id_groupe_menu": "4",
+      "libelle_en": "Fiscal exercice",
+      "libelle_fr": "Exercice fiscal",
+      "view": "ExerciceFiscal",
+      "id_controller": "4"
     }
   ],
   "roles": [
@@ -540,6 +558,18 @@
       "id": "24",
       "id_role": "1",
       "id_menu": "23",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+
+
+    {
+      "id": "25",
+      "id_role": "1",
+      "id_menu": "24",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -875,6 +905,26 @@
       "libelle_en": "",
       "libelle_fr": "Particuliers étrangers",
       "date_creation": "636670881645418146"
+    }
+  ],
+  "exercices_fiscal": [
+    {
+      "id": "1",
+      "code": "2014",
+      "libelle": "Fiscal exercice",
+      "date_debut": "636670881645418146",
+      "date_fin": "636670881645499146",
+      "budget_id": "OPSEC",
+      "statut": "O"
+    },
+    {
+      "id": "1",
+      "code": "2015",
+      "libelle": "Fiscal exercice",
+      "date_debut": "636670881645418146",
+      "date_fin": "636670881645499146",
+      "budget_id": "OPSEC",
+      "statut": "O"
     }
   ]
 }

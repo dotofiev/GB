@@ -642,4 +642,19 @@
   <data name="BEAC_nationality_management" xml:space="preserve">
     <value>BEAC nationality management</value>
   </data>
+  <data name="Ending_date" xml:space="preserve">
+    <value>Ending date</value>
+  </data>
+  <data name="Fiscals_exercice_management" xml:space="preserve">
+    <value>Fiscals exercice management</value>
+  </data>
+  <data name="Invalid_date" xml:space="preserve">
+    <value>Invalid date</value>
+  </data>
+  <data name="Starting_date" xml:space="preserve">
+    <value>Starting date</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
 </root>

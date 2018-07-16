@@ -565,6 +565,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ending date.
+        /// </summary>
+        public static string Ending_date {
+            get {
+                return ResourceManager.GetString("Ending_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string English {
@@ -624,6 +633,15 @@ namespace GB.App_Lang {
         public static string Expiration_duration {
             get {
                 return ResourceManager.GetString("Expiration_duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fiscals exercice management.
+        /// </summary>
+        public static string Fiscals_exercice_management {
+            get {
+                return ResourceManager.GetString("Fiscals_exercice_management", resourceCulture);
             }
         }
         
@@ -714,6 +732,15 @@ namespace GB.App_Lang {
         public static string Internal_error {
             get {
                 return ResourceManager.GetString("Internal_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid date.
+        /// </summary>
+        public static string Invalid_date {
+            get {
+                return ResourceManager.GetString("Invalid_date", resourceCulture);
             }
         }
         
@@ -1411,11 +1438,29 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Starting date.
+        /// </summary>
+        public static string Starting_date {
+            get {
+                return ResourceManager.GetString("Starting_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Statement page count.
         /// </summary>
         public static string Statement_page_count {
             get {
                 return ResourceManager.GetString("Statement_page_count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
             }
         }
         
