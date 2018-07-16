@@ -207,14 +207,24 @@
       "code": "18",
       "id_menu_parent": "17",
       "id_groupe_menu": "3",
+      "libelle_en": "B.E.A.C. Nationality",
+      "libelle_fr": "Nationalités B.E.A.C.",
+      "view": "BEACNationalite",
+      "id_controller": "3"
+    },
+    {
+      "id": "19",
+      "code": "19",
+      "id_menu_parent": "17",
+      "id_groupe_menu": "3",
       "libelle_en": "Institutional unit",
       "libelle_fr": "Unité institutionnelle",
       "view": "UniteInstitutionnelle",
       "id_controller": "3"
     },
     {
-      "id": "19",
-      "code": "19",
+      "id": "20",
+      "code": "20",
       "id_menu_parent": "17",
       "id_groupe_menu": "3",
       "libelle_en": "Title",
@@ -223,8 +233,8 @@
       "id_controller": "3"
     },
     {
-      "id": "20",
-      "code": "20",
+      "id": "21",
+      "code": "21",
       "id_menu_parent": "17",
       "id_groupe_menu": "3",
       "libelle_en": "Economic activities",
@@ -233,8 +243,8 @@
       "id_controller": "3"
     },
     {
-      "id": "21",
-      "code": "21",
+      "id": "22",
+      "code": "22",
       "id_menu_parent": "17",
       "id_groupe_menu": "3",
       "libelle_en": "Towns",
@@ -243,8 +253,8 @@
       "id_controller": "3"
     },
     {
-      "id": "22",
-      "code": "22",
+      "id": "23",
+      "code": "23",
       "id_menu_parent": "17",
       "id_groupe_menu": "3",
       "libelle_en": "Countries",
@@ -520,6 +530,16 @@
       "id": "23",
       "id_role": "1",
       "id_menu": "22",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "24",
+      "id_role": "1",
+      "id_menu": "23",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -831,4 +851,30 @@
       "date_creation": "636670881645418146"
     }
   ],
+  "nationalites_beac": [
+    {
+      "id": "1",
+      "code": "11",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Particuliers nationaux",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "13",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Entreprises publique",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "3",
+      "code": "21",
+      "id_utilisateur": "99999",
+      "libelle_en": "",
+      "libelle_fr": "Particuliers étrangers",
+      "date_creation": "636670881645418146"
+    }
+  ]
 }

@@ -79,6 +79,11 @@ namespace GB.Models.Tests
             {
                 l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
             });
+            // -- BEAC Nationalités -- //
+            db.nationalites_beac.ForEach(l =>
+            {
+                l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
+            });
         }
 
         /*

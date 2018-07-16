@@ -640,4 +640,7 @@
   <data name="Institutional_unit_management" xml:space="preserve">
     <value>Institutional unit management</value>
   </data>
+  <data name="BEAC_nationality_management" xml:space="preserve">
+    <value>Gestion des nationalités BEAC</value>
+  </data>
 </root>

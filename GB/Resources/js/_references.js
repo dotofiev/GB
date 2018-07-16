@@ -41,6 +41,7 @@
 /// <reference path="views/application-principale.js" />
 /// <reference path="views/configurationbanque-activiteeconomique.js" />
 /// <reference path="views/configurationbanque-agence.js" />
+/// <reference path="views/configurationbanque-beacnationalite.js" />
 /// <reference path="views/configurationbanque-devise.js" />
 /// <reference path="views/configurationbanque-institution.js" />
 /// <reference path="views/configurationbanque-parametre.js" />

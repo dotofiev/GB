@@ -27,6 +27,7 @@ namespace GB.Models.Tests
         public List<ActiviteEconomique> activites_economique { get; set; }
         public List<Titre> titres { get; set; }
         public List<UniteInstitutionnelle> unites_institutionnelle { get; set; }
+        public List<BEACNationalite> nationalites_beac { get; set; }
         
         public BD() { }
     }

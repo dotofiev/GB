@@ -199,6 +199,7 @@
     </Compile>
     <Compile Include="Models\ActionFilter\AuthentificationRequis.cs" />
     <Compile Include="Models\ActionFilter\ResponseErreur.cs" />
+    <Compile Include="Models\BO\BEACNationalite.cs" />
     <Compile Include="Models\BO\UniteInstitutionnelle.cs" />
     <Compile Include="Models\BO\Titre.cs" />
     <Compile Include="Models\BO\GBFichier.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="Models\Cryptage\Program.cs" />
     <Compile Include="Models\BO\GBException.cs" />
     <Compile Include="Models\BO\GBNotification.cs" />
+    <Compile Include="Models\DAO\BEACNationaliteDAO.cs" />
     <Compile Include="Models\DAO\UniteInstitutionnelleDAO.cs" />
     <Compile Include="Models\DAO\TitreDAO.cs" />
     <Compile Include="Models\DAO\DeviseDAO.cs" />
@@ -524,6 +526,7 @@
     <Content Include="Resources\js\bootstrap.js" />
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\gb.menu.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-BEACNationalite.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-UniteInstitutionnelle.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Titre.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Ville.js" />
@@ -856,6 +859,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ConfigurationBanque\UniteInstitutionnelle\_Modals.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationBanque\BEACNationalite\_Modals.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationBanque\BEACNationalite.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

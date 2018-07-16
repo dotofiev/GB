@@ -250,6 +250,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BEAC nationality management.
+        /// </summary>
+        public static string BEAC_nationality_management {
+            get {
+                return ResourceManager.GetString("BEAC_nationality_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Branch manager.
         /// </summary>
         public static string Branch_manager {

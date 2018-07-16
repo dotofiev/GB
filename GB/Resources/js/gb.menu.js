@@ -50,7 +50,8 @@ $(function () {
                     url != '/ConfigurationBanque/Ville' &&
                     url != '/ConfigurationBanque/ActiviteEconomique' &&
                     url != '/ConfigurationBanque/Titre' &&
-                    url != '/ConfigurationBanque/UniteInstitutionnelle') {
+                    url != '/ConfigurationBanque/UniteInstitutionnelle' &&
+                    url != '/ConfigurationBanque/BEACNationalite') {
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 
