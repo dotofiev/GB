@@ -13,6 +13,19 @@ var $GB_DONNEE_PARAMETRES = null;
 var fonction_en_Timeout;
 var fonction_en_Interval;
 
+// -- Mettre la première lettre ne majuscule -- // 
+try {
+
+    String.prototype.gbCapitalize = function () {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    }
+
+}
+catch (ex) {
+    // -- Log -- //
+    gbConsole(ex.message);
+}
+
 // -- Vérifie qu'un element est présent dans la liste -- //
 function gbExist(obj, liste) {
 
@@ -383,13 +396,13 @@ function gbAjaxPost(url, parameters, isJSon, callback) {
             callback(requete.responseText);
         } else {
 			// -- Log -- //
-			iConsole('Méthode: iAjaxGet, Exception: ' + requete.status + " " + requete.statusText);
+			gbConsole('Méthode: iAjaxGet, Exception: ' + requete.status + " " + requete.statusText);
         }
     });
 	// -- Ecoute de l'evenemment en cas d'erreur -- //
     requete.addEventListener("error", function () {
 		// -- Log -- //
-		iConsole("Méthode: iAjaxGet, Exception: Erreur réseau avec l'URL " + url);
+		gbConsole("Méthode: iAjaxGet, Exception: Erreur réseau avec l'URL " + url);
     });
 	// -- Mise à jour des paramètres si c'est le JSon -- //
 	if (isJSon != undefined && isJSon != null && isJSon) {
@@ -415,13 +428,13 @@ function gbAjaxGet(url, callback) {
             callback(requete.responseText);
         } else {
 			// -- Log -- //
-			iConsole('Méthode: iAjaxGet, Exception: ' + requete.status + " " + requete.statusText);
+			gbConsole('Méthode: iAjaxGet, Exception: ' + requete.status + " " + requete.statusText);
         }
     });
 	// -- Ecoute de l'evenemment en cas d'erreur -- //
     requete.addEventListener("error", function () {
 		// -- Log -- //
-		iConsole("Méthode: iAjaxGet, Exception: Erreur réseau avec l'URL " + url);
+		gbConsole("Méthode: iAjaxGet, Exception: Erreur réseau avec l'URL " + url);
     });
 	// -- Envoi de la reqête avec les paramètres -- //
     requete.send(null);
@@ -445,7 +458,7 @@ function gbInitialiser_charger_evenement() {
     // Panel toolbox
     $(".icollapse-link").on("click",
         function () {
-            iConsole("Je suis cliqué 2");
+            gbConsole("Je suis cliqué 2");
             var $iBOX_PANEL = $(this).closest(".icollapsable-panel"),
                 $iICON = $(this).find('i'),
                 $iBOX_CONTENT = $iBOX_PANEL.find(".icollapse-panel");
@@ -460,7 +473,7 @@ function gbInitialiser_charger_evenement() {
             }
 
             $iICON.toggleClass("fa-chevron-up fa-chevron-down");
-            iConsole("Je suis cliqué 1");
+            gbConsole("Je suis cliqué 1");
         }
     );
 
@@ -468,7 +481,7 @@ function gbInitialiser_charger_evenement() {
         function () {
             var $iBOX_PANEL = $(this).closest(".iclosable-panel");
             $iBOX_PANEL.remove();
-            iConsole("Je suis cliqué");
+            gbConsole("Je suis cliqué");
         }
     );
     // /Panel toolbox
@@ -480,7 +493,7 @@ function gbInitialiser_charger_evenement() {
 
     } catch (ex) {
         // -- Log -- //
-        iConsole('Méthode: Charger le mask de date, Exception: ' + ex.message);
+        gbConsole('Méthode: Charger le mask de date, Exception: ' + ex.message);
     }
 }
 
@@ -523,7 +536,7 @@ function gbTelecharger_Fichier(fichierBase64, type, intitule) {
         saveAs(blob, intitule);
     } catch (ex) {
         // -- Log -- //
-        iConsole('Méthode: iTelecharger_Fichier, Exception: ' + ex.message);
+        gbConsole('Méthode: iTelecharger_Fichier, Exception: ' + ex.message);
         // -- Afficher le message d'erreur -- //
         iMessage_Box(
             'Information',
@@ -552,7 +565,7 @@ function gbConvert_Base64_En_ArrayBuffer(base64) {
         return bytes;
     } catch (ex) {
         // -- Log -- //
-        iConsole('Méthode: iConvert_Base64_En_ArrayBuffer, Exception: ' + ex.message);
+        gbConsole('Méthode: iConvert_Base64_En_ArrayBuffer, Exception: ' + ex.message);
     }
 
     // -- Retourner Null en cas d'echec de convertion -- //
@@ -772,7 +785,7 @@ function gbMa_Localite(adresse)
         );
     } catch (ex) {
         // -- Log -- //
-        iConsole('Méthode: iMa_Localite, Exception: ' + ex.message);
+        gbConsole('Méthode: iMa_Localite, Exception: ' + ex.message);
         // -- Retourne null -- //
         return null;
     }
@@ -805,7 +818,7 @@ function gbJouer_Audio(id_aution) {
     }
     catch (ex) {
         // -- Log -- //
-        iConsole('Méthode: iJouer_Audio, Exception: ' + ex.message);
+        gbConsole('Méthode: iJouer_Audio, Exception: ' + ex.message);
     }
 }
 
@@ -875,7 +888,7 @@ function gbAfficher_Modal_Rechercher_Employe(url_donnee) {
     // -- Lorsque le modal est visible -- //
     //$('#modal_recherche_employe').on('show.bs.modal',
     //    function () {
-    //        iConsole('Je suis visible');
+    //        gbConsole('Je suis visible');
     //        //function_validation;
     //    }
     //);

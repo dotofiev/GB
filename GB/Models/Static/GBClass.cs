@@ -72,8 +72,8 @@ namespace GB.Models.Static
         public static string HTML_Oui_Non()
         {
             return
-                $"<option value=\"true\" title=\"{App_Lang.Lang.Yes}\">{App_Lang.Lang.Yes}</option>" +
-                $"<option value=\"false\" title=\"{App_Lang.Lang.No}\">{App_Lang.Lang.No}</option>";
+                $"<option value=\"True\" title=\"{App_Lang.Lang.Yes}\">{App_Lang.Lang.Yes}</option>" +
+                $"<option value=\"False\" title=\"{App_Lang.Lang.No}\">{App_Lang.Lang.No}</option>";
         }
 
         /// <summary>
@@ -82,8 +82,8 @@ namespace GB.Models.Static
         public static string HTML_Non_Oui()
         {
             return
-                $"<option value=\"false\" title=\"{App_Lang.Lang.No}\">{App_Lang.Lang.No}</option>" +
-                $"<option value=\"true\" title=\"{App_Lang.Lang.Yes}\">{App_Lang.Lang.Yes}</option>";
+                $"<option value=\"False\" title=\"{App_Lang.Lang.No}\">{App_Lang.Lang.No}</option>" +
+                $"<option value=\"True\" title=\"{App_Lang.Lang.Yes}\">{App_Lang.Lang.Yes}</option>";
         }
 
         /// <summary>

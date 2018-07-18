@@ -13,6 +13,8 @@ var form = $('#form');
 var form_utilisateur_id = $('#form_utilisateur_id');
 var form_utilisateur_compte = $('#form_utilisateur_compte');
 var form_utilisateur_nom = $('#form_utilisateur_nom');
+var form_pays = $('#form_pays');
+var form_ville = $('#form_ville');
 var modal_form = $('#modal_form');
 var url_controlleur = '/ConfigurationBanque/';
 var url_suppression = '/ConfigurationBanque/Supprimer_Enregistrement';
@@ -39,8 +41,8 @@ try {
                     $('#form_id').val(resultat.notification.donnee.id);
                     $('#form_code').val(resultat.notification.donnee.code);
                     $('#form_libelle').val(resultat.notification.donnee.libelle);
-                    $('#form_pays').val(resultat.notification.donnee.pays);
-                    $('#form_ville').val(resultat.notification.donnee.ville);
+                    form_pays.val(resultat.notification.donnee.pays);
+                    form_ville.val(resultat.notification.donnee.ville);
                     $('#form_adresse').val(resultat.notification.donnee.adresse);
                     $('#form_telephone').val(resultat.notification.donnee.telephone);
                     $('#form_bp').val(resultat.notification.donnee.bp);
@@ -383,6 +385,44 @@ $(
 
         // -- Charger le sur les utilisateur -- //
         try {
+
+            // -- Recherche par pays -- //
+            form_pays.easyAutocomplete({
+                url: url_ajax_easyAutocomplete + '&id_vue=pays',
+                getValue: function (obj) {
+                    return obj.libelle;
+                },
+                list: {
+                    match: {
+                        enabled: true
+                    }
+                },
+                template: {
+                    type: "custom",
+                    method: function (value, item) {
+                        return "<i class=\"fa fa-caret-right\"></i> " + value;
+                    }
+                }
+            });
+
+            // -- Recherche par ville -- //
+            form_ville.easyAutocomplete({
+                url: url_ajax_easyAutocomplete + '&id_vue=ville',
+                getValue: function (obj) {
+                    return obj.libelle;
+                },
+                list: {
+                    match: {
+                        enabled: true
+                    }
+                },
+                template: {
+                    type: "custom",
+                    method: function (value, item) {
+                        return "<i class=\"fa fa-caret-right\"></i> " + value;
+                    }
+                }
+            });
 
             // -- Recherche par compte -- //
             form_utilisateur_compte.easyAutocomplete({

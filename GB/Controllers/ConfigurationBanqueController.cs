@@ -945,24 +945,76 @@ namespace GB.Controllers
                 #region ConfigurationBanque-Agence
                 if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
                 {
-                    // -- Si la liste des utilisateurs en session est vide, la mettre à jour -- //
-                    if ((this.con.donnee.utilisateurs as List<Utilisateur>).Count == 0)
+                    // -- Si la vue n'est pas retourné -- //
+                    #region utilisateurs
+                    if (string.IsNullOrEmpty(id_vue))
                     {
-                        this.con.donnee.utilisateurs = UtilisateurDAO.Lister();
-                    }
+                        // -- Si la liste des utilisateurs en session est vide, la mettre à jour -- //
+                        if ((this.con.donnee.utilisateurs as List<Utilisateur>).Count == 0)
+                        {
+                            this.con.donnee.utilisateurs = UtilisateurDAO.Lister();
+                        }
 
-                    // -- Charger la liste des résultats -- //
-                    foreach (var val in (this.con.donnee.utilisateurs as List<Utilisateur>))
-                    {
-                        donnee.Add(
-                            new
-                            {
-                                id_utilisateur = val.id_utilisateur,
-                                compte = val.compte,
-                                nom_utilisateur = val.nom_utilisateur
-                            }
-                        );
+                        // -- Charger la liste des résultats -- //
+                        foreach (var val in (this.con.donnee.utilisateurs as List<Utilisateur>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    id_utilisateur = val.id_utilisateur,
+                                    compte = val.compte,
+                                    nom_utilisateur = val.nom_utilisateur
+                                }
+                            );
+                        }
                     }
+                    #endregion
+
+                    #region pays
+                    // -- Si la vue est pour le pays -- //
+                    else if (id_vue == "pays")
+                    {
+                        // -- Si la liste des pays en session est vide, la mettre à jour -- //
+                        if ((this.con.donnee.pays as List<Pays>).Count == 0)
+                        {
+                            this.con.donnee.pays = PaysDAO.Lister();
+                        }
+
+                        // -- Charger la liste des résultats -- //
+                        foreach (var val in (this.con.donnee.pays as List<Pays>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    libelle = val.libelle,
+                                }
+                            );
+                        }
+                    }
+                    #endregion
+
+                    #region ville
+                    // -- Si la vue est pour le pays -- //
+                    else if (id_vue == "ville")
+                    {
+                        // -- Si la liste des villes en session est vide, la mettre à jour -- //
+                        if ((this.con.donnee.villes as List<Ville>).Count == 0)
+                        {
+                            this.con.donnee.villes = VilleDAO.Lister();
+                        }
+
+                        // -- Charger la liste des résultats -- //
+                        foreach (var val in (this.con.donnee.villes as List<Ville>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    libelle = val.libelle,
+                                }
+                            );
+                        }
+                    }
+                    #endregion
                 }
                 #endregion
             }
@@ -1628,7 +1680,7 @@ namespace GB.Controllers
                 #endregion
 
                 #region ConfigurationBanque-ParametreBanque
-                if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
                 {
                     // -- Service de modification -- //
                     ParametreBancaireDAO.Modifier(GBConvert.JSON_To<ParametreBancaire>(obj));
@@ -1967,6 +2019,10 @@ namespace GB.Controllers
                 // - Mise à jour des données de vue -- //
                 // -- Utilisateur -- //
                 this.con.donnee.utilisateurs = new List<Utilisateur>();
+                // -- Pays -- //
+                this.con.donnee.pays = new List<Pays>();
+                // -- Ville -- //
+                this.con.donnee.villes = new List<Ville>();
                 #endregion
             }
             #endregion
@@ -2079,17 +2135,8 @@ namespace GB.Controllers
                 // -- Données -- //
                 #region Données
                 #region HTML_Select_devise
-                this.ViewBag.donnee.HTML_Select_code_devise =
-                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                this.ViewBag.donnee.HTML_Select_libelle_devise =
-                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                foreach (var val in DeviseDAO.Lister())
-                {
-                    this.ViewBag.donnee.HTML_Select_code_devise +=
-                        $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
-                    this.ViewBag.donnee.HTML_Select_libelle_devise +=
-                        $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
-                }
+                this.ViewBag.donnee.HTML_Select_code_devise = DeviseDAO.HTML_Select("code");
+                this.ViewBag.donnee.HTML_Select_libelle_devise = DeviseDAO.HTML_Select("libelle");
                 #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new

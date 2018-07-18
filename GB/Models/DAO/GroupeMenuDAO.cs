@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.Helper;
 using GB.Models.Static;
 using GB.Models.Tests;
 using System;
@@ -190,6 +191,42 @@ namespace GB.Models.DAO
                 // -- Parcours de la liste -- //
                 return
                     Program.db.groupe_menus.FirstOrDefault(l => l.id == id);
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(App_Lang.Lang.Error_message_notification);
+                }
+                else
+                {
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(ex.Message);
+                }
+            }
+            #endregion
+        }
+
+        public static string HTML_Select()
+        {
+            try
+            {
+                // -- Valeur vide -- //
+                string HTML = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+
+                // -- Ajout des options -- //
+                foreach (var val in Lister())
+                {
+                    HTML += $"<option value=\"{val.id}\" title=\"{((LangHelper.CurrentCulture == 0) ? val.libelle_en : val.libelle_fr)}\">{((LangHelper.CurrentCulture == 0) ? val.libelle_en : val.libelle_fr)}</option>";
+                }
+
+                return HTML;
             }
             #region Catch
             catch (Exception ex)

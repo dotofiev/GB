@@ -437,17 +437,8 @@ namespace GB.Controllers
                 }
                 #endregion
                 #region HTML_Select_profession
-                this.ViewBag.donnee.HTML_Select_code_profession =
-                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                this.ViewBag.donnee.HTML_Select_libelle_profession =
-                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                foreach (var val in ProfessionDAO.Lister())
-                {
-                    this.ViewBag.donnee.HTML_Select_code_profession +=
-                        $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
-                    this.ViewBag.donnee.HTML_Select_libelle_profession +=
-                        $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
-                }
+                this.ViewBag.donnee.HTML_Select_code_profession = ProfessionDAO.HTML_Select("code");
+                this.ViewBag.donnee.HTML_Select_libelle_profession = ProfessionDAO.HTML_Select("libelle");
                 #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new {
