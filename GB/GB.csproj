@@ -205,6 +205,7 @@
     <Compile Include="Models\BO\DirectionBudget.cs" />
     <Compile Include="Models\BO\BEACNationalite.cs" />
     <Compile Include="Models\BO\ExerciceFiscal.cs" />
+    <Compile Include="Models\BO\CongeBanque.cs" />
     <Compile Include="Models\BO\UniteInstitutionnelle.cs" />
     <Compile Include="Models\BO\Titre.cs" />
     <Compile Include="Models\BO\GBFichier.cs" />
@@ -232,6 +233,7 @@
     <Compile Include="Models\BO\GBNotification.cs" />
     <Compile Include="Models\DAO\DirectionBudgetDAO.cs" />
     <Compile Include="Models\DAO\BEACNationaliteDAO.cs" />
+    <Compile Include="Models\DAO\CongeBanqueDAO.cs" />
     <Compile Include="Models\DAO\UniteInstitutionnelleDAO.cs" />
     <Compile Include="Models\DAO\TitreDAO.cs" />
     <Compile Include="Models\DAO\DeviseDAO.cs" />
@@ -874,6 +876,7 @@
     <Content Include="Resources\js\Views\ConfigurationBanque-ActiviteEconomique.js" />
     <Content Include="Resources\js\Views\ConfigurationBudget-ExerciceFiscal.js" />
     <Content Include="Resources\js\Views\ConfigurationBudget-DirectionBudget.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-CongeBanque.js" />
     <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
@@ -1232,6 +1235,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ConfigurationBudget\DirectionBudget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationBanque\CongeBanque\_Modals.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationBanque\CongeBanque.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

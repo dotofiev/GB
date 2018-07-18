@@ -667,4 +667,13 @@
   <data name="Remark" xml:space="preserve">
     <value>Remarque</value>
   </data>
+  <data name="Bank_holiday_management" xml:space="preserve">
+    <value>Gestion des congés bancaire</value>
+  </data>
+  <data name="Existing_day" xml:space="preserve">
+    <value>Jour existant</value>
+  </data>
+  <data name="This_day_not_exist" xml:space="preserve">
+    <value>Ce jour n'existe pas.</value>
+  </data>
 </root>

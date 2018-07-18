@@ -160,6 +160,10 @@
       "view": "ParametreBanque",
       "id_controller": "3"
     },
+
+    // ------------ //
+    // -- Parent -- //
+    // ------------ //
     {
       "id": "13",
       "code": "13",
@@ -169,6 +173,7 @@
       "view": "",
       "id_controller": "3"
     },
+    // -- Enfants -- //
     {
       "id": "14",
       "code": "14",
@@ -199,22 +204,35 @@
       "view": "ProduitCreation",
       "id_controller": "3"
     },
-
-
+    // -- Enfants -- //
 
     {
       "id": "17",
       "code": "17",
+      "id_groupe_menu": "3",
+      "libelle_en": "Bank holidays",
+      "libelle_fr": "Congés bancaire",
+      "view": "CongeBanque",
+      "id_controller": "3"
+    },
+
+    // ------------ //
+    // -- Parent -- //
+    // ------------ //
+    {
+      "id": "18",
+      "code": "18",
       "id_groupe_menu": "3",
       "libelle_en": "Institutionnal attributes",
       "libelle_fr": "Attributs institutionnel",
       "view": "",
       "id_controller": "3"
     },
+    // -- Enfants -- //
     {
-      "id": "18",
-      "code": "18",
-      "id_menu_parent": "17",
+      "id": "19",
+      "code": "19",
+      "id_menu_parent": "18",
       "id_groupe_menu": "3",
       "libelle_en": "B.E.A.C. Nationality",
       "libelle_fr": "Nationalités B.E.A.C.",
@@ -222,9 +240,9 @@
       "id_controller": "3"
     },
     {
-      "id": "19",
-      "code": "19",
-      "id_menu_parent": "17",
+      "id": "20",
+      "code": "20",
+      "id_menu_parent": "18",
       "id_groupe_menu": "3",
       "libelle_en": "Institutional unit",
       "libelle_fr": "Unité institutionnelle",
@@ -232,9 +250,9 @@
       "id_controller": "3"
     },
     {
-      "id": "20",
-      "code": "20",
-      "id_menu_parent": "17",
+      "id": "21",
+      "code": "21",
+      "id_menu_parent": "18",
       "id_groupe_menu": "3",
       "libelle_en": "Title",
       "libelle_fr": "Titre",
@@ -242,9 +260,9 @@
       "id_controller": "3"
     },
     {
-      "id": "21",
-      "code": "21",
-      "id_menu_parent": "17",
+      "id": "22",
+      "code": "22",
+      "id_menu_parent": "18",
       "id_groupe_menu": "3",
       "libelle_en": "Economic activities",
       "libelle_fr": "Activités économique",
@@ -252,9 +270,9 @@
       "id_controller": "3"
     },
     {
-      "id": "22",
-      "code": "22",
-      "id_menu_parent": "17",
+      "id": "23",
+      "code": "23",
+      "id_menu_parent": "18",
       "id_groupe_menu": "3",
       "libelle_en": "Towns",
       "libelle_fr": "Villes",
@@ -262,18 +280,20 @@
       "id_controller": "3"
     },
     {
-      "id": "23",
-      "code": "23",
-      "id_menu_parent": "17",
+      "id": "24",
+      "code": "24",
+      "id_menu_parent": "18",
       "id_groupe_menu": "3",
       "libelle_en": "Countries",
       "libelle_fr": "Pays",
       "view": "Pays",
       "id_controller": "3"
     },
+    // -- Enfants -- //
+
     {
-      "id": "24",
-      "code": "24",
+      "id": "25",
+      "code": "25",
       "id_groupe_menu": "4",
       "libelle_en": "Fiscal exercice",
       "libelle_fr": "Exercice fiscal",
@@ -281,8 +301,8 @@
       "id_controller": "4"
     },
     {
-      "id": "25",
-      "code": "25",
+      "id": "26",
+      "code": "26",
       "id_groupe_menu": "4",
       "libelle_en": "Budget directorate",
       "libelle_fr": "Direction du budget",
@@ -589,6 +609,16 @@
       "id": "26",
       "id_role": "1",
       "id_menu": "25",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "27",
+      "id_role": "1",
+      "id_menu": "26",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -956,6 +986,26 @@
       "telephone": "",
       "remarque": "OK",
       "statut": "O"
+    }
+  ],
+  "conges_banque": [
+    {
+      "id": "1",
+      "code": "01/01",
+      "id_utilisateur": "99999",
+      "libelle": "New year day",
+      "jour": "1",
+      "mois": "1",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "1",
+      "code": "01/05",
+      "id_utilisateur": "99999",
+      "libelle": "Labour day",
+      "jour": "1",
+      "mois": "5",
+      "date_creation": "636670881645418146"
     }
   ]
 }

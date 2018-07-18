@@ -250,6 +250,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bank holiday management.
+        /// </summary>
+        public static string Bank_holiday_management {
+            get {
+                return ResourceManager.GetString("Bank_holiday_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to BEAC nationality management.
         /// </summary>
         public static string BEAC_nationality_management {
@@ -642,6 +651,15 @@ namespace GB.App_Lang {
         public static string Existing_data {
             get {
                 return ResourceManager.GetString("Existing_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Existing day.
+        /// </summary>
+        public static string Existing_day {
+            get {
+                return ResourceManager.GetString("Existing_day", resourceCulture);
             }
         }
         
@@ -1533,6 +1551,15 @@ namespace GB.App_Lang {
         public static string This_account_is_suspended {
             get {
                 return ResourceManager.GetString("This_account_is_suspended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This day not exist.
+        /// </summary>
+        public static string This_day_not_exist {
+            get {
+                return ResourceManager.GetString("This_day_not_exist", resourceCulture);
             }
         }
         

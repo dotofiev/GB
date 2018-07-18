@@ -89,6 +89,11 @@ namespace GB.Models.Tests
             {
                 l.exercice_fiscal = db.exercices_fiscal.FirstOrDefault(ll => ll.id == l.id_exercice_fiscal);
             });
+            // -- Congés bancaire -- //
+            db.conges_banque.ForEach(l =>
+            {
+                l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
+            });
         }
 
         /*

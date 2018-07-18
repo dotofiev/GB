@@ -36,6 +36,7 @@
       "ProduitClientPhysique",
       "ProduitClientJudiciaire",
       "ProduitCreation",
+      "CongeBanque",
       "BEACNationalite",
       "UniteInstitutionnelle",
       "Titre",
