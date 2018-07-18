@@ -675,4 +675,25 @@
   <data name="This_day_not_exist" xml:space="preserve">
     <value>This day not exist</value>
   </data>
+  <data name="Customer_max_credit" xml:space="preserve">
+    <value>Customer max credit</value>
+  </data>
+  <data name="Customer_max_debit" xml:space="preserve">
+    <value>Customer max debit</value>
+  </data>
+  <data name="Customer_overdraft_limit" xml:space="preserve">
+    <value>Customer overdraft limit</value>
+  </data>
+  <data name="Line_of_credit_max_amount" xml:space="preserve">
+    <value>Line of credit max amount</value>
+  </data>
+  <data name="Loan_limit_amount" xml:space="preserve">
+    <value>Loan limit amount</value>
+  </data>
+  <data name="Signing_amount" xml:space="preserve">
+    <value>Signing amount</value>
+  </data>
+  <data name="Signing_authority_management" xml:space="preserve">
+    <value>Signing authority management</value>
+  </data>
 </root>

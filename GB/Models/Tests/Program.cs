@@ -22,6 +22,7 @@ namespace GB.Models.Tests
             db.utilisateurs.ForEach(l => {
                 l.agence = db.agences.FirstOrDefault(ll => ll.id == l.id_agence);
                 l.profession = db.professions.FirstOrDefault(ll => ll.id == l.id_profession);
+                l.autorite_signature = db.autorites_signature.FirstOrDefault(ll => ll.id == l.id_autorite_signature);
                 l.date_mise_a_jour_mot_de_passe = DateTime.Now.AddMonths(1).Ticks;
             });
             // -- Groupe menu -- //

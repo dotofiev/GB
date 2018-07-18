@@ -31,7 +31,8 @@ namespace GB.Models.Tests
         public List<ExerciceFiscal> exercices_fiscal { get; set; }
         public List<DirectionBudget> direction_dudget { get; set; }
         public List<CongeBanque> conges_banque { get; set; }
-        
+        public List<AutoriteSignature> autorites_signature { get; set; }
+
         public BD() { }
     }
 }

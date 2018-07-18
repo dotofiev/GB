@@ -13,6 +13,7 @@ namespace GB.Models.BO
         public long id_agence { get; set; }
         public long id_profession { get; set; }
         public long id_pouvoir { get; set; }
+        public long id_autorite_signature { get; set; }
         public string compte { get; set; }
         public string mot_de_passe { get; set; }
         public string nom_utilisateur { get; set; }
@@ -27,12 +28,9 @@ namespace GB.Models.BO
         public long date_mise_a_jour_mot_de_passe { get; set; }
         public Agence agence { get; set; }
         public Profession profession { get; set; }
+        public AutoriteSignature autorite_signature { get; set; }
 
-        public Utilisateur()
-        {
-            this.agence = new Agence();
-            this.profession = new Profession();
-        }
+        public Utilisateur() { }
 
         public void Crer_Id()
         {

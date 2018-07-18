@@ -26,6 +26,22 @@ catch (ex) {
     gbConsole(ex.message);
 }
 
+// -- Remplacer une expression par un autre -- // 
+try {
+
+    String.prototype.gbReplace = function (ancien, nouveau) {
+        return this.replace(
+                    new RegExp(ancien, 'g'),
+                    nouveau
+                );
+    }
+
+}
+catch (ex) {
+    // -- Log -- //
+    gbConsole(ex.message);
+}
+
 // -- Vérifie qu'un element est présent dans la liste -- //
 function gbExist(obj, liste) {
 

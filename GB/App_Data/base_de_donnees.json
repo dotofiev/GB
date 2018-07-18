@@ -308,6 +308,15 @@
       "libelle_fr": "Direction du budget",
       "view": "DirectionBudget",
       "id_controller": "4"
+    },
+    {
+      "id": "27",
+      "code": "27",
+      "id_groupe_menu": "4",
+      "libelle_en": "Signing authority",
+      "libelle_fr": "Autorité de signature",
+      "view": "AutoriteSignature",
+      "id_controller": "4"
     }
   ],
   "roles": [
@@ -339,7 +348,8 @@
       "est_connecte": "false",
       "est_suspendu": "false",
       "duree_mot_de_passe": "1",
-      "date_mise_a_jour_mot_de_passe": "0"
+      "date_mise_a_jour_mot_de_passe": "0",
+      "id_autorite_signature": "1"
     },
     {
       "id_utilisateur": "99998",
@@ -355,7 +365,8 @@
       "est_connecte": "false",
       "est_suspendu": "false",
       "duree_mot_de_passe": "1",
-      "date_mise_a_jour_mot_de_passe": "0"
+      "date_mise_a_jour_mot_de_passe": "0",
+      "id_autorite_signature": "1"
     }
   ],
   "autorisations": [
@@ -619,6 +630,16 @@
       "id": "27",
       "id_role": "1",
       "id_menu": "26",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "28",
+      "id_role": "1",
+      "id_menu": "27",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -1006,6 +1027,41 @@
       "jour": "1",
       "mois": "5",
       "date_creation": "636670881645418146"
+    }
+  ],
+  "autorites_signature": [
+    {
+      "id": "1",
+      "code": "AUTH01",
+      "libelle": "Default autorisation",
+      "montant_signature": "100000000",
+      "limite_decouvert_client": "100000000",
+      "debit_max_client": "100000000",
+      "credit_max_client": "100000000",
+      "montant_max_ligne_credit": "100000000",
+      "montant_limite_pret": "100000000"
+    },
+    {
+      "id": "2",
+      "code": "AUTH02",
+      "libelle": "Cashier limits",
+      "montant_signature": "500000",
+      "limite_decouvert_client": "500000",
+      "debit_max_client": "500000000",
+      "credit_max_client": "500000",
+      "montant_max_ligne_credit": "500000",
+      "montant_limite_pret": "500000"
+    },
+    {
+      "id": "3",
+      "code": "AUTH05",
+      "libelle": "Super autorisation",
+      "montant_signature": "100000000",
+      "limite_decouvert_client": "200000000",
+      "debit_max_client": "300000000",
+      "credit_max_client": "20000000000",
+      "montant_max_ligne_credit": "500000000",
+      "montant_limite_pret": "400000000"
     }
   ]
 }

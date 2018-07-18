@@ -206,6 +206,7 @@
     <Compile Include="Models\BO\BEACNationalite.cs" />
     <Compile Include="Models\BO\ExerciceFiscal.cs" />
     <Compile Include="Models\BO\CongeBanque.cs" />
+    <Compile Include="Models\BO\AutoriteSignature.cs" />
     <Compile Include="Models\BO\UniteInstitutionnelle.cs" />
     <Compile Include="Models\BO\Titre.cs" />
     <Compile Include="Models\BO\GBFichier.cs" />
@@ -234,6 +235,7 @@
     <Compile Include="Models\DAO\DirectionBudgetDAO.cs" />
     <Compile Include="Models\DAO\BEACNationaliteDAO.cs" />
     <Compile Include="Models\DAO\CongeBanqueDAO.cs" />
+    <Compile Include="Models\DAO\AutoriteSignatureDAO.cs" />
     <Compile Include="Models\DAO\UniteInstitutionnelleDAO.cs" />
     <Compile Include="Models\DAO\TitreDAO.cs" />
     <Compile Include="Models\DAO\DeviseDAO.cs" />
@@ -443,6 +445,14 @@
     <Content Include="Plugins\iCheck\skins\square\yellow.css" />
     <Content Include="Plugins\iCheck\skins\square\yellow.png" />
     <Content Include="Plugins\iCheck\skins\square\_all.css" />
+    <Content Include="Plugins\input-mask\jquery.inputmask.date.extensions.js" />
+    <Content Include="Plugins\input-mask\jquery.inputmask.extensions.js" />
+    <Content Include="Plugins\input-mask\jquery.inputmask.js" />
+    <Content Include="Plugins\input-mask\jquery.inputmask.numeric.extensions.js" />
+    <Content Include="Plugins\input-mask\jquery.inputmask.phone.extensions.js" />
+    <Content Include="Plugins\input-mask\jquery.inputmask.regex.extensions.js" />
+    <Content Include="Plugins\input-mask\jquery.mask.min.js" />
+    <Content Include="Plugins\input-mask\phone-codes\readme.txt" />
     <Content Include="Plugins\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="Plugins\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.css" />
     <Content Include="Plugins\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.js" />
@@ -877,6 +887,7 @@
     <Content Include="Resources\js\Views\ConfigurationBudget-ExerciceFiscal.js" />
     <Content Include="Resources\js\Views\ConfigurationBudget-DirectionBudget.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-CongeBanque.js" />
+    <Content Include="Resources\js\Views\ConfigurationBudget-AutoriteSignature.js" />
     <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
@@ -1241,6 +1252,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ConfigurationBanque\CongeBanque.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationBudget\AutoriteSignature\_Modals.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationBudget\AutoriteSignature.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Plugins\input-mask\phone-codes\phone-be.json" />
+    <Content Include="Plugins\input-mask\phone-codes\phone-codes.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

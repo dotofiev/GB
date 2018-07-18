@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -19,6 +20,23 @@ namespace GB.Models.Static
             return
                 donnee ? App_Lang.Lang.Activated
                        : App_Lang.Lang.Disabled;
+        }
+
+        public static string MontantToString(object value)
+        {
+            return
+                Convert.ToDecimal(value)
+                .ToString(
+                    "C",
+                    new NumberFormatInfo()
+                    {
+                        CurrencyGroupSeparator = " ",
+                        CurrencySymbol = string.Empty,
+                        CurrencyDecimalDigits = 0
+                        //CurrencyPositivePattern = 3,
+                        //CurrencyNegativePattern = 8
+                    }
+                );
         }
     }
 }

@@ -38,7 +38,9 @@ $(function () {
                 if (url != '/Securite/Module' &&
                     url != '/Securite/Role' &&
                     url != '/Securite/Menu' &&
+
                     url != '/SecuriteUtilisateur/Utilisateur' &&
+
                     url != '/ConfigurationBanque/Institution' &&
                     url != '/ConfigurationBanque/Agence' &&
                     url != '/ConfigurationBanque/Devise' &&
@@ -53,8 +55,10 @@ $(function () {
                     url != '/ConfigurationBanque/UniteInstitutionnelle' &&
                     url != '/ConfigurationBanque/BEACNationalite' &&
                     url != '/ConfigurationBanque/CongeBanque' &&
+
                     url != '/ConfigurationBudget/ExerciceFiscal' &&
-                    url != '/ConfigurationBudget/DirectionBudget') {
+                    url != '/ConfigurationBudget/DirectionBudget' &&
+                    url != '/ConfigurationBudget/AutoriteSignature') {
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 

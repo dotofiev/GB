@@ -439,6 +439,33 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer max credit.
+        /// </summary>
+        public static string Customer_max_credit {
+            get {
+                return ResourceManager.GetString("Customer_max_credit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer max debit.
+        /// </summary>
+        public static string Customer_max_debit {
+            get {
+                return ResourceManager.GetString("Customer_max_debit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer overdraft limit.
+        /// </summary>
+        public static string Customer_overdraft_limit {
+            get {
+                return ResourceManager.GetString("Customer_overdraft_limit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Day.
         /// </summary>
         public static string Day {
@@ -817,6 +844,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Line of credit max amount.
+        /// </summary>
+        public static string Line_of_credit_max_amount {
+            get {
+                return ResourceManager.GetString("Line_of_credit_max_amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to List of records.
         /// </summary>
         public static string List_of_records {
@@ -858,6 +894,15 @@ namespace GB.App_Lang {
         public static string Loan {
             get {
                 return ResourceManager.GetString("Loan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loan limit amount.
+        /// </summary>
+        public static string Loan_limit_amount {
+            get {
+                return ResourceManager.GetString("Loan_limit_amount", resourceCulture);
             }
         }
         
@@ -1470,6 +1515,24 @@ namespace GB.App_Lang {
         public static string Sign_Out {
             get {
                 return ResourceManager.GetString("Sign_Out", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Signing amount.
+        /// </summary>
+        public static string Signing_amount {
+            get {
+                return ResourceManager.GetString("Signing_amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Signing authority management.
+        /// </summary>
+        public static string Signing_authority_management {
+            get {
+                return ResourceManager.GetString("Signing_authority_management", resourceCulture);
             }
         }
         

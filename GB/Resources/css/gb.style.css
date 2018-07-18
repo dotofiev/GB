@@ -511,3 +511,7 @@ legend {
 .nav_title {
     width:auto;
 }
+
+.gb-modal-enfant {
+    z-index: 9998;
+}

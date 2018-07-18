@@ -676,4 +676,25 @@
   <data name="This_day_not_exist" xml:space="preserve">
     <value>Ce jour n'existe pas.</value>
   </data>
+  <data name="Customer_max_credit" xml:space="preserve">
+    <value>Crédit client max</value>
+  </data>
+  <data name="Customer_max_debit" xml:space="preserve">
+    <value>Débit max. Client</value>
+  </data>
+  <data name="Customer_overdraft_limit" xml:space="preserve">
+    <value>Limite de découvert du client</value>
+  </data>
+  <data name="Line_of_credit_max_amount" xml:space="preserve">
+    <value>Montant maximal de la ligne de crédit</value>
+  </data>
+  <data name="Loan_limit_amount" xml:space="preserve">
+    <value>Montant limite du prêt</value>
+  </data>
+  <data name="Signing_amount" xml:space="preserve">
+    <value>Montant de la signature</value>
+  </data>
+  <data name="Signing_authority_management" xml:space="preserve">
+    <value>Gestion des autorités de signature</value>
+  </data>
 </root>
