@@ -512,6 +512,18 @@ legend {
     width:auto;
 }
 
-.gb-modal-enfant {
-    z-index: 9998;
+.gb-modal-enfant-1 {
+    z-index: 10000;
+}
+
+.gb-modal-enfant-2 {
+    z-index: 10000;
+}
+
+.gb-modal-enfant-3 {
+    z-index: 10000;
+}
+
+.gb-modal-enfant-4 {
+    z-index: 10000;
 }

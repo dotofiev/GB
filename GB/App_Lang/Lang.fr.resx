@@ -697,4 +697,64 @@
   <data name="Signing_authority_management" xml:space="preserve">
     <value>Gestion des autorités de signature</value>
   </data>
+  <data name="Signing_authority" xml:space="preserve">
+    <value>Autorité de signature</value>
+  </data>
+  <data name="Begining_period" xml:space="preserve">
+    <value>Début</value>
+  </data>
+  <data name="Ending_period" xml:space="preserve">
+    <value>Fin périod</value>
+  </data>
+  <data name="Loans_type_management" xml:space="preserve">
+    <value>Gestion des types de prêts</value>
+  </data>
+  <data name="Periodicity" xml:space="preserve">
+    <value>Periodicité</value>
+  </data>
+  <data name="Quarter" xml:space="preserve">
+    <value>Trimestre</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Année</value>
+  </data>
+  <data name="Loans_purpose_management" xml:space="preserve">
+    <value>Gestion des motifs de prêts</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>Entre</value>
+  </data>
+  <data name="Cautioned" xml:space="preserve">
+    <value>Mis en garde</value>
+  </data>
+  <data name="End_days" xml:space="preserve">
+    <value>Jours de fin</value>
+  </data>
+  <data name="Formula" xml:space="preserve">
+    <value>Formule</value>
+  </data>
+  <data name="Greater_than" xml:space="preserve">
+    <value>Plus grand que</value>
+  </data>
+  <data name="Loans_provision_classification_management" xml:space="preserve">
+    <value>Classification des provisions pour prêts</value>
+  </data>
+  <data name="Mortgage" xml:space="preserve">
+    <value>Hypothèque</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>Pourcentage</value>
+  </data>
+  <data name="Start_days" xml:space="preserve">
+    <value>Jours de début</value>
+  </data>
+  <data name="Guarantee_type_management" xml:space="preserve">
+    <value>Gestion des types de garantié</value>
+  </data>
+  <data name="Real_safety" xml:space="preserve">
+    <value>Sécurité réelle</value>
+  </data>
+  <data name="State_guarantee" xml:space="preserve">
+    <value>Garantie d'état</value>
+  </data>
 </root>

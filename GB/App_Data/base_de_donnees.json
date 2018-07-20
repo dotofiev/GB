@@ -49,6 +49,15 @@
       "libelle_fr": "Paramètres du budget",
       "icon": "fa fa-cogs",
       "controller": "ConfigurationBudget"
+    },
+    {
+      "id": "5",
+      "id_module": "2",
+      "code": "5",
+      "libelle_en": "Operation parameters",
+      "libelle_fr": "Paramètres des opérations",
+      "icon": "fa fa-cogs",
+      "controller": "ConfigurationOperation"
     }
   ],
   "menus": [
@@ -317,6 +326,60 @@
       "libelle_fr": "Autorité de signature",
       "view": "AutoriteSignature",
       "id_controller": "4"
+    },
+
+    // ------------ //
+    // -- Parent -- //
+    // ------------ //
+    {
+      "id": "28",
+      "code": "28",
+      "id_groupe_menu": "5",
+      "libelle_en": "Loans parameters",
+      "libelle_fr": "Paramètres des prêts",
+      "view": "",
+      "id_controller": "5"
+    },
+    // -- Enfants -- //
+    {
+      "id": "29",
+      "code": "29",
+      "id_menu_parent": "28",
+      "id_groupe_menu": "5",
+      "libelle_en": "Loan type",
+      "libelle_fr": "Types de prêt",
+      "view": "TypePret",
+      "id_controller": "5"
+    },
+    {
+      "id": "30",
+      "code": "30",
+      "id_menu_parent": "28",
+      "id_groupe_menu": "5",
+      "libelle_en": "Loans purpose",
+      "libelle_fr": "Motifs de prêt",
+      "view": "MotifPret",
+      "id_controller": "5"
+    },
+    {
+      "id": "31",
+      "code": "31",
+      "id_menu_parent": "28",
+      "id_groupe_menu": "5",
+      "libelle_en": "Loans provision classification",
+      "libelle_fr": "Classification des provisions pour prêts",
+      "view": "ClassificationProvisionsPret",
+      "id_controller": "5"
+    },
+    {
+      "id": "32",
+      "code": "32",
+      "id_menu_parent": "28",
+      "id_groupe_menu": "5",
+      "libelle_en": "Guarantee type",
+      "libelle_fr": "Types de garantie",
+      "view": "TypeGarantie",
+      "id_controller": "5"
     }
   ],
   "roles": [
@@ -640,6 +703,56 @@
       "id": "28",
       "id_role": "1",
       "id_menu": "27",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "29",
+      "id_role": "1",
+      "id_menu": "28",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "30",
+      "id_role": "1",
+      "id_menu": "29",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "31",
+      "id_role": "1",
+      "id_menu": "30",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "32",
+      "id_role": "1",
+      "id_menu": "31",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "33",
+      "id_role": "1",
+      "id_menu": "32",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -1062,6 +1175,93 @@
       "credit_max_client": "20000000000",
       "montant_max_ligne_credit": "500000000",
       "montant_limite_pret": "400000000"
+    }
+  ],
+  "types_pret": [
+    {
+      "id": "1",
+      "code": "CCM",
+      "libelle": "MEDIUM TERM LOANS",
+      "periode_debut": "0",
+      "periode_fin": "0",
+      "periodicite": "MOIS"
+    },
+    {
+      "id": "2",
+      "code": "CCT",
+      "libelle": "SHORT TERM LOANS",
+      "periode_debut": "0",
+      "periode_fin": "48",
+      "periodicite": "MOIS"
+    }
+  ],
+  "motifs_pret": [
+    {
+      "id": "1",
+      "code": "01",
+      "libelle": "EDUCATION"
+    },
+    {
+      "id": "2",
+      "code": "02",
+      "libelle": "HEALTH"
+    },
+    {
+      "id": "3",
+      "code": "03",
+      "libelle": "CONSOMMATION"
+    },
+    {
+      "id": "4",
+      "code": "04",
+      "libelle": "COMMERCE"
+    },
+    {
+      "id": "5",
+      "code": "05",
+      "libelle": "BUILD"
+    }
+  ],
+  "classification_provisions_pret": [
+    {
+      "id": "1",
+      "code": "01",
+      "libelle": "Short term loan provision",
+      "nombre_jour_debut": "1",
+      "nombre_jour_fin": "28",
+      "pourcentage": "15",
+      "formule": "BETWEEN",
+      "type": "CAUTIONED"
+    },
+    {
+      "id": "1",
+      "code": "02",
+      "libelle": "Short term loan provision",
+      "nombre_jour_debut": "29",
+      "nombre_jour_fin": "59",
+      "pourcentage": "15",
+      "formule": "BETWEEN",
+      "type": "CAUTIONED"
+    }
+  ],
+  "types_garantie": [
+    {
+      "id": "1",
+      "code": "100",
+      "id_utilisateur": "99999",
+      "libelle_en": "House",
+      "libelle_fr": "Maison",
+      "nature": "GarantieEtat",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "120",
+      "id_utilisateur": "99999",
+      "libelle_en": "Land titre",
+      "libelle_fr": "Titre foncier",
+      "nature": "SureteReelle",
+      "date_creation": "636670881645418146"
     }
   ]
 }

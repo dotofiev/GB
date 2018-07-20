@@ -52,33 +52,37 @@ namespace GB.Controllers
                 #region SecuriteUtilisateur-Utilisateur
                 if (id_page == GB_Enum_Menu.SecuriteUtilisateur_Utilisateur)
                 {
-                    foreach (var val in UtilisateurDAO.Lister())
+                    // -- Si la vue n'est pas soumise -- //
+                    if (string.IsNullOrEmpty(id_vue))
                     {
-                        donnee.Add(
-                            new
-                            {
-                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"utilisateur\" value=\"utilisateur_{val.id_utilisateur}\">",
-                                col_4 = val.agence?.code ?? string.Empty,
-                                col_2 = val.compte,
-                                col_3 = val.nom_utilisateur,
-                                col_5 = val.profession?.libelle ?? string.Empty,
-                                col_6 = GBToString.Oui_Non(val.ouverture_back_date),
-                                col_7 = GBToString.Oui_Non(val.ouverture_branch),
-                                col_8 = GBToString.Oui_Non(val.ouverture_back_date_travail),
-                                col_9 = GBToString.Oui_Non(val.est_suspendu),
-                                col_10 = GBToString.Oui_Non(val.acces_historique_compte),
-                                col_11 = $"{val.duree_mot_de_passe} {App_Lang.Lang.Month}(s)",
-                                col_12 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                        foreach (var val in UtilisateurDAO.Lister())
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"utilisateur\" value=\"utilisateur_{val.id_utilisateur}\">",
+                                    col_4 = val.agence?.code ?? string.Empty,
+                                    col_2 = val.compte,
+                                    col_3 = val.nom_utilisateur,
+                                    col_5 = val.profession?.libelle ?? string.Empty,
+                                    col_6 = GBToString.Oui_Non(val.ouverture_back_date),
+                                    col_7 = GBToString.Oui_Non(val.ouverture_branch),
+                                    col_8 = GBToString.Oui_Non(val.ouverture_back_date_travail),
+                                    col_9 = GBToString.Oui_Non(val.est_suspendu),
+                                    col_10 = GBToString.Oui_Non(val.acces_historique_compte),
+                                    col_11 = $"{val.duree_mot_de_passe} {App_Lang.Lang.Month}(s)",
+                                    col_12 = val.autorite_signature?.code ?? string.Empty,
+                                    col_13 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
                                                               title=""{Lang.Delete}"" 
                                                               class=""btn btn-xs btn-round""
                                                               onClick=""table_donnee_supprimer({ids}, true)""
                                                               data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
                                           <i class=""fa fa-minus text-danger""></i>
                                         </button>"
-                                        .Replace("{id}", val.id_utilisateur.ToString())
-                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id_utilisateur }))
-                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
-                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                            .Replace("{id}", val.id_utilisateur.ToString())
+                                            .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id_utilisateur }))
+                                            .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                            .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
                                 //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
                                 //                              title=""{Lang.Update}"" 
                                 //                              class=""btn btn-xs btn-round""
@@ -98,7 +102,57 @@ namespace GB.Controllers
                                 //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
                                 //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
                             }
-                        );
+                            );
+                        }
+                    }
+                    else if (id_vue == "autoriteSignature")
+                    {
+                        foreach (var val in AutoriteSignatureDAO.Lister())
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    //col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"autoriteSignature\" value=\"autoriteSignature_{val.id}\">",
+                                    col_2 = val.code,
+                                    col_3 = val.libelle,
+                                    col_4 = GBToString.MontantToString(val.montant_signature),
+                                    col_5 = GBToString.MontantToString(val.limite_decouvert_client),
+                                    col_6 = GBToString.MontantToString(val.debit_max_client),
+                                    col_7 = GBToString.MontantToString(val.credit_max_client),
+                                    col_8 = GBToString.MontantToString(val.montant_max_ligne_credit),
+                                    col_9 = GBToString.MontantToString(val.montant_limite_pret),
+                                    //col_10 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                    //                          title=""{Lang.Delete}"" 
+                                    //                          class=""btn btn-xs btn-round""
+                                    //                          onClick=""table_donnee_supprimer({ids}, true)""
+                                    //                          data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                    //      <i class=""fa fa-minus text-danger""></i>
+                                    //    </button>"
+                                    //        .Replace("{id}", val.id.ToString())
+                                    //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                    //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                    //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                                //                              title=""{Lang.Update}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_modifier({id})""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-retweet text-warning""></i>
+                                //        </button>
+                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                //                              title=""{Lang.Delete}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_supprimer({ids}, true)""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-minus text-danger""></i>
+                                //        </button>"
+                                //        .Replace("{id}", val.id.ToString())
+                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                            }
+                            );
+                        }
                     }
                 }
                 #endregion
@@ -186,7 +240,9 @@ namespace GB.Controllers
                                                         est_suspendu = obj.est_suspendu.ToString(),
                                                         modifier_mot_de_passe = obj.modifier_mot_de_passe.ToString(),
                                                         acces_historique_compte = obj.acces_historique_compte.ToString(),
-                                                        duree_mot_de_passe = obj.duree_mot_de_passe
+                                                        duree_mot_de_passe = obj.duree_mot_de_passe,
+                                                        id_autorite_signature = obj.id_autorite_signature,
+                                                        code_autorite_signature = obj.autorite_signature?.code?? string.Empty
                                                     }
                                                );
                 }
@@ -419,22 +475,21 @@ namespace GB.Controllers
                 this.ViewBag.Lang.Confirm = App_Lang.Lang.Confirm;
                 this.ViewBag.Lang.Activate_edit = App_Lang.Lang.Activate_edit;
                 this.ViewBag.Lang.Expiration_duration = App_Lang.Lang.Expiration_duration;
+                this.ViewBag.Lang.Signing_authority = App_Lang.Lang.Signing_authority;
+                this.ViewBag.Lang.Signing_amount = App_Lang.Lang.Signing_amount;
+                this.ViewBag.Lang.Customer_overdraft_limit = App_Lang.Lang.Customer_overdraft_limit;
+                this.ViewBag.Lang.Customer_max_debit = App_Lang.Lang.Customer_max_debit;
+                this.ViewBag.Lang.Customer_max_credit = App_Lang.Lang.Customer_max_credit;
+                this.ViewBag.Lang.Line_of_credit_max_amount = App_Lang.Lang.Line_of_credit_max_amount;
+                this.ViewBag.Lang.Loan_limit_amount = App_Lang.Lang.Loan_limit_amount;
+                this.ViewBag.Lang.Select = App_Lang.Lang.Select;
                 #endregion
 
                 // -- Données -- //
                 #region Données
                 #region HTML_Select_agence
-                this.ViewBag.donnee.HTML_Select_code_agence =
-                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                this.ViewBag.donnee.HTML_Select_libelle_agence =
-                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                foreach (var val in AgenceDAO.Lister())
-                {
-                    this.ViewBag.donnee.HTML_Select_code_agence +=
-                        $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
-                    this.ViewBag.donnee.HTML_Select_libelle_agence +=
-                        $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
-                }
+                this.ViewBag.donnee.HTML_Select_code_agence = AgenceDAO.HTML_Select("code");
+                this.ViewBag.donnee.HTML_Select_libelle_agence = AgenceDAO.HTML_Select("libelle");
                 #endregion
                 #region HTML_Select_profession
                 this.ViewBag.donnee.HTML_Select_code_profession = ProfessionDAO.HTML_Select("code");

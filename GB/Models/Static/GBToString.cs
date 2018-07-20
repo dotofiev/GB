@@ -38,5 +38,38 @@ namespace GB.Models.Static
                     }
                 );
         }
+
+        public static string PeriodiciteDePret(string donnee)
+        {
+            return
+                donnee == "MOIS" ? App_Lang.Lang.Month
+                                 : donnee == "TRIMESTRE" ? App_Lang.Lang.Quarter
+                                                         : donnee == "ANNEE" ? App_Lang.Lang.Year
+                                                                             : string.Empty;
+        }
+
+        public static string TypeClassificationProvisionsPret(string donnee)
+        {
+            return
+                donnee == "CAUTIONED" ? App_Lang.Lang.Cautioned
+                                      : donnee == "MORTGAGE" ? App_Lang.Lang.Mortgage
+                                                             : string.Empty;
+        }
+
+        public static string FormuleClassificationProvisionsPret(string donnee)
+        {
+            return
+                donnee == "BETWEEN" ? App_Lang.Lang.Between
+                                      : donnee == "GREATER THAN" ? App_Lang.Lang.Greater_than
+                                                                 : string.Empty;
+        }
+
+        public static string NatureTypeGarantie(string donnee)
+        {
+            return
+                donnee == "GarantieEtat" ? App_Lang.Lang.State_guarantee
+                                         : donnee == "SureteReelle" ? App_Lang.Lang.Real_safety
+                                                                    : string.Empty;
+        }
     }
 }

@@ -32,6 +32,10 @@ namespace GB.Models.Tests
         public List<DirectionBudget> direction_dudget { get; set; }
         public List<CongeBanque> conges_banque { get; set; }
         public List<AutoriteSignature> autorites_signature { get; set; }
+        public List<TypePret> types_pret { get; set; }
+        public List<MotifPret> motifs_pret { get; set; }
+        public List<ClassificationProvisionsPret> classification_provisions_pret { get; set; }
+        public List<TypeGarantie> types_garantie { get; set; }
 
         public BD() { }
     }

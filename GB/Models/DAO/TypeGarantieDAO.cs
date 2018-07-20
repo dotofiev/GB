@@ -8,14 +8,14 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public abstract class AgenceDAO : GBDAO
+    public abstract class TypeGarantieDAO : GBDAO
     {
-        public static void Ajouter(Agence obj)
+        public static void Ajouter(TypeGarantie obj, long id_utilisateur)
         {
             try
             {
                 // -- Unicité du code -- //
-                if (Program.db.agences.Exists(l => l.code == obj.code))
+                if (Program.db.types_garantie.Exists(l => l.code == obj.code))
                 {
                     throw new GBException(App_Lang.Lang.Existing_data + " [code]");
                 }
@@ -23,11 +23,15 @@ namespace GB.Models.DAO
                 // -- Définition de l'identifiant -- //
                 obj.Crer_Id();
 
-                // -- Mise à jour des references -- //
-                obj.utilisateur = UtilisateurDAO.Object(obj.id_utilisateur);
+                // -- Mise à jour de la date de creation -- //
+                obj.date_creation = DateTime.Now.Ticks;
+
+                // -- Mise à jour des refenreces -- //
+                obj.id_utilisateur = id_utilisateur;
+                obj.utilisateur_createur = UtilisateurDAO.Object(id_utilisateur);
 
                 // -- Enregistrement de la valeur -- //
-                Program.db.agences.Add(obj);
+                Program.db.types_garantie.Add(obj);
             }
             #region Catch
             catch (Exception ex)
@@ -50,18 +54,18 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(Agence obj)
+        public static void Modifier(TypeGarantie obj)
         {
             try
             {
                 // -- Unicité du code -- //
-                if (Program.db.agences.Exists(l => l.id != obj.id && l.code == obj.code))
+                if (Program.db.types_garantie.Exists(l => l.id != obj.id && l.code == obj.code))
                 {
                     throw new GBException(App_Lang.Lang.Existing_data + " [code]");
                 }
 
                 // -- Modification de la valeur -- //
-                Program.db.agences
+                Program.db.types_garantie
                     // -- Spécifier la recherche -- //
                     .Where(l => l.id == obj.id)
                     // -- Lister le résultat -- //
@@ -71,19 +75,9 @@ namespace GB.Models.DAO
                     {
                         // -- Mise à jour de l'enregistrement -- //
                         l.code = obj.code;
-                        l.libelle = obj.libelle;
-                        l.id_utilisateur = obj.id_utilisateur;
-                        l.utilisateur = UtilisateurDAO.Object(obj.id_utilisateur);
-                        l.adresse = obj.adresse;
-                        l.ville = obj.ville;
-                        l.bp = obj.bp;
-                        l.telephone = obj.telephone;
-                        l.pays = obj.pays;
-                        l.fax = obj.fax;
-                        l.cobac_id = obj.cobac_id;
-                        l.beac_id = obj.beac_id;
-                        l.ip = obj.ip;
-                        l.mot_de_passe = obj.mot_de_passe;
+                        l.nature = obj.nature;
+                        l.libelle_en = obj.libelle_en;
+                        l.libelle_fr = obj.libelle_fr;
                     });
             }
             #region Catch
@@ -115,7 +109,7 @@ namespace GB.Models.DAO
                 ids.ForEach(id =>
                 {
                     // -- Suppression des valeurs -- //
-                    Program.db.agences.RemoveAll(l => l.id == id);
+                    Program.db.types_garantie.RemoveAll(l => l.id == id);
                 });
             }
             #region Catch
@@ -139,13 +133,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Agence> Lister()
+        public static List<TypeGarantie> Lister()
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.agences;
+                    Program.db.types_garantie;
             }
             #region Catch
             catch (Exception ex)
@@ -168,13 +162,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Agence Object(string code)
+        public static TypeGarantie Object(string code)
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.agences.FirstOrDefault(l => l.code == code);
+                    Program.db.types_garantie.FirstOrDefault(l => l.code == code);
             }
             #region Catch
             catch (Exception ex)
@@ -197,13 +191,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Agence Object(long id)
+        public static TypeGarantie Object(int id)
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.agences.FirstOrDefault(l => l.id == id);
+                    Program.db.types_garantie.FirstOrDefault(l => l.id == id);
             }
             #region Catch
             catch (Exception ex)
@@ -226,51 +220,5 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static string HTML_Select(string champ)
-        {
-            try
-            {
-                // -- Valeur vide -- //
-                string HTML = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-
-                // -- Ajout des options -- //
-                // -- Pour le champ code -- //
-                if (champ == "code")
-                {
-                    foreach (var val in Lister())
-                    {
-                        HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
-                    }
-                }
-                else if (champ == "libelle")
-                {
-                    foreach (var val in Lister())
-                    {
-                        HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
-                    }
-                }
-
-                return HTML;
-            }
-            #region Catch
-            catch (Exception ex)
-            {
-                // -- Vérifier la nature de l'exception -- //
-                if (!GBException.Est_GBexception(ex))
-                {
-                    // -- Log -- //
-                    GBClass.Log.Error(ex);
-
-                    // -- Renvoyer l'exception -- //
-                    throw new GBException(App_Lang.Lang.Error_message_notification);
-                }
-                else
-                {
-                    // -- Renvoyer l'exception -- //
-                    throw new GBException(ex.Message);
-                }
-            }
-            #endregion
-        }
     }
 }

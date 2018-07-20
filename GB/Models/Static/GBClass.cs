@@ -123,5 +123,46 @@ namespace GB.Models.Static
                 $"<option value=\"{"GARANTIE DEPOSIT"}\" title=\"{App_Lang.Lang.Garantie_deposit}\">{App_Lang.Lang.Current}</option>" +
                 $"<option value=\"{"COLLECTION"}\" title=\"{"Collection"}\">{"Collection"}</option>";
         }
+
+        /// <summary>
+        /// Obtenir les options de combo box de péiodidcité de prêt
+        /// </summary>
+        public static string HTML_periodicite_de_pret()
+        {
+            return
+                $"<option value=\"{"MOIS"}\" title=\"{App_Lang.Lang.Month}\">{App_Lang.Lang.Month}</option>" +
+                $"<option value=\"{"TRIMESTRE"}\" title=\"{App_Lang.Lang.Quarter}\">{App_Lang.Lang.Quarter}</option>" +
+                $"<option value=\"{"ANNEE"}\" title=\"{App_Lang.Lang.Year}\">{App_Lang.Lang.Year}</option>";
+        }
+
+        /// <summary>
+        /// Obtenir les options de combo box des types de classification des prets.
+        /// </summary>
+        public static string HTML_type_classification_provisoire_de_pret()
+        {
+            return
+                $"<option value=\"{"CAUTIONED"}\" title=\"{App_Lang.Lang.Cautioned}\">{App_Lang.Lang.Cautioned}</option>" +
+                $"<option value=\"{"MORTGAGE"}\" title=\"{App_Lang.Lang.Mortgage}\">{App_Lang.Lang.Mortgage}</option>";
+        }
+
+        /// <summary>
+        /// Obtenir les options de combo box des types de classification des prets.
+        /// </summary>
+        public static string HTML_formule_classification_provisoire_de_pret()
+        {
+            return
+                $"<option value=\"{"BETWEEN"}\" title=\"{App_Lang.Lang.Between}\">{App_Lang.Lang.Between}</option>" +
+                $"<option value=\"{"GREATER THAN"}\" title=\"{App_Lang.Lang.Greater_than}\">{App_Lang.Lang.Greater_than}</option>";
+        }
+
+        /// <summary>
+        /// Obtenir les options de combo box des nature des type garantie.
+        /// </summary>
+        public static string HTML_nature_type_garantie()
+        {
+            return
+                $"<option value=\"{"GarantieEtat"}\" title=\"{App_Lang.Lang.State_guarantee}\">{App_Lang.Lang.State_guarantee}</option>" +
+                $"<option value=\"{"SureteReelle"}\" title=\"{App_Lang.Lang.Real_safety}\">{App_Lang.Lang.Real_safety}</option>";
+        }
     }
 }
