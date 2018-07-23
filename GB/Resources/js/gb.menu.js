@@ -5,10 +5,10 @@ $(function () {
     // -- Lorsqu'un menu est cliqué -- //
     $('.menu-gb').on("click",
 
-        function (event) {
+        function (e) {
 
             // -- Annuler l'action de soumission -- //
-            event.preventDefault();
+            e.preventDefault();
 
             try {
 
@@ -48,7 +48,8 @@ $(function () {
                     url != '/ConfigurationOperation/TypeGarantie' &&
                     url != '/ConfigurationOperation/Journal' &&
                     url != '/ConfigurationOperation/TypeActif' &&
-                    url != '/ConfigurationOperation/LocalisationActif') {
+                    url != '/ConfigurationOperation/LocalisationActif' &&
+                    url != '/ConfigurationOperation/WesternUnionZonePays') {
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 

@@ -164,5 +164,17 @@ namespace GB.Models.Static
                 $"<option value=\"{"GarantieEtat"}\" title=\"{App_Lang.Lang.State_guarantee}\">{App_Lang.Lang.State_guarantee}</option>" +
                 $"<option value=\"{"SureteReelle"}\" title=\"{App_Lang.Lang.Real_safety}\">{App_Lang.Lang.Real_safety}</option>";
         }
+
+        /// <summary>
+        /// Obtenir les options de combo box des zone de pays.
+        /// </summary>
+        public static string HTML_zone_western_union()
+        {
+            return
+                $"<option value=\"{"CFA"}\" title=\"{"CFA"}\">{"CFA"}</option>" +
+                $"<option value=\"{"FRANCE"}\" title=\"{"FRANCE"}\">{"FRANCE"}</option>" +
+                $"<option value=\"{"INTERNATIONAL"}\" title=\"{"INTERNATIONAL"}\">{"INTERNATIONAL"}</option>" +
+                $"<option value=\"{"NATIONAL"}\" title=\"{"NATIONAL"}\">{"NATIONAL"}</option>";
+        }
     }
 }

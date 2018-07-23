@@ -209,6 +209,7 @@
     <Compile Include="Models\BO\CongeBanque.cs" />
     <Compile Include="Models\BO\AutoriteSignature.cs" />
     <Compile Include="Models\BO\ClassificationProvisionsPret.cs" />
+    <Compile Include="Models\BO\WesternUnionZonePays.cs" />
     <Compile Include="Models\BO\MotifPret.cs" />
     <Compile Include="Models\BO\Journal.cs" />
     <Compile Include="Models\BO\LocalisationActif.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="Models\DAO\CongeBanqueDAO.cs" />
     <Compile Include="Models\DAO\AutoriteSignatureDAO.cs" />
     <Compile Include="Models\DAO\ClassificationProvisionsPretDAO.cs" />
+    <Compile Include="Models\DAO\WesternUnionZonePaysDAO.cs" />
     <Compile Include="Models\DAO\MotifPretDAO.cs" />
     <Compile Include="Models\DAO\JournalDAO.cs" />
     <Compile Include="Models\DAO\LocalisationActifDAO.cs" />
@@ -911,6 +913,7 @@
     <Content Include="Resources\js\Views\ConfigurationOperation-TypeGarantie.js" />
     <Content Include="Resources\js\Views\ConfigurationOperation-Journal.js" />
     <Content Include="Resources\js\Views\ConfigurationOperation-TypeActif.js" />
+    <Content Include="Resources\js\Views\ConfigurationOperation-WesternUnionZonePays.js" />
     <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
@@ -1328,6 +1331,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ConfigurationOperation\LocalisationActif.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationOperation\WesternUnionZonePays\_Modals.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationOperation\WesternUnionZonePays.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

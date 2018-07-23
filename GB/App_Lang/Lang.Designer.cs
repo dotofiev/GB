@@ -439,11 +439,20 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Countrie.
+        ///   Looks up a localized string similar to Country.
         /// </summary>
-        public static string Countrie {
+        public static string Country {
             get {
-                return ResourceManager.GetString("Countrie", resourceCulture);
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country zone.
+        /// </summary>
+        public static string Country_zone {
+            get {
+                return ResourceManager.GetString("Country_zone", resourceCulture);
             }
         }
         
@@ -1983,6 +1992,15 @@ namespace GB.App_Lang {
         public static string Welcome {
             get {
                 return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Western Union country zone management.
+        /// </summary>
+        public static string Western_Union_country_zone_management {
+            get {
+                return ResourceManager.GetString("Western_Union_country_zone_management", resourceCulture);
             }
         }
         

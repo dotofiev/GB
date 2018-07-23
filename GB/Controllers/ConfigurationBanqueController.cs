@@ -1990,7 +1990,7 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Agence_management;
-                this.ViewBag.Lang.Countrie = App_Lang.Lang.Countrie;
+                this.ViewBag.Lang.Country = App_Lang.Lang.Country;
                 this.ViewBag.Lang.Town = App_Lang.Lang.Town;
                 this.ViewBag.Lang.Address = App_Lang.Lang.Address;
                 this.ViewBag.Lang.Phone = App_Lang.Lang.Phone;

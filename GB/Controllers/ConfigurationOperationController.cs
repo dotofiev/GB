@@ -121,6 +121,21 @@ namespace GB.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult WesternUnionZonePays()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Western_Union_country_zone_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays);
+
+            return View();
+        }
         #endregion
 
         #region HttpPost
@@ -476,6 +491,52 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationOperation-WesternUnionZonePays
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+                {
+                    foreach (var val in WesternUnionZonePaysDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"westernUnionZonePays\" value=\"westernUnionZonePays_{val.id}\">",
+                                col_2 = val.pays.libelle,
+                                col_3 = val.zone,
+                                col_4 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                                              title=""{Lang.Delete}"" 
+                                                              class=""btn btn-xs btn-round""
+                                                              onClick=""table_donnee_supprimer({ids}, true)""
+                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                          <i class=""fa fa-minus text-danger""></i>
+                                        </button>"
+                                        .Replace("{id}", val.id.ToString())
+                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                                //                              title=""{Lang.Update}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_modifier({id})""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-retweet text-warning""></i>
+                                //        </button>
+                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                //                              title=""{Lang.Delete}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_supprimer({ids}, true)""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-minus text-danger""></i>
+                                //        </button>"
+                                //        .Replace("{id}", val.id.ToString())
+                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
                 #region TypePret introuvable
                 else
                 {
@@ -707,6 +768,32 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationOperation-WesternUnionZonePays
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = WesternUnionZonePaysDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        id_pays = obj.pays.id,
+                                                        code_pays = obj.pays.code,
+                                                        libelle_pays = obj.pays.libelle,
+                                                        zone = obj.zone,
+                                                    }
+                                               );
+                }
+                #endregion
+
                 #region TypePret introuvable
                 else
                 {
@@ -803,6 +890,14 @@ namespace GB.Controllers
                 {
                     // -- Service d'enregistrement -- //
                     LocalisationActifDAO.Ajouter(GBConvert.JSON_To<LocalisationActif>(obj));
+                }
+                #endregion
+
+                #region ConfigurationOperation-WesternUnionZonePays
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+                {
+                    // -- Service d'enregistrement -- //
+                    WesternUnionZonePaysDAO.Ajouter(GBConvert.JSON_To<WesternUnionZonePays>(obj));
                 }
                 #endregion
 
@@ -908,6 +1003,14 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationOperation-WesternUnionZonePays
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+                {
+                    // -- Service de modification -- //
+                    WesternUnionZonePaysDAO.Modifier(GBConvert.JSON_To<WesternUnionZonePays>(obj));
+                }
+                #endregion
+
                 #region TypePret introuvable
                 else
                 {
@@ -1010,6 +1113,14 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationOperation-WesternUnionZonePays
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+                {
+                    // -- Service de suppression -- //
+                    WesternUnionZonePaysDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
                 #region TypePret introuvable
                 else
                 {
@@ -1044,6 +1155,59 @@ namespace GB.Controllers
             return Json(
                 GBConvert.To_Object(this.ViewBag)
             );
+        }
+
+        // -- Charger les données dans le auto complete -- //
+        public override object Charger_EasyAutocomplete(string id_page, string id_vue)
+        {
+            List<object> donnee = new List<object>();
+
+            try
+            {
+                #region ConfigurationOperation-WesternUnionZonePays
+                if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+                {
+                    // -- Si la vue n'est pas retourné -- //
+                    #region pays
+                    if (string.IsNullOrEmpty(id_vue))
+                    {
+                        // -- Si la liste des pays en session est vide, la mettre à jour -- //
+                        if ((this.con.donnee.pays as List<Pays>).Count == 0)
+                        {
+                            this.con.donnee.pays = PaysDAO.Lister();
+                        }
+
+                        // -- Charger la liste des résultats -- //
+                        foreach (var val in (this.con.donnee.pays as List<Pays>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    id = val.id,
+                                    code = val.code,
+                                    libelle = val.libelle,
+                                }
+                            );
+                        }
+                    }
+                    #endregion
+                }
+                #endregion
+            }
+            #region catch & finally
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return GBConvert.To_JSONString(donnee);
         }
         #endregion
 
@@ -1246,6 +1410,40 @@ namespace GB.Controllers
                                                     }
                                                 }
                                             );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationOperation-WesternUnionZonePays
+            else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Western_Union_country_zone_management;
+                this.ViewBag.Lang.Country = App_Lang.Lang.Country;
+                this.ViewBag.Lang.Search_by = App_Lang.Lang.Search_by;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.donnee.HTML_Select_zone = GBClass.HTML_zone_western_union();
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Western_Union_country_zone_management
+                                                    }
+                                                }
+                                            );
+                // -- Vider les données temporaire -- //
+                this.con.Vider_Donnee();
+                // - Mise à jour des données de vue -- //
+                // -- Pays -- //
+                this.con.donnee.pays = new List<Pays>();
                 #endregion
             }
             #endregion

@@ -423,8 +423,8 @@
   <data name="Branch_manager" xml:space="preserve">
     <value>Branch manager</value>
   </data>
-  <data name="Countrie" xml:space="preserve">
-    <value>Countrie</value>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
   </data>
   <data name="Erasing" xml:space="preserve">
     <value>Erasing</value>
@@ -764,5 +764,11 @@
   </data>
   <data name="Asset_location_management" xml:space="preserve">
     <value>Asset location management</value>
+  </data>
+  <data name="Country_zone" xml:space="preserve">
+    <value>Country zone</value>
+  </data>
+  <data name="Western_Union_country_zone_management" xml:space="preserve">
+    <value>Western Union country zone management</value>
   </data>
 </root>

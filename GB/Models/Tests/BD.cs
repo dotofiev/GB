@@ -39,6 +39,7 @@ namespace GB.Models.Tests
         public List<Journal> journaux { get; set; }
         public List<TypeActif> types_actif { get; set; }
         public List<LocalisationActif> localisations_actif { get; set; }
+        public List<WesternUnionZonePays> western_union_zones_pays { get; set; }
 
         public BD() { }
     }

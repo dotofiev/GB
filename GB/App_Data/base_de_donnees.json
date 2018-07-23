@@ -293,7 +293,7 @@
       "code": "24",
       "id_menu_parent": "18",
       "id_groupe_menu": "3",
-      "libelle_en": "Countries",
+      "libelle_en": "Country",
       "libelle_fr": "Pays",
       "view": "Pays",
       "id_controller": "3"
@@ -425,6 +425,33 @@
       "view": "LocalisationActif",
       "id_controller": "5"
     },
+    // -- ./Enfants -- //
+    
+
+    // ------------ //
+    // -- Parent -- //
+    // ------------ //
+    {
+      "id": "37",
+      "code": "37",
+      "id_groupe_menu": "5",
+      "libelle_en": "Western Union",
+      "libelle_fr": "Western Union",
+      "view": "",
+      "id_controller": "5"
+    },
+    // -- Enfants -- //
+    {
+      "id": "38",
+      "code": "38",
+      "id_menu_parent": "37",
+      "id_groupe_menu": "5",
+      "libelle_en": "Contry zones",
+      "libelle_fr": "Zone pays",
+      "view": "WesternUnionZonePays",
+      "id_controller": "5"
+    },
+    // -- ./Enfants -- //
   ],
   "roles": [
     {
@@ -837,6 +864,26 @@
       "id": "37",
       "id_role": "1",
       "id_menu": "36",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "38",
+      "id_role": "1",
+      "id_menu": "37",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "39",
+      "id_role": "1",
+      "id_menu": "38",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -1390,4 +1437,11 @@
       "date_creation": "636670881645418146"
     }
   ],
+  "western_union_zones_pays": [
+    {
+      "id": "1",
+      "id_pays": "1",
+      "zone": "NATIONAL"
+    }
+  ]
 }

@@ -424,7 +424,7 @@
   <data name="Branch_manager" xml:space="preserve">
     <value>Chef d'agence</value>
   </data>
-  <data name="Countrie" xml:space="preserve">
+  <data name="Country" xml:space="preserve">
     <value>Pays</value>
   </data>
   <data name="Erasing" xml:space="preserve">
@@ -765,5 +765,11 @@
   </data>
   <data name="Asset_location_management" xml:space="preserve">
     <value>Gestion de la localisation des immobilisations</value>
+  </data>
+  <data name="Country_zone" xml:space="preserve">
+    <value>Zone des pays</value>
+  </data>
+  <data name="Western_Union_country_zone_management" xml:space="preserve">
+    <value>Gestion des zones de pays Western Union</value>
   </data>
 </root>

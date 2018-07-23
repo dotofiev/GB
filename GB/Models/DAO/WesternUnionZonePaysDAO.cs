@@ -8,30 +8,26 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public abstract class PaysDAO : GBDAO
+    public abstract class WesternUnionZonePaysDAO : GBDAO
     {
-        public static void Ajouter(Pays obj, long id_utilisateur)
+        public static void Ajouter(WesternUnionZonePays obj)
         {
             try
             {
                 // -- Unicité du code -- //
-                if (Program.db.pays.Exists(l => l.code == obj.code))
+                if (Program.db.western_union_zones_pays.Exists(l => l.id_pays == obj.id_pays))
                 {
-                    throw new GBException(App_Lang.Lang.Existing_data + " [code]");
+                    throw new GBException(App_Lang.Lang.Existing_data + " [" + App_Lang.Lang.Country + "]");
                 }
 
                 // -- Définition de l'identifiant -- //
                 obj.Crer_Id();
 
-                // -- Mise à jour de la date de creation -- //
-                obj.date_creation = DateTime.Now.Ticks;
-
-                // -- Mise à jour des refenreces -- //
-                obj.id_utilisateur = id_utilisateur;
-                obj.utilisateur_createur = UtilisateurDAO.Object(id_utilisateur);
+                // -- Mise à jour reference pays -- //
+                obj.pays = PaysDAO.Object(obj.id_pays);
 
                 // -- Enregistrement de la valeur -- //
-                Program.db.pays.Add(obj);
+                Program.db.western_union_zones_pays.Add(obj);
             }
             #region Catch
             catch (Exception ex)
@@ -54,18 +50,18 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(Pays obj)
+        public static void Modifier(WesternUnionZonePays obj)
         {
             try
             {
                 // -- Unicité du code -- //
-                if (Program.db.pays.Exists(l => l.id != obj.id && l.code == obj.code))
+                if (Program.db.western_union_zones_pays.Exists(l => l.id != obj.id && l.id_pays == obj.id_pays))
                 {
-                    throw new GBException(App_Lang.Lang.Existing_data + " [code]");
+                    throw new GBException(App_Lang.Lang.Existing_data + " [" + App_Lang.Lang.Country + "]");
                 }
 
                 // -- Modification de la valeur -- //
-                Program.db.pays
+                Program.db.western_union_zones_pays
                     // -- Spécifier la recherche -- //
                     .Where(l => l.id == obj.id)
                     // -- Lister le résultat -- //
@@ -74,9 +70,9 @@ namespace GB.Models.DAO
                     .ForEach(l =>
                     {
                         // -- Mise à jour de l'enregistrement -- //
-                        l.code = obj.code;
-                        l.code_telephone = obj.code_telephone;
-                        l.libelle = obj.libelle;
+                        l.id_pays = obj.id_pays;
+                        l.pays = PaysDAO.Object(obj.id_pays);
+                        l.zone = obj.zone;
                     });
             }
             #region Catch
@@ -108,7 +104,7 @@ namespace GB.Models.DAO
                 ids.ForEach(id =>
                 {
                     // -- Suppression des valeurs -- //
-                    Program.db.pays.RemoveAll(l => l.id == id);
+                    Program.db.western_union_zones_pays.RemoveAll(l => l.id == id);
                 });
             }
             #region Catch
@@ -132,13 +128,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Pays> Lister()
+        public static List<WesternUnionZonePays> Lister()
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.pays;
+                    Program.db.western_union_zones_pays;
             }
             #region Catch
             catch (Exception ex)
@@ -161,13 +157,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Pays Object(string code)
+        public static WesternUnionZonePays Object(string code)
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.pays.FirstOrDefault(l => l.code == code);
+                    Program.db.western_union_zones_pays.FirstOrDefault(l => l.code == code);
             }
             #region Catch
             catch (Exception ex)
@@ -189,14 +185,14 @@ namespace GB.Models.DAO
             }
             #endregion
         }
-
-        public static Pays Object(long id)
+        
+        public static WesternUnionZonePays Object(long id)
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.pays.FirstOrDefault(l => l.id == id);
+                    Program.db.western_union_zones_pays.FirstOrDefault(l => l.id == id);
             }
             #region Catch
             catch (Exception ex)
@@ -218,6 +214,5 @@ namespace GB.Models.DAO
             }
             #endregion
         }
-
     }
 }
