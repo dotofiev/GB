@@ -131,6 +131,11 @@ namespace GB.Controllers
             this.ViewBag.Lang.Yes       = App_Lang.Lang.Yes;
             this.ViewBag.Lang.No        = App_Lang.Lang.No;
             this.ViewBag.Lang.Modify    = App_Lang.Lang.Modify;
+            this.ViewBag.Lang.Name = App_Lang.Lang.Name;
+            this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
+            this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
+            this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
+            this.ViewBag.Lang.Employee = App_Lang.Lang.Employee;
 
             // -- Autre -- //
             this.ViewBag.Lang.List_of_records = App_Lang.Lang.List_of_records;

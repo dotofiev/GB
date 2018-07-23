@@ -756,4 +756,7 @@
   <data name="State_guarantee" xml:space="preserve">
     <value>State guarantee</value>
   </data>
+  <data name="Journals_recording_management" xml:space="preserve">
+    <value>Journals recording management</value>
+  </data>
 </root>

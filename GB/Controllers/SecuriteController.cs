@@ -975,8 +975,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Role_and_privilege_management;
-                this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
-                this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
                 this.ViewBag.Lang.Rules = App_Lang.Lang.Rules;
                 this.ViewBag.Lang.Enable = App_Lang.Lang.Enable;
                 this.ViewBag.Lang.Disable = App_Lang.Lang.Disable;
@@ -986,7 +984,6 @@ namespace GB.Controllers
                 this.ViewBag.Lang.Print = App_Lang.Lang.Print;
                 this.ViewBag.Lang.Listing = App_Lang.Lang.Listing;
                 this.ViewBag.Lang.Save = App_Lang.Lang.Save;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 this.ViewBag.Lang.Rule_Management = App_Lang.Lang.Rule_Management;
                 this.ViewBag.Lang.Privilege_management = App_Lang.Lang.Privilege_management;
                 this.ViewBag.Lang.Search_a_role = App_Lang.Lang.Search_a_role;
@@ -1051,8 +1048,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Menu_Management;
-                this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
-                this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
                 this.ViewBag.Lang.Menu_group = App_Lang.Lang.Menu_group;
                 this.ViewBag.Lang.Views = App_Lang.Lang.Views;
                 this.ViewBag.Lang.Select = App_Lang.Lang.Select;

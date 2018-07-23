@@ -898,6 +898,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Journals recording management.
+        /// </summary>
+        public static string Journals_recording_management {
+            get {
+                return ResourceManager.GetString("Journals_recording_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Judicial products management.
         /// </summary>
         public static string Judicial_products_management {

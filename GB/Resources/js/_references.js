@@ -380,6 +380,7 @@
 /// <reference path="views/configurationbudget-directionbudget.js" />
 /// <reference path="views/configurationbudget-exercicefiscal.js" />
 /// <reference path="views/configurationoperation-classificationprovisionspret.js" />
+/// <reference path="views/configurationoperation-journal.js" />
 /// <reference path="views/configurationoperation-motifpret.js" />
 /// <reference path="views/configurationoperation-typegarantie.js" />
 /// <reference path="views/configurationoperation-typepret.js" />

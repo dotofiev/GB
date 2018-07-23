@@ -380,7 +380,17 @@
       "libelle_fr": "Types de garantie",
       "view": "TypeGarantie",
       "id_controller": "5"
-    }
+    },
+    // -- ./Enfants -- //
+    {
+      "id": "33",
+      "code": "33",
+      "id_groupe_menu": "5",
+      "libelle_en": "Journals recording",
+      "libelle_fr": "Enregistrement des journaux",
+      "view": "Journal",
+      "id_controller": "5"
+    },
   ],
   "roles": [
     {
@@ -753,6 +763,16 @@
       "id": "33",
       "id_role": "1",
       "id_menu": "32",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "34",
+      "id_role": "1",
+      "id_menu": "33",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -1263,5 +1283,25 @@
       "nature": "SureteReelle",
       "date_creation": "636670881645418146"
     }
+  ],
+  "journaux": [
+    {
+      "id": "1",
+      "code": "CA01",
+      "libelle": "Cashier 01",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "CA02",
+      "libelle": "Cashier 02",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "3",
+      "code": "CA03",
+      "libelle": "Cashier 03",
+      "date_creation": "636670881645418146"
+    },
   ]
 }

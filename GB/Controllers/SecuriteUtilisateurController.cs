@@ -515,7 +515,6 @@ namespace GB.Controllers
                 #region Langue
                 this.ViewBag.Lang.Description_page  = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.User_Management;
                 this.ViewBag.Lang.Login = App_Lang.Lang.Login;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 this.ViewBag.Lang.Agency = App_Lang.Lang.Agency;
                 this.ViewBag.Lang.Job = App_Lang.Lang.Job;
                 this.ViewBag.Lang.Open_back_date = App_Lang.Lang.Open_back_date;

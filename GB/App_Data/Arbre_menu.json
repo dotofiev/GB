@@ -65,7 +65,8 @@
       "TypePret",
       "MotifPret",
       "ClassificationProvisionsPret",
-      "TypeGarantie"
+      "TypeGarantie",
+      "Journal",
     ]
   }
 ]

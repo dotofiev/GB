@@ -210,6 +210,7 @@
     <Compile Include="Models\BO\AutoriteSignature.cs" />
     <Compile Include="Models\BO\ClassificationProvisionsPret.cs" />
     <Compile Include="Models\BO\MotifPret.cs" />
+    <Compile Include="Models\BO\Journal.cs" />
     <Compile Include="Models\BO\TypeGarantie.cs" />
     <Compile Include="Models\BO\TypePret.cs" />
     <Compile Include="Models\BO\UniteInstitutionnelle.cs" />
@@ -243,6 +244,7 @@
     <Compile Include="Models\DAO\AutoriteSignatureDAO.cs" />
     <Compile Include="Models\DAO\ClassificationProvisionsPretDAO.cs" />
     <Compile Include="Models\DAO\MotifPretDAO.cs" />
+    <Compile Include="Models\DAO\JournalDAO.cs" />
     <Compile Include="Models\DAO\TypeGarantieDAO.cs" />
     <Compile Include="Models\DAO\TypePretDAO.cs" />
     <Compile Include="Models\DAO\UniteInstitutionnelleDAO.cs" />
@@ -902,6 +904,7 @@
     <Content Include="Resources\js\Views\ConfigurationBudget-AutoriteSignature.js" />
     <Content Include="Resources\js\Views\ConfigurationOperation-TypePret.js" />
     <Content Include="Resources\js\Views\ConfigurationOperation-TypeGarantie.js" />
+    <Content Include="Resources\js\Views\ConfigurationOperation-Journal.js" />
     <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
@@ -1301,6 +1304,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ConfigurationOperation\TypeGarantie.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationOperation\Journal\_Modals.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationOperation\Journal.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

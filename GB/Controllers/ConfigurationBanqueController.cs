@@ -1990,7 +1990,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Agence_management;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 this.ViewBag.Lang.Countrie = App_Lang.Lang.Countrie;
                 this.ViewBag.Lang.Town = App_Lang.Lang.Town;
                 this.ViewBag.Lang.Address = App_Lang.Lang.Address;
@@ -2033,7 +2032,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Devise_management;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 this.ViewBag.Lang.Sign = App_Lang.Lang.Sign;
                 this.ViewBag.Lang.Current_currency = App_Lang.Lang.Current_currency;
                 #endregion
@@ -2124,7 +2122,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Management_of_banking_parameters;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 this.ViewBag.Lang.Rate = App_Lang.Lang.Rate;
                 this.ViewBag.Lang.Amount = App_Lang.Lang.Amount;
                 this.ViewBag.Lang.Amount_min = App_Lang.Lang.Amount_min;
@@ -2160,7 +2157,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Physical_products_management;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 #endregion
 
                 // -- Données -- //
@@ -2187,10 +2183,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Judicial_products_management;
-                this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
-                this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
-                this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
-                this.ViewBag.Lang.Employee = App_Lang.Lang.Employee;
                 #endregion
 
                 // -- Données -- //
@@ -2217,10 +2209,7 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Pays_management;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 this.ViewBag.Lang.Phone_id = App_Lang.Lang.Phone_id;
-                this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
-                this.ViewBag.Lang.Employee = App_Lang.Lang.Employee;
                 #endregion
 
                 // -- Données -- //
@@ -2247,9 +2236,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Town_management;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
-                this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
-                this.ViewBag.Lang.Employee = App_Lang.Lang.Employee;
                 #endregion
 
                 // -- Données -- //
@@ -2276,10 +2262,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Economic_activities_management;
-                this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
-                this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
-                this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
-                this.ViewBag.Lang.Employee = App_Lang.Lang.Employee;
                 #endregion
 
                 // -- Données -- //
@@ -2306,10 +2288,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Title_management;
-                this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
-                this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
-                this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
-                this.ViewBag.Lang.Employee = App_Lang.Lang.Employee;
                 #endregion
 
                 // -- Données -- //
@@ -2336,10 +2314,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Institutional_unit_management;
-                this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
-                this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
-                this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
-                this.ViewBag.Lang.Employee = App_Lang.Lang.Employee;
                 #endregion
 
                 // -- Données -- //
@@ -2366,10 +2340,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.BEAC_nationality_management;
-                this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
-                this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
-                this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
-                this.ViewBag.Lang.Employee = App_Lang.Lang.Employee;
                 #endregion
 
                 // -- Données -- //
@@ -2396,10 +2366,7 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Bank_holiday_management;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 this.ViewBag.Lang.Day = App_Lang.Lang.Day;
-                this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
-                this.ViewBag.Lang.Employee = App_Lang.Lang.Employee;
                 this.ViewBag.Lang.Month = App_Lang.Lang.Month;
                 #endregion
 

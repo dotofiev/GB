@@ -37,7 +37,8 @@ namespace GB.Models.Static
         public static string ConfigurationOperation_TypePret = "ConfigurationOperation-TypePret";
         public static string ConfigurationOperation_MotifPret = "ConfigurationOperation-MotifPret";
         public static string ConfigurationOperation_ClassificationProvisionsPret = "ConfigurationOperation-ClassificationProvisionsPret";
-        public static string ConfigurationOperation_TypeGarantie = "ConfigurationOperation-TypeGarantie";        
+        public static string ConfigurationOperation_TypeGarantie = "ConfigurationOperation-TypeGarantie";
+        public static string ConfigurationOperation_Journal = "ConfigurationOperation-Journal";
     }
 
     public enum GB_Enum_Action_Controller

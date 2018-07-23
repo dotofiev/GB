@@ -635,7 +635,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page  = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Fiscals_exercice_management;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 this.ViewBag.Lang.Starting_date = App_Lang.Lang.Starting_date;
                 this.ViewBag.Lang.Ending_date = App_Lang.Lang.Ending_date;
                 this.ViewBag.Lang.Status = App_Lang.Lang.Status;
@@ -666,7 +665,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Budget_directionate_management;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 this.ViewBag.Lang.Directionate_head = App_Lang.Lang.Directionate_head;
                 this.ViewBag.Lang.Phone = App_Lang.Lang.Phone;
                 this.ViewBag.Lang.Remark = App_Lang.Lang.Remark;
@@ -697,7 +695,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Signing_authority_management;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 this.ViewBag.Lang.Signing_amount = App_Lang.Lang.Signing_amount;
                 this.ViewBag.Lang.Customer_overdraft_limit = App_Lang.Lang.Customer_overdraft_limit;
                 this.ViewBag.Lang.Customer_max_debit = App_Lang.Lang.Customer_max_debit;

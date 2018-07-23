@@ -76,6 +76,21 @@ namespace GB.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Journal()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Journals_recording_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationOperation_Journal);
+
+            return View();
+        }
         #endregion
 
         #region HttpPost
@@ -290,6 +305,53 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationOperation-Journal
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
+                {
+                    foreach (var val in JournalDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"journal\" value=\"journal_{val.id}\">",
+                                col_2 = val.code,
+                                col_3 = val.libelle,
+                                col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
+                                col_5 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                                              title=""{Lang.Delete}"" 
+                                                              class=""btn btn-xs btn-round""
+                                                              onClick=""table_donnee_supprimer({ids}, true)""
+                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                          <i class=""fa fa-minus text-danger""></i>
+                                        </button>"
+                                        .Replace("{id}", val.id.ToString())
+                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                                //                              title=""{Lang.Update}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_modifier({id})""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-retweet text-warning""></i>
+                                //        </button>
+                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                //                              title=""{Lang.Delete}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_supprimer({ids}, true)""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-minus text-danger""></i>
+                                //        </button>"
+                                //        .Replace("{id}", val.id.ToString())
+                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
                 #region TypePret introuvable
                 else
                 {
@@ -449,6 +511,30 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationOperation-Journal
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = JournalDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle = obj.libelle,
+                                                    }
+                                               );
+                }
+                #endregion
+
                 #region TypePret introuvable
                 else
                 {
@@ -521,6 +607,14 @@ namespace GB.Controllers
                 {
                     // -- Service d'enregistrement -- //
                     TypeGarantieDAO.Ajouter(GBConvert.JSON_To<TypeGarantie>(obj), this.con.id_utilisateur);
+                }
+                #endregion
+
+                #region ConfigurationOperation-Journal
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
+                {
+                    // -- Service d'enregistrement -- //
+                    JournalDAO.Ajouter(GBConvert.JSON_To<Journal>(obj));
                 }
                 #endregion
 
@@ -602,6 +696,14 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationOperation-Journal
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
+                {
+                    // -- Service de modification -- //
+                    JournalDAO.Modifier(GBConvert.JSON_To<Journal>(obj));
+                }
+                #endregion
+
                 #region TypePret introuvable
                 else
                 {
@@ -677,6 +779,14 @@ namespace GB.Controllers
                 {
                     // -- Service de suppression -- //
                     TypeGarantieDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationOperation-Journal
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
+                {
+                    // -- Service de suppression -- //
+                    JournalDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -762,7 +872,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Loans_purpose_management;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 #endregion
 
                 // -- Données -- //
@@ -789,7 +898,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Loans_provision_classification_management;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 this.ViewBag.Lang.Formula = App_Lang.Lang.Formula;
                 this.ViewBag.Lang.Start_days = App_Lang.Lang.Start_days;
                 this.ViewBag.Lang.End_days = App_Lang.Lang.End_days;
@@ -823,10 +931,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Guarantee_type_management;
-                this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
-                this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
-                this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
-                this.ViewBag.Lang.Employee = App_Lang.Lang.Employee;
                 #endregion
 
                 // -- Données -- //
@@ -841,6 +945,34 @@ namespace GB.Controllers
                                                     {
                                                         icon = "fa fa-cogs",
                                                         message = App_Lang.Lang.Guarantee_type_management
+                                                    }
+                                                }
+                                            );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationOperation-Journal
+            else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Journals_recording_management;
+                this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
+                this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Journals_recording_management
                                                     }
                                                 }
                                             );

@@ -45,7 +45,8 @@ $(function () {
                     url != '/ConfigurationOperation/TypePret' &&
                     url != '/ConfigurationOperation/MotifPret' &&
                     url != '/ConfigurationOperation/ClassificationProvisionsPret' &&
-                    url != '/ConfigurationOperation/TypeGarantie') {
+                    url != '/ConfigurationOperation/TypeGarantie' &&
+                    url != '/ConfigurationOperation/Journal') {
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 
