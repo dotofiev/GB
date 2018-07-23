@@ -112,6 +112,7 @@ namespace GB.Controllers
                             donnee.Add(
                                 new
                                 {
+                                    col_0 = val.id,
                                     //col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"autoriteSignature\" value=\"autoriteSignature_{val.id}\">",
                                     col_2 = val.code,
                                     col_3 = val.libelle,
@@ -204,6 +205,59 @@ namespace GB.Controllers
             );
         }
 
+        // -- Charger les données dans le auto complete -- //
+        public override object Charger_EasyAutocomplete(string id_page, string id_vue)
+        {
+            List<object> donnee = new List<object>();
+
+            try
+            {
+                #region SecuriteUtilisateur-Utilisateur
+                if (id_page == GB_Enum_Menu.SecuriteUtilisateur_Utilisateur)
+                {
+                    // -- Si la vue n'est pas retourné -- //
+                    #region autorites_signature
+                    if (string.IsNullOrEmpty(id_vue))
+                    {
+                        // -- Si la liste des autorites_signature en session est vide, la mettre à jour -- //
+                        if ((this.con.donnee.autorites_signature as List<AutoriteSignature>).Count == 0)
+                        {
+                            this.con.donnee.autorites_signature = AutoriteSignatureDAO.Lister();
+                        }
+
+                        // -- Charger la liste des résultats -- //
+                        foreach (var val in (this.con.donnee.autorites_signature as List<AutoriteSignature>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    id = val.id,
+                                    code = val.code,
+                                    libelle = val.libelle,
+                                }
+                            );
+                        }
+                    }
+                    #endregion
+                }
+                #endregion
+            }
+            #region catch & finally
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return GBConvert.To_JSONString(donnee);
+        }
+
         // -- Selectionner un nouvel enregistrement dans la liste -- //
         [HttpPost]
         public ActionResult Selection_Enregistrement(string compte, string id_page)
@@ -242,7 +296,8 @@ namespace GB.Controllers
                                                         acces_historique_compte = obj.acces_historique_compte.ToString(),
                                                         duree_mot_de_passe = obj.duree_mot_de_passe,
                                                         id_autorite_signature = obj.id_autorite_signature,
-                                                        code_autorite_signature = obj.autorite_signature?.code?? string.Empty
+                                                        code_autorite_signature = obj.autorite_signature?.code?? string.Empty,
+                                                        libelle_autorite_signature = obj.autorite_signature?.libelle ?? string.Empty
                                                     }
                                                );
                 }
@@ -483,6 +538,7 @@ namespace GB.Controllers
                 this.ViewBag.Lang.Line_of_credit_max_amount = App_Lang.Lang.Line_of_credit_max_amount;
                 this.ViewBag.Lang.Loan_limit_amount = App_Lang.Lang.Loan_limit_amount;
                 this.ViewBag.Lang.Select = App_Lang.Lang.Select;
+                this.ViewBag.Lang.Search_by = App_Lang.Lang.Search_by;
                 #endregion
 
                 // -- Données -- //
@@ -506,6 +562,11 @@ namespace GB.Controllers
                                                     }
                                                 }
                                             );
+                // -- Vider les données temporaire -- //
+                this.con.Vider_Donnee();
+                // - Mise à jour des données de vue -- //
+                // -- autorites_signature -- //
+                this.con.donnee.autorites_signature = new List<AutoriteSignature>();
                 #endregion
             }
             #endregion

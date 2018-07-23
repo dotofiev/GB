@@ -868,6 +868,7 @@
     <Content Include="Resources\css\gb.style.css" />
     <Content Include="Resources\css\gb.style.min.css" />
     <Content Include="Resources\css\Views\Application-Main.css" />
+    <Content Include="Resources\css\Views\SecuriteUtilisateur-Utilisateur.css" />
     <Content Include="Resources\css\Views\Home-Authentication.css" />
     <Content Include="Resources\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Resources\images\gif\loading_1_50px.gif" />
