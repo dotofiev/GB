@@ -226,5 +226,51 @@ namespace GB.Models.DAO
             #endregion
         }
 
+        public static string HTML_Select(string champ)
+        {
+            try
+            {
+                // -- Valeur vide -- //
+                string HTML = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+
+                // -- Ajout des options -- //
+                // -- Pour le champ code -- //
+                if (champ == "code")
+                {
+                    foreach (var val in Lister())
+                    {
+                        HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
+                    }
+                }
+                else if (champ == "libelle")
+                {
+                    foreach (var val in Lister())
+                    {
+                        HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
+                    }
+                }
+
+                return HTML;
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(App_Lang.Lang.Error_message_notification);
+                }
+                else
+                {
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(ex.Message);
+                }
+            }
+            #endregion
+        }
     }
 }

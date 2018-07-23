@@ -36,11 +36,36 @@
       "ProduitClientPhysique",
       "ProduitClientJudiciaire",
       "ProduitCreation",
+      "CongeBanque",
+      "BEACNationalite",
       "UniteInstitutionnelle",
       "Titre",
       "ActiviteEconomique",
       "Ville",
       "Pays"
+    ]
+  },
+  {
+    "controller": {
+      "id": "4",
+      "libelle": "ConfigurationBudget"
+    },
+    "views": [
+      "ExerciceFiscal",
+      "DirectionBudget",
+      "AutoriteSignature"
+    ]
+  },
+  {
+    "controller": {
+      "id": "5",
+      "libelle": "ConfigurationOperation"
+    },
+    "views": [
+      "TypePret",
+      "MotifPret",
+      "ClassificationProvisionsPret",
+      "TypeGarantie"
     ]
   }
 ]

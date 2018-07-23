@@ -1,15 +1,22 @@
 ﻿
 // -- Variables -- //
 var table = $('#table-donnee');
+var table_autorite_signature = $('#table-autorite_signature-donnee');
 var url_ajax_dataTable = '/SecuriteUtilisateur/Charger_Table/?id_page=' + $GB_DONNEE.id_page;
+var url_ajax_easyAutocomplete = '/SecuriteUtilisateur/Charger_EasyAutocomplete/?id_page=' + $GB_DONNEE.id_page;
 var url_ajax_selection_enregistrement = '/SecuriteUtilisateur/Selection_Enregistrement/';
 var btn_ajouter = $('#btn-ajouter');
 var btn_supprimer = $('#btn-supprimer');
+var btn_autorite_signature_modal = $('#btn_autorite_signature_modal');
 var btn_imprimmer = $('#btn-imprimmer');
 var btn_enregistrer = $('#btn-enregistrer');
 var btn_table;
 var form = $('#form');
+var form_id_autorite_signature = $('#form_id_autorite_signature');
+var form_code_autorite_signature = $('#form_code_autorite_signature');
+var form_libelle_autorite_signature = $('#form_libelle_autorite_signature');
 var modal_form = $('#modal_form');
+var modal_autorite_signature = $('#modal_autorite_signature');
 var url_controlleur = '/SecuriteUtilisateur/';
 var url_suppression = '/SecuriteUtilisateur/Supprimer_Enregistrement';
 
@@ -37,6 +44,9 @@ try {
                     $('#form_libelle_agence').val(resultat.notification.donnee.id_agence);
                     $('#form_id_profession').val(resultat.notification.donnee.id_profession);
                     $('#form_libelle_profession').val(resultat.notification.donnee.id_profession);
+                    form_id_autorite_signature.val(resultat.notification.donnee.id_autorite_signature);
+                    form_code_autorite_signature.val(resultat.notification.donnee.code_autorite_signature);
+                    form_libelle_autorite_signature.val(resultat.notification.donnee.libelle_autorite_signature);
                     $('#form_nom_utilisateur').val(resultat.notification.donnee.nom_utilisateur);
                     $('#form_compte').val(resultat.notification.donnee.compte);
                     $('#form_ouverture_back_date').val(resultat.notification.donnee.ouverture_back_date);
@@ -146,6 +156,14 @@ try {
 $(
     function () {
 
+        // -- Initialiser l'object autorité signature -- //
+        try {
+
+            $GB_DONNEE.Autorite_signature = null;
+            $GB_DONNEE.Autorite_signature_temp = null;
+
+        } catch (e) { gbConsole(e.message); }
+
         // -- Initialiser le message box de confirmation -- //
         try {
 
@@ -203,7 +221,8 @@ $(
                     { "data": "col_9", "class": "text-center" },     // -- est_suspendu -- //
                     { "data": "col_10", "class": "text-center" },     // -- acces_historique_compte -- //
                     { "data": "col_11", "class": "text-center" },     // -- duree_mot_de_passe -- //
-                    { "data": "col_12", "class": "text-center" }     // -- Action -- //
+                    { "data": "col_12" },                            // -- autorite_signature -- //
+                    { "data": "col_13", "class": "text-center" }     // -- Action -- //
                 ]
             });
 
@@ -225,6 +244,81 @@ $(
                     if (donnees != undefined && donnees != null) {
                         // -- Modifier l'enregistrement -- //
                         table_donnee_modifier(donnees.col_2);
+                    }
+                }
+            );
+
+            // -- Lorsque la table est redessiné -- //
+            table_autorite_signature.on('draw.dt',
+                function () {
+                    // -- Fonction pour initiliser les style css javascript des tables -- //
+                    gbCharger_Css_Table('autoriteSignature');
+                }
+            );
+
+            // -- Table d'affichage des données -- //
+            table_autorite_signature.DataTable({
+                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, $GB_DONNEE_PARAMETRES.Lang.All]],
+                "scrollCollapse": true,
+                "paging": true,
+                "searching": true,
+                "autoWidth": false,
+                "language": {
+                    "url": $GB_VAR.url_language_dataTable
+                },
+                "ajax": {
+                    "url": url_ajax_dataTable + '&id_vue=autoriteSignature',
+                    "type": 'POST',
+                    "dataSrc": function (resultat) {
+                        // -- Notifier -- //
+                        gbNotificationListerRefuser(resultat.notification);
+                        // -- Retourner les données -- //
+                        return resultat.notification.donnee;
+                    }
+                },
+                "columns": [
+                    { "data": "col_0", "class": "hidden-lg" },      // -- id -- //
+                    { "data": "col_2" },                            // -- code -- //
+                    { "data": "col_3" },                            // -- libelle -- //
+                    { "data": "col_4" },                            // -- montant_signature -- //
+                    { "data": "col_5" },                            // -- limite_decouvert_client -- //
+                    { "data": "col_6" },                            // -- debit_max_client -- //
+                    { "data": "col_7" },                            // -- credit_max_client -- //
+                    { "data": "col_8" },                            // -- montant_max_ligne_credit -- //
+                    { "data": "col_9" },                            // -- montant_limite_pret -- //
+                    //{ "data": "col_10", "class": "text-center" }     // -- Action -- //
+                ]
+            });
+
+            // -- Lorsqu'un click survient sur une ligne de la table -- //
+            $('#table-autorite_signature-donnee tbody').on('click', 'tr',
+                function () {
+                    // -- Selectionner une ligne de la table -- //
+                    gbTableSelectionLigne($(this), 'table-autorite_signature-donnee');
+                }
+            );
+
+            // -- Lorsqu'un double click survient sur une ligne de la table -- //
+            $('#table-autorite_signature-donnee tbody').on('dblclick', 'tr',
+                function () {
+                    // -- Réccupération des données de la table -- //
+                    var donnees = table_autorite_signature.DataTable().row(this).data();
+
+                    // -- Vérifie qu'un enregistrement est sélectionné -- //
+                    if (donnees != undefined && donnees != null) {
+
+                        // -- Mise à jour de l'autorité en session -- //
+                        $GB_DONNEE.Autorite_signature_temp = donnees;
+
+                        // -- Afficher la données sélectionnée -- //
+                        $('#form_autorite_signature_code').html($GB_DONNEE.Autorite_signature_temp.col_2);
+                        $('#form_autorite_signature_libelle').html($GB_DONNEE.Autorite_signature_temp.col_3);
+                        $('#form_autorite_signature_montant_signature').html($GB_DONNEE.Autorite_signature_temp.col_4);
+                        $('#form_autorite_signature_limite_decouvert_client').html($GB_DONNEE.Autorite_signature_temp.col_5);
+                        $('#form_autorite_signature_debit_max_client').html($GB_DONNEE.Autorite_signature_temp.col_6);
+                        $('#form_autorite_signature_credit_max_client').html($GB_DONNEE.Autorite_signature_temp.col_7);
+                        $('#form_autorite_signature_montant_max_ligne_credit').html($GB_DONNEE.Autorite_signature_temp.col_8);
+                        $('#form_autorite_signature_montant_limite_pret').html($GB_DONNEE.Autorite_signature_temp.col_9);
                     }
                 }
             );
@@ -329,6 +423,14 @@ $(
                     // -- Supprimer les validations parsley -- //
                     gbSupprimerMessageValidationForm(form.attr('id'));
 
+                    // -- Mise à jour de l'objet autorisation par défaut -- //
+                    if ($GB_DONNEE.Autorite_signature != undefined && $GB_DONNEE.Autorite_signature != null)
+                    {
+                        form_id_autorite_signature.val($GB_DONNEE.Autorite_signature.col_0);
+                        form_code_autorite_signature.val($GB_DONNEE.Autorite_signature.col_2);
+                        form_libelle_autorite_signature.val($GB_DONNEE.Autorite_signature.col_3);
+                    }
+
                 }
             );
 
@@ -383,5 +485,106 @@ $(
 
         } catch (e) { gbConsole(e.message); }
 
+        // -- Action d'ouverture du formulaire d'autorisation signature -- //
+        try {
+
+            // -- Mise à jour de l'action de suppression -- //
+            btn_autorite_signature_modal.on("click",
+                function () {
+
+                    // -- Afficher le modal formulaire -- //
+                    modal_autorite_signature.modal('show');
+
+                    // -- cacher le chargement -- //
+                    gbAfficher_Page_Chargement(true);
+
+                    // -- Recharger la table -- //
+                    gbRechargerTable(true, null, 'table-autorite_signature-donnee');
+
+                }
+            );
+
+        } catch (e) { gbConsole(e.message); }
+
+        // -- Charger le plugin auto completion -- //
+        try {
+
+            // -- Recherche autorite_signature par code -- //
+            form_code_autorite_signature.easyAutocomplete({
+                url: url_ajax_easyAutocomplete,
+                getValue: function (obj) {
+                    return obj.code;
+                },
+                list: {
+                    onSelectItemEvent: function () {
+                        // -- Mise à jour du champ libelle -- //
+                        form_libelle_autorite_signature.val(form_code_autorite_signature.getSelectedItemData().libelle);
+                        // -- Mise à jour de l'id -- //
+                        form_id_autorite_signature.val(form_code_autorite_signature.getSelectedItemData().id);
+                    },
+                    match: {
+                        enabled: true
+                    }
+                },
+                template: {
+                    type: "custom",
+                    method: function (value, item) {
+                        return "<i class=\"fa fa-caret-right\"></i> " + value +
+                               "<br />" +
+                               "<i><b>" + item.libelle + "</b></i>";
+                    }
+                }
+            });
+
+            // -- Recherche autorite_signature par libelle -- //
+            form_libelle_autorite_signature.easyAutocomplete({
+                url: url_ajax_easyAutocomplete,
+                getValue: function (obj) {
+                    return obj.libelle;
+                },
+                list: {
+                    onSelectItemEvent: function () {
+                        // -- Mise à jour du champ code -- //
+                        form_code_autorite_signature.val(form_libelle_autorite_signature.getSelectedItemData().code);
+                        // -- Mise à jour de l'id -- //
+                        form_id_autorite_signature.val(form_libelle_autorite_signature.getSelectedItemData().id);
+                    },
+                    match: {
+                        enabled: true
+                    }
+                },
+                template: {
+                    type: "custom",
+                    method: function (value, item) {
+                        return "<i class=\"fa fa-caret-right\"></i> " + value +
+                               "<br />" +
+                               "<i><b>" + item.code + "</b></i>";
+                    }
+                }
+            });
+
+        } catch (e) { gbConsole(e.message); }
+
+        // -- Lorsque le bouton de selection de l'autorité est cliqué -- //
+        try {
+
+            $('#btn-autorite_signature-selectionner').on('click',
+                function () {
+                    // -- Vérifier qu'un objet est bien sélectionné -- //
+                    if ($GB_DONNEE.Autorite_signature_temp != undefined && $GB_DONNEE.Autorite_signature_temp != null) {
+                        // -- Mise à jour du l'objet autorisation en session -- //
+                        $GB_DONNEE.Autorite_signature = $GB_DONNEE.Autorite_signature_temp;
+                        // -- Mise à jour des champs sélectionné dans le formulaire -- //
+                        form_id_autorite_signature.val($GB_DONNEE.Autorite_signature.col_0);
+                        form_code_autorite_signature.val($GB_DONNEE.Autorite_signature.col_2);
+                        form_libelle_autorite_signature.val($GB_DONNEE.Autorite_signature.col_3);
+                    }
+                    // -- Fermer le modal -- //
+                    modal_autorite_signature.modal('hide');
+                }
+            );
+
+        } catch (e) { gbConsole(e.message); }
+        
     }
 );

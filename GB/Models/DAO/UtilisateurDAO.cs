@@ -23,6 +23,7 @@ namespace GB.Models.DAO
                 // -- Mise àj our des references -- //
                 obj.agence = AgenceDAO.Object(obj.id_agence);
                 obj.profession = ProfessionDAO.Object(obj.id_profession);
+                obj.autorite_signature = AutoriteSignatureDAO.Object(obj.id_autorite_signature);
                 obj.date_mise_a_jour_mot_de_passe = DateTime.Now.AddMonths(obj.duree_mot_de_passe).Ticks;
 
                 // -- Définition de l'identifiant -- //
@@ -78,6 +79,8 @@ namespace GB.Models.DAO
                         l.agence = AgenceDAO.Object(obj.id_agence);
                         l.id_profession = obj.id_profession;
                         l.profession = ProfessionDAO.Object(obj.id_profession);
+                        l.id_autorite_signature = obj.id_autorite_signature;
+                        l.autorite_signature = AutoriteSignatureDAO.Object(obj.id_autorite_signature);
                         l.ouverture_back_date = obj.ouverture_back_date;
                         l.ouverture_back_date_travail = obj.ouverture_back_date_travail;
                         l.ouverture_branch = obj.ouverture_branch;

@@ -3,6 +3,24 @@
 $(
     function () {
 
+        // -- Charger la page d'acceuil -- //
+        try {
+
+            // -- Frame chargement -- //
+            gbAfficher_Page_Chargement(true);
+
+            $("#conteneur").load(
+                // -- Lien de chargement de la page -- //
+                '/Application/Principale/',
+                // -- Fonction à éxecuter à la fin du chargement de la page -- //
+                function () {
+                    // -- Frame chargement -- //
+                    gbAfficher_Page_Chargement(false);
+                }
+            );
+
+        } catch (e) { gbConsole(e.message); }
+
         // -- Lorsqu'on souhaite se déconnecter de l'application -- //
         $("#btn-deconnexion").on("click",
             function (event) {

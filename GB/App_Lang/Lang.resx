@@ -639,4 +639,121 @@
   <data name="Institutional_unit_management" xml:space="preserve">
     <value>Institutional unit management</value>
   </data>
+  <data name="BEAC_nationality_management" xml:space="preserve">
+    <value>BEAC nationality management</value>
+  </data>
+  <data name="Ending_date" xml:space="preserve">
+    <value>Ending date</value>
+  </data>
+  <data name="Fiscals_exercice_management" xml:space="preserve">
+    <value>Fiscals exercice management</value>
+  </data>
+  <data name="Invalid_date" xml:space="preserve">
+    <value>Invalid date</value>
+  </data>
+  <data name="Starting_date" xml:space="preserve">
+    <value>Starting date</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Budget_directionate_management" xml:space="preserve">
+    <value>Budget directionate management</value>
+  </data>
+  <data name="Directionate_head" xml:space="preserve">
+    <value>Directionate head</value>
+  </data>
+  <data name="Remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="Bank_holiday_management" xml:space="preserve">
+    <value>Bank holiday management</value>
+  </data>
+  <data name="Existing_day" xml:space="preserve">
+    <value>Existing day</value>
+  </data>
+  <data name="This_day_not_exist" xml:space="preserve">
+    <value>This day not exist</value>
+  </data>
+  <data name="Customer_max_credit" xml:space="preserve">
+    <value>Customer max credit</value>
+  </data>
+  <data name="Customer_max_debit" xml:space="preserve">
+    <value>Customer max debit</value>
+  </data>
+  <data name="Customer_overdraft_limit" xml:space="preserve">
+    <value>Customer overdraft limit</value>
+  </data>
+  <data name="Line_of_credit_max_amount" xml:space="preserve">
+    <value>Line of credit max amount</value>
+  </data>
+  <data name="Loan_limit_amount" xml:space="preserve">
+    <value>Loan limit amount</value>
+  </data>
+  <data name="Signing_amount" xml:space="preserve">
+    <value>Signing amount</value>
+  </data>
+  <data name="Signing_authority_management" xml:space="preserve">
+    <value>Signing authority management</value>
+  </data>
+  <data name="Signing_authority" xml:space="preserve">
+    <value>Signing authority</value>
+  </data>
+  <data name="Begining_period" xml:space="preserve">
+    <value>Begining period</value>
+  </data>
+  <data name="Ending_period" xml:space="preserve">
+    <value>Ending period</value>
+  </data>
+  <data name="Loans_type_management" xml:space="preserve">
+    <value>Loans type management</value>
+  </data>
+  <data name="Periodicity" xml:space="preserve">
+    <value>Periodicity</value>
+  </data>
+  <data name="Quarter" xml:space="preserve">
+    <value>Quarter</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="Loans_purpose_management" xml:space="preserve">
+    <value>Loans purpose management</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>Between</value>
+  </data>
+  <data name="Cautioned" xml:space="preserve">
+    <value>Cautioned</value>
+  </data>
+  <data name="End_days" xml:space="preserve">
+    <value>End days</value>
+  </data>
+  <data name="Formula" xml:space="preserve">
+    <value>Formula</value>
+  </data>
+  <data name="Greater_than" xml:space="preserve">
+    <value>Greater than</value>
+  </data>
+  <data name="Loans_provision_classification_management" xml:space="preserve">
+    <value>Loans provision classification management</value>
+  </data>
+  <data name="Mortgage" xml:space="preserve">
+    <value>Mortgage</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>Percentage</value>
+  </data>
+  <data name="Start_days" xml:space="preserve">
+    <value>Start days</value>
+  </data>
+  <data name="Guarantee_type_management" xml:space="preserve">
+    <value>Guarantee type management</value>
+  </data>
+  <data name="Real_safety" xml:space="preserve">
+    <value>Real safety</value>
+  </data>
+  <data name="State_guarantee" xml:space="preserve">
+    <value>State guarantee</value>
+  </data>
 </root>

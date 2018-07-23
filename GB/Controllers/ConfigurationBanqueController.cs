@@ -196,6 +196,36 @@ namespace GB.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult BEACNationalite()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.BEAC_nationality_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationBanque_BEACNationalite);
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult CongeBanque()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Bank_holiday_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationBanque_CongeBanque);
+
+            return View();
+        }
         #endregion
 
         #region HttpPost
@@ -761,6 +791,103 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-BEACNationalite
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_BEACNationalite)
+                {
+                    foreach (var val in BEACNationaliteDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"beacNationalite\" value=\"beacNationalite_{val.id}\">",
+                                col_2 = val.code,
+                                col_3 = val.libelle_fr,
+                                col_4 = val.libelle_en,
+                                col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
+                                col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
+                                col_7 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                                              title=""{Lang.Delete}"" 
+                                                              class=""btn btn-xs btn-round""
+                                                              onClick=""table_donnee_supprimer({ids}, true)""
+                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                          <i class=""fa fa-minus text-danger""></i>
+                                        </button>"
+                                        .Replace("{id}", val.id.ToString())
+                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                                //                              title=""{Lang.Update}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_modifier({id})""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-retweet text-warning""></i>
+                                //        </button>
+                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                //                              title=""{Lang.Delete}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_supprimer({ids}, true)""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-minus text-danger""></i>
+                                //        </button>"
+                                //        .Replace("{id}", val.id.ToString())
+                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
+                #region ConfigurationBanque-CongeBanque
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_CongeBanque)
+                {
+                    foreach (var val in CongeBanqueDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"congeBanque\" value=\"congeBanque_{val.id}\">",
+                                col_2 = val.code,
+                                col_3 = val.libelle,
+                                col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
+                                col_5 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
+                                col_6 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                                              title=""{Lang.Delete}"" 
+                                                              class=""btn btn-xs btn-round""
+                                                              onClick=""table_donnee_supprimer({ids}, true)""
+                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                          <i class=""fa fa-minus text-danger""></i>
+                                        </button>"
+                                        .Replace("{id}", val.id.ToString())
+                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                                //                              title=""{Lang.Update}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_modifier({id})""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-retweet text-warning""></i>
+                                //        </button>
+                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                //                              title=""{Lang.Delete}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_supprimer({ids}, true)""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-minus text-danger""></i>
+                                //        </button>"
+                                //        .Replace("{id}", val.id.ToString())
+                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -818,24 +945,76 @@ namespace GB.Controllers
                 #region ConfigurationBanque-Agence
                 if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
                 {
-                    // -- Si la liste des utilisateurs en session est vide, la mettre à jour -- //
-                    if ((this.con.donnee.utilisateurs as List<Utilisateur>).Count == 0)
+                    // -- Si la vue n'est pas retourné -- //
+                    #region utilisateurs
+                    if (string.IsNullOrEmpty(id_vue))
                     {
-                        this.con.donnee.utilisateurs = UtilisateurDAO.Lister();
-                    }
+                        // -- Si la liste des utilisateurs en session est vide, la mettre à jour -- //
+                        if ((this.con.donnee.utilisateurs as List<Utilisateur>).Count == 0)
+                        {
+                            this.con.donnee.utilisateurs = UtilisateurDAO.Lister();
+                        }
 
-                    // -- Charger la liste des résultats -- //
-                    foreach (var val in (this.con.donnee.utilisateurs as List<Utilisateur>))
-                    {
-                        donnee.Add(
-                            new
-                            {
-                                id_utilisateur = val.id_utilisateur,
-                                compte = val.compte,
-                                nom_utilisateur = val.nom_utilisateur
-                            }
-                        );
+                        // -- Charger la liste des résultats -- //
+                        foreach (var val in (this.con.donnee.utilisateurs as List<Utilisateur>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    id_utilisateur = val.id_utilisateur,
+                                    compte = val.compte,
+                                    nom_utilisateur = val.nom_utilisateur
+                                }
+                            );
+                        }
                     }
+                    #endregion
+
+                    #region pays
+                    // -- Si la vue est pour le pays -- //
+                    else if (id_vue == "pays")
+                    {
+                        // -- Si la liste des pays en session est vide, la mettre à jour -- //
+                        if ((this.con.donnee.pays as List<Pays>).Count == 0)
+                        {
+                            this.con.donnee.pays = PaysDAO.Lister();
+                        }
+
+                        // -- Charger la liste des résultats -- //
+                        foreach (var val in (this.con.donnee.pays as List<Pays>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    libelle = val.libelle,
+                                }
+                            );
+                        }
+                    }
+                    #endregion
+
+                    #region ville
+                    // -- Si la vue est pour le pays -- //
+                    else if (id_vue == "ville")
+                    {
+                        // -- Si la liste des villes en session est vide, la mettre à jour -- //
+                        if ((this.con.donnee.villes as List<Ville>).Count == 0)
+                        {
+                            this.con.donnee.villes = VilleDAO.Lister();
+                        }
+
+                        // -- Charger la liste des résultats -- //
+                        foreach (var val in (this.con.donnee.villes as List<Ville>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    libelle = val.libelle,
+                                }
+                            );
+                        }
+                    }
+                    #endregion
                 }
                 #endregion
             }
@@ -1160,6 +1339,56 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-BEACNationalite
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_BEACNationalite)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = BEACNationaliteDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle_en = obj.libelle_en,
+                                                        libelle_fr = obj.libelle_fr,
+                                                    }
+                                               );
+                }
+                #endregion
+
+                #region ConfigurationBanque-CongeBanque
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_CongeBanque)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = CongeBanqueDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        jour = obj.jour,
+                                                        mois = obj.mois,
+                                                        libelle = obj.libelle,
+                                                    }
+                                               );
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -1315,6 +1544,22 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-BEACNationalite
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_BEACNationalite)
+                {
+                    // -- Service d'enregistrement -- //
+                    BEACNationaliteDAO.Ajouter(GBConvert.JSON_To<BEACNationalite>(obj), this.con.id_utilisateur);
+                }
+                #endregion
+
+                #region ConfigurationBanque-CongeBanque
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_CongeBanque)
+                {
+                    // -- Service d'enregistrement -- //
+                    CongeBanqueDAO.Ajouter(GBConvert.JSON_To<CongeBanque>(obj));
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -1435,7 +1680,7 @@ namespace GB.Controllers
                 #endregion
 
                 #region ConfigurationBanque-ParametreBanque
-                if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
                 {
                     // -- Service de modification -- //
                     ParametreBancaireDAO.Modifier(GBConvert.JSON_To<ParametreBancaire>(obj));
@@ -1495,6 +1740,22 @@ namespace GB.Controllers
                 {
                     // -- Service de modification -- //
                     UniteInstitutionnelleDAO.Modifier(GBConvert.JSON_To<UniteInstitutionnelle>(obj));
+                }
+                #endregion
+
+                #region ConfigurationBanque-BEACNationalite
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_BEACNationalite)
+                {
+                    // -- Service de modification -- //
+                    BEACNationaliteDAO.Modifier(GBConvert.JSON_To<BEACNationalite>(obj));
+                }
+                #endregion
+
+                #region ConfigurationBanque-CongeBanque
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_CongeBanque)
+                {
+                    // -- Service de modification -- //
+                    CongeBanqueDAO.Modifier(GBConvert.JSON_To<CongeBanque>(obj));
                 }
                 #endregion
 
@@ -1632,6 +1893,22 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-BEACNationalite
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_BEACNationalite)
+                {
+                    // -- Service de suppression -- //
+                    BEACNationaliteDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationBanque-CongeBanque
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_CongeBanque)
+                {
+                    // -- Service de suppression -- //
+                    CongeBanqueDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -1742,6 +2019,10 @@ namespace GB.Controllers
                 // - Mise à jour des données de vue -- //
                 // -- Utilisateur -- //
                 this.con.donnee.utilisateurs = new List<Utilisateur>();
+                // -- Pays -- //
+                this.con.donnee.pays = new List<Pays>();
+                // -- Ville -- //
+                this.con.donnee.villes = new List<Ville>();
                 #endregion
             }
             #endregion
@@ -1854,17 +2135,8 @@ namespace GB.Controllers
                 // -- Données -- //
                 #region Données
                 #region HTML_Select_devise
-                this.ViewBag.donnee.HTML_Select_code_devise =
-                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                this.ViewBag.donnee.HTML_Select_libelle_devise =
-                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                foreach (var val in DeviseDAO.Lister())
-                {
-                    this.ViewBag.donnee.HTML_Select_code_devise +=
-                        $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
-                    this.ViewBag.donnee.HTML_Select_libelle_devise +=
-                        $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
-                }
+                this.ViewBag.donnee.HTML_Select_code_devise = DeviseDAO.HTML_Select("code");
+                this.ViewBag.donnee.HTML_Select_libelle_devise = DeviseDAO.HTML_Select("libelle");
                 #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
@@ -2081,6 +2353,67 @@ namespace GB.Controllers
                                                     {
                                                         icon = "fa fa-cogs",
                                                         message = App_Lang.Lang.Institutional_unit_management
+                                                    }
+                                                }
+                                            );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationBanque-BEACNationalite
+            else if (id_page == GB_Enum_Menu.ConfigurationBanque_BEACNationalite)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.BEAC_nationality_management;
+                this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
+                this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
+                this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
+                this.ViewBag.Lang.Employee = App_Lang.Lang.Employee;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.BEAC_nationality_management
+                                                    }
+                                                }
+                                            );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationBanque-CongeBanque
+            else if (id_page == GB_Enum_Menu.ConfigurationBanque_CongeBanque)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Bank_holiday_management;
+                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
+                this.ViewBag.Lang.Day = App_Lang.Lang.Day;
+                this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
+                this.ViewBag.Lang.Employee = App_Lang.Lang.Employee;
+                this.ViewBag.Lang.Month = App_Lang.Lang.Month;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Bank_holiday_management
                                                     }
                                                 }
                                             );

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GB.Models.DAO
 {
-    public abstract class GBDAO
+    public interface GBDAO
     {
 
     }

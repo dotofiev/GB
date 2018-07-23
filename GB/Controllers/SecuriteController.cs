@@ -1061,13 +1061,7 @@ namespace GB.Controllers
                 // -- Données -- //
                 #region Données
                 #region HTML_Select_id_controller
-                this.ViewBag.donnee.HTML_Select_id_controller =
-                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                foreach (var val in GroupeMenuDAO.Lister())
-                {
-                    this.ViewBag.donnee.HTML_Select_id_controller += 
-                        $"<option value=\"{val.id}\" title=\"{((id_lang == 0) ? val.libelle_en : val.libelle_fr)}\">{((id_lang == 0) ? val.libelle_en : val.libelle_fr)}</option>";
-                }
+                this.ViewBag.donnee.HTML_Select_id_controller = GroupeMenuDAO.HTML_Select();
                 #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
