@@ -762,4 +762,7 @@
   <data name="Assets_type_management" xml:space="preserve">
     <value>Assets type management</value>
   </data>
+  <data name="Asset_location_management" xml:space="preserve">
+    <value>Asset location management</value>
+  </data>
 </root>

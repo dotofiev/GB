@@ -381,6 +381,7 @@
 /// <reference path="views/configurationbudget-exercicefiscal.js" />
 /// <reference path="views/configurationoperation-classificationprovisionspret.js" />
 /// <reference path="views/configurationoperation-journal.js" />
+/// <reference path="views/configurationoperation-localisationactif.js" />
 /// <reference path="views/configurationoperation-motifpret.js" />
 /// <reference path="views/configurationoperation-typeactif.js" />
 /// <reference path="views/configurationoperation-typegarantie.js" />

@@ -211,6 +211,7 @@
     <Compile Include="Models\BO\ClassificationProvisionsPret.cs" />
     <Compile Include="Models\BO\MotifPret.cs" />
     <Compile Include="Models\BO\Journal.cs" />
+    <Compile Include="Models\BO\LocalisationActif.cs" />
     <Compile Include="Models\BO\TypeActif.cs" />
     <Compile Include="Models\BO\TypeGarantie.cs" />
     <Compile Include="Models\BO\TypePret.cs" />
@@ -246,6 +247,7 @@
     <Compile Include="Models\DAO\ClassificationProvisionsPretDAO.cs" />
     <Compile Include="Models\DAO\MotifPretDAO.cs" />
     <Compile Include="Models\DAO\JournalDAO.cs" />
+    <Compile Include="Models\DAO\LocalisationActifDAO.cs" />
     <Compile Include="Models\DAO\TypeActifDAO.cs" />
     <Compile Include="Models\DAO\TypeGarantieDAO.cs" />
     <Compile Include="Models\DAO\TypePretDAO.cs" />
@@ -890,6 +892,7 @@
     <Content Include="Resources\js\Views\ConfigurationBanque-Ville.js" />
     <Content Include="Resources\js\Views\ConfigurationOperation-ClassificationProvisionsPret.js" />
     <Content Include="Resources\js\Views\ConfigurationOperation-MotifPret.js" />
+    <Content Include="Resources\js\Views\ConfigurationOperation-LocalisationActif.js" />
     <Content Include="Resources\js\Views\Securite-Menu.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Institution.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Agence.js" />
@@ -1319,6 +1322,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ConfigurationOperation\TypeActif.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationOperation\LocalisationActif\_Modals.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfigurationOperation\LocalisationActif.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

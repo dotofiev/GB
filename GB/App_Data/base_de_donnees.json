@@ -415,6 +415,16 @@
       "view": "TypeActif",
       "id_controller": "5"
     },
+    {
+      "id": "36",
+      "code": "36",
+      "id_menu_parent": "34",
+      "id_groupe_menu": "5",
+      "libelle_en": "Localisation of fixed assets",
+      "libelle_fr": "Localisation des immobilisations",
+      "view": "LocalisationActif",
+      "id_controller": "5"
+    },
   ],
   "roles": [
     {
@@ -817,6 +827,16 @@
       "id": "36",
       "id_role": "1",
       "id_menu": "35",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "37",
+      "id_role": "1",
+      "id_menu": "36",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -1359,6 +1379,14 @@
       "id": "1",
       "code": "004",
       "libelle": "Computer",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "localisations_actif": [
+    {
+      "id": "1",
+      "code": "001",
+      "libelle": "Head quaters",
       "date_creation": "636670881645418146"
     }
   ],

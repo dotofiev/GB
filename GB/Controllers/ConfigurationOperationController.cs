@@ -106,6 +106,21 @@ namespace GB.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult LocalisationActif()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Asset_location_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationOperation_LocalisationActif);
+
+            return View();
+        }
         #endregion
 
         #region HttpPost
@@ -414,6 +429,53 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationOperation-LocalisationActif
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
+                {
+                    foreach (var val in LocalisationActifDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"localisationActif\" value=\"localisationActif_{val.id}\">",
+                                col_2 = val.code,
+                                col_3 = val.libelle,
+                                col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
+                                col_5 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                                              title=""{Lang.Delete}"" 
+                                                              class=""btn btn-xs btn-round""
+                                                              onClick=""table_donnee_supprimer({ids}, true)""
+                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                          <i class=""fa fa-minus text-danger""></i>
+                                        </button>"
+                                        .Replace("{id}", val.id.ToString())
+                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                                //                              title=""{Lang.Update}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_modifier({id})""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-retweet text-warning""></i>
+                                //        </button>
+                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                //                              title=""{Lang.Delete}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_supprimer({ids}, true)""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-minus text-danger""></i>
+                                //        </button>"
+                                //        .Replace("{id}", val.id.ToString())
+                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
                 #region TypePret introuvable
                 else
                 {
@@ -621,6 +683,30 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationOperation-LocalisationActif
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = LocalisationActifDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle = obj.libelle,
+                                                    }
+                                               );
+                }
+                #endregion
+
                 #region TypePret introuvable
                 else
                 {
@@ -709,6 +795,14 @@ namespace GB.Controllers
                 {
                     // -- Service d'enregistrement -- //
                     TypeActifDAO.Ajouter(GBConvert.JSON_To<TypeActif>(obj));
+                }
+                #endregion
+
+                #region ConfigurationOperation-LocalisationActif
+                if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
+                {
+                    // -- Service d'enregistrement -- //
+                    LocalisationActifDAO.Ajouter(GBConvert.JSON_To<LocalisationActif>(obj));
                 }
                 #endregion
 
@@ -806,6 +900,14 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationOperation-LocalisationActif
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
+                {
+                    // -- Service de modification -- //
+                    LocalisationActifDAO.Modifier(GBConvert.JSON_To<LocalisationActif>(obj));
+                }
+                #endregion
+
                 #region TypePret introuvable
                 else
                 {
@@ -897,6 +999,14 @@ namespace GB.Controllers
                 {
                     // -- Service de suppression -- //
                     TypeActifDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationOperation-LocalisationActif
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
+                {
+                    // -- Service de suppression -- //
+                    LocalisationActifDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1107,6 +1217,32 @@ namespace GB.Controllers
                                                     {
                                                         icon = "fa fa-cogs",
                                                         message = App_Lang.Lang.Assets_type_management
+                                                    }
+                                                }
+                                            );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationOperation-LocalisationActif
+            else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Asset_location_management;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Asset_location_management
                                                     }
                                                 }
                                             );

@@ -68,6 +68,7 @@
       "TypeGarantie",
       "Journal",
       "TypeActif",
+      "LocalisationActif",
     ]
   }
 ]

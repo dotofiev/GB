@@ -178,6 +178,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asset location management.
+        /// </summary>
+        public static string Asset_location_management {
+            get {
+                return ResourceManager.GetString("Asset_location_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Assets type management.
         /// </summary>
         public static string Assets_type_management {

@@ -763,4 +763,7 @@
   <data name="Assets_type_management" xml:space="preserve">
     <value>Gestion des types pour actifs</value>
   </data>
+  <data name="Asset_location_management" xml:space="preserve">
+    <value>Gestion de la localisation des immobilisations</value>
+  </data>
 </root>
