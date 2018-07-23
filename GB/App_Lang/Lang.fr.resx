@@ -760,4 +760,7 @@
   <data name="Journals_recording_management" xml:space="preserve">
     <value>Gestion des enregistrements des journaux</value>
   </data>
+  <data name="Assets_type_management" xml:space="preserve">
+    <value>Gestion des types pour actifs</value>
+  </data>
 </root>

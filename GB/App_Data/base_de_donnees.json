@@ -391,6 +391,30 @@
       "view": "Journal",
       "id_controller": "5"
     },
+
+    // ------------ //
+    // -- Parent -- //
+    // ------------ //
+    {
+      "id": "34",
+      "code": "34",
+      "id_groupe_menu": "5",
+      "libelle_en": "Assets parameters",
+      "libelle_fr": "Paramètres des actifs",
+      "view": "",
+      "id_controller": "5"
+    },
+    // -- Enfants -- //
+    {
+      "id": "35",
+      "code": "35",
+      "id_menu_parent": "34",
+      "id_groupe_menu": "5",
+      "libelle_en": "Asset type",
+      "libelle_fr": "Types d'actifs",
+      "view": "TypeActif",
+      "id_controller": "5"
+    },
   ],
   "roles": [
     {
@@ -773,6 +797,26 @@
       "id": "34",
       "id_role": "1",
       "id_menu": "33",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "35",
+      "id_role": "1",
+      "id_menu": "34",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "36",
+      "id_role": "1",
+      "id_menu": "35",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -1303,5 +1347,19 @@
       "libelle": "Cashier 03",
       "date_creation": "636670881645418146"
     },
-  ]
+  ],
+  "types_actif": [
+    {
+      "id": "1",
+      "code": "001",
+      "libelle": "Table",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "1",
+      "code": "004",
+      "libelle": "Computer",
+      "date_creation": "636670881645418146"
+    }
+  ],
 }

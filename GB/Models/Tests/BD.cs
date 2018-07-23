@@ -37,6 +37,7 @@ namespace GB.Models.Tests
         public List<ClassificationProvisionsPret> classification_provisions_pret { get; set; }
         public List<TypeGarantie> types_garantie { get; set; }
         public List<Journal> journaux { get; set; }
+        public List<TypeActif> types_actif { get; set; }
 
         public BD() { }
     }

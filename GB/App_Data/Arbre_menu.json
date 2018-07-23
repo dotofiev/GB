@@ -67,6 +67,7 @@
       "ClassificationProvisionsPret",
       "TypeGarantie",
       "Journal",
+      "TypeActif",
     ]
   }
 ]
