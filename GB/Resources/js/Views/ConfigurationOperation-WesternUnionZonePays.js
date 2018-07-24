@@ -22,14 +22,14 @@ var url_suppression = url_controlleur + 'Supprimer_Enregistrement';
 try {
 
     // -- Modifier -- //
-    function table_donnee_modifier(code) {
+    function table_donnee_modifier(id) {
 
         // -- Ajax -- //
         $.ajax({
             type: "POST",
             url: url_ajax_selection_enregistrement,
             data: {
-                code: code,
+                id: id,
                 id_page: $GB_DONNEE.id_page
             },
             success: function (resultat) {
@@ -180,6 +180,7 @@ $(
                     }
                 },
                 "columns": [
+                    { "data": "col_0", "class": "hidden-lg" },     // -- Action -- //
                     { "data": "col_1", "width": "20px" },           // -- Checkbox -- //
                     { "data": "col_2" },                            // -- pays -- //
                     { "data": "col_3" },                            // -- zone -- //
@@ -204,7 +205,7 @@ $(
                     // -- Vérifie qu'un enregistrement est sélectionné -- //
                     if (donnees != undefined && donnees != null) {
                         // -- Modifier l'enregistrement -- //
-                        table_donnee_modifier(donnees.col_2);
+                        table_donnee_modifier(donnees.col_0);
                     }
                 }
             );
@@ -304,6 +305,9 @@ $(
 
                     // -- Supprimer les validations parsley -- //
                     gbSupprimerMessageValidationForm(form.attr('id'));
+
+                    // -- Réinitialiser le id_pays -- //
+                    form_id_pays.val(0);
 
                 }
             );

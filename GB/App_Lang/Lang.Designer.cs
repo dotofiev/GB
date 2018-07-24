@@ -520,6 +520,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data required.
+        /// </summary>
+        public static string Data_required {
+            get {
+                return ResourceManager.GetString("Data_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Day.
         /// </summary>
         public static string Day {

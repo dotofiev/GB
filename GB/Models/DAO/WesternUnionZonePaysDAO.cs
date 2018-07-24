@@ -14,7 +14,13 @@ namespace GB.Models.DAO
         {
             try
             {
-                // -- Unicité du code -- //
+                // -- Vérifier que le pays est bien soumis - //
+                if (obj.id_pays == 0)
+                {
+                    throw new GBException(App_Lang.Lang.Data_required + " [" + App_Lang.Lang.Country + "]");
+                }
+
+                // -- Unicité du pays -- //
                 if (Program.db.western_union_zones_pays.Exists(l => l.id_pays == obj.id_pays))
                 {
                     throw new GBException(App_Lang.Lang.Existing_data + " [" + App_Lang.Lang.Country + "]");

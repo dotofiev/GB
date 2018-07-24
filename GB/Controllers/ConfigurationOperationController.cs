@@ -499,6 +499,7 @@ namespace GB.Controllers
                         donnee.Add(
                             new
                             {
+                                col_0 = val.id,
                                 col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"westernUnionZonePays\" value=\"westernUnionZonePays_{val.id}\">",
                                 col_2 = val.pays.libelle,
                                 col_3 = val.zone,
@@ -586,7 +587,7 @@ namespace GB.Controllers
 
         // -- Selectionner un nouvel enregistrement dans la liste -- //
         [HttpPost]
-        public ActionResult Selection_Enregistrement(string code, string id_page)
+        public ActionResult Selection_Enregistrement(string code, long id, string id_page)
         {
             try
             {
@@ -772,7 +773,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = WesternUnionZonePaysDAO.Object(code);
+                    var obj = WesternUnionZonePaysDAO.Object(id);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
