@@ -451,6 +451,16 @@
       "view": "WesternUnionZonePays",
       "id_controller": "5"
     },
+    {
+      "id": "39",
+      "code": "39",
+      "id_menu_parent": "38",
+      "id_groupe_menu": "5",
+      "libelle_en": "Commissions",
+      "libelle_fr": "Commissions",
+      "view": "WesternUnionZoneCommission",
+      "id_controller": "5"
+    },
     // -- ./Enfants -- //
   ],
   "roles": [
@@ -884,6 +894,16 @@
       "id": "39",
       "id_role": "1",
       "id_menu": "38",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "40",
+      "id_role": "1",
+      "id_menu": "39",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -1443,5 +1463,12 @@
       "id_pays": "1",
       "zone": "NATIONAL"
     }
-  ]
+  ],
+  //"western_union_zones_commissions": [
+  //  {
+  //    "id": "1",
+  //    "id_pays": "1",
+  //    "zone": "NATIONAL"
+  //  }
+  //]
 }
