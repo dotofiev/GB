@@ -888,6 +888,7 @@
     <Content Include="Resources\js\bootstrap.js" />
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\gb.menu.js" />
+    <Content Include="Resources\js\Views\Erreur-Page.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-BEACNationalite.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-UniteInstitutionnelle.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Titre.js" />
@@ -950,10 +951,12 @@
     <EmbeddedResource Include="App_Lang\Lang.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.fr.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_Lang\Lang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -1115,9 +1118,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Application\Principale.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Erreur\.Page.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Securite\Module\_Modals.cshtml" />

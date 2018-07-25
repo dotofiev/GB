@@ -21,6 +21,9 @@ namespace GB
         #region Variables
         public Connexion con { get { return Session["Connexion"] as Connexion; } set { Session["Connexion"] = value; } }
         public int id_lang { get { if (Session["id_lang"] == null) { return 0; } else { return (int)Session["id_lang"]; } } set { Session["id_lang"] = value; } }
+        public string id_navigateur_client_cookies { get { return this.Request?.Cookies?["id_navigateur_client"]?.Value ?? string.Empty; } set { this.Response.Cookies["id_navigateur_client"].Value = value; } }
+        public int id_lang_cookies { get { return Convert.ToInt32(this.Request?.Cookies?["id_lang"]?.Value ?? "0"); } set { this.Response.Cookies["id_lang"].Value = value.ToString(); } }
+        public string id_session_cookies { get { return this.Request?.Cookies?["id_session"]?.Value ?? string.Empty; } set { this.Response.Cookies["id_session"].Value = value; } }
         #endregion
 
         #region URLs
@@ -56,14 +59,14 @@ namespace GB
             if (this.Request.Cookies.Get("id_lang") != null)
             {
                 // -- Réccupération de l'identifian de la langue -- //
-                this.id_lang = Convert.ToInt32(this.Request.Cookies.Get("id_lang").Value);
+                this.id_lang = id_lang_cookies;
             }
             else
             {
                 // -- Définition de la langue française par défaut -- //
                 this.id_lang = 0;
                 // -- Mise à jour de l'identification de la langue dans le cookie -- //
-                this.Response.Cookies["id_lang"].Value = "0";
+                id_lang_cookies = 0;
             }
             #endregion
 
@@ -72,39 +75,30 @@ namespace GB
 
             // -- Traitement de l'identifiant du client -- //
             #region Traitement de l'identifiant du client
-            string client_id = (this.Request.Cookies["id_client"]?.Value ?? string.Empty);
-            if (client_id == string.Empty)
+            if (id_navigateur_client_cookies == string.Empty)
             {
                 // -- Mise à jour de l'identifiant du client -- //
-                client_id = DateTime.Now.Ticks.ToString();
-                // -- Envoi de l'identifiant du client en cookie -- //
-                this.Response.Cookies["id_client"].Value = client_id;
+                id_navigateur_client_cookies = DateTime.Now.Ticks.ToString();
             }
             #endregion
 
             // -- Initialise une nouvelle session -- //
-            this.con = new Connexion(this.Session.SessionID, client_id);
+            this.con = new Connexion(this.Session.SessionID, id_navigateur_client_cookies);
 
             // -- Mise à jour de l'utilisateur dans le hub -- //
-            if(GBHub.Hubs_Connexion.Exists(l => l.client_id == client_id))
+            if(GBHub.Hubs_Connexion.Exists(l => l.id_navigateur_client == id_navigateur_client_cookies))
             {
-                // -- Réccupération de ka refenrece -- //
-                GBHub.Hubs_Connexion
-                    .Where(l => l.client_id == client_id)
-                    .ToList()
-                    .ForEach(l => {
-                        l = this.con;
-                    }
-                );
+                // -- Mise à jour de la position du client -- //
+                GBHub.MiseAJourHubs_Connexion(this.con);
             }
             // -- AJouter le client au hub -- //
             else
             {
                 GBHub.Hubs_Connexion.Add(this.con);
             }
-            
+
             // -- Définition de la nouvelle session_id dans le cookie -- //
-            this.Response.Cookies["id_session"].Value = this.con.session_id;
+            id_session_cookies = this.con.session_id;
 
             // -- Teste si la session est vide -- //
             #region Commentaire
@@ -145,12 +139,16 @@ namespace GB
             #endregion
 
             // -- Log du début d'une session -- //
-            GBClass.Log.Info("Début session: {session:" + this.con.session_id + "}");
+            GBClass.Log.Info("Début session: {session:" + id_session_cookies + "}");
         }
 
         // -- Lorsque la session se termine -- //
         protected void Session_OnEnd()
         {
+            string a = this.con.session_id;
+            string b = this.con.session_id;
+            string c = this.con.nom_utilisateur;
+
             // -- Teste si l'utilisateur est authentifié -- //
             //if (this.con.Utilisateur.id_utilisateur != 0)
             //{
@@ -159,9 +157,10 @@ namespace GB
             //}
 
             // -- Log du fin d'une session -- //
-            GBClass.Log.Info("Fin session: {session:" + con.session_id + "}");
+            GBClass.Log.Info("Fin session: {session:" + this.con.session_id + "}");
         }
 
+        // -- Lorsqu'une erreur survient dans l'application -- //
         protected void Application_Error(object sender, EventArgs e)
         {
             try
@@ -187,12 +186,14 @@ namespace GB
                                 {
                                     code = (ex_http != null) ? ex_http.GetHttpCode()
                                                              : 500,
-                                    message = ex.Message
+                                    message = ex.Message,
+                                    id_lang = id_lang_cookies.ToString(),
+                                    reconnecter = true
                                 })
                             );
 
                 // -- Mise à jour du filtre de réponse -- //
-                Response.Filter = new ResponseErreur(Response.Filter, dt, this.Request.Cookies["id_lang"].Value);
+                Response.Filter = new ResponseErreur(Response.Filter, dt);
             }
             catch (Exception ex)
             {

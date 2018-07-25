@@ -71,9 +71,9 @@ namespace GB.Controllers
                 this.ViewBag.Lang.Settings = App_Lang.Lang.Settings;
                 this.ViewBag.Lang.Sign_Out = App_Lang.Lang.Sign_Out;
                 this.ViewBag.Lang.Welcome = App_Lang.Lang.Welcome;
-                this.ViewBag.Lang.Id = id_lang == 0 ? 1 
+                this.ViewBag.Lang.Id = this.id_lang == 0 ? 1 
                                                     : 0;
-                this.ViewBag.Lang.Title = id_lang == 0 ? App_Lang.Lang.French
+                this.ViewBag.Lang.Title = this.id_lang == 0 ? App_Lang.Lang.French
                                                        : App_Lang.Lang.English;
                 #endregion
 
@@ -101,6 +101,10 @@ namespace GB.Controllers
                                                     // -- Paramètres -- //
                                                     DUREE_VISIBILITE_MESSAGE_BOX = AppSettings.DUREE_VISIBILITE_MESSAGE_BOX,
                                                     TAILLE_MAX_IMAGE_IMPORTATION = AppSettings.TAILLE_MAX_IMAGE_IMPORTATION,
+                                                    UTILISATEUR = new {
+                                                        id_utilisateur = this.con.id_utilisateur,
+                                                        nom_utilisateur = this.con.nom_utilisateur
+                                                    }
                                                 }
                                             );
                 #endregion

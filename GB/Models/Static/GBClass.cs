@@ -176,5 +176,23 @@ namespace GB.Models.Static
                 $"<option value=\"{"INTERNATIONAL"}\" title=\"{"INTERNATIONAL"}\">{"INTERNATIONAL"}</option>" +
                 $"<option value=\"{"NATIONAL"}\" title=\"{"NATIONAL"}\">{"NATIONAL"}</option>";
         }
+
+        /// <summary>
+        /// Définit si une erreur d'action necessite une recconnexion ou pas
+        /// </summary>
+        public static Boolean Reconnecter_erreur_action(string controller, string action)
+        {
+            string menu = $"{controller}-{action}";
+
+            if (menu == GB_Enum_Menu.Home_Authentication || 
+                menu == GB_Enum_Menu.Application_Main)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

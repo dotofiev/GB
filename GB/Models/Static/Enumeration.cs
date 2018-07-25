@@ -13,6 +13,9 @@ namespace GB.Models.Static
 
     public static class GB_Enum_Menu
     {
+        public static string Erreur_Page = "Erreur-Page";
+        public static string Home_Authentication = "Home-Authentication";
+        public static string Application_Main = "Application-Main";
         public static string Securite_Role = "Securite-Role";
         public static string Securite_Module = "Securite-Module";
         public static string Securite_Menu = "Securite-Menu";

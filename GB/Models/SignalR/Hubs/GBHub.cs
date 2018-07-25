@@ -14,5 +14,17 @@ namespace GB.Models.SignalR.Hubs
 
         // -- Initialiser la connexion -- //
         public abstract void initConnexion();
+
+        #region Mthodes
+        // -- Mise à jour du client dans la liste -- //
+        public static void MiseAJourHubs_Connexion(Connexion con)
+        {
+            // -- Réccupération de la position -- //
+            int position = Hubs_Connexion.FindIndex(l => l.id_navigateur_client == con.id_navigateur_client);
+
+            // -- Mise à jour de la position -- //
+            Hubs_Connexion[position] = con;
+        }
+        #endregion
     }
 }

@@ -1146,6 +1146,12 @@ function gbConsole(value) {
 
 }
 
+function gbConsoleStringify(value) {
+
+    console.log(JSON.stringify(value));
+
+}
+
 // -- Notificateur -- //
 function gbNotification(notification, titre) {
 

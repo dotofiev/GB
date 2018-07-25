@@ -527,3 +527,10 @@ legend {
 .gb-modal-enfant-4 {
     z-index: 10000;
 }
+
+.dg-body_auth {
+    font-family: Titilium web; background-color: #F7F7F7;
+    background-image: url(../images/png/bg_grey.png);
+    background-size: 100%;
+    background-attachment: fixed;
+}

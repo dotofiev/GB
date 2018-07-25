@@ -166,8 +166,8 @@ namespace GB.Controllers
                                 {
                                     col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"autorisation\" value=\"autorisation_{val.id_menu}\">",
                                     col_2 = val.menu.code,
-                                    col_3 = (id_lang == 0) ? val.menu.libelle_en 
-                                                           : val.menu.libelle_fr,
+                                    col_3 = (this.id_lang == 0) ? val.menu.libelle_en 
+                                                                : val.menu.libelle_fr,
                                     col_4 = (val.ajouter) ? @"<i class=""fa fa-check fa-2x""></i>"
                                                           : @"<i class=""fa fa-remove fa-2x""></i>",
                                     col_5 = (val.modifier) ? @"<i class=""fa fa-check fa-2x""></i>"
@@ -191,12 +191,12 @@ namespace GB.Controllers
                                 new
                                 {
                                     col_1 = $"<input type=\"checkbox\" class=\"flat\" id_menu=\"{val.id_menu}\" name=\"menu\" value=\"menu_{val.id_menu}\" etat=\"false\" >",
-                                    col_2 = (id_lang == 0) ? val.menu.libelle_en
-                                                           : val.menu.libelle_fr,
-                                    col_3 = (id_lang == 0) ? val.menu.groupe_menu.libelle_en
-                                                           : val.menu.groupe_menu.libelle_fr,
-                                    col_4 = (id_lang == 0) ? val.menu.groupe_menu.module.libelle_en
-                                                           : val.menu.groupe_menu.module.libelle_fr,
+                                    col_2 = (this.id_lang == 0) ? val.menu.libelle_en
+                                                                : val.menu.libelle_fr,
+                                    col_3 = (this.id_lang == 0) ? val.menu.groupe_menu.libelle_en
+                                                                : val.menu.groupe_menu.libelle_fr,
+                                    col_4 = (this.id_lang == 0) ? val.menu.groupe_menu.module.libelle_en
+                                                                : val.menu.groupe_menu.module.libelle_fr,
                                     col_5 = $"<input type=\"checkbox\" class=\"flat-blue\" id_menu=\"{val.id_menu}\" name=\"ajouter\" etat=\"false\" />",
                                     col_6 = $"<input type=\"checkbox\" class=\"flat-blue\" id_menu=\"{val.id_menu}\" name=\"modifier\" etat=\"false\" />",
                                     col_7 = $"<input type=\"checkbox\" class=\"flat-blue\" id_menu=\"{val.id_menu}\" name=\"supprimer\" etat=\"false\" />",

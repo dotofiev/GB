@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GB.Models.Static;
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
@@ -50,7 +51,8 @@ namespace GB.Models.BO
                                             : 1
                                 );
             this.message = (!est_echec) ? App_Lang.Lang.Successful + "!"
-                                        : App_Lang.Lang.Error_message_notification;
+                                        : (!AppSettings.MODE_DEV) ? App_Lang.Lang.Error_message_notification
+                                                                  : message;
             this.est_echec = est_echec;
             this.donnee = null;
             this.dynamique = new ExpandoObject();

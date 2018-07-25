@@ -19,6 +19,9 @@ namespace GB.Controllers
         public Connexion con { get { return Session["Connexion"] as Connexion; } set { Session["Connexion"] = value; } }
         public int id_lang { get { if (Session["id_lang"] == null) { return 0; } else { return (int)Session["id_lang"]; } } set { Session["id_lang"] = value; } }
         public long id_menu_actif { get { if (Session["id_menu_actif"] == null) { return 0; } else { return (long)Session["id_menu_actif"]; } } set { Session["id_menu_actif"] = value; } }
+        public string id_navigateur_client_cookies { get { return this.Request?.Cookies?["id_navigateur_client"]?.Value ?? string.Empty; } set { this.Response.Cookies["id_navigateur_client"].Value = value; } }
+        public int id_lang_cookies { get { return Convert.ToInt32(this.Request?.Cookies?["id_lang"]?.Value ?? "0"); } set { this.Response.Cookies["id_lang"].Value = value.ToString(); } }
+        public string id_session_cookies { get { return this.Request?.Cookies?["id_session"]?.Value ?? string.Empty; } set { this.Response.Cookies["id_session"].Value = value; } }
         #endregion
 
         #region URLs
@@ -88,9 +91,6 @@ namespace GB.Controllers
         // -- Méthodes -- //
         #region Méthodes
         public virtual void Charger_Langue_Et_Donnees(string id_page) { }
-
-        [HttpPost]
-        public virtual ActionResult Charger_Table(string id_page, string id_vue) { return null; }
         
         public virtual object Charger_EasyAutocomplete(string id_page, string id_vue) { return null; }
 
@@ -171,9 +171,48 @@ namespace GB.Controllers
             // -- Vérifier l'autorisation de l'action -- //
             AutorisationDAO.Verification(this.id_menu_actif, this.con.id_role, action);
         }
+
+        // -- Gestion des erreur 500 survenu dans l'application -- //
+        protected override void OnException(ExceptionContext context)
+        {
+            // -- Activation de l'etat d'exception -- //
+            context.ExceptionHandled = true;
+
+            // -- Réccupération du controller et action de l'erreur -- //
+            string controller = context.RouteData.Values["controller"].ToString();
+            string action = context.RouteData.Values["action"].ToString();
+
+            // -- Log -- //
+            GBClass.Log.Error(context.Exception);
+
+            // -- Redirection vers la page d'erreur approprié -- //
+            context.Result = RedirectToAction(
+                                // -- Action -- //
+                                "Page",
+                                // -- Controlleur -- //
+                                "Erreur",
+                                // -- Paramètres -- //
+                                new
+                                {
+                                    dt = GB.Models.Cryptage.Program.EncryptStringAES(
+                                                GBConvert.To_JavaScript(
+                                                    new
+                                                    {
+                                                        code = 500,
+                                                        message = context.Exception.Message,
+                                                        id_lang = this.id_lang,
+                                                        reconnecter = GBClass.Reconnecter_erreur_action(controller, action)
+                                                    }
+                                                )
+                                            )
+                                }
+                            );
+        }
         #endregion
 
         #region [HttpPost]
+        [HttpPost]
+        public virtual ActionResult Charger_Table(string id_page, string id_vue) { return null; }
         #endregion
     }
 }

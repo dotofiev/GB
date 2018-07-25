@@ -13,6 +13,7 @@ namespace GB.Models.Static
         public static string APP_NAME { get { return System.Configuration.ConfigurationManager.AppSettings["APP_NAME"]; } }
         public static int DUREE_VISIBILITE_MESSAGE_BOX { get { return Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["DUREE_VISIBILITE_MESSAGE_BOX"]); } }
         public static int TAILLE_MAX_IMAGE_IMPORTATION { get { return Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["TAILLE_MAX_IMAGE_IMPORTATION"]); } }
-        public static string FORMAT_DATE { get { return System.Configuration.ConfigurationManager.AppSettings["FORMAT_DATE"]; } }        
+        public static string FORMAT_DATE { get { return System.Configuration.ConfigurationManager.AppSettings["FORMAT_DATE"]; } }
+        public static Boolean MODE_DEV { get { return Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["MODE_DEV"]); } }
     }
 }

@@ -387,6 +387,7 @@
 /// <reference path="views/configurationoperation-typegarantie.js" />
 /// <reference path="views/configurationoperation-typepret.js" />
 /// <reference path="views/configurationoperation-westernunionzonepays.js" />
+/// <reference path="views/erreur-page.js" />
 /// <reference path="Views/Home-Authentication.js" />
 /// <reference path="views/securite-menu.js" />
 /// <reference path="views/securite-module.js" />

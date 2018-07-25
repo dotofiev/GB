@@ -19,7 +19,7 @@ namespace GB.Models.BO
         private string _nom_utilisateur { get; set; }
         private dynamic _donnee { get; set; }
         private string _session_id { get; set; }
-        private string _client_id { get; set; }
+        private string _id_navigateur_client { get; set; }
 
         // -- Public -- //
         public string compte { get { return _compte; } }
@@ -27,18 +27,18 @@ namespace GB.Models.BO
         public string url_photo_profil { get { return _url_photo_profil; } }
         public string nom_utilisateur { get { return _nom_utilisateur; } }
         public string session_id { get { return _session_id; } }
-        public string client_id { get { return _client_id; } }
+        public string id_navigateur_client { get { return _id_navigateur_client; } }
         public DateTime date_connexion { get { return _date_connexion; } }
         public long id_utilisateur { get { return _id_utilisateur; } }
         public long id_role { get { return _id_role; } }
         public dynamic donnee { get { return _donnee; } }
 
         // -- Constructeur -- //
-        public Connexion(string session_id, string client_id)
+        public Connexion(string session_id, string id_navigateur_client)
         {
             this._date_connexion = DateTime.Now;
             this._session_id = session_id;
-            this._client_id = client_id;
+            this._id_navigateur_client = id_navigateur_client;
             this._donnee = new System.Dynamic.ExpandoObject();
         }
 
