@@ -60,7 +60,7 @@ namespace GB.Controllers
                             donnee.Add(
                                 new
                                 {
-                                    col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"utilisateur\" value=\"utilisateur_{val.id_utilisateur}\">",
+                                    col_1 = GBClass.HTML_Checkbox_Table(val.id_utilisateur, "utilisateur"),
                                     col_4 = val.agence?.code ?? string.Empty,
                                     col_2 = val.compte,
                                     col_3 = val.nom_utilisateur,
@@ -72,36 +72,8 @@ namespace GB.Controllers
                                     col_10 = GBToString.Oui_Non(val.acces_historique_compte),
                                     col_11 = $"{val.duree_mot_de_passe} {App_Lang.Lang.Month}(s)",
                                     col_12 = val.autorite_signature?.code ?? string.Empty,
-                                    col_13 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
-                                                              title=""{Lang.Delete}"" 
-                                                              class=""btn btn-xs btn-round""
-                                                              onClick=""table_donnee_supprimer({ids}, true)""
-                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                          <i class=""fa fa-minus text-danger""></i>
-                                        </button>"
-                                            .Replace("{id}", val.id_utilisateur.ToString())
-                                            .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id_utilisateur }))
-                                            .Replace("{Lang.Update}", App_Lang.Lang.Update)
-                                            .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
-                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
-                                //                              title=""{Lang.Update}"" 
-                                //                              class=""btn btn-xs btn-round""
-                                //                              onClick=""table_donnee_modifier({id})""
-                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                //          <i class=""fa fa-retweet text-warning""></i>
-                                //        </button>
-                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
-                                //                              title=""{Lang.Delete}"" 
-                                //                              class=""btn btn-xs btn-round""
-                                //                              onClick=""table_donnee_supprimer({ids}, true)""
-                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                //          <i class=""fa fa-minus text-danger""></i>
-                                //        </button>"
-                                //        .Replace("{id}", val.id.ToString())
-                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
-                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
-                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
-                            }
+                                    col_13 = GBClass.HTML_Bouton_Suppression_Table(val.id_utilisateur)
+                                }
                             );
                         }
                     }
@@ -113,7 +85,7 @@ namespace GB.Controllers
                                 new
                                 {
                                     col_0 = val.id,
-                                    //col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"autoriteSignature\" value=\"autoriteSignature_{val.id}\">",
+                                    //col_1 = GBClass.HTML_Checkbox_Table(val.id, "autoriteSignature\" value=\"autoriteSignature_{val.id}\">",
                                     col_2 = val.code,
                                     col_3 = val.libelle,
                                     col_4 = GBToString.MontantToString(val.montant_signature),
@@ -122,36 +94,7 @@ namespace GB.Controllers
                                     col_7 = GBToString.MontantToString(val.credit_max_client),
                                     col_8 = GBToString.MontantToString(val.montant_max_ligne_credit),
                                     col_9 = GBToString.MontantToString(val.montant_limite_pret),
-                                    //col_10 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
-                                    //                          title=""{Lang.Delete}"" 
-                                    //                          class=""btn btn-xs btn-round""
-                                    //                          onClick=""table_donnee_supprimer({ids}, true)""
-                                    //                          data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                    //      <i class=""fa fa-minus text-danger""></i>
-                                    //    </button>"
-                                    //        .Replace("{id}", val.id.ToString())
-                                    //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
-                                    //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
-                                    //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
-                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
-                                //                              title=""{Lang.Update}"" 
-                                //                              class=""btn btn-xs btn-round""
-                                //                              onClick=""table_donnee_modifier({id})""
-                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                //          <i class=""fa fa-retweet text-warning""></i>
-                                //        </button>
-                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
-                                //                              title=""{Lang.Delete}"" 
-                                //                              class=""btn btn-xs btn-round""
-                                //                              onClick=""table_donnee_supprimer({ids}, true)""
-                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                //          <i class=""fa fa-minus text-danger""></i>
-                                //        </button>"
-                                //        .Replace("{id}", val.id.ToString())
-                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
-                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
-                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
-                            }
+                                }
                             );
                         }
                     }

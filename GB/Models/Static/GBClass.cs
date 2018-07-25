@@ -194,5 +194,59 @@ namespace GB.Models.Static
                 return false;
             }
         }
+
+        /// <summary>
+        /// Creation et retour d'un bouton de suppression à afficher dans la table 
+        /// </summary>
+        public static string HTML_Bouton_Suppression_Table(long id)
+        {
+            return
+                @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                    title=""{Lang.Delete}"" 
+                    class=""btn btn-xs btn-round""
+                    onClick=""table_donnee_supprimer({ids}, true)""
+                    data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                    <i class=""fa fa-minus text-danger""></i>
+                </button>"
+                .Replace("{id}", id.ToString())
+                .Replace("{ids}", GBConvert.To_JavaScript(new long[] { id }))
+                .Replace("{Lang.Delete}", App_Lang.Lang.Delete);
+        }
+
+        /// <summary>
+        /// Creation et retour d'un bouton de modification à à afficher dans la table 
+        /// </summary>
+        public static string HTML_Bouton_Modifier_Table(long id)
+        {
+            return
+                @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                    title=""{Lang.Update}"" 
+                    class=""btn btn-xs btn-round""
+                    onClick=""table_donnee_modifier({id})""
+                    data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                    <i class=""fa fa-retweet text-warning""></i>
+                </button>"
+                .Replace("{id}", id.ToString())
+                .Replace("{Lang.Update}", App_Lang.Lang.Update);
+        }
+
+        /// <summary>
+        /// Creation et retour des boutons de suppression et de modification à afficher dans la table 
+        /// </summary>
+        public static string HTML_Bouton_Modifier_Suppression_Table(long id)
+        {
+            return
+                HTML_Bouton_Modifier_Table(id) +
+                HTML_Bouton_Suppression_Table(id);
+        }
+
+        /// <summary>
+        /// Creation et retour d'un checkbox de selection dans la table 
+        /// </summary>
+        public static string HTML_Checkbox_Table(long id, string name)
+        {
+            return
+                $"<input type=\"checkbox\" class=\"flat\" name=\"{name}\" value=\"{name}_{id}\">";
+        }
     }
 }
