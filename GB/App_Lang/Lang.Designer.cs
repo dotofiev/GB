@@ -1825,6 +1825,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The session has just ended.
+        /// </summary>
+        public static string The_session_has_just_ended {
+            get {
+                return ResourceManager.GetString("The_session_has_just_ended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This account is suspended.
         /// </summary>
         public static string This_account_is_suspended {
@@ -2028,6 +2037,15 @@ namespace GB.App_Lang {
         public static string Yes {
             get {
                 return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You will be disconnected.
+        /// </summary>
+        public static string You_will_be_disconnected {
+            get {
+                return ResourceManager.GetString("You_will_be_disconnected", resourceCulture);
             }
         }
     }

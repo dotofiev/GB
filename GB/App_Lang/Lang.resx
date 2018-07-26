@@ -774,4 +774,10 @@
   <data name="Data_required" xml:space="preserve">
     <value>Data required</value>
   </data>
+  <data name="The_session_has_just_ended" xml:space="preserve">
+    <value>The session has just ended</value>
+  </data>
+  <data name="You_will_be_disconnected" xml:space="preserve">
+    <value>You will be disconnected</value>
+  </data>
 </root>

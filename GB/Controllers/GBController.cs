@@ -2,6 +2,7 @@
 using GB.Models.BO;
 using GB.Models.DAO;
 using GB.Models.Helper;
+using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using Newtonsoft.Json;
 using System;
@@ -213,6 +214,43 @@ namespace GB.Controllers
         #region [HttpPost]
         [HttpPost]
         public virtual ActionResult Charger_Table(string id_page, string id_vue) { return null; }
+
+        [HttpPost]
+        public ActionResult Charger_ConnectionId_Client(string connectionId)
+        {
+            try
+            {
+                // -- Mise à jour du connectionId dans l'objt session -- //
+                this.con.Charger_ConnectionId_Hub(connectionId);
+                var tes = GBHub.Hubs_Connexion;
+                // -- Notification -- //
+                this.ViewBag.notification = new GBNotification(false);
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(true);
+                }
+                else
+                {
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(ex.Message, true);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return Json(
+                GBConvert.To_Object(this.ViewBag)
+            );
+        }
         #endregion
     }
 }

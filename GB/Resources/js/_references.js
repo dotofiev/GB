@@ -352,6 +352,7 @@
 /// <reference path="../../Plugins/nprogress/nprogress.js" />
 /// <reference path="../../plugins/parsley/gb.parsley.js" />
 /// <reference path="../../Plugins/parsley/parsley.js" />
+/// <reference path="../../plugins/signalr/hub/application-main.js" />
 /// <reference path="../../plugins/signalr/scripts/jquery.signalr-2.2.3.js" />
 /// <reference path="bootstrap.js" />
 /// <reference path="custom.js" />

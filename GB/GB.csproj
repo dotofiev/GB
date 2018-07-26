@@ -275,6 +275,7 @@
     <Compile Include="Models\DAO\RoleDAO.cs" />
     <Compile Include="Models\DAO\UtilisateurDAO.cs" />
     <Compile Include="Models\Helper\LangHelper.cs" />
+    <Compile Include="Models\SignalR\Hubs\applicationMainHub.cs" />
     <Compile Include="Models\SignalR\Hubs\GBHub.cs" />
     <Compile Include="Models\Static\AppSettings.cs" />
     <Compile Include="Models\Static\Enumeration.cs" />
@@ -867,6 +868,7 @@
     <Content Include="Plugins\parsley\i18n\zh-tw.js" />
     <Content Include="Plugins\parsley\parsley.js" />
     <Content Include="Plugins\parsley\parsley.min.js" />
+    <Content Include="Plugins\signalR\hub\Application-Main.js" />
     <Content Include="Resources\css\bootstrap-theme.css" />
     <Content Include="Resources\css\bootstrap-theme.min.css" />
     <Content Include="Resources\css\bootstrap.css" />
@@ -932,8 +934,8 @@
     <Content Include="Resources\js\menu.min.js" />
     <Content Include="Resources\js\npm.js" />
     <Content Include="Resources\js\Views\Home-Authentication.js" />
-    <Content Include="Plugins\signalR\Scripts\jquery.signalR-2.2.3.js" />
-    <Content Include="Plugins\signalR\Scripts\jquery.signalR-2.2.3.min.js" />
+    <Content Include="Plugins\signalR\scripts\jquery.signalR-2.2.3.js" />
+    <Content Include="Plugins\signalR\scripts\jquery.signalR-2.2.3.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -1,4 +1,5 @@
-﻿using GB.Models;
+﻿using GB.Controllers;
+using GB.Models;
 using GB.Models.ActionFilter;
 using GB.Models.BO;
 using GB.Models.SignalR.Hubs;
@@ -145,16 +146,8 @@ namespace GB
         // -- Lorsque la session se termine -- //
         protected void Session_OnEnd()
         {
-            string a = this.con.session_id;
-            string b = this.con.session_id;
-            string c = this.con.nom_utilisateur;
-
-            // -- Teste si l'utilisateur est authentifié -- //
-            //if (this.con.Utilisateur.id_utilisateur != 0)
-            //{
-            //    // -- Appel la méthode de déconnexion de l'utilisateur -- //
-            //    iRollController.Session_est_termine_Hub(this.con.Hub_Context_Id);
-            //}
+            // -- Appel la méthode de déconnexion de l'utilisateur -- //
+            GBHub.DeconnecterClient(this.con.hub_id_context);
 
             // -- Log du fin d'une session -- //
             GBClass.Log.Info("Fin session: {session:" + this.con.session_id + "}");
@@ -200,6 +193,13 @@ namespace GB
                 // -- Log -- //
                 GBClass.Log.Error(ex);
             }
+        }
+
+        // -- Lors que l'application s'arrête -- //
+        protected void Application_End()
+        {
+            // -- Log de l'arrêt de l'application -- //
+            GBClass.Log.Info("Arrèt de l'application");
         }
         #endregion
     }

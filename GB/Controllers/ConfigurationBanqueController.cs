@@ -700,11 +700,11 @@ namespace GB.Controllers
                                                         pub = obj.pub,
                                                         cobac_id = obj.cobac_id,
                                                         type = obj.type,
-                                                        image = (obj.logo.fichier != null && obj.logo.fichier.Length != 0) ? GBConvert.To_Base64Image(obj.logo.fichier, ".jpg") 
-                                                                                                                           : null,
+                                                        image = ((obj?.logo?.fichier?.Count() ?? 0) != 0) ? GBConvert.To_Base64Image(obj.logo.fichier, ".jpg") 
+                                                                                                          : null,
                                                         image_statut = (obj.logo?.fichier?.Count() ?? 0) != 0 ? 2 
                                                                                                               : 0, 
-                                                        image_libelle = obj.logo.libelle?? App_Lang.Lang.Empty + " ...",
+                                                        image_libelle = obj?.logo?.libelle ?? App_Lang.Lang.Empty + " ...",
                                                     }
                                                );
                 }

@@ -20,6 +20,7 @@ namespace GB.Models.BO
         private dynamic _donnee { get; set; }
         private string _session_id { get; set; }
         private string _id_navigateur_client { get; set; }
+        private string _hub_id_context { get; set; }
 
         // -- Public -- //
         public string compte { get { return _compte; } }
@@ -30,6 +31,7 @@ namespace GB.Models.BO
         public string id_navigateur_client { get { return _id_navigateur_client; } }
         public DateTime date_connexion { get { return _date_connexion; } }
         public long id_utilisateur { get { return _id_utilisateur; } }
+        public string hub_id_context { get { return _hub_id_context; } }
         public long id_role { get { return _id_role; } }
         public dynamic donnee { get { return _donnee; } }
 
@@ -68,6 +70,11 @@ namespace GB.Models.BO
         public void Vider_Donnee()
         {
             this._donnee = new System.Dynamic.ExpandoObject();
+        }
+
+        public void Charger_ConnectionId_Hub(string context_id)
+        {
+            this._hub_id_context = context_id;
         }
         #endregion
     }
