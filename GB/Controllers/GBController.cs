@@ -222,7 +222,7 @@ namespace GB.Controllers
             {
                 // -- Mise à jour du connectionId dans l'objt session -- //
                 this.con.Charger_ConnectionId_Hub(connectionId);
-                var tes = GBHub.Hubs_Connexion;
+
                 // -- Notification -- //
                 this.ViewBag.notification = new GBNotification(false);
             }

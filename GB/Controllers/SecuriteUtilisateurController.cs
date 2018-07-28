@@ -486,12 +486,16 @@ namespace GB.Controllers
                 // -- Données -- //
                 #region Données
                 #region HTML_Select_agence
-                this.ViewBag.donnee.HTML_Select_code_agence = AgenceDAO.HTML_Select("code");
-                this.ViewBag.donnee.HTML_Select_libelle_agence = AgenceDAO.HTML_Select("libelle");
+                string HTML_Select_code_agence = string.Empty, HTML_Select_libelle_agence = string.Empty;
+                new AgenceDAO().HTML_Select(ref HTML_Select_code_agence, ref HTML_Select_libelle_agence);
+                this.ViewBag.donnee.HTML_Select_code_agence = HTML_Select_code_agence;
+                this.ViewBag.donnee.HTML_Select_libelle_agence = HTML_Select_libelle_agence;
                 #endregion
                 #region HTML_Select_profession
-                this.ViewBag.donnee.HTML_Select_code_profession = ProfessionDAO.HTML_Select("code");
-                this.ViewBag.donnee.HTML_Select_libelle_profession = ProfessionDAO.HTML_Select("libelle");
+                string HTML_Select_code_profession = string.Empty, HTML_Select_libelle_profession = string.Empty;
+                new ProfessionDAO().HTML_Select(ref HTML_Select_code_profession, ref HTML_Select_libelle_profession);
+                this.ViewBag.donnee.HTML_Select_code_profession = HTML_Select_code_profession;
+                this.ViewBag.donnee.HTML_Select_libelle_profession = HTML_Select_libelle_profession;
                 #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new {

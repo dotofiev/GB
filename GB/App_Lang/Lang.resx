@@ -780,4 +780,7 @@
   <data name="You_will_be_disconnected" xml:space="preserve">
     <value>You will be disconnected</value>
   </data>
+  <data name="Fiscals_exercice" xml:space="preserve">
+    <value>Fiscals exercice</value>
+  </data>
 </root>

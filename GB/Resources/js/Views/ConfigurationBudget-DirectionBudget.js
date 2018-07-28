@@ -39,6 +39,7 @@ try {
                     $('#form_telephone').val(resultat.notification.donnee.telephone);
                     $('#form_remarque').val(resultat.notification.donnee.remarque);
                     $('#form_id_exercice_fiscal').val(resultat.notification.donnee.id_exercice_fiscal);
+                    $('#form_libelle_exercice_fiscal').val(resultat.notification.donnee.id_exercice_fiscal);
                     // -- Mise à jour du label du bouton d'enregistrement -- //
                     btn_enregistrer.html('<i class="fa fa-check"></i>' + $GB_DONNEE_PARAMETRES.Lang.Update);
                     // -- Afficher le modal formulaire -- //

@@ -781,6 +781,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fiscals exercice.
+        /// </summary>
+        public static string Fiscals_exercice {
+            get {
+                return ResourceManager.GetString("Fiscals_exercice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fiscals exercice management.
         /// </summary>
         public static string Fiscals_exercice_management {

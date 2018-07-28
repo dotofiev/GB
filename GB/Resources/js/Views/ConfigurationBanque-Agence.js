@@ -121,7 +121,7 @@ try {
                 // -- Tester si le traitement s'est bien effectué -- //
                 if (!resultat.notification.est_echec) {
                     // -- Recharger la table -- //
-                    gbRechargerTable(false);
+                    gbRechargerTable(false, null, null, null);
                 } else {
                     // -- Message -- //
                     gbMessage_Box(resultat.notification);
@@ -279,7 +279,7 @@ $(
                                     // -- Fermer le modal -- //
                                     modal_form.modal('hide');
                                     // -- Actualiser la table -- //
-                                    gbRechargerTable(false);
+                                    gbRechargerTable(false, null, null, null);
                                 }
                                 else {
                                     // -- Afficher une alerte sur un element -- //

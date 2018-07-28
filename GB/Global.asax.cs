@@ -87,15 +87,15 @@ namespace GB
             this.con = new Connexion(this.Session.SessionID, id_navigateur_client_cookies);
 
             // -- Mise à jour de l'utilisateur dans le hub -- //
-            if(GBHub.Hubs_Connexion.Exists(l => l.id_navigateur_client == id_navigateur_client_cookies))
+            if(applicationMainHub.Hubs_Connexion.Exists(l => l.id_navigateur_client == id_navigateur_client_cookies))
             {
                 // -- Mise à jour de la position du client -- //
-                GBHub.MiseAJourHubs_Connexion(this.con);
+                applicationMainHub.MiseAJourHubs_Connexion(this.con);
             }
             // -- AJouter le client au hub -- //
             else
             {
-                GBHub.Hubs_Connexion.Add(this.con);
+                applicationMainHub.Hubs_Connexion.Add(this.con);
             }
 
             // -- Définition de la nouvelle session_id dans le cookie -- //
@@ -111,15 +111,15 @@ namespace GB
 
                 // -- Vérifie que la session existe déjà dans le cookie -- //
                 if (this.Request.Cookies["id_session"] != null &&
-                    GBHub.Dictionaire_ConnectionId.Count(l => l.Key.session_id == this.Request.Cookies["id_session"].Value) > 0)
+                    applicationMainHub.Dictionaire_ConnectionId.Count(l => l.Key.session_id == this.Request.Cookies["id_session"].Value) > 0)
                 {
                     try
                     {
                         // -- Réccupération de la clé à supprimer -- //
-                        Connexion key = GBHub.Dictionaire_ConnectionId.FirstOrDefault(l => l.Key.session_id == this.Request.Cookies["id_session"].Value).Key;
+                        Connexion key = applicationMainHub.Dictionaire_ConnectionId.FirstOrDefault(l => l.Key.session_id == this.Request.Cookies["id_session"].Value).Key;
 
                         // -- Suppression de l'ancien dictionnaire -- //
-                        GBHub.Dictionaire_ConnectionId.Remove(key);
+                        applicationMainHub.Dictionaire_ConnectionId.Remove(key);
                     }
                     catch (Exception ex)
                     {
@@ -129,7 +129,7 @@ namespace GB
                 }
 
                 // -- Ajout du nouvel élement dans le dictionnaire -- //
-                GBHub.Dictionaire_ConnectionId.Add(this.con, string.Empty);
+                applicationMainHub.Dictionaire_ConnectionId.Add(this.con, string.Empty);
 
                 // -- Définition de la nouvelle session_id dans le cookie -- //
                 this.Response.Cookies["id_session"].Value = this.con.session_id;
@@ -147,7 +147,7 @@ namespace GB
         protected void Session_OnEnd()
         {
             // -- Appel la méthode de déconnexion de l'utilisateur -- //
-            GBHub.DeconnecterClient(this.con.hub_id_context);
+            applicationMainHub.DeconnecterClient(this.con.hub_id_context);
 
             // -- Log du fin d'une session -- //
             GBClass.Log.Info("Fin session: {session:" + this.con.session_id + "}");

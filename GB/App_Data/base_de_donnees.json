@@ -675,9 +675,6 @@
       "imprimer": "true",
       "lister": "true"
     },
-
-
-
     {
       "id": "18",
       "id_role": "1",
@@ -748,8 +745,6 @@
       "imprimer": "true",
       "lister": "true"
     },
-
-
     {
       "id": "25",
       "id_role": "1",
@@ -910,6 +905,8 @@
       "imprimer": "true",
       "lister": "true"
     },
+
+
     // -- Role 2 -- //
     {
       "id": "7",
@@ -930,7 +927,377 @@
       "supprimer": "true",
       "imprimer": "true",
       "lister": "true"
-    }
+    },
+    {
+      "id": "41",
+      "id_role": "2",
+      "id_menu": "3",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "42",
+      "id_role": "2",
+      "id_menu": "4",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "43",
+      "id_role": "2",
+      "id_menu": "5",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "44",
+      "id_role": "2",
+      "id_menu": "6",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "45",
+      "id_role": "2",
+      "id_menu": "7",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "46",
+      "id_role": "2",
+      "id_menu": "8",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "47",
+      "id_role": "2",
+      "id_menu": "9",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "48",
+      "id_role": "2",
+      "id_menu": "10",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "49",
+      "id_role": "2",
+      "id_menu": "11",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "50",
+      "id_role": "2",
+      "id_menu": "12",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "51",
+      "id_role": "2",
+      "id_menu": "13",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "52",
+      "id_role": "2",
+      "id_menu": "14",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "53",
+      "id_role": "2",
+      "id_menu": "15",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "54",
+      "id_role": "2",
+      "id_menu": "16",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "55",
+      "id_role": "2",
+      "id_menu": "17",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "56",
+      "id_role": "2",
+      "id_menu": "18",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "57",
+      "id_role": "2",
+      "id_menu": "19",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "58",
+      "id_role": "2",
+      "id_menu": "20",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "59",
+      "id_role": "2",
+      "id_menu": "21",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "60",
+      "id_role": "2",
+      "id_menu": "22",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "61",
+      "id_role": "2",
+      "id_menu": "23",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "62",
+      "id_role": "2",
+      "id_menu": "24",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "63",
+      "id_role": "2",
+      "id_menu": "25",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "64",
+      "id_role": "2",
+      "id_menu": "26",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "65",
+      "id_role": "2",
+      "id_menu": "27",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "66",
+      "id_role": "2",
+      "id_menu": "28",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "67",
+      "id_role": "2",
+      "id_menu": "29",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "68",
+      "id_role": "2",
+      "id_menu": "30",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "69",
+      "id_role": "2",
+      "id_menu": "31",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "70",
+      "id_role": "2",
+      "id_menu": "32",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "71",
+      "id_role": "2",
+      "id_menu": "33",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "72",
+      "id_role": "2",
+      "id_menu": "34",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "73",
+      "id_role": "2",
+      "id_menu": "35",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "74",
+      "id_role": "2",
+      "id_menu": "36",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "75",
+      "id_role": "2",
+      "id_menu": "37",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "76",
+      "id_role": "2",
+      "id_menu": "38",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "77",
+      "id_role": "2",
+      "id_menu": "39",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
   ],
   "agences": [
     {

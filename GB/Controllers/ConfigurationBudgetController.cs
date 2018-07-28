@@ -584,11 +584,17 @@ namespace GB.Controllers
                 this.ViewBag.Lang.Directionate_head = App_Lang.Lang.Directionate_head;
                 this.ViewBag.Lang.Phone = App_Lang.Lang.Phone;
                 this.ViewBag.Lang.Remark = App_Lang.Lang.Remark;
+                this.ViewBag.Lang.Fiscals_exercice = App_Lang.Lang.Fiscals_exercice;
                 #endregion
 
                 // -- Données -- //
                 #region Données
-                this.ViewBag.donnee.HTML_Select_code_exercice_fiscal = ExerciceFiscalDAO.HTML_Select();
+                #region HTML_Select_exercice_fiscal
+                string HTML_Select_code_exercice_fiscal = string.Empty, HTML_Select_libelle_exercice_fiscal = string.Empty;
+                new ExerciceFiscalDAO().HTML_Select(ref HTML_Select_code_exercice_fiscal, ref HTML_Select_libelle_exercice_fiscal);
+                this.ViewBag.donnee.HTML_Select_code_exercice_fiscal = HTML_Select_code_exercice_fiscal;
+                this.ViewBag.donnee.HTML_Select_libelle_exercice_fiscal = HTML_Select_libelle_exercice_fiscal;
+                #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {

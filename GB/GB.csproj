@@ -276,7 +276,6 @@
     <Compile Include="Models\DAO\UtilisateurDAO.cs" />
     <Compile Include="Models\Helper\LangHelper.cs" />
     <Compile Include="Models\SignalR\Hubs\applicationMainHub.cs" />
-    <Compile Include="Models\SignalR\Hubs\GBHub.cs" />
     <Compile Include="Models\Static\AppSettings.cs" />
     <Compile Include="Models\Static\Enumeration.cs" />
     <Compile Include="Models\Static\GBClass.cs" />

@@ -51,8 +51,7 @@ namespace GB.Models.BO
                                             : 1
                                 );
             this.message = (!est_echec) ? App_Lang.Lang.Successful + "!"
-                                        : (!AppSettings.MODE_DEV) ? App_Lang.Lang.Error_message_notification
-                                                                  : message;
+                                        : App_Lang.Lang.Error_message_notification;
             this.est_echec = est_echec;
             this.donnee = null;
             this.dynamique = new ExpandoObject();

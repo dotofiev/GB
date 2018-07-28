@@ -40,8 +40,7 @@ namespace GB.Controllers
 
                 // -- Message descriptif de l'erreur -- //
                 this.ViewBag.donnee.description = parametres["code"] == "404" ? App_Lang.Lang.Page_not_found_message
-                                                                              : (AppSettings.MODE_DEV) ? parametres["message"]
-                                                                                                       : App_Lang.Lang.Error_message_notification;
+                                                                              : App_Lang.Lang.Error_message_notification;
 
                 // -- Liend de redirection pour la page d'authentification -- //
                 this.ViewBag.donnee.url = Url.Action("Authentication", "Home");

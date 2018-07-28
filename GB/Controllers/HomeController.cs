@@ -31,7 +31,7 @@ namespace GB.Controllers
             this.con = new Connexion(Session.SessionID, id_navigateur_client_cookies);
 
             // -- Mise à jour de la position du client -- //
-            GBHub.MiseAJourHubs_Connexion(this.con);
+            applicationMainHub.MiseAJourHubs_Connexion(this.con);
 
             // -- Test -- //
             this.ViewBag.Test.compte = Program.db?.utilisateurs?[0]?.compte ?? string.Empty;
