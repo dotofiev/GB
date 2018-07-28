@@ -209,6 +209,7 @@
     <Compile Include="Models\BO\CongeBanque.cs" />
     <Compile Include="Models\BO\AutoriteSignature.cs" />
     <Compile Include="Models\BO\ClassificationProvisionsPret.cs" />
+    <Compile Include="Models\BO\GBControllerUrlJS.cs" />
     <Compile Include="Models\BO\WesternUnionZonePays.cs" />
     <Compile Include="Models\BO\MotifPret.cs" />
     <Compile Include="Models\BO\Journal.cs" />

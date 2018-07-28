@@ -157,6 +157,7 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     Lang = new
                                                     {
                                                         Error_server_message = App_Lang.Lang.Error_server_message

@@ -1,7 +1,5 @@
 ﻿
 // -- Variables -- //
-var url_ajax_dataTable = '/ConfigurationBanque/Charger_Table/?id_page=' + $GB_DONNEE.id_page;
-var url_ajax_selection_enregistrement = '/ConfigurationBanque/Selection_Enregistrement/';
 var btn_ajouter = $('#btn-ajouter');
 var btn_supprimer = $('#btn-supprimer');
 var btn_imprimmer = $('#btn-imprimmer');
@@ -9,8 +7,6 @@ var btn_enregistrer = $('#btn-enregistrer');
 var btn_table;
 var form = $('#form');
 var modal_form = $('#modal_form');
-var url_controlleur = '/ConfigurationBanque/';
-var url_suppression = '/ConfigurationBanque/Supprimer_Enregistrement';
 
 
 // -- Lorsque le document est chargé -- //
@@ -60,7 +56,7 @@ $(
                         // -- Ajax -- //
                         $.ajax({
                             type: "POST",
-                            url: url_controlleur + 'Modifier_Enregistrement',
+                            url: $GB_DONNEE.Urls.url_ajax_modification_enregistrement,
                             data: {
                                 obj: JSON.stringify(form.gbConvertToJSON()),
                                 id_page: $GB_DONNEE.id_page

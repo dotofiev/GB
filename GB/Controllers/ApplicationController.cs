@@ -25,7 +25,7 @@ namespace GB.Controllers
             this.ViewBag.Title = $"Global Bank - ({App_Lang.Lang.Main})";
 
             // -- Charger les paramètres de langue de la page -- //
-            Charger_Langue_Et_Donnees("Application-Main");
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.Application_Main);
 
             return View();
         }
@@ -81,6 +81,7 @@ namespace GB.Controllers
                 #region Données
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     Lang = new {
                                                             Maintenance_message = App_Lang.Lang.Process_in_production,
                                                             All = App_Lang.Lang.All,
@@ -124,6 +125,7 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new

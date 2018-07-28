@@ -1013,7 +1013,9 @@ namespace GB.Controllers
                 #region Données
                 this.ViewBag.donnee.HTML_Select_periodicite = GBClass.HTML_periodicite_de_pret();
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
-                                                new {
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
@@ -1040,6 +1042,7 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
@@ -1073,6 +1076,7 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
@@ -1100,6 +1104,7 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
@@ -1126,6 +1131,7 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
@@ -1152,6 +1158,7 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
@@ -1178,6 +1185,7 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
@@ -1207,6 +1215,7 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new

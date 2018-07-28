@@ -1,8 +1,6 @@
 ﻿
 // -- Variables -- //
 var table = $('#table-donnee');
-var url_ajax_dataTable = '/ConfigurationBanque/Charger_Table/?id_page=' + $GB_DONNEE.id_page;
-var url_ajax_selection_enregistrement = '/ConfigurationBanque/Selection_Enregistrement/';
 var btn_ajouter = $('#btn-ajouter');
 var btn_supprimer = $('#btn-supprimer');
 var btn_imprimmer = $('#btn-imprimmer');
@@ -11,8 +9,6 @@ var form_image_fichier = $('#form_image_fichier');
 var btn_table;
 var form = $('#form');
 var modal_form = $('#modal_form');
-var url_controlleur = '/ConfigurationBanque/';
-var url_suppression = '/ConfigurationBanque/Supprimer_Enregistrement';
 
 
 // -- Méthodes d'action sur les données -- // 
@@ -24,7 +20,7 @@ try {
         // -- Ajax -- //
         $.ajax({
             type: "POST",
-            url: url_ajax_selection_enregistrement,
+            url: $GB_DONNEE.Urls.url_ajax_selection_enregistrement,
             data: {
                 code: code,
                 id_page: $GB_DONNEE.id_page
@@ -104,7 +100,7 @@ try {
         // -- Ajax -- //
         $.ajax({
             type: "POST",
-            url: url_suppression,
+            url: $GB_DONNEE.Urls.url_ajax_suppression_enregistrement,
             data: {
                 ids: JSON.stringify(ids),
                 id_page: $GB_DONNEE.id_page
@@ -175,7 +171,7 @@ $(
                     "url": $GB_VAR.url_language_dataTable
                 },
                 "ajax": {
-                    "url": url_ajax_dataTable,
+                    "url": $GB_DONNEE.Urls.url_ajax_dataTable,
                     "type": 'POST',
                     "dataSrc": function (resultat) {
                         // -- Notifier -- //
@@ -261,8 +257,8 @@ $(
                         // -- Ajax -- //
                         $.ajax({
                             type: "POST",
-                            url: url_controlleur + (action_ajouter ? 'Ajouter_Enregistrement'
-                                                                   : 'Modifier_Enregistrement'),
+                            url: (action_ajouter ? $GB_DONNEE.Urls.url_ajax_ajout_enregistrement
+                                                                   : $GB_DONNEE.Urls.url_ajax_modification_enregistrement),
                             data: form_data,
                             cache: false,
                             contentType: false,

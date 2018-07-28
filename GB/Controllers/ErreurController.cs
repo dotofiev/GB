@@ -1,4 +1,5 @@
 ﻿using GB.Models;
+using GB.Models.BO;
 using GB.Models.Helper;
 using GB.Models.Static;
 using System;
@@ -59,6 +60,7 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(),
                                                     id_page = GB_Enum_Menu.Erreur_Page,
                                                     titre = this.ViewBag.donnee.Title,
                                                     reconnecter = Convert.ToBoolean(parametres["reconnecter"])

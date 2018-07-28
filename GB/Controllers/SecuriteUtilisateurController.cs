@@ -498,7 +498,9 @@ namespace GB.Controllers
                 this.ViewBag.donnee.HTML_Select_libelle_profession = HTML_Select_libelle_profession;
                 #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
-                                                new {
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new

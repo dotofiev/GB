@@ -905,7 +905,9 @@ namespace GB.Controllers
                 // -- Données -- //
                 #region Données
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
-                                                new {
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
@@ -955,21 +957,15 @@ namespace GB.Controllers
                 // -- Données -- //
                 #region Données
                 #region HTML_Select_Role
-                this.ViewBag.donnee.HTML_Select_code_role =
-                    $"<option value=\"\" title=\"{App_Lang.Lang.Select} code...\">{App_Lang.Lang.Select} code...</option>";
-                this.ViewBag.donnee.HTML_Select_code_libelle =
-                    $"<option value=\"\" title=\"{App_Lang.Lang.Select} {App_Lang.Lang.Name.ToLower()}...\">{App_Lang.Lang.Select} {App_Lang.Lang.Name.ToLower()}...</option>";
-                foreach (var val in RoleDAO.Lister())
-                {
-                    this.ViewBag.donnee.HTML_Select_code_role +=
-                        $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
-                    this.ViewBag.donnee.HTML_Select_code_libelle +=
-                        $"<option value=\"{val.id}\" title=\"{((id_lang == 0) ? val.libelle_en : val.libelle_fr)}\">{((id_lang == 0) ? val.libelle_en : val.libelle_fr)}</option>";
-                }
+                string HTML_Select_code_role = string.Empty, HTML_Select_libelle_role = string.Empty;
+                new RoleDAO().HTML_Select(ref HTML_Select_code_role, ref HTML_Select_libelle_role);
+                this.ViewBag.donnee.HTML_Select_code_role = HTML_Select_code_role;
+                this.ViewBag.donnee.HTML_Select_libelle_role = HTML_Select_libelle_role;
                 #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
@@ -1011,6 +1007,7 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new

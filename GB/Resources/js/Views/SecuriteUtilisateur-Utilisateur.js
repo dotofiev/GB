@@ -2,9 +2,6 @@
 // -- Variables -- //
 var table = $('#table-donnee');
 var table_autorite_signature = $('#table-autorite_signature-donnee');
-var url_ajax_dataTable = '/SecuriteUtilisateur/Charger_Table/?id_page=' + $GB_DONNEE.id_page;
-var url_ajax_easyAutocomplete = '/SecuriteUtilisateur/Charger_EasyAutocomplete/?id_page=' + $GB_DONNEE.id_page;
-var url_ajax_selection_enregistrement = '/SecuriteUtilisateur/Selection_Enregistrement/';
 var btn_ajouter = $('#btn-ajouter');
 var btn_supprimer = $('#btn-supprimer');
 var btn_autorite_signature_modal = $('#btn_autorite_signature_modal');
@@ -17,8 +14,6 @@ var form_code_autorite_signature = $('#form_code_autorite_signature');
 var form_libelle_autorite_signature = $('#form_libelle_autorite_signature');
 var modal_form = $('#modal_form');
 var modal_autorite_signature = $('#modal_autorite_signature');
-var url_controlleur = '/SecuriteUtilisateur/';
-var url_suppression = '/SecuriteUtilisateur/Supprimer_Enregistrement';
 
 
 // -- Méthodes d'action sur les données -- // 
@@ -30,7 +25,7 @@ try {
         // -- Ajax -- //
         $.ajax({
             type: "POST",
-            url: url_ajax_selection_enregistrement,
+            url: $GB_DONNEE.Urls.url_ajax_selection_enregistrement,
             data: {
                 compte: compte,
                 id_page: $GB_DONNEE.id_page
@@ -121,7 +116,7 @@ try {
         // -- Ajax -- //
         $.ajax({
             type: "POST",
-            url: url_suppression,
+            url: $GB_DONNEE.Urls.url_ajax_suppression_enregistrement,
             data: {
                 ids: JSON.stringify(ids),
                 id_page: $GB_DONNEE.id_page
@@ -200,7 +195,7 @@ $(
                     "url": $GB_VAR.url_language_dataTable
                 },
                 "ajax": {
-                    "url": url_ajax_dataTable,
+                    "url": $GB_DONNEE.Urls.url_ajax_dataTable,
                     "type": 'POST',
                     "dataSrc": function (resultat) {
                         // -- Notifier -- //
@@ -267,7 +262,7 @@ $(
                     "url": $GB_VAR.url_language_dataTable
                 },
                 "ajax": {
-                    "url": url_ajax_dataTable + '&id_vue=autoriteSignature',
+                    "url": $GB_DONNEE.Urls.url_ajax_dataTable + '&id_vue=autoriteSignature',
                     "type": 'POST',
                     "dataSrc": function (resultat) {
                         // -- Notifier -- //
@@ -357,8 +352,8 @@ $(
                         // -- Ajax -- //
                         $.ajax({
                             type: "POST",
-                            url: url_controlleur + (action_ajouter ? 'Ajouter_Enregistrement'
-                                                                   : 'Modifier_Enregistrement'),
+                            url: (action_ajouter ? $GB_DONNEE.Urls.url_ajax_ajout_enregistrement
+                                                 : $GB_DONNEE.Urls.url_ajax_modification_enregistrement),
                             data: {
                                 obj: JSON.stringify(form.gbConvertToJSON()),
                                 id_page: $GB_DONNEE.id_page
@@ -511,7 +506,7 @@ $(
 
             // -- Recherche autorite_signature par code -- //
             form_code_autorite_signature.easyAutocomplete({
-                url: url_ajax_easyAutocomplete,
+                url: $GB_DONNEE.Urls.url_ajax_easyAutocomplete,
                 getValue: function (obj) {
                     return obj.code;
                 },
@@ -538,7 +533,7 @@ $(
 
             // -- Recherche autorite_signature par libelle -- //
             form_libelle_autorite_signature.easyAutocomplete({
-                url: url_ajax_easyAutocomplete,
+                url: $GB_DONNEE.Urls.url_ajax_easyAutocomplete,
                 getValue: function (obj) {
                     return obj.libelle;
                 },
