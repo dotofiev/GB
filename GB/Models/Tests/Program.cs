@@ -47,7 +47,7 @@ namespace GB.Models.Tests
                 l.menu = db.menus.FirstOrDefault(ll => ll.id == l.id_menu);
             });
             // -- Parametre_bancaires -- //
-            db.parametre_bancaires.ForEach(l => {
+            db.parametres_banque.ForEach(l => {
                 l.devise = db.devises.FirstOrDefault(ll => ll.id == l.id_devise);
             });
             // -- Produit judiciaire -- //

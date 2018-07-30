@@ -19,7 +19,7 @@ namespace GB.Models.Tests
         public List<Institution> institutions { get; set; }
         public List<Devise> devises { get; set; }
         public List<Parametre> parametres { get; set; }
-        public List<ParametreBancaire> parametre_bancaires { get; set; }
+        public List<ParametreBanque> parametres_banque { get; set; }
         public List<ProduitPhysique> produits_physique { get; set; }
         public List<ProduitJudiciaire> produits_judiciare { get; set; }
         public List<Pays> pays { get; set; }

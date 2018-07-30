@@ -1386,7 +1386,7 @@
       "lien_sauvegarde_numero_2": ""
     }
   ],
-  "parametre_bancaires": [
+  "parametres_banque": [
     {
       "id": "1",
       "id_devise": "1",

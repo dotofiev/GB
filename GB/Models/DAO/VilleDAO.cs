@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
 using System;
@@ -8,13 +9,22 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public abstract class VilleDAO : GBDAO
+    public class VilleDAO : GBDAO
     {
+        public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Ville; } }
+        public string context_id { get; set; }
+        public long id_utilisateur { get; set; }
         public string form_combo_id { get { return string.Empty; } }
-
         public string form_combo_libelle { get { return string.Empty; } }
 
-        public static void Ajouter(Ville obj, long id_utilisateur)
+
+        public VilleDAO(string context_id, long id_utilisateur)
+        {
+            this.context_id = context_id;
+            this.id_utilisateur = id_utilisateur;
+        }
+
+        public void Ajouter(Ville obj, long id_utilisateur)
         {
             try
             {
@@ -36,6 +46,9 @@ namespace GB.Models.DAO
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.villes.Add(obj);
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -58,7 +71,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(Ville obj)
+        public void Modifier(Ville obj)
         {
             try
             {
@@ -81,6 +94,9 @@ namespace GB.Models.DAO
                         l.code = obj.code;
                         l.libelle = obj.libelle;
                     });
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -103,7 +119,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Supprimer(List<long> ids)
+        public void Supprimer(List<long> ids)
         {
             try
             {
@@ -113,6 +129,9 @@ namespace GB.Models.DAO
                     // -- Suppression des valeurs -- //
                     Program.db.villes.RemoveAll(l => l.id == id);
                 });
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)

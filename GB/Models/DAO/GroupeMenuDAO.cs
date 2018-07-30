@@ -11,11 +11,20 @@ namespace GB.Models.DAO
 {
     public class GroupeMenuDAO : GBDAO
     {
+        public string id_page { get { return string.Empty; } }
+        public string context_id { get; set; }
+        public long id_utilisateur { get; set; }
         public string form_combo_id { get { return "form_id_groupeMenu"; } }
-
         public string form_combo_libelle { get { return "form_libelle_groupeMenu"; } }
 
-        public static void Ajouter(GroupeMenu obj)
+
+        public GroupeMenuDAO(string context_id, long id_utilisateur)
+        {
+            this.context_id = context_id;
+            this.id_utilisateur = id_utilisateur;
+        }
+
+        public void Ajouter(GroupeMenu obj)
         {
             try
             {
@@ -33,6 +42,9 @@ namespace GB.Models.DAO
 
                 //// -- Execution des Hubs -- //
                 //applicationMainHub.RechargerCombo(new ExerciceFiscalDAO());
+
+                //// -- Execution des Hubs -- //
+                //applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -55,7 +67,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(GroupeMenu obj)
+        public void Modifier(GroupeMenu obj)
         {
             try
             {
@@ -82,6 +94,9 @@ namespace GB.Models.DAO
 
                 //// -- Execution des Hubs -- //
                 //applicationMainHub.RechargerCombo(new ExerciceFiscalDAO());
+
+                //// -- Execution des Hubs -- //
+                //applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -104,7 +119,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Supprimer(List<long> ids)
+        public void Supprimer(List<long> ids)
         {
             try
             {
@@ -117,6 +132,9 @@ namespace GB.Models.DAO
 
                 //// -- Execution des Hubs -- //
                 //applicationMainHub.RechargerCombo(new ExerciceFiscalDAO());
+
+                //// -- Execution des Hubs -- //
+                //applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)

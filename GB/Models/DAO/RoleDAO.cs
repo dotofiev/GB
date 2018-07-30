@@ -11,11 +11,22 @@ namespace GB.Models.DAO
 {
     public class RoleDAO : GBDAO
     {
+        public string id_page { get { return GB_Enum_Menu.Securite_Role; } }
+        public string context_id { get; set; }
+        public long id_utilisateur { get; set; }
         public string form_combo_id { get { return "form_id_role"; } }
-
         public string form_combo_libelle { get { return "form_libelle_role"; } }
 
-        public static void Ajouter(Role obj)
+
+        public RoleDAO(string context_id, long id_utilisateur)
+        {
+            this.context_id = context_id;
+            this.id_utilisateur = id_utilisateur;
+        }
+
+        public RoleDAO() { }
+
+        public void Ajouter(Role obj)
         {
             try
             {
@@ -33,6 +44,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerCombo(new RoleDAO());
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -55,7 +69,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(Role obj)
+        public void Modifier(Role obj)
         {
             try
             {
@@ -82,6 +96,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerCombo(new RoleDAO());
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -104,7 +121,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Supprimer(List<long> ids)
+        public void Supprimer(List<long> ids)
         {
             try
             {
@@ -117,6 +134,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerCombo(new RoleDAO());
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)

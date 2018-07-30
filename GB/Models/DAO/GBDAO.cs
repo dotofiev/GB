@@ -8,6 +8,9 @@ namespace GB.Models.DAO
 {
     public interface GBDAO
     {
+        string id_page { get; }
+        string context_id { get; set; }
+        long id_utilisateur { get; set; }
         string form_combo_id { get; }
         string form_combo_libelle { get; }
 

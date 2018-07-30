@@ -148,6 +148,42 @@ namespace GB.Models.SignalR.Hubs
         }
         #endregion
 
+        // -- Mise à jour de la table chez tous les clients présent sur la page -- //
+        #region Mise à jour de la table chez tous les clients présent sur la page
+        public static void RechargerTable(string id_page, string context_id)
+        {
+            try
+            {
+                // -- Communiquer aux autres clients si la présentation des données en temps réel est activé -- //
+                if (AppSettings.DONNEE_EN_TEMPS_REEL)
+                {
+                    // -- Appel de la méthode client pour déconnecter l'utilisateur -- //
+                    context_hub_static
+                        // -- Les clients -- //
+                        .Clients
+                        // -- Spécification à tous les clients sauf moi -- //
+                        .AllExcept(new string[] { context_id })
+                        // -- Spécifier à tous les clients -- //
+                        //.All
+                        // -- Méthode à éexecuter chez le client -- //
+                        .rechargerTable(
+                            new GBNotification(
+                                new
+                                {
+                                    id_page = id_page
+                                }
+                            )
+                        );
+                }
+            }
+            catch (Exception ex)
+            {
+                // -- Log -- //
+                GBClass.Log.Error(ex);
+            }
+        }
+        #endregion
+
         #endregion
     }
 }

@@ -16,6 +16,18 @@ namespace GB.Controllers
     [AuthentificationRequis]
     public class ConfigurationOperationController : GBController
     {
+        #region Variables
+        public PaysDAO paysDAO { get { return new PaysDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public TypePretDAO typePretDAO { get { return new TypePretDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public MotifPretDAO motifPretDAO { get { return new MotifPretDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ClassificationProvisionsPretDAO classificationProvisionsPretDAO { get { return new ClassificationProvisionsPretDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public TypeGarantieDAO typeGarantieDAO { get { return new TypeGarantieDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public JournalDAO journalDAO { get { return new JournalDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public TypeActifDAO typeActifDAO { get { return new TypeActifDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public LocalisationActifDAO localisationActifDAO { get { return new LocalisationActifDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public WesternUnionZonePaysDAO westernUnionZonePaysDAO { get { return new WesternUnionZonePaysDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        #endregion
+
         #region HttpGet
         [HttpGet]
         public ActionResult TypePret()
@@ -618,7 +630,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationOperation_TypePret)
                 {
                     // -- Service d'enregistrement -- //
-                    TypePretDAO.Ajouter(GBConvert.JSON_To<TypePret>(obj));
+                    typePretDAO.Ajouter(GBConvert.JSON_To<TypePret>(obj));
                 }
                 #endregion
 
@@ -626,7 +638,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_MotifPret)
                 {
                     // -- Service d'enregistrement -- //
-                    MotifPretDAO.Ajouter(GBConvert.JSON_To<MotifPret>(obj));
+                    motifPretDAO.Ajouter(GBConvert.JSON_To<MotifPret>(obj));
                 }
                 #endregion
 
@@ -634,7 +646,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_ClassificationProvisionsPret)
                 {
                     // -- Service d'enregistrement -- //
-                    ClassificationProvisionsPretDAO.Ajouter(GBConvert.JSON_To<ClassificationProvisionsPret>(obj));
+                    classificationProvisionsPretDAO.Ajouter(GBConvert.JSON_To<ClassificationProvisionsPret>(obj));
                 }
                 #endregion
 
@@ -642,7 +654,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeGarantie)
                 {
                     // -- Service d'enregistrement -- //
-                    TypeGarantieDAO.Ajouter(GBConvert.JSON_To<TypeGarantie>(obj), this.con.id_utilisateur);
+                    typeGarantieDAO.Ajouter(GBConvert.JSON_To<TypeGarantie>(obj), this.con.id_utilisateur);
                 }
                 #endregion
 
@@ -650,7 +662,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
                 {
                     // -- Service d'enregistrement -- //
-                    JournalDAO.Ajouter(GBConvert.JSON_To<Journal>(obj));
+                    journalDAO.Ajouter(GBConvert.JSON_To<Journal>(obj));
                 }
                 #endregion
 
@@ -658,7 +670,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
                 {
                     // -- Service d'enregistrement -- //
-                    TypeActifDAO.Ajouter(GBConvert.JSON_To<TypeActif>(obj));
+                    typeActifDAO.Ajouter(GBConvert.JSON_To<TypeActif>(obj));
                 }
                 #endregion
 
@@ -666,7 +678,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
                 {
                     // -- Service d'enregistrement -- //
-                    LocalisationActifDAO.Ajouter(GBConvert.JSON_To<LocalisationActif>(obj));
+                    localisationActifDAO.Ajouter(GBConvert.JSON_To<LocalisationActif>(obj));
                 }
                 #endregion
 
@@ -674,7 +686,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
                 {
                     // -- Service d'enregistrement -- //
-                    WesternUnionZonePaysDAO.Ajouter(GBConvert.JSON_To<WesternUnionZonePays>(obj));
+                    westernUnionZonePaysDAO.Ajouter(GBConvert.JSON_To<WesternUnionZonePays>(obj));
                 }
                 #endregion
 
@@ -728,7 +740,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationOperation_TypePret)
                 {
                     // -- Service de modification -- //
-                    TypePretDAO.Modifier(GBConvert.JSON_To<TypePret>(obj));
+                    typePretDAO.Modifier(GBConvert.JSON_To<TypePret>(obj));
                 }
                 #endregion
 
@@ -736,7 +748,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_MotifPret)
                 {
                     // -- Service de modification -- //
-                    MotifPretDAO.Modifier(GBConvert.JSON_To<MotifPret>(obj));
+                    motifPretDAO.Modifier(GBConvert.JSON_To<MotifPret>(obj));
                 }
                 #endregion
 
@@ -744,7 +756,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_ClassificationProvisionsPret)
                 {
                     // -- Service de modification -- //
-                    ClassificationProvisionsPretDAO.Modifier(GBConvert.JSON_To<ClassificationProvisionsPret>(obj));
+                    classificationProvisionsPretDAO.Modifier(GBConvert.JSON_To<ClassificationProvisionsPret>(obj));
                 }
                 #endregion
 
@@ -752,7 +764,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeGarantie)
                 {
                     // -- Service de modification -- //
-                    TypeGarantieDAO.Modifier(GBConvert.JSON_To<TypeGarantie>(obj));
+                    typeGarantieDAO.Modifier(GBConvert.JSON_To<TypeGarantie>(obj));
                 }
                 #endregion
 
@@ -760,7 +772,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
                 {
                     // -- Service de modification -- //
-                    JournalDAO.Modifier(GBConvert.JSON_To<Journal>(obj));
+                    journalDAO.Modifier(GBConvert.JSON_To<Journal>(obj));
                 }
                 #endregion
 
@@ -768,7 +780,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
                 {
                     // -- Service de modification -- //
-                    TypeActifDAO.Modifier(GBConvert.JSON_To<TypeActif>(obj));
+                    typeActifDAO.Modifier(GBConvert.JSON_To<TypeActif>(obj));
                 }
                 #endregion
 
@@ -776,7 +788,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
                 {
                     // -- Service de modification -- //
-                    LocalisationActifDAO.Modifier(GBConvert.JSON_To<LocalisationActif>(obj));
+                    localisationActifDAO.Modifier(GBConvert.JSON_To<LocalisationActif>(obj));
                 }
                 #endregion
 
@@ -784,7 +796,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
                 {
                     // -- Service de modification -- //
-                    WesternUnionZonePaysDAO.Modifier(GBConvert.JSON_To<WesternUnionZonePays>(obj));
+                    westernUnionZonePaysDAO.Modifier(GBConvert.JSON_To<WesternUnionZonePays>(obj));
                 }
                 #endregion
 
@@ -838,7 +850,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationOperation_TypePret)
                 {
                     // -- Service de suppression -- //
-                    TypePretDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    typePretDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -846,7 +858,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_MotifPret)
                 {
                     // -- Service de suppression -- //
-                    MotifPretDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    motifPretDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -854,7 +866,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_ClassificationProvisionsPret)
                 {
                     // -- Service de suppression -- //
-                    ClassificationProvisionsPretDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    classificationProvisionsPretDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -862,7 +874,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeGarantie)
                 {
                     // -- Service de suppression -- //
-                    TypeGarantieDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    typeGarantieDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -870,7 +882,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
                 {
                     // -- Service de suppression -- //
-                    JournalDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    journalDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -878,7 +890,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
                 {
                     // -- Service de suppression -- //
-                    TypeActifDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    typeActifDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -886,7 +898,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
                 {
                     // -- Service de suppression -- //
-                    LocalisationActifDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    localisationActifDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -894,7 +906,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
                 {
                     // -- Service de suppression -- //
-                    WesternUnionZonePaysDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    westernUnionZonePaysDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 

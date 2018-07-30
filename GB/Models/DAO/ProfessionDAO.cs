@@ -11,11 +11,14 @@ namespace GB.Models.DAO
 {
     public class ProfessionDAO : GBDAO
     {
+        public string id_page { get { return string.Empty; } }
+        public string context_id { get; set; }
+        public long id_utilisateur { get; set; }
         public string form_combo_id { get { return "form_id_profession"; } }
-
         public string form_combo_libelle { get { return "form_libelle_profession"; } }
 
-        public static void Ajouter(Profession obj)
+
+        public void Ajouter(Profession obj)
         {
             try
             {
@@ -33,6 +36,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerCombo(new ProfessionDAO());
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -55,7 +61,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(Profession obj)
+        public void Modifier(Profession obj)
         {
             try
             {
@@ -81,6 +87,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerCombo(new ProfessionDAO());
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -103,7 +112,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Supprimer(List<long> ids)
+        public void Supprimer(List<long> ids)
         {
             try
             {
@@ -116,6 +125,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerCombo(new ProfessionDAO());
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)

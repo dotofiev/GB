@@ -39,13 +39,23 @@ $(
         // -- Fonction de mise à jour de tous les combox box chez les clients -- //
         $GB_DONNEE_PARAMETRES.applicationMainHub.client.rechargerCombo = function (notification) {
             try {
-                gbConsoleStringify(notification.donnee);
                 // -- Mise à jour des données sur le formulaire si ceux ci existe -- //
                 if ($(notification.donnee.form_id).length != 0) {
                     $(notification.donnee.form_id).html(notification.donnee.select_code);
                 }
                 if ($(notification.donnee.form_libelle).length != 0) {
                     $(notification.donnee.form_libelle).html(notification.donnee.select_libelle);
+                }
+            }
+            catch (e) { gbConsoleStringify(e); }
+        }
+
+        // -- Fonction de mise à jour de toutes les tables chez les clients -- //
+        $GB_DONNEE_PARAMETRES.applicationMainHub.client.rechargerTable = function (notification) {
+            try {
+                // -- Vérifier que le client est sur la page active -- //
+                if ($GB_DONNEE.id_page === notification.donnee.id_page) {
+                    gbRechargerTable(false);
                 }
             }
             catch (e) { gbConsoleStringify(e); }

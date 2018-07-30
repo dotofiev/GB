@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
 using System;
@@ -8,14 +9,22 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public abstract class TitreDAO : GBDAO
+    public class TitreDAO : GBDAO
     {
+        public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Titre; } }
+        public string context_id { get; set; }
+        public long id_utilisateur { get; set; }
         public string form_combo_id { get { return string.Empty; } }
-
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public static void Ajouter(Titre obj, long id_utilisateur)
+        public TitreDAO(string context_id, long id_utilisateur)
+        {
+            this.context_id = context_id;
+            this.id_utilisateur = id_utilisateur;
+        }
+
+        public void Ajouter(Titre obj, long id_utilisateur)
         {
             try
             {
@@ -37,6 +46,9 @@ namespace GB.Models.DAO
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.titres.Add(obj);
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -59,7 +71,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(Titre obj)
+        public void Modifier(Titre obj)
         {
             try
             {
@@ -83,6 +95,9 @@ namespace GB.Models.DAO
                         l.libelle_en = obj.libelle_en;
                         l.libelle_fr = obj.libelle_fr;
                     });
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -105,7 +120,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Supprimer(List<long> ids)
+        public void Supprimer(List<long> ids)
         {
             try
             {
@@ -115,6 +130,9 @@ namespace GB.Models.DAO
                     // -- Suppression des valeurs -- //
                     Program.db.titres.RemoveAll(l => l.id == id);
                 });
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)

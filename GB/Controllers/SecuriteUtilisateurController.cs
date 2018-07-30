@@ -16,6 +16,11 @@ namespace GB.Controllers
     [AuthentificationRequis]
     public class SecuriteUtilisateurController : GBController
     {
+        #region Variables
+        public AgenceDAO agenceDAO { get { return new AgenceDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public UtilisateurDAO utilisateurDAO { get { return new UtilisateurDAO(this.con.hub_id_context, this.con.id_utilisateur); } }        
+        #endregion
+
         #region HttpGet
         [HttpGet]
         public ActionResult Utilisateur()
@@ -293,7 +298,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.SecuriteUtilisateur_Utilisateur)
                 {
                     // -- Service d'enregistrement -- //
-                    UtilisateurDAO.Ajouter(GBConvert.JSON_To<Utilisateur>(obj));
+                    utilisateurDAO.Ajouter(GBConvert.JSON_To<Utilisateur>(obj));
                 }
                 #endregion
 
@@ -347,7 +352,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.SecuriteUtilisateur_Utilisateur)
                 {
                     // -- Service de modification -- //
-                    UtilisateurDAO.Modifier(GBConvert.JSON_To<Utilisateur>(obj));
+                    utilisateurDAO.Modifier(GBConvert.JSON_To<Utilisateur>(obj));
                 }
                 #endregion
 
@@ -401,7 +406,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.SecuriteUtilisateur_Utilisateur)
                 {
                     // -- Service de suppression -- //
-                    UtilisateurDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    utilisateurDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -487,7 +492,7 @@ namespace GB.Controllers
                 #region Données
                 #region HTML_Select_agence
                 string HTML_Select_code_agence = string.Empty, HTML_Select_libelle_agence = string.Empty;
-                new AgenceDAO().HTML_Select(ref HTML_Select_code_agence, ref HTML_Select_libelle_agence);
+                agenceDAO.HTML_Select(ref HTML_Select_code_agence, ref HTML_Select_libelle_agence);
                 this.ViewBag.donnee.HTML_Select_code_agence = HTML_Select_code_agence;
                 this.ViewBag.donnee.HTML_Select_libelle_agence = HTML_Select_libelle_agence;
                 #endregion

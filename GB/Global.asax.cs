@@ -141,6 +141,19 @@ namespace GB
 
             // -- Log du début d'une session -- //
             GBClass.Log.Info("Début session: {session:" + id_session_cookies + "}");
+
+            // -- Vider la cache du client -- //
+            #region Vider la cache du client
+            //Response.AddHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            //Response.AddHeader("Pragma", "no-cache");
+            //Response.AddHeader("Expires", "0");
+
+            Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
+            Response.Cache.SetValidUntilExpires(false);
+            Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetNoStore();
+            #endregion
         }
 
         // -- Lorsque la session se termine -- //

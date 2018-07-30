@@ -16,6 +16,13 @@ namespace GB.Controllers
     [AuthentificationRequis]
     public class SecuriteController : GBController
     {
+        #region Variables
+        public RoleDAO roleDAO { get { return new RoleDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public MenuDAO menuDAO { get { return new MenuDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ModuleDAO moduleDAO { get { return new ModuleDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public AutorisationDAO autorisationDAO { get { return new AutorisationDAO(this.con.hub_id_context, this.con.id_utilisateur); } }        
+        #endregion
+
         #region HttpGet
         [HttpGet]
         public ActionResult Module()
@@ -592,7 +599,7 @@ namespace GB.Controllers
                 Verifier_Autorisation(GB_Enum_Action_Controller.Modifier);
 
                 // -- Mise à jour des traitements -- //
-                AutorisationDAO.Modifier((this.con.donnee.autorisation as List<Autorisation>), (long)this.con.donnee.id_role);
+                autorisationDAO.Modifier((this.con.donnee.autorisation as List<Autorisation>), (long)this.con.donnee.id_role);
 
                 // -- Notificication -- //
                 this.ViewBag.notification = new GBNotification(false);
@@ -637,7 +644,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.Securite_Module)
                 {
                     // -- Service d'enregistrement -- //
-                    ModuleDAO.Ajouter(GBConvert.JSON_To<Module>(obj));
+                    moduleDAO.Ajouter(GBConvert.JSON_To<Module>(obj));
                 }
                 #endregion
 
@@ -645,7 +652,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.Securite_Role)
                 {
                     // -- Service d'enregistrement -- //
-                    RoleDAO.Ajouter(GBConvert.JSON_To<Role>(obj));
+                    roleDAO.Ajouter(GBConvert.JSON_To<Role>(obj));
                 }
                 #endregion
 
@@ -653,7 +660,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.Securite_Menu)
                 {
                     // -- Service d'enregistrement -- //
-                    MenuDAO.Ajouter(GBConvert.JSON_To<Menu>(obj));
+                    menuDAO.Ajouter(GBConvert.JSON_To<Menu>(obj));
                 }
                 #endregion
 
@@ -707,7 +714,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.Securite_Module)
                 {
                     // -- Service de modification -- //
-                    ModuleDAO.Modifier(GBConvert.JSON_To<Module>(obj));
+                    moduleDAO.Modifier(GBConvert.JSON_To<Module>(obj));
                 }
                 #endregion
 
@@ -715,7 +722,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.Securite_Role)
                 {
                     // -- Service de modification -- //
-                    RoleDAO.Modifier(GBConvert.JSON_To<Role>(obj));
+                    roleDAO.Modifier(GBConvert.JSON_To<Role>(obj));
                 }
                 #endregion
 
@@ -723,7 +730,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.Securite_Menu)
                 {
                     // -- Service de modification -- //
-                    MenuDAO.Modifier(GBConvert.JSON_To<Menu>(obj));
+                    menuDAO.Modifier(GBConvert.JSON_To<Menu>(obj));
                 }
                 #endregion
 
@@ -777,7 +784,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.Securite_Module)
                 {
                     // -- Service de suppression -- //
-                    ModuleDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    moduleDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -785,7 +792,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.Securite_Role)
                 {
                     // -- Service de suppression -- //
-                    RoleDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    roleDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -793,7 +800,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.Securite_Menu)
                 {
                     // -- Service de suppression -- //
-                    MenuDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    menuDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -958,7 +965,7 @@ namespace GB.Controllers
                 #region Données
                 #region HTML_Select_Role
                 string HTML_Select_code_role = string.Empty, HTML_Select_libelle_role = string.Empty;
-                new RoleDAO().HTML_Select(ref HTML_Select_code_role, ref HTML_Select_libelle_role);
+                roleDAO.HTML_Select(ref HTML_Select_code_role, ref HTML_Select_libelle_role);
                 this.ViewBag.donnee.HTML_Select_code_role = HTML_Select_code_role;
                 this.ViewBag.donnee.HTML_Select_libelle_role = HTML_Select_libelle_role;
                 #endregion

@@ -226,7 +226,7 @@
     <Compile Include="Models\BO\Pays.cs" />
     <Compile Include="Models\BO\ProduitJudiciaire.cs" />
     <Compile Include="Models\BO\ProduitPhysique.cs" />
-    <Compile Include="Models\BO\ParametreBancaire.cs" />
+    <Compile Include="Models\BO\ParametreBanque.cs" />
     <Compile Include="Models\BO\Parametre.cs" />
     <Compile Include="Models\BO\Profession.cs" />
     <Compile Include="Models\BO\Autorisation.cs" />

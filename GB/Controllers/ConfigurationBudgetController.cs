@@ -16,6 +16,12 @@ namespace GB.Controllers
     [AuthentificationRequis]
     public class ConfigurationBudgetController : GBController
     {
+        #region Variables
+        public ExerciceFiscalDAO exerciceFiscalDAO { get { return new ExerciceFiscalDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public DirectionBudgetDAO directionBudgetDAO { get { return new DirectionBudgetDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public AutoriteSignatureDAO autoriteSignatureDAO { get { return new AutoriteSignatureDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        #endregion
+
         #region HttpGet
         [HttpGet]
         public ActionResult ExerciceFiscal()
@@ -339,7 +345,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationBudget_ExerciceFiscal)
                 {
                     // -- Service d'enregistrement -- //
-                    ExerciceFiscalDAO.Ajouter(GBConvert.JSON_To<ExerciceFiscal>(obj));
+                    exerciceFiscalDAO.Ajouter(GBConvert.JSON_To<ExerciceFiscal>(obj));
                 }
                 #endregion
 
@@ -347,7 +353,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_DirectionBudget)
                 {
                     // -- Service d'enregistrement -- //
-                    DirectionBudgetDAO.Ajouter(GBConvert.JSON_To<DirectionBudget>(obj));
+                    directionBudgetDAO.Ajouter(GBConvert.JSON_To<DirectionBudget>(obj));
                 }
                 #endregion
 
@@ -355,7 +361,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_AutoriteSignature)
                 {
                     // -- Service d'enregistrement -- //
-                    AutoriteSignatureDAO.Ajouter(GBConvert.JSON_To<AutoriteSignature>(obj));
+                    autoriteSignatureDAO.Ajouter(GBConvert.JSON_To<AutoriteSignature>(obj));
                 }
                 #endregion
 
@@ -409,7 +415,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationBudget_ExerciceFiscal)
                 {
                     // -- Service de modification -- //
-                    ExerciceFiscalDAO.Modifier(GBConvert.JSON_To<ExerciceFiscal>(obj));
+                    exerciceFiscalDAO.Modifier(GBConvert.JSON_To<ExerciceFiscal>(obj));
                 }
                 #endregion
 
@@ -417,7 +423,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_DirectionBudget)
                 {
                     // -- Service de modification -- //
-                    DirectionBudgetDAO.Modifier(GBConvert.JSON_To<DirectionBudget>(obj));
+                    directionBudgetDAO.Modifier(GBConvert.JSON_To<DirectionBudget>(obj));
                 }
                 #endregion
 
@@ -425,7 +431,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_AutoriteSignature)
                 {
                     // -- Service de modification -- //
-                    AutoriteSignatureDAO.Modifier(GBConvert.JSON_To<AutoriteSignature>(obj));
+                    autoriteSignatureDAO.Modifier(GBConvert.JSON_To<AutoriteSignature>(obj));
                 }
                 #endregion
 
@@ -479,7 +485,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationBudget_ExerciceFiscal)
                 {
                     // -- Service de suppression -- //
-                    ExerciceFiscalDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    exerciceFiscalDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -487,7 +493,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_DirectionBudget)
                 {
                     // -- Service de suppression -- //
-                    DirectionBudgetDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    directionBudgetDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -495,7 +501,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_AutoriteSignature)
                 {
                     // -- Service de suppression -- //
-                    AutoriteSignatureDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    autoriteSignatureDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -593,7 +599,7 @@ namespace GB.Controllers
                 #region Données
                 #region HTML_Select_exercice_fiscal
                 string HTML_Select_code_exercice_fiscal = string.Empty, HTML_Select_libelle_exercice_fiscal = string.Empty;
-                new ExerciceFiscalDAO().HTML_Select(ref HTML_Select_code_exercice_fiscal, ref HTML_Select_libelle_exercice_fiscal);
+                exerciceFiscalDAO.HTML_Select(ref HTML_Select_code_exercice_fiscal, ref HTML_Select_libelle_exercice_fiscal);
                 this.ViewBag.donnee.HTML_Select_code_exercice_fiscal = HTML_Select_code_exercice_fiscal;
                 this.ViewBag.donnee.HTML_Select_libelle_exercice_fiscal = HTML_Select_libelle_exercice_fiscal;
                 #endregion
