@@ -15,6 +15,8 @@ namespace GB.Models.Static
                        : App_Lang.Lang.No;
         }
 
+        
+
         public static string Activer_Desactiver(bool donnee)
         {
             return
@@ -39,37 +41,19 @@ namespace GB.Models.Static
                 );
         }
 
-        public static string PeriodiciteDePret(string donnee)
+   
+        public static string PeridicityCOBAC(string donnee)
         {
             return
-                donnee == "MOIS" ? App_Lang.Lang.Month
-                                 : donnee == "TRIMESTRE" ? App_Lang.Lang.Quarter
-                                                         : donnee == "ANNEE" ? App_Lang.Lang.Year
-                                                                             : string.Empty;
-        }
+                donnee == "MONTHLY" ? App_Lang.Lang.Monthly
+                                 : donnee == "QUATERLY" ? App_Lang.Lang.Quaterly
+                                                     : donnee == "SEMESTER" ? App_Lang.Lang.Semester
+                                                                        : donnee == "ANNUALY" ? App_Lang.Lang.Annualy
+                                                                                                        : string.Empty;
 
-        public static string TypeClassificationProvisionsPret(string donnee)
-        {
-            return
-                donnee == "CAUTIONED" ? App_Lang.Lang.Cautioned
-                                      : donnee == "MORTGAGE" ? App_Lang.Lang.Mortgage
-                                                             : string.Empty;
-        }
 
-        public static string FormuleClassificationProvisionsPret(string donnee)
-        {
-            return
-                donnee == "BETWEEN" ? App_Lang.Lang.Between
-                                      : donnee == "GREATER THAN" ? App_Lang.Lang.Greater_than
-                                                                 : string.Empty;
-        }
 
-        public static string NatureTypeGarantie(string donnee)
-        {
-            return
-                donnee == "GarantieEtat" ? App_Lang.Lang.State_guarantee
-                                         : donnee == "SureteReelle" ? App_Lang.Lang.Real_safety
-                                                                    : string.Empty;
+
         }
     }
 }

@@ -14,20 +14,21 @@ using System.Web.Mvc;
 namespace GB.Controllers
 {
     [AuthentificationRequis]
-    public class SecuriteUtilisateurController : GBController
+    public class ConfigurationCOBACController : GBController
     {
         #region HttpGet
+
         [HttpGet]
-        public ActionResult Utilisateur()
+        public ActionResult ReportName()
         {
             // -- Charger les paramètres par défaut de la page -- //
             Charger_Parametres();
 
             // -- Titre de la page -- //
-            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.User_Management})";
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.ReportName_management})";
 
             // -- Charger les paramètres de langue de la page -- //
-            Charger_Langue_Et_Donnees(GB_Enum_Menu.SecuriteUtilisateur_Utilisateur);
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationCOBAC_ReportName);
 
             return View();
         }
@@ -49,34 +50,28 @@ namespace GB.Controllers
                 List<object> donnee = new List<object>();
 
                 // -- Selectionner en fonction du menu - //
-                #region SecuriteUtilisateur-Utilisateur
-                if (id_page == GB_Enum_Menu.SecuriteUtilisateur_Utilisateur)
+                #region ConfigurationCOBAC-ReportName
+                if (id_page == GB_Enum_Menu.ConfigurationCOBAC_ReportName)
+         
                 {
-                    foreach (var val in UtilisateurDAO.Lister())
+                    foreach (var val in ReportNameDAO.Lister())
                     {
                         donnee.Add(
                             new
                             {
-                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"utilisateur\" value=\"utilisateur_{val.id_utilisateur}\">",
-                                col_4 = val.agence?.code ?? string.Empty,
-                                col_2 = val.compte,
-                                col_3 = val.nom_utilisateur,
-                                col_5 = val.profession?.libelle ?? string.Empty,
-                                col_6 = GBToString.Oui_Non(val.ouverture_back_date),
-                                col_7 = GBToString.Oui_Non(val.ouverture_branch),
-                                col_8 = GBToString.Oui_Non(val.ouverture_back_date_travail),
-                                col_9 = GBToString.Oui_Non(val.est_suspendu),
-                                col_10 = GBToString.Oui_Non(val.acces_historique_compte),
-                                col_11 = $"{val.duree_mot_de_passe} {App_Lang.Lang.Month}(s)",
-                                col_12 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"reportName\" value=\"reportName_{val.id}\">",
+                                col_2 = val.code,
+                                col_3 = val.libelle,
+                                col_4 = GBToString.PeridicityCOBAC( val.periodicite),
+                                col_5 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
                                                               title=""{Lang.Delete}"" 
                                                               class=""btn btn-xs btn-round""
                                                               onClick=""table_donnee_supprimer({ids}, true)""
                                                               data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
                                           <i class=""fa fa-minus text-danger""></i>
                                         </button>"
-                                        .Replace("{id}", val.id_utilisateur.ToString())
-                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id_utilisateur }))
+                                        .Replace("{id}", val.id.ToString())
+                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
                                         .Replace("{Lang.Update}", App_Lang.Lang.Update)
                                         .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
                                 //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
@@ -102,13 +97,13 @@ namespace GB.Controllers
                     }
                 }
                 #endregion
-
-                #region Module introuvable
+                #region ReportName introuvble
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
                 }
                 #endregion
+
 
                 // -- Notification -- //
                 this.ViewBag.notification = new GBNotification(donnee);
@@ -150,18 +145,19 @@ namespace GB.Controllers
             );
         }
 
+
         // -- Selectionner un nouvel enregistrement dans la liste -- //
         [HttpPost]
-        public ActionResult Selection_Enregistrement(string compte, string id_page)
+        public ActionResult Selection_Enregistrement(string code, string id_page)
         {
             try
             {
                 // -- Selectionner en fonction du menu - //
-                #region SecuriteUtilisateur-Utilisateur
-                if (id_page == GB_Enum_Menu.SecuriteUtilisateur_Utilisateur)
+                #region ConfigurationCOBAC-ReportName
+                if (id_page == GB_Enum_Menu.ConfigurationCOBAC_ReportName)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = UtilisateurDAO.Object(compte);
+                    var obj = ReportNameDAO.Object(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -173,26 +169,17 @@ namespace GB.Controllers
                     this.ViewBag.notification = new GBNotification(
                                                     new
                                                     {
-                                                        id_utilisateur = obj.id_utilisateur,
-                                                        id_agence = obj.id_agence,
-                                                        id_profession = obj.id_profession,
-                                                        compte = obj.compte,
-                                                        nom_utilisateur = obj.nom_utilisateur,
-                                                        mot_de_passe = obj.mot_de_passe,
-                                                        ouverture_back_date = obj.ouverture_back_date.ToString(),
-                                                        ouverture_back_date_travail = obj.ouverture_back_date_travail.ToString(),
-                                                        ouverture_branch = obj.ouverture_branch.ToString(),
-                                                        est_connecte = obj.est_connecte.ToString(),
-                                                        est_suspendu = obj.est_suspendu.ToString(),
-                                                        modifier_mot_de_passe = obj.modifier_mot_de_passe.ToString(),
-                                                        acces_historique_compte = obj.acces_historique_compte.ToString(),
-                                                        duree_mot_de_passe = obj.duree_mot_de_passe
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle = obj.libelle,
+                                                        periodicity = obj.periodicite,
+                                                        
                                                     }
                                                );
                 }
                 #endregion
 
-                #region Module introuvable
+                #region ReportName introuvble
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -235,15 +222,18 @@ namespace GB.Controllers
                 Verifier_Autorisation(GB_Enum_Action_Controller.Ajouter);
 
                 // -- Selectionner en fonction du menu - //
-                #region SecuriteUtilisateur-Utilisateur
-                if (id_page == GB_Enum_Menu.SecuriteUtilisateur_Utilisateur)
+
+                #region ConfigurationCOBAC-ReportName
+               if (id_page == GB_Enum_Menu.ConfigurationCOBAC_ReportName)
                 {
                     // -- Service d'enregistrement -- //
-                    UtilisateurDAO.Ajouter(GBConvert.JSON_To<Utilisateur>(obj));
+                    ReportNameDAO.Ajouter(GBConvert.JSON_To<ReportName>(obj));
                 }
                 #endregion
 
-                #region Module introuvable
+
+
+                #region ReportName introuvble
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -289,15 +279,19 @@ namespace GB.Controllers
                 Verifier_Autorisation(GB_Enum_Action_Controller.Modifier);
 
                 // -- Selectionner en fonction du menu - //
-                #region SecuriteUtilisateur-Utilisateur
-                if (id_page == GB_Enum_Menu.SecuriteUtilisateur_Utilisateur)
+
+
+                #region ConfigurationCOBAC-ReportName
+               if (id_page == GB_Enum_Menu.ConfigurationCOBAC_ReportName)
                 {
                     // -- Service de modification -- //
-                    UtilisateurDAO.Modifier(GBConvert.JSON_To<Utilisateur>(obj));
+                    ReportNameDAO.Modifier(GBConvert.JSON_To<ReportName>(obj));
                 }
                 #endregion
 
-                #region Module introuvable
+
+
+                #region ReportName introuvble
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -343,15 +337,19 @@ namespace GB.Controllers
                 Verifier_Autorisation(GB_Enum_Action_Controller.Supprimer);
 
                 // -- Selectionner en fonction du menu - //
-                #region SecuriteUtilisateur-Utilisateur
-                if (id_page == GB_Enum_Menu.SecuriteUtilisateur_Utilisateur)
+
+
+                #region ConfigurationCOBAC-ReportName
+               if (id_page == GB_Enum_Menu.ConfigurationCOBAC_ReportName)
                 {
                     // -- Service de suppression -- //
-                    UtilisateurDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    ReportNameDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
-                #region Module introuvable
+
+
+                #region ReportName introuvble
                 else
                 {
                     throw new Exception("Le id_page n'a pas été retourné!");
@@ -397,63 +395,41 @@ namespace GB.Controllers
             // -- Définition du menu actif -- //
             id_menu_actif = MenuDAO.Object(id_page.Split('-')[0], id_page.Split('-')[1]).id;
 
-            #region SecuriteUtilisateur-Utilisateur
-            if (id_page == GB_Enum_Menu.SecuriteUtilisateur_Utilisateur)
+
+
+            #region ConfigurationCOBAC-ReportName
+           if (id_page == GB_Enum_Menu.ConfigurationCOBAC_ReportName)
             {
                 // -- Langue -- //
                 #region Langue
-                this.ViewBag.Lang.Description_page  = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.User_Management;
-                this.ViewBag.Lang.Login = App_Lang.Lang.Login;
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.ReportName_management;
                 this.ViewBag.Lang.Name = App_Lang.Lang.Name;
-                this.ViewBag.Lang.Agency = App_Lang.Lang.Agency;
-                this.ViewBag.Lang.Job = App_Lang.Lang.Job;
-                this.ViewBag.Lang.Open_back_date = App_Lang.Lang.Open_back_date;
-                this.ViewBag.Lang.Open_back_working_date = App_Lang.Lang.Open_back_working_date;
-                this.ViewBag.Lang.Open_branch = App_Lang.Lang.Open_branch;
-                this.ViewBag.Lang.Connection_status = App_Lang.Lang.Connection_status;
-                this.ViewBag.Lang.Suspended = App_Lang.Lang.Suspended;
-                this.ViewBag.Lang.Password_expiration = App_Lang.Lang.Password_expiration;
-                this.ViewBag.Lang.Employee_historical_access = App_Lang.Lang.Employee_historical_access;
-                this.ViewBag.Lang.Password = App_Lang.Lang.Password;
-                this.ViewBag.Lang.Value = App_Lang.Lang.Value;
-                this.ViewBag.Lang.Confirm = App_Lang.Lang.Confirm;
-                this.ViewBag.Lang.Activate_edit = App_Lang.Lang.Activate_edit;
-                this.ViewBag.Lang.Expiration_duration = App_Lang.Lang.Expiration_duration;
+                this.ViewBag.Lang.Periodicity = App_Lang.Lang.Periodicity;
+
                 #endregion
 
                 // -- Données -- //
                 #region Données
-                #region HTML_Select_agence
-                this.ViewBag.donnee.HTML_Select_code_agence =
-                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                this.ViewBag.donnee.HTML_Select_libelle_agence =
-                    $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                foreach (var val in AgenceDAO.Lister())
-                {
-                    this.ViewBag.donnee.HTML_Select_code_agence +=
-                        $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
-                    this.ViewBag.donnee.HTML_Select_libelle_agence +=
-                        $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
-                }
-                #endregion
-                #region HTML_Select_profession
-                this.ViewBag.donnee.HTML_Select_code_profession = ProfessionDAO.HTML_Select("code");
-                this.ViewBag.donnee.HTML_Select_libelle_profession = ProfessionDAO.HTML_Select("libelle");
-                #endregion
+
+                this.ViewBag.donnee.HTML_Peridicity_COBAC = GBClass.HTML_Peridicity_COBAC();
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
-                                                new {
+                                                new
+                                                {
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
                                                     {
                                                         icon = "fa fa-cogs",
-                                                        message = App_Lang.Lang.User_Management
+                                                        message = App_Lang.Lang.ReportName_management
                                                     }
                                                 }
                                             );
                 #endregion
             }
             #endregion
+
+
+
 
         }
         #endregion

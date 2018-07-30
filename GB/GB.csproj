@@ -189,9 +189,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ConfigurationCOBACController.cs" />
     <Compile Include="Controllers\ConfigurationBanqueController.cs" />
     <Compile Include="Controllers\ConfigurationBudgetController.cs" />
-    <Compile Include="Controllers\ConfigurationOperationController.cs" />
     <Compile Include="Controllers\SecuriteUtilisateurController.cs" />
     <Compile Include="Controllers\SecuriteController.cs" />
     <Compile Include="Controllers\ErreurController.cs" />
@@ -203,20 +203,12 @@
     </Compile>
     <Compile Include="Models\ActionFilter\AuthentificationRequis.cs" />
     <Compile Include="Models\ActionFilter\ResponseErreur.cs" />
+    <Compile Include="Models\BO\ReportName.cs" />
     <Compile Include="Models\BO\DirectionBudget.cs" />
     <Compile Include="Models\BO\BEACNationalite.cs" />
     <Compile Include="Models\BO\ExerciceFiscal.cs" />
     <Compile Include="Models\BO\CongeBanque.cs" />
     <Compile Include="Models\BO\AutoriteSignature.cs" />
-    <Compile Include="Models\BO\ClassificationProvisionsPret.cs" />
-    <Compile Include="Models\BO\GBControllerUrlJS.cs" />
-    <Compile Include="Models\BO\WesternUnionZonePays.cs" />
-    <Compile Include="Models\BO\MotifPret.cs" />
-    <Compile Include="Models\BO\Journal.cs" />
-    <Compile Include="Models\BO\LocalisationActif.cs" />
-    <Compile Include="Models\BO\TypeActif.cs" />
-    <Compile Include="Models\BO\TypeGarantie.cs" />
-    <Compile Include="Models\BO\TypePret.cs" />
     <Compile Include="Models\BO\UniteInstitutionnelle.cs" />
     <Compile Include="Models\BO\Titre.cs" />
     <Compile Include="Models\BO\GBFichier.cs" />
@@ -242,18 +234,11 @@
     <Compile Include="Models\Cryptage\Program.cs" />
     <Compile Include="Models\BO\GBException.cs" />
     <Compile Include="Models\BO\GBNotification.cs" />
+    <Compile Include="Models\DAO\ReportNameDAO.cs" />
     <Compile Include="Models\DAO\DirectionBudgetDAO.cs" />
     <Compile Include="Models\DAO\BEACNationaliteDAO.cs" />
     <Compile Include="Models\DAO\CongeBanqueDAO.cs" />
     <Compile Include="Models\DAO\AutoriteSignatureDAO.cs" />
-    <Compile Include="Models\DAO\ClassificationProvisionsPretDAO.cs" />
-    <Compile Include="Models\DAO\WesternUnionZonePaysDAO.cs" />
-    <Compile Include="Models\DAO\MotifPretDAO.cs" />
-    <Compile Include="Models\DAO\JournalDAO.cs" />
-    <Compile Include="Models\DAO\LocalisationActifDAO.cs" />
-    <Compile Include="Models\DAO\TypeActifDAO.cs" />
-    <Compile Include="Models\DAO\TypeGarantieDAO.cs" />
-    <Compile Include="Models\DAO\TypePretDAO.cs" />
     <Compile Include="Models\DAO\UniteInstitutionnelleDAO.cs" />
     <Compile Include="Models\DAO\TitreDAO.cs" />
     <Compile Include="Models\DAO\DeviseDAO.cs" />
@@ -276,7 +261,7 @@
     <Compile Include="Models\DAO\RoleDAO.cs" />
     <Compile Include="Models\DAO\UtilisateurDAO.cs" />
     <Compile Include="Models\Helper\LangHelper.cs" />
-    <Compile Include="Models\SignalR\Hubs\applicationMainHub.cs" />
+    <Compile Include="Models\SignalR\Hubs\GBHub.cs" />
     <Compile Include="Models\Static\AppSettings.cs" />
     <Compile Include="Models\Static\Enumeration.cs" />
     <Compile Include="Models\Static\GBClass.cs" />
@@ -868,7 +853,6 @@
     <Content Include="Plugins\parsley\i18n\zh-tw.js" />
     <Content Include="Plugins\parsley\parsley.js" />
     <Content Include="Plugins\parsley\parsley.min.js" />
-    <Content Include="Plugins\signalR\hub\Application-Main.js" />
     <Content Include="Resources\css\bootstrap-theme.css" />
     <Content Include="Resources\css\bootstrap-theme.min.css" />
     <Content Include="Resources\css\bootstrap.css" />
@@ -878,7 +862,6 @@
     <Content Include="Resources\css\gb.style.css" />
     <Content Include="Resources\css\gb.style.min.css" />
     <Content Include="Resources\css\Views\Application-Main.css" />
-    <Content Include="Resources\css\Views\SecuriteUtilisateur-Utilisateur.css" />
     <Content Include="Resources\css\Views\Home-Authentication.css" />
     <Content Include="Resources\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Resources\images\gif\loading_1_50px.gif" />
@@ -890,14 +873,11 @@
     <Content Include="Resources\js\bootstrap.js" />
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\gb.menu.js" />
-    <Content Include="Resources\js\Views\Erreur-Page.js" />
+    <Content Include="Resources\js\Views\ConfigurationCOBAC-ReportName.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-BEACNationalite.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-UniteInstitutionnelle.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Titre.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Ville.js" />
-    <Content Include="Resources\js\Views\ConfigurationOperation-ClassificationProvisionsPret.js" />
-    <Content Include="Resources\js\Views\ConfigurationOperation-MotifPret.js" />
-    <Content Include="Resources\js\Views\ConfigurationOperation-LocalisationActif.js" />
     <Content Include="Resources\js\Views\Securite-Menu.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Institution.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Agence.js" />
@@ -912,11 +892,6 @@
     <Content Include="Resources\js\Views\ConfigurationBudget-DirectionBudget.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-CongeBanque.js" />
     <Content Include="Resources\js\Views\ConfigurationBudget-AutoriteSignature.js" />
-    <Content Include="Resources\js\Views\ConfigurationOperation-TypePret.js" />
-    <Content Include="Resources\js\Views\ConfigurationOperation-TypeGarantie.js" />
-    <Content Include="Resources\js\Views\ConfigurationOperation-Journal.js" />
-    <Content Include="Resources\js\Views\ConfigurationOperation-TypeActif.js" />
-    <Content Include="Resources\js\Views\ConfigurationOperation-WesternUnionZonePays.js" />
     <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
@@ -934,11 +909,9 @@
     <Content Include="Resources\js\menu.min.js" />
     <Content Include="Resources\js\npm.js" />
     <Content Include="Resources\js\Views\Home-Authentication.js" />
-    <Content Include="Plugins\signalR\scripts\jquery.signalR-2.2.3.js" />
-    <Content Include="Plugins\signalR\scripts\jquery.signalR-2.2.3.min.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Plugins\signalR\Scripts\jquery.signalR-2.2.3.js" />
+    <Content Include="Plugins\signalR\Scripts\jquery.signalR-2.2.3.min.js" />
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -947,18 +920,17 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Authentication.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_Lang\Lang.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.fr.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_Lang\Lang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -1120,6 +1092,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Application\Principale.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Erreur\.Page.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Securite\Module\_Modals.cshtml" />
@@ -1293,52 +1268,13 @@
     <Content Include="Plugins\input-mask\phone-codes\phone-codes.json" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\TypePret\_Modals.cshtml" />
+    <Content Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\TypePret.cshtml" />
+    <Content Include="Views\ConfigurationCOBAC\ReportName.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\MotifPret\_Modals.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\MotifPret.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\ClassificationProvisionsPret\_Modals.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\ClassificationProvisionsPret.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\TypeGarantie\_Modals.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\TypeGarantie.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\Journal\_Modals.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\Journal.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\TypeActif\_Modals.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\TypeActif.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\LocalisationActif\_Modals.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\LocalisationActif.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\WesternUnionZonePays\_Modals.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\ConfigurationOperation\WesternUnionZonePays.cshtml" />
+    <Content Include="Views\ConfigurationCOBAC\ReportName\_Modals.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

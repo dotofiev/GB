@@ -55,22 +55,16 @@
       "DirectionBudget",
       "AutoriteSignature"
     ]
-  },
-  {
+  }
+   {
     "controller": {
       "id": "5",
-      "libelle": "ConfigurationOperation"
+      "libelle": "ConfigurationCOBAC"
     },
     "views": [
-      "TypePret",
-      "MotifPret",
-      "ClassificationProvisionsPret",
-      "TypeGarantie",
-      "Journal",
-      "TypeActif",
-      "LocalisationActif",
-      "WesternUnionZonePays",
-      "WesternUnionZoneCommission",
+      "ReportName",
+      "ReportCodeGroup",
+      "CodeForReporting"
     ]
   }
 ]

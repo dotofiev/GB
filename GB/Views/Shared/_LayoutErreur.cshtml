@@ -26,13 +26,16 @@
 
 </head>
 
-<body class="dg-body_auth nav-md">
+<body class="nav-md">
 
     <div class="container body">
 
         @RenderBody()
 
     </div>
+
+    <!-- Cookies notification -->
+    @Html.Partial("_Cookies")
 
     <!-- JSquery -->
     <script src="@Url.Content("~/Resources/js/jquery-2.2.4.min.js")" type="text/javascript"></script>

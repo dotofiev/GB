@@ -1,6 +1,9 @@
 ﻿
 // -- Variables -- //
 var table = $('#table-donnee');
+var url_controlleur = '/ConfigurationBudget/';
+var url_ajax_dataTable = url_controlleur + 'Charger_Table/?id_page=' + $GB_DONNEE.id_page;
+var url_ajax_selection_enregistrement = url_controlleur + 'Selection_Enregistrement/';
 var btn_ajouter = $('#btn-ajouter');
 var btn_supprimer = $('#btn-supprimer');
 var btn_imprimmer = $('#btn-imprimmer');
@@ -8,6 +11,7 @@ var btn_enregistrer = $('#btn-enregistrer');
 var btn_table;
 var form = $('#form');
 var modal_form = $('#modal_form');
+var url_suppression = url_controlleur + 'Supprimer_Enregistrement';
 
 
 // -- Méthodes d'action sur les données -- // 
@@ -19,7 +23,7 @@ try {
         // -- Ajax -- //
         $.ajax({
             type: "POST",
-            url: $GB_DONNEE.Urls.url_ajax_selection_enregistrement,
+            url: url_ajax_selection_enregistrement,
             data: {
                 code: code,
                 id_page: $GB_DONNEE.id_page
@@ -95,7 +99,7 @@ try {
         // -- Ajax -- //
         $.ajax({
             type: "POST",
-            url: $GB_DONNEE.Urls.url_ajax_suppression_enregistrement,
+            url: url_suppression,
             data: {
                 ids: JSON.stringify(ids),
                 id_page: $GB_DONNEE.id_page
@@ -166,7 +170,7 @@ $(
                     "url": $GB_VAR.url_language_dataTable
                 },
                 "ajax": {
-                    "url": $GB_DONNEE.Urls.url_ajax_dataTable,
+                    "url": url_ajax_dataTable,
                     "type": 'POST',
                     "dataSrc": function (resultat) {
                         // -- Notifier -- //
@@ -255,8 +259,8 @@ $(
                         // -- Ajax -- //
                         $.ajax({
                             type: "POST",
-                            url: (action_ajouter ? $GB_DONNEE.Urls.url_ajax_ajout_enregistrement
-                                                                   : $GB_DONNEE.Urls.url_ajax_modification_enregistrement),
+                            url: url_controlleur + (action_ajouter ? 'Ajouter_Enregistrement'
+                                                                   : 'Modifier_Enregistrement'),
                             data: {
                                 obj: JSON.stringify(form.gbConvertToJSON()),
                                 id_page: $GB_DONNEE.id_page

@@ -8,18 +8,14 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public abstract class MotifPretDAO : GBDAO
+    public abstract class ReportNameDAO : GBDAO
     {
-        public string form_combo_id { get { return string.Empty; } }
-
-        public string form_combo_libelle { get { return string.Empty; } }
-
-        public static void Ajouter(MotifPret obj)
+        public static void Ajouter(ReportName obj)
         {
             try
             {
                 // -- Unicité du code -- //
-                if (Program.db.motifs_pret.Exists(l => l.code == obj.code))
+                if (Program.db.ReportName.Exists(l => l.code == obj.code))
                 {
                     throw new GBException(App_Lang.Lang.Existing_data + " [code]");
                 }
@@ -28,7 +24,9 @@ namespace GB.Models.DAO
                 obj.Crer_Id();
 
                 // -- Enregistrement de la valeur -- //
-                Program.db.motifs_pret.Add(obj);
+                Program.db.ReportName.Add(obj);
+
+
             }
             #region Catch
             catch (Exception ex)
@@ -51,18 +49,18 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(MotifPret obj)
+        public static void Modifier(ReportName obj)
         {
             try
             {
                 // -- Unicité du code -- //
-                if (Program.db.motifs_pret.Exists(l => l.id != obj.id && l.code == obj.code))
+                if (Program.db.ReportName.Exists(l => l.id != obj.id && l.code == obj.code))
                 {
                     throw new GBException(App_Lang.Lang.Existing_data + " [code]");
                 }
 
                 // -- Modification de la valeur -- //
-                Program.db.motifs_pret
+                Program.db.ReportName
                     // -- Spécifier la recherche -- //
                     .Where(l => l.id == obj.id)
                     // -- Lister le résultat -- //
@@ -73,7 +71,11 @@ namespace GB.Models.DAO
                         // -- Mise à jour de l'enregistrement -- //
                         l.code = obj.code;
                         l.libelle = obj.libelle;
+                        l.periodicite = obj.periodicite;
+                      
                     });
+
+               
             }
             #region Catch
             catch (Exception ex)
@@ -104,7 +106,7 @@ namespace GB.Models.DAO
                 ids.ForEach(id =>
                 {
                     // -- Suppression des valeurs -- //
-                    Program.db.motifs_pret.RemoveAll(l => l.id == id);
+                    Program.db.ReportName.RemoveAll(l => l.id == id);
                 });
             }
             #region Catch
@@ -128,13 +130,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<MotifPret> Lister()
+        public static List<ReportName> Lister()
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.motifs_pret;
+                    Program.db.ReportName;
             }
             #region Catch
             catch (Exception ex)
@@ -157,13 +159,41 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static MotifPret Object(string code)
+        public static ReportName Object(string code)
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.motifs_pret.FirstOrDefault(l => l.code == code);
+                    Program.db.ReportName.FirstOrDefault(l => l.code == code);
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(App_Lang.Lang.Error_message_notification);
+                }
+                else
+                {
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(ex.Message);
+                }
+            }
+            #endregion
+        }
+        public static ReportName Object(long id)
+        {
+            try
+            {
+                // -- Parcours de la liste -- //
+                return
+                    Program.db.ReportName.FirstOrDefault(l => l.id == id);
             }
             #region Catch
             catch (Exception ex)
@@ -186,38 +216,5 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static MotifPret Object(long id)
-        {
-            try
-            {
-                // -- Parcours de la liste -- //
-                return
-                    Program.db.motifs_pret.FirstOrDefault(l => l.id == id);
-            }
-            #region Catch
-            catch (Exception ex)
-            {
-                // -- Vérifier la nature de l'exception -- //
-                if (!GBException.Est_GBexception(ex))
-                {
-                    // -- Log -- //
-                    GBClass.Log.Error(ex);
-
-                    // -- Renvoyer l'exception -- //
-                    throw new GBException(App_Lang.Lang.Error_message_notification);
-                }
-                else
-                {
-                    // -- Renvoyer l'exception -- //
-                    throw new GBException(ex.Message);
-                }
-            }
-            #endregion
-        }
-
-        public void HTML_Select(ref string select_code, ref string select_libelle)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -1,1 +1,362 @@
-﻿
+﻿26/07/2018 13:24:18.779 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+26/07/2018 13:24:21.807 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:qun0yakzodssnibp5f5brtb1} 
+-----------------------
+26/07/2018 13:28:51.922 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+26/07/2018 13:28:56.482 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:vx1czm53e3drb3r4y4bjq5tf} 
+-----------------------
+26/07/2018 13:47:40.297 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+26/07/2018 13:47:42.679 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:54imv53rd1aq0ibmz0hy0gbs} 
+-----------------------
+26/07/2018 13:48:27.474 | ERROR | [7] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Charger_Table/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+26/07/2018 13:48:30.613 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:kkgbotua5sqbjlkl0qg4hzsx} 
+-----------------------
+26/07/2018 13:48:31.103 | INFO | [9] | GB.MvcApplication.Session_OnStart | Début session: {session:jzdaplmbrm2rjbpsrbiuum0u} 
+-----------------------
+26/07/2018 13:49:57.666 | ERROR | [9] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Charger_Table/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+26/07/2018 13:49:57.718 | INFO | [7] | GB.MvcApplication.Session_OnStart | Début session: {session:x2psptftj1wpabb2rfvodn4v} 
+-----------------------
+26/07/2018 13:49:57.754 | INFO | [7] | GB.MvcApplication.Session_OnStart | Début session: {session:x0o5ehgatxj0jrux4nuhlbfz} 
+-----------------------
+26/07/2018 13:50:14.254 | ERROR | [7] | GB.Controllers.GBController.ExecuteCore | System.Web.HttpException (0x80004005): A public action method 'ReportCodeGroup' was not found on controller 'GB.Controllers.ConfigurationCOBACController'.
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.ExecuteCore()
+   at GB.Controllers.GBController.ExecuteCore() in D:\PROJETBP\GBNET\GB\GB\Controllers\GBController.cs:line 51 
+-----------------------
+26/07/2018 13:50:15.980 | ERROR | [8] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Charger_Table/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+26/07/2018 13:50:16.012 | INFO | [7] | GB.MvcApplication.Session_OnStart | Début session: {session:3frzbf4vjlvvvxrxsm2cqse5} 
+-----------------------
+26/07/2018 13:50:16.048 | INFO | [9] | GB.MvcApplication.Session_OnStart | Début session: {session:2px1eq254dhkq0jmmbwqwtlz} 
+-----------------------
+26/07/2018 13:50:29.551 | ERROR | [9] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Charger_Table/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+26/07/2018 13:50:29.582 | INFO | [7] | GB.MvcApplication.Session_OnStart | Début session: {session:ip1p5pymiiyxnuidzplcwplf} 
+-----------------------
+26/07/2018 13:50:29.622 | INFO | [8] | GB.MvcApplication.Session_OnStart | Début session: {session:khlzgjdfkxrtj2vqleyyq4hj} 
+-----------------------
+26/07/2018 13:58:06.115 | ERROR | [27] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Charger_Table/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+26/07/2018 13:58:06.161 | INFO | [25] | GB.MvcApplication.Session_OnStart | Début session: {session:fwvwkonzfxj5q1ytervukqkw} 
+-----------------------
+26/07/2018 13:58:06.202 | INFO | [28] | GB.MvcApplication.Session_OnStart | Début session: {session:r1uflwewgjvuvosmwjgkipxf} 
+-----------------------
+26/07/2018 14:00:54.071 | ERROR | [29] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Charger_Table/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+26/07/2018 14:00:54.104 | INFO | [25] | GB.MvcApplication.Session_OnStart | Début session: {session:bnjwop4opqtqay3yd3snl1ac} 
+-----------------------
+26/07/2018 14:00:54.138 | INFO | [35] | GB.MvcApplication.Session_OnStart | Début session: {session:sbpmuw0thvmcu0cegotbepif} 
+-----------------------
+26/07/2018 14:04:43.131 | ERROR | [34] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Charger_Table/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+26/07/2018 14:04:43.165 | INFO | [31] | GB.MvcApplication.Session_OnStart | Début session: {session:2ghmbcyl3gshw5ognqwo2xa5} 
+-----------------------
+26/07/2018 14:04:43.198 | INFO | [30] | GB.MvcApplication.Session_OnStart | Début session: {session:mni0x2jwh1bmoq3pg50ibs3r} 
+-----------------------
+26/07/2018 14:18:41.049 | INFO | [54] | GB.MvcApplication.Session_OnEnd | Fin session: {session:jzdaplmbrm2rjbpsrbiuum0u} 
+-----------------------
+26/07/2018 14:18:41.049 | INFO | [53] | GB.MvcApplication.Session_OnEnd | Fin session: {session:kkgbotua5sqbjlkl0qg4hzsx} 
+-----------------------
+26/07/2018 14:20:00.994 | INFO | [22] | GB.MvcApplication.Session_OnEnd | Fin session: {session:x0o5ehgatxj0jrux4nuhlbfz} 
+-----------------------
+26/07/2018 14:20:00.994 | INFO | [21] | GB.MvcApplication.Session_OnEnd | Fin session: {session:x2psptftj1wpabb2rfvodn4v} 
+-----------------------
+26/07/2018 14:20:21.001 | INFO | [54] | GB.MvcApplication.Session_OnEnd | Fin session: {session:3frzbf4vjlvvvxrxsm2cqse5} 
+-----------------------
+26/07/2018 14:20:21.001 | INFO | [56] | GB.MvcApplication.Session_OnEnd | Fin session: {session:2px1eq254dhkq0jmmbwqwtlz} 
+-----------------------
+26/07/2018 14:20:41.007 | INFO | [56] | GB.MvcApplication.Session_OnEnd | Fin session: {session:khlzgjdfkxrtj2vqleyyq4hj} 
+-----------------------
+26/07/2018 14:20:41.007 | INFO | [21] | GB.MvcApplication.Session_OnEnd | Fin session: {session:ip1p5pymiiyxnuidzplcwplf} 
+-----------------------
+26/07/2018 14:28:21.208 | INFO | [17] | GB.MvcApplication.Session_OnEnd | Fin session: {session:r1uflwewgjvuvosmwjgkipxf} 
+-----------------------
+26/07/2018 14:28:21.208 | INFO | [16] | GB.MvcApplication.Session_OnEnd | Fin session: {session:fwvwkonzfxj5q1ytervukqkw} 
+-----------------------
+26/07/2018 14:31:01.288 | INFO | [13] | GB.MvcApplication.Session_OnEnd | Fin session: {session:sbpmuw0thvmcu0cegotbepif} 
+-----------------------
+26/07/2018 14:31:01.288 | INFO | [15] | GB.MvcApplication.Session_OnEnd | Fin session: {session:bnjwop4opqtqay3yd3snl1ac} 
+-----------------------
+26/07/2018 14:35:01.409 | INFO | [14] | GB.MvcApplication.Session_OnEnd | Fin session: {session:2ghmbcyl3gshw5ognqwo2xa5} 
+-----------------------
+26/07/2018 14:35:01.409 | INFO | [15] | GB.MvcApplication.Session_OnEnd | Fin session: {session:54imv53rd1aq0ibmz0hy0gbs} 
+-----------------------
+26/07/2018 14:35:01.409 | INFO | [10] | GB.MvcApplication.Session_OnEnd | Fin session: {session:mni0x2jwh1bmoq3pg50ibs3r} 
+-----------------------
+26/07/2018 15:01:18.775 | INFO | [13] | GB.MvcApplication.Session_OnStart | Début session: {session:54imv53rd1aq0ibmz0hy0gbs} 
+-----------------------
+26/07/2018 15:01:36.568 | ERROR | [14] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Charger_Table/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+26/07/2018 15:01:36.606 | INFO | [13] | GB.MvcApplication.Session_OnStart | Début session: {session:5t144cd3u2pimzp50nflkixv} 
+-----------------------
+26/07/2018 15:01:36.647 | INFO | [15] | GB.MvcApplication.Session_OnStart | Début session: {session:nv5x0mjhbiqtqnhv1ijpea4d} 
+-----------------------
+26/07/2018 15:13:17.326 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+26/07/2018 15:13:31.799 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:54imv53rd1aq0ibmz0hy0gbs} 
+-----------------------
+26/07/2018 15:14:56.802 | ERROR | [7] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Ajouter_Enregistrement' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+26/07/2018 15:14:57.724 | INFO | [8] | GB.MvcApplication.Session_OnStart | Début session: {session:dqhklw4vvsphc4vw31erukr2} 
+-----------------------
+26/07/2018 15:14:58.113 | INFO | [10] | GB.MvcApplication.Session_OnStart | Début session: {session:lpvi55tuyloyzzi4mwkhkqro} 
+-----------------------
+26/07/2018 15:21:20.808 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+26/07/2018 15:21:26.419 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:54imv53rd1aq0ibmz0hy0gbs} 
+-----------------------
+26/07/2018 15:29:52.147 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+26/07/2018 15:29:57.453 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:54imv53rd1aq0ibmz0hy0gbs} 
+-----------------------
+26/07/2018 15:30:25.830 | ERROR | [7] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Charger_Table/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+26/07/2018 15:30:29.066 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:z2xpoih2f0c4wc5vk0o3v2vy} 
+-----------------------
+26/07/2018 15:30:29.263 | INFO | [9] | GB.MvcApplication.Session_OnStart | Début session: {session:cuhqzxnasqoz44kxj1i11kmz} 
+-----------------------
+26/07/2018 15:31:37.942 | ERROR | [8] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Ajouter_Enregistrement' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+26/07/2018 15:31:37.990 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:13qcm41ig3kj3qry5twd3gfl} 
+-----------------------
+26/07/2018 15:31:38.028 | INFO | [9] | GB.MvcApplication.Session_OnStart | Début session: {session:iwrosx2fjwlmkkypapdxsrit} 
+-----------------------
+26/07/2018 15:31:43.769 | ERROR | [6] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Ajouter_Enregistrement' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+26/07/2018 15:31:43.805 | INFO | [7] | GB.MvcApplication.Session_OnStart | Début session: {session:yzczpl5m5moywl5fdflhccef} 
+-----------------------
+26/07/2018 15:31:43.836 | INFO | [8] | GB.MvcApplication.Session_OnStart | Début session: {session:nbwzcg2o0btswod54uw3oxpj} 
+-----------------------
+26/07/2018 16:25:21.350 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+26/07/2018 16:25:33.188 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:54imv53rd1aq0ibmz0hy0gbs} 
+-----------------------
+26/07/2018 16:25:58.104 | ERROR | [7] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Charger_Table/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+26/07/2018 16:25:58.803 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:jlql3o2fqdfzo5a2zlhilewc} 
+-----------------------
+26/07/2018 16:25:58.970 | INFO | [9] | GB.MvcApplication.Session_OnStart | Début session: {session:lngmvevjjebxxl4d1mnehy5i} 
+-----------------------
+26/07/2018 16:56:01.352 | INFO | [20] | GB.MvcApplication.Session_OnEnd | Fin session: {session:jlql3o2fqdfzo5a2zlhilewc} 
+-----------------------
+26/07/2018 16:56:01.352 | INFO | [21] | GB.MvcApplication.Session_OnEnd | Fin session: {session:54imv53rd1aq0ibmz0hy0gbs} 
+-----------------------
+26/07/2018 16:56:01.352 | INFO | [29] | GB.MvcApplication.Session_OnEnd | Fin session: {session:lngmvevjjebxxl4d1mnehy5i} 
+-----------------------
+27/07/2018 12:09:19.301 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+27/07/2018 12:09:36.746 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:fiucy2eapaobpdoqffns4thm} 
+-----------------------
+27/07/2018 12:10:11.417 | ERROR | [8] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Charger_Table/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+27/07/2018 12:10:12.089 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:xqpzjgmslccdunun45y4kf2z} 
+-----------------------
+27/07/2018 12:10:12.324 | INFO | [10] | GB.MvcApplication.Session_OnStart | Début session: {session:wvl4tzm2n1fua3kocjqmovqh} 
+-----------------------
+27/07/2018 12:21:55.177 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+27/07/2018 12:21:57.989 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:fiucy2eapaobpdoqffns4thm} 
+-----------------------
+27/07/2018 12:30:12.291 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+27/07/2018 12:30:12.797 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:fiucy2eapaobpdoqffns4thm} 
+-----------------------
+27/07/2018 12:35:42.838 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+27/07/2018 12:35:45.885 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:fiucy2eapaobpdoqffns4thm} 
+-----------------------
+27/07/2018 12:37:19.461 | ERROR | [6] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Modifier_Enregistrement' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+27/07/2018 12:37:19.695 | INFO | [7] | GB.MvcApplication.Session_OnStart | Début session: {session:khwqgjbzqokkkjtqtd5gmfbe} 
+-----------------------
+27/07/2018 12:37:25.548 | INFO | [10] | GB.MvcApplication.Session_OnStart | Début session: {session:yhyghgqa4r1pgmwpmvv0hnab} 
+-----------------------
+27/07/2018 12:37:46.416 | ERROR | [7] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Ajouter_Enregistrement' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+27/07/2018 12:37:46.463 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:wniyktcotzpwaz4hl4juskrh} 
+-----------------------
+27/07/2018 12:37:46.478 | INFO | [8] | GB.MvcApplication.Session_OnStart | Début session: {session:fklfcdxb2umxhah2x0bwyu12} 
+-----------------------
+27/07/2018 12:40:48.659 | ERROR | [14] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Ajouter_Enregistrement' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+27/07/2018 12:40:48.713 | INFO | [17] | GB.MvcApplication.Session_OnStart | Début session: {session:jgxlutjyus4qyb0nifeta2si} 
+-----------------------
+27/07/2018 12:40:48.753 | INFO | [20] | GB.MvcApplication.Session_OnStart | Début session: {session:v1qwfdmcge0zxkvq0xkglrqw} 
+-----------------------
+27/07/2018 12:41:18.843 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+27/07/2018 12:41:21.746 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:fiucy2eapaobpdoqffns4thm} 
+-----------------------
+27/07/2018 12:41:38.743 | ERROR | [6] | GB.MvcApplication.Application_Error | System.Web.HttpException (0x80004005): The controller for path '/ConfigurationOperation/Ajouter_Enregistrement' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) 
+-----------------------
+27/07/2018 12:41:38.852 | INFO | [7] | GB.MvcApplication.Session_OnStart | Début session: {session:fnhsfchjnuiiynxe2eykzzka} 
+-----------------------
+27/07/2018 12:41:38.989 | INFO | [9] | GB.MvcApplication.Session_OnStart | Début session: {session:tsueuhpardqik34scmixjnmr} 
+-----------------------
+27/07/2018 12:43:09.967 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+27/07/2018 12:43:13.581 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:fiucy2eapaobpdoqffns4thm} 
+-----------------------
+27/07/2018 12:50:01.175 | ERROR | [16] | GB.Controllers.GBController.ExecuteCore | System.Web.HttpException (0x80004005): A public action method 'ReportCodeGroup' was not found on controller 'GB.Controllers.ConfigurationCOBACController'.
+   à System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   à System.Web.Mvc.Controller.ExecuteCore()
+   à GB.Controllers.GBController.ExecuteCore() dans D:\PROJETBP\GBNET\GB\GB\Controllers\GBController.cs:ligne 51 
+-----------------------
+27/07/2018 12:50:02.849 | ERROR | [13] | GB.Controllers.GBController.ExecuteCore | System.Web.HttpException (0x80004005): A public action method 'CodeForReporting' was not found on controller 'GB.Controllers.ConfigurationCOBACController'.
+   à System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   à System.Web.Mvc.Controller.ExecuteCore()
+   à GB.Controllers.GBController.ExecuteCore() dans D:\PROJETBP\GBNET\GB\GB\Controllers\GBController.cs:ligne 51 
+-----------------------
+27/07/2018 12:50:04.439 | ERROR | [13] | GB.Controllers.GBController.ExecuteCore | System.Web.HttpException (0x80004005): A public action method 'ReportCodeGroup' was not found on controller 'GB.Controllers.ConfigurationCOBACController'.
+   à System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   à System.Web.Mvc.Controller.ExecuteCore()
+   à GB.Controllers.GBController.ExecuteCore() dans D:\PROJETBP\GBNET\GB\GB\Controllers\GBController.cs:ligne 51 
+-----------------------

@@ -1,11 +1,10 @@
-﻿
-<!-- form 1 -->
+﻿<!-- form 1 -->
 <div class="modal fade bs-example-modal-lg" id="modal_form" role="alert" data-backdrop="static" data-keyboard="false">
-    
+
     <div class="modal-dialog">
-        
+
         <div class="modal-content">
-            
+
             <div class="modal-body">
 
                 <!-- Header -->
@@ -30,39 +29,30 @@
                             <!-- Id -->
                             <input type="hidden" id="form_id" name="id" value="0" />
 
-                            <!-- ligne -->
-                            <div class="col-xs-12 col-lg-6">
+                            
+                            <div class="col-xs-12 col-lg-4">
                                 <div class="form-group">
                                     <label for="form_code">Code :</label>
                                     <input class="form-control" type="text" id="form_code" name="code" placeholder="Code.*" required />
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 col-lg-6">
+                            <div class="col-xs-12 col-lg-4">
                                 <div class="form-group">
-                                    <label for="form_nature">Nature :</label>
-                                    <select class="form-control" id="form_nature" name="nature" required>
-                                        @Html.Raw(ViewBag.donnee.HTML_Select_nature)
+                                    <label for="form_libelle">@ViewBag.Lang.Name :</label>
+                                    <input class="form-control" type="text" id="form_libelle" name="libelle" placeholder="@ViewBag.Lang.Name .*" required />
+                                </div>
+                            </div>
+                            
+                            <div class="col-xs-12 col-lg-4">
+                                <div class="form-group">
+                                    <label for="form_periodicite">@ViewBag.Lang.Periodicity :</label>
+                                    <select class="form-control" name="periodicite" id="form_periodicite" required>
+                                        @Html.Raw(ViewBag.donnee.HTML_Peridicity_COBAC)
                                     </select>
                                 </div>
                             </div>
-                            <!-- ./ligne -->
-
-                            <!-- ligne -->
-                            <div class="col-xs-12 col-lg-6">
-                                <div class="form-group">
-                                    <label for="form_libelle_fr">@ViewBag.Lang.Name_french :</label>
-                                    <input class="form-control" type="text" id="form_libelle_fr" name="libelle_fr" placeholder="@ViewBag.Lang.Name_french .*" required />
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 col-lg-6">
-                                <div class="form-group">
-                                    <label for="form_libelle_en">@ViewBag.Lang.Name_english :</label>
-                                    <input class="form-control" type="text" id="form_libelle_en" name="libelle_en" placeholder="@ViewBag.Lang.Name_english .*" required />
-                                </div>
-                            </div>
-                            <!-- ./ligne -->
+                         
 
                         </div>
 
@@ -76,12 +66,12 @@
             </div>
 
             <div class="modal-footer">
-                
+
                 <!-- Bouton de fermiture du modal -->
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">
                     <i class="glyphicon glyphicon-remove"></i> @ViewBag.Lang.Close
                 </button>
-                
+
                 <!-- Bouton d'enregistrement du formulaire -->
                 <button class="btn btn-default btn-success pull-right" id="btn-enregistrer" type="submit" form="form"
                         data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> @ViewBag.Lang.Process ...">

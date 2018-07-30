@@ -1,6 +1,7 @@
-﻿
-// -- Variables -- //
+﻿// -- Variables -- //
 var table = $('#table-donnee');
+var url_ajax_dataTable = '/ConfigurationCOBAC/Charger_Table/?id_page=' + $GB_DONNEE.id_page;
+var url_ajax_selection_enregistrement = '/ConfigurationCOBAC/Selection_Enregistrement/';
 var btn_ajouter = $('#btn-ajouter');
 var btn_supprimer = $('#btn-supprimer');
 var btn_imprimmer = $('#btn-imprimmer');
@@ -8,6 +9,8 @@ var btn_enregistrer = $('#btn-enregistrer');
 var btn_table;
 var form = $('#form');
 var modal_form = $('#modal_form');
+var url_controlleur = '/ConfigurationCOBAC/';
+var url_suppression = '/ConfigurationCOBAC/Supprimer_Enregistrement';
 
 
 // -- Méthodes d'action sur les données -- // 
@@ -19,7 +22,7 @@ try {
         // -- Ajax -- //
         $.ajax({
             type: "POST",
-            url: $GB_DONNEE.Urls.url_ajax_selection_enregistrement,
+            url: url_ajax_selection_enregistrement,
             data: {
                 code: code,
                 id_page: $GB_DONNEE.id_page
@@ -30,7 +33,8 @@ try {
                     // -- Mise à jour de sa valeur dans le formulaire -- //
                     $('#form_id').val(resultat.notification.donnee.id);
                     $('#form_code').val(resultat.notification.donnee.code);
-                    $('#form_libelle').val(resultat.notification.donnee.libelle);
+                    $('#form_libelle').val(resultat.notification.donnee.libelle)
+                    $('#form_periodicite').val(resultat.notification.donnee.periodicity);
                     // -- Mise à jour du label du bouton d'enregistrement -- //
                     btn_enregistrer.html('<i class="fa fa-check"></i>' + $GB_DONNEE_PARAMETRES.Lang.Update);
                     // -- Afficher le modal formulaire -- //
@@ -89,7 +93,7 @@ try {
         // -- Ajax -- //
         $.ajax({
             type: "POST",
-            url: $GB_DONNEE.Urls.url_ajax_suppression_enregistrement,
+            url: url_suppression,
             data: {
                 ids: JSON.stringify(ids),
                 id_page: $GB_DONNEE.id_page
@@ -145,7 +149,7 @@ $(
             table.on('draw.dt',
                 function () {
                     // -- Fonction pour initiliser les style css javascript des tables -- //
-                    gbCharger_Css_Table('journal');
+                    gbCharger_Css_Table('reportName');
                 }
             );
 
@@ -160,7 +164,7 @@ $(
                     "url": $GB_VAR.url_language_dataTable
                 },
                 "ajax": {
-                    "url": $GB_DONNEE.Urls.url_ajax_dataTable,
+                    "url": url_ajax_dataTable,
                     "type": 'POST',
                     "dataSrc": function (resultat) {
                         // -- Notifier -- //
@@ -172,8 +176,8 @@ $(
                 "columns": [
                     { "data": "col_1", "width": "20px" },           // -- Checkbox -- //
                     { "data": "col_2" },                            // -- code -- //
-                    { "data": "col_3" },                            // -- libelle -- //
-                    { "data": "col_4" },                            // -- date_creation -- //
+                    { "data": "col_3" },                            // -- name -- //
+                    { "data": "col_4" },                            // -- periodicite -- //
                     { "data": "col_5", "class": "text-center" }     // -- Action -- //
                 ]
             });
@@ -227,15 +231,15 @@ $(
 
                         // -- Définition de l'action de traitement -- //
                         var action_ajouter = (parseInt($('#form_id').val()) === 0);
-                        
+
                         // -- Afficher le chargement -- //
                         gbAfficher_Page_Chargement(true, btn_enregistrer.attr('id'));
 
                         // -- Ajax -- //
                         $.ajax({
                             type: "POST",
-                            url: (action_ajouter ? $GB_DONNEE.Urls.url_ajax_ajout_enregistrement
-                                                                   : $GB_DONNEE.Urls.url_ajax_modification_enregistrement),
+                            url: url_controlleur + (action_ajouter ? 'Ajouter_Enregistrement'
+                                                                   : 'Modifier_Enregistrement'),
                             data: {
                                 obj: JSON.stringify(form.gbConvertToJSON()),
                                 id_page: $GB_DONNEE.id_page
@@ -308,13 +312,13 @@ $(
             btn_supprimer.on("click",
                 function () {
                     // -- Réccupérer les données electionné -- //
-                    var selection = $('input[name="journal"]:checked');
+                    var selection = $('input[name="reportName"]:checked');
 
                     // -- Si la taille est supérieurs à 0 -- //
                     if (selection.length == 0) {
                         // -- Afficher message d'erreur -- //
                         gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.No_item_selected });
-                        
+
                         return false;
                     }
 
@@ -325,7 +329,7 @@ $(
                     var ids = [];
                     // -- Réccupération des id -- //
                     for (var i = 0; i < selection.length; i++) {
-                        ids.push(selection[i].replace('journal=journal_', ''));
+                        ids.push(selection[i].replace('reportName=reportName_', ''));
                     }
 
                     // -- SOumettre les données au traitement -- //
@@ -341,7 +345,7 @@ $(
             // -- Mise à jour de l'action de suppression -- //
             btn_imprimmer.on("click",
                 function () {
-                    
+
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 

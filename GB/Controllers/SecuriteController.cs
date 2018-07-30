@@ -87,11 +87,39 @@ namespace GB.Controllers
                         donnee.Add(
                             new
                             {
-                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "module"),
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"module\" value=\"module_{val.id}\">",
                                 col_2 = val.code,
                                 col_3 = val.libelle_fr,
                                 col_4 = val.libelle_en,
-                                col_5 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_5 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                                              title=""{Lang.Delete}"" 
+                                                              class=""btn btn-xs btn-round""
+                                                              onClick=""table_donnee_supprimer({ids}, true)""
+                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                          <i class=""fa fa-minus text-danger""></i>
+                                        </button>"
+                                        .Replace("{id}", val.id.ToString())
+                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                                //                              title=""{Lang.Update}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_modifier({id})""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-retweet text-warning""></i>
+                                //        </button>
+                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                //                              title=""{Lang.Delete}"" 
+                                //                              class=""btn btn-xs btn-round""
+                                //                              onClick=""table_donnee_supprimer({ids}, true)""
+                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                //          <i class=""fa fa-minus text-danger""></i>
+                                //        </button>"
+                                //        .Replace("{id}", val.id.ToString())
+                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
                             }
                         );
                     }
@@ -109,11 +137,21 @@ namespace GB.Controllers
                             donnee.Add(
                                 new
                                 {
-                                    col_1 = GBClass.HTML_Checkbox_Table(val.id, "role"),
+                                    col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"role\" value=\"role_{val.id}\">",
                                     col_2 = val.code,
                                     col_3 = val.libelle_fr,
                                     col_4 = val.libelle_en,
-                                    col_5 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                    col_5 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                                              title=""{Lang.Delete}"" 
+                                                              class=""btn btn-xs btn-round""
+                                                              onClick=""table_donnee_supprimer({ids}, true)""
+                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                          <i class=""fa fa-minus text-danger""></i>
+                                        </button>"
+                                            .Replace("{id}", val.id.ToString())
+                                            .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                            .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                            .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
                                 }
                             );
                         }
@@ -126,10 +164,10 @@ namespace GB.Controllers
                             donnee.Add(
                                 new
                                 {
-                                    col_1 = GBClass.HTML_Checkbox_Table(val.id, "autorisation"),
+                                    col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"autorisation\" value=\"autorisation_{val.id_menu}\">",
                                     col_2 = val.menu.code,
-                                    col_3 = (this.id_lang == 0) ? val.menu.libelle_en 
-                                                                : val.menu.libelle_fr,
+                                    col_3 = (id_lang == 0) ? val.menu.libelle_en 
+                                                           : val.menu.libelle_fr,
                                     col_4 = (val.ajouter) ? @"<i class=""fa fa-check fa-2x""></i>"
                                                           : @"<i class=""fa fa-remove fa-2x""></i>",
                                     col_5 = (val.modifier) ? @"<i class=""fa fa-check fa-2x""></i>"
@@ -153,12 +191,12 @@ namespace GB.Controllers
                                 new
                                 {
                                     col_1 = $"<input type=\"checkbox\" class=\"flat\" id_menu=\"{val.id_menu}\" name=\"menu\" value=\"menu_{val.id_menu}\" etat=\"false\" >",
-                                    col_2 = (this.id_lang == 0) ? val.menu.libelle_en
-                                                                : val.menu.libelle_fr,
-                                    col_3 = (this.id_lang == 0) ? val.menu.groupe_menu.libelle_en
-                                                                : val.menu.groupe_menu.libelle_fr,
-                                    col_4 = (this.id_lang == 0) ? val.menu.groupe_menu.module.libelle_en
-                                                                : val.menu.groupe_menu.module.libelle_fr,
+                                    col_2 = (id_lang == 0) ? val.menu.libelle_en
+                                                           : val.menu.libelle_fr,
+                                    col_3 = (id_lang == 0) ? val.menu.groupe_menu.libelle_en
+                                                           : val.menu.groupe_menu.libelle_fr,
+                                    col_4 = (id_lang == 0) ? val.menu.groupe_menu.module.libelle_en
+                                                           : val.menu.groupe_menu.module.libelle_fr,
                                     col_5 = $"<input type=\"checkbox\" class=\"flat-blue\" id_menu=\"{val.id_menu}\" name=\"ajouter\" etat=\"false\" />",
                                     col_6 = $"<input type=\"checkbox\" class=\"flat-blue\" id_menu=\"{val.id_menu}\" name=\"modifier\" etat=\"false\" />",
                                     col_7 = $"<input type=\"checkbox\" class=\"flat-blue\" id_menu=\"{val.id_menu}\" name=\"supprimer\" etat=\"false\" />",
@@ -179,14 +217,24 @@ namespace GB.Controllers
                         donnee.Add(
                             new
                             {
-                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "menu"),
+                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"menu\" value=\"menu_{val.id}\">",
                                 col_2 = val.code,
                                 col_3 = val.libelle_fr,
                                 col_4 = val.libelle_en,
                                 col_5 = (id_lang == 0) ? val.groupe_menu.libelle_en 
                                                        : val.libelle_fr,
                                 col_6 = val.view,
-                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_7 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                                                              title=""{Lang.Delete}"" 
+                                                              class=""btn btn-xs btn-round""
+                                                              onClick=""table_donnee_supprimer({ids}, true)""
+                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                                          <i class=""fa fa-minus text-danger""></i>
+                                        </button>"
+                                        .Replace("{id}", val.id.ToString())
+                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
+                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
+                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
                             }
                         );
                     }
@@ -900,14 +948,14 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page  = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Module_Management;
+                this.ViewBag.Lang.Name_french       = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
+                this.ViewBag.Lang.Name_english      = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
                 #endregion
 
                 // -- Données -- //
                 #region Données
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
-                                                new
-                                                {
-                                                    Urls = new GBControllerUrlJS(this, id_page),
+                                                new {
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
@@ -927,6 +975,8 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Role_and_privilege_management;
+                this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
+                this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
                 this.ViewBag.Lang.Rules = App_Lang.Lang.Rules;
                 this.ViewBag.Lang.Enable = App_Lang.Lang.Enable;
                 this.ViewBag.Lang.Disable = App_Lang.Lang.Disable;
@@ -936,6 +986,7 @@ namespace GB.Controllers
                 this.ViewBag.Lang.Print = App_Lang.Lang.Print;
                 this.ViewBag.Lang.Listing = App_Lang.Lang.Listing;
                 this.ViewBag.Lang.Save = App_Lang.Lang.Save;
+                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 this.ViewBag.Lang.Rule_Management = App_Lang.Lang.Rule_Management;
                 this.ViewBag.Lang.Privilege_management = App_Lang.Lang.Privilege_management;
                 this.ViewBag.Lang.Search_a_role = App_Lang.Lang.Search_a_role;
@@ -957,15 +1008,21 @@ namespace GB.Controllers
                 // -- Données -- //
                 #region Données
                 #region HTML_Select_Role
-                string HTML_Select_code_role = string.Empty, HTML_Select_libelle_role = string.Empty;
-                new RoleDAO().HTML_Select(ref HTML_Select_code_role, ref HTML_Select_libelle_role);
-                this.ViewBag.donnee.HTML_Select_code_role = HTML_Select_code_role;
-                this.ViewBag.donnee.HTML_Select_libelle_role = HTML_Select_libelle_role;
+                this.ViewBag.donnee.HTML_Select_code_role =
+                    $"<option value=\"\" title=\"{App_Lang.Lang.Select} code...\">{App_Lang.Lang.Select} code...</option>";
+                this.ViewBag.donnee.HTML_Select_code_libelle =
+                    $"<option value=\"\" title=\"{App_Lang.Lang.Select} {App_Lang.Lang.Name.ToLower()}...\">{App_Lang.Lang.Select} {App_Lang.Lang.Name.ToLower()}...</option>";
+                foreach (var val in RoleDAO.Lister())
+                {
+                    this.ViewBag.donnee.HTML_Select_code_role +=
+                        $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
+                    this.ViewBag.donnee.HTML_Select_code_libelle +=
+                        $"<option value=\"{val.id}\" title=\"{((id_lang == 0) ? val.libelle_en : val.libelle_fr)}\">{((id_lang == 0) ? val.libelle_en : val.libelle_fr)}</option>";
+                }
                 #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
-                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
@@ -994,6 +1051,8 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Menu_Management;
+                this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
+                this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
                 this.ViewBag.Lang.Menu_group = App_Lang.Lang.Menu_group;
                 this.ViewBag.Lang.Views = App_Lang.Lang.Views;
                 this.ViewBag.Lang.Select = App_Lang.Lang.Select;
@@ -1007,7 +1066,6 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
-                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new

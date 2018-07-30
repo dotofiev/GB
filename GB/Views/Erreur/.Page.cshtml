@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutErreur.cshtml";
 }
 
 <div class="main_container">
@@ -21,6 +21,18 @@
                 <p>
                     @ViewBag.description
                 </p>
+
+                <div class="mid_center">
+
+                    <div class="col-lg-12 text-center">
+
+                        <a class="btn btn-lg btn-default" href="@ViewBag.url">
+                            <i class="fa fa-sign-in"></i> @ViewBag.Lang.Reconnect
+                        </a>
+
+                    </div>
+
+                </div>
 
             </div>
 

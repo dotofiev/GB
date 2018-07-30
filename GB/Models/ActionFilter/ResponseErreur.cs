@@ -16,19 +16,21 @@ namespace GB.Models.ActionFilter
         private StringBuilder responseContent = new StringBuilder();
         private Stream outputStream = null;
         private string dt = null;
+        private string id_lang = null;
 
 
-        public ResponseErreur(Stream output, string dt)
+        public ResponseErreur(Stream output, string dt, string id_lang)
         {
             outputStream = output;
             this.dt = dt;
+            this.id_lang = id_lang;
         }
 
 
         public override void Write(byte[] buffer, int offset, int count)
         {
             // -- Réccupération du string de la page HTML -- //
-            string page = GBClass.HTML_Site_Web($"{AppSettings.URL_APPLICATION}/Erreur/Page/?dt={dt}");
+            string page = GBClass.HTML_Site_Web($"{AppSettings.URL_APPLICATION}/Erreur/Page/?dt={dt}&id_lang={id_lang}");
 
             // -- Ajout de la page dans la reponse -- //
             responseContent.Append(page);

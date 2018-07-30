@@ -2,12 +2,9 @@
     Layout = null;
 }
 
-<!-- Style de la page -->
-<link href="@Url.Content("~/Resources/css/Views/" + ViewBag.Id_page + ".css")" rel="stylesheet" />
-
 <script type="text/javascript">
 
-    $GB_DONNEE = JSON.parse(JSON.stringify(@Html.Raw(ViewBag.GB_DONNEE)));
+    $GB_DONNEE = JSON.parse('@Html.Raw(ViewBag.GB_DONNEE)');  
 
 </script>
 
@@ -86,9 +83,8 @@
                             <th class="column-title">@ViewBag.Lang.Connection_status</th>
                             <th class="column-title">@ViewBag.Lang.Suspended</th>
                             <th class="column-title">@ViewBag.Lang.Password_expiration</th>
-                            <th class="column-title">@ViewBag.Lang.Signing_authority</th>
                             <th class="column-title last" width="50px">Action</th>
-                            <th class="bulk-actions" colspan="12">
+                            <th class="bulk-actions" colspan="11">
                                 <a class="antoo" style="color:#fff; font-weight:500;">
                                     Selection(s) ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i>
                                 </a>

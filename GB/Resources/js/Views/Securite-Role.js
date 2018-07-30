@@ -3,6 +3,8 @@
 var table = $('#table-donnee');
 var table_configuration = $('#table-configuration-donnee');
 var table_menu = $('#table-menu-donnee');
+var url_ajax_dataTable = '/Securite/Charger_Table/?id_page=' + $GB_DONNEE.id_page;
+var url_ajax_selection_enregistrement = '/Securite/Selection_Enregistrement/';
 var btn_ajouter = $('#btn-ajouter');
 var btn_supprimer = $('#btn-supprimer');
 var btn_imprimmer = $('#btn-imprimmer');
@@ -17,6 +19,8 @@ var form = $('#form');
 var form_configuration = $('#form-configuration');
 var modal_form = $('#modal_form');
 var modal_menu = $('#modal_menu');
+var url_controlleur = '/Securite/';
+var url_suppression = '/Securite/Supprimer_Enregistrement';
 
 
 // -- Méthodes d'action sur les données -- // 
@@ -28,7 +32,7 @@ try {
         // -- Ajax -- //
         $.ajax({
             type: "POST",
-            url: $GB_DONNEE.Urls.url_ajax_selection_enregistrement,
+            url: url_ajax_selection_enregistrement,
             data: {
                 code: code,
                 id_page: $GB_DONNEE.id_page
@@ -99,7 +103,7 @@ try {
         // -- Ajax -- //
         $.ajax({
             type: "POST",
-            url: $GB_DONNEE.Urls.url_ajax_suppression_enregistrement,
+            url: url_suppression,
             data: {
                 ids: JSON.stringify(ids),
                 id_page: $GB_DONNEE.id_page
@@ -314,7 +318,7 @@ $(
                     "url": $GB_VAR.url_language_dataTable
                 },
                 "ajax": {
-                    "url": $GB_DONNEE.Urls.url_ajax_dataTable,
+                    "url": url_ajax_dataTable,
                     "type": 'POST',
                     "dataSrc": function (resultat) {
                         // -- Notifier -- //
@@ -341,7 +345,7 @@ $(
                     "url": $GB_VAR.url_language_dataTable
                 },
                 "ajax": {
-                    "url": $GB_DONNEE.Urls.url_ajax_dataTable + '&id_vue=autorisation',
+                    "url": url_ajax_dataTable + '&id_vue=autorisation',
                     "type": 'POST',
                     "dataSrc": function (resultat) {
                         // -- Notifier -- //
@@ -371,7 +375,7 @@ $(
                     "url": $GB_VAR.url_language_dataTable
                 },
                 "ajax": {
-                    "url": $GB_DONNEE.Urls.url_ajax_dataTable + '&id_vue=menu',
+                    "url": url_ajax_dataTable + '&id_vue=menu',
                     "type": 'POST',
                     "dataSrc": function (resultat) {
                         // -- Initialiser le panier menu -- //
@@ -463,8 +467,8 @@ $(
                         // -- Ajax -- //
                         $.ajax({
                             type: "POST",
-                            url: (action_ajouter ? $GB_DONNEE.Urls.url_ajax_ajout_enregistrement
-                                                                   : $GB_DONNEE.Urls.url_ajax_modification_enregistrement),
+                            url: url_controlleur + (action_ajouter ? 'Ajouter_Enregistrement'
+                                                                   : 'Modifier_Enregistrement'),
                             data: {
                                 obj: JSON.stringify(form.gbConvertToJSON()),
                                 id_page: $GB_DONNEE.id_page
@@ -512,7 +516,7 @@ $(
                         // -- Ajax -- //
                         $.ajax({
                             type: "POST",
-                            url: $GB_DONNEE.Urls.url_controlleur + 'Role_Rechercher_Autorisation',
+                            url: url_controlleur + 'Role_Rechercher_Autorisation',
                             data: form_configuration.serialize(),
                             success: function (resultat) {
                                 // -- Tester si le traitement s'est bien effectué -- //
@@ -648,7 +652,7 @@ $(
                     // -- Ajax -- //
                     $.ajax({
                         type: "POST",
-                        url: $GB_DONNEE.Urls.url_controlleur + 'Role_Modifier_Autorisation',
+                        url: url_controlleur + 'Role_Modifier_Autorisation',
                         data: {
                             ids: JSON.stringify(ids),
                             id_action: $(this).attr('name').split(',')[0],
@@ -715,7 +719,7 @@ $(
                     // -- Ajax -- //
                     $.ajax({
                         type: "POST",
-                        url: $GB_DONNEE.Urls.url_controlleur + 'Role_Ajouter_Supprimer_Menu',
+                        url: url_controlleur + 'Role_Ajouter_Supprimer_Menu',
                         data: {
                             data: JSON.stringify($GB_DONNEE.Panier_menu),
                             ajouter: true
@@ -771,7 +775,7 @@ $(
                     // -- Ajax -- //
                     $.ajax({
                         type: "POST",
-                        url: $GB_DONNEE.Urls.url_controlleur + 'Role_Ajouter_Supprimer_Menu',
+                        url: url_controlleur + 'Role_Ajouter_Supprimer_Menu',
                         data: {
                             data: JSON.stringify(ids),
                             ajouter: false
@@ -824,7 +828,7 @@ $(
                     // -- Ajax -- //
                     $.ajax({
                         type: "POST",
-                        url: $GB_DONNEE.Urls.url_controlleur + 'Role_Enregistrer_Modification',
+                        url: url_controlleur + 'Role_Enregistrer_Modification',
                         success: function (resultat) {
                             // -- Tester si le traitement s'est bien effectué -- //
                             if (!resultat.notification.est_echec) {

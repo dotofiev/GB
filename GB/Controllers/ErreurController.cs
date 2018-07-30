@@ -1,5 +1,4 @@
 ﻿using GB.Models;
-using GB.Models.BO;
 using GB.Models.Helper;
 using GB.Models.Static;
 using System;
@@ -14,7 +13,7 @@ namespace GB.Controllers
     {
         #region HttpGet
         [HttpGet]
-        public ActionResult Page(string dt)
+        public ActionResult Page(string dt, string id_lang)
         {
             // -- Charger les paramètres par défaut de la page -- //
             Charger_Parametres();
@@ -23,50 +22,31 @@ namespace GB.Controllers
             #region Traitement à effectuer
             try
             {
-                // -- Identifiant de la page -- //
-                this.ViewBag.Id_page = GB_Enum_Menu.Erreur_Page;
+                // -- Mise à jour de l'etat de la langue -- //
+                LangHelper.CurrentCulture = Convert.ToInt32(id_lang);
 
                 // -- Réccupération des variables -- //
                 Dictionary<string, string> parametres = GBConvert.JSON_To<Dictionary<string, string>>(Models.Cryptage.Program.DecryptStringAES(dt));
 
-                // -- Mise à jour de l'etat de la langue -- //
-                LangHelper.CurrentCulture = Convert.ToInt32(parametres["id_lang"]);
-
                 // -- Code de l'erreur -- //
-                this.ViewBag.donnee.code = parametres["code"];
+                this.ViewBag.code = parametres["code"];
 
                 // -- Titre descriptif de l'erreur -- //
-                this.ViewBag.donnee.message = parametres["code"] == "404" ? App_Lang.Lang.Page_not_found
-                                                                          : App_Lang.Lang.Internal_error;
+                this.ViewBag.message = parametres["code"] == "404" ? App_Lang.Lang.Page_not_found
+                                                                   : App_Lang.Lang.Internal_error;
 
                 // -- Message descriptif de l'erreur -- //
-                this.ViewBag.donnee.description = parametres["code"] == "404" ? App_Lang.Lang.Page_not_found_message
-                                                                              : App_Lang.Lang.Error_message_notification;
+                this.ViewBag.description = parametres["code"] == "404" ? App_Lang.Lang.Page_not_found_message
+                                                                       : parametres["message"];
 
                 // -- Liend de redirection pour la page d'authentification -- //
-                this.ViewBag.donnee.url = Url.Action("Authentication", "Home");
+                this.ViewBag.url = Url.Action("Authentication", "Home");
                 
                 // -- Titre de la page -- //
-                this.ViewBag.donnee.Title = $"Global Bank - ({parametres["code"]} {App_Lang.Lang.Error})";
+                this.ViewBag.Title = $"Global Bank - ({parametres["code"]} {App_Lang.Lang.Error})";
 
                 // -- Langue -- //
                 this.ViewBag.Lang.Reconnect = App_Lang.Lang.Reconnect;
-
-                // -- Réccupération du statut de connexion de l'utilisateur -- //
-                this.ViewBag.donnee.reconnecter = Convert.ToBoolean(parametres["reconnecter"]);
-
-                // -- Données -- //
-                #region Données
-                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
-                                                new
-                                                {
-                                                    Urls = new GBControllerUrlJS(),
-                                                    id_page = GB_Enum_Menu.Erreur_Page,
-                                                    titre = this.ViewBag.donnee.Title,
-                                                    reconnecter = Convert.ToBoolean(parametres["reconnecter"])
-                                                }
-                                            );
-                #endregion
             }
             catch (Exception ex)
             {

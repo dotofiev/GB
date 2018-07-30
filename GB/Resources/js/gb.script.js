@@ -201,7 +201,7 @@ function gbSelectionIdsTable(name) {
 }
 
 // -- Recharger la table -- //
-function gbRechargerTable(frame, id_check_all, id_table, fonction_execution) {
+function gbRechargerTable(frame, id_check_all, id_table) {
 
     // -- Mise à jour paramètre id_check_all -- //
     if (id_check_all == undefined || id_check_all == null) {
@@ -229,10 +229,6 @@ function gbRechargerTable(frame, id_check_all, id_table, fonction_execution) {
             $('#' + id_check_all).iCheck('uncheck');
             $('#' + id_table + ' .column-title').show();
             $('#' + id_table + ' .bulk-actions').hide();
-            // -- Executer la fonction à la fin du chargement de la table si celle ci est soumise -- //
-            if (fonction_execution != undefined && fonction_execution != null) {
-                fonction_execution();
-            }
         }
     );
 
@@ -1147,12 +1143,6 @@ function gbHref(url) {
 function gbConsole(value) {
 
     console.log(value);
-
-}
-
-function gbConsoleStringify(value) {
-
-    console.log(JSON.stringify(value));
 
 }
 

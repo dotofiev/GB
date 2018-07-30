@@ -424,7 +424,7 @@
   <data name="Branch_manager" xml:space="preserve">
     <value>Chef d'agence</value>
   </data>
-  <data name="Country" xml:space="preserve">
+  <data name="Countrie" xml:space="preserve">
     <value>Pays</value>
   </data>
   <data name="Erasing" xml:space="preserve">
@@ -697,91 +697,22 @@
   <data name="Signing_authority_management" xml:space="preserve">
     <value>Gestion des autorités de signature</value>
   </data>
-  <data name="Signing_authority" xml:space="preserve">
-    <value>Autorité de signature</value>
+  <data name="Annualy" xml:space="preserve">
+    <value>ANNUEL</value>
   </data>
-  <data name="Begining_period" xml:space="preserve">
-    <value>Début</value>
-  </data>
-  <data name="Ending_period" xml:space="preserve">
-    <value>Fin périod</value>
-  </data>
-  <data name="Loans_type_management" xml:space="preserve">
-    <value>Gestion des types de prêts</value>
+  <data name="Monthly" xml:space="preserve">
+    <value>MENSUEL</value>
   </data>
   <data name="Periodicity" xml:space="preserve">
-    <value>Periodicité</value>
+    <value>Periodicite</value>
   </data>
-  <data name="Quarter" xml:space="preserve">
-    <value>Trimestre</value>
+  <data name="Quaterly" xml:space="preserve">
+    <value>TRIMESTRIEL</value>
   </data>
-  <data name="Year" xml:space="preserve">
-    <value>Année</value>
+  <data name="ReportName_management" xml:space="preserve">
+    <value>Gestion Noms des etats</value>
   </data>
-  <data name="Loans_purpose_management" xml:space="preserve">
-    <value>Gestion des motifs de prêts</value>
-  </data>
-  <data name="Between" xml:space="preserve">
-    <value>Entre</value>
-  </data>
-  <data name="Cautioned" xml:space="preserve">
-    <value>Mis en garde</value>
-  </data>
-  <data name="End_days" xml:space="preserve">
-    <value>Jours de fin</value>
-  </data>
-  <data name="Formula" xml:space="preserve">
-    <value>Formule</value>
-  </data>
-  <data name="Greater_than" xml:space="preserve">
-    <value>Plus grand que</value>
-  </data>
-  <data name="Loans_provision_classification_management" xml:space="preserve">
-    <value>Classification des provisions pour prêts</value>
-  </data>
-  <data name="Mortgage" xml:space="preserve">
-    <value>Hypothèque</value>
-  </data>
-  <data name="Percentage" xml:space="preserve">
-    <value>Pourcentage</value>
-  </data>
-  <data name="Start_days" xml:space="preserve">
-    <value>Jours de début</value>
-  </data>
-  <data name="Guarantee_type_management" xml:space="preserve">
-    <value>Gestion des types de garantié</value>
-  </data>
-  <data name="Real_safety" xml:space="preserve">
-    <value>Sécurité réelle</value>
-  </data>
-  <data name="State_guarantee" xml:space="preserve">
-    <value>Garantie d'état</value>
-  </data>
-  <data name="Journals_recording_management" xml:space="preserve">
-    <value>Gestion des enregistrements des journaux</value>
-  </data>
-  <data name="Assets_type_management" xml:space="preserve">
-    <value>Gestion des types pour actifs</value>
-  </data>
-  <data name="Asset_location_management" xml:space="preserve">
-    <value>Gestion de la localisation des immobilisations</value>
-  </data>
-  <data name="Country_zone" xml:space="preserve">
-    <value>Zone des pays</value>
-  </data>
-  <data name="Western_Union_country_zone_management" xml:space="preserve">
-    <value>Gestion des zones de pays Western Union</value>
-  </data>
-  <data name="Data_required" xml:space="preserve">
-    <value>Données requises</value>
-  </data>
-  <data name="The_session_has_just_ended" xml:space="preserve">
-    <value>La session vient de se terminer</value>
-  </data>
-  <data name="You_will_be_disconnected" xml:space="preserve">
-    <value>Vous serez déconnecté</value>
-  </data>
-  <data name="Fiscals_exercice" xml:space="preserve">
-    <value>Exercices fiscal</value>
+  <data name="Semester" xml:space="preserve">
+    <value>SEMESTRIEL</value>
   </data>
 </root>

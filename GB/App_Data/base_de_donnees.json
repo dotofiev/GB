@@ -49,15 +49,16 @@
       "libelle_fr": "Paramètres du budget",
       "icon": "fa fa-cogs",
       "controller": "ConfigurationBudget"
-    },
+    }
+    ,
     {
       "id": "5",
       "id_module": "2",
       "code": "5",
-      "libelle_en": "Operation parameters",
-      "libelle_fr": "Paramètres des opérations",
+      "libelle_en": "COBAC Reporting parameters",
+      "libelle_fr": "Configuration des etats COBAC",
       "icon": "fa fa-cogs",
-      "controller": "ConfigurationOperation"
+      "controller": "ConfigurationCOBAC"
     }
   ],
   "menus": [
@@ -293,7 +294,7 @@
       "code": "24",
       "id_menu_parent": "18",
       "id_groupe_menu": "3",
-      "libelle_en": "Country",
+      "libelle_en": "Countries",
       "libelle_fr": "Pays",
       "view": "Pays",
       "id_controller": "3"
@@ -326,142 +327,36 @@
       "libelle_fr": "Autorité de signature",
       "view": "AutoriteSignature",
       "id_controller": "4"
-    },
-
-    // ------------ //
-    // -- Parent -- //
-    // ------------ //
+    }
+    ,
     {
       "id": "28",
       "code": "28",
       "id_groupe_menu": "5",
-      "libelle_en": "Loans parameters",
-      "libelle_fr": "Paramètres des prêts",
-      "view": "",
+      "libelle_en": "Report Name",
+      "libelle_fr": "Noms des Etats",
+      "view": "ReportName",
       "id_controller": "5"
     },
-    // -- Enfants -- //
     {
       "id": "29",
       "code": "29",
-      "id_menu_parent": "28",
       "id_groupe_menu": "5",
-      "libelle_en": "Loan type",
-      "libelle_fr": "Types de prêt",
-      "view": "TypePret",
+      "libelle_en": "Report Code Group",
+      "libelle_fr": "Conf. Codes Groupes des etats",
+      "view": "ReportCodeGroup",
       "id_controller": "5"
-    },
-    {
+    }
+    ,
+       {
       "id": "30",
       "code": "30",
-      "id_menu_parent": "28",
       "id_groupe_menu": "5",
-      "libelle_en": "Loans purpose",
-      "libelle_fr": "Motifs de prêt",
-      "view": "MotifPret",
+      "libelle_en": "Create Code For Reporting",
+      "libelle_fr": "Gestion Codes des etats",
+      "view": "CodeForReporting",
       "id_controller": "5"
-    },
-    {
-      "id": "31",
-      "code": "31",
-      "id_menu_parent": "28",
-      "id_groupe_menu": "5",
-      "libelle_en": "Loans provision classification",
-      "libelle_fr": "Classification des provisions pour prêts",
-      "view": "ClassificationProvisionsPret",
-      "id_controller": "5"
-    },
-    {
-      "id": "32",
-      "code": "32",
-      "id_menu_parent": "28",
-      "id_groupe_menu": "5",
-      "libelle_en": "Guarantee type",
-      "libelle_fr": "Types de garantie",
-      "view": "TypeGarantie",
-      "id_controller": "5"
-    },
-    // -- ./Enfants -- //
-    {
-      "id": "33",
-      "code": "33",
-      "id_groupe_menu": "5",
-      "libelle_en": "Journals recording",
-      "libelle_fr": "Enregistrement des journaux",
-      "view": "Journal",
-      "id_controller": "5"
-    },
-
-    // ------------ //
-    // -- Parent -- //
-    // ------------ //
-    {
-      "id": "34",
-      "code": "34",
-      "id_groupe_menu": "5",
-      "libelle_en": "Assets parameters",
-      "libelle_fr": "Paramètres des actifs",
-      "view": "",
-      "id_controller": "5"
-    },
-    // -- Enfants -- //
-    {
-      "id": "35",
-      "code": "35",
-      "id_menu_parent": "34",
-      "id_groupe_menu": "5",
-      "libelle_en": "Asset type",
-      "libelle_fr": "Types d'actifs",
-      "view": "TypeActif",
-      "id_controller": "5"
-    },
-    {
-      "id": "36",
-      "code": "36",
-      "id_menu_parent": "34",
-      "id_groupe_menu": "5",
-      "libelle_en": "Localisation of fixed assets",
-      "libelle_fr": "Localisation des immobilisations",
-      "view": "LocalisationActif",
-      "id_controller": "5"
-    },
-    // -- ./Enfants -- //
-    
-
-    // ------------ //
-    // -- Parent -- //
-    // ------------ //
-    {
-      "id": "37",
-      "code": "37",
-      "id_groupe_menu": "5",
-      "libelle_en": "Western Union",
-      "libelle_fr": "Western Union",
-      "view": "",
-      "id_controller": "5"
-    },
-    // -- Enfants -- //
-    {
-      "id": "38",
-      "code": "38",
-      "id_menu_parent": "37",
-      "id_groupe_menu": "5",
-      "libelle_en": "Contry zones",
-      "libelle_fr": "Zone pays",
-      "view": "WesternUnionZonePays",
-      "id_controller": "5"
-    },
-    {
-      "id": "39",
-      "code": "39",
-      "id_menu_parent": "37",
-      "id_groupe_menu": "5",
-      "libelle_en": "Commissions",
-      "libelle_fr": "Commissions",
-      "view": "WesternUnionZoneCommission",
-      "id_controller": "5"
-    },
-    // -- ./Enfants -- //
+    }
   ],
   "roles": [
     {
@@ -675,6 +570,9 @@
       "imprimer": "true",
       "lister": "true"
     },
+
+
+
     {
       "id": "18",
       "id_role": "1",
@@ -745,6 +643,8 @@
       "imprimer": "true",
       "lister": "true"
     },
+
+
     {
       "id": "25",
       "id_role": "1",
@@ -784,7 +684,8 @@
       "supprimer": "true",
       "imprimer": "true",
       "lister": "true"
-    },
+    }
+    ,
     {
       "id": "29",
       "id_role": "1",
@@ -794,7 +695,8 @@
       "supprimer": "true",
       "imprimer": "true",
       "lister": "true"
-    },
+    }
+    ,
     {
       "id": "30",
       "id_role": "1",
@@ -804,7 +706,8 @@
       "supprimer": "true",
       "imprimer": "true",
       "lister": "true"
-    },
+    }
+    ,
     {
       "id": "31",
       "id_role": "1",
@@ -815,98 +718,6 @@
       "imprimer": "true",
       "lister": "true"
     },
-    {
-      "id": "32",
-      "id_role": "1",
-      "id_menu": "31",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "33",
-      "id_role": "1",
-      "id_menu": "32",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "34",
-      "id_role": "1",
-      "id_menu": "33",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "35",
-      "id_role": "1",
-      "id_menu": "34",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "36",
-      "id_role": "1",
-      "id_menu": "35",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "37",
-      "id_role": "1",
-      "id_menu": "36",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "38",
-      "id_role": "1",
-      "id_menu": "37",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "39",
-      "id_role": "1",
-      "id_menu": "38",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "40",
-      "id_role": "1",
-      "id_menu": "39",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-
-
     // -- Role 2 -- //
     {
       "id": "7",
@@ -927,377 +738,7 @@
       "supprimer": "true",
       "imprimer": "true",
       "lister": "true"
-    },
-    {
-      "id": "41",
-      "id_role": "2",
-      "id_menu": "3",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "42",
-      "id_role": "2",
-      "id_menu": "4",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "43",
-      "id_role": "2",
-      "id_menu": "5",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "44",
-      "id_role": "2",
-      "id_menu": "6",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "45",
-      "id_role": "2",
-      "id_menu": "7",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "46",
-      "id_role": "2",
-      "id_menu": "8",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "47",
-      "id_role": "2",
-      "id_menu": "9",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "48",
-      "id_role": "2",
-      "id_menu": "10",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "49",
-      "id_role": "2",
-      "id_menu": "11",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "50",
-      "id_role": "2",
-      "id_menu": "12",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "51",
-      "id_role": "2",
-      "id_menu": "13",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "52",
-      "id_role": "2",
-      "id_menu": "14",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "53",
-      "id_role": "2",
-      "id_menu": "15",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "54",
-      "id_role": "2",
-      "id_menu": "16",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "55",
-      "id_role": "2",
-      "id_menu": "17",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "56",
-      "id_role": "2",
-      "id_menu": "18",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "57",
-      "id_role": "2",
-      "id_menu": "19",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "58",
-      "id_role": "2",
-      "id_menu": "20",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "59",
-      "id_role": "2",
-      "id_menu": "21",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "60",
-      "id_role": "2",
-      "id_menu": "22",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "61",
-      "id_role": "2",
-      "id_menu": "23",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "62",
-      "id_role": "2",
-      "id_menu": "24",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "63",
-      "id_role": "2",
-      "id_menu": "25",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "64",
-      "id_role": "2",
-      "id_menu": "26",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "65",
-      "id_role": "2",
-      "id_menu": "27",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "66",
-      "id_role": "2",
-      "id_menu": "28",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "67",
-      "id_role": "2",
-      "id_menu": "29",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "68",
-      "id_role": "2",
-      "id_menu": "30",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "69",
-      "id_role": "2",
-      "id_menu": "31",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "70",
-      "id_role": "2",
-      "id_menu": "32",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "71",
-      "id_role": "2",
-      "id_menu": "33",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "72",
-      "id_role": "2",
-      "id_menu": "34",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "73",
-      "id_role": "2",
-      "id_menu": "35",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "74",
-      "id_role": "2",
-      "id_menu": "36",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "75",
-      "id_role": "2",
-      "id_menu": "37",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "76",
-      "id_role": "2",
-      "id_menu": "38",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
-    {
-      "id": "77",
-      "id_role": "2",
-      "id_menu": "39",
-      "ajouter": "true",
-      "modifier": "true",
-      "supprimer": "true",
-      "imprimer": "true",
-      "lister": "true"
-    },
+    }
   ],
   "agences": [
     {
@@ -1695,147 +1136,24 @@
       "montant_limite_pret": "400000000"
     }
   ],
-  "types_pret": [
+  "ReportName": [
     {
       "id": "1",
-      "code": "CCM",
-      "libelle": "MEDIUM TERM LOANS",
-      "periode_debut": "0",
-      "periode_fin": "0",
-      "periodicite": "MOIS"
+      "code": "BA01",
+      "libelle": "Report 1",
+      "periodicite": "MONTHLY"
     },
     {
       "id": "2",
-      "code": "CCT",
-      "libelle": "SHORT TERM LOANS",
-      "periode_debut": "0",
-      "periode_fin": "48",
-      "periodicite": "MOIS"
-    }
-  ],
-  "motifs_pret": [
-    {
-      "id": "1",
-      "code": "01",
-      "libelle": "EDUCATION"
-    },
-    {
-      "id": "2",
-      "code": "02",
-      "libelle": "HEALTH"
+      "code": "BA02",
+      "libelle": "Report 2",
+      "periodicite": "MONTHLY"
     },
     {
       "id": "3",
-      "code": "03",
-      "libelle": "CONSOMMATION"
-    },
-    {
-      "id": "4",
-      "code": "04",
-      "libelle": "COMMERCE"
-    },
-    {
-      "id": "5",
-      "code": "05",
-      "libelle": "BUILD"
+      "code": "BA03",
+      "libelle": "Report 3",
+      "periodicite": "MONTHLY"
     }
-  ],
-  "classification_provisions_pret": [
-    {
-      "id": "1",
-      "code": "01",
-      "libelle": "Short term loan provision",
-      "nombre_jour_debut": "1",
-      "nombre_jour_fin": "28",
-      "pourcentage": "15",
-      "formule": "BETWEEN",
-      "type": "CAUTIONED"
-    },
-    {
-      "id": "1",
-      "code": "02",
-      "libelle": "Short term loan provision",
-      "nombre_jour_debut": "29",
-      "nombre_jour_fin": "59",
-      "pourcentage": "15",
-      "formule": "BETWEEN",
-      "type": "CAUTIONED"
-    }
-  ],
-  "types_garantie": [
-    {
-      "id": "1",
-      "code": "100",
-      "id_utilisateur": "99999",
-      "libelle_en": "House",
-      "libelle_fr": "Maison",
-      "nature": "GarantieEtat",
-      "date_creation": "636670881645418146"
-    },
-    {
-      "id": "2",
-      "code": "120",
-      "id_utilisateur": "99999",
-      "libelle_en": "Land titre",
-      "libelle_fr": "Titre foncier",
-      "nature": "SureteReelle",
-      "date_creation": "636670881645418146"
-    }
-  ],
-  "journaux": [
-    {
-      "id": "1",
-      "code": "CA01",
-      "libelle": "Cashier 01",
-      "date_creation": "636670881645418146"
-    },
-    {
-      "id": "2",
-      "code": "CA02",
-      "libelle": "Cashier 02",
-      "date_creation": "636670881645418146"
-    },
-    {
-      "id": "3",
-      "code": "CA03",
-      "libelle": "Cashier 03",
-      "date_creation": "636670881645418146"
-    },
-  ],
-  "types_actif": [
-    {
-      "id": "1",
-      "code": "001",
-      "libelle": "Table",
-      "date_creation": "636670881645418146"
-    },
-    {
-      "id": "1",
-      "code": "004",
-      "libelle": "Computer",
-      "date_creation": "636670881645418146"
-    }
-  ],
-  "localisations_actif": [
-    {
-      "id": "1",
-      "code": "001",
-      "libelle": "Head quaters",
-      "date_creation": "636670881645418146"
-    }
-  ],
-  "western_union_zones_pays": [
-    {
-      "id": "1",
-      "id_pays": "1",
-      "zone": "NATIONAL"
-    }
-  ],
-  //"western_union_zones_commissions": [
-  //  {
-  //    "id": "1",
-  //    "id_pays": "1",
-  //    "zone": "NATIONAL"
-  //  }
-  //]
+  ]
 }
