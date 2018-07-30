@@ -65,7 +65,12 @@
       "TypePret",
       "MotifPret",
       "ClassificationProvisionsPret",
-      "TypeGarantie"
+      "TypeGarantie",
+      "Journal",
+      "TypeActif",
+      "LocalisationActif",
+      "WesternUnionZonePays",
+      "WesternUnionZoneCommission",
     ]
   }
 ]

@@ -164,5 +164,89 @@ namespace GB.Models.Static
                 $"<option value=\"{"GarantieEtat"}\" title=\"{App_Lang.Lang.State_guarantee}\">{App_Lang.Lang.State_guarantee}</option>" +
                 $"<option value=\"{"SureteReelle"}\" title=\"{App_Lang.Lang.Real_safety}\">{App_Lang.Lang.Real_safety}</option>";
         }
+
+        /// <summary>
+        /// Obtenir les options de combo box des zone de pays.
+        /// </summary>
+        public static string HTML_zone_western_union()
+        {
+            return
+                $"<option value=\"{"CFA"}\" title=\"{"CFA"}\">{"CFA"}</option>" +
+                $"<option value=\"{"FRANCE"}\" title=\"{"FRANCE"}\">{"FRANCE"}</option>" +
+                $"<option value=\"{"INTERNATIONAL"}\" title=\"{"INTERNATIONAL"}\">{"INTERNATIONAL"}</option>" +
+                $"<option value=\"{"NATIONAL"}\" title=\"{"NATIONAL"}\">{"NATIONAL"}</option>";
+        }
+
+        /// <summary>
+        /// Définit si une erreur d'action necessite une recconnexion ou pas
+        /// </summary>
+        public static Boolean Reconnecter_erreur_action(string controller, string action)
+        {
+            string menu = $"{controller}-{action}";
+
+            if (menu == GB_Enum_Menu.Home_Authentication || 
+                menu == GB_Enum_Menu.Application_Main)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Creation et retour d'un bouton de suppression à afficher dans la table 
+        /// </summary>
+        public static string HTML_Bouton_Suppression_Table(long id)
+        {
+            return
+                @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                    title=""{Lang.Delete}"" 
+                    class=""btn btn-xs btn-round""
+                    onClick=""table_donnee_supprimer({ids}, true)""
+                    data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                    <i class=""fa fa-minus text-danger""></i>
+                </button>"
+                .Replace("{id}", id.ToString())
+                .Replace("{ids}", GBConvert.To_JavaScript(new long[] { id }))
+                .Replace("{Lang.Delete}", App_Lang.Lang.Delete);
+        }
+
+        /// <summary>
+        /// Creation et retour d'un bouton de modification à à afficher dans la table 
+        /// </summary>
+        public static string HTML_Bouton_Modifier_Table(long id)
+        {
+            return
+                @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                    title=""{Lang.Update}"" 
+                    class=""btn btn-xs btn-round""
+                    onClick=""table_donnee_modifier({id})""
+                    data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                    <i class=""fa fa-retweet text-warning""></i>
+                </button>"
+                .Replace("{id}", id.ToString())
+                .Replace("{Lang.Update}", App_Lang.Lang.Update);
+        }
+
+        /// <summary>
+        /// Creation et retour des boutons de suppression et de modification à afficher dans la table 
+        /// </summary>
+        public static string HTML_Bouton_Modifier_Suppression_Table(long id)
+        {
+            return
+                HTML_Bouton_Modifier_Table(id) +
+                HTML_Bouton_Suppression_Table(id);
+        }
+
+        /// <summary>
+        /// Creation et retour d'un checkbox de selection dans la table 
+        /// </summary>
+        public static string HTML_Checkbox_Table(long id, string name)
+        {
+            return
+                $"<input type=\"checkbox\" class=\"flat\" name=\"{name}\" value=\"{name}_{id}\">";
+        }
     }
 }

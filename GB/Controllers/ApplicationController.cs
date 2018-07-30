@@ -25,7 +25,7 @@ namespace GB.Controllers
             this.ViewBag.Title = $"Global Bank - ({App_Lang.Lang.Main})";
 
             // -- Charger les paramètres de langue de la page -- //
-            Charger_Langue_Et_Donnees("Application-Main");
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.Application_Main);
 
             return View();
         }
@@ -71,9 +71,9 @@ namespace GB.Controllers
                 this.ViewBag.Lang.Settings = App_Lang.Lang.Settings;
                 this.ViewBag.Lang.Sign_Out = App_Lang.Lang.Sign_Out;
                 this.ViewBag.Lang.Welcome = App_Lang.Lang.Welcome;
-                this.ViewBag.Lang.Id = id_lang == 0 ? 1 
+                this.ViewBag.Lang.Id = this.id_lang == 0 ? 1 
                                                     : 0;
-                this.ViewBag.Lang.Title = id_lang == 0 ? App_Lang.Lang.French
+                this.ViewBag.Lang.Title = this.id_lang == 0 ? App_Lang.Lang.French
                                                        : App_Lang.Lang.English;
                 #endregion
 
@@ -81,6 +81,7 @@ namespace GB.Controllers
                 #region Données
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     Lang = new {
                                                             Maintenance_message = App_Lang.Lang.Process_in_production,
                                                             All = App_Lang.Lang.All,
@@ -101,6 +102,10 @@ namespace GB.Controllers
                                                     // -- Paramètres -- //
                                                     DUREE_VISIBILITE_MESSAGE_BOX = AppSettings.DUREE_VISIBILITE_MESSAGE_BOX,
                                                     TAILLE_MAX_IMAGE_IMPORTATION = AppSettings.TAILLE_MAX_IMAGE_IMPORTATION,
+                                                    UTILISATEUR = new {
+                                                        id_utilisateur = this.con.id_utilisateur,
+                                                        nom_utilisateur = this.con.nom_utilisateur
+                                                    }
                                                 }
                                             );
                 #endregion
@@ -120,6 +125,7 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new

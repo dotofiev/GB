@@ -40,9 +40,6 @@
 
     </div>
 
-    <!-- Cookies notification -->
-    @Html.Partial("_Cookies")
-
     <!-- Modal -->
     @Html.Partial("_Modals")
 
@@ -62,7 +59,7 @@
     <script src="@Url.Content("~/Resources/js/gb.script.js")" type="text/javascript"></script>
     <script type="text/javascript">
         // -- Réccupérer les données à exploiter dans les script du main -- //
-        $GB_DONNEE_PARAMETRES = JSON.parse('@Html.Raw(ViewBag.GB_DONNEE)');
+        $GB_DONNEE_PARAMETRES = JSON.parse(JSON.stringify(@Html.Raw(ViewBag.GB_DONNEE)));
     </script>
     <!-- Script de la page -->
     <script src="@Url.Content("~/Resources/js/Views/" + ViewBag.Id_page + ".js")" type="text/javascript"></script>

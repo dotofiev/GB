@@ -36,6 +36,10 @@ namespace GB.Models.Tests
         public List<MotifPret> motifs_pret { get; set; }
         public List<ClassificationProvisionsPret> classification_provisions_pret { get; set; }
         public List<TypeGarantie> types_garantie { get; set; }
+        public List<Journal> journaux { get; set; }
+        public List<TypeActif> types_actif { get; set; }
+        public List<LocalisationActif> localisations_actif { get; set; }
+        public List<WesternUnionZonePays> western_union_zones_pays { get; set; }
 
         public BD() { }
     }

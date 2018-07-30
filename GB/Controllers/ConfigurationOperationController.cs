@@ -76,6 +76,66 @@ namespace GB.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Journal()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Journals_recording_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationOperation_Journal);
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult TypeActif()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Assets_type_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationOperation_TypeActif);
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult LocalisationActif()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Asset_location_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationOperation_LocalisationActif);
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult WesternUnionZonePays()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Western_Union_country_zone_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays);
+
+            return View();
+        }
         #endregion
 
         #region HttpPost
@@ -102,41 +162,13 @@ namespace GB.Controllers
                         donnee.Add(
                             new
                             {
-                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"typePret\" value=\"typePret_{val.id}\">",
+                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "typePret"),
                                 col_2 = val.code,
                                 col_3 = val.libelle,
                                 col_4 = GBToString.PeriodiciteDePret(val.periodicite),
                                 col_5 = val.periode_debut,
                                 col_6 = val.periode_fin,
-                                col_7 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
-                                                              title=""{Lang.Delete}"" 
-                                                              class=""btn btn-xs btn-round""
-                                                              onClick=""table_donnee_supprimer({ids}, true)""
-                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                          <i class=""fa fa-minus text-danger""></i>
-                                        </button>"
-                                        .Replace("{id}", val.id.ToString())
-                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
-                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
-                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
-                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
-                                //                              title=""{Lang.Update}"" 
-                                //                              class=""btn btn-xs btn-round""
-                                //                              onClick=""table_donnee_modifier({id})""
-                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                //          <i class=""fa fa-retweet text-warning""></i>
-                                //        </button>
-                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
-                                //                              title=""{Lang.Delete}"" 
-                                //                              class=""btn btn-xs btn-round""
-                                //                              onClick=""table_donnee_supprimer({ids}, true)""
-                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                //          <i class=""fa fa-minus text-danger""></i>
-                                //        </button>"
-                                //        .Replace("{id}", val.id.ToString())
-                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
-                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
-                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
                             }
                         );
                     }
@@ -151,38 +183,10 @@ namespace GB.Controllers
                         donnee.Add(
                             new
                             {
-                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"motifPret\" value=\"motifPret_{val.id}\">",
+                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "motifPret"),
                                 col_2 = val.code,
                                 col_3 = val.libelle,
-                                col_4 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
-                                                              title=""{Lang.Delete}"" 
-                                                              class=""btn btn-xs btn-round""
-                                                              onClick=""table_donnee_supprimer({ids}, true)""
-                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                          <i class=""fa fa-minus text-danger""></i>
-                                        </button>"
-                                        .Replace("{id}", val.id.ToString())
-                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
-                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
-                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
-                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
-                                //                              title=""{Lang.Update}"" 
-                                //                              class=""btn btn-xs btn-round""
-                                //                              onClick=""table_donnee_modifier({id})""
-                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                //          <i class=""fa fa-retweet text-warning""></i>
-                                //        </button>
-                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
-                                //                              title=""{Lang.Delete}"" 
-                                //                              class=""btn btn-xs btn-round""
-                                //                              onClick=""table_donnee_supprimer({ids}, true)""
-                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                //          <i class=""fa fa-minus text-danger""></i>
-                                //        </button>"
-                                //        .Replace("{id}", val.id.ToString())
-                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
-                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
-                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                col_4 = GBClass.HTML_Bouton_Suppression_Table(val.id)
                             }
                         );
                     }
@@ -197,7 +201,7 @@ namespace GB.Controllers
                         donnee.Add(
                             new
                             {
-                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"classificationProvisionsPret\" value=\"classificationProvisionsPret_{val.id}\">",
+                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "classificationProvisionsPret"),
                                 col_2 = val.code,
                                 col_3 = val.libelle,
                                 col_4 = val.nombre_jour_debut,
@@ -205,35 +209,7 @@ namespace GB.Controllers
                                 col_6 = $"{val.pourcentage} %",
                                 col_7 = GBToString.FormuleClassificationProvisionsPret(val.formule),
                                 col_8 = GBToString.TypeClassificationProvisionsPret(val.type),
-                                col_9 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
-                                                              title=""{Lang.Delete}"" 
-                                                              class=""btn btn-xs btn-round""
-                                                              onClick=""table_donnee_supprimer({ids}, true)""
-                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                          <i class=""fa fa-minus text-danger""></i>
-                                        </button>"
-                                        .Replace("{id}", val.id.ToString())
-                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
-                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
-                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
-                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
-                                //                              title=""{Lang.Update}"" 
-                                //                              class=""btn btn-xs btn-round""
-                                //                              onClick=""table_donnee_modifier({id})""
-                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                //          <i class=""fa fa-retweet text-warning""></i>
-                                //        </button>
-                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
-                                //                              title=""{Lang.Delete}"" 
-                                //                              class=""btn btn-xs btn-round""
-                                //                              onClick=""table_donnee_supprimer({ids}, true)""
-                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                //          <i class=""fa fa-minus text-danger""></i>
-                                //        </button>"
-                                //        .Replace("{id}", val.id.ToString())
-                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
-                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
-                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                col_9 = GBClass.HTML_Bouton_Suppression_Table(val.id)
                             }
                         );
                     }
@@ -248,42 +224,90 @@ namespace GB.Controllers
                         donnee.Add(
                             new
                             {
-                                col_1 = $"<input type=\"checkbox\" class=\"flat\" name=\"typeGarantie\" value=\"typeGarantie_{val.id}\">",
+                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "typeGarantie"),
                                 col_2 = val.code,
                                 col_3 = val.libelle_fr,
                                 col_4 = val.libelle_en,
                                 col_5 = GBToString.NatureTypeGarantie(val.nature),
                                 col_6 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_7 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_8 = @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
-                                                              title=""{Lang.Delete}"" 
-                                                              class=""btn btn-xs btn-round""
-                                                              onClick=""table_donnee_supprimer({ids}, true)""
-                                                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                          <i class=""fa fa-minus text-danger""></i>
-                                        </button>"
-                                        .Replace("{id}", val.id.ToString())
-                                        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
-                                        .Replace("{Lang.Update}", App_Lang.Lang.Update)
-                                        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
-                                //col_5 = @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
-                                //                              title=""{Lang.Update}"" 
-                                //                              class=""btn btn-xs btn-round""
-                                //                              onClick=""table_donnee_modifier({id})""
-                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                //          <i class=""fa fa-retweet text-warning""></i>
-                                //        </button>
-                                //        <button type=""button"" id=""table_donnee_supprimer_id_{id}""
-                                //                              title=""{Lang.Delete}"" 
-                                //                              class=""btn btn-xs btn-round""
-                                //                              onClick=""table_donnee_supprimer({ids}, true)""
-                                //                              data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
-                                //          <i class=""fa fa-minus text-danger""></i>
-                                //        </button>"
-                                //        .Replace("{id}", val.id.ToString())
-                                //        .Replace("{ids}", GBConvert.To_JavaScript(new long[] { val.id }))
-                                //        .Replace("{Lang.Update}", App_Lang.Lang.Update)
-                                //        .Replace("{Lang.Delete}", App_Lang.Lang.Delete)
+                                col_8 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
+                #region ConfigurationOperation-Journal
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
+                {
+                    foreach (var val in JournalDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "journal"),
+                                col_2 = val.code,
+                                col_3 = val.libelle,
+                                col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
+                                col_5 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
+                #region ConfigurationOperation-TypeActif
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
+                {
+                    foreach (var val in TypeActifDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "typeActif"),
+                                col_2 = val.code,
+                                col_3 = val.libelle,
+                                col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
+                                col_5 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
+                #region ConfigurationOperation-LocalisationActif
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
+                {
+                    foreach (var val in LocalisationActifDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "localisationActif"),
+                                col_2 = val.code,
+                                col_3 = val.libelle,
+                                col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
+                                col_5 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
+                #region ConfigurationOperation-WesternUnionZonePays
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+                {
+                    foreach (var val in WesternUnionZonePaysDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_0 = val.id,
+                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "westernUnionZonePays"),
+                                col_2 = val.pays.libelle,
+                                col_3 = val.zone,
+                                col_4 = GBClass.HTML_Bouton_Suppression_Table(val.id)
                             }
                         );
                     }
@@ -339,7 +363,7 @@ namespace GB.Controllers
 
         // -- Selectionner un nouvel enregistrement dans la liste -- //
         [HttpPost]
-        public ActionResult Selection_Enregistrement(string code, string id_page)
+        public ActionResult Selection_Enregistrement(string code, long id, string id_page)
         {
             try
             {
@@ -449,6 +473,104 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationOperation-Journal
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = JournalDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle = obj.libelle,
+                                                    }
+                                               );
+                }
+                #endregion
+
+                #region ConfigurationOperation-TypeActif
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = TypeActifDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle = obj.libelle,
+                                                    }
+                                               );
+                }
+                #endregion
+
+                #region ConfigurationOperation-LocalisationActif
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = LocalisationActifDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle = obj.libelle,
+                                                    }
+                                               );
+                }
+                #endregion
+
+                #region ConfigurationOperation-WesternUnionZonePays
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = WesternUnionZonePaysDAO.Object(id);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        id_pays = obj.pays.id,
+                                                        code_pays = obj.pays.code,
+                                                        libelle_pays = obj.pays.libelle,
+                                                        zone = obj.zone,
+                                                    }
+                                               );
+                }
+                #endregion
+
                 #region TypePret introuvable
                 else
                 {
@@ -521,6 +643,38 @@ namespace GB.Controllers
                 {
                     // -- Service d'enregistrement -- //
                     TypeGarantieDAO.Ajouter(GBConvert.JSON_To<TypeGarantie>(obj), this.con.id_utilisateur);
+                }
+                #endregion
+
+                #region ConfigurationOperation-Journal
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
+                {
+                    // -- Service d'enregistrement -- //
+                    JournalDAO.Ajouter(GBConvert.JSON_To<Journal>(obj));
+                }
+                #endregion
+
+                #region ConfigurationOperation-TypeActif
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
+                {
+                    // -- Service d'enregistrement -- //
+                    TypeActifDAO.Ajouter(GBConvert.JSON_To<TypeActif>(obj));
+                }
+                #endregion
+
+                #region ConfigurationOperation-LocalisationActif
+                if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
+                {
+                    // -- Service d'enregistrement -- //
+                    LocalisationActifDAO.Ajouter(GBConvert.JSON_To<LocalisationActif>(obj));
+                }
+                #endregion
+
+                #region ConfigurationOperation-WesternUnionZonePays
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+                {
+                    // -- Service d'enregistrement -- //
+                    WesternUnionZonePaysDAO.Ajouter(GBConvert.JSON_To<WesternUnionZonePays>(obj));
                 }
                 #endregion
 
@@ -602,6 +756,38 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationOperation-Journal
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
+                {
+                    // -- Service de modification -- //
+                    JournalDAO.Modifier(GBConvert.JSON_To<Journal>(obj));
+                }
+                #endregion
+
+                #region ConfigurationOperation-TypeActif
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
+                {
+                    // -- Service de modification -- //
+                    TypeActifDAO.Modifier(GBConvert.JSON_To<TypeActif>(obj));
+                }
+                #endregion
+
+                #region ConfigurationOperation-LocalisationActif
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
+                {
+                    // -- Service de modification -- //
+                    LocalisationActifDAO.Modifier(GBConvert.JSON_To<LocalisationActif>(obj));
+                }
+                #endregion
+
+                #region ConfigurationOperation-WesternUnionZonePays
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+                {
+                    // -- Service de modification -- //
+                    WesternUnionZonePaysDAO.Modifier(GBConvert.JSON_To<WesternUnionZonePays>(obj));
+                }
+                #endregion
+
                 #region TypePret introuvable
                 else
                 {
@@ -680,6 +866,38 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationOperation-Journal
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
+                {
+                    // -- Service de suppression -- //
+                    JournalDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationOperation-TypeActif
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
+                {
+                    // -- Service de suppression -- //
+                    TypeActifDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationOperation-LocalisationActif
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
+                {
+                    // -- Service de suppression -- //
+                    LocalisationActifDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationOperation-WesternUnionZonePays
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+                {
+                    // -- Service de suppression -- //
+                    WesternUnionZonePaysDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
                 #region TypePret introuvable
                 else
                 {
@@ -715,6 +933,59 @@ namespace GB.Controllers
                 GBConvert.To_Object(this.ViewBag)
             );
         }
+
+        // -- Charger les données dans le auto complete -- //
+        public override object Charger_EasyAutocomplete(string id_page, string id_vue)
+        {
+            List<object> donnee = new List<object>();
+
+            try
+            {
+                #region ConfigurationOperation-WesternUnionZonePays
+                if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+                {
+                    // -- Si la vue n'est pas retourné -- //
+                    #region pays
+                    if (string.IsNullOrEmpty(id_vue))
+                    {
+                        // -- Si la liste des pays en session est vide, la mettre à jour -- //
+                        if ((this.con.donnee.pays as List<Pays>).Count == 0)
+                        {
+                            this.con.donnee.pays = PaysDAO.Lister();
+                        }
+
+                        // -- Charger la liste des résultats -- //
+                        foreach (var val in (this.con.donnee.pays as List<Pays>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    id = val.id,
+                                    code = val.code,
+                                    libelle = val.libelle,
+                                }
+                            );
+                        }
+                    }
+                    #endregion
+                }
+                #endregion
+            }
+            #region catch & finally
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return GBConvert.To_JSONString(donnee);
+        }
         #endregion
 
         #region Méthodes
@@ -742,7 +1013,9 @@ namespace GB.Controllers
                 #region Données
                 this.ViewBag.donnee.HTML_Select_periodicite = GBClass.HTML_periodicite_de_pret();
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
-                                                new {
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
@@ -762,7 +1035,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Loans_purpose_management;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 #endregion
 
                 // -- Données -- //
@@ -770,6 +1042,7 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
@@ -789,7 +1062,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Loans_provision_classification_management;
-                this.ViewBag.Lang.Name = App_Lang.Lang.Name;
                 this.ViewBag.Lang.Formula = App_Lang.Lang.Formula;
                 this.ViewBag.Lang.Start_days = App_Lang.Lang.Start_days;
                 this.ViewBag.Lang.End_days = App_Lang.Lang.End_days;
@@ -804,6 +1076,7 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
@@ -823,10 +1096,6 @@ namespace GB.Controllers
                 // -- Langue -- //
                 #region Langue
                 this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Guarantee_type_management;
-                this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
-                this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
-                this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;
-                this.ViewBag.Lang.Employee = App_Lang.Lang.Employee;
                 #endregion
 
                 // -- Données -- //
@@ -835,6 +1104,7 @@ namespace GB.Controllers
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     id_page = id_page,
                                                     titre = this.ViewBag.Title,
                                                     description = new
@@ -844,6 +1114,122 @@ namespace GB.Controllers
                                                     }
                                                 }
                                             );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationOperation-Journal
+            else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Journals_recording_management;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Journals_recording_management
+                                                    }
+                                                }
+                                            );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationOperation-TypeActif
+            else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Assets_type_management;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Assets_type_management
+                                                    }
+                                                }
+                                            );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationOperation-LocalisationActif
+            else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Asset_location_management;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Asset_location_management
+                                                    }
+                                                }
+                                            );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationOperation-WesternUnionZonePays
+            else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Western_Union_country_zone_management;
+                this.ViewBag.Lang.Country = App_Lang.Lang.Country;
+                this.ViewBag.Lang.Search_by = App_Lang.Lang.Search_by;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.donnee.HTML_Select_zone = GBClass.HTML_zone_western_union();
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Western_Union_country_zone_management
+                                                    }
+                                                }
+                                            );
+                // -- Vider les données temporaire -- //
+                this.con.Vider_Donnee();
+                // - Mise à jour des données de vue -- //
+                // -- Pays -- //
+                this.con.donnee.pays = new List<Pays>();
                 #endregion
             }
             #endregion

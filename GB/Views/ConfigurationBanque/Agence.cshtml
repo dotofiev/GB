@@ -4,7 +4,7 @@
 
 <script type="text/javascript">
 
-    $GB_DONNEE = JSON.parse('@Html.Raw(ViewBag.GB_DONNEE)');  
+    $GB_DONNEE = JSON.parse(JSON.stringify(@Html.Raw(ViewBag.GB_DONNEE)));  
 
 </script>
 
@@ -75,7 +75,7 @@
                             </th>
                             <th class="column-title">Code</th>
                             <th class="column-title">@ViewBag.Lang.Name</th>
-                            <th class="column-title">@ViewBag.Lang.Countrie</th>
+                            <th class="column-title">@ViewBag.Lang.Country</th>
                             <th class="column-title">@ViewBag.Lang.Town</th>
                             <th class="column-title">@ViewBag.Lang.Address</th>
                             <th class="column-title">@ViewBag.Lang.Phone</th>

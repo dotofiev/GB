@@ -13,6 +13,9 @@ namespace GB.Models.Static
 
     public static class GB_Enum_Menu
     {
+        public static string Erreur_Page = "Erreur-Page";
+        public static string Home_Authentication = "Home-Authentication";
+        public static string Application_Main = "Application-Main";
         public static string Securite_Role = "Securite-Role";
         public static string Securite_Module = "Securite-Module";
         public static string Securite_Menu = "Securite-Menu";
@@ -37,7 +40,11 @@ namespace GB.Models.Static
         public static string ConfigurationOperation_TypePret = "ConfigurationOperation-TypePret";
         public static string ConfigurationOperation_MotifPret = "ConfigurationOperation-MotifPret";
         public static string ConfigurationOperation_ClassificationProvisionsPret = "ConfigurationOperation-ClassificationProvisionsPret";
-        public static string ConfigurationOperation_TypeGarantie = "ConfigurationOperation-TypeGarantie";        
+        public static string ConfigurationOperation_TypeGarantie = "ConfigurationOperation-TypeGarantie";
+        public static string ConfigurationOperation_Journal = "ConfigurationOperation-Journal";
+        public static string ConfigurationOperation_TypeActif = "ConfigurationOperation-TypeActif";
+        public static string ConfigurationOperation_LocalisationActif = "ConfigurationOperation-LocalisationActif";
+        public static string ConfigurationOperation_WesternUnionZonePays = "ConfigurationOperation-WesternUnionZonePays";
     }
 
     public enum GB_Enum_Action_Controller

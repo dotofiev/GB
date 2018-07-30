@@ -10,6 +10,10 @@ namespace GB.Models.DAO
 {
     public abstract class PaysDAO : GBDAO
     {
+        public string form_combo_id { get { return string.Empty; } }
+
+        public string form_combo_libelle { get { return string.Empty; } }
+
         public static void Ajouter(Pays obj, long id_utilisateur)
         {
             try
@@ -190,5 +194,38 @@ namespace GB.Models.DAO
             #endregion
         }
 
+        public static Pays Object(long id)
+        {
+            try
+            {
+                // -- Parcours de la liste -- //
+                return
+                    Program.db.pays.FirstOrDefault(l => l.id == id);
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(App_Lang.Lang.Error_message_notification);
+                }
+                else
+                {
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(ex.Message);
+                }
+            }
+            #endregion
+        }
+
+        public void HTML_Select(ref string select_code, ref string select_libelle)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

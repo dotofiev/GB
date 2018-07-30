@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
 using System;
@@ -8,8 +9,12 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public abstract class ExerciceFiscalDAO : GBDAO
+    public class ExerciceFiscalDAO : GBDAO
     {
+        public string form_combo_id { get { return "form_id_exercice_fiscal"; } }
+
+        public string form_combo_libelle { get { return "form_libelle_exercice_fiscal"; } }
+
         public static void Ajouter(ExerciceFiscal obj)
         {
             try
@@ -38,6 +43,9 @@ namespace GB.Models.DAO
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.exercices_fiscal.Add(obj);
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerCombo(new ExerciceFiscalDAO());
             }
             #region Catch
             catch (Exception ex)
@@ -96,6 +104,9 @@ namespace GB.Models.DAO
                         l.date_fin = obj.date_fin;
                         l.budget_id = obj.budget_id;
                     });
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerCombo(new ExerciceFiscalDAO());
             }
             #region Catch
             catch (Exception ex)
@@ -128,6 +139,9 @@ namespace GB.Models.DAO
                     // -- Suppression des valeurs -- //
                     Program.db.exercices_fiscal.RemoveAll(l => l.id == id);
                 });
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerCombo(new ExerciceFiscalDAO());
             }
             #region Catch
             catch (Exception ex)
@@ -237,7 +251,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static string HTML_Select()
+        public static string HTML_Select(string champ)
         {
             try
             {
@@ -245,9 +259,20 @@ namespace GB.Models.DAO
                 string HTML = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
 
                 // -- Ajout des options -- //
-                foreach (var val in Lister())
+                // -- Pour le champ code -- //
+                if (champ == "code")
                 {
-                    HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
+                    foreach (var val in Lister())
+                    {
+                        HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
+                    }
+                }
+                else if (champ == "libelle")
+                {
+                    foreach (var val in Lister())
+                    {
+                        HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
+                    }
                 }
 
                 return HTML;
@@ -273,5 +298,41 @@ namespace GB.Models.DAO
             #endregion
         }
 
+        public void HTML_Select(ref string html_code, ref string html_libelle)
+        {
+            try
+            {
+                // -- Valeur vide -- //
+                html_code = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                html_libelle = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+
+                // -- Ajout des options -- //
+
+                foreach (var val in Lister())
+                {
+                    html_code += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
+                    html_libelle += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
+                }
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(App_Lang.Lang.Error_message_notification);
+                }
+                else
+                {
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(ex.Message);
+                }
+            }
+            #endregion
+        }
     }
 }

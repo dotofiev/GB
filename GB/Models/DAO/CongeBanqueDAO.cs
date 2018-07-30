@@ -10,6 +10,10 @@ namespace GB.Models.DAO
 {
     public abstract class CongeBanqueDAO : GBDAO
     {
+        public string form_combo_id { get { return string.Empty; } }
+
+        public string form_combo_libelle { get { return string.Empty; } }
+
         public static void Ajouter(CongeBanque obj)
         {
             try
@@ -208,5 +212,9 @@ namespace GB.Models.DAO
             #endregion
         }
 
+        public void HTML_Select(ref string select_code, ref string select_libelle)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,9 +1,6 @@
 ﻿
 // -- Variables -- //
 var table = $('#table-donnee');
-var url_ajax_dataTable = '/ConfigurationBanque/Charger_Table/?id_page=' + $GB_DONNEE.id_page;
-var url_ajax_easyAutocomplete = '/ConfigurationBanque/Charger_EasyAutocomplete/?id_page=' + $GB_DONNEE.id_page;
-var url_ajax_selection_enregistrement = '/ConfigurationBanque/Selection_Enregistrement/';
 var btn_ajouter = $('#btn-ajouter');
 var btn_supprimer = $('#btn-supprimer');
 var btn_imprimmer = $('#btn-imprimmer');
@@ -16,8 +13,6 @@ var form_utilisateur_nom = $('#form_utilisateur_nom');
 var form_pays = $('#form_pays');
 var form_ville = $('#form_ville');
 var modal_form = $('#modal_form');
-var url_controlleur = '/ConfigurationBanque/';
-var url_suppression = '/ConfigurationBanque/Supprimer_Enregistrement';
 
 
 // -- Méthodes d'action sur les données -- // 
@@ -29,7 +24,7 @@ try {
         // -- Ajax -- //
         $.ajax({
             type: "POST",
-            url: url_ajax_selection_enregistrement,
+            url: $GB_DONNEE.Urls.url_ajax_selection_enregistrement,
             data: {
                 code: code,
                 id_page: $GB_DONNEE.id_page
@@ -112,7 +107,7 @@ try {
         // -- Ajax -- //
         $.ajax({
             type: "POST",
-            url: url_suppression,
+            url: $GB_DONNEE.Urls.url_ajax_suppression_enregistrement,
             data: {
                 ids: JSON.stringify(ids),
                 id_page: $GB_DONNEE.id_page
@@ -121,7 +116,7 @@ try {
                 // -- Tester si le traitement s'est bien effectué -- //
                 if (!resultat.notification.est_echec) {
                     // -- Recharger la table -- //
-                    gbRechargerTable(false);
+                    gbRechargerTable(false, null, null, null);
                 } else {
                     // -- Message -- //
                     gbMessage_Box(resultat.notification);
@@ -183,7 +178,7 @@ $(
                     "url": $GB_VAR.url_language_dataTable
                 },
                 "ajax": {
-                    "url": url_ajax_dataTable,
+                    "url": $GB_DONNEE.Urls.url_ajax_dataTable,
                     "type": 'POST',
                     "dataSrc": function (resultat) {
                         // -- Notifier -- //
@@ -267,8 +262,8 @@ $(
                         // -- Ajax -- //
                         $.ajax({
                             type: "POST",
-                            url: url_controlleur + (action_ajouter ? 'Ajouter_Enregistrement'
-                                                                   : 'Modifier_Enregistrement'),
+                            url: (action_ajouter ? $GB_DONNEE.Urls.url_ajax_ajout_enregistrement
+                                                                   : $GB_DONNEE.Urls.url_ajax_modification_enregistrement),
                             data: {
                                 obj: JSON.stringify(form.gbConvertToJSON()),
                                 id_page: $GB_DONNEE.id_page
@@ -279,7 +274,7 @@ $(
                                     // -- Fermer le modal -- //
                                     modal_form.modal('hide');
                                     // -- Actualiser la table -- //
-                                    gbRechargerTable(false);
+                                    gbRechargerTable(false, null, null, null);
                                 }
                                 else {
                                     // -- Afficher une alerte sur un element -- //
@@ -426,7 +421,7 @@ $(
 
             // -- Recherche par compte -- //
             form_utilisateur_compte.easyAutocomplete({
-                url: url_ajax_easyAutocomplete,
+                url: $GB_DONNEE.Urls.url_ajax_easyAutocomplete,
                 getValue: function (obj) {
                     return obj.compte;
                 },
@@ -453,7 +448,7 @@ $(
 
             // -- Recherche par nom_utilisateur -- //
             form_utilisateur_nom.easyAutocomplete({
-                url: url_ajax_easyAutocomplete,
+                url: $GB_DONNEE.Urls.url_ajax_easyAutocomplete,
                 getValue: function (obj) {
                     return obj.nom_utilisateur;
                 },

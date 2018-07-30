@@ -100,6 +100,11 @@ namespace GB.Models.Tests
             {
                 l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
             });
+            // -- Zone pays Western Union -- //
+            db.western_union_zones_pays.ForEach(l =>
+            {
+                l.pays = db.pays.FirstOrDefault(ll => ll.id == l.id_pays);
+            });
         }
     }
 }

@@ -424,7 +424,7 @@
   <data name="Branch_manager" xml:space="preserve">
     <value>Chef d'agence</value>
   </data>
-  <data name="Countrie" xml:space="preserve">
+  <data name="Country" xml:space="preserve">
     <value>Pays</value>
   </data>
   <data name="Erasing" xml:space="preserve">
@@ -756,5 +756,32 @@
   </data>
   <data name="State_guarantee" xml:space="preserve">
     <value>Garantie d'état</value>
+  </data>
+  <data name="Journals_recording_management" xml:space="preserve">
+    <value>Gestion des enregistrements des journaux</value>
+  </data>
+  <data name="Assets_type_management" xml:space="preserve">
+    <value>Gestion des types pour actifs</value>
+  </data>
+  <data name="Asset_location_management" xml:space="preserve">
+    <value>Gestion de la localisation des immobilisations</value>
+  </data>
+  <data name="Country_zone" xml:space="preserve">
+    <value>Zone des pays</value>
+  </data>
+  <data name="Western_Union_country_zone_management" xml:space="preserve">
+    <value>Gestion des zones de pays Western Union</value>
+  </data>
+  <data name="Data_required" xml:space="preserve">
+    <value>Données requises</value>
+  </data>
+  <data name="The_session_has_just_ended" xml:space="preserve">
+    <value>La session vient de se terminer</value>
+  </data>
+  <data name="You_will_be_disconnected" xml:space="preserve">
+    <value>Vous serez déconnecté</value>
+  </data>
+  <data name="Fiscals_exercice" xml:space="preserve">
+    <value>Exercices fiscal</value>
   </data>
 </root>

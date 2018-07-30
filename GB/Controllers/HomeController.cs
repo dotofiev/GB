@@ -1,6 +1,7 @@
 ﻿using GB.Models;
 using GB.Models.BO;
 using GB.Models.DAO;
+using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
 using System;
@@ -27,7 +28,10 @@ namespace GB.Controllers
             Charger_Langue_Et_Donnees("Home-Authentication");
 
             // -- Initialiser l'object connexion de l'utilisateur -- //
-            this.con = new Connexion(Session.SessionID, this.Request.Cookies["id_client"].Value);
+            this.con = new Connexion(Session.SessionID, id_navigateur_client_cookies);
+
+            // -- Mise à jour de la position du client -- //
+            applicationMainHub.MiseAJourHubs_Connexion(this.con);
 
             // -- Test -- //
             this.ViewBag.Test.compte = Program.db?.utilisateurs?[0]?.compte ?? string.Empty;
@@ -131,9 +135,14 @@ namespace GB.Controllers
             // -- Identifiant de la page -- //
             this.ViewBag.Id_page = id_page;
 
+            // -- Définition du menu actif -- //
+            id_menu_actif = 0;
+
             #region Home-Authentication
-            if (id_page == "Home-Authentication")
+            if (id_page == GB_Enum_Menu.Home_Authentication)
             {
+                // -- Langue -- //
+                #region Langue
                 this.ViewBag.Lang.Login = App_Lang.Lang.Login;
                 this.ViewBag.Lang.Password = App_Lang.Lang.Password;
                 this.ViewBag.Lang.Application_language = App_Lang.Lang.Application_language;
@@ -141,15 +150,17 @@ namespace GB.Controllers
                 this.ViewBag.Lang.French = App_Lang.Lang.French;
                 this.ViewBag.Lang.To_log_in = App_Lang.Lang.To_log_in;
                 this.ViewBag.Lang.Erasing = App_Lang.Lang.Erasing;
+                #endregion
 
                 // -- Données -- //
                 #region Données
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
                                                     Lang = new
                                                     {
-                                                        Error_server_message = App_Lang.Lang.Error_server_message,
+                                                        Error_server_message = App_Lang.Lang.Error_server_message
                                                     },
                                                     // -- Paramètres -- //
                                                     DUREE_VISIBILITE_MESSAGE_BOX = AppSettings.DUREE_VISIBILITE_MESSAGE_BOX,

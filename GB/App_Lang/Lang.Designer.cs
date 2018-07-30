@@ -178,6 +178,24 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asset location management.
+        /// </summary>
+        public static string Asset_location_management {
+            get {
+                return ResourceManager.GetString("Asset_location_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assets type management.
+        /// </summary>
+        public static string Assets_type_management {
+            get {
+                return ResourceManager.GetString("Assets_type_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authentication.
         /// </summary>
         public static string Authentication {
@@ -421,11 +439,20 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Countrie.
+        ///   Looks up a localized string similar to Country.
         /// </summary>
-        public static string Countrie {
+        public static string Country {
             get {
-                return ResourceManager.GetString("Countrie", resourceCulture);
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country zone.
+        /// </summary>
+        public static string Country_zone {
+            get {
+                return ResourceManager.GetString("Country_zone", resourceCulture);
             }
         }
         
@@ -489,6 +516,15 @@ namespace GB.App_Lang {
         public static string Customer_overdraft_limit {
             get {
                 return ResourceManager.GetString("Customer_overdraft_limit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data required.
+        /// </summary>
+        public static string Data_required {
+            get {
+                return ResourceManager.GetString("Data_required", resourceCulture);
             }
         }
         
@@ -745,6 +781,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fiscals exercice.
+        /// </summary>
+        public static string Fiscals_exercice {
+            get {
+                return ResourceManager.GetString("Fiscals_exercice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fiscals exercice management.
         /// </summary>
         public static string Fiscals_exercice_management {
@@ -894,6 +939,15 @@ namespace GB.App_Lang {
         public static string Job {
             get {
                 return ResourceManager.GetString("Job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Journals recording management.
+        /// </summary>
+        public static string Journals_recording_management {
+            get {
+                return ResourceManager.GetString("Journals_recording_management", resourceCulture);
             }
         }
         
@@ -1780,6 +1834,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The session has just ended.
+        /// </summary>
+        public static string The_session_has_just_ended {
+            get {
+                return ResourceManager.GetString("The_session_has_just_ended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This account is suspended.
         /// </summary>
         public static string This_account_is_suspended {
@@ -1960,6 +2023,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Western Union country zone management.
+        /// </summary>
+        public static string Western_Union_country_zone_management {
+            get {
+                return ResourceManager.GetString("Western_Union_country_zone_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Year.
         /// </summary>
         public static string Year {
@@ -1974,6 +2046,15 @@ namespace GB.App_Lang {
         public static string Yes {
             get {
                 return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You will be disconnected.
+        /// </summary>
+        public static string You_will_be_disconnected {
+            get {
+                return ResourceManager.GetString("You_will_be_disconnected", resourceCulture);
             }
         }
     }
