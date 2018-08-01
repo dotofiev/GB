@@ -1,0 +1,100 @@
+﻿@{
+    Layout = null;
+}
+
+<script type="text/javascript">
+
+    $GB_DONNEE = @Html.Raw(ViewBag.GB_DONNEE);  
+
+</script>
+
+<!-- form validation -->
+<script src="@Url.Content("~/Plugins/parsley/parsley.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Plugins/parsley/i18n/" + (ViewBag.Lang.code == "en-US" ? "en" : "fr") + ".js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Plugins/parsley/gb.parsley.js")" type="text/javascript"></script>
+<!-- icheck -->
+<script src="@Url.Content("~/Plugins/iCheck/icheck.min.js")" type="text/javascript"></script>
+<!-- Script de la page -->
+<script src="@Url.Content("~/Resources/js/Views/" + ViewBag.Id_page + ".js")" type="text/javascript"></script>
+
+<div class="row">
+
+    @*
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+        <div class="page-title">
+
+            <h3>
+                @Html.Raw(ViewBag.Lang.Description_page)
+            </h3>
+
+        </div>
+
+    </div>
+    *@
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+        <div class="x_panel">
+
+            <div class="x_title">
+
+                <!-- Boutons d'actions -->
+                <div class="pull-left">
+
+                    <button class="btn btn-default" id="btn-ajouter" data-toggle="modal" data-target=".bs-example-modal-lg" type="button">
+                        <i class="fa fa-plus"></i> <span class="hidden-xs">@ViewBag.Lang.New</span>
+                    </button>
+                    <button class="btn btn-default" id="btn-supprimer" type="button"
+                            data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
+                        <i class="fa fa-remove text-danger"></i> <span class="hidden-xs">@ViewBag.Lang.Delete</span>
+                    </button>
+                    <button class="btn btn-default" id="btn-imprimmer" type="button"
+                            data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> <span class='hidden-xs'>@ViewBag.Lang.Process ...</span>">
+                        <i class="fa fa-print text-info"></i> <span class="hidden-xs">@ViewBag.Lang.Print</span>
+                    </button>
+
+                </div>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+            <!-- Formulaire modals -->
+            @Html.Partial("UniteInstitutionnelle/_Modals")
+
+            <div class="x_content">
+
+                <!-- Table des données -->
+                <table id="table-donnee" class="table table-condensed jambo_table bulk_action dt-responsive nowrap" cellspacing="0" width="100%;">
+
+                    <thead class="headings">
+                        <tr>
+                            <th width="20px">
+                                <input type="checkbox" id="check-all" class="flat">
+                            </th>
+                            <th class="column-title">Code</th>
+                            <th class="column-title">@ViewBag.Lang.Name_french</th>
+                            <th class="column-title">@ViewBag.Lang.Name_english</th>
+                            <th class="column-title">@ViewBag.Lang.Creation_date</th>
+                            <th class="column-title">@ViewBag.Lang.Employee</th>
+                            <th class="column-title last" width="50px">Action</th>
+                            <th class="bulk-actions" colspan="6">
+                                <a class="antoo" style="color:#fff; font-weight:500;">
+                                    Selection(s) ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i>
+                                </a>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

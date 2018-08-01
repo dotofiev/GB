@@ -95,6 +95,8 @@ namespace GB.Controllers
         
         public virtual object Charger_EasyAutocomplete(string id_page, string id_vue) { return null; }
 
+        public virtual object Recharger_EasyAutocomplete(string id_page, string id_vue) { return null; }
+
         public void Charger_Parametres()
         {
             // -- Version de l'application -- //

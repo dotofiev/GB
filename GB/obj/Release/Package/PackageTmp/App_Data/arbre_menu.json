@@ -1,0 +1,76 @@
+﻿[
+  {
+    "controller": {
+      "id": "1",
+      "libelle": "Securite"
+    },
+    "views": [
+      "Module",
+      "Menu",
+      "Role" 
+    ]
+  },
+  {
+    "controller": {
+      "id": "2",
+      "libelle": "SecuriteUtilisateur"
+    },
+    "views": [
+      "Utilisateur",
+      "Privilege",
+      "Audit" 
+    ]
+  },
+  {
+    "controller": {
+      "id": "3",
+      "libelle": "ConfigurationBanque"
+    },
+    "views": [
+      "Institution",
+      "Agence",
+      "CompteAgence",
+      "Devise",
+      "Parametre",
+      "ParametreBanque",
+      "ProduitClientPhysique",
+      "ProduitClientJudiciaire",
+      "ProduitCreation",
+      "CongeBanque",
+      "BEACNationalite",
+      "UniteInstitutionnelle",
+      "Titre",
+      "ActiviteEconomique",
+      "Ville",
+      "Pays"
+    ]
+  },
+  {
+    "controller": {
+      "id": "4",
+      "libelle": "ConfigurationBudget"
+    },
+    "views": [
+      "ExerciceFiscal",
+      "DirectionBudget",
+      "AutoriteSignature"
+    ]
+  },
+  {
+    "controller": {
+      "id": "5",
+      "libelle": "ConfigurationOperation"
+    },
+    "views": [
+      "TypePret",
+      "MotifPret",
+      "ClassificationProvisionsPret",
+      "TypeGarantie",
+      "Journal",
+      "TypeActif",
+      "LocalisationActif",
+      "WesternUnionZonePays",
+      "WesternUnionZoneCommission",
+    ]
+  }
+]

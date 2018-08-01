@@ -277,7 +277,7 @@ namespace GB.Controllers
                                 col_6 = val.pub,
                                 col_7 = val.motto,
                                 col_8 = val.logo?.libelle ?? App_Lang.Lang.Empty,
-                                col_9 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_9 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -306,7 +306,7 @@ namespace GB.Controllers
                                 col_12 = val.utilisateur?.nom_utilisateur?? App_Lang.Lang.Empty,
                                 col_13 = val.ip,
                                 col_14 = val.mot_de_passe,
-                                col_15 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_15 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -326,7 +326,7 @@ namespace GB.Controllers
                                 col_3 = val.libelle,
                                 col_4 = val.signe,
                                 col_5 = GBToString.Oui_Non(val.devise_actuelle),
-                                col_6 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_6 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -349,7 +349,7 @@ namespace GB.Controllers
                                 col_6 = val.montant_minimal,
                                 col_7 = val.montant_maximal,
                                 col_8 = val.devise.libelle,
-                                col_9 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_9 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -368,7 +368,7 @@ namespace GB.Controllers
                                 col_2 = val.code,
                                 col_3 = val.libelle,
                                 col_4 = val.type,
-                                col_5 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_5 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -389,7 +389,7 @@ namespace GB.Controllers
                                 col_4 = val.libelle_en,
                                 col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -410,7 +410,7 @@ namespace GB.Controllers
                                 col_4 = val.code_telephone,
                                 col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -430,7 +430,7 @@ namespace GB.Controllers
                                 col_3 = val.libelle,
                                 col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_5 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_6 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_6 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -451,7 +451,7 @@ namespace GB.Controllers
                                 col_4 = val.libelle_en,
                                 col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -472,7 +472,7 @@ namespace GB.Controllers
                                 col_4 = val.libelle_en,
                                 col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -493,7 +493,7 @@ namespace GB.Controllers
                                 col_4 = val.libelle_en,
                                 col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -514,7 +514,7 @@ namespace GB.Controllers
                                 col_4 = val.libelle_en,
                                 col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -534,7 +534,7 @@ namespace GB.Controllers
                                 col_3 = val.libelle,
                                 col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_5 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_6 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_6 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -666,6 +666,61 @@ namespace GB.Controllers
                                 }
                             );
                         }
+                    }
+                    #endregion
+                }
+                #endregion
+            }
+            #region catch & finally
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return GBConvert.To_JSONString(donnee);
+        }
+
+        // -- Recharger les données dans le auto complete -- //
+        public override object Recharger_EasyAutocomplete(string id_page, string id_vue)
+        {
+            List<object> donnee = new List<object>();
+
+            try
+            {
+                #region ConfigurationBanque-Agence
+                if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
+                {
+                    // -- Si la vue est pour le utilisateur -- //
+                    #region utilisateurs
+                    if (id_vue == "utilisateur")
+                    {
+                        // -- Mise à jour de la liste en session -- //
+                        this.con.donnee.utilisateurs = UtilisateurDAO.Lister();
+                    }
+                    #endregion
+
+                    #region pays
+                    // -- Si la vue est pour le pays -- //
+                    else if (id_vue == "pays")
+                    {
+                        // -- Mise à jour de la liste en session -- //
+                        this.con.donnee.pays = PaysDAO.Lister();
+                    }
+                    #endregion
+
+                    #region ville
+                    // -- Si la vue est pour le pays -- //
+                    else if (id_vue == "ville")
+                    {
+                        // -- Mise à jour de la liste en session -- //
+                        this.con.donnee.villes = VilleDAO.Lister();
                     }
                     #endregion
                 }

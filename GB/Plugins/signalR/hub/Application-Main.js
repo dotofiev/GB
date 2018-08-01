@@ -61,6 +61,35 @@ $(
             catch (e) { gbConsoleStringify(e); }
         }
 
+        // -- Fonction de mise à jour de tous les combox box ComboEasyAutocomplete chez les clients -- //
+        $GB_DONNEE_PARAMETRES.applicationMainHub.client.rechargerComboEasyAutocomplete = function (notification) {
+            try {
+                // -- Mise à jour des données sur le formulaire si tout ceux ci existe -- //
+                if ($(notification.donnee.form_id).length != 0 && $(notification.donnee.form_code).length != 0 && $(notification.donnee.form_libelle).length != 0) {
+                    // -- Ajax -- //
+                    $.ajax({
+                        type: "POST",
+                        url: $GB_DONNEE.Urls.url_ajax_recharger_easyAutocomplete,
+                        data: {
+                            id_vue: notification.donnee.id_vue
+                        },
+                        success: function (resultat) {
+                            // -- Tester si le traitement s'est bien effectué -- //
+                            if (resultat.notification.est_echec) {
+                                // -- Message -- //
+                                gbMessage_Box(resultat.notification);
+                            }
+                        },
+                        error: function () {
+                            // -- Message -- //
+                            gbMessage_Box();
+                        }
+                    });
+                }
+            }
+            catch (e) { gbConsoleStringify(e); }
+        }
+
         // -- Demmarrage de la connexion -- //
         $.connection.hub.start()
             //.pipe(init)

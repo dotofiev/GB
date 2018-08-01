@@ -16,7 +16,7 @@ namespace GB.Models.SignalR.Hubs
     {
         // -- Variables -- //
         public IHubContext context_hub { get { return GlobalHost.ConnectionManager.GetHubContext<applicationMainHub>(); } }
-        public static IHubContext context_hub_static { get { return GlobalHost.ConnectionManager.GetHubContext<applicationMainHub>(); } }
+        private static IHubContext context_hub_static { get { return GlobalHost.ConnectionManager.GetHubContext<applicationMainHub>(); } }
         public static List<Connexion> Hubs_Connexion { get { return System.Web.HttpContext.Current.Application["Hubs_Connexion"] as List<Connexion>; } }
         public string id_session_cookie { get { return Context.RequestCookies["id_session"].Value; } }
         public int id_lang_cookie { get { return Convert.ToInt32(Context.RequestCookies["id_lang"].Value); } }
@@ -116,8 +116,7 @@ namespace GB.Models.SignalR.Hubs
             try
             {
                 // -- Construction de l'objet à envoyer en paramètre -- //
-                string select_code = string.Empty, select_libelle = string.Empty;
-                ObjetDAO.HTML_Select(ref select_code, ref select_libelle);
+                dynamic donnee = ObjetDAO.HTML_Select();
 
                 // -- Appel de la méthode client pour déconnecter l'utilisateur -- //
                 context_hub_static
@@ -132,8 +131,8 @@ namespace GB.Models.SignalR.Hubs
                         new GBNotification(
                             new
                             {
-                                select_code = select_code,
-                                select_libelle = select_libelle,
+                                select_code = donnee.html_code,
+                                select_libelle = donnee.html_libelle,
                                 form_id = $"#{ObjetDAO.form_combo_id}",
                                 form_libelle = $"#{ObjetDAO.form_combo_libelle}"
                             }
@@ -171,6 +170,45 @@ namespace GB.Models.SignalR.Hubs
                                 new
                                 {
                                     id_page = id_page
+                                }
+                            )
+                        );
+                }
+            }
+            catch (Exception ex)
+            {
+                // -- Log -- //
+                GBClass.Log.Error(ex);
+            }
+        }
+        #endregion
+
+        // -- Mise à jour des combox box easyAutocomplete chez tous les clients présent sur la page -- //
+        #region Mise à jour des combox box easyAutocomplete chez tous les clients présent sur la page
+        public static void RechargerComboEasyAutocomplete(GBDAO ObjetDAO, string context_id)
+        {
+            try
+            {
+                // -- Communiquer aux autres clients si la présentation des données en temps réel est activé -- //
+                if (AppSettings.DONNEE_EN_TEMPS_REEL)
+                {
+                    // -- Appel de la méthode client pour déconnecter l'utilisateur -- //
+                    context_hub_static
+                        // -- Les clients -- //
+                        .Clients
+                        // -- Spécification à tous les clients sauf moi -- //
+                        .AllExcept(new string[] { context_id })
+                        // -- Spécifier à tous les clients -- //
+                        //.All
+                        // -- Méthode à éexecuter chez le client -- //
+                        .rechargerComboEasyAutocomplete(
+                            new GBNotification(
+                                new
+                                {
+                                    form_id = $"#{ObjetDAO.form_combo_id}",
+                                    form_code = $"#{ObjetDAO.form_combo_code}",
+                                    form_libelle = $"#{ObjetDAO.form_combo_libelle}",
+                                    id_vue = ObjetDAO.form_name
                                 }
                             )
                         );

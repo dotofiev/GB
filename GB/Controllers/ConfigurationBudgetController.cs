@@ -100,7 +100,7 @@ namespace GB.Controllers
                                 col_5 = new DateTime(Convert.ToInt64(val.date_fin)).ToString(AppSettings.FORMAT_DATE),
                                 col_6 = val.statut,
                                 col_7 = val.budget_id,
-                                col_8 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_8 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -122,7 +122,7 @@ namespace GB.Controllers
                                 col_5 = val.telephone,
                                 col_6 = val.remarque,
                                 col_7 = val.exercice_fiscal?.code ?? App_Lang.Lang.Empty,
-                                col_8 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_8 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -146,7 +146,7 @@ namespace GB.Controllers
                                 col_7 = GBToString.MontantToString(val.credit_max_client),
                                 col_8 = GBToString.MontantToString(val.montant_max_ligne_credit),
                                 col_9 = GBToString.MontantToString(val.montant_limite_pret),
-                                col_10 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_10 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -598,10 +598,9 @@ namespace GB.Controllers
                 // -- Données -- //
                 #region Données
                 #region HTML_Select_exercice_fiscal
-                string HTML_Select_code_exercice_fiscal = string.Empty, HTML_Select_libelle_exercice_fiscal = string.Empty;
-                exerciceFiscalDAO.HTML_Select(ref HTML_Select_code_exercice_fiscal, ref HTML_Select_libelle_exercice_fiscal);
-                this.ViewBag.donnee.HTML_Select_code_exercice_fiscal = HTML_Select_code_exercice_fiscal;
-                this.ViewBag.donnee.HTML_Select_libelle_exercice_fiscal = HTML_Select_libelle_exercice_fiscal;
+                dynamic donnee = exerciceFiscalDAO.HTML_Select();
+                this.ViewBag.donnee.HTML_Select_code_exercice_fiscal = donnee.html_code;
+                this.ViewBag.donnee.HTML_Select_libelle_exercice_fiscal = donnee.html_libelle;
                 #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new

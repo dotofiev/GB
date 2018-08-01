@@ -15,6 +15,8 @@ namespace GB.Models.DAO
         public string context_id { get; set; }
         public long id_utilisateur { get; set; }
         public string form_combo_id { get { return "form_id_devise"; } }
+        public string form_combo_code { get { return string.Empty; } }
+        public string form_name { get { return "devise"; } }
         public string form_combo_libelle { get { return "form_libelle_devise"; } }
 
 
@@ -322,21 +324,27 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void HTML_Select(ref string html_code, ref string html_libelle)
+        public dynamic HTML_Select()
         {
             try
             {
+                // -- Objet dynamic -- //
+                dynamic donnee = new System.Dynamic.ExpandoObject();
+
                 // -- Valeur vide -- //
-                html_code = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                html_libelle = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                donnee.html_code = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                donnee.html_libelle = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
 
                 // -- Ajout des options -- //
 
                 foreach (var val in Lister())
                 {
-                    html_code += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
-                    html_libelle += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
+                    donnee.html_code += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
+                    donnee.html_libelle += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                 }
+
+                // -- Retourner l'objet -- //
+                return donnee;
             }
             #region Catch
             catch (Exception ex)

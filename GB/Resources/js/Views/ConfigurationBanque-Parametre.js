@@ -153,78 +153,78 @@ $(
         // -- Mise à jour de la taille des label -- //
         try {
 
-            // -- Variable de la position -- //
-            var positions = [];
-            var index = 1;
-            var index_2 = 1;
-            var range = [];
-            // -- Parcourir tous les label -- //
-            $('label').each(
-                function () {
-                    // -- Les 24 premier element -- //
-                    if (index <= 24) {
-                        var width = parseFloat($(this).css('width').replace('px', null));
-                        var width_for = parseFloat($('#' + $(this).attr('for')).css('width').replace('px', null));
-                        // -- AJout à la liste des for -- //
-                        range.push($(this).attr('for'));
-                        // -- Mise à jou de la taille si le with est trop grand -- //
-                        if (width >= width_for) {
-                            // -- AJout à la position -- //
-                            positions.push(index);
-                        }
-                        // -- Incrémenter l'index -- //
-                        index++;
-                    }
-                }
-            );
+            //// -- Variable de la position -- //
+            //var positions = [];
+            //var index = 1;
+            //var index_2 = 1;
+            //var range = [];
+            //// -- Parcourir tous les label -- //
+            //$('label').each(
+            //    function () {
+            //        // -- Les 24 premier element -- //
+            //        if (index <= 24) {
+            //            var width = parseFloat($(this).css('width').replace('px', null));
+            //            var width_for = parseFloat($('#' + $(this).attr('for')).css('width').replace('px', null));
+            //            // -- AJout à la liste des for -- //
+            //            range.push($(this).attr('for'));
+            //            // -- Mise à jou de la taille si le with est trop grand -- //
+            //            if (width >= width_for) {
+            //                // -- AJout à la position -- //
+            //                positions.push(index);
+            //            }
+            //            // -- Incrémenter l'index -- //
+            //            index++;
+            //        }
+            //    }
+            //);
 
-            gbConsole('positions: ' + JSON.stringify(positions));
+            //gbConsole('positions: ' + JSON.stringify(positions));
 
-            // -- Mise à jour des taille -- //
-            for (var index_position = 1; index_position <= positions.length; index_position++) {
+            //// -- Mise à jour des taille -- //
+            //for (var index_position = 1; index_position <= positions.length; index_position++) {
 
-                if (positions[index_position] >= 1 && positions[index_position] <= 6) {
-                    for (var i = 1; i <= 6; i++) {
-                        // -- Différent de ma position -- //
-                        if (!gbExist(i, positions)) {
-                            var label = $('label[for="' + range[i - 1] + '"]');
-                            // -- Mise à jour du HTML -- //
-                            label.html('<br/>' + label.html());
-                        }
-                    }
-                }
-                else if (positions[index_position] >= 7 && positions[index_position] <= 12) {
-                    for (var i = 7; i <= 12; i++) {
-                        // -- Différent de ma position -- //
-                        if (!gbExist(i, positions)) {
-                            var label = $('label[for="' + range[i - 1] + '"]');
-                            // -- Mise à jour du HTML -- //
-                            label.html('<br/>' + label.html());
-                        }
-                    }
-                }
-                else if (positions[index_position] >= 13 && positions[index_position] <= 18) {
-                    for (var i = 13; i <= 18; i++) {
-                        // -- Différent de ma position -- //
-                        if (!gbExist(i, positions)) {
-                            var label = $('label[for="' + range[i - 1] + '"]');
-                            // -- Mise à jour du HTML -- //
-                            label.html('<br/>' + label.html());
-                        }
-                    }
-                }
-                else if (positions[index_position] >= 19 && positions[index_position] <= 24) {
-                    for (var i = 19; i <= 24; i++) {
-                        // -- Différent de ma position -- //
-                        if (!gbExist(i, positions)) {
-                            var label = $('label[for="' + range[i - 1] + '"]');
-                            // -- Mise à jour du HTML -- //
-                            label.html('<br/>' + label.html());
-                        }
-                    }
-                }
+            //    if (positions[index_position] >= 1 && positions[index_position] <= 6) {
+            //        for (var i = 1; i <= 6; i++) {
+            //            // -- Différent de ma position -- //
+            //            if (!gbExist(i, positions)) {
+            //                var label = $('label[for="' + range[i - 1] + '"]');
+            //                // -- Mise à jour du HTML -- //
+            //                label.html('<br/>' + label.html());
+            //            }
+            //        }
+            //    }
+            //    else if (positions[index_position] >= 7 && positions[index_position] <= 12) {
+            //        for (var i = 7; i <= 12; i++) {
+            //            // -- Différent de ma position -- //
+            //            if (!gbExist(i, positions)) {
+            //                var label = $('label[for="' + range[i - 1] + '"]');
+            //                // -- Mise à jour du HTML -- //
+            //                label.html('<br/>' + label.html());
+            //            }
+            //        }
+            //    }
+            //    else if (positions[index_position] >= 13 && positions[index_position] <= 18) {
+            //        for (var i = 13; i <= 18; i++) {
+            //            // -- Différent de ma position -- //
+            //            if (!gbExist(i, positions)) {
+            //                var label = $('label[for="' + range[i - 1] + '"]');
+            //                // -- Mise à jour du HTML -- //
+            //                label.html('<br/>' + label.html());
+            //            }
+            //        }
+            //    }
+            //    else if (positions[index_position] >= 19 && positions[index_position] <= 24) {
+            //        for (var i = 19; i <= 24; i++) {
+            //            // -- Différent de ma position -- //
+            //            if (!gbExist(i, positions)) {
+            //                var label = $('label[for="' + range[i - 1] + '"]');
+            //                // -- Mise à jour du HTML -- //
+            //                label.html('<br/>' + label.html());
+            //            }
+            //        }
+            //    }
 
-            }
+            //}
 
         } catch (e) { gbConsole(e.message); }
 

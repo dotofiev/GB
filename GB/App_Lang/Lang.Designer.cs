@@ -241,6 +241,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to this user is already connected, and the multi-post connection is disabled.
+        /// </summary>
+        public static string Authentication_failed_5 {
+            get {
+                return ResourceManager.GetString("Authentication_failed_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup.
         /// </summary>
         public static string Backup {

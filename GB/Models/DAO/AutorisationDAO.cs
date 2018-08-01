@@ -14,6 +14,8 @@ namespace GB.Models.DAO
         public string context_id { get; set; }
         public long id_utilisateur { get; set; }
         public string form_combo_id { get { return string.Empty; } }
+        public string form_combo_code { get { return string.Empty; } }
+        public string form_name { get { return "autorisation"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
@@ -32,11 +34,11 @@ namespace GB.Models.DAO
 
                 // -- Verifier la nature de l'autorisation -- //
                 if (!((action == GB_Enum_Action_Controller.Ajouter) ? autorisation?.ajouter ?? false
-                        : (action == GB_Enum_Action_Controller.Modifier) ? autorisation?.modifier ?? false
-                            : (action == GB_Enum_Action_Controller.Supprimer) ? autorisation?.supprimer ?? false
-                                : (action == GB_Enum_Action_Controller.Imprimer) ? autorisation?.imprimer ?? false
-                                    : (action == GB_Enum_Action_Controller.Lister) ? autorisation?.lister ?? false
-                                        : false))
+                                                                    : (action == GB_Enum_Action_Controller.Modifier) ? autorisation?.modifier ?? false
+                                                                                                                     : (action == GB_Enum_Action_Controller.Supprimer) ? autorisation?.supprimer ?? false
+                                                                                                                                                                       : (action == GB_Enum_Action_Controller.Imprimer) ? autorisation?.imprimer ?? false
+                                                                                                                                                                                                                        : (action == GB_Enum_Action_Controller.Lister) ? autorisation?.lister ?? false
+                                                                                                                                                                                                                                                                       : false))
                 {
                     // -- Jeter l'exception -- //
                     throw new GBException(App_Lang.Lang.Permission_denied);
@@ -344,7 +346,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void HTML_Select(ref string select_code, ref string select_libelle)
+        public dynamic HTML_Select()
         {
             throw new NotImplementedException();
         }

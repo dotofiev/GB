@@ -18,7 +18,8 @@ namespace GB.Controllers
     {
         #region Variables
         public AgenceDAO agenceDAO { get { return new AgenceDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public UtilisateurDAO utilisateurDAO { get { return new UtilisateurDAO(this.con.hub_id_context, this.con.id_utilisateur); } }        
+        public UtilisateurDAO utilisateurDAO { get { return new UtilisateurDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ProfessionDAO professionDAO { get { return new ProfessionDAO(this.con.hub_id_context, this.con.id_utilisateur); } }        
         #endregion
 
         #region HttpGet
@@ -77,7 +78,7 @@ namespace GB.Controllers
                                     col_10 = GBToString.Oui_Non(val.acces_historique_compte),
                                     col_11 = $"{val.duree_mot_de_passe} {App_Lang.Lang.Month}(s)",
                                     col_12 = val.autorite_signature?.code ?? string.Empty,
-                                    col_13 = GBClass.HTML_Bouton_Suppression_Table(val.id_utilisateur)
+                                    col_13 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id_utilisateur, val.compte)
                                 }
                             );
                         }
@@ -99,6 +100,7 @@ namespace GB.Controllers
                                     col_7 = GBToString.MontantToString(val.credit_max_client),
                                     col_8 = GBToString.MontantToString(val.montant_max_ligne_credit),
                                     col_9 = GBToString.MontantToString(val.montant_limite_pret),
+                                    //col_10 = GBClass.HTML_Bouton_Selection_Table(val.id)
                                 }
                             );
                         }
@@ -185,6 +187,43 @@ namespace GB.Controllers
                                 }
                             );
                         }
+                    }
+                    #endregion
+                }
+                #endregion
+            }
+            #region catch & finally
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return GBConvert.To_JSONString(donnee);
+        }
+
+        // -- recharger les données dans le auto complete -- //
+        public override object Recharger_EasyAutocomplete(string id_page, string id_vue)
+        {
+            List<object> donnee = new List<object>();
+
+            try
+            {
+                #region SecuriteUtilisateur-Utilisateur
+                if (id_page == GB_Enum_Menu.SecuriteUtilisateur_Utilisateur)
+                {
+                    // -- Si la vue n'est pas retourné -- //
+                    #region autorites_signature
+                    if (id_vue == "autorite_signature")
+                    {
+                        // -- Mise à jour de la liste en session -- //
+                        this.con.donnee.autorites_signature = AutoriteSignatureDAO.Lister();
                     }
                     #endregion
                 }
@@ -486,21 +525,20 @@ namespace GB.Controllers
                 this.ViewBag.Lang.Loan_limit_amount = App_Lang.Lang.Loan_limit_amount;
                 this.ViewBag.Lang.Select = App_Lang.Lang.Select;
                 this.ViewBag.Lang.Search_by = App_Lang.Lang.Search_by;
+                this.ViewBag.Lang.User = App_Lang.Lang.User;
                 #endregion
 
                 // -- Données -- //
                 #region Données
                 #region HTML_Select_agence
-                string HTML_Select_code_agence = string.Empty, HTML_Select_libelle_agence = string.Empty;
-                agenceDAO.HTML_Select(ref HTML_Select_code_agence, ref HTML_Select_libelle_agence);
-                this.ViewBag.donnee.HTML_Select_code_agence = HTML_Select_code_agence;
-                this.ViewBag.donnee.HTML_Select_libelle_agence = HTML_Select_libelle_agence;
+                dynamic donnee = agenceDAO.HTML_Select();
+                this.ViewBag.donnee.HTML_Select_code_agence = donnee.html_code;
+                this.ViewBag.donnee.HTML_Select_libelle_agence = donnee.html_libelle;
                 #endregion
                 #region HTML_Select_profession
-                string HTML_Select_code_profession = string.Empty, HTML_Select_libelle_profession = string.Empty;
-                new ProfessionDAO().HTML_Select(ref HTML_Select_code_profession, ref HTML_Select_libelle_profession);
-                this.ViewBag.donnee.HTML_Select_code_profession = HTML_Select_code_profession;
-                this.ViewBag.donnee.HTML_Select_libelle_profession = HTML_Select_libelle_profession;
+                donnee = professionDAO.HTML_Select();
+                this.ViewBag.donnee.HTML_Select_code_profession = donnee.html_code;
+                this.ViewBag.donnee.HTML_Select_libelle_profession = donnee.html_libelle;
                 #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new

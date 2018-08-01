@@ -45,7 +45,7 @@
                 <!-- Boutons d'actions -->
                 <div class="pull-left">
 
-                    <button class="btn btn-default" id="btn-ajouter" data-toggle="modal" data-target=".bs-example-modal-lg" type="button">
+                    <button class="btn btn-default" id="btn-ajouter" type="button" onclick="formulaire_reinitialiser();">
                         <i class="fa fa-plus"></i> <span class="hidden-xs">@ViewBag.Lang.New</span>
                     </button>
                     <button class="btn btn-default" id="btn-supprimer" type="button"
@@ -59,6 +59,16 @@
 
                 </div>
 
+                <div class="pull-right">
+
+                    <!-- Bouton d'enregistrement du formulaire -->
+                    <button class="btn btn-default btn-success" id="btn-enregistrer" type="submit" form="form"
+                            data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> @ViewBag.Lang.Process ...">
+                        <i class="fa fa-check"></i> @ViewBag.Lang.Save
+                    </button>
+
+                </div>
+
                 <div class="clearfix"></div>
 
             </div>
@@ -68,6 +78,263 @@
 
             <div class="x_content">
 
+                <form method="post" id="form" name="form" data-parsley-validate>
+
+                    <div class="row">
+
+                        <!-- Id -->
+                        <input type="hidden" id="form_id_utilisateur" name="id_utilisateur" value="0" />
+
+                        <!-- ligne -->
+                        <div class="col-lg-4">
+
+                            <div class="row">
+
+                                <div class="col-lg-12">
+                                    <legend>
+                                        <i class="fa fa-user"></i> @ViewBag.Lang.User
+                                    </legend>
+                                </div>
+
+                                <div class="col-xs-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="form_compte">@ViewBag.Lang.Login :</label>
+                                        <input class="form-control" type="text" id="form_compte" name="compte" placeholder="@ViewBag.Lang.Login .*" required />
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="form_nom_utilisateur">@ViewBag.Lang.Name :</label>
+                                        <input class="form-control" type="text" id="form_nom_utilisateur" name="nom_utilisateur" placeholder="@ViewBag.Lang.Name .*" required />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-4">
+
+                            <div class="row">
+
+                                <div class="col-lg-12">
+                                    <legend>
+                                        <i class="fa fa-square"></i> @ViewBag.Lang.Agency
+                                    </legend>
+                                </div>
+
+                                <div class="col-xs-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="form_id_agence">Code :</label>
+                                        <select class="form-control" name="id_agence" id="form_id_agence" onchange="$('#form_libelle_agence').val($('#form_id_agence').val());" required>
+                                            @Html.Raw(ViewBag.donnee.HTML_Select_code_agence)
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="form_libelle_agence">@ViewBag.Lang.Name :</label>
+                                        <select class="form-control" id="form_libelle_agence" onchange="$('#form_id_agence').val($('#form_libelle_agence').val());" required>
+                                            @Html.Raw(ViewBag.donnee.HTML_Select_libelle_agence)
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-4">
+
+                            <div class="row">
+
+                                <div class="col-lg-12">
+                                    <legend>
+                                        <i class="fa fa-square"></i> @ViewBag.Lang.Job
+                                    </legend>
+                                </div>
+
+                                <div class="col-xs-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="form_id_profession">Code :</label>
+                                        <select class="form-control" name="id_profession" id="form_id_profession" onchange="$('#form_libelle_profession').val($('#form_id_profession').val());" required>
+                                            @Html.Raw(ViewBag.donnee.HTML_Select_code_profession)
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="form_libelle_profession">@ViewBag.Lang.Name :</label>
+                                        <select class="form-control" id="form_libelle_profession" onchange="$('#form_id_profession').val($('#form_libelle_profession').val());" required>
+                                            @Html.Raw(ViewBag.donnee.HTML_Select_libelle_profession)
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- ./ligne -->
+
+                        <!-- ligne -->
+                        <div class="col-xs-12 col-lg-4">
+                            <div class="form-group">
+                                <label for="form_ouverture_back_date">@ViewBag.Lang.Open_back_date :</label>
+                                <select class="form-control" id="form_ouverture_back_date" name="ouverture_back_date" required>
+                                    @Html.Raw(ViewBag.donnee.HTML_Non_Oui)
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-lg-4">
+                            <div class="form-group">
+                                <label for="form_ouverture_back_date_travail">@ViewBag.Lang.Open_back_working_date :</label>
+                                <select class="form-control" id="form_ouverture_back_date_travail" name="ouverture_back_date_travail" required>
+                                    @Html.Raw(ViewBag.donnee.HTML_Non_Oui)
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-lg-4">
+                            <div class="form-group">
+                                <label for="form_ouverture_branch">@ViewBag.Lang.Open_branch :</label>
+                                <select class="form-control" id="form_ouverture_branch" name="ouverture_branch" required>
+                                    @Html.Raw(ViewBag.donnee.HTML_Non_Oui)
+                                </select>
+                            </div>
+                        </div>
+                        <!-- ./ligne -->
+
+                        <!-- ligne -->
+                        <div class="col-xs-12 col-lg-4">
+                            <div class="form-group">
+                                <label for="form_est_connecte">@ViewBag.Lang.Connection_status :</label>
+                                <select class="form-control" id="form_est_connecte" name="est_connecte" required>
+                                    @Html.Raw(ViewBag.donnee.HTML_Non_Oui)
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-lg-4">
+                            <div class="form-group">
+                                <label for="form_est_suspendu">@ViewBag.Lang.Suspended :</label>
+                                <select class="form-control" id="form_est_suspendu" name="est_suspendu" required>
+                                    @Html.Raw(ViewBag.donnee.HTML_Non_Oui)
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-lg-4">
+                            <div class="form-group">
+                                <label for="form_acces_historique_compte">@ViewBag.Lang.Employee_historical_access :</label>
+                                <select class="form-control" id="form_acces_historique_compte" name="acces_historique_compte" required>
+                                    @Html.Raw(ViewBag.donnee.HTML_Non_Oui)
+                                </select>
+                            </div>
+                        </div>
+                        <!-- ./ligne -->
+
+                        <!-- ligne -->
+                        <div class="col-lg-8">
+
+                            <div class="row">
+
+                                <!-- Libellé du fieldset -->
+                                <div class="col-lg-12">
+                                    <legend>
+                                        <i class="fa fa-lock"></i> @ViewBag.Lang.Password
+                                    </legend>
+                                </div>
+
+                                <div class="col-xs-12 col-lg-3">
+                                    <div class="form-group">
+                                        <label for="form_duree_mot_de_passe">@ViewBag.Lang.Expiration_duration :</label>
+                                        <input class="form-control" type="number" id="form_duree_mot_de_passe" name="duree_mot_de_passe" placeholder="@ViewBag.Lang.Expiration_duration .*" min="1" required />
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-lg-3">
+                                    <div class="form-group">
+                                        <label for="form_modifier_mot_de_passe">@ViewBag.Lang.Activate_edit :</label>
+                                        <select class="form-control" id="form_modifier_mot_de_passe" name="modifier_mot_de_passe" onchange="$('.gb-temp-mot_de_passe').attr('disabled', !($(this).val() === 'True'));" disabled required>
+                                            @Html.Raw(ViewBag.donnee.HTML_Oui_Non)
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-lg-3">
+                                    <div class="form-group">
+                                        <label for="form_mot_de_passe">@ViewBag.Lang.Value :</label>
+                                        <input class="form-control gb-temp-mot_de_passe" type="password" id="form_mot_de_passe" name="mot_de_passe" placeholder="@ViewBag.Lang.Value .*" required />
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-lg-3">
+                                    <div class="form-group">
+                                        <label for="form_mot_de_passe_confirm">@ViewBag.Lang.Confirm :</label>
+                                        <input class="form-control gb-temp-mot_de_passe" type="password" id="form_mot_de_passe_confirm" placeholder="@ViewBag.Lang.Confirm .*" data-parsley-equalto="#form_mot_de_passe" required />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-4">
+
+                            <div class="row">
+
+                                <!-- Libellé du fieldset -->
+                                <div class="col-lg-12">
+                                    <legend>
+                                        <i class="fa fa-lock"></i> @ViewBag.Lang.Signing_authority
+                                    </legend>
+                                </div>
+
+                                <!-- id_autorite_signature -->
+                                <input type="hidden" id="form_id_autorite_signature" name="id_autorite_signature" value="0" />
+
+                                <div class="col-xs-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="form_code_autorite_signature">Code :</label>
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button id="btn_autorite_signature_modal" class="btn btn-default" type="button">
+                                                    <i class="fa fa-pencil-square"></i>
+                                                </button>
+                                            </span>
+                                            <input class="form-control" type="text" id="form_code_autorite_signature" placeholder="@ViewBag.Lang.Search_by code .*" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="form_libelle_autorite_signature">@ViewBag.Lang.Name :</label>
+                                        <input class="form-control" type="text" id="form_libelle_autorite_signature" placeholder="@ViewBag.Lang.Search_by @((ViewBag.Lang.Name as string).ToLower()) .*" />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- .ligne -->
+
+                        <!-- ligne -->
+                        <div class="col-lg-12">
+                            <legend>
+                                <i class="fa fa-list"></i> Table
+                            </legend>
+                        </div>
+                        <!-- ./ligne -->
+
+                    </div>
+
+                </form>
+                
                 <!-- Table des données -->
                 <table id="table-donnee" class="table table-condensed jambo_table bulk_action dt-responsive nowrap" cellspacing="0" width="100%;">
 

@@ -13,7 +13,9 @@ namespace GB.Models.DAO
         long id_utilisateur { get; set; }
         string form_combo_id { get; }
         string form_combo_libelle { get; }
+        string form_name { get; }
+        string form_combo_code { get; }
 
-        void HTML_Select(ref string select_code, ref string select_libelle);
+        dynamic HTML_Select();
     }
 }

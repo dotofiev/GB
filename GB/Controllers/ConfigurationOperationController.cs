@@ -180,7 +180,7 @@ namespace GB.Controllers
                                 col_4 = GBToString.PeriodiciteDePret(val.periodicite),
                                 col_5 = val.periode_debut,
                                 col_6 = val.periode_fin,
-                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -198,7 +198,7 @@ namespace GB.Controllers
                                 col_1 = GBClass.HTML_Checkbox_Table(val.id, "motifPret"),
                                 col_2 = val.code,
                                 col_3 = val.libelle,
-                                col_4 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_4 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -221,7 +221,7 @@ namespace GB.Controllers
                                 col_6 = $"{val.pourcentage} %",
                                 col_7 = GBToString.FormuleClassificationProvisionsPret(val.formule),
                                 col_8 = GBToString.TypeClassificationProvisionsPret(val.type),
-                                col_9 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_9 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -243,7 +243,7 @@ namespace GB.Controllers
                                 col_5 = GBToString.NatureTypeGarantie(val.nature),
                                 col_6 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_7 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_8 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_8 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -262,7 +262,7 @@ namespace GB.Controllers
                                 col_2 = val.code,
                                 col_3 = val.libelle,
                                 col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
-                                col_5 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_5 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -281,7 +281,7 @@ namespace GB.Controllers
                                 col_2 = val.code,
                                 col_3 = val.libelle,
                                 col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
-                                col_5 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_5 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -300,7 +300,7 @@ namespace GB.Controllers
                                 col_2 = val.code,
                                 col_3 = val.libelle,
                                 col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
-                                col_5 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_5 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -319,7 +319,7 @@ namespace GB.Controllers
                                 col_1 = GBClass.HTML_Checkbox_Table(val.id, "westernUnionZonePays"),
                                 col_2 = val.pays.libelle,
                                 col_3 = val.zone,
-                                col_4 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_4 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -375,7 +375,7 @@ namespace GB.Controllers
 
         // -- Selectionner un nouvel enregistrement dans la liste -- //
         [HttpPost]
-        public ActionResult Selection_Enregistrement(string code, long id, string id_page)
+        public ActionResult Selection_Enregistrement(string code, long? id, string id_page)
         {
             try
             {
@@ -561,7 +561,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = WesternUnionZonePaysDAO.Object(id);
+                    var obj = WesternUnionZonePaysDAO.Object(id?? 0);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -675,7 +675,7 @@ namespace GB.Controllers
                 #endregion
 
                 #region ConfigurationOperation-LocalisationActif
-                if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
                 {
                     // -- Service d'enregistrement -- //
                     localisationActifDAO.Ajouter(GBConvert.JSON_To<LocalisationActif>(obj));
@@ -978,6 +978,43 @@ namespace GB.Controllers
                                 }
                             );
                         }
+                    }
+                    #endregion
+                }
+                #endregion
+            }
+            #region catch & finally
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return GBConvert.To_JSONString(donnee);
+        }
+
+        // -- Recharger les données dans le auto complete -- //
+        public override object Recharger_EasyAutocomplete(string id_page, string id_vue)
+        {
+            List<object> donnee = new List<object>();
+
+            try
+            {
+                #region ConfigurationOperation-WesternUnionZonePays
+                if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+                {
+                    // -- Si la vue n'est pas retourné -- //
+                    #region pays
+                    if (id_vue == "pays")
+                    {
+                        // -- Mise à jour de la liste en session -- //
+                        this.con.donnee.pays = PaysDAO.Lister();
                     }
                     #endregion
                 }

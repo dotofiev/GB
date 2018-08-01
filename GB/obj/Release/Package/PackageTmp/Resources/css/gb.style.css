@@ -1,0 +1,536 @@
+/* ********** Container Style ************** */
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.pt-10 {
+    padding-top: 10px;
+}
+
+.pb-10 {
+    padding-bottom: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.pt-20 {
+    padding-top: 20px;
+}
+
+.pb-20 {
+    padding-bottom: 20px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.pt-30 {
+    padding-top: 30px;
+}
+
+.pb-30 {
+    padding-bottom: 30px;
+}
+
+.pb-100 {
+    padding-bottom: 100px;
+}
+
+.pt-100 {
+    padding-top: 100px;
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.pt-40 {
+    padding-top: 40px;
+}
+
+.pb-40 {
+    padding-bottom: 40px;
+}
+
+.mt-50 {
+    margin-top: 50px;
+}
+
+.mb-50 {
+    margin-bottom: 50px;
+}
+
+.pt-50 {
+    padding-top: 50px;
+}
+
+.pb-50 {
+    padding-bottom: 50px;
+}
+
+.mt-60 {
+    margin-top: 60px;
+}
+
+.mb-60 {
+    margin-bottom: 60px;
+}
+
+.pt-60 {
+    padding-top: 60px;
+}
+
+.pb-60 {
+    padding-bottom: 60px;
+}
+
+.pr-10 {
+    padding-right: 10%;
+}
+
+.pr-15 {
+    padding-right: 15px;
+}
+
+.pl-10 {
+    padding-left: 10%;
+}
+
+.pl-15 {
+    padding-left: 15px;
+}
+
+
+/********** Delay de passage des annimations ********/
+.delay0 {
+    animation-delay: 0s;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.delay1 {
+    animation-delay: 0.2s;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.delay2 {
+    animation-delay: 0.7s;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.delay3 {
+    animation-delay: 1.2s;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.delay4 {
+    animation-delay: 1.7s;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.delay5 {
+    animation-delay: 2.2s;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.delay6 {
+    animation-delay: 2.7s;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.delay7 {
+    animation-delay: 3.2s;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.delay8 {
+    animation-delay: 3.7s;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.delay9 {
+    animation-delay: 4.2s;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.delay10 {
+    animation-delay: 4.7s;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.delay11 {
+    animation-delay: 5.2s;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.delay12 {
+    animation-delay: 5.7s;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+
+.delay0-1 {
+    animation-delay: 0s;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+}
+
+.delay1-1 {
+    animation-delay: 0.25s;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+}
+
+.delay2-1 {
+    animation-delay: 0.5s;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+}
+
+.delay3-1 {
+    animation-delay: 0.75s;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+}
+
+.delay4-1 {
+    animation-delay: 1s;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+}
+
+.delay5-1 {
+    animation-delay: 1.25s;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+}
+
+.delay6-1 {
+    animation-delay: 1.5s;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+}
+
+.delay7-1 {
+    animation-delay: 1.75s;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+}
+
+.delay8-1 {
+    animation-delay: 2s;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+}
+
+.delay9-1 {
+    animation-delay: 2.25s;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+}
+
+.delay10-1 {
+    animation-delay: 2.5s;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+}
+
+.delay11-1 {
+    animation-delay: 2.75s;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+}
+
+.delay12-1 {
+    animation-delay: 3s;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+}
+
+
+/********* Texte en gras *********/
+.gbtext-bold{
+    font-weight:bold;
+}
+.itext-italic{
+    font-style:italic;
+}
+
+/******** xPanel redefini *******/
+.iX_panel {
+    position: relative;
+    width: 100%;
+    /*margin-bottom: 10px;*/
+    padding: 5px 17px;
+    display: inline-block;
+    background: #F7F7F7;
+    border: 1px solid #E6E9ED;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    column-break-inside: avoid;
+    opacity: 1;
+    transition: all .2s ease
+}
+
+/**** Retirer le caractère arrondi des boutons****/
+.ibtn {
+    border-radius:0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+}
+
+/******* Retirer les bordures *******/
+.ibtn-default {
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.00);
+    border-color: rgba(255, 255, 255, 0.00);
+}
+
+.ibtn-module-hover:active {
+    color: #fff;
+    background-color: #2a3f54;
+    border-color: #2a3f54;
+}
+
+.btn-ism {
+    padding: 1px 1px;
+}
+
+
+/********* Mise à jour de la police de caractère **********/
+@font-face {
+  font-family: Titilium web;
+  src: url('../fonts/titillium_web/woff/titilliumweb-regular-webfont.woff2') format('woff2'), url(../fonts/titillium_web/woff/titilliumweb-regular-webfont.woff) format('woff'),
+      url('../fonts/titillium_web/woff/titilliumweb-black-webfont.woff2') format('woff2'), url(../fonts/titillium_web/woff/titilliumweb-black-webfont.woff) format('woff'),
+      url('../fonts/titillium_web/woff/titilliumweb-bold-webfont.woff2') format('woff2'), url(../fonts/titillium_web/woff/titilliumweb-bold-webfont.woff) format('woff'),
+      url('../fonts/titillium_web/woff/titilliumweb-bolditalic-webfont.woff2') format('woff2'), url(../fonts/titillium_web/woff/titilliumweb-bolditalic-webfont.woff) format('woff'),
+      url('../fonts/titillium_web/woff/titilliumweb-extralight-webfont.woff2') format('woff2'), url(../fonts/titillium_web/woff/titilliumweb-extralight-webfont.woff) format('woff'),
+      url('../fonts/titillium_web/woff/titilliumweb-extralightitalic-webfont.woff2') format('woff2'), url(../fonts/titillium_web/woff/titilliumweb-extralightitalic-webfont.woff) format('woff'),
+      url('../fonts/titillium_web/woff/titilliumweb-italic-webfont.woff2') format('woff2'), url(../fonts/titillium_web/woff/titilliumweb-italic-webfont.woff) format('woff'),
+      url('../fonts/titillium_web/woff/titilliumweb-light-webfont.woff2') format('woff2'), url(../fonts/titillium_web/woff/titilliumweb-light-webfont.woff) format('woff'),
+      url('../fonts/titillium_web/woff/titilliumweb-lightitalic-webfont.woff2') format('woff2'), url(../fonts/titillium_web/woff/titilliumweb-lightitalic-webfont.woff) format('woff'),
+      url('../fonts/titillium_web/woff/titilliumweb-semibold-webfont.woff2') format('woff2'), url(../fonts/titillium_web/woff/titilliumweb-semibold-webfont.woff) format('woff'),
+      url('../fonts/titillium_web/woff/titilliumweb-semibolditalic-webfont.woff2') format('woff2'), url(../fonts/titillium_web/woff/titilliumweb-semibolditalic-webfont.woff) format('woff');
+}
+
+body {
+    font-family: Titilium web;
+}
+
+/**** Retirer la largeur gauche sur le top nav ****/
+.itop_nav{
+    display: block;
+    margin-left: 0px;
+}
+
+/***** Panel d'afficharge ******/
+.ipanel-msg-cookiees {
+    background-color: #ffebe8;
+    border: 1px solid #dd3c10;
+    border-top-color: rgb(221, 60, 16);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: rgb(221, 60, 16);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: rgb(221, 60, 16);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: rgb(221, 60, 16);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+.ipanel-body {
+    padding: 10px;
+}
+
+.gbalert {
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.iln_solid {
+    border-top: 1px solid #e5e5e5;
+    color: #ffffff;
+    background-color: #ffffff;
+    height: 1px;
+    margin: 10px 0;
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+}
+
+/*.form-control.has-feedback-left {
+    padding-left: 50px;
+}*/
+
+.form-control:focus {
+
+    font-weight: bold;
+    background-color: rgb(250, 255, 189);
+    border-color: #73879C;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(38, 185, 154, 0.25);
+    border-width: 2px;
+
+}
+
+.x_title span {
+
+    color: #333;
+
+}
+
+.close {
+    opacity: 1;
+}
+
+.gb-table-success {
+
+    background: #26B99A;
+    color: white;
+    font-weight: bold;
+
+}
+
+tr {
+    cursor:pointer;
+}
+
+.modal {
+    z-index: 9999;
+}
+
+.site_title {
+    font-weight: bold;
+}
+
+.nav.side-menu>li>a {
+    margin-bottom: 0px;
+}
+
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px 12px;
+}
+
+legend {
+    margin-bottom: 10px;
+}
+
+.menu_section {
+    margin-bottom: 10px;
+}
+
+.gb-hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.thumbnail {
+    height: auto;
+    overflow: visible;
+    margin-bottom: 0px;
+}
+
+.gb-focus {
+    font-weight: bold;
+    background-color: rgb(250, 255, 189);
+    border-color: #73879C;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(38, 185, 154, 0.25);
+    border-width: 2px;
+}
+
+.top_nav .navbar-right {
+    width: 25%;
+}
+
+.main_container .top_nav {
+    margin-left: 0px;
+}
+
+.left_col {
+    margin-top: 56px;
+}
+
+.left_col.scroll-view {
+    margin-top: 0px;
+}
+
+.site_title {
+    color: black !important;
+}
+
+.navbar.nav_title {
+    background: #ededed;
+}
+
+.nav_title {
+    width:auto;
+}
+
+.gb-modal-enfant-1 {
+    z-index: 10000;
+}
+
+.gb-modal-enfant-2 {
+    z-index: 10000;
+}
+
+.gb-modal-enfant-3 {
+    z-index: 10000;
+}
+
+.gb-modal-enfant-4 {
+    z-index: 10000;
+}
+
+.dg-body_auth {
+    font-family: Titilium web; background-color: #F7F7F7;
+    background-image: url(../images/png/bg_grey.png);
+    background-size: 100%;
+    background-attachment: fixed;
+}

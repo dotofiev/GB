@@ -231,12 +231,46 @@ namespace GB.Models.Static
         }
 
         /// <summary>
-        /// Creation et retour des boutons de suppression et de modification à afficher dans la table 
+        /// Creation et retour d'un bouton de modification à à afficher dans la table 
         /// </summary>
-        public static string HTML_Bouton_Modifier_Suppression_Table(long id)
+        public static string HTML_Bouton_Selection_Table(long id)
         {
             return
-                HTML_Bouton_Modifier_Table(id) +
+                @"<button type=""button"" id=""table_donnee_selection_id_{id}""
+                    title=""{Lang.Select}"" 
+                    class=""btn btn-xs btn-round""
+                    onClick=""table_donnee_selection({id})"">
+                    <i class=""fa fa-check text-warning""></i>
+                </button>"
+                .Replace("{id}", id.ToString())
+                .Replace("{Lang.Select}", App_Lang.Lang.Select);
+        }
+        
+        /// <summary>
+        /// Creation et retour d'un bouton de modification à à afficher dans la table 
+        /// </summary>
+        public static string HTML_Bouton_Modifier_Table(long id, string code)
+        {
+            return
+                @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                    title=""{Lang.Update}"" 
+                    class=""btn btn-xs btn-round""
+                    onClick=""table_donnee_modifier('{code}')""
+                    data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                    <i class=""fa fa-retweet text-warning""></i>
+                </button>"
+                .Replace("{id}", id.ToString())
+                .Replace("{code}", code)
+                .Replace("{Lang.Update}", App_Lang.Lang.Update);
+        }
+
+        /// <summary>
+        /// Creation et retour des boutons de suppression et de modification à afficher dans la table 
+        /// </summary>
+        public static string HTML_Bouton_Modifier_Suppression_Table(long id, string code)
+        {
+            return
+                HTML_Bouton_Modifier_Table(id, code) +
                 HTML_Bouton_Suppression_Table(id);
         }
 

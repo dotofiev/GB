@@ -1,0 +1,18 @@
+﻿
+.parsley-errors-list {
+    padding-left: 0;
+    list-style: none;
+    color: rgba(220, 53, 69, 1);
+}
+
+.parsley-success {
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+.parsley-error {
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.parsley-required {
+    color: rgba(220, 53, 69, 1);
+}

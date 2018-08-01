@@ -784,4 +784,7 @@
   <data name="Fiscals_exercice" xml:space="preserve">
     <value>Exercices fiscal</value>
   </data>
+  <data name="Authentication_failed_5" xml:space="preserve">
+    <value>Cet utilisateur est déjà connecté, et la connexion multi poste est désactivée</value>
+  </data>
 </root>

@@ -2,6 +2,7 @@
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
+using Microsoft.AspNet.SignalR.Hubs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,10 @@ namespace GB.Models.DAO
         public string id_page { get { return GB_Enum_Menu.SecuriteUtilisateur_Utilisateur; } }
         public string context_id { get; set; }
         public long id_utilisateur { get; set; }
-        public string form_combo_id { get { return string.Empty; } }
-        public string form_combo_libelle { get { return string.Empty; } }
+        public string form_combo_id { get { return "form_id_utilisateur"; } }
+        public string form_combo_code { get { return "form_code_utilisateur"; } }
+        public string form_name { get { return "utilisateur"; } }
+        public string form_combo_libelle { get { return "form_libelle_utilisateur"; } }
 
 
         public UtilisateurDAO(string context_id, long id_utilisateur)
@@ -48,6 +51,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -114,6 +120,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -149,6 +158,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -342,9 +354,16 @@ namespace GB.Models.DAO
                     throw new GBException(App_Lang.Lang.Authentication_failed_3);
                 }
 
-                // -- Vérifier l'existance -- //
+                // -- Vérifier si l'utilisateur est déjà connecté et si dans ce cas la connexion multiple est activée -- //
+                if (applicationMainHub.Hubs_Connexion.Exists(l => l.id_utilisateur == utilisateur.id_utilisateur) && !AppSettings.CONNEXION_UTILISATEUR_MULTI_POSTE)
+                {
+                    // -- Exception -- //
+                    throw new GBException(App_Lang.Lang.Authentication_failed_5);
+                }
+
+                // -- Revoyé l'utilisateur pour l'authentification -- //
                 return
-                    Program.db.utilisateurs.FirstOrDefault(l => l.compte == compte);
+                    utilisateur;
             }
             #region Catch
             catch (Exception ex)
@@ -367,7 +386,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void HTML_Select(ref string select_code, ref string select_libelle)
+        public dynamic HTML_Select()
         {
             throw new NotImplementedException();
         }

@@ -14,8 +14,10 @@ namespace GB.Models.DAO
         public string id_page { get { return GB_Enum_Menu.ConfigurationBudget_AutoriteSignature; } }
         public string context_id { get; set; }
         public long id_utilisateur { get; set; }
-        public string form_combo_id { get { return string.Empty; } }
-        public string form_combo_libelle { get { return string.Empty; } }
+        public string form_combo_id { get { return "form_id_autorite_signature"; } }
+        public string form_combo_code { get { return "form_code_autorite_signature"; } }
+        public string form_name { get { return "autorite_signature"; } }
+        public string form_combo_libelle { get { return "form_libelle_autorite_signature"; } }
 
 
         public AutoriteSignatureDAO(string context_id, long id_utilisateur)
@@ -42,6 +44,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -96,6 +101,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -131,6 +139,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -240,7 +251,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void HTML_Select(ref string select_code, ref string select_libelle)
+        public dynamic HTML_Select()
         {
             throw new NotImplementedException();
         }

@@ -1,0 +1,17 @@
+﻿/////////////////////////////////
+//// Documentation du projet ////
+/////////////////////////////////
+
+1. Framework Log4Net
+	- Commande d'intégration : Install-Package log4net -Version 2.0.8
+
+2. Framework SignalR
+	- Commande d'intégration : Install-Package Microsoft.AspNet.SignalR -Version 2.2.3
+
+3. Object Global Cookie Javascript de l'application
+	- id_lang			: id de la langue de l'utilisateur en session.
+	- cookie_autorise	: CHoix d'autorisation d'execution des cookies sur le navigateur de l'utilisateur.
+	- id_session		: Session de l'utilisateur connecté.
+
+4. Expression de recherche pour retrouver un commentaire dans le fichier css.
+	- // -- comment -- //
