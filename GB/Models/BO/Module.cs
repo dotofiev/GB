@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Module : GBBO
+    public class Module : BO
     {
         public List<GroupeMenu> groupe_menus { get; set; }
 

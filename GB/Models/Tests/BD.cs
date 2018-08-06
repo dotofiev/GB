@@ -40,7 +40,8 @@ namespace GB.Models.Tests
         public List<TypeActif> types_actif { get; set; }
         public List<LocalisationActif> localisations_actif { get; set; }
         public List<WesternUnionZonePays> western_union_zones_pays { get; set; }
-
+        public List<Compte> comptes { get; set; }
+        
         public BD() { }
     }
 }

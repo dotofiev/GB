@@ -156,13 +156,13 @@ function getInputHtml(currentColumnIndex, settings, oldValue) {
             $.each(inputSetting.options, function (index, option) {
                 input.html = input.html + "<option value='" + option.value + "' >" + option.display + "</option>"
             });
-            input.html = input.html + "</select>&nbsp;<a href='#' class='" + confirmCss + "' onclick='$(this).updateEditableCell(this);'><i class=\"fa fa-fw fa-check\"></i> Confirmer</a> <a href='#' class='" + cancelCss + "' onclick='$(this).cancelEditableCell(this)'><i class=\"fa fa-fw fa-close\"></i> Annuler</a> ";
+            input.html = input.html + "</select>&nbsp;<a href='#' class='" + confirmCss + "' onclick='$(this).updateEditableCell(this);'><i class=\"fa fa-fw fa-check\"></i> " + $GB_DONNEE_PARAMETRES.Lang.Confirm + "</a> <a href='#' class='" + cancelCss + "' onclick='$(this).cancelEditableCell(this)'><i class=\"fa fa-fw fa-close\"></i> " + $GB_DONNEE_PARAMETRES.Lang.Cancel + "</a> ";
             input.focus = false;
             break;
         case "datepicker": //Both datepicker options work best when confirming the values
         case "datepicker-confirm":
             //jQuery(".datepick").datepicker("destroy");
-            input.html = "<input id='ejbeatycelledit' type='text' style=\"width: 100%;\" name='date' class='datepick " + inputCss + "'   value='" + oldValue + "'></input> &nbsp;<a href='#' class='" + confirmCss + "' onclick='$(this).updateEditableCell(this)'><i class=\"fa fa-fw fa-check\"></i> Confirmer</a> <a href='#' class='" + cancelCss + "' onclick='$(this).cancelEditableCell(this)'><i class=\"fa fa-fw fa-close\"></i> Annuler</a>";
+            input.html = "<input id='ejbeatycelledit' type='text' style=\"width: 100%;\" name='date' class='datepick " + inputCss + "'   value='" + oldValue + "'></input> &nbsp;<a href='#' class='" + confirmCss + "' onclick='$(this).updateEditableCell(this)'><i class=\"fa fa-fw fa-check\"></i> " + $GB_DONNEE_PARAMETRES.Lang.Confirm + "</a> <a href='#' class='" + cancelCss + "' onclick='$(this).cancelEditableCell(this)'><i class=\"fa fa-fw fa-close\"></i> " + $GB_DONNEE_PARAMETRES.Lang.Cancel + "</a>";
             setTimeout(
                 function () {
                     // -- Set timeout to allow the script to write the input.html before triggering the datepicker 
@@ -173,10 +173,10 @@ function getInputHtml(currentColumnIndex, settings, oldValue) {
             );
             break;
         case "text-confirm": // text input w/ confirm
-            input.html = "<input id='ejbeatycelledit' style=\"width: 100%;\" class='" + inputCss + "' value='" + oldValue + "'></input>&nbsp;<a href='#' class='" + confirmCss + "' onclick='$(this).updateEditableCell(this)'>Confirm</a> <a href='#' class='" + cancelCss + "' onclick='$(this).cancelEditableCell(this)'>Cancel</a> ";
+            input.html = "<input id='ejbeatycelledit' style=\"width: 100%;\" class='" + inputCss + "' value='" + oldValue + "'></input>&nbsp;<a href='#' class='" + confirmCss + "' onclick='$(this).updateEditableCell(this)'>" + $GB_DONNEE_PARAMETRES.Lang.Confirm + "</a> <a href='#' class='" + cancelCss + "' onclick='$(this).cancelEditableCell(this)'>" + $GB_DONNEE_PARAMETRES.Lang.Cancel + "</a> ";
             break;
         case "undefined-confirm": // text input w/ confirm
-            input.html = "<input id='ejbeatycelledit' style=\"width: 100%;\" class='" + inputCss + "' value='" + oldValue + "'></input>&nbsp;<a href='#' class='" + confirmCss + "' onclick='$(this).updateEditableCell(this)'>Confirm</a> <a href='#' class='" + cancelCss + "' onclick='$(this).cancelEditableCell(this)'>Cancel</a> ";
+            input.html = "<input id='ejbeatycelledit' style=\"width: 100%;\" class='" + inputCss + "' value='" + oldValue + "'></input>&nbsp;<a href='#' class='" + confirmCss + "' onclick='$(this).updateEditableCell(this)'>" + $GB_DONNEE_PARAMETRES.Lang.Confirm + "</a> <a href='#' class='" + cancelCss + "' onclick='$(this).cancelEditableCell(this)'>" + $GB_DONNEE_PARAMETRES.Lang.Cancel + "</a> ";
             break;
         default: // text input
             input.html = "<input id='ejbeatycelledit' style=\"width: 100%;\" class='" + inputCss + "' onfocusout='$(this).updateEditableCell(this)' value='" + oldValue + "'></input>";

@@ -7,7 +7,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Profession : GBBO
+    public class Profession : BO
     {
         public Profession(long id)
         {

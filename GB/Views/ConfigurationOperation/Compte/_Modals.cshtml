@@ -1,0 +1,115 @@
+﻿
+<!-- form 1 -->
+<div class="modal fade bs-example-modal-lg" id="modal_form" role="alert" data-backdrop="static" data-keyboard="false">
+    
+    <div class="modal-dialog modal-lg">
+        
+        <div class="modal-content">
+            
+            <div class="modal-body">
+
+                <!-- Header -->
+                <p style="font-weight: bold; font-size: 18px;">
+                    <!-- Title -->
+                    <span id="modal_form_titre">
+                        <i class="glyphicon glyphicon-info-sign text-info"></i> @ViewBag.Lang.Form
+                    </span>
+                    <!-- Close bouton -->
+                    <button type="button" class="close float-right" data-dismiss="modal" aria-hidden="true" style="font-weight: bold;">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </p>
+
+                <!-- Body -->
+                <div id="modal_form">
+
+                    <form method="post" id="form_generation" name="form_generation" data-parsley-validate>
+
+                        <div class="row">
+
+                            <!-- ligne -->
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <label for="form_generationnumero_compte">@ViewBag.Lang.Account_number :</label>
+                                    <input class="form-control" type="number" id="form_generationnumero_compte" name="numero_compte" pattern=".{2,}" title="@ViewBag.Lang.Length_string_min_2" maxlength="10" required />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 
+                                        col-md-offset-6 col-lg-offset-6">
+                                <div style="padding-bottom: 25px;" class="hidden-xs"></div>
+                                <button class="btn btn-default btn-default pull-right" id="btn-generation" type="submit" form="form_generation"
+                                        data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> @ViewBag.Lang.Process ...">
+                                    <i class="fa fa-check"></i> @ViewBag.Lang.Generate
+                                </button>
+                            </div>
+                            <!-- ./ligne -->
+
+                            <!-- ligne -->
+                            <div class="col-lg-12">
+                                <legend>
+                                    <i class="fa fa-list"></i> Table
+                                </legend>
+                            </div>
+                            <!-- ./ligne -->
+
+                        </div>
+
+                    </form>
+
+                    <!-- Table des données -->
+                    <table id="table-nouveau_compte-donnee" class="table table-condensed jambo_table bulk_action dt-responsive nowrap" cellspacing="0" width="100%;">
+
+                        <thead class="headings">
+                            <tr>
+                                <th class="column-title hidden">Id</th>
+                                @*
+                                <th width="20px">
+                                    <input type="checkbox" id="check-nouveau_compte-all" class="flat">
+                                </th>
+                                *@
+                                <th class="column-title">Code</th>
+                                <th class="column-title"><i class="fa fa-pencil"></i> @ViewBag.Lang.Name</th>
+                                <th class="column-title"><i class="fa fa-pencil"></i> @ViewBag.Lang.Key</th>
+                                <th class="column-title"><i class="fa fa-pencil"></i> Nature</th>
+                                <th class="column-title"><i class="fa fa-pencil"></i> @ViewBag.Lang.Status</th>
+                                <th class="column-title last" width="50px">Action</th>
+                                <th class="bulk-actions" colspan="7">
+                                    <a class="antoo" style="color:#fff; font-weight:500;">
+                                        Selection(s) ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i>
+                                    </a>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody></tbody>
+
+                    </table>
+
+                </div>
+
+                <!--Alert Message -->
+                <div id="gbAlert"></div>
+
+            </div>
+
+            <div class="modal-footer">
+                
+                <!-- Bouton de fermiture du modal -->
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">
+                    <i class="glyphicon glyphicon-remove"></i> @ViewBag.Lang.Close
+                </button>
+                
+                <!-- Bouton d'enregistrement du formulaire -->
+                <button class="btn btn-default btn-success pull-right" id="btn-sauvegarder" type="button"
+                        data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> @ViewBag.Lang.Process ...">
+                    <i class="fa fa-check"></i> @ViewBag.Lang.Generate
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

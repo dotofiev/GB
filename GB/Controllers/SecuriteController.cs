@@ -2,6 +2,7 @@
 using GB.Models.ActionFilter;
 using GB.Models.BO;
 using GB.Models.DAO;
+using GB.Models.GB;
 using GB.Models.Static;
 using GB.Models.Tests;
 using Newtonsoft.Json;
@@ -16,13 +17,6 @@ namespace GB.Controllers
     [AuthentificationRequis]
     public class SecuriteController : GBController
     {
-        #region Variables
-        public RoleDAO roleDAO { get { return new RoleDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public MenuDAO menuDAO { get { return new MenuDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ModuleDAO moduleDAO { get { return new ModuleDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public AutorisationDAO autorisationDAO { get { return new AutorisationDAO(this.con.hub_id_context, this.con.id_utilisateur); } }        
-        #endregion
-
         #region HttpGet
         [HttpGet]
         public ActionResult Module()
@@ -108,7 +102,7 @@ namespace GB.Controllers
                 #region Securite-Role
                 else if (id_page == GB_Enum_Menu.Securite_Role)
                 {
-                    // -- Si la vue n'est pas soumies -- //
+                    // -- Si la vue n'est pas soumise -- //
                     if (string.IsNullOrEmpty(id_vue))
                     {
                         foreach (var val in RoleDAO.Lister())

@@ -6,10 +6,8 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public abstract class GBBO
+    public abstract class BO
     {
-        // -- Privé -- //
-        
         // -- Public -- //
         public long id { get; set; } 
         public string code { get; set; }

@@ -45,6 +45,7 @@ namespace GB.Models.Static
         public static string ConfigurationOperation_TypeActif = "ConfigurationOperation-TypeActif";
         public static string ConfigurationOperation_LocalisationActif = "ConfigurationOperation-LocalisationActif";
         public static string ConfigurationOperation_WesternUnionZonePays = "ConfigurationOperation-WesternUnionZonePays";
+        public static string ConfigurationOperation_Compte = "ConfigurationOperation-Compte";
     }
 
     public enum GB_Enum_Action_Controller

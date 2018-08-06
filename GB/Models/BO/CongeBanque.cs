@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class CongeBanque : GBBO
+    public class CongeBanque : BO
     {
         public int jour { get; set; }
         public int mois { get; set; }
@@ -27,6 +27,17 @@ namespace GB.Models.BO
         public override void Crer_Id()
         {
             this.id = Program.db.conges_banque.Count + 1;
+        }
+
+        public static List<string> Classes_references
+        {
+            get
+            {
+                return
+                    new List<string>() {
+                        typeof(Utilisateur).Name,
+                    };
+            }
         }
     }
 }

@@ -534,3 +534,7 @@ legend {
     background-size: 100%;
     background-attachment: fixed;
 }
+
+.gb-color-black {
+    color: black;
+}

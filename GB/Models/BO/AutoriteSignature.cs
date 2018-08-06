@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class AutoriteSignature : GBBO
+    public class AutoriteSignature : BO
     {
         public long montant_signature { get; set; }
         public long limite_decouvert_client { get; set; }

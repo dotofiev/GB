@@ -2,6 +2,7 @@
 using GB.Models.ActionFilter;
 using GB.Models.BO;
 using GB.Models.DAO;
+using GB.Models.GB;
 using GB.Models.Static;
 using GB.Models.Tests;
 using Newtonsoft.Json;
@@ -16,12 +17,6 @@ namespace GB.Controllers
     [AuthentificationRequis]
     public class SecuriteUtilisateurController : GBController
     {
-        #region Variables
-        public AgenceDAO agenceDAO { get { return new AgenceDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public UtilisateurDAO utilisateurDAO { get { return new UtilisateurDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ProfessionDAO professionDAO { get { return new ProfessionDAO(this.con.hub_id_context, this.con.id_utilisateur); } }        
-        #endregion
-
         #region HttpGet
         [HttpGet]
         public ActionResult Utilisateur()

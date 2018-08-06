@@ -226,7 +226,9 @@ function gbRechargerTable(frame, id_check_all, id_table, fonction_execution) {
             // -- Selectionner une ligne de la table -- //
             gbTableSelectionLigne(null, id_table);
             // -- Désactiver le multiselect -- //
-            $('#' + id_check_all).iCheck('uncheck');
+            if (id_check_all != undefined && id_check_all != null) {
+                $('#' + id_check_all).iCheck('uncheck');
+            }
             $('#' + id_table + ' .column-title').show();
             $('#' + id_table + ' .bulk-actions').hide();
             // -- Executer la fonction à la fin du chargement de la table si celle ci est soumise -- //

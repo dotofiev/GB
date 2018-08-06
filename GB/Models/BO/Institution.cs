@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.GB;
 using GB.Models.Static;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Institution : GBBO
+    public class Institution : BO
     {
         public string motto { get; set; }
         public string pub { get; set; }

@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.GB;
 using GB.Models.Static;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Agence : GBBO
+    public class Agence : BO
     {
         public long id_utilisateur { get; set; }
         public Utilisateur utilisateur { get; set; }
@@ -32,6 +33,17 @@ namespace GB.Models.BO
         public override void Crer_Id()
         {
             this.id = Tests.Program.db.agences.Count + 1;
+        }
+
+        public static List<string> Classes_references
+        {
+            get
+            {
+                return
+                    new List<string>() {
+                        typeof(Utilisateur).Name
+                    };
+            }
         }
     }
 }

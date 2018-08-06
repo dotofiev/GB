@@ -2,6 +2,7 @@
 using GB.Models;
 using GB.Models.ActionFilter;
 using GB.Models.BO;
+using GB.Models.GB;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -20,7 +21,7 @@ namespace GB
     public class MvcApplication : System.Web.HttpApplication
     {
         #region Variables
-        public Connexion con { get { return Session["Connexion"] as Connexion; } set { Session["Connexion"] = value; } }
+        public GBConnexion con { get { return Session["Connexion"] as GBConnexion; } set { Session["Connexion"] = value; } }
         public int id_lang { get { if (Session["id_lang"] == null) { return 0; } else { return (int)Session["id_lang"]; } } set { Session["id_lang"] = value; } }
         public string id_navigateur_client_cookies { get { return this.Request?.Cookies?["id_navigateur_client"]?.Value ?? string.Empty; } set { this.Response.Cookies["id_navigateur_client"].Value = value; } }
         public int id_lang_cookies { get { return Convert.ToInt32(this.Request?.Cookies?["id_lang"]?.Value ?? "0"); } set { this.Response.Cookies["id_lang"].Value = value.ToString(); } }
@@ -40,7 +41,7 @@ namespace GB
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             // -- Initialisation des hubs de connexion -- //
-            Application.Add("Hubs_Connexion", new List<Connexion>());
+            Application.Add("Hubs_Connexion", new List<GBConnexion>());
 
             // -- Autoriser la configuration de log4net -- //
             log4net.Config.XmlConfigurator.Configure();
@@ -84,7 +85,7 @@ namespace GB
             #endregion
 
             // -- Initialise une nouvelle session -- //
-            this.con = new Connexion(this.Session.SessionID, id_navigateur_client_cookies);
+            this.con = new GBConnexion(this.Session.SessionID, id_navigateur_client_cookies);
 
             // -- Mise à jour de l'utilisateur dans le hub -- //
             if(applicationMainHub.Hubs_Connexion.Exists(l => l.id_navigateur_client == id_navigateur_client_cookies))

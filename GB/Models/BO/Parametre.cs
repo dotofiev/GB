@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Parametre : GBBO
+    public class Parametre : BO
     {
         public int nombre_ligne_historique_compte { get; set; }
         public bool utilisation_chequier { get; set; }

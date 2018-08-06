@@ -462,6 +462,32 @@
       "id_controller": "5"
     },
     // -- ./Enfants -- //
+    
+
+    // ------------ //
+    // -- Parent -- //
+    // ------------ //
+    {
+      "id": "40",
+      "code": "40",
+      "id_groupe_menu": "5",
+      "libelle_en": "Accounts parameters",
+      "libelle_fr": "Paramètres compte",
+      "view": "",
+      "id_controller": "5"
+    },
+    // -- Enfants -- //
+    {
+      "id": "41",
+      "code": "41",
+      "id_menu_parent": "40",
+      "id_groupe_menu": "5",
+      "libelle_en": "Create account",
+      "libelle_fr": "Création des comptes",
+      "view": "Compte",
+      "id_controller": "5"
+    },
+    // -- ./Enfants -- //
   ],
   "roles": [
     {
@@ -905,6 +931,26 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "78",
+      "id_role": "1",
+      "id_menu": "40",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "79",
+      "id_role": "1",
+      "id_menu": "41",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
 
 
     // -- Role 2 -- //
@@ -1292,6 +1338,26 @@
       "id": "77",
       "id_role": "2",
       "id_menu": "39",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "80",
+      "id_role": "2",
+      "id_menu": "40",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "81",
+      "id_role": "2",
+      "id_menu": "41",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -1831,6 +1897,74 @@
       "zone": "NATIONAL"
     }
   ],
+  "comptes": [
+    {
+      "id": "2",
+      "id_devise": "1",
+      "id_utilisateur": "1",
+      "code": "10",
+      "libelle": "Capital",
+      "nature": "",
+      "statut": "",
+      "cle": "",
+      "date_creation": "636670881645418146",
+    },
+    {
+      "id": "3",
+      "id_devise": "1",
+      "id_utilisateur": "1",
+      "code": "101",
+      "libelle": "Shared capital",
+      "nature": "",
+      "statut": "",
+      "cle": "",
+      "date_creation": "636670881645418146",
+    },
+    {
+      "id": "4",
+      "id_devise": "1",
+      "id_utilisateur": "1",
+      "code": "1010",
+      "libelle": "Shared capital",
+      "nature": "",
+      "statut": "",
+      "cle": "",
+      "date_creation": "636670881645418146",
+    },
+    {
+      "id": "5",
+      "id_devise": "1",
+      "id_utilisateur": "1",
+      "code": "10100",
+      "libelle": "Shared capital",
+      "nature": "",
+      "statut": "",
+      "cle": "",
+      "date_creation": "636670881645418146",
+    },
+    {
+      "id": "6",
+      "id_devise": "1",
+      "id_utilisateur": "1",
+      "code": "101000",
+      "libelle": "Shared capital",
+      "nature": "",
+      "statut": "",
+      "cle": "",
+      "date_creation": "636670881645418146",
+    },
+    {
+      "id": "10",
+      "id_devise": "1",
+      "id_utilisateur": "1",
+      "code": "1010000000",
+      "libelle": "Shared capital",
+      "nature": "Debit",
+      "statut": "Open",
+      "cle": "A",
+      "date_creation": "636670881645418146",
+    }
+  ]
   //"western_union_zones_commissions": [
   //  {
   //    "id": "1",

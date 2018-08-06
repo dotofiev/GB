@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class ClassificationProvisionsPret : GBBO
+    public class ClassificationProvisionsPret : BO
     {
         public int nombre_jour_debut { get; set; }
         public int nombre_jour_fin { get; set; }

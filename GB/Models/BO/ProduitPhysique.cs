@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class ProduitPhysique : GBBO
+    public class ProduitPhysique : BO
     {
         public string type { get; set; }
 

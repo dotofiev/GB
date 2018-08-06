@@ -9,22 +9,28 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class BEACNationalite : BO
+    public class Compte : BO
     {
-        public long date_creation { get; set; }
+        public string numero_compte { get; set; }
+        public string nature { get; set; }
+        public string statut { get; set; }
+        public string cle { get; set; }
+        public long id_devise { get; set; }
+        public Devise devise { get; set; }
         public long id_utilisateur { get; set; }
         public Utilisateur utilisateur_createur { get; set; }
+        public long date_creation { get; set; }
 
-        public BEACNationalite(long id)
+        public Compte(long id)
         {
             this.id = id;
         }
 
-        public BEACNationalite() { }
+        public Compte() { }
 
         public override void Crer_Id()
         {
-            this.id = Program.db.nationalites_beac.Count + 1;
+            this.id = Program.db.comptes.Count + 1;
         }
 
         public static List<string> Classes_references
@@ -34,6 +40,7 @@ namespace GB.Models.BO
                 return
                     new List<string>() {
                         typeof(Utilisateur).Name,
+                        typeof(Devise).Name,
                     };
             }
         }

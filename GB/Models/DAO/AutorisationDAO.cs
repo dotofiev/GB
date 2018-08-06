@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.GB;
 using GB.Models.Static;
 using GB.Models.Tests;
 using System;
@@ -8,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class AutorisationDAO : GBDAO
+    public class AutorisationDAO : DAO
     {
         public string id_page { get { return string.Empty; } }
         public string context_id { get; set; }

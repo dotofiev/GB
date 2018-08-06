@@ -2,6 +2,7 @@
 using GB.Models.ActionFilter;
 using GB.Models.BO;
 using GB.Models.DAO;
+using GB.Models.GB;
 using GB.Models.Static;
 using GB.Models.Tests;
 using Newtonsoft.Json;
@@ -16,23 +17,6 @@ namespace GB.Controllers
     [AuthentificationRequis]
     public class ConfigurationBanqueController : GBController
     {
-        #region Variables
-        public PaysDAO paysDAO { get { return new PaysDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public InstitutionDAO institutionDAO { get { return new InstitutionDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public AgenceDAO agenceDAO { get { return new AgenceDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public DeviseDAO deviseDAO { get { return new DeviseDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ParametreBanqueDAO parametreBancaireDAO { get { return new ParametreBanqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ProduitPhysiqueDAO produitPhysiqueDAO { get { return new ProduitPhysiqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ProduitJudiciaireDAO produitJudiciaireDAO { get { return new ProduitJudiciaireDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public VilleDAO villeDAO { get { return new VilleDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ActiviteEconomiqueDAO activiteEconomiqueDAO { get { return new ActiviteEconomiqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public TitreDAO titreDAO { get { return new TitreDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public UniteInstitutionnelleDAO uniteInstitutionnelleDAO { get { return new UniteInstitutionnelleDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public BEACNationaliteDAO bEACNationaliteDAO { get { return new BEACNationaliteDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public CongeBanqueDAO congeBanqueDAO { get { return new CongeBanqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ParametreDAO parametreDAO { get { return new ParametreDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        #endregion
-
         #region HttpGet
         [HttpGet]
         public ActionResult Institution()
@@ -1845,8 +1829,9 @@ namespace GB.Controllers
                 // -- Données -- //
                 #region Données
                 #region HTML_Select_devise
-                this.ViewBag.donnee.HTML_Select_code_devise = DeviseDAO.HTML_Select("code");
-                this.ViewBag.donnee.HTML_Select_libelle_devise = DeviseDAO.HTML_Select("libelle");
+                dynamic donnee = deviseDAO.HTML_Select();
+                this.ViewBag.donnee.HTML_Select_code_devise = donnee.html_code;
+                this.ViewBag.donnee.HTML_Select_libelle_devise = donnee.html_libelle;
                 #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new

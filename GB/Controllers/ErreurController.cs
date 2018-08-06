@@ -1,5 +1,6 @@
 ﻿using GB.Models;
 using GB.Models.BO;
+using GB.Models.GB;
 using GB.Models.Helper;
 using GB.Models.Static;
 using System;

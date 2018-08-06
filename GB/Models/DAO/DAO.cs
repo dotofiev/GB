@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GB.Models.DAO
 {
-    public interface GBDAO
+    public interface DAO
     {
         string id_page { get; }
         string context_id { get; set; }

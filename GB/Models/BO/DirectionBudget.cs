@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class DirectionBudget : GBBO
+    public class DirectionBudget : BO
     {
         public string chef { get; set; }
         public string telephone { get; set; }
@@ -27,6 +27,17 @@ namespace GB.Models.BO
         public override void Crer_Id()
         {
             this.id = Program.db.direction_dudget.Count + 1;
+        }
+
+        public static List<string> Classes_references
+        {
+            get
+            {
+                return
+                    new List<string>() {
+                        typeof(ExerciceFiscal).Name,
+                    };
+            }
         }
     }
 }

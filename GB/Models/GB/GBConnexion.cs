@@ -1,13 +1,14 @@
-﻿using GB.Models.Static;
+﻿using GB.Models.BO;
+using GB.Models.Static;
 using GB.Models.Tests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GB.Models.BO
+namespace GB.Models.GB
 {
-    public class Connexion
+    public class GBConnexion
     {
         // -- Privé -- //
         private DateTime _date_connexion { get; set; }
@@ -36,7 +37,7 @@ namespace GB.Models.BO
         public dynamic donnee { get { return _donnee; } }
 
         // -- Constructeur -- //
-        public Connexion(string session_id, string id_navigateur_client)
+        public GBConnexion(string session_id, string id_navigateur_client)
         {
             this._date_connexion = DateTime.Now;
             this._session_id = session_id;

@@ -2,6 +2,7 @@
 using GB.Models.ActionFilter;
 using GB.Models.BO;
 using GB.Models.DAO;
+using GB.Models.GB;
 using GB.Models.Static;
 using GB.Models.Tests;
 using Newtonsoft.Json;
@@ -16,12 +17,6 @@ namespace GB.Controllers
     [AuthentificationRequis]
     public class ConfigurationBudgetController : GBController
     {
-        #region Variables
-        public ExerciceFiscalDAO exerciceFiscalDAO { get { return new ExerciceFiscalDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public DirectionBudgetDAO directionBudgetDAO { get { return new DirectionBudgetDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public AutoriteSignatureDAO autoriteSignatureDAO { get { return new AutoriteSignatureDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        #endregion
-
         #region HttpGet
         [HttpGet]
         public ActionResult ExerciceFiscal()

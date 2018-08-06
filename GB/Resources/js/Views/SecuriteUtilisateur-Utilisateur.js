@@ -403,7 +403,7 @@ $(
                                 }
                                 else {
                                     // -- Afficher une alerte sur un element -- //
-                                    gbAlert(resultat.notification, null);
+                                    gbMessage_Box(resultat.notification);
                                 }
                                 // -- Afficher le chargement -- //
                                 gbAfficher_Page_Chargement(false, btn_enregistrer.attr('id'));
@@ -412,7 +412,7 @@ $(
                                 // -- Afficher le chargement -- //
                                 gbAfficher_Page_Chargement(false, btn_enregistrer.attr('id'));
                                 // -- Afficher une alerte sur un element -- //
-                                gbAlert();
+                                gbMessage_Box();
                             }
                         });
 

@@ -1,6 +1,7 @@
 ﻿using GB.Models;
 using GB.Models.BO;
 using GB.Models.DAO;
+using GB.Models.GB;
 using GB.Models.Helper;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
@@ -17,12 +18,46 @@ namespace GB.Controllers
     public class GBController : Controller
     {
         #region Variables
-        public Connexion con { get { return Session["Connexion"] as Connexion; } set { Session["Connexion"] = value; } }
+        public GBConnexion con { get { return Session["Connexion"] as GBConnexion; } set { Session["Connexion"] = value; } }
         public int id_lang { get { if (Session["id_lang"] == null) { return 0; } else { return (int)Session["id_lang"]; } } set { Session["id_lang"] = value; } }
         public long id_menu_actif { get { if (Session["id_menu_actif"] == null) { return 0; } else { return (long)Session["id_menu_actif"]; } } set { Session["id_menu_actif"] = value; } }
         public string id_navigateur_client_cookies { get { return this.Request?.Cookies?["id_navigateur_client"]?.Value ?? string.Empty; } set { this.Response.Cookies["id_navigateur_client"].Value = value; } }
         public int id_lang_cookies { get { return Convert.ToInt32(this.Request?.Cookies?["id_lang"]?.Value ?? "0"); } set { this.Response.Cookies["id_lang"].Value = value.ToString(); } }
         public string id_session_cookies { get { return this.Request?.Cookies?["id_session"]?.Value ?? string.Empty; } set { this.Response.Cookies["id_session"].Value = value; } }
+        #region DAO
+        public PaysDAO paysDAO { get { return new PaysDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public TypePretDAO typePretDAO { get { return new TypePretDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public MotifPretDAO motifPretDAO { get { return new MotifPretDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ClassificationProvisionsPretDAO classificationProvisionsPretDAO { get { return new ClassificationProvisionsPretDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public TypeGarantieDAO typeGarantieDAO { get { return new TypeGarantieDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public JournalDAO journalDAO { get { return new JournalDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public TypeActifDAO typeActifDAO { get { return new TypeActifDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public LocalisationActifDAO localisationActifDAO { get { return new LocalisationActifDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public WesternUnionZonePaysDAO westernUnionZonePaysDAO { get { return new WesternUnionZonePaysDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public CompteDAO compteDAO { get { return new CompteDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public DeviseDAO deviseDAO { get { return new DeviseDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public InstitutionDAO institutionDAO { get { return new InstitutionDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public AgenceDAO agenceDAO { get { return new AgenceDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ParametreBanqueDAO parametreBancaireDAO { get { return new ParametreBanqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ProduitPhysiqueDAO produitPhysiqueDAO { get { return new ProduitPhysiqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ProduitJudiciaireDAO produitJudiciaireDAO { get { return new ProduitJudiciaireDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public VilleDAO villeDAO { get { return new VilleDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ActiviteEconomiqueDAO activiteEconomiqueDAO { get { return new ActiviteEconomiqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public TitreDAO titreDAO { get { return new TitreDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public UniteInstitutionnelleDAO uniteInstitutionnelleDAO { get { return new UniteInstitutionnelleDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public BEACNationaliteDAO bEACNationaliteDAO { get { return new BEACNationaliteDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public CongeBanqueDAO congeBanqueDAO { get { return new CongeBanqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ParametreDAO parametreDAO { get { return new ParametreDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ExerciceFiscalDAO exerciceFiscalDAO { get { return new ExerciceFiscalDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public DirectionBudgetDAO directionBudgetDAO { get { return new DirectionBudgetDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public AutoriteSignatureDAO autoriteSignatureDAO { get { return new AutoriteSignatureDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public RoleDAO roleDAO { get { return new RoleDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public MenuDAO menuDAO { get { return new MenuDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ModuleDAO moduleDAO { get { return new ModuleDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public AutorisationDAO autorisationDAO { get { return new AutorisationDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public UtilisateurDAO utilisateurDAO { get { return new UtilisateurDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ProfessionDAO professionDAO { get { return new ProfessionDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        #endregion
         #endregion
 
         #region URLs

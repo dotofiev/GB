@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.GB;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -9,7 +10,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class RoleDAO : GBDAO
+    public class RoleDAO : DAO
     {
         public string id_page { get { return GB_Enum_Menu.Securite_Role; } }
         public string context_id { get; set; }

@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Devise : GBBO
+    public class Devise : BO
     {
         public string signe { get; set; }
         public bool devise_actuelle { get; set; }

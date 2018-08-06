@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class TypePret : GBBO
+    public class TypePret : BO
     {
         public int periode_debut { get; set; }
         public int periode_fin { get; set; }

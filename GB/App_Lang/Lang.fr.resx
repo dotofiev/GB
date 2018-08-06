@@ -787,4 +787,46 @@
   <data name="Authentication_failed_5" xml:space="preserve">
     <value>Cet utilisateur est déjà connecté, et la connexion multi poste est désactivée</value>
   </data>
+  <data name="Account" xml:space="preserve">
+    <value>Compte</value>
+  </data>
+  <data name="Account_management" xml:space="preserve">
+    <value>Gestion des comptes</value>
+  </data>
+  <data name="Account_number" xml:space="preserve">
+    <value>Numéro de compte</value>
+  </data>
+  <data name="Both" xml:space="preserve">
+    <value>Les deux</value>
+  </data>
+  <data name="Credit" xml:space="preserve">
+    <value>Crédit</value>
+  </data>
+  <data name="Debit" xml:space="preserve">
+    <value>Débit</value>
+  </data>
+  <data name="Generate" xml:space="preserve">
+    <value>Générer</value>
+  </data>
+  <data name="Key" xml:space="preserve">
+    <value>Clé</value>
+  </data>
+  <data name="Length_string_min_2" xml:space="preserve">
+    <value>Cette chaîne est trop courte. Elle doit avoir au minimum 3 caractères.</value>
+  </data>
+  <data name="Not_required" xml:space="preserve">
+    <value>Non requis</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Ouvert</value>
+  </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="No_items_have_been_previously_created" xml:space="preserve">
+    <value>Aucun élément n'a été préalablement créé</value>
+  </data>
 </root>

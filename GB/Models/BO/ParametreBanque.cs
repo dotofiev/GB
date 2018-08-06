@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class ParametreBanque : GBBO
+    public class ParametreBanque : BO
     {
         public long id_devise { get; set; }
         public Devise devise { get; set; }
