@@ -6,7 +6,7 @@ using GB.Models.Tests;
 
 namespace GB.Models.BO
 {
-    public class ExerciceFiscal : GBBO
+    public class ExerciceFiscal : BO
     {
         public string statut { get; set; }
         public string budget_id { get; set; }

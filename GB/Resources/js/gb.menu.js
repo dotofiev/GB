@@ -49,7 +49,8 @@ $(function () {
                     url != '/ConfigurationOperation/Journal' &&
                     url != '/ConfigurationOperation/TypeActif' &&
                     url != '/ConfigurationOperation/LocalisationActif' &&
-                    url != '/ConfigurationOperation/WesternUnionZonePays') {
+                    url != '/ConfigurationOperation/WesternUnionZonePays' &&
+                    url != '/ConfigurationOperation/Compte') {
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 

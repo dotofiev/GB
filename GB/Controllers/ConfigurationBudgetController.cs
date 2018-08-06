@@ -2,6 +2,7 @@
 using GB.Models.ActionFilter;
 using GB.Models.BO;
 using GB.Models.DAO;
+using GB.Models.GB;
 using GB.Models.Static;
 using GB.Models.Tests;
 using Newtonsoft.Json;
@@ -94,7 +95,7 @@ namespace GB.Controllers
                                 col_5 = new DateTime(Convert.ToInt64(val.date_fin)).ToString(AppSettings.FORMAT_DATE),
                                 col_6 = val.statut,
                                 col_7 = val.budget_id,
-                                col_8 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_8 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -116,7 +117,7 @@ namespace GB.Controllers
                                 col_5 = val.telephone,
                                 col_6 = val.remarque,
                                 col_7 = val.exercice_fiscal?.code ?? App_Lang.Lang.Empty,
-                                col_8 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_8 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -140,7 +141,7 @@ namespace GB.Controllers
                                 col_7 = GBToString.MontantToString(val.credit_max_client),
                                 col_8 = GBToString.MontantToString(val.montant_max_ligne_credit),
                                 col_9 = GBToString.MontantToString(val.montant_limite_pret),
-                                col_10 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_10 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -339,7 +340,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationBudget_ExerciceFiscal)
                 {
                     // -- Service d'enregistrement -- //
-                    ExerciceFiscalDAO.Ajouter(GBConvert.JSON_To<ExerciceFiscal>(obj));
+                    exerciceFiscalDAO.Ajouter(GBConvert.JSON_To<ExerciceFiscal>(obj));
                 }
                 #endregion
 
@@ -347,7 +348,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_DirectionBudget)
                 {
                     // -- Service d'enregistrement -- //
-                    DirectionBudgetDAO.Ajouter(GBConvert.JSON_To<DirectionBudget>(obj));
+                    directionBudgetDAO.Ajouter(GBConvert.JSON_To<DirectionBudget>(obj));
                 }
                 #endregion
 
@@ -355,7 +356,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_AutoriteSignature)
                 {
                     // -- Service d'enregistrement -- //
-                    AutoriteSignatureDAO.Ajouter(GBConvert.JSON_To<AutoriteSignature>(obj));
+                    autoriteSignatureDAO.Ajouter(GBConvert.JSON_To<AutoriteSignature>(obj));
                 }
                 #endregion
 
@@ -409,7 +410,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationBudget_ExerciceFiscal)
                 {
                     // -- Service de modification -- //
-                    ExerciceFiscalDAO.Modifier(GBConvert.JSON_To<ExerciceFiscal>(obj));
+                    exerciceFiscalDAO.Modifier(GBConvert.JSON_To<ExerciceFiscal>(obj));
                 }
                 #endregion
 
@@ -417,7 +418,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_DirectionBudget)
                 {
                     // -- Service de modification -- //
-                    DirectionBudgetDAO.Modifier(GBConvert.JSON_To<DirectionBudget>(obj));
+                    directionBudgetDAO.Modifier(GBConvert.JSON_To<DirectionBudget>(obj));
                 }
                 #endregion
 
@@ -425,7 +426,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_AutoriteSignature)
                 {
                     // -- Service de modification -- //
-                    AutoriteSignatureDAO.Modifier(GBConvert.JSON_To<AutoriteSignature>(obj));
+                    autoriteSignatureDAO.Modifier(GBConvert.JSON_To<AutoriteSignature>(obj));
                 }
                 #endregion
 
@@ -479,7 +480,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationBudget_ExerciceFiscal)
                 {
                     // -- Service de suppression -- //
-                    ExerciceFiscalDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    exerciceFiscalDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -487,7 +488,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_DirectionBudget)
                 {
                     // -- Service de suppression -- //
-                    DirectionBudgetDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    directionBudgetDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -495,7 +496,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_AutoriteSignature)
                 {
                     // -- Service de suppression -- //
-                    AutoriteSignatureDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    autoriteSignatureDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -592,10 +593,9 @@ namespace GB.Controllers
                 // -- Données -- //
                 #region Données
                 #region HTML_Select_exercice_fiscal
-                string HTML_Select_code_exercice_fiscal = string.Empty, HTML_Select_libelle_exercice_fiscal = string.Empty;
-                new ExerciceFiscalDAO().HTML_Select(ref HTML_Select_code_exercice_fiscal, ref HTML_Select_libelle_exercice_fiscal);
-                this.ViewBag.donnee.HTML_Select_code_exercice_fiscal = HTML_Select_code_exercice_fiscal;
-                this.ViewBag.donnee.HTML_Select_libelle_exercice_fiscal = HTML_Select_libelle_exercice_fiscal;
+                dynamic donnee = exerciceFiscalDAO.HTML_Select();
+                this.ViewBag.donnee.HTML_Select_code_exercice_fiscal = donnee.html_code;
+                this.ViewBag.donnee.HTML_Select_libelle_exercice_fiscal = donnee.html_libelle;
                 #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new

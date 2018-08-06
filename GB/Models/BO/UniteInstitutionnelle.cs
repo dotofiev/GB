@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class UniteInstitutionnelle : GBBO
+    public class UniteInstitutionnelle : BO
     {
         public long date_creation { get; set; }
         public long id_utilisateur { get; set; }

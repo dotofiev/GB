@@ -7,7 +7,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Role : GBBO
+    public class Role : BO
     {
         public List<Autorisation> role_menus { get; set; }
 

@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class WesternUnionZonePays : GBBO
+    public class WesternUnionZonePays : BO
     {
         
         public long id_pays { get; set; }

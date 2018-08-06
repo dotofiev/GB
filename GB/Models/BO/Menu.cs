@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Menu : GBBO
+    public class Menu : BO
     {
         // -- Privé -- //
         private GroupeMenu _groupe_menu { get; set; }

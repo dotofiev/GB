@@ -462,6 +462,32 @@
       "id_controller": "5"
     },
     // -- ./Enfants -- //
+    
+
+    // ------------ //
+    // -- Parent -- //
+    // ------------ //
+    {
+      "id": "40",
+      "code": "40",
+      "id_groupe_menu": "5",
+      "libelle_en": "Accounts parameters",
+      "libelle_fr": "Paramètres compte",
+      "view": "",
+      "id_controller": "5"
+    },
+    // -- Enfants -- //
+    {
+      "id": "41",
+      "code": "41",
+      "id_menu_parent": "40",
+      "id_groupe_menu": "5",
+      "libelle_en": "Create account",
+      "libelle_fr": "Création des comptes",
+      "view": "Compte",
+      "id_controller": "5"
+    },
+    // -- ./Enfants -- //
   ],
   "roles": [
     {
@@ -479,7 +505,7 @@
   ],
   "utilisateurs": [
     {
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "id_role": "1",
       "id_agence": "1",
       "id_profession": "1",
@@ -496,7 +522,7 @@
       "id_autorite_signature": "1"
     },
     {
-      "id_utilisateur": "99998",
+      "id_utilisateur": "2",
       "id_role": "2",
       "id_agence": "1",
       "id_profession": "1",
@@ -905,6 +931,26 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "78",
+      "id_role": "1",
+      "id_menu": "40",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "79",
+      "id_role": "1",
+      "id_menu": "41",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
 
 
     // -- Role 2 -- //
@@ -1298,6 +1344,26 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "80",
+      "id_role": "2",
+      "id_menu": "40",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "81",
+      "id_role": "2",
+      "id_menu": "41",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
   ],
   "agences": [
     {
@@ -1386,7 +1452,7 @@
       "lien_sauvegarde_numero_2": ""
     }
   ],
-  "parametre_bancaires": [
+  "parametres_banque": [
     {
       "id": "1",
       "id_devise": "1",
@@ -1432,7 +1498,7 @@
     {
       "id": "1",
       "code": "AFJ",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "",
       "libelle_fr": "Autres formes juridique",
       "date_creation": "636670881645418146"
@@ -1440,7 +1506,7 @@
     {
       "id": "2",
       "code": "AP",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "",
       "libelle_fr": "Affaires personnelle",
       "date_creation": "636670881645418146"
@@ -1448,7 +1514,7 @@
     {
       "id": "3",
       "code": "ASS",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "",
       "libelle_fr": "Association à but non lucratif",
       "date_creation": "636670881645418146"
@@ -1456,7 +1522,7 @@
     {
       "id": "4",
       "code": "ENTR",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "",
       "libelle_fr": "Entreprise",
       "date_creation": "636670881645418146"
@@ -1464,7 +1530,7 @@
     {
       "id": "5",
       "code": "ETAT",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "",
       "libelle_fr": "Etat",
       "date_creation": "636670881645418146"
@@ -1472,7 +1538,7 @@
     {
       "id": "6",
       "code": "GPE",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "",
       "libelle_fr": "Groupement",
       "date_creation": "636670881645418146"
@@ -1482,7 +1548,7 @@
     {
       "id": "1",
       "code": "CM",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle": "Cameroun",
       "code_telephone": "+237",
       "date_creation": "636670881645418146"
@@ -1492,14 +1558,14 @@
     {
       "id": "1",
       "code": "1",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle": "Yaounde",
       "date_creation": "636670881645418146"
     },
     {
       "id": "2",
       "code": "2",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle": "Douala",
       "date_creation": "636670881645418146"
     }
@@ -1508,7 +1574,7 @@
     {
       "id": "1",
       "code": "1",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "",
       "libelle_fr": "Agriculture - Elevage - Chasse",
       "date_creation": "636670881645418146"
@@ -1516,7 +1582,7 @@
     {
       "id": "2",
       "code": "11",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "",
       "libelle_fr": "Agriculture",
       "date_creation": "636670881645418146"
@@ -1524,7 +1590,7 @@
     {
       "id": "3",
       "code": "110",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "",
       "libelle_fr": "Production agricole",
       "date_creation": "636670881645418146"
@@ -1534,7 +1600,7 @@
     {
       "id": "1",
       "code": "DIR",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "Director",
       "libelle_fr": "DIrecteur",
       "date_creation": "636670881645418146"
@@ -1542,7 +1608,7 @@
     {
       "id": "2",
       "code": "DR",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "Doctor",
       "libelle_fr": "Docteur",
       "date_creation": "636670881645418146"
@@ -1550,7 +1616,7 @@
     {
       "id": "3",
       "code": "DG",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "General manager",
       "libelle_fr": "Directeur general",
       "date_creation": "636670881645418146"
@@ -1560,7 +1626,7 @@
     {
       "id": "1",
       "code": "1",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "",
       "libelle_fr": "Agent economique financier",
       "date_creation": "636670881645418146"
@@ -1568,7 +1634,7 @@
     {
       "id": "2",
       "code": "11",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "",
       "libelle_fr": "Banques centrales",
       "date_creation": "636670881645418146"
@@ -1576,7 +1642,7 @@
     {
       "id": "3",
       "code": "1101",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "",
       "libelle_fr": "B.E.A.C.",
       "date_creation": "636670881645418146"
@@ -1586,7 +1652,7 @@
     {
       "id": "1",
       "code": "11",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "",
       "libelle_fr": "Particuliers nationaux",
       "date_creation": "636670881645418146"
@@ -1594,7 +1660,7 @@
     {
       "id": "2",
       "code": "13",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "",
       "libelle_fr": "Entreprises publique",
       "date_creation": "636670881645418146"
@@ -1602,7 +1668,7 @@
     {
       "id": "3",
       "code": "21",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "",
       "libelle_fr": "Particuliers étrangers",
       "date_creation": "636670881645418146"
@@ -1644,16 +1710,16 @@
     {
       "id": "1",
       "code": "01/01",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle": "New year day",
       "jour": "1",
       "mois": "1",
       "date_creation": "636670881645418146"
     },
     {
-      "id": "1",
+      "id": "2",
       "code": "01/05",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle": "Labour day",
       "jour": "1",
       "mois": "5",
@@ -1752,7 +1818,7 @@
       "type": "CAUTIONED"
     },
     {
-      "id": "1",
+      "id": "2",
       "code": "02",
       "libelle": "Short term loan provision",
       "nombre_jour_debut": "29",
@@ -1766,7 +1832,7 @@
     {
       "id": "1",
       "code": "100",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "House",
       "libelle_fr": "Maison",
       "nature": "GarantieEtat",
@@ -1775,7 +1841,7 @@
     {
       "id": "2",
       "code": "120",
-      "id_utilisateur": "99999",
+      "id_utilisateur": "1",
       "libelle_en": "Land titre",
       "libelle_fr": "Titre foncier",
       "nature": "SureteReelle",
@@ -1810,7 +1876,7 @@
       "date_creation": "636670881645418146"
     },
     {
-      "id": "1",
+      "id": "2",
       "code": "004",
       "libelle": "Computer",
       "date_creation": "636670881645418146"
@@ -1831,6 +1897,74 @@
       "zone": "NATIONAL"
     }
   ],
+  "comptes": [
+    {
+      "id": "2",
+      "id_devise": "1",
+      "id_utilisateur": "1",
+      "code": "10",
+      "libelle": "Capital",
+      "nature": "",
+      "statut": "",
+      "cle": "",
+      "date_creation": "636670881645418146",
+    },
+    {
+      "id": "3",
+      "id_devise": "1",
+      "id_utilisateur": "1",
+      "code": "101",
+      "libelle": "Shared capital",
+      "nature": "",
+      "statut": "",
+      "cle": "",
+      "date_creation": "636670881645418146",
+    },
+    {
+      "id": "4",
+      "id_devise": "1",
+      "id_utilisateur": "1",
+      "code": "1010",
+      "libelle": "Shared capital",
+      "nature": "",
+      "statut": "",
+      "cle": "",
+      "date_creation": "636670881645418146",
+    },
+    {
+      "id": "5",
+      "id_devise": "1",
+      "id_utilisateur": "1",
+      "code": "10100",
+      "libelle": "Shared capital",
+      "nature": "",
+      "statut": "",
+      "cle": "",
+      "date_creation": "636670881645418146",
+    },
+    {
+      "id": "6",
+      "id_devise": "1",
+      "id_utilisateur": "1",
+      "code": "101000",
+      "libelle": "Shared capital",
+      "nature": "",
+      "statut": "",
+      "cle": "",
+      "date_creation": "636670881645418146",
+    },
+    {
+      "id": "10",
+      "id_devise": "1",
+      "id_utilisateur": "1",
+      "code": "1010000000",
+      "libelle": "Shared capital",
+      "nature": "Debit",
+      "statut": "Open",
+      "cle": "A",
+      "date_creation": "636670881645418146",
+    }
+  ]
   //"western_union_zones_commissions": [
   //  {
   //    "id": "1",

@@ -90,9 +90,6 @@
     <script src="@Url.Content("~/Plugins/datatables/datatables/dataTables.responsive.min.js")"></script>
     <script src="@Url.Content("~/Plugins/datatables/datatables/responsive.bootstrap.min.js")"></script>
     <script src="@Url.Content("~/Plugins/datatables/datatables/dataTables.scroller.min.js")"></script>
-    <!-- 
-    <script src="@Url.Content("~/Plugins/datatables/datatables/dataTables.cellEdit.js")"></script>
-    -->
     <!-- moment -->
     <script src="@Url.Content("~/Plugins/moment/min/moment.min.js")" type="text/javascript"></script>
     <!-- bootstrap-daterangepicker -->
@@ -105,7 +102,7 @@
     <script src="@Url.Content("~/Resources/js/gb.script.js")" type="text/javascript"></script>
     <script type="text/javascript">
         // -- Réccupérer les données à exploiter dans les script du main -- //
-        $GB_DONNEE_PARAMETRES = JSON.parse(JSON.stringify(@Html.Raw(ViewBag.GB_DONNEE)));
+        $GB_DONNEE_PARAMETRES = @Html.Raw(ViewBag.GB_DONNEE);
     </script>
     <!-- gb.menu.js -->
     <script src="@Url.Content("~/Resources/js/gb.menu.js")" type="text/javascript"></script>

@@ -12,7 +12,7 @@ var form = $('#form');
 var form_id_autorite_signature = $('#form_id_autorite_signature');
 var form_code_autorite_signature = $('#form_code_autorite_signature');
 var form_libelle_autorite_signature = $('#form_libelle_autorite_signature');
-var modal_form = $('#modal_form');
+//var modal_form = $('#modal_form');
 var modal_autorite_signature = $('#modal_autorite_signature');
 
 
@@ -61,7 +61,7 @@ try {
                     // -- Désactiver la modification des mot de passe -- //
                     $('.gb-temp-mot_de_passe').attr('disabled', true);
                     // -- Afficher le modal formulaire -- //
-                    modal_form.modal('show');
+                    //modal_form.modal('show');
                 } else {
                     // -- Message -- //
                     gbMessage_Box(resultat.notification);
@@ -74,6 +74,9 @@ try {
         });
 
     }
+
+    // -- Selectionner -- //
+    function table_donnee_selection(id) {  }
 
     // -- Mise à jour des bouton de rafraichissement de la table -- //
     function table_bouton_action_etat(bouton_table, activation, id_bouton) {
@@ -142,6 +145,41 @@ try {
                 table_bouton_action_etat(bouton_table, false, null);
             }
         });
+
+    }
+
+    // -- Réinitialiser le formulaire -- //
+    function formulaire_reinitialiser() {
+
+        try {
+
+            // -- Reinitialiser le formulaire -- //
+            form[0].reset();
+
+            // -- Reinitialiser le id -- //
+            $('#form_id_utilisateur').val(0);
+
+            // -- Mise à jour du label du bouton d'enregistrement -- //
+            btn_enregistrer.html('<i class="fa fa-check"></i>' + $GB_DONNEE_PARAMETRES.Lang.Save);
+
+            // -- Désactiver le champ d'activation de la modification -- //
+            $('#form_modifier_mot_de_passe').val('True');
+            $('#form_modifier_mot_de_passe').attr('disabled', true);
+
+            // -- Activer/Desactiver formulaire -- //
+            gbActiverDesactiverForm(form.attr('id'), false);
+
+            // -- Supprimer les validations parsley -- //
+            gbSupprimerMessageValidationForm(form.attr('id'));
+
+            // -- Mise à jour de l'objet autorisation par défaut -- //
+            if ($GB_DONNEE.Autorite_signature != undefined && $GB_DONNEE.Autorite_signature != null) {
+                form_id_autorite_signature.val($GB_DONNEE.Autorite_signature.col_0);
+                form_code_autorite_signature.val($GB_DONNEE.Autorite_signature.col_2);
+                form_libelle_autorite_signature.val($GB_DONNEE.Autorite_signature.col_3);
+            }
+
+        } catch (e) { gbConsole(e.message); }
 
     }
 
@@ -281,7 +319,7 @@ $(
                     { "data": "col_7" },                            // -- credit_max_client -- //
                     { "data": "col_8" },                            // -- montant_max_ligne_credit -- //
                     { "data": "col_9" },                            // -- montant_limite_pret -- //
-                    //{ "data": "col_10", "class": "text-center" }     // -- Action -- //
+                    //{ "data": "col_10", "class": "text-center" }    // -- Action -- //
                 ]
             });
 
@@ -290,12 +328,7 @@ $(
                 function () {
                     // -- Selectionner une ligne de la table -- //
                     gbTableSelectionLigne($(this), 'table-autorite_signature-donnee');
-                }
-            );
 
-            // -- Lorsqu'un double click survient sur une ligne de la table -- //
-            $('#table-autorite_signature-donnee tbody').on('dblclick', 'tr',
-                function () {
                     // -- Réccupération des données de la table -- //
                     var donnees = table_autorite_signature.DataTable().row(this).data();
 
@@ -338,7 +371,7 @@ $(
                         // -- Ecouter la réponse du message de confirmation -- //
                         if (!$GB_DONNEE.Confirmation_message_box) {
                             // -- Afficher le message d'action -- //
-                            gbConfirmationAlert_OuiOuNon(null, null, form.attr('id'), null);
+                            gbConfirmation_OuiOuNon(null, form.attr('id'));
                             // -- Annuler l'action -- //
                             return false;
                         }
@@ -362,13 +395,15 @@ $(
                                 // -- Tester si le traitement s'est bien effectué -- //
                                 if (!resultat.notification.est_echec) {
                                     // -- Fermer le modal -- //
-                                    modal_form.modal('hide');
+                                    //modal_form.modal('hide');
+                                    // -- Réinitialiser le formulaire -- //
+                                    formulaire_reinitialiser();
                                     // -- Actualiser la table -- //
                                     gbRechargerTable(false);
                                 }
                                 else {
                                     // -- Afficher une alerte sur un element -- //
-                                    gbAlert(resultat.notification, null);
+                                    gbMessage_Box(resultat.notification);
                                 }
                                 // -- Afficher le chargement -- //
                                 gbAfficher_Page_Chargement(false, btn_enregistrer.attr('id'));
@@ -377,7 +412,7 @@ $(
                                 // -- Afficher le chargement -- //
                                 gbAfficher_Page_Chargement(false, btn_enregistrer.attr('id'));
                                 // -- Afficher une alerte sur un element -- //
-                                gbAlert();
+                                gbMessage_Box();
                             }
                         });
 
@@ -390,44 +425,44 @@ $(
         // -- Comportement lorsque le modal du formulaire se ferme -- //
         try {
 
-            modal_form.on('hidden.bs.modal',
-                function (e) {
+            //modal_form.on('hidden.bs.modal',
+            //    function (e) {
 
-                    // -- Reinitialiser le formulaire -- //
-                    form[0].reset();
+            //        // -- Reinitialiser le formulaire -- //
+            //        form[0].reset();
 
-                    // -- Reinitialiser le id -- //
-                    $('#form_id_utilisateur').val(0);
+            //        // -- Reinitialiser le id -- //
+            //        $('#form_id_utilisateur').val(0);
 
-                    // -- Mise à jour du label du bouton d'enregistrement -- //
-                    btn_enregistrer.html('<i class="fa fa-check"></i>' + $GB_DONNEE_PARAMETRES.Lang.Save);
+            //        // -- Mise à jour du label du bouton d'enregistrement -- //
+            //        btn_enregistrer.html('<i class="fa fa-check"></i>' + $GB_DONNEE_PARAMETRES.Lang.Save);
 
-                    // -- Suppression de l'alert message box -- //
-                    $('#gbAlert').html(null);
+            //        // -- Suppression de l'alert message box -- //
+            //        $('#gbAlert').html(null);
 
-                    // -- Suppression de l'alert de confirmation -- //
-                    $('#dsAlert_Message_Box').html(null);
+            //        // -- Suppression de l'alert de confirmation -- //
+            //        $('#dsAlert_Message_Box').html(null);
 
-                    // -- Désactiver le champ d'activation de la modification -- //
-                    $('#form_modifier_mot_de_passe').val('True');
-                    $('#form_modifier_mot_de_passe').attr('disabled', true);
+            //        // -- Désactiver le champ d'activation de la modification -- //
+            //        $('#form_modifier_mot_de_passe').val('True');
+            //        $('#form_modifier_mot_de_passe').attr('disabled', true);
 
-                    // -- Activer/Desactiver formulaire -- //
-                    gbActiverDesactiverForm(form.attr('id'), false);
+            //        // -- Activer/Desactiver formulaire -- //
+            //        gbActiverDesactiverForm(form.attr('id'), false);
 
-                    // -- Supprimer les validations parsley -- //
-                    gbSupprimerMessageValidationForm(form.attr('id'));
+            //        // -- Supprimer les validations parsley -- //
+            //        gbSupprimerMessageValidationForm(form.attr('id'));
 
-                    // -- Mise à jour de l'objet autorisation par défaut -- //
-                    if ($GB_DONNEE.Autorite_signature != undefined && $GB_DONNEE.Autorite_signature != null)
-                    {
-                        form_id_autorite_signature.val($GB_DONNEE.Autorite_signature.col_0);
-                        form_code_autorite_signature.val($GB_DONNEE.Autorite_signature.col_2);
-                        form_libelle_autorite_signature.val($GB_DONNEE.Autorite_signature.col_3);
-                    }
+            //        // -- Mise à jour de l'objet autorisation par défaut -- //
+            //        if ($GB_DONNEE.Autorite_signature != undefined && $GB_DONNEE.Autorite_signature != null)
+            //        {
+            //            form_id_autorite_signature.val($GB_DONNEE.Autorite_signature.col_0);
+            //            form_code_autorite_signature.val($GB_DONNEE.Autorite_signature.col_2);
+            //            form_libelle_autorite_signature.val($GB_DONNEE.Autorite_signature.col_3);
+            //        }
 
-                }
-            );
+            //    }
+            //);
 
         } catch (e) { gbConsole(e.message); }
 

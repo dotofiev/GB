@@ -2,6 +2,7 @@
 using GB.Models.ActionFilter;
 using GB.Models.BO;
 using GB.Models.DAO;
+using GB.Models.GB;
 using GB.Models.Static;
 using GB.Models.Tests;
 using Newtonsoft.Json;
@@ -260,7 +261,7 @@ namespace GB.Controllers
                                 col_6 = val.pub,
                                 col_7 = val.motto,
                                 col_8 = val.logo?.libelle ?? App_Lang.Lang.Empty,
-                                col_9 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_9 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -289,7 +290,7 @@ namespace GB.Controllers
                                 col_12 = val.utilisateur?.nom_utilisateur?? App_Lang.Lang.Empty,
                                 col_13 = val.ip,
                                 col_14 = val.mot_de_passe,
-                                col_15 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_15 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -309,7 +310,7 @@ namespace GB.Controllers
                                 col_3 = val.libelle,
                                 col_4 = val.signe,
                                 col_5 = GBToString.Oui_Non(val.devise_actuelle),
-                                col_6 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_6 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -319,7 +320,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-ParametreBanque
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
                 {
-                    foreach (var val in ParametreBancaireDAO.Lister())
+                    foreach (var val in ParametreBanqueDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -332,7 +333,7 @@ namespace GB.Controllers
                                 col_6 = val.montant_minimal,
                                 col_7 = val.montant_maximal,
                                 col_8 = val.devise.libelle,
-                                col_9 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_9 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -351,7 +352,7 @@ namespace GB.Controllers
                                 col_2 = val.code,
                                 col_3 = val.libelle,
                                 col_4 = val.type,
-                                col_5 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_5 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -372,7 +373,7 @@ namespace GB.Controllers
                                 col_4 = val.libelle_en,
                                 col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -393,7 +394,7 @@ namespace GB.Controllers
                                 col_4 = val.code_telephone,
                                 col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -413,7 +414,7 @@ namespace GB.Controllers
                                 col_3 = val.libelle,
                                 col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_5 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_6 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_6 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -434,7 +435,7 @@ namespace GB.Controllers
                                 col_4 = val.libelle_en,
                                 col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -455,7 +456,7 @@ namespace GB.Controllers
                                 col_4 = val.libelle_en,
                                 col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -476,7 +477,7 @@ namespace GB.Controllers
                                 col_4 = val.libelle_en,
                                 col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -497,7 +498,7 @@ namespace GB.Controllers
                                 col_4 = val.libelle_en,
                                 col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -517,7 +518,7 @@ namespace GB.Controllers
                                 col_3 = val.libelle,
                                 col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_5 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_6 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_6 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -670,6 +671,61 @@ namespace GB.Controllers
             return GBConvert.To_JSONString(donnee);
         }
 
+        // -- Recharger les données dans le auto complete -- //
+        public override object Recharger_EasyAutocomplete(string id_page, string id_vue)
+        {
+            List<object> donnee = new List<object>();
+
+            try
+            {
+                #region ConfigurationBanque-Agence
+                if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
+                {
+                    // -- Si la vue est pour le utilisateur -- //
+                    #region utilisateurs
+                    if (id_vue == "utilisateur")
+                    {
+                        // -- Mise à jour de la liste en session -- //
+                        this.con.donnee.utilisateurs = UtilisateurDAO.Lister();
+                    }
+                    #endregion
+
+                    #region pays
+                    // -- Si la vue est pour le pays -- //
+                    else if (id_vue == "pays")
+                    {
+                        // -- Mise à jour de la liste en session -- //
+                        this.con.donnee.pays = PaysDAO.Lister();
+                    }
+                    #endregion
+
+                    #region ville
+                    // -- Si la vue est pour le pays -- //
+                    else if (id_vue == "ville")
+                    {
+                        // -- Mise à jour de la liste en session -- //
+                        this.con.donnee.villes = VilleDAO.Lister();
+                    }
+                    #endregion
+                }
+                #endregion
+            }
+            #region catch & finally
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return GBConvert.To_JSONString(donnee);
+        }
+
         // -- Selectionner un nouvel enregistrement dans la liste -- //
         [HttpPost]
         public ActionResult Selection_Enregistrement(string code, string id_page)
@@ -777,7 +833,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ParametreBancaireDAO.Object(code);
+                    var obj = ParametreBanqueDAO.Object(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1096,7 +1152,7 @@ namespace GB.Controllers
                     }
 
                     // -- Service d'enregistrement -- //
-                    InstitutionDAO.Ajouter(obj_type);
+                    institutionDAO.Ajouter(obj_type);
                 }
                 #endregion
 
@@ -1104,7 +1160,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
                 {
                     // -- Service d'enregistrement -- //
-                    AgenceDAO.Ajouter(GBConvert.JSON_To<Agence>(obj));
+                    agenceDAO.Ajouter(GBConvert.JSON_To<Agence>(obj));
                 }
                 #endregion
 
@@ -1112,7 +1168,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Devise)
                 {
                     // -- Service d'enregistrement -- //
-                    DeviseDAO.Ajouter(GBConvert.JSON_To<Devise>(obj));
+                    deviseDAO.Ajouter(GBConvert.JSON_To<Devise>(obj));
                 }
                 #endregion
 
@@ -1120,7 +1176,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
                 {
                     // -- Service d'enregistrement -- //
-                    ParametreBancaireDAO.Ajouter(GBConvert.JSON_To<ParametreBancaire>(obj));
+                    parametreBancaireDAO.Ajouter(GBConvert.JSON_To<ParametreBanque>(obj));
                 }
                 #endregion
 
@@ -1128,7 +1184,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientPhysique)
                 {
                     // -- Service d'enregistrement -- //
-                    ProduitPhysiqueDAO.Ajouter(GBConvert.JSON_To<ProduitPhysique>(obj));
+                    produitPhysiqueDAO.Ajouter(GBConvert.JSON_To<ProduitPhysique>(obj));
                 }
                 #endregion
 
@@ -1136,7 +1192,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientJudiciaire)
                 {
                     // -- Service d'enregistrement -- //
-                    ProduitJudiciaireDAO.Ajouter(GBConvert.JSON_To<ProduitJudiciaire>(obj), this.con.id_utilisateur);
+                    produitJudiciaireDAO.Ajouter(GBConvert.JSON_To<ProduitJudiciaire>(obj), this.con.id_utilisateur);
                 }
                 #endregion
 
@@ -1144,7 +1200,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Pays)
                 {
                     // -- Service d'enregistrement -- //
-                    PaysDAO.Ajouter(GBConvert.JSON_To<Pays>(obj), this.con.id_utilisateur);
+                    paysDAO.Ajouter(GBConvert.JSON_To<Pays>(obj));
                 }
                 #endregion
 
@@ -1152,7 +1208,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Ville)
                 {
                     // -- Service d'enregistrement -- //
-                    VilleDAO.Ajouter(GBConvert.JSON_To<Ville>(obj), this.con.id_utilisateur);
+                    villeDAO.Ajouter(GBConvert.JSON_To<Ville>(obj), this.con.id_utilisateur);
                 }
                 #endregion
 
@@ -1160,7 +1216,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ActiviteEconomique)
                 {
                     // -- Service d'enregistrement -- //
-                    ActiviteEconomiqueDAO.Ajouter(GBConvert.JSON_To<ActiviteEconomique>(obj), this.con.id_utilisateur);
+                    activiteEconomiqueDAO.Ajouter(GBConvert.JSON_To<ActiviteEconomique>(obj), this.con.id_utilisateur);
                 }
                 #endregion
 
@@ -1168,7 +1224,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Titre)
                 {
                     // -- Service d'enregistrement -- //
-                    TitreDAO.Ajouter(GBConvert.JSON_To<Titre>(obj), this.con.id_utilisateur);
+                    titreDAO.Ajouter(GBConvert.JSON_To<Titre>(obj), this.con.id_utilisateur);
                 }
                 #endregion
 
@@ -1176,7 +1232,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_UniteInstitutionnelle)
                 {
                     // -- Service d'enregistrement -- //
-                    UniteInstitutionnelleDAO.Ajouter(GBConvert.JSON_To<UniteInstitutionnelle>(obj), this.con.id_utilisateur);
+                    uniteInstitutionnelleDAO.Ajouter(GBConvert.JSON_To<UniteInstitutionnelle>(obj), this.con.id_utilisateur);
                 }
                 #endregion
 
@@ -1184,7 +1240,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_BEACNationalite)
                 {
                     // -- Service d'enregistrement -- //
-                    BEACNationaliteDAO.Ajouter(GBConvert.JSON_To<BEACNationalite>(obj), this.con.id_utilisateur);
+                    bEACNationaliteDAO.Ajouter(GBConvert.JSON_To<BEACNationalite>(obj), this.con.id_utilisateur);
                 }
                 #endregion
 
@@ -1192,7 +1248,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_CongeBanque)
                 {
                     // -- Service d'enregistrement -- //
-                    CongeBanqueDAO.Ajouter(GBConvert.JSON_To<CongeBanque>(obj));
+                    congeBanqueDAO.Ajouter(GBConvert.JSON_To<CongeBanque>(obj));
                 }
                 #endregion
 
@@ -1287,7 +1343,7 @@ namespace GB.Controllers
                     }
 
                     // -- Service de modification -- //
-                    InstitutionDAO.Modifier(obj_type);
+                    institutionDAO.Modifier(obj_type);
                 }
                 #endregion
 
@@ -1295,7 +1351,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
                 {
                     // -- Service de modification -- //
-                    AgenceDAO.Modifier(GBConvert.JSON_To<Agence>(obj));
+                    agenceDAO.Modifier(GBConvert.JSON_To<Agence>(obj));
                 }
                 #endregion
 
@@ -1303,7 +1359,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Devise)
                 {
                     // -- Service de modification -- //
-                    DeviseDAO.Modifier(GBConvert.JSON_To<Devise>(obj));
+                    deviseDAO.Modifier(GBConvert.JSON_To<Devise>(obj));
                 }
                 #endregion
 
@@ -1311,7 +1367,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Parametre)
                 {
                     // -- Service de modification -- //
-                    ParametreDAO.Modifier(GBConvert.JSON_To<Parametre>(obj));
+                    parametreDAO.Modifier(GBConvert.JSON_To<Parametre>(obj));
                 }
                 #endregion
 
@@ -1319,7 +1375,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
                 {
                     // -- Service de modification -- //
-                    ParametreBancaireDAO.Modifier(GBConvert.JSON_To<ParametreBancaire>(obj));
+                    parametreBancaireDAO.Modifier(GBConvert.JSON_To<ParametreBanque>(obj));
                 }
                 #endregion
 
@@ -1327,7 +1383,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientPhysique)
                 {
                     // -- Service de modification -- //
-                    ProduitPhysiqueDAO.Modifier(GBConvert.JSON_To<ProduitPhysique>(obj));
+                    produitPhysiqueDAO.Modifier(GBConvert.JSON_To<ProduitPhysique>(obj));
                 }
                 #endregion
 
@@ -1335,7 +1391,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientJudiciaire)
                 {
                     // -- Service de modification -- //
-                    ProduitJudiciaireDAO.Modifier(GBConvert.JSON_To<ProduitJudiciaire>(obj));
+                    produitJudiciaireDAO.Modifier(GBConvert.JSON_To<ProduitJudiciaire>(obj));
                 }
                 #endregion
 
@@ -1343,7 +1399,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Pays)
                 {
                     // -- Service de modification -- //
-                    PaysDAO.Modifier(GBConvert.JSON_To<Pays>(obj));
+                    paysDAO.Modifier(GBConvert.JSON_To<Pays>(obj));
                 }
                 #endregion
 
@@ -1351,7 +1407,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Ville)
                 {
                     // -- Service de modification -- //
-                    VilleDAO.Modifier(GBConvert.JSON_To<Ville>(obj));
+                    villeDAO.Modifier(GBConvert.JSON_To<Ville>(obj));
                 }
                 #endregion
 
@@ -1359,7 +1415,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ActiviteEconomique)
                 {
                     // -- Service de modification -- //
-                    ActiviteEconomiqueDAO.Modifier(GBConvert.JSON_To<ActiviteEconomique>(obj));
+                    activiteEconomiqueDAO.Modifier(GBConvert.JSON_To<ActiviteEconomique>(obj));
                 }
                 #endregion
 
@@ -1367,7 +1423,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Titre)
                 {
                     // -- Service de modification -- //
-                    TitreDAO.Modifier(GBConvert.JSON_To<Titre>(obj));
+                    titreDAO.Modifier(GBConvert.JSON_To<Titre>(obj));
                 }
                 #endregion
 
@@ -1375,7 +1431,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_UniteInstitutionnelle)
                 {
                     // -- Service de modification -- //
-                    UniteInstitutionnelleDAO.Modifier(GBConvert.JSON_To<UniteInstitutionnelle>(obj));
+                    uniteInstitutionnelleDAO.Modifier(GBConvert.JSON_To<UniteInstitutionnelle>(obj));
                 }
                 #endregion
 
@@ -1383,7 +1439,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_BEACNationalite)
                 {
                     // -- Service de modification -- //
-                    BEACNationaliteDAO.Modifier(GBConvert.JSON_To<BEACNationalite>(obj));
+                    bEACNationaliteDAO.Modifier(GBConvert.JSON_To<BEACNationalite>(obj));
                 }
                 #endregion
 
@@ -1391,7 +1447,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_CongeBanque)
                 {
                     // -- Service de modification -- //
-                    CongeBanqueDAO.Modifier(GBConvert.JSON_To<CongeBanque>(obj));
+                    congeBanqueDAO.Modifier(GBConvert.JSON_To<CongeBanque>(obj));
                 }
                 #endregion
 
@@ -1445,7 +1501,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationBanque_Institution)
                 {
                     // -- Service de suppression -- //
-                    InstitutionDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    institutionDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1453,7 +1509,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
                 {
                     // -- Service de suppression -- //
-                    AgenceDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    agenceDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1461,7 +1517,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Devise)
                 {
                     // -- Service de suppression -- //
-                    DeviseDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    deviseDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1469,7 +1525,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
                 {
                     // -- Service de suppression -- //
-                    ParametreBancaireDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    parametreBancaireDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1477,7 +1533,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientPhysique)
                 {
                     // -- Service de suppression -- //
-                    ProduitPhysiqueDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    produitPhysiqueDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1485,7 +1541,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientJudiciaire)
                 {
                     // -- Service de suppression -- //
-                    ProduitJudiciaireDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    produitJudiciaireDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1493,7 +1549,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Pays)
                 {
                     // -- Service de suppression -- //
-                    PaysDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    paysDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1501,7 +1557,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Ville)
                 {
                     // -- Service de suppression -- //
-                    VilleDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    villeDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1509,7 +1565,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ActiviteEconomique)
                 {
                     // -- Service de suppression -- //
-                    ActiviteEconomiqueDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    activiteEconomiqueDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1517,7 +1573,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Titre)
                 {
                     // -- Service de suppression -- //
-                    TitreDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    titreDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1525,7 +1581,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_UniteInstitutionnelle)
                 {
                     // -- Service de suppression -- //
-                    UniteInstitutionnelleDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    uniteInstitutionnelleDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1533,7 +1589,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_BEACNationalite)
                 {
                     // -- Service de suppression -- //
-                    BEACNationaliteDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    bEACNationaliteDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1541,7 +1597,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_CongeBanque)
                 {
                     // -- Service de suppression -- //
-                    CongeBanqueDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    congeBanqueDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -1773,8 +1829,9 @@ namespace GB.Controllers
                 // -- Données -- //
                 #region Données
                 #region HTML_Select_devise
-                this.ViewBag.donnee.HTML_Select_code_devise = DeviseDAO.HTML_Select("code");
-                this.ViewBag.donnee.HTML_Select_libelle_devise = DeviseDAO.HTML_Select("libelle");
+                dynamic donnee = deviseDAO.HTML_Select();
+                this.ViewBag.donnee.HTML_Select_code_devise = donnee.html_code;
+                this.ViewBag.donnee.HTML_Select_libelle_devise = donnee.html_libelle;
                 #endregion
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new

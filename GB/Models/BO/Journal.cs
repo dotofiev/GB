@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Journal : GBBO
+    public class Journal : BO
     {
         public long date_creation { get; set; }
         

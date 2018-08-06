@@ -14,6 +14,9 @@ namespace GB.Models.Static
         // -- Déclarer une instance de log4net -- //
         public static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        // -- Déclarer une instance de log4net -- //
+        public static readonly Random random = new Random();
+
         /// <summary>
         /// Vérifie qu'une adresse site web est existante
         /// </summary>
@@ -104,6 +107,15 @@ namespace GB.Models.Static
             return
                 $"<option value=\"{"SOLDE"}\" title=\"{App_Lang.Lang.Balance}\">{App_Lang.Lang.Balance}</option>" +
                 $"<option value=\"{"DERNIERMVT"}\" title=\"{App_Lang.Lang.Last_transaction}\">{App_Lang.Lang.Last_transaction}</option>";
+        }
+
+        /// <summary>
+        /// Obtenir de manière aléatoire une lettre alphabetique officede clé de compte
+        /// </summary>
+        public static string Alea_Cle_Compte()
+        {
+            return
+                ((char)(random.Next(65, 90))).ToString();
         }
 
         /// <summary>
@@ -212,6 +224,21 @@ namespace GB.Models.Static
                 .Replace("{ids}", GBConvert.To_JavaScript(new long[] { id }))
                 .Replace("{Lang.Delete}", App_Lang.Lang.Delete);
         }
+        public static string HTML_Bouton_Suppression_Table(long id, string nom_fonction)
+        {
+            return
+                @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
+                    title=""{Lang.Delete}"" 
+                    class=""btn btn-xs btn-round""
+                    onClick=""{fonction}""
+                    data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                    <i class=""fa fa-minus text-danger""></i>
+                </button>"
+                .Replace("{fonction}", nom_fonction)
+                .Replace("{id}", id.ToString())
+                .Replace("{ids}", GBConvert.To_JavaScript(new long[] { id }))
+                .Replace("{Lang.Delete}", App_Lang.Lang.Delete);
+        }
 
         /// <summary>
         /// Creation et retour d'un bouton de modification à à afficher dans la table 
@@ -231,12 +258,46 @@ namespace GB.Models.Static
         }
 
         /// <summary>
-        /// Creation et retour des boutons de suppression et de modification à afficher dans la table 
+        /// Creation et retour d'un bouton de modification à à afficher dans la table 
         /// </summary>
-        public static string HTML_Bouton_Modifier_Suppression_Table(long id)
+        public static string HTML_Bouton_Selection_Table(long id)
         {
             return
-                HTML_Bouton_Modifier_Table(id) +
+                @"<button type=""button"" id=""table_donnee_selection_id_{id}""
+                    title=""{Lang.Select}"" 
+                    class=""btn btn-xs btn-round""
+                    onClick=""table_donnee_selection({id})"">
+                    <i class=""fa fa-check text-warning""></i>
+                </button>"
+                .Replace("{id}", id.ToString())
+                .Replace("{Lang.Select}", App_Lang.Lang.Select);
+        }
+        
+        /// <summary>
+        /// Creation et retour d'un bouton de modification à à afficher dans la table 
+        /// </summary>
+        public static string HTML_Bouton_Modifier_Table(long id, string code)
+        {
+            return
+                @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
+                    title=""{Lang.Update}"" 
+                    class=""btn btn-xs btn-round""
+                    onClick=""table_donnee_modifier('{code}')""
+                    data-loading-text=""<i class='fa fa-circle-o-notch fa-spin'></i>"">
+                    <i class=""fa fa-retweet text-warning""></i>
+                </button>"
+                .Replace("{id}", id.ToString())
+                .Replace("{code}", code)
+                .Replace("{Lang.Update}", App_Lang.Lang.Update);
+        }
+
+        /// <summary>
+        /// Creation et retour des boutons de suppression et de modification à afficher dans la table 
+        /// </summary>
+        public static string HTML_Bouton_Modifier_Suppression_Table(long id, string code)
+        {
+            return
+                HTML_Bouton_Modifier_Table(id, code) +
                 HTML_Bouton_Suppression_Table(id);
         }
 
@@ -247,6 +308,23 @@ namespace GB.Models.Static
         {
             return
                 $"<input type=\"checkbox\" class=\"flat\" name=\"{name}\" value=\"{name}_{id}\">";
+        }
+
+        internal static dynamic HTML_nature_compte()
+        {
+            return
+                $"<option value=\"{string.Empty}\" title=\"{App_Lang.Lang.Not_required}\">{App_Lang.Lang.Not_required}</option>" +
+                $"<option value=\"{"Credit"}\" title=\"{App_Lang.Lang.Credit}\">{App_Lang.Lang.Credit}</option>" + 
+                $"<option value=\"{"Debit"}\" title=\"{App_Lang.Lang.Debit}\">{App_Lang.Lang.Debit}</option>" +
+                $"<option value=\"{"Both"}\" title=\"{App_Lang.Lang.Both}\">{App_Lang.Lang.Both}</option>";
+        }
+
+        internal static dynamic HTML_statut_compte()
+        {
+            return
+                $"<option value=\"{string.Empty}\" title=\"{App_Lang.Lang.Not_required}\">{App_Lang.Lang.Not_required}</option>" +
+                $"<option value=\"{"Close"}\" title=\"{App_Lang.Lang.Close}\">{App_Lang.Lang.Close}</option>" +
+                $"<option value=\"{"Open"}\" title=\"{App_Lang.Lang.Open}\">{App_Lang.Lang.Open}</option>";
         }
     }
 }

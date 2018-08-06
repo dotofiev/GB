@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.GB;
 using GB.Models.Static;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace GB.Models.ActionFilter
             try
             {
                 // -- Réccupération de la variable session -- //
-                Connexion con = context.HttpContext.Session["Connexion"] as Connexion;
+                GBConnexion con = context.HttpContext.Session["Connexion"] as GBConnexion;
 
                 // -- Teste si l'utilisateur est authentifié -- //
                 if ((con?.id_utilisateur ?? 0) == 0)

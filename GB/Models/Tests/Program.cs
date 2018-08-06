@@ -47,7 +47,7 @@ namespace GB.Models.Tests
                 l.menu = db.menus.FirstOrDefault(ll => ll.id == l.id_menu);
             });
             // -- Parametre_bancaires -- //
-            db.parametre_bancaires.ForEach(l => {
+            db.parametres_banque.ForEach(l => {
                 l.devise = db.devises.FirstOrDefault(ll => ll.id == l.id_devise);
             });
             // -- Produit judiciaire -- //
@@ -104,6 +104,12 @@ namespace GB.Models.Tests
             db.western_union_zones_pays.ForEach(l =>
             {
                 l.pays = db.pays.FirstOrDefault(ll => ll.id == l.id_pays);
+            });
+            // -- Compte -- //
+            db.comptes.ForEach(l =>
+            {
+                l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
+                l.devise = db.devises.FirstOrDefault(ll => ll.id == l.id_devise);
             });
         }
     }

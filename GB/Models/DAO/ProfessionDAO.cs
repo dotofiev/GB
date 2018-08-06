@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.GB;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -9,13 +10,26 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ProfessionDAO : GBDAO
+    public class ProfessionDAO : DAO
     {
+        public string id_page { get { return string.Empty; } }
+        public string context_id { get; set; }
+        public long id_utilisateur { get; set; }
         public string form_combo_id { get { return "form_id_profession"; } }
-
+        public string form_combo_code { get { return "form_code_profession"; } }
+        public string form_name { get { return "profession"; } }
         public string form_combo_libelle { get { return "form_libelle_profession"; } }
 
-        public static void Ajouter(Profession obj)
+
+        public ProfessionDAO(string context_id, long id_utilisateur)
+        {
+            this.context_id = context_id;
+            this.id_utilisateur = id_utilisateur;
+        }
+
+        public ProfessionDAO() { }
+
+        public void Ajouter(Profession obj)
         {
             try
             {
@@ -33,6 +47,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerCombo(new ProfessionDAO());
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -55,7 +72,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(Profession obj)
+        public void Modifier(Profession obj)
         {
             try
             {
@@ -81,6 +98,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerCombo(new ProfessionDAO());
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -103,7 +123,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Supprimer(List<long> ids)
+        public void Supprimer(List<long> ids)
         {
             try
             {
@@ -116,6 +136,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerCombo(new ProfessionDAO());
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -272,21 +295,27 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void HTML_Select(ref string html_code, ref string html_libelle)
+        public dynamic HTML_Select()
         {
             try
             {
+                // -- Objet dynamic -- //
+                dynamic donnee = new System.Dynamic.ExpandoObject();
+
                 // -- Valeur vide -- //
-                html_code = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                html_libelle = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                donnee.html_code = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                donnee.html_libelle = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
 
                 // -- Ajout des options -- //
 
                 foreach (var val in Lister())
                 {
-                    html_code += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
-                    html_libelle += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
+                    donnee.html_code += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
+                    donnee.html_libelle += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                 }
+
+                // -- Retourner l'objet -- //
+                return donnee;
             }
             #region Catch
             catch (Exception ex)

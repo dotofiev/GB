@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class MotifPret : GBBO
+    public class MotifPret : BO
     {
         public MotifPret(long id)
         {

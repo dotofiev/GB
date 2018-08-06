@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class TypeGarantie : GBBO
+    public class TypeGarantie : BO
     {
         public string nature { get; set; }
         public long date_creation { get; set; }

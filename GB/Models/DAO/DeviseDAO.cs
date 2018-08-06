@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.GB;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -9,13 +10,26 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class DeviseDAO : GBDAO
+    public class DeviseDAO : DAO
     {
+        public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Devise; } }
+        public string context_id { get; set; }
+        public long id_utilisateur { get; set; }
         public string form_combo_id { get { return "form_id_devise"; } }
-
+        public string form_combo_code { get { return string.Empty; } }
+        public string form_name { get { return "devise"; } }
         public string form_combo_libelle { get { return "form_libelle_devise"; } }
 
-        public static void Ajouter(Devise obj)
+
+        public DeviseDAO(string context_id, long id_utilisateur)
+        {
+            this.context_id = context_id;
+            this.id_utilisateur = id_utilisateur;
+        }
+
+        public DeviseDAO() { }
+
+        public void Ajouter(Devise obj)
         {
             try
             {
@@ -39,6 +53,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerCombo(new DeviseDAO());
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -61,7 +78,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(Devise obj)
+        public void Modifier(Devise obj)
         {
             try
             {
@@ -95,6 +112,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerCombo(new DeviseDAO());
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -117,7 +137,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Supprimer(List<long> ids)
+        public void Supprimer(List<long> ids)
         {
             try
             {
@@ -130,6 +150,9 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerCombo(new DeviseDAO());
+
+                // -- Execution des Hubs -- //
+                applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -302,21 +325,27 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void HTML_Select(ref string html_code, ref string html_libelle)
+        public dynamic HTML_Select()
         {
             try
             {
+                // -- Objet dynamic -- //
+                dynamic donnee = new System.Dynamic.ExpandoObject();
+
                 // -- Valeur vide -- //
-                html_code = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                html_libelle = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                donnee.html_code = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                donnee.html_libelle = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
 
                 // -- Ajout des options -- //
 
                 foreach (var val in Lister())
                 {
-                    html_code += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
-                    html_libelle += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
+                    donnee.html_code += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
+                    donnee.html_libelle += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                 }
+
+                // -- Retourner l'objet -- //
+                return donnee;
             }
             #region Catch
             catch (Exception ex)

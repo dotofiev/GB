@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Titre : GBBO
+    public class Titre : BO
     {
         public long date_creation { get; set; }
         public long id_utilisateur { get; set; }

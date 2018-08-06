@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class TypeActif : GBBO
+    public class TypeActif : BO
     {
         public long date_creation { get; set; }
         

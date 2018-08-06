@@ -2,6 +2,7 @@
 using GB.Models.ActionFilter;
 using GB.Models.BO;
 using GB.Models.DAO;
+using GB.Models.GB;
 using GB.Models.Static;
 using System;
 using System.Collections.Generic;
@@ -98,6 +99,8 @@ namespace GB.Controllers
                                                             Permission_to_list_records_denied = App_Lang.Lang.Permission_to_list_records_denied,
                                                             The_file_must_not_exceed = App_Lang.Lang.The_file_must_not_exceed,
                                                             Empty = App_Lang.Lang.Empty,
+                                                            Confirm = App_Lang.Lang.Confirm,
+                                                            Cancel = App_Lang.Lang.Cancel,
                                                     },
                                                     // -- Paramètres -- //
                                                     DUREE_VISIBILITE_MESSAGE_BOX = AppSettings.DUREE_VISIBILITE_MESSAGE_BOX,

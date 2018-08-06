@@ -1,1 +1,280 @@
-﻿
+﻿01/08/2018 23:15:32.533 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+01/08/2018 23:15:34.356 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:kyrzojphilom4zzk0kdgwk2j} 
+-----------------------
+02/08/2018 01:20:57.707 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+02/08/2018 01:21:00.254 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:m2uaongvleshsikthg12cw4y} 
+-----------------------
+02/08/2018 01:31:13.891 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+02/08/2018 01:31:14.195 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:m2uaongvleshsikthg12cw4y} 
+-----------------------
+02/08/2018 01:42:31.583 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+02/08/2018 01:42:31.891 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:mvgtctk4t2xiuxg3ezycnvo2} 
+-----------------------
+02/08/2018 01:45:03.300 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+02/08/2018 01:45:03.585 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:ikxmkxwizeoipehwm5ttmfsk} 
+-----------------------
+02/08/2018 01:48:37.641 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+02/08/2018 01:48:40.975 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:j022x01yhusyt3flde33fih0} 
+-----------------------
+02/08/2018 01:50:13.641 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+02/08/2018 01:50:15.096 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:j022x01yhusyt3flde33fih0} 
+-----------------------
+02/08/2018 02:15:40.763 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+02/08/2018 02:15:41.225 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:hpegqg4hrpuqdmlt05ux4ttq} 
+-----------------------
+03/08/2018 13:14:35.982 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+03/08/2018 13:14:40.625 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:0pukh5hnlsvokm0wiebgjyh2} 
+-----------------------
+03/08/2018 13:20:40.284 | INFO | [11] | GB.MvcApplication.Session_OnEnd | Fin session: {session:0pukh5hnlsvokm0wiebgjyh2} 
+-----------------------
+03/08/2018 14:48:14.006 | INFO | [36] | GB.MvcApplication.Session_OnStart | Début session: {session:0pukh5hnlsvokm0wiebgjyh2} 
+-----------------------
+03/08/2018 14:55:23.676 | INFO | [34] | GB.MvcApplication.Session_OnEnd | Fin session: {session:0pukh5hnlsvokm0wiebgjyh2} 
+-----------------------
+03/08/2018 14:55:23.776 | INFO | [31] | GB.MvcApplication.Session_OnStart | Début session: {session:0pukh5hnlsvokm0wiebgjyh2} 
+-----------------------
+03/08/2018 15:00:43.666 | INFO | [31] | GB.MvcApplication.Session_OnEnd | Fin session: {session:0pukh5hnlsvokm0wiebgjyh2} 
+-----------------------
+03/08/2018 15:03:25.861 | INFO | [34] | GB.MvcApplication.Session_OnStart | Début session: {session:0pukh5hnlsvokm0wiebgjyh2} 
+-----------------------
+03/08/2018 15:08:43.790 | INFO | [26] | GB.MvcApplication.Session_OnEnd | Fin session: {session:0pukh5hnlsvokm0wiebgjyh2} 
+-----------------------
+03/08/2018 15:08:43.831 | INFO | [32] | GB.MvcApplication.Session_OnStart | Début session: {session:0pukh5hnlsvokm0wiebgjyh2} 
+-----------------------
+03/08/2018 15:13:43.900 | INFO | [38] | GB.MvcApplication.Session_OnEnd | Fin session: {session:0pukh5hnlsvokm0wiebgjyh2} 
+-----------------------
+03/08/2018 15:18:45.168 | INFO | [29] | GB.MvcApplication.Session_OnStart | Début session: {session:0pukh5hnlsvokm0wiebgjyh2} 
+-----------------------
+03/08/2018 15:59:01.991 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+03/08/2018 15:59:02.335 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:xobpxp4rm02ci5pumrzar1df} 
+-----------------------
+03/08/2018 16:11:52.242 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+03/08/2018 16:11:52.872 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:a3vwibd5lx1oydhtrvfzwlw4} 
+-----------------------
+03/08/2018 16:21:37.470 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+03/08/2018 16:21:37.865 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:b2wcv5jevsmsxnqsw5gdfj3q} 
+-----------------------
+03/08/2018 17:02:01.352 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+03/08/2018 17:02:01.690 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:ga45sii3v4c4eif3eyrfhu2t} 
+-----------------------
+03/08/2018 17:03:23.068 | ERROR | [5] | GB.Models.DAO.CompteDAO.Ajouter | System.NullReferenceException: La référence d'objet n'est pas définie à une instance d'un objet.
+   à GB.Models.Static.GBClass.<>c__DisplayClass8_0.<Alea_Cle_Compte>b__0(String l) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\Static\GBClass.cs:ligne 121
+   à System.Collections.Generic.List`1.FindIndex(Int32 startIndex, Int32 count, Predicate`1 match)
+   à System.Collections.Generic.List`1.Exists(Predicate`1 match)
+   à GB.Models.Static.GBClass.Alea_Cle_Compte(List`1 cle_existante) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\Static\GBClass.cs:ligne 121
+   à GB.Models.DAO.CompteDAO.Ajouter(Compte obj) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\CompteDAO.cs:ligne 92 
+-----------------------
+03/08/2018 17:14:40.618 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+03/08/2018 17:14:40.961 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:1j5n5bzinahepp3z1us0nfuz} 
+-----------------------
+03/08/2018 18:43:03.927 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+03/08/2018 18:43:04.250 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:bqhh00kku30lqnf3maohnxfo} 
+-----------------------
+03/08/2018 18:58:24.164 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+03/08/2018 18:58:25.551 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:4rlnecc5u0m5zmhnulsr54o5} 
+-----------------------
+03/08/2018 19:04:00.096 | INFO | [10] | GB.MvcApplication.Session_OnEnd | Fin session: {session:4rlnecc5u0m5zmhnulsr54o5} 
+-----------------------
+03/08/2018 19:04:00.177 | INFO | [14] | GB.MvcApplication.Session_OnStart | Début session: {session:4rlnecc5u0m5zmhnulsr54o5} 
+-----------------------
+05/08/2018 00:21:25.341 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 00:21:27.275 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:uvukprco1s4yr3mb5gpslrq3} 
+-----------------------
+05/08/2018 01:07:18.251 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 01:07:20.600 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:13riqm5pbh5nykizu4sqstff} 
+-----------------------
+05/08/2018 01:11:03.774 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 01:11:06.639 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:g32nikfxd2zeludywxayvyd4} 
+-----------------------
+05/08/2018 11:39:15.349 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 11:39:27.495 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:defls2yciz3xn3yvhs5xg4ks} 
+-----------------------
+05/08/2018 11:58:43.802 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 11:58:44.055 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:fnvscqgparat000tqnafeonk} 
+-----------------------
+05/08/2018 12:09:08.743 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 12:09:10.084 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:qz053hs4xpxfp31fiu2vezgt} 
+-----------------------
+05/08/2018 12:14:24.422 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 12:14:25.615 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:0ifn1wzxafqef50qs1edbtgt} 
+-----------------------
+05/08/2018 12:20:35.123 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 12:20:36.337 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:ttql3mqvogg0vi1whsozykn1} 
+-----------------------
+05/08/2018 12:24:18.112 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 12:24:19.308 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:ff4r1m53xqrpwlve1wvjanpg} 
+-----------------------
+05/08/2018 12:28:57.167 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 12:28:57.514 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:s3hjmtn5bxyp4xby4yfjbl1a} 
+-----------------------
+05/08/2018 12:54:36.565 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 12:54:36.837 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:vnvzao0s3dv5uhukszk0urgg} 
+-----------------------
+05/08/2018 12:56:44.887 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 12:56:46.122 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:0mjcgqhp5zelif3vgpj35fyw} 
+-----------------------
+05/08/2018 13:25:00.987 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 13:25:01.241 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:4wqnf1zvassslbhqzbvqajp4} 
+-----------------------
+05/08/2018 13:30:20.136 | INFO | [9] | GB.MvcApplication.Session_OnEnd | Fin session: {session:4wqnf1zvassslbhqzbvqajp4} 
+-----------------------
+05/08/2018 13:38:25.441 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:4wqnf1zvassslbhqzbvqajp4} 
+-----------------------
+05/08/2018 13:44:36.417 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 13:44:37.790 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:c5wecz0z3ga1vyxkvyakriye} 
+-----------------------
+05/08/2018 13:56:32.507 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 13:56:34.322 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:dhcvycyjqbbymptha3strbet} 
+-----------------------
+05/08/2018 13:59:58.856 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 14:00:00.167 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:2cz3ezh0je3r1ary4p2bevub} 
+-----------------------
+05/08/2018 14:02:14.283 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 14:02:15.538 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:dpojevoedwygxy4xkklfxhin} 
+-----------------------
+05/08/2018 14:06:52.282 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 14:06:53.485 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:q2xyeozoi3ybiwugypqphcjm} 
+-----------------------
+05/08/2018 14:45:55.245 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 14:45:55.530 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:0akimw0dsc2e1syp3bvoac0v} 
+-----------------------
+05/08/2018 14:52:08.433 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 14:52:12.307 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:q0xhj1wirndlvswobymm4h5o} 
+-----------------------
+05/08/2018 15:01:17.108 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 15:01:18.463 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:cl2b1bsirnltxqz5yqfdtaag} 
+-----------------------
+05/08/2018 15:05:25.681 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 15:05:27.049 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:dvkpj1y4yxohwmv5nduq15m4} 
+-----------------------
+05/08/2018 16:05:12.690 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 16:05:13.004 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:k1cl1k2b0t2pfdxlkggkhs4n} 
+-----------------------
+05/08/2018 16:07:32.723 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 16:07:36.088 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:qpcx0zpd4habpgtlrtornowb} 
+-----------------------
+05/08/2018 16:19:57.647 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 16:20:00.361 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:b5wmypllneed2v3b4udbhusp} 
+-----------------------
+05/08/2018 16:22:35.334 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 16:22:37.637 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:tpaegkdn104p1bkh0c2mpxc0} 
+-----------------------
+05/08/2018 16:31:33.849 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 16:31:36.746 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:yqxzetxzc3igcl1jz1flrqp5} 
+-----------------------
+05/08/2018 16:36:09.048 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 16:36:11.984 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:5254g3a2jhajszmnikrxqpmi} 
+-----------------------
+05/08/2018 16:47:49.028 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 16:47:50.968 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:rmv1naab3a3huxtmcp5llfe1} 
+-----------------------
+05/08/2018 16:50:30.412 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 16:50:31.664 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:qxhxzyfvablpfxjqwijud252} 
+-----------------------
+05/08/2018 16:51:59.833 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 16:52:01.105 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:xii15wntk1jttqafnhmotiee} 
+-----------------------
+05/08/2018 16:56:02.087 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 16:56:03.308 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:crkhuhxxeg3nsl1hjv5xrf24} 
+-----------------------
+05/08/2018 16:58:41.029 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 16:58:42.248 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:eqmm0wrx2meq4zckx2m2rno1} 
+-----------------------
+05/08/2018 17:00:40.163 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 17:00:41.447 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:oup2lfsn5grytkbcsnamc1z1} 
+-----------------------
+05/08/2018 17:09:29.119 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 17:09:30.399 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:iqtoo4sqgq21uomwyophwki5} 
+-----------------------
+05/08/2018 17:14:02.984 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 17:14:04.258 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:v0tqt01tuibjjwtjgfsy5uax} 
+-----------------------
+05/08/2018 17:18:34.769 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 17:18:36.000 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:vwxlun1voferw2wtb2yzc4ta} 
+-----------------------
+05/08/2018 17:23:16.001 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 17:23:17.237 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:sy4tphxvqx1rbsllu5xkvhss} 
+-----------------------
+05/08/2018 17:30:03.311 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 17:30:04.635 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:x04n0dh5tb2aimqcmnu2rrrx} 
+-----------------------
+05/08/2018 17:30:26.855 | ERROR | [6] | GB.Controllers.ConfigurationOperationController.Ajouter_Enregistrement | System.ArgumentOutOfRangeException: L'index et la longueur doivent faire référence à un emplacement situé dans la chaîne.
+Nom du paramètre : length
+   à System.String.Substring(Int32 startIndex, Int32 length)
+   à GB.Controllers.ConfigurationOperationController.Ajouter_Enregistrement(String id_page, String obj) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Controllers\ConfigurationOperationController.cs:ligne 809 
+-----------------------
+05/08/2018 17:34:29.086 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 17:34:30.305 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:t5wg3ml3eouuq0hemhaphm3l} 
+-----------------------
+05/08/2018 17:38:15.876 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+05/08/2018 17:38:16.163 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:lpo5f25skherzhlf340vglso} 
+-----------------------
+06/08/2018 08:39:10.123 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+06/08/2018 08:39:15.291 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:h5y5u0wpgbdytxvakbfnb3vk} 
+-----------------------
+06/08/2018 08:45:33.115 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+06/08/2018 08:45:34.309 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:ntyo4hisr4xlhk3gk0l23jrd} 
+-----------------------
+06/08/2018 08:57:13.469 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+06/08/2018 08:57:14.691 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:f4nae4aehm1trf1zg2ipfnkj} 
+-----------------------

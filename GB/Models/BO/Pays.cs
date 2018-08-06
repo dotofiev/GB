@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Pays : GBBO
+    public class Pays : BO
     {
         public string code_telephone { get; set; }
         public long date_creation { get; set; }

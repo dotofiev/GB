@@ -16,7 +16,6 @@ namespace GB.Models.Static
 {
     public static class GBConvert
     {
-        private static string format = "dd/MM/yyyy";
         private static CultureInfo provider = CultureInfo.InvariantCulture;
 
         /// <summary>Conevrti er retourne un objet dynamicjson en JObject </summary>
@@ -214,7 +213,7 @@ namespace GB.Models.Static
         public static DateTime To_DateTime(string date)
         {
             return
-                DateTime.ParseExact(date, format, provider);
+                DateTime.ParseExact(date, "dd/MM/yyyy", provider);
         }
     }
 }

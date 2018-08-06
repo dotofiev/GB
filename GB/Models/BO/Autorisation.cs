@@ -7,7 +7,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Autorisation : GBBO
+    public class Autorisation : BO
     {
         public long id_role { get; set; }
         public long id_menu { get; set; }
@@ -34,6 +34,18 @@ namespace GB.Models.BO
         public override void Crer_Id()
         {
             this.id = Program.db.autorisations.Count + 1;
+        }
+
+        public static List<string> Classes_references
+        {
+            get
+            {
+                return
+                    new List<string>() {
+                        typeof(Menu).Name,
+                        typeof(Role).Name
+                    };
+            }
         }
     }
 }

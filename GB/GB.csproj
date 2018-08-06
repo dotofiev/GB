@@ -209,7 +209,8 @@
     <Compile Include="Models\BO\CongeBanque.cs" />
     <Compile Include="Models\BO\AutoriteSignature.cs" />
     <Compile Include="Models\BO\ClassificationProvisionsPret.cs" />
-    <Compile Include="Models\BO\GBControllerUrlJS.cs" />
+    <Compile Include="Models\GB\GBControllerUrlJS.cs" />
+    <Compile Include="Models\BO\Compte.cs" />
     <Compile Include="Models\BO\WesternUnionZonePays.cs" />
     <Compile Include="Models\BO\MotifPret.cs" />
     <Compile Include="Models\BO\Journal.cs" />
@@ -219,19 +220,19 @@
     <Compile Include="Models\BO\TypePret.cs" />
     <Compile Include="Models\BO\UniteInstitutionnelle.cs" />
     <Compile Include="Models\BO\Titre.cs" />
-    <Compile Include="Models\BO\GBFichier.cs" />
+    <Compile Include="Models\GB\GBFichier.cs" />
     <Compile Include="Models\BO\Devise.cs" />
     <Compile Include="Models\BO\ActiviteEconomique.cs" />
     <Compile Include="Models\BO\Ville.cs" />
     <Compile Include="Models\BO\Pays.cs" />
     <Compile Include="Models\BO\ProduitJudiciaire.cs" />
     <Compile Include="Models\BO\ProduitPhysique.cs" />
-    <Compile Include="Models\BO\ParametreBancaire.cs" />
+    <Compile Include="Models\BO\ParametreBanque.cs" />
     <Compile Include="Models\BO\Parametre.cs" />
     <Compile Include="Models\BO\Profession.cs" />
     <Compile Include="Models\BO\Autorisation.cs" />
-    <Compile Include="Models\BO\Connexion.cs" />
-    <Compile Include="Models\BO\GBBO.cs" />
+    <Compile Include="Models\GB\GBConnexion.cs" />
+    <Compile Include="Models\BO\BO.cs" />
     <Compile Include="Models\BO\GroupeMenu.cs" />
     <Compile Include="Models\BO\Menu.cs" />
     <Compile Include="Models\BO\Module.cs" />
@@ -240,13 +241,14 @@
     <Compile Include="Models\BO\Role.cs" />
     <Compile Include="Models\BO\Utilisateur.cs" />
     <Compile Include="Models\Cryptage\Program.cs" />
-    <Compile Include="Models\BO\GBException.cs" />
-    <Compile Include="Models\BO\GBNotification.cs" />
+    <Compile Include="Models\GB\GBException.cs" />
+    <Compile Include="Models\GB\GBNotification.cs" />
     <Compile Include="Models\DAO\DirectionBudgetDAO.cs" />
     <Compile Include="Models\DAO\BEACNationaliteDAO.cs" />
     <Compile Include="Models\DAO\CongeBanqueDAO.cs" />
     <Compile Include="Models\DAO\AutoriteSignatureDAO.cs" />
     <Compile Include="Models\DAO\ClassificationProvisionsPretDAO.cs" />
+    <Compile Include="Models\DAO\CompteDAO.cs" />
     <Compile Include="Models\DAO\WesternUnionZonePaysDAO.cs" />
     <Compile Include="Models\DAO\MotifPretDAO.cs" />
     <Compile Include="Models\DAO\JournalDAO.cs" />
@@ -266,7 +268,7 @@
     <Compile Include="Models\DAO\ParametreBanqueDAO.cs" />
     <Compile Include="Models\DAO\ParametreDAO.cs" />
     <Compile Include="Models\DAO\ProfessionDAO.cs" />
-    <Compile Include="Models\DAO\GBDAO.cs" />
+    <Compile Include="Models\DAO\DAO.cs" />
     <Compile Include="Models\DAO\ModuleDAO.cs" />
     <Compile Include="Models\DAO\MenuDAO.cs" />
     <Compile Include="Models\DAO\AutorisationDAO.cs" />
@@ -278,7 +280,7 @@
     <Compile Include="Models\Helper\LangHelper.cs" />
     <Compile Include="Models\SignalR\Hubs\applicationMainHub.cs" />
     <Compile Include="Models\Static\AppSettings.cs" />
-    <Compile Include="Models\Static\Enumeration.cs" />
+    <Compile Include="Models\Static\GBEnumeration.cs" />
     <Compile Include="Models\Static\GBClass.cs" />
     <Compile Include="Models\Static\GBConvert.cs" />
     <Compile Include="Models\Static\GBToString.cs" />
@@ -917,6 +919,7 @@
     <Content Include="Resources\js\Views\ConfigurationOperation-Journal.js" />
     <Content Include="Resources\js\Views\ConfigurationOperation-TypeActif.js" />
     <Content Include="Resources\js\Views\ConfigurationOperation-WesternUnionZonePays.js" />
+    <Content Include="Resources\js\Views\ConfigurationOperation-Compte.js" />
     <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
@@ -1339,6 +1342,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ConfigurationOperation\WesternUnionZonePays.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\release.pubxml" />
+    <Content Include="Views\ConfigurationOperation\Compte\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationOperation\Compte.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -2,6 +2,7 @@
 using GB.Models.ActionFilter;
 using GB.Models.BO;
 using GB.Models.DAO;
+using GB.Models.GB;
 using GB.Models.Static;
 using GB.Models.Tests;
 using Newtonsoft.Json;
@@ -17,6 +18,21 @@ namespace GB.Controllers
     public class ConfigurationOperationController : GBController
     {
         #region HttpGet
+        [HttpGet]
+        public ActionResult Compte()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Account_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationOperation_Compte);
+
+            return View();
+        }
+
         [HttpGet]
         public ActionResult TypePret()
         {
@@ -168,7 +184,7 @@ namespace GB.Controllers
                                 col_4 = GBToString.PeriodiciteDePret(val.periodicite),
                                 col_5 = val.periode_debut,
                                 col_6 = val.periode_fin,
-                                col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -186,7 +202,7 @@ namespace GB.Controllers
                                 col_1 = GBClass.HTML_Checkbox_Table(val.id, "motifPret"),
                                 col_2 = val.code,
                                 col_3 = val.libelle,
-                                col_4 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_4 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -209,7 +225,7 @@ namespace GB.Controllers
                                 col_6 = $"{val.pourcentage} %",
                                 col_7 = GBToString.FormuleClassificationProvisionsPret(val.formule),
                                 col_8 = GBToString.TypeClassificationProvisionsPret(val.type),
-                                col_9 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_9 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -231,7 +247,7 @@ namespace GB.Controllers
                                 col_5 = GBToString.NatureTypeGarantie(val.nature),
                                 col_6 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_7 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_8 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_8 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -250,7 +266,7 @@ namespace GB.Controllers
                                 col_2 = val.code,
                                 col_3 = val.libelle,
                                 col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
-                                col_5 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_5 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -269,7 +285,7 @@ namespace GB.Controllers
                                 col_2 = val.code,
                                 col_3 = val.libelle,
                                 col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
-                                col_5 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_5 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -288,7 +304,7 @@ namespace GB.Controllers
                                 col_2 = val.code,
                                 col_3 = val.libelle,
                                 col_4 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
-                                col_5 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_5 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -307,9 +323,56 @@ namespace GB.Controllers
                                 col_1 = GBClass.HTML_Checkbox_Table(val.id, "westernUnionZonePays"),
                                 col_2 = val.pays.libelle,
                                 col_3 = val.zone,
-                                col_4 = GBClass.HTML_Bouton_Suppression_Table(val.id)
+                                col_4 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
+                    }
+                }
+                #endregion
+
+                #region ConfigurationOperation-Compte
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_Compte)
+                {
+                    // -- Si la vue n'est pas soumise -- //
+                    if (string.IsNullOrEmpty(id_vue))
+                    {
+                        foreach (var val in CompteDAO.Lister())
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    col_1 = GBClass.HTML_Checkbox_Table(val.id, "compte"),
+                                    col_2 = val.code,
+                                    col_3 = val.libelle,
+                                    col_4 = val.cle,
+                                    col_5 = GBToString.NatureCompte(val.nature),
+                                    col_6 = GBToString.StatutCompte(val.statut),
+                                    col_7 = val.devise?.libelle ?? string.Empty,
+                                    col_8 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
+                                    col_9 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
+                                    col_10 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
+                                }
+                            );
+                        }
+                    }
+                    // -- Si c'est la vue nouveau_compte -- //
+                    else if (id_vue == "nouveau_compte")
+                    {
+                        foreach (var val in (this.con.donnee.nouveau_compte as List<Compte>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    col_0 = val.id,
+                                    col_2 = val.code,
+                                    col_3 = val.libelle,
+                                    col_4 = val.cle,
+                                    col_5 = val.nature,
+                                    col_6 = val.statut,
+                                    col_7 = GBClass.HTML_Bouton_Suppression_Table(val.id, $"table_nouveau_compte_donnee_supprimer({val.id})")
+                                }
+                            );
+                        }
                     }
                 }
                 #endregion
@@ -363,7 +426,7 @@ namespace GB.Controllers
 
         // -- Selectionner un nouvel enregistrement dans la liste -- //
         [HttpPost]
-        public ActionResult Selection_Enregistrement(string code, long id, string id_page)
+        public ActionResult Selection_Enregistrement(string code, long? id, string id_page)
         {
             try
             {
@@ -549,7 +612,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = WesternUnionZonePaysDAO.Object(id);
+                    var obj = WesternUnionZonePaysDAO.Object(id?? 0);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -566,6 +629,34 @@ namespace GB.Controllers
                                                         code_pays = obj.pays.code,
                                                         libelle_pays = obj.pays.libelle,
                                                         zone = obj.zone,
+                                                    }
+                                               );
+                }
+                #endregion
+
+                #region ConfigurationOperation-Compte
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_Compte)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = CompteDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle = obj.libelle,
+                                                        cle = obj.cle,
+                                                        nature = obj.nature,
+                                                        statut = obj.statut,
+                                                        id_devise = obj.id_devise,
                                                     }
                                                );
                 }
@@ -618,7 +709,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationOperation_TypePret)
                 {
                     // -- Service d'enregistrement -- //
-                    TypePretDAO.Ajouter(GBConvert.JSON_To<TypePret>(obj));
+                    typePretDAO.Ajouter(GBConvert.JSON_To<TypePret>(obj));
                 }
                 #endregion
 
@@ -626,7 +717,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_MotifPret)
                 {
                     // -- Service d'enregistrement -- //
-                    MotifPretDAO.Ajouter(GBConvert.JSON_To<MotifPret>(obj));
+                    motifPretDAO.Ajouter(GBConvert.JSON_To<MotifPret>(obj));
                 }
                 #endregion
 
@@ -634,7 +725,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_ClassificationProvisionsPret)
                 {
                     // -- Service d'enregistrement -- //
-                    ClassificationProvisionsPretDAO.Ajouter(GBConvert.JSON_To<ClassificationProvisionsPret>(obj));
+                    classificationProvisionsPretDAO.Ajouter(GBConvert.JSON_To<ClassificationProvisionsPret>(obj));
                 }
                 #endregion
 
@@ -642,7 +733,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeGarantie)
                 {
                     // -- Service d'enregistrement -- //
-                    TypeGarantieDAO.Ajouter(GBConvert.JSON_To<TypeGarantie>(obj), this.con.id_utilisateur);
+                    typeGarantieDAO.Ajouter(GBConvert.JSON_To<TypeGarantie>(obj), this.con.id_utilisateur);
                 }
                 #endregion
 
@@ -650,7 +741,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
                 {
                     // -- Service d'enregistrement -- //
-                    JournalDAO.Ajouter(GBConvert.JSON_To<Journal>(obj));
+                    journalDAO.Ajouter(GBConvert.JSON_To<Journal>(obj));
                 }
                 #endregion
 
@@ -658,15 +749,15 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
                 {
                     // -- Service d'enregistrement -- //
-                    TypeActifDAO.Ajouter(GBConvert.JSON_To<TypeActif>(obj));
+                    typeActifDAO.Ajouter(GBConvert.JSON_To<TypeActif>(obj));
                 }
                 #endregion
 
                 #region ConfigurationOperation-LocalisationActif
-                if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
                 {
                     // -- Service d'enregistrement -- //
-                    LocalisationActifDAO.Ajouter(GBConvert.JSON_To<LocalisationActif>(obj));
+                    localisationActifDAO.Ajouter(GBConvert.JSON_To<LocalisationActif>(obj));
                 }
                 #endregion
 
@@ -674,7 +765,79 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
                 {
                     // -- Service d'enregistrement -- //
-                    WesternUnionZonePaysDAO.Ajouter(GBConvert.JSON_To<WesternUnionZonePays>(obj));
+                    westernUnionZonePaysDAO.Ajouter(GBConvert.JSON_To<WesternUnionZonePays>(obj));
+                }
+                #endregion
+
+                #region ConfigurationOperation-Compte
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_Compte)
+                {
+                    // -- Liste des comptes à créer -- //
+                    #region Variables
+                    this.con.donnee.nouveau_compte = new List<Compte>();
+
+                    // -- Object BO envoyé -- //
+                    Compte objet = GBConvert.JSON_To<Compte>(obj);
+
+                    // -- Définition des cas multiple -- //
+                    Boolean multi_cas = objet.numero_compte.Length > 3;
+
+                    // -- Initialiser l'id -- //
+                    long id = Program.db.comptes.Max(l => l.id) + 1;
+                    #endregion
+
+                    // -- Traitement des cas -- //
+                    #region Traitement
+                    // -- 2, 3 -- //
+                    for (int i = 2; i <= 3; i++)
+                    {
+                        if ((multi_cas || objet.numero_compte.Length == i) && CompteDAO.Object(objet.numero_compte) == null)
+                        {
+                            (this.con.donnee.nouveau_compte as List<Compte>).Add(
+                                new Compte
+                                {
+                                    code = objet.numero_compte.Substring(0, i),
+                                    libelle = string.Empty,
+                                    id = (id++),
+                                }
+                            );
+                        }
+                    }
+                    // -- 4, 5 et 6 -- //
+                    for (int i = 4; i <= 6; i++)
+                    {
+                        if (objet.numero_compte.Length >= i)
+                        {
+                            if (multi_cas && CompteDAO.Object(objet.numero_compte.Substring(0, i)) == null)
+                            {
+                                (this.con.donnee.nouveau_compte as List<Compte>).Add(
+                                    new Compte
+                                    {
+                                        code = objet.numero_compte.Substring(0, i),
+                                        libelle = string.Empty,
+                                        id = (id++),
+                                    }
+                                );
+                            }
+                        }
+                    }
+                    // -- 10 -- //
+                    if (multi_cas && objet.numero_compte.Length == 10 && CompteDAO.Object(objet.numero_compte) == null)
+                    {
+                        (this.con.donnee.nouveau_compte as List<Compte>).Add(
+                            new Compte
+                            {
+                                code = objet.numero_compte,
+                                libelle = string.Empty,
+                                id = (id++),
+                                cle = GBClass.Alea_Cle_Compte()
+                            }
+                        );
+                    }
+                    #endregion
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(this.con.donnee.nouveau_compte);
                 }
                 #endregion
 
@@ -686,7 +849,11 @@ namespace GB.Controllers
                 #endregion
 
                 // -- Notificication -- //
-                this.ViewBag.notification = new GBNotification(false);
+                // -- Ne pas envoyer pour les comptes -- //
+                if (id_page != GB_Enum_Menu.ConfigurationOperation_Compte)
+                {
+                    this.ViewBag.notification = new GBNotification(false);
+                }
             }
             #region Catch
             catch (Exception ex)
@@ -728,7 +895,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationOperation_TypePret)
                 {
                     // -- Service de modification -- //
-                    TypePretDAO.Modifier(GBConvert.JSON_To<TypePret>(obj));
+                    typePretDAO.Modifier(GBConvert.JSON_To<TypePret>(obj));
                 }
                 #endregion
 
@@ -736,7 +903,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_MotifPret)
                 {
                     // -- Service de modification -- //
-                    MotifPretDAO.Modifier(GBConvert.JSON_To<MotifPret>(obj));
+                    motifPretDAO.Modifier(GBConvert.JSON_To<MotifPret>(obj));
                 }
                 #endregion
 
@@ -744,7 +911,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_ClassificationProvisionsPret)
                 {
                     // -- Service de modification -- //
-                    ClassificationProvisionsPretDAO.Modifier(GBConvert.JSON_To<ClassificationProvisionsPret>(obj));
+                    classificationProvisionsPretDAO.Modifier(GBConvert.JSON_To<ClassificationProvisionsPret>(obj));
                 }
                 #endregion
 
@@ -752,7 +919,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeGarantie)
                 {
                     // -- Service de modification -- //
-                    TypeGarantieDAO.Modifier(GBConvert.JSON_To<TypeGarantie>(obj));
+                    typeGarantieDAO.Modifier(GBConvert.JSON_To<TypeGarantie>(obj));
                 }
                 #endregion
 
@@ -760,7 +927,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
                 {
                     // -- Service de modification -- //
-                    JournalDAO.Modifier(GBConvert.JSON_To<Journal>(obj));
+                    journalDAO.Modifier(GBConvert.JSON_To<Journal>(obj));
                 }
                 #endregion
 
@@ -768,7 +935,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
                 {
                     // -- Service de modification -- //
-                    TypeActifDAO.Modifier(GBConvert.JSON_To<TypeActif>(obj));
+                    typeActifDAO.Modifier(GBConvert.JSON_To<TypeActif>(obj));
                 }
                 #endregion
 
@@ -776,7 +943,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
                 {
                     // -- Service de modification -- //
-                    LocalisationActifDAO.Modifier(GBConvert.JSON_To<LocalisationActif>(obj));
+                    localisationActifDAO.Modifier(GBConvert.JSON_To<LocalisationActif>(obj));
                 }
                 #endregion
 
@@ -784,7 +951,15 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
                 {
                     // -- Service de modification -- //
-                    WesternUnionZonePaysDAO.Modifier(GBConvert.JSON_To<WesternUnionZonePays>(obj));
+                    westernUnionZonePaysDAO.Modifier(GBConvert.JSON_To<WesternUnionZonePays>(obj));
+                }
+                #endregion
+
+                #region ConfigurationOperation-Compte
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_Compte)
+                {
+                    // -- Service de modification -- //
+                    compteDAO.Modifier(GBConvert.JSON_To<Compte>(obj));
                 }
                 #endregion
 
@@ -794,6 +969,71 @@ namespace GB.Controllers
                     throw new Exception("Le id_page n'a pas été retourné!");
                 }
                 #endregion
+
+                // -- Notificication -- //
+                this.ViewBag.notification = new GBNotification(false);
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(true);
+                }
+                else
+                {
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(ex.Message, true);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return Json(
+                GBConvert.To_Object(this.ViewBag)
+            );
+        }
+
+        // -- Modifier un enregistrement dans la liste -- //
+        [HttpPost]
+        public ActionResult Compte_Enregistrer_Nouveau_Compte(string obj)
+        {
+            try
+            {
+                // -- Mise à jour des comptes en session -- //
+                List<Compte> comptes = GBConvert.JSON_To<List<Compte>>(obj);
+
+                // -- Vérifier qu'au moins un elemente est soumis au traitement -- //
+                if (comptes.Count == 0)
+                {
+                    throw new GBException(App_Lang.Lang.No_items_have_been_previously_created);
+                }
+
+                // -- Supprimer les comptes annulé -- //
+                (this.con.donnee.nouveau_compte as List<Compte>).RemoveAll(l => comptes.Count(ll => ll.id == l.id) == 0);
+
+                // -- Mise à jours des comptes -- //
+                foreach (var val in comptes)
+                {
+                    (this.con.donnee.nouveau_compte as List<Compte>)
+                        .Where(l => l.id == val.id)
+                        .ToList()
+                        .ForEach(l =>
+                        {
+                            l.libelle = val.libelle;
+                            l.nature = val.nature;
+                            l.statut = val.statut;
+                            l.cle = val.cle;
+                        });
+                }
+
+                // -- Enregistrer les elements -- //
+                compteDAO.Ajouter(this.con.donnee.nouveau_compte as List<Compte>);
 
                 // -- Notificication -- //
                 this.ViewBag.notification = new GBNotification(false);
@@ -838,7 +1078,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationOperation_TypePret)
                 {
                     // -- Service de suppression -- //
-                    TypePretDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    typePretDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -846,7 +1086,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_MotifPret)
                 {
                     // -- Service de suppression -- //
-                    MotifPretDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    motifPretDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -854,7 +1094,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_ClassificationProvisionsPret)
                 {
                     // -- Service de suppression -- //
-                    ClassificationProvisionsPretDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    classificationProvisionsPretDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -862,7 +1102,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeGarantie)
                 {
                     // -- Service de suppression -- //
-                    TypeGarantieDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    typeGarantieDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -870,7 +1110,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
                 {
                     // -- Service de suppression -- //
-                    JournalDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    journalDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -878,7 +1118,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
                 {
                     // -- Service de suppression -- //
-                    TypeActifDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    typeActifDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -886,7 +1126,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
                 {
                     // -- Service de suppression -- //
-                    LocalisationActifDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    localisationActifDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -894,7 +1134,15 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
                 {
                     // -- Service de suppression -- //
-                    WesternUnionZonePaysDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    westernUnionZonePaysDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationOperation-Compte
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_Compte)
+                {
+                    // -- Service de suppression -- //
+                    compteDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -966,6 +1214,43 @@ namespace GB.Controllers
                                 }
                             );
                         }
+                    }
+                    #endregion
+                }
+                #endregion
+            }
+            #region catch & finally
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return GBConvert.To_JSONString(donnee);
+        }
+
+        // -- Recharger les données dans le auto complete -- //
+        public override object Recharger_EasyAutocomplete(string id_page, string id_vue)
+        {
+            List<object> donnee = new List<object>();
+
+            try
+            {
+                #region ConfigurationOperation-WesternUnionZonePays
+                if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
+                {
+                    // -- Si la vue n'est pas retourné -- //
+                    #region pays
+                    if (id_vue == "pays")
+                    {
+                        // -- Mise à jour de la liste en session -- //
+                        this.con.donnee.pays = PaysDAO.Lister();
                     }
                     #endregion
                 }
@@ -1230,6 +1515,60 @@ namespace GB.Controllers
                 // - Mise à jour des données de vue -- //
                 // -- Pays -- //
                 this.con.donnee.pays = new List<Pays>();
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationOperation-Compte
+            else if (id_page == GB_Enum_Menu.ConfigurationOperation_Compte)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Account_management;
+                this.ViewBag.Lang.Key = App_Lang.Lang.Key;
+                this.ViewBag.Lang.Status = App_Lang.Lang.Status;
+                this.ViewBag.Lang.Currency = App_Lang.Lang.Currency;
+                this.ViewBag.Lang.Parameters = App_Lang.Lang.Parameters;
+                this.ViewBag.Lang.Account = App_Lang.Lang.Account;
+                this.ViewBag.Lang.Account_number = App_Lang.Lang.Account_number;
+                this.ViewBag.Lang.Generate = App_Lang.Lang.Generate;
+                this.ViewBag.Lang.Length_string_min_2 = App_Lang.Lang.Length_string_min_2;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.donnee.HTML_Nature = GBClass.HTML_nature_compte();
+                this.ViewBag.donnee.HTML_Statut = GBClass.HTML_statut_compte();
+                dynamic donnee = deviseDAO.HTML_Select();
+                this.ViewBag.donnee.HTML_Select_code_devise = donnee.html_code;
+                this.ViewBag.donnee.HTML_Select_libelle_devise = donnee.html_libelle;
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Account_management
+                                                    },
+                                                    Lang = new
+                                                    {
+                                                        Not_required = App_Lang.Lang.Not_required,
+                                                        Credit = App_Lang.Lang.Credit,
+                                                        Debit = App_Lang.Lang.Debit,
+                                                        Both = App_Lang.Lang.Both,
+                                                        Close = App_Lang.Lang.Close,
+                                                        Open = App_Lang.Lang.Open,
+                                                    }
+                                                }
+                                            );
+                // -- Vider les données temporaire -- //
+                this.con.Vider_Donnee();
+                // - Mise à jour des données de vue -- //
+                // -- autorisation_disponible -- //
+                this.con.donnee.nouveau_compte = new List<Compte>();
                 #endregion
             }
             #endregion

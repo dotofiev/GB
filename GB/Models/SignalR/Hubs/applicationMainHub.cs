@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.DAO;
+using GB.Models.GB;
 using GB.Models.Static;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
@@ -16,8 +17,8 @@ namespace GB.Models.SignalR.Hubs
     {
         // -- Variables -- //
         public IHubContext context_hub { get { return GlobalHost.ConnectionManager.GetHubContext<applicationMainHub>(); } }
-        public static IHubContext context_hub_static { get { return GlobalHost.ConnectionManager.GetHubContext<applicationMainHub>(); } }
-        public static List<Connexion> Hubs_Connexion { get { return System.Web.HttpContext.Current.Application["Hubs_Connexion"] as List<Connexion>; } }
+        private static IHubContext context_hub_static { get { return GlobalHost.ConnectionManager.GetHubContext<applicationMainHub>(); } }
+        public static List<GBConnexion> Hubs_Connexion { get { return System.Web.HttpContext.Current.Application["Hubs_Connexion"] as List<GBConnexion>; } }
         public string id_session_cookie { get { return Context.RequestCookies["id_session"].Value; } }
         public int id_lang_cookie { get { return Convert.ToInt32(Context.RequestCookies["id_lang"].Value); } }
         public string id_navigateur_client_cookie { get { return Context.RequestCookies["id_navigateur_client"].Value; } }
@@ -70,7 +71,7 @@ namespace GB.Models.SignalR.Hubs
 
         #region Methodes
         // -- Mise à jour du client dans la liste -- //
-        public static void MiseAJourHubs_Connexion(Connexion con)
+        public static void MiseAJourHubs_Connexion(GBConnexion con)
         {
             // -- Réccupération de la position -- //
             int position = Hubs_Connexion.FindIndex(l => l.id_navigateur_client == con.id_navigateur_client);
@@ -111,34 +112,112 @@ namespace GB.Models.SignalR.Hubs
 
         // -- Mise à jour des combo box sur les pages des clients -- //
         #region Mise à jour des combo box sur les pages des clients
-        public static void RechargerCombo(GBDAO ObjetDAO)
+        public static void RechargerCombo(DAO.DAO ObjetDAO)
         {
             try
             {
-                // -- Construction de l'objet à envoyer en paramètre -- //
-                string select_code = string.Empty, select_libelle = string.Empty;
-                ObjetDAO.HTML_Select(ref select_code, ref select_libelle);
+                // -- Communiquer aux autres clients si la présentation des données en temps réel est activé -- //
+                if (AppSettings.DONNEE_EN_TEMPS_REEL)
+                {
+                    // -- Construction de l'objet à envoyer en paramètre -- //
+                    dynamic donnee = ObjetDAO.HTML_Select();
 
-                // -- Appel de la méthode client pour déconnecter l'utilisateur -- //
-                context_hub_static
-                    // -- Les clients -- //
-                    .Clients
-                    // -- Spécification à tous les clients sauf moi -- //
-                    //.AllExcept(new string[] { context_id })
-                    // -- Spécifier à tous les clients -- //
-                    .All
-                    // -- Méthode à éexecuter chez le client -- //
-                    .rechargerCombo(
-                        new GBNotification(
-                            new
-                            {
-                                select_code = select_code,
-                                select_libelle = select_libelle,
-                                form_id = $"#{ObjetDAO.form_combo_id}",
-                                form_libelle = $"#{ObjetDAO.form_combo_libelle}"
-                            }
-                        )
-                    );
+                    // -- Appel de la méthode client pour déconnecter l'utilisateur -- //
+                    context_hub_static
+                        // -- Les clients -- //
+                        .Clients
+                        // -- Spécification à tous les clients sauf moi -- //
+                        //.AllExcept(new string[] { context_id })
+                        // -- Spécifier à tous les clients -- //
+                        .All
+                        // -- Méthode à éexecuter chez le client -- //
+                        .rechargerCombo(
+                            new GBNotification(
+                                new
+                                {
+                                    select_code = donnee.html_code,
+                                    select_libelle = donnee.html_libelle,
+                                    form_id = $"#{ObjetDAO.form_combo_id}",
+                                    form_libelle = $"#{ObjetDAO.form_combo_libelle}"
+                                }
+                            )
+                        );
+                }
+            }
+            catch (Exception ex)
+            {
+                // -- Log -- //
+                GBClass.Log.Error(ex);
+            }
+        }
+        #endregion
+
+        // -- Mise à jour de la table chez tous les clients présent sur la page -- //
+        #region Mise à jour de la table chez tous les clients présent sur la page
+        public static void RechargerTable(string id_page, string context_id)
+        {
+            try
+            {
+                // -- Communiquer aux autres clients si la présentation des données en temps réel est activé -- //
+                if (AppSettings.DONNEE_EN_TEMPS_REEL)
+                {
+                    // -- Appel de la méthode client pour déconnecter l'utilisateur -- //
+                    context_hub_static
+                        // -- Les clients -- //
+                        .Clients
+                        // -- Spécification à tous les clients sauf moi -- //
+                        .AllExcept(new string[] { context_id })
+                        // -- Spécifier à tous les clients -- //
+                        //.All
+                        // -- Méthode à éexecuter chez le client -- //
+                        .rechargerTable(
+                            new GBNotification(
+                                new
+                                {
+                                    id_page = id_page
+                                }
+                            )
+                        );
+                }
+            }
+            catch (Exception ex)
+            {
+                // -- Log -- //
+                GBClass.Log.Error(ex);
+            }
+        }
+        #endregion
+
+        // -- Mise à jour des combox box easyAutocomplete chez tous les clients présent sur la page -- //
+        #region Mise à jour des combox box easyAutocomplete chez tous les clients présent sur la page
+        public static void RechargerComboEasyAutocomplete(DAO.DAO ObjetDAO, string context_id)
+        {
+            try
+            {
+                // -- Communiquer aux autres clients si la présentation des données en temps réel est activé -- //
+                if (AppSettings.DONNEE_EN_TEMPS_REEL)
+                {
+                    // -- Appel de la méthode client pour déconnecter l'utilisateur -- //
+                    context_hub_static
+                        // -- Les clients -- //
+                        .Clients
+                        // -- Spécification à tous les clients sauf moi -- //
+                        .AllExcept(new string[] { context_id })
+                        // -- Spécifier à tous les clients -- //
+                        //.All
+                        // -- Méthode à éexecuter chez le client -- //
+                        .rechargerComboEasyAutocomplete(
+                            new GBNotification(
+                                new
+                                {
+                                    form_id = $"#{ObjetDAO.form_combo_id}",
+                                    form_code = $"#{ObjetDAO.form_combo_code}",
+                                    form_libelle = $"#{ObjetDAO.form_combo_libelle}",
+                                    id_vue = ObjetDAO.form_name
+                                }
+                            )
+                        );
+                }
             }
             catch (Exception ex)
             {

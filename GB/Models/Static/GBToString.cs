@@ -71,5 +71,22 @@ namespace GB.Models.Static
                                          : donnee == "SureteReelle" ? App_Lang.Lang.Real_safety
                                                                     : string.Empty;
         }
+
+        public static string NatureCompte(string donnee)
+        {
+            return
+                donnee == "Credit" ? App_Lang.Lang.Credit
+                                   : donnee == "Debit" ? App_Lang.Lang.Debit
+                                                       : donnee == "Both" ? App_Lang.Lang.Both
+                                                                           : App_Lang.Lang.Not_required;
+        }
+
+        public static string StatutCompte(string donnee)
+        {
+            return
+                donnee == "Close" ? App_Lang.Lang.Close
+                                  : donnee == "Open" ? App_Lang.Lang.Open
+                                                     : App_Lang.Lang.Not_required;
+        }
     }
 }

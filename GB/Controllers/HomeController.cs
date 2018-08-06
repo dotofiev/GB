@@ -1,6 +1,7 @@
 ﻿using GB.Models;
 using GB.Models.BO;
 using GB.Models.DAO;
+using GB.Models.GB;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -28,7 +29,7 @@ namespace GB.Controllers
             Charger_Langue_Et_Donnees("Home-Authentication");
 
             // -- Initialiser l'object connexion de l'utilisateur -- //
-            this.con = new Connexion(Session.SessionID, id_navigateur_client_cookies);
+            this.con = new GBConnexion(Session.SessionID, id_navigateur_client_cookies);
 
             // -- Mise à jour de la position du client -- //
             applicationMainHub.MiseAJourHubs_Connexion(this.con);

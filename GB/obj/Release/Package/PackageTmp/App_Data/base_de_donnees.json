@@ -1,0 +1,1841 @@
+﻿{
+  "modules": [
+    {
+      "id": "1",
+      "code": "1",
+      "libelle_en": "Security group",
+      "libelle_fr": "Groupe sécurité"
+    },
+    {
+      "id": "2",
+      "code": "2",
+      "libelle_en": "Configuration",
+      "libelle_fr": "Configuration"
+    }
+  ],
+  "groupe_menus": [
+    {
+      "id": "1",
+      "id_module": "1",
+      "code": "1",
+      "libelle_en": "Configure security objets",
+      "libelle_fr": "Configuration objets sécurité",
+      "icon": "fa fa-cogs",
+      "controller": "Securite"
+    },
+    {
+      "id": "2",
+      "id_module": "1",
+      "code": "2",
+      "libelle_en": "Manage employee's security",
+      "libelle_fr": "Gestion de la sécurité des employés",
+      "icon": "fa fa-cogs",
+      "controller": "SecuriteUtilisateur"
+    },
+    {
+      "id": "3",
+      "id_module": "2",
+      "code": "3",
+      "libelle_en": "Bank",
+      "libelle_fr": "Banque",
+      "icon": "fa fa-cogs",
+      "controller": "ConfigurationBanque"
+    },
+    {
+      "id": "4",
+      "id_module": "2",
+      "code": "4",
+      "libelle_en": "Budget Parameters",
+      "libelle_fr": "Paramètres du budget",
+      "icon": "fa fa-cogs",
+      "controller": "ConfigurationBudget"
+    },
+    {
+      "id": "5",
+      "id_module": "2",
+      "code": "5",
+      "libelle_en": "Operation parameters",
+      "libelle_fr": "Paramètres des opérations",
+      "icon": "fa fa-cogs",
+      "controller": "ConfigurationOperation"
+    }
+  ],
+  "menus": [
+    {
+      "id": "1",
+      "code": "1",
+      "id_groupe_menu": "1",
+      "libelle_en": "Manage GBK modules",
+      "libelle_fr": "Gestion des modules GB",
+      "view": "Module",
+      "id_controller": "1"
+    },
+    {
+      "id": "2",
+      "code": "2",
+      "id_groupe_menu": "1",
+      "libelle_en": "Manage GBK menu",
+      "libelle_fr": "Gestion des menu GB",
+      "view": "Menu",
+      "id_controller": "1"
+    },
+    {
+      "id": "3",
+      "code": "3",
+      "id_groupe_menu": "1",
+      "libelle_en": "Manage GBK roles",
+      "libelle_fr": "Gestion des roles GB",
+      "view": "Role",
+      "id_controller": "1"
+    },
+    {
+      "id": "4",
+      "code": "4",
+      "id_groupe_menu": "2",
+      "libelle_en": "Employee management",
+      "libelle_fr": "Gestion des employés",
+      "view": "Utilisateur",
+      "id_controller": "2"
+    },
+    {
+      "id": "5",
+      "code": "5",
+      "id_groupe_menu": "2",
+      "libelle_en": "Assigning roles and menus",
+      "libelle_fr": "Attribution des rôles et menus",
+      "view": "Privilege",
+      "id_controller": "2"
+    },
+    {
+      "id": "6",
+      "code": "6",
+      "id_groupe_menu": "2",
+      "libelle_en": "System Audit",
+      "libelle_fr": "Audit du système",
+      "view": "Audit",
+      "id_controller": "2"
+    },
+    {
+      "id": "7",
+      "code": "7",
+      "id_groupe_menu": "3",
+      "libelle_en": "Institution",
+      "libelle_fr": "Institution",
+      "view": "Institution",
+      "id_controller": "3"
+    },
+    {
+      "id": "8",
+      "code": "8",
+      "id_groupe_menu": "3",
+      "libelle_en": "Branch",
+      "libelle_fr": "Agence",
+      "view": "Agence",
+      "id_controller": "3"
+    },
+    {
+      "id": "9",
+      "code": "9",
+      "id_groupe_menu": "3",
+      "libelle_en": "Branch Accounts",
+      "libelle_fr": "Comptes de succursale",
+      "view": "CompteAgence",
+      "id_controller": "3"
+    },
+    {
+      "id": "10",
+      "code": "10",
+      "id_groupe_menu": "3",
+      "libelle_en": "Currency",
+      "libelle_fr": "Devise",
+      "view": "Devise",
+      "id_controller": "3"
+    },
+    {
+      "id": "11",
+      "code": "11",
+      "id_groupe_menu": "3",
+      "libelle_en": "General bank parameters",
+      "libelle_fr": "Paramètres bancaires généraux",
+      "view": "Parametre",
+      "id_controller": "3"
+    },
+    {
+      "id": "12",
+      "code": "12",
+      "id_groupe_menu": "3",
+      "libelle_en": "Bank parameters",
+      "libelle_fr": "Paramètres bancaires",
+      "view": "ParametreBanque",
+      "id_controller": "3"
+    },
+
+    // ------------ //
+    // -- Parent -- //
+    // ------------ //
+    {
+      "id": "13",
+      "code": "13",
+      "id_groupe_menu": "3",
+      "libelle_en": "Bank product",
+      "libelle_fr": "Produit bancaires",
+      "view": "",
+      "id_controller": "3"
+    },
+    // -- Enfants -- //
+    {
+      "id": "14",
+      "code": "14",
+      "id_menu_parent": "13",
+      "id_groupe_menu": "3",
+      "libelle_en": "Physical customer",
+      "libelle_fr": "Client physique",
+      "view": "ProduitClientPhysique",
+      "id_controller": "3"
+    },
+    {
+      "id": "15",
+      "code": "15",
+      "id_menu_parent": "13",
+      "id_groupe_menu": "3",
+      "libelle_en": "Judicial customer",
+      "libelle_fr": "Client judiciaire",
+      "view": "ProduitClientJudiciaire",
+      "id_controller": "3"
+    },
+    {
+      "id": "16",
+      "code": "16",
+      "id_menu_parent": "13",
+      "id_groupe_menu": "3",
+      "libelle_en": "Create product",
+      "libelle_fr": "Créer un produit",
+      "view": "ProduitCreation",
+      "id_controller": "3"
+    },
+    // -- Enfants -- //
+
+    {
+      "id": "17",
+      "code": "17",
+      "id_groupe_menu": "3",
+      "libelle_en": "Bank holidays",
+      "libelle_fr": "Congés bancaire",
+      "view": "CongeBanque",
+      "id_controller": "3"
+    },
+
+    // ------------ //
+    // -- Parent -- //
+    // ------------ //
+    {
+      "id": "18",
+      "code": "18",
+      "id_groupe_menu": "3",
+      "libelle_en": "Institutionnal attributes",
+      "libelle_fr": "Attributs institutionnel",
+      "view": "",
+      "id_controller": "3"
+    },
+    // -- Enfants -- //
+    {
+      "id": "19",
+      "code": "19",
+      "id_menu_parent": "18",
+      "id_groupe_menu": "3",
+      "libelle_en": "B.E.A.C. Nationality",
+      "libelle_fr": "Nationalités B.E.A.C.",
+      "view": "BEACNationalite",
+      "id_controller": "3"
+    },
+    {
+      "id": "20",
+      "code": "20",
+      "id_menu_parent": "18",
+      "id_groupe_menu": "3",
+      "libelle_en": "Institutional unit",
+      "libelle_fr": "Unité institutionnelle",
+      "view": "UniteInstitutionnelle",
+      "id_controller": "3"
+    },
+    {
+      "id": "21",
+      "code": "21",
+      "id_menu_parent": "18",
+      "id_groupe_menu": "3",
+      "libelle_en": "Title",
+      "libelle_fr": "Titre",
+      "view": "Titre",
+      "id_controller": "3"
+    },
+    {
+      "id": "22",
+      "code": "22",
+      "id_menu_parent": "18",
+      "id_groupe_menu": "3",
+      "libelle_en": "Economic activities",
+      "libelle_fr": "Activités économique",
+      "view": "ActiviteEconomique",
+      "id_controller": "3"
+    },
+    {
+      "id": "23",
+      "code": "23",
+      "id_menu_parent": "18",
+      "id_groupe_menu": "3",
+      "libelle_en": "Towns",
+      "libelle_fr": "Villes",
+      "view": "Ville",
+      "id_controller": "3"
+    },
+    {
+      "id": "24",
+      "code": "24",
+      "id_menu_parent": "18",
+      "id_groupe_menu": "3",
+      "libelle_en": "Country",
+      "libelle_fr": "Pays",
+      "view": "Pays",
+      "id_controller": "3"
+    },
+    // -- Enfants -- //
+
+    {
+      "id": "25",
+      "code": "25",
+      "id_groupe_menu": "4",
+      "libelle_en": "Fiscal exercice",
+      "libelle_fr": "Exercice fiscal",
+      "view": "ExerciceFiscal",
+      "id_controller": "4"
+    },
+    {
+      "id": "26",
+      "code": "26",
+      "id_groupe_menu": "4",
+      "libelle_en": "Budget directorate",
+      "libelle_fr": "Direction du budget",
+      "view": "DirectionBudget",
+      "id_controller": "4"
+    },
+    {
+      "id": "27",
+      "code": "27",
+      "id_groupe_menu": "4",
+      "libelle_en": "Signing authority",
+      "libelle_fr": "Autorité de signature",
+      "view": "AutoriteSignature",
+      "id_controller": "4"
+    },
+
+    // ------------ //
+    // -- Parent -- //
+    // ------------ //
+    {
+      "id": "28",
+      "code": "28",
+      "id_groupe_menu": "5",
+      "libelle_en": "Loans parameters",
+      "libelle_fr": "Paramètres des prêts",
+      "view": "",
+      "id_controller": "5"
+    },
+    // -- Enfants -- //
+    {
+      "id": "29",
+      "code": "29",
+      "id_menu_parent": "28",
+      "id_groupe_menu": "5",
+      "libelle_en": "Loan type",
+      "libelle_fr": "Types de prêt",
+      "view": "TypePret",
+      "id_controller": "5"
+    },
+    {
+      "id": "30",
+      "code": "30",
+      "id_menu_parent": "28",
+      "id_groupe_menu": "5",
+      "libelle_en": "Loans purpose",
+      "libelle_fr": "Motifs de prêt",
+      "view": "MotifPret",
+      "id_controller": "5"
+    },
+    {
+      "id": "31",
+      "code": "31",
+      "id_menu_parent": "28",
+      "id_groupe_menu": "5",
+      "libelle_en": "Loans provision classification",
+      "libelle_fr": "Classification des provisions pour prêts",
+      "view": "ClassificationProvisionsPret",
+      "id_controller": "5"
+    },
+    {
+      "id": "32",
+      "code": "32",
+      "id_menu_parent": "28",
+      "id_groupe_menu": "5",
+      "libelle_en": "Guarantee type",
+      "libelle_fr": "Types de garantie",
+      "view": "TypeGarantie",
+      "id_controller": "5"
+    },
+    // -- ./Enfants -- //
+    {
+      "id": "33",
+      "code": "33",
+      "id_groupe_menu": "5",
+      "libelle_en": "Journals recording",
+      "libelle_fr": "Enregistrement des journaux",
+      "view": "Journal",
+      "id_controller": "5"
+    },
+
+    // ------------ //
+    // -- Parent -- //
+    // ------------ //
+    {
+      "id": "34",
+      "code": "34",
+      "id_groupe_menu": "5",
+      "libelle_en": "Assets parameters",
+      "libelle_fr": "Paramètres des actifs",
+      "view": "",
+      "id_controller": "5"
+    },
+    // -- Enfants -- //
+    {
+      "id": "35",
+      "code": "35",
+      "id_menu_parent": "34",
+      "id_groupe_menu": "5",
+      "libelle_en": "Asset type",
+      "libelle_fr": "Types d'actifs",
+      "view": "TypeActif",
+      "id_controller": "5"
+    },
+    {
+      "id": "36",
+      "code": "36",
+      "id_menu_parent": "34",
+      "id_groupe_menu": "5",
+      "libelle_en": "Localisation of fixed assets",
+      "libelle_fr": "Localisation des immobilisations",
+      "view": "LocalisationActif",
+      "id_controller": "5"
+    },
+    // -- ./Enfants -- //
+    
+
+    // ------------ //
+    // -- Parent -- //
+    // ------------ //
+    {
+      "id": "37",
+      "code": "37",
+      "id_groupe_menu": "5",
+      "libelle_en": "Western Union",
+      "libelle_fr": "Western Union",
+      "view": "",
+      "id_controller": "5"
+    },
+    // -- Enfants -- //
+    {
+      "id": "38",
+      "code": "38",
+      "id_menu_parent": "37",
+      "id_groupe_menu": "5",
+      "libelle_en": "Contry zones",
+      "libelle_fr": "Zone pays",
+      "view": "WesternUnionZonePays",
+      "id_controller": "5"
+    },
+    {
+      "id": "39",
+      "code": "39",
+      "id_menu_parent": "37",
+      "id_groupe_menu": "5",
+      "libelle_en": "Commissions",
+      "libelle_fr": "Commissions",
+      "view": "WesternUnionZoneCommission",
+      "id_controller": "5"
+    },
+    // -- ./Enfants -- //
+  ],
+  "roles": [
+    {
+      "id": "1",
+      "code": "1",
+      "libelle_en": "Admin",
+      "libelle_fr": "Administrateur"
+    },
+    {
+      "id": "2",
+      "code": "2",
+      "libelle_en": "Programer",
+      "libelle_fr": "Programmeur"
+    }
+  ],
+  "utilisateurs": [
+    {
+      "id_utilisateur": "1",
+      "id_role": "1",
+      "id_agence": "1",
+      "id_profession": "1",
+      "compte": "admin",
+      "mot_de_passe": "admin",
+      "nom_utilisateur": "Administrateur",
+      "ouverture_back_date": "false",
+      "ouverture_back_date_travail": "false",
+      "ouverture_branch": "false",
+      "est_connecte": "false",
+      "est_suspendu": "false",
+      "duree_mot_de_passe": "1",
+      "date_mise_a_jour_mot_de_passe": "0",
+      "id_autorite_signature": "1"
+    },
+    {
+      "id_utilisateur": "2",
+      "id_role": "2",
+      "id_agence": "1",
+      "id_profession": "1",
+      "compte": "prog",
+      "mot_de_passe": "prog",
+      "nom_utilisateur": "Programmeur",
+      "ouverture_back_date": "false",
+      "ouverture_back_date_travail": "false",
+      "ouverture_branch": "false",
+      "est_connecte": "false",
+      "est_suspendu": "false",
+      "duree_mot_de_passe": "1",
+      "date_mise_a_jour_mot_de_passe": "0",
+      "id_autorite_signature": "1"
+    }
+  ],
+  "autorisations": [
+    // -- Role 1 -- //
+    {
+      "id": "1",
+      "id_role": "1",
+      "id_menu": "1",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "2",
+      "id_role": "1",
+      "id_menu": "2",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "3",
+      "id_role": "1",
+      "id_menu": "3",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "4",
+      "id_role": "1",
+      "id_menu": "4",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "5",
+      "id_role": "1",
+      "id_menu": "5",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "6",
+      "id_role": "1",
+      "id_menu": "6",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "9",
+      "id_role": "1",
+      "id_menu": "7",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "10",
+      "id_role": "1",
+      "id_menu": "8",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "11",
+      "id_role": "1",
+      "id_menu": "9",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "12",
+      "id_role": "1",
+      "id_menu": "10",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "12",
+      "id_role": "1",
+      "id_menu": "11",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "13",
+      "id_role": "1",
+      "id_menu": "12",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "14",
+      "id_role": "1",
+      "id_menu": "13",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "15",
+      "id_role": "1",
+      "id_menu": "14",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "16",
+      "id_role": "1",
+      "id_menu": "15",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "17",
+      "id_role": "1",
+      "id_menu": "16",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "18",
+      "id_role": "1",
+      "id_menu": "17",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "19",
+      "id_role": "1",
+      "id_menu": "18",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "20",
+      "id_role": "1",
+      "id_menu": "19",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "21",
+      "id_role": "1",
+      "id_menu": "20",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "22",
+      "id_role": "1",
+      "id_menu": "21",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "23",
+      "id_role": "1",
+      "id_menu": "22",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "24",
+      "id_role": "1",
+      "id_menu": "23",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "25",
+      "id_role": "1",
+      "id_menu": "24",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "26",
+      "id_role": "1",
+      "id_menu": "25",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "27",
+      "id_role": "1",
+      "id_menu": "26",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "28",
+      "id_role": "1",
+      "id_menu": "27",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "29",
+      "id_role": "1",
+      "id_menu": "28",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "30",
+      "id_role": "1",
+      "id_menu": "29",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "31",
+      "id_role": "1",
+      "id_menu": "30",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "32",
+      "id_role": "1",
+      "id_menu": "31",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "33",
+      "id_role": "1",
+      "id_menu": "32",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "34",
+      "id_role": "1",
+      "id_menu": "33",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "35",
+      "id_role": "1",
+      "id_menu": "34",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "36",
+      "id_role": "1",
+      "id_menu": "35",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "37",
+      "id_role": "1",
+      "id_menu": "36",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "38",
+      "id_role": "1",
+      "id_menu": "37",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "39",
+      "id_role": "1",
+      "id_menu": "38",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "40",
+      "id_role": "1",
+      "id_menu": "39",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+
+
+    // -- Role 2 -- //
+    {
+      "id": "7",
+      "id_role": "2",
+      "id_menu": "1",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "8",
+      "id_role": "2",
+      "id_menu": "2",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "41",
+      "id_role": "2",
+      "id_menu": "3",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "42",
+      "id_role": "2",
+      "id_menu": "4",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "43",
+      "id_role": "2",
+      "id_menu": "5",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "44",
+      "id_role": "2",
+      "id_menu": "6",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "45",
+      "id_role": "2",
+      "id_menu": "7",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "46",
+      "id_role": "2",
+      "id_menu": "8",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "47",
+      "id_role": "2",
+      "id_menu": "9",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "48",
+      "id_role": "2",
+      "id_menu": "10",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "49",
+      "id_role": "2",
+      "id_menu": "11",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "50",
+      "id_role": "2",
+      "id_menu": "12",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "51",
+      "id_role": "2",
+      "id_menu": "13",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "52",
+      "id_role": "2",
+      "id_menu": "14",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "53",
+      "id_role": "2",
+      "id_menu": "15",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "54",
+      "id_role": "2",
+      "id_menu": "16",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "55",
+      "id_role": "2",
+      "id_menu": "17",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "56",
+      "id_role": "2",
+      "id_menu": "18",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "57",
+      "id_role": "2",
+      "id_menu": "19",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "58",
+      "id_role": "2",
+      "id_menu": "20",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "59",
+      "id_role": "2",
+      "id_menu": "21",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "60",
+      "id_role": "2",
+      "id_menu": "22",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "61",
+      "id_role": "2",
+      "id_menu": "23",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "62",
+      "id_role": "2",
+      "id_menu": "24",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "63",
+      "id_role": "2",
+      "id_menu": "25",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "64",
+      "id_role": "2",
+      "id_menu": "26",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "65",
+      "id_role": "2",
+      "id_menu": "27",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "66",
+      "id_role": "2",
+      "id_menu": "28",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "67",
+      "id_role": "2",
+      "id_menu": "29",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "68",
+      "id_role": "2",
+      "id_menu": "30",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "69",
+      "id_role": "2",
+      "id_menu": "31",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "70",
+      "id_role": "2",
+      "id_menu": "32",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "71",
+      "id_role": "2",
+      "id_menu": "33",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "72",
+      "id_role": "2",
+      "id_menu": "34",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "73",
+      "id_role": "2",
+      "id_menu": "35",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "74",
+      "id_role": "2",
+      "id_menu": "36",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "75",
+      "id_role": "2",
+      "id_menu": "37",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "76",
+      "id_role": "2",
+      "id_menu": "38",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "77",
+      "id_role": "2",
+      "id_menu": "39",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+  ],
+  "agences": [
+    {
+      "id": "1",
+      "code": "0001",
+      "libelle": "Agence 1",
+      "id_utilisateur": "0",
+      "adresse": "Logpom",
+      "ville": "Douala",
+      "bp": "00000",
+      "telephone": "699999999",
+      "pays": "Cameroun",
+      "fax": "00000",
+      "cobac_id": "00000",
+      "beac_id": "00000",
+      "ip": "http://localhost:4409/",
+      "mot_de_passe": "root"
+    }
+  ],
+  "professions": [
+    {
+      "id": "1",
+      "code": "0001",
+      "libelle": "Caissier"
+    },
+    {
+      "id": "2",
+      "code": "0002",
+      "libelle": "Chef d'agence"
+    }
+  ],
+  "institutions": [
+    {
+      "id": "1",
+      "code": "OPESECS. LTD",
+      "libelle": "OPUS SECURITATIS SOLIDARITY LIMITED",
+      "motto": "WORKING FOR FINANCIAL SECURITY",
+      "pub": "WORKING FOR FINANCIAL SECURITY",
+      "cobac_id": "16157",
+      "type": "S.A.",
+      "logo": {
+        "fichier": [ ],
+        "libelle": ""
+      }
+    }
+  ],
+  "devises": [
+    {
+      "id": "1",
+      "code": "001",
+      "libelle": "Franc Communautaire Financière Africain",
+      "signe": "FCFA",
+      "devise_actuelle": "true"
+    }
+  ],
+  "parametres": [
+    {
+      "id": "1",
+      "code": "001",
+      "nombre_ligne_historique_compte": "26",
+      "utilisation_chequier": "true",
+      "nombre_jour_avant_apuration_credit": "0",
+      "periode_dormante": "3",
+      "periode_litige": "360",
+      "utilisation_version_centrale": "true",
+      "periode_de_non_paiement": "150",
+      "controler_le_nombre_de_pret": "false",
+      "controler_le_nombre_de_comptes": "false",
+      "tva": "false",
+      "controler_session": "false",
+      "duree_session": "0",
+      "sms_banking": "true",
+      "nombre_de_jour_ouverture_back_date": "0",
+      "methode_de_post_interet_reserver": "DERNIERMVT",
+      "utilisation_litige_methode_cobac": "false",
+      "modifier_les_attributs_client_dans_la_branch": "true",
+      "conter_le_nombre_de_page_dans_historique": "true",
+      "mise_a_jour_position_client": "false",
+      "poster_credit": "true",
+      "poster_litige_pret": "true",
+      "poster_collection_locale": "true",
+      "western_union": "false",
+      "poster_bon_de_caisse_et_depot_a_terme": "true",
+      "methode_de_sauvegarde": "FULL",
+      "lien_sauvegarde_numero_1": "",
+      "lien_sauvegarde_numero_2": ""
+    }
+  ],
+  "parametres_banque": [
+    {
+      "id": "1",
+      "id_devise": "1",
+      "code": "IMPAYE",
+      "libelle": "Charge on unpaid bills",
+      "taux": "0",
+      "montant": "0",
+      "montant_minimal": "0",
+      "montant_maximal": "0"
+    },
+    {
+      "id": "2",
+      "id_devise": "1",
+      "code": "COMM",
+      "libelle": "Other commission",
+      "taux": "0",
+      "montant": "0",
+      "montant_minimal": "0",
+      "montant_maximal": "0"
+    }
+  ],
+  "produits_physique": [
+    {
+      "id": "1",
+      "code": "CIVIL",
+      "type": "Physique",
+      "libelle": "Civil servant"
+    },
+    {
+      "id": "2",
+      "code": "DRIVER",
+      "type": "Physique",
+      "libelle": "DRIVER"
+    },
+    {
+      "id": "3",
+      "code": "BROTHER",
+      "type": "Physique",
+      "libelle": "BROTHER"
+    }
+  ],
+  "produits_judiciare": [
+    {
+      "id": "1",
+      "code": "AFJ",
+      "id_utilisateur": "1",
+      "libelle_en": "",
+      "libelle_fr": "Autres formes juridique",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "AP",
+      "id_utilisateur": "1",
+      "libelle_en": "",
+      "libelle_fr": "Affaires personnelle",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "3",
+      "code": "ASS",
+      "id_utilisateur": "1",
+      "libelle_en": "",
+      "libelle_fr": "Association à but non lucratif",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "4",
+      "code": "ENTR",
+      "id_utilisateur": "1",
+      "libelle_en": "",
+      "libelle_fr": "Entreprise",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "5",
+      "code": "ETAT",
+      "id_utilisateur": "1",
+      "libelle_en": "",
+      "libelle_fr": "Etat",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "6",
+      "code": "GPE",
+      "id_utilisateur": "1",
+      "libelle_en": "",
+      "libelle_fr": "Groupement",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "pays": [
+    {
+      "id": "1",
+      "code": "CM",
+      "id_utilisateur": "1",
+      "libelle": "Cameroun",
+      "code_telephone": "+237",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "villes": [
+    {
+      "id": "1",
+      "code": "1",
+      "id_utilisateur": "1",
+      "libelle": "Yaounde",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "2",
+      "id_utilisateur": "1",
+      "libelle": "Douala",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "activites_economique": [
+    {
+      "id": "1",
+      "code": "1",
+      "id_utilisateur": "1",
+      "libelle_en": "",
+      "libelle_fr": "Agriculture - Elevage - Chasse",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "11",
+      "id_utilisateur": "1",
+      "libelle_en": "",
+      "libelle_fr": "Agriculture",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "3",
+      "code": "110",
+      "id_utilisateur": "1",
+      "libelle_en": "",
+      "libelle_fr": "Production agricole",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "titres": [
+    {
+      "id": "1",
+      "code": "DIR",
+      "id_utilisateur": "1",
+      "libelle_en": "Director",
+      "libelle_fr": "DIrecteur",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "DR",
+      "id_utilisateur": "1",
+      "libelle_en": "Doctor",
+      "libelle_fr": "Docteur",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "3",
+      "code": "DG",
+      "id_utilisateur": "1",
+      "libelle_en": "General manager",
+      "libelle_fr": "Directeur general",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "unites_institutionnelle": [
+    {
+      "id": "1",
+      "code": "1",
+      "id_utilisateur": "1",
+      "libelle_en": "",
+      "libelle_fr": "Agent economique financier",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "11",
+      "id_utilisateur": "1",
+      "libelle_en": "",
+      "libelle_fr": "Banques centrales",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "3",
+      "code": "1101",
+      "id_utilisateur": "1",
+      "libelle_en": "",
+      "libelle_fr": "B.E.A.C.",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "nationalites_beac": [
+    {
+      "id": "1",
+      "code": "11",
+      "id_utilisateur": "1",
+      "libelle_en": "",
+      "libelle_fr": "Particuliers nationaux",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "13",
+      "id_utilisateur": "1",
+      "libelle_en": "",
+      "libelle_fr": "Entreprises publique",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "3",
+      "code": "21",
+      "id_utilisateur": "1",
+      "libelle_en": "",
+      "libelle_fr": "Particuliers étrangers",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "exercices_fiscal": [
+    {
+      "id": "1",
+      "code": "2014",
+      "libelle": "Fiscal exercice",
+      "date_debut": "636670881645418146",
+      "date_fin": "636670881645499146",
+      "budget_id": "OPSEC",
+      "statut": "O"
+    },
+    {
+      "id": "2",
+      "code": "2015",
+      "libelle": "Fiscal exercice",
+      "date_debut": "636670881645418146",
+      "date_fin": "636670881645499146",
+      "budget_id": "OPSEC",
+      "statut": "O"
+    }
+  ],
+  "direction_dudget": [
+    {
+      "id": "1",
+      "code": "BOD",
+      "id_exercice_fiscal": "1",
+      "libelle": "Board",
+      "chef": "Manager",
+      "telephone": "",
+      "remarque": "OK",
+      "statut": "O"
+    }
+  ],
+  "conges_banque": [
+    {
+      "id": "1",
+      "code": "01/01",
+      "id_utilisateur": "1",
+      "libelle": "New year day",
+      "jour": "1",
+      "mois": "1",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "01/05",
+      "id_utilisateur": "1",
+      "libelle": "Labour day",
+      "jour": "1",
+      "mois": "5",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "autorites_signature": [
+    {
+      "id": "1",
+      "code": "AUTH01",
+      "libelle": "Default autorisation",
+      "montant_signature": "100000000",
+      "limite_decouvert_client": "100000000",
+      "debit_max_client": "100000000",
+      "credit_max_client": "100000000",
+      "montant_max_ligne_credit": "100000000",
+      "montant_limite_pret": "100000000"
+    },
+    {
+      "id": "2",
+      "code": "AUTH02",
+      "libelle": "Cashier limits",
+      "montant_signature": "500000",
+      "limite_decouvert_client": "500000",
+      "debit_max_client": "500000000",
+      "credit_max_client": "500000",
+      "montant_max_ligne_credit": "500000",
+      "montant_limite_pret": "500000"
+    },
+    {
+      "id": "3",
+      "code": "AUTH05",
+      "libelle": "Super autorisation",
+      "montant_signature": "100000000",
+      "limite_decouvert_client": "200000000",
+      "debit_max_client": "300000000",
+      "credit_max_client": "20000000000",
+      "montant_max_ligne_credit": "500000000",
+      "montant_limite_pret": "400000000"
+    }
+  ],
+  "types_pret": [
+    {
+      "id": "1",
+      "code": "CCM",
+      "libelle": "MEDIUM TERM LOANS",
+      "periode_debut": "0",
+      "periode_fin": "0",
+      "periodicite": "MOIS"
+    },
+    {
+      "id": "2",
+      "code": "CCT",
+      "libelle": "SHORT TERM LOANS",
+      "periode_debut": "0",
+      "periode_fin": "48",
+      "periodicite": "MOIS"
+    }
+  ],
+  "motifs_pret": [
+    {
+      "id": "1",
+      "code": "01",
+      "libelle": "EDUCATION"
+    },
+    {
+      "id": "2",
+      "code": "02",
+      "libelle": "HEALTH"
+    },
+    {
+      "id": "3",
+      "code": "03",
+      "libelle": "CONSOMMATION"
+    },
+    {
+      "id": "4",
+      "code": "04",
+      "libelle": "COMMERCE"
+    },
+    {
+      "id": "5",
+      "code": "05",
+      "libelle": "BUILD"
+    }
+  ],
+  "classification_provisions_pret": [
+    {
+      "id": "1",
+      "code": "01",
+      "libelle": "Short term loan provision",
+      "nombre_jour_debut": "1",
+      "nombre_jour_fin": "28",
+      "pourcentage": "15",
+      "formule": "BETWEEN",
+      "type": "CAUTIONED"
+    },
+    {
+      "id": "2",
+      "code": "02",
+      "libelle": "Short term loan provision",
+      "nombre_jour_debut": "29",
+      "nombre_jour_fin": "59",
+      "pourcentage": "15",
+      "formule": "BETWEEN",
+      "type": "CAUTIONED"
+    }
+  ],
+  "types_garantie": [
+    {
+      "id": "1",
+      "code": "100",
+      "id_utilisateur": "1",
+      "libelle_en": "House",
+      "libelle_fr": "Maison",
+      "nature": "GarantieEtat",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "120",
+      "id_utilisateur": "1",
+      "libelle_en": "Land titre",
+      "libelle_fr": "Titre foncier",
+      "nature": "SureteReelle",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "journaux": [
+    {
+      "id": "1",
+      "code": "CA01",
+      "libelle": "Cashier 01",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "CA02",
+      "libelle": "Cashier 02",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "3",
+      "code": "CA03",
+      "libelle": "Cashier 03",
+      "date_creation": "636670881645418146"
+    },
+  ],
+  "types_actif": [
+    {
+      "id": "1",
+      "code": "001",
+      "libelle": "Table",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "004",
+      "libelle": "Computer",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "localisations_actif": [
+    {
+      "id": "1",
+      "code": "001",
+      "libelle": "Head quaters",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "western_union_zones_pays": [
+    {
+      "id": "1",
+      "id_pays": "1",
+      "zone": "NATIONAL"
+    }
+  ],
+  //"western_union_zones_commissions": [
+  //  {
+  //    "id": "1",
+  //    "id_pays": "1",
+  //    "zone": "NATIONAL"
+  //  }
+  //]
+}

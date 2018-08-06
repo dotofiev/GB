@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.GB;
 using GB.Models.Helper;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -9,13 +10,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class GroupeMenuDAO : GBDAO
+    public class GroupeMenuDAO : DAO
     {
+        public string id_page { get { return string.Empty; } }
+        public string context_id { get; set; }
+        public long id_utilisateur { get; set; }
         public string form_combo_id { get { return "form_id_groupeMenu"; } }
-
+        public string form_combo_code { get { return "form_code_groupeMenu"; } }
+        public string form_name { get { return "groupe_menu"; } }
         public string form_combo_libelle { get { return "form_libelle_groupeMenu"; } }
 
-        public static void Ajouter(GroupeMenu obj)
+
+        public GroupeMenuDAO(string context_id, long id_utilisateur)
+        {
+            this.context_id = context_id;
+            this.id_utilisateur = id_utilisateur;
+        }
+
+        public void Ajouter(GroupeMenu obj)
         {
             try
             {
@@ -33,6 +45,9 @@ namespace GB.Models.DAO
 
                 //// -- Execution des Hubs -- //
                 //applicationMainHub.RechargerCombo(new ExerciceFiscalDAO());
+
+                //// -- Execution des Hubs -- //
+                //applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -55,7 +70,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(GroupeMenu obj)
+        public void Modifier(GroupeMenu obj)
         {
             try
             {
@@ -82,6 +97,9 @@ namespace GB.Models.DAO
 
                 //// -- Execution des Hubs -- //
                 //applicationMainHub.RechargerCombo(new ExerciceFiscalDAO());
+
+                //// -- Execution des Hubs -- //
+                //applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -104,7 +122,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Supprimer(List<long> ids)
+        public void Supprimer(List<long> ids)
         {
             try
             {
@@ -117,6 +135,9 @@ namespace GB.Models.DAO
 
                 //// -- Execution des Hubs -- //
                 //applicationMainHub.RechargerCombo(new ExerciceFiscalDAO());
+
+                //// -- Execution des Hubs -- //
+                //applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -226,17 +247,30 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static string HTML_Select()
+        public static string HTML_Select(string champ)
         {
             try
             {
                 // -- Valeur vide -- //
                 string HTML = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
 
-                // -- Ajout des options -- //
-                foreach (var val in Lister())
+                // -- Ajout en fonction du champ code -- //
+                if (champ == "code")
                 {
-                    HTML += $"<option value=\"{val.id}\" title=\"{((LangHelper.CurrentCulture == 0) ? val.libelle_en : val.libelle_fr)}\">{((LangHelper.CurrentCulture == 0) ? val.libelle_en : val.libelle_fr)}</option>";
+                    // -- Ajout des options -- //
+                    foreach (var val in Lister())
+                    {
+                        HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
+                    }
+                }
+                // -- Ajout en fonction du champ libelle -- //
+                else if (champ == "libelle")
+                {
+                    // -- Ajout des options -- //
+                    foreach (var val in Lister())
+                    {
+                        HTML += $"<option value=\"{val.id}\" title=\"{((LangHelper.CurrentCulture == 0) ? val.libelle_en : val.libelle_fr)}\">{((LangHelper.CurrentCulture == 0) ? val.libelle_en : val.libelle_fr)}</option>";
+                    }
                 }
 
                 return HTML;
@@ -262,21 +296,27 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void HTML_Select(ref string html_code, ref string html_libelle)
+        public dynamic HTML_Select()
         {
             try
             {
+                // -- Objet dynamic -- //
+                dynamic donnee = new System.Dynamic.ExpandoObject();
+
                 // -- Valeur vide -- //
-                html_code = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
-                html_libelle = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                donnee.html_code = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                donnee.html_libelle = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
 
                 // -- Ajout des options -- //
 
                 foreach (var val in Lister())
                 {
-                    html_code += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
-                    html_libelle += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
+                    donnee.html_code += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
+                    donnee.html_libelle += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                 }
+
+                // -- Retourner l'objet -- //
+                return donnee;
             }
             #region Catch
             catch (Exception ex)

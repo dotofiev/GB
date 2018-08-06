@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.GB;
 using GB.Models.Static;
 using GB.Models.Tests;
 using System;
@@ -8,11 +9,22 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public abstract class AutorisationDAO : GBDAO
+    public class AutorisationDAO : DAO
     {
+        public string id_page { get { return string.Empty; } }
+        public string context_id { get; set; }
+        public long id_utilisateur { get; set; }
         public string form_combo_id { get { return string.Empty; } }
-
+        public string form_combo_code { get { return string.Empty; } }
+        public string form_name { get { return "autorisation"; } }
         public string form_combo_libelle { get { return string.Empty; } }
+
+
+        public AutorisationDAO(string context_id, long id_utilisateur)
+        {
+            this.context_id = context_id;
+            this.id_utilisateur = id_utilisateur;
+        }
 
         public static void Verification(long id_menu, long id_role, GB_Enum_Action_Controller action)
         {
@@ -23,11 +35,11 @@ namespace GB.Models.DAO
 
                 // -- Verifier la nature de l'autorisation -- //
                 if (!((action == GB_Enum_Action_Controller.Ajouter) ? autorisation?.ajouter ?? false
-                        : (action == GB_Enum_Action_Controller.Modifier) ? autorisation?.modifier ?? false
-                            : (action == GB_Enum_Action_Controller.Supprimer) ? autorisation?.supprimer ?? false
-                                : (action == GB_Enum_Action_Controller.Imprimer) ? autorisation?.imprimer ?? false
-                                    : (action == GB_Enum_Action_Controller.Lister) ? autorisation?.lister ?? false
-                                        : false))
+                                                                    : (action == GB_Enum_Action_Controller.Modifier) ? autorisation?.modifier ?? false
+                                                                                                                     : (action == GB_Enum_Action_Controller.Supprimer) ? autorisation?.supprimer ?? false
+                                                                                                                                                                       : (action == GB_Enum_Action_Controller.Imprimer) ? autorisation?.imprimer ?? false
+                                                                                                                                                                                                                        : (action == GB_Enum_Action_Controller.Lister) ? autorisation?.lister ?? false
+                                                                                                                                                                                                                                                                       : false))
                 {
                     // -- Jeter l'exception -- //
                     throw new GBException(App_Lang.Lang.Permission_denied);
@@ -97,7 +109,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Ajouter(Autorisation obj)
+        public void Ajouter(Autorisation obj)
         {
             try
             {
@@ -112,6 +124,9 @@ namespace GB.Models.DAO
 
                 //// -- Enregistrement de la valeur -- //
                 //Program.db.autorisations.Add(obj);
+
+                //// -- Execution des Hubs -- //
+                //applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -134,7 +149,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Modifier(List<Autorisation> obj, long id_role)
+        public void Modifier(List<Autorisation> obj, long id_role)
         {
             try
             {
@@ -156,6 +171,9 @@ namespace GB.Models.DAO
 
                 // -- Modification de la valeur -- //
                 Program.db.autorisations.AddRange(obj);
+
+                // -- Execution des Hubs -- //
+                //applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -178,7 +196,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static void Supprimer(List<long> ids)
+        public void Supprimer(List<long> ids)
         {
             try
             {
@@ -188,6 +206,9 @@ namespace GB.Models.DAO
                 //    // -- Suppression des valeurs -- //
                 //    Program.db.autorisations.RemoveAll(l => l.id == id);
                 //});
+
+                // -- Execution des Hubs -- //
+                //applicationMainHub.RechargerTable(this.id_page, this.context_id);
             }
             #region Catch
             catch (Exception ex)
@@ -326,7 +347,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void HTML_Select(ref string select_code, ref string select_libelle)
+        public dynamic HTML_Select()
         {
             throw new NotImplementedException();
         }
