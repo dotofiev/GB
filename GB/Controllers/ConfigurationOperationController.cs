@@ -791,7 +791,7 @@ namespace GB.Controllers
                     // -- 2, 3 -- //
                     for (int i = 2; i <= 3; i++)
                     {
-                        if ((multi_cas || objet.numero_compte.Length == i) && CompteDAO.Object(objet.numero_compte) == null)
+                        if ((multi_cas || objet.numero_compte.Length == i) && CompteDAO.Object(objet.numero_compte.Substring(0, i)) == null)
                         {
                             (this.con.donnee.nouveau_compte as List<Compte>).Add(
                                 new Compte
@@ -1561,6 +1561,11 @@ namespace GB.Controllers
                                                         Both = App_Lang.Lang.Both,
                                                         Close = App_Lang.Lang.Close,
                                                         Open = App_Lang.Lang.Open,
+                                                        Required_field = App_Lang.Lang.Required_field,
+                                                        Account = App_Lang.Lang.Account,
+                                                        Name = App_Lang.Lang.Name.ToLower(),
+                                                        Key = App_Lang.Lang.Key,
+                                                        Status = App_Lang.Lang.Status,
                                                     }
                                                 }
                                             );

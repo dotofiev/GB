@@ -1708,6 +1708,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Required field.
+        /// </summary>
+        public static string Required_field {
+            get {
+                return ResourceManager.GetString("Required_field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reserve interest.
         /// </summary>
         public static string Reserve_interest {

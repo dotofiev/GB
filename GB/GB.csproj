@@ -322,7 +322,8 @@
     <Content Include="Plugins\datatables\datatables\dataTables.buttons.min.js" />
     <Content Include="Plugins\datatables\datatables\dataTables.cellEdit.js" />
     <Content Include="Plugins\datatables\datatables\dataTables.fixedHeader.min.js" />
-    <Content Include="Plugins\datatables\datatables\dataTables.keyTable.min.js" />
+    <Content Include="Plugins\datatables\datatables\dataTables.keyTable.2.4.1.min.js" />
+    <Content Include="Plugins\datatables\datatables\dataTables.keyTable.2.1.1.min.js" />
     <Content Include="Plugins\datatables\datatables\dataTables.responsive.min.js" />
     <Content Include="Plugins\datatables\datatables\dataTables.scroller.min.js" />
     <Content Include="Plugins\datatables\datatables\fixedHeader.bootstrap.min.css" />

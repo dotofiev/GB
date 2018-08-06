@@ -108,10 +108,10 @@ namespace GB.Models.DAO
                 Program.db.comptes.AddRange(comptes);
 
                 // -- Execution des Hubs -- //
+                #region Execution des Hubs
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -141,6 +141,9 @@ namespace GB.Models.DAO
                 // -- Obj utilisateur créateur -- //
                 Utilisateur utilisateur_createur = UtilisateurDAO.Object(id_utilisateur);
 
+                // -- Mise à jour de l'objet devise -- //
+                Devise devise = DeviseDAO.Actif();
+
                 // -- Obj date de creation -- //
                 long date_creation = DateTime.Now.Ticks;
 
@@ -150,16 +153,18 @@ namespace GB.Models.DAO
                     obj.date_creation = date_creation;
                     obj.id_utilisateur = id_utilisateur;
                     obj.utilisateur_createur = utilisateur_createur;
+                    obj.id_devise = devise?.id ?? 0;
+                    obj.devise = devise ?? null;
                 }
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.comptes.AddRange(objs);
 
                 // -- Execution des Hubs -- //
+                #region Execution des Hubs
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -222,10 +227,10 @@ namespace GB.Models.DAO
                     });
 
                 // -- Execution des Hubs -- //
+                #region Execution des Hubs
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -260,10 +265,10 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
+                #region Execution des Hubs
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
+                #endregion
             }
             #region Catch
             catch (Exception ex)

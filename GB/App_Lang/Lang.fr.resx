@@ -829,4 +829,7 @@
   <data name="No_items_have_been_previously_created" xml:space="preserve">
     <value>Aucun élément n'a été préalablement créé</value>
   </data>
+  <data name="Required_field" xml:space="preserve">
+    <value>Champ obligatoire</value>
+  </data>
 </root>

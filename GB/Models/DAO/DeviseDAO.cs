@@ -52,10 +52,10 @@ namespace GB.Models.DAO
                 }
 
                 // -- Execution des Hubs -- //
+                #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new DeviseDAO());
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -111,10 +111,10 @@ namespace GB.Models.DAO
                 }
 
                 // -- Execution des Hubs -- //
+                #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new DeviseDAO());
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -149,10 +149,10 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
+                #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new DeviseDAO());
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -182,6 +182,35 @@ namespace GB.Models.DAO
                 // -- Parcours de la liste -- //
                 return
                     Program.db.devises;
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(App_Lang.Lang.Error_message_notification);
+                }
+                else
+                {
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(ex.Message);
+                }
+            }
+            #endregion
+        }
+
+        public static Devise Actif()
+        {
+            try
+            {
+                // -- Parcours de la liste -- //
+                return
+                    Program.db.devises.FirstOrDefault(l => l.devise_actuelle);
             }
             #region Catch
             catch (Exception ex)
