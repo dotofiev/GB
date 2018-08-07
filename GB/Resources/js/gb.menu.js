@@ -50,7 +50,8 @@ $(function () {
                     url != '/ConfigurationOperation/TypeActif' &&
                     url != '/ConfigurationOperation/LocalisationActif' &&
                     url != '/ConfigurationOperation/WesternUnionZonePays' &&
-                    url != '/ConfigurationOperation/Compte') {
+                    url != '/ConfigurationOperation/Compte' &&
+                    url != '/ConfigurationOperation/CompteConfiguration') {
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 

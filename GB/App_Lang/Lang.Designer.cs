@@ -556,6 +556,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer account to GL account.
+        /// </summary>
+        public static string Customer_account_to_GL_account {
+            get {
+                return ResourceManager.GetString("Customer_account_to_GL_account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer max credit.
         /// </summary>
         public static string Customer_max_credit {
@@ -826,6 +835,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comptes exemptés du grand livre.
+        /// </summary>
+        public static string Exempt_general_leger_account {
+            get {
+                return ResourceManager.GetString("Exempt_general_leger_account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Existing data.
         /// </summary>
         public static string Existing_data {
@@ -939,6 +957,15 @@ namespace GB.App_Lang {
         public static string Generate {
             get {
                 return ResourceManager.GetString("Generate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GL account to GL account.
+        /// </summary>
+        public static string GL_account_to_GL_account {
+            get {
+                return ResourceManager.GetString("GL_account_to_GL_account", resourceCulture);
             }
         }
         
@@ -1425,6 +1452,15 @@ namespace GB.App_Lang {
         public static string Open_branch {
             get {
                 return ResourceManager.GetString("Open_branch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation type.
+        /// </summary>
+        public static string Operation_type {
+            get {
+                return ResourceManager.GetString("Operation_type", resourceCulture);
             }
         }
         

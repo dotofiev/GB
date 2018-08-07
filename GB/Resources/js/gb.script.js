@@ -295,6 +295,27 @@ function gbActiverDesactiverForm(id_form, desactiver) {
 
 }
 
+// -- Mise à jour des attribut exploitatnt le package iCheck -- //
+function gbMiseAJourFormAttribut_iCheck(champs, form_valeurs) {
+
+    try {
+
+        // -- Parcourir les champs à modifier -- //
+        for (var i = 0; i < champs.length; i++) {
+            // -- Vérifier que le cham existe -- //
+            if (form_valeurs[champs[i]]){
+                // -- Mise à jour de ce champ -- //
+                form_valeurs[champs[i]] = (form_valeurs[champs[i]] === 'on');
+            }
+        }
+
+        // -- Retourner le formulaire modifié -- //
+        return form_valeurs;
+
+    } catch (e) { gbConsole(e.message); }
+
+}
+
 // -- Fonction native -- //
 try {
 

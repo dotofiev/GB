@@ -832,4 +832,16 @@
   <data name="Required_field" xml:space="preserve">
     <value>Champ obligatoire</value>
   </data>
+  <data name="Customer_account_to_GL_account" xml:space="preserve">
+    <value>Du compte client vers le compte GL</value>
+  </data>
+  <data name="Exempt_general_leger_account" xml:space="preserve">
+    <value>Exempt general leger account</value>
+  </data>
+  <data name="GL_account_to_GL_account" xml:space="preserve">
+    <value>Du compte GL vers le compte GL</value>
+  </data>
+  <data name="Operation_type" xml:space="preserve">
+    <value>Type d'opération</value>
+  </data>
 </root>

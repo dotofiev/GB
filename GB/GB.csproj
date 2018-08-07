@@ -921,6 +921,7 @@
     <Content Include="Resources\js\Views\ConfigurationOperation-TypeActif.js" />
     <Content Include="Resources\js\Views\ConfigurationOperation-WesternUnionZonePays.js" />
     <Content Include="Resources\js\Views\ConfigurationOperation-Compte.js" />
+    <Content Include="Resources\js\Views\ConfigurationOperation-CompteConfiguration.js" />
     <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
@@ -1348,6 +1349,8 @@
     <None Include="Properties\PublishProfiles\release.pubxml" />
     <Content Include="Views\ConfigurationOperation\Compte\_Modals.cshtml" />
     <Content Include="Views\ConfigurationOperation\Compte.cshtml" />
+    <Content Include="Views\ConfigurationOperation\CompteConfiguration\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationOperation\CompteConfiguration.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

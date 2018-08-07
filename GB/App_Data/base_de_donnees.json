@@ -487,6 +487,16 @@
       "view": "Compte",
       "id_controller": "5"
     },
+    {
+      "id": "42",
+      "code": "42",
+      "id_menu_parent": "40",
+      "id_groupe_menu": "5",
+      "libelle_en": "Exempt general ledger account",
+      "libelle_fr": "Comptes exemptés du grand livre",
+      "view": "CompteConfiguration",
+      "id_controller": "5"
+    },
     // -- ./Enfants -- //
   ],
   "roles": [
@@ -945,6 +955,16 @@
       "id": "79",
       "id_role": "1",
       "id_menu": "41",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "82",
+      "id_role": "1",
+      "id_menu": "42",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -1907,6 +1927,8 @@
       "nature": "",
       "statut": "",
       "cle": "",
+      "type_operation_compte_client_et_compte_gl": "false",
+      "type_operation_compte_gl_et_compte_gl": "false",
       "date_creation": "636670881645418146",
     },
     {
@@ -1918,6 +1940,8 @@
       "nature": "",
       "statut": "",
       "cle": "",
+      "type_operation_compte_client_et_compte_gl": "true",
+      "type_operation_compte_gl_et_compte_gl": "false",
       "date_creation": "636670881645418146",
     },
     {
@@ -1929,6 +1953,8 @@
       "nature": "",
       "statut": "",
       "cle": "",
+      "type_operation_compte_client_et_compte_gl": "false",
+      "type_operation_compte_gl_et_compte_gl": "false",
       "date_creation": "636670881645418146",
     },
     {
@@ -1940,6 +1966,8 @@
       "nature": "",
       "statut": "",
       "cle": "",
+      "type_operation_compte_client_et_compte_gl": "true",
+      "type_operation_compte_gl_et_compte_gl": "false",
       "date_creation": "636670881645418146",
     },
     {
@@ -1951,6 +1979,8 @@
       "nature": "",
       "statut": "",
       "cle": "",
+      "type_operation_compte_client_et_compte_gl": "true",
+      "type_operation_compte_gl_et_compte_gl": "true",
       "date_creation": "636670881645418146",
     },
     {
@@ -1962,6 +1992,8 @@
       "nature": "Debit",
       "statut": "Open",
       "cle": "A",
+      "type_operation_compte_client_et_compte_gl": "false",
+      "type_operation_compte_gl_et_compte_gl": "false",
       "date_creation": "636670881645418146",
     }
   ]

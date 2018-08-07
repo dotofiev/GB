@@ -72,6 +72,7 @@
       "WesternUnionZonePays",
       "WesternUnionZoneCommission",
       "Compte",
+      "CompteConfiguration",
     ]
   }
 ]

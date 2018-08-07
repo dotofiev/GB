@@ -22,6 +22,13 @@ namespace GB.Models.Static
                        : App_Lang.Lang.Disabled;
         }
 
+        public static string Statut_iCheck(bool donnee)
+        {
+            return
+                donnee ? "check"
+                       : "uncheck";
+        }
+
         public static string MontantToString(object value)
         {
             return
