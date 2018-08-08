@@ -210,7 +210,9 @@
     <Compile Include="Models\BO\CongeBanque.cs" />
     <Compile Include="Models\BO\AutoriteSignature.cs" />
     <Compile Include="Models\BO\ClassificationProvisionsPret.cs" />
+    <Compile Include="Models\BO\Profitabilite.cs" />
     <Compile Include="Models\DAO\CompteAgenceDAO.cs" />
+    <Compile Include="Models\DAO\ProfitabiliteDAO.cs" />
     <Compile Include="Models\GB\GBControllerUrlJS.cs" />
     <Compile Include="Models\BO\Compte.cs" />
     <Compile Include="Models\BO\WesternUnionZonePays.cs" />
@@ -925,6 +927,7 @@
     <Content Include="Resources\js\Views\ConfigurationOperation-Compte.js" />
     <Content Include="Resources\js\Views\ConfigurationOperation-CompteConfiguration.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-CompteAgence.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-Profitabilite.js" />
     <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
@@ -1356,6 +1359,8 @@
     <Content Include="Views\ConfigurationOperation\CompteConfiguration.cshtml" />
     <Content Include="Views\ConfigurationBanque\CompteAgence\_Modals.cshtml" />
     <Content Include="Views\ConfigurationBanque\CompteAgence.cshtml" />
+    <Content Include="Views\ConfigurationBanque\Profitabilite\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationBanque\Profitabilite.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -34,6 +34,7 @@ namespace GB.Models.Static
         public static string ConfigurationBanque_Titre = "ConfigurationBanque-Titre";
         public static string ConfigurationBanque_UniteInstitutionnelle = "ConfigurationBanque-UniteInstitutionnelle";
         public static string ConfigurationBanque_BEACNationalite = "ConfigurationBanque-BEACNationalite";
+        public static string ConfigurationBanque_Profitabilite = "ConfigurationBanque-Profitabilite";
         public static string ConfigurationBudget_ExerciceFiscal = "ConfigurationBudget-ExerciceFiscal";
         public static string ConfigurationBudget_DirectionBudget = "ConfigurationBudget-DirectionBudget";
         public static string ConfigurationBanque_CongeBanque = "ConfigurationBanque-CongeBanque";

@@ -862,4 +862,16 @@
   <data name="Non_member" xml:space="preserve">
     <value>Non membre</value>
   </data>
+  <data name="Expense" xml:space="preserve">
+    <value>Dépense</value>
+  </data>
+  <data name="Insurance" xml:space="preserve">
+    <value>Assurance</value>
+  </data>
+  <data name="Profitability" xml:space="preserve">
+    <value>Profitabilité</value>
+  </data>
+  <data name="Profitability_management" xml:space="preserve">
+    <value>Gestion des profitabilité</value>
+  </data>
 </root>

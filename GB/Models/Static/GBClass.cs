@@ -102,6 +102,17 @@ namespace GB.Models.Static
         }
 
         /// <summary>
+        /// Obtenir les options de combo box TIERS, FONDS, COMPENSATION, NONMEMBER
+        /// </summary>
+        public static string HTML_type_profitabilite()
+        {
+            return
+                $"<option value=\"{"PROFITABILITY"}\" title=\"{App_Lang.Lang.Profitability}\">{App_Lang.Lang.Funds}</option>" +
+                $"<option value=\"{"EXPENSE"}\" title=\"{App_Lang.Lang.Expense}\">{App_Lang.Lang.Clearing}</option>" +
+                $"<option value=\"{"INSURANCE"}\" title=\"{App_Lang.Lang.Insurance}\">{App_Lang.Lang.Non_member}</option>";
+        }
+        
+        /// <summary>
         /// Obtenir les options de combo box FULL ou DIFFERENTIAL
         /// </summary>
         public static string HTML_Methode_de_sauvegarde()

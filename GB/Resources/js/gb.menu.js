@@ -38,6 +38,7 @@ $(function () {
                     url != '/ConfigurationBanque/UniteInstitutionnelle' &&
                     url != '/ConfigurationBanque/BEACNationalite' &&
                     url != '/ConfigurationBanque/CongeBanque' &&
+                    url != '/ConfigurationBanque/Profitabilite' &&
 
                     url != '/ConfigurationBudget/ExerciceFiscal' &&
                     url != '/ConfigurationBudget/DirectionBudget' &&

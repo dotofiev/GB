@@ -871,6 +871,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expense.
+        /// </summary>
+        public static string Expense {
+            get {
+                return ResourceManager.GetString("Expense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expiration duration.
         /// </summary>
         public static string Expiration_duration {
@@ -1029,6 +1038,15 @@ namespace GB.App_Lang {
         public static string Institutional_unit_management {
             get {
                 return ResourceManager.GetString("Institutional_unit_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insurance.
+        /// </summary>
+        public static string Insurance {
+            get {
+                return ResourceManager.GetString("Insurance", resourceCulture);
             }
         }
         
@@ -1740,6 +1758,24 @@ namespace GB.App_Lang {
         public static string Profile {
             get {
                 return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profitability.
+        /// </summary>
+        public static string Profitability {
+            get {
+                return ResourceManager.GetString("Profitability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profitability management.
+        /// </summary>
+        public static string Profitability_management {
+            get {
+                return ResourceManager.GetString("Profitability_management", resourceCulture);
             }
         }
         

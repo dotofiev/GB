@@ -213,6 +213,16 @@
       "view": "ProduitCreation",
       "id_controller": "3"
     },
+    {
+      "id": "43",
+      "code": "43",
+      "id_menu_parent": "13",
+      "id_groupe_menu": "3",
+      "libelle_en": "Profitability",
+      "libelle_fr": "Profitabilité",
+      "view": "Profitabilite",
+      "id_controller": "3"
+    },
     // -- Enfants -- //
 
     {
@@ -971,6 +981,16 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "83",
+      "id_role": "1",
+      "id_menu": "43",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
 
 
     // -- Role 2 -- //
@@ -1378,6 +1398,26 @@
       "id": "81",
       "id_role": "2",
       "id_menu": "41",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "84",
+      "id_role": "2",
+      "id_menu": "42",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "85",
+      "id_role": "2",
+      "id_menu": "43",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -2007,7 +2047,27 @@
       "type": "TIERS",
       "date_creation": "636670881645418146"
     }
-  ]
+  ],
+  "profitabilites": [
+    {
+      "id": "1",
+      "code": "ASSURANCE",
+      "libelle": "Insurance collected",
+      "type": "INSURANCE"
+    },
+    {
+      "id": "2",
+      "code": "AUTCOM",
+      "libelle": "Others commissions",
+      "type": "PROFITABILITY"
+    },
+    {
+      "id": "3",
+      "code": "DEPEFF",
+      "libelle": "Expenses",
+      "type": "EXPENSE"
+    }
+  ],
   //"western_union_zones_commissions": [
   //  {
   //    "id": "1",

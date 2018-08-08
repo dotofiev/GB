@@ -19,6 +19,21 @@ namespace GB.Controllers
     {
         #region HttpGet
         [HttpGet]
+        public ActionResult Profitabilite()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Profitability_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationBanque_Profitabilite);
+
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult CompteAgence()
         {
             // -- Charger les paramètres par défaut de la page -- //
@@ -558,6 +573,25 @@ namespace GB.Controllers
                                 col_7 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_8 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
                                 col_9 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
+                #region ConfigurationBanque-Profitabilite
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Profitabilite)
+                {
+                    foreach (var val in ProfitabiliteDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "profitabilite"),
+                                col_2 = val.code,
+                                col_3 = val.libelle,
+                                col_4 = GBToString.TypeProfitabilite(val.type),
+                                col_5 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }
@@ -1232,6 +1266,31 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-Profitabilite
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Profitabilite)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = ProfitabiliteDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle = obj.libelle,
+                                                        type = obj.type,
+                                                    }
+                                               );
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -1408,6 +1467,14 @@ namespace GB.Controllers
                 {
                     // -- Service d'enregistrement -- //
                     compteAgenceDAO.Ajouter(GBConvert.JSON_To<CompteAgence>(obj));
+                }
+                #endregion
+
+                #region ConfigurationBanque-Profitabilite
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Profitabilite)
+                {
+                    // -- Service d'enregistrement -- //
+                    profitabiliteDAO.Ajouter(GBConvert.JSON_To<Profitabilite>(obj));
                 }
                 #endregion
 
@@ -1618,6 +1685,14 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-Profitabilite
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Profitabilite)
+                {
+                    // -- Service de modification -- //
+                    profitabiliteDAO.Modifier(GBConvert.JSON_To<Profitabilite>(obj));
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -1773,6 +1848,14 @@ namespace GB.Controllers
                 {
                     // -- Service de suppression -- //
                     compteAgenceDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationBanque-Profitabilite
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Profitabilite)
+                {
+                    // -- Service de suppression -- //
+                    profitabiliteDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -2283,11 +2366,11 @@ namespace GB.Controllers
                 this.ViewBag.Lang.Search_by = App_Lang.Lang.Search_by;
                 this.ViewBag.Lang.Agency = App_Lang.Lang.Agency;
                 this.ViewBag.Lang.Account = App_Lang.Lang.Account;
-                this.ViewBag.donnee.HTML_type_compteAgence = GBClass.HTML_type_compteAgence();
                 #endregion
 
                 // -- Données -- //
                 #region Données
+                this.ViewBag.donnee.HTML_type_compteAgence = GBClass.HTML_type_compteAgence();
                 this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
                                                 new
                                                 {
@@ -2313,6 +2396,34 @@ namespace GB.Controllers
                 this.con.donnee.comptes = new List<Compte>();
                 // -- Agence -- //
                 this.con.donnee.agences = new List<Agence>();
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationBanque-Profitabilite
+            else if (id_page == GB_Enum_Menu.ConfigurationBanque_Profitabilite)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Profitability_management;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.donnee.HTML_type_profitabilite = GBClass.HTML_type_profitabilite();
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Profitability_management
+                                                    }
+                                                }
+                                            );
                 #endregion
             }
             #endregion

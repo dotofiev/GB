@@ -73,6 +73,15 @@ namespace GB.Models.Static
                                                                                                          : string.Empty;
         }
 
+        public static string TypeProfitabilite(string donnee)
+        {
+            return
+                donnee == "PROFITABILITY" ? App_Lang.Lang.Profitability
+                                          : donnee == "EXPENSE" ? App_Lang.Lang.Expense
+                                                                : donnee == "INSURANCE" ? App_Lang.Lang.Insurance
+                                                                                        : string.Empty;
+        }
+        
         public static string FormuleClassificationProvisionsPret(string donnee)
         {
             return
