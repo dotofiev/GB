@@ -39,12 +39,27 @@ $(
         // -- Fonction de mise à jour de tous les combox box chez les clients -- //
         $GB_DONNEE_PARAMETRES.applicationMainHub.client.rechargerCombo = function (notification) {
             try {
-                // -- Mise à jour des données sur le formulaire si ceux ci existe -- //
-                if ($(notification.donnee.form_id).length != 0) {
-                    $(notification.donnee.form_id).html(notification.donnee.select_code);
+                // -- Rechercher les elements par class css -- //
+                if (notification.donnee.classCSS) {
+                    // -- Parcourir -- //
+                    for(var i = 0; i < $('.' + notification.donnee.form_id).length; i ++)
+                    {
+                        $('.' + notification.donnee.form_id)[i].html(notification.donnee.select_code);
+                    }
+                    for (var i = 0; i < $('.' + notification.donnee.form_libelle).length; i++) {
+                        $('.' + notification.donnee.form_libelle)[i].html(notification.donnee.select_code);
+                    }
                 }
-                if ($(notification.donnee.form_libelle).length != 0) {
-                    $(notification.donnee.form_libelle).html(notification.donnee.select_libelle);
+                // -- Rechercher par id -- //
+                else
+                {
+                    // -- Mise à jour des données sur le formulaire si ceux ci existe -- //
+                    if ($(notification.donnee.form_id).length != 0) {
+                        $(notification.donnee.form_id).html(notification.donnee.select_code);
+                    }
+                    if ($(notification.donnee.form_libelle).length != 0) {
+                        $(notification.donnee.form_libelle).html(notification.donnee.select_libelle);
+                    }
                 }
             }
             catch (e) { gbConsoleStringify(e); }

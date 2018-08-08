@@ -63,6 +63,16 @@ namespace GB.Models.Static
                                                              : string.Empty;
         }
 
+        public static string TypeCompteAgence(string donnee)
+        {
+            return
+                donnee == "TIERS" ? "Tiers"
+                                  : donnee == "FONDS" ? App_Lang.Lang.Funds
+                                                      : donnee == "COMPENSATION" ? App_Lang.Lang.Clearing
+                                                                                 : donnee == "NONMEMBER" ? App_Lang.Lang.Non_member
+                                                                                                         : string.Empty;
+        }
+
         public static string FormuleClassificationProvisionsPret(string donnee)
         {
             return

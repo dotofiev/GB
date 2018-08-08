@@ -394,6 +394,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clearing.
+        /// </summary>
+        public static string Clearing {
+            get {
+                return ResourceManager.GetString("Clearing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Close {
@@ -925,6 +934,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Funds.
+        /// </summary>
+        public static string Funds {
+            get {
+                return ResourceManager.GetString("Funds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Garantie deposit.
         /// </summary>
         public static string Garantie_deposit {
@@ -1015,6 +1033,24 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Inter branch.
+        /// </summary>
+        public static string Inter_branch {
+            get {
+                return ResourceManager.GetString("Inter_branch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inter branch account management.
+        /// </summary>
+        public static string Inter_branch_account_management {
+            get {
+                return ResourceManager.GetString("Inter_branch_account_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Internal error.
         /// </summary>
         public static string Internal_error {
@@ -1038,6 +1074,15 @@ namespace GB.App_Lang {
         public static string IP_Address {
             get {
                 return ResourceManager.GetString("IP_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Issue.
+        /// </summary>
+        public static string Issue {
+            get {
+                return ResourceManager.GetString("Issue", resourceCulture);
             }
         }
         
@@ -1389,6 +1434,15 @@ namespace GB.App_Lang {
         public static string No_payment_period {
             get {
                 return ResourceManager.GetString("No_payment_period", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Non member.
+        /// </summary>
+        public static string Non_member {
+            get {
+                return ResourceManager.GetString("Non_member", resourceCulture);
             }
         }
         

@@ -31,7 +31,7 @@
                             <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                                 <div class="form-group">
                                     <label for="form_generationnumero_compte">@ViewBag.Lang.Account_number :</label>
-                                    <input class="form-control" type="number" id="form_generationnumero_compte" name="numero_compte" pattern=".{2,}" title="@ViewBag.Lang.Length_string_min_2" maxlength="10" required />
+                                    <input class="form-control" type="text" id="form_generationnumero_compte" name="numero_compte" pattern="\d{2,10}" title="@ViewBag.Lang.Length_string_min_2" maxlength="10" required />
                                 </div>
                             </div>
 
@@ -103,7 +103,7 @@
                 <!-- Bouton d'enregistrement du formulaire -->
                 <button class="btn btn-default btn-success pull-right" id="btn-sauvegarder" type="button"
                         data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> @ViewBag.Lang.Process ...">
-                    <i class="fa fa-check"></i> @ViewBag.Lang.Generate
+                    <i class="fa fa-check"></i> @ViewBag.Lang.Save
                 </button>
 
             </div>

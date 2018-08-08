@@ -843,4 +843,22 @@
   <data name="Operation_type" xml:space="preserve">
     <value>Operation type</value>
   </data>
+  <data name="Clearing" xml:space="preserve">
+    <value>Clearing</value>
+  </data>
+  <data name="Funds" xml:space="preserve">
+    <value>Funds</value>
+  </data>
+  <data name="Inter_branch" xml:space="preserve">
+    <value>Inter branch</value>
+  </data>
+  <data name="Inter_branch_account_management" xml:space="preserve">
+    <value>Inter branch account management</value>
+  </data>
+  <data name="Issue" xml:space="preserve">
+    <value>Issue</value>
+  </data>
+  <data name="Non_member" xml:space="preserve">
+    <value>Non member</value>
+  </data>
 </root>

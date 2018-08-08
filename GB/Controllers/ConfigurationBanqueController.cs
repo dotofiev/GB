@@ -19,6 +19,21 @@ namespace GB.Controllers
     {
         #region HttpGet
         [HttpGet]
+        public ActionResult CompteAgence()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Inter_branch_account_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationBanque_CompteAgence);
+
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult Institution()
         {
             // -- Charger les paramètres par défaut de la page -- //
@@ -525,6 +540,30 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-CompteAgence
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_CompteAgence)
+                {
+                    foreach (var val in CompteAgenceDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_0 = val.id,
+                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "compteAgence"),
+                                col_2 = val.agence?.code ?? App_Lang.Lang.Empty,
+                                col_3 = val.agence.libelle ?? App_Lang.Lang.Empty,
+                                col_4 = GBToString.TypeCompteAgence(val.type),
+                                col_5 = val.compte?.code ?? App_Lang.Lang.Empty,
+                                col_6 = val.compte_emetteur?.code ?? App_Lang.Lang.Empty,
+                                col_7 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
+                                col_8 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
+                                col_9 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -654,6 +693,61 @@ namespace GB.Controllers
                     #endregion
                 }
                 #endregion
+
+                #region ConfigurationBanque-CompteAgence
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_CompteAgence)
+                {
+                    // -- Si la vue n'est pas retourné -- //
+                    #region comptes
+                    if (id_vue == "compte")
+                    {
+                        // -- Si la liste des comptes en session est vide, la mettre à jour -- //
+                        if ((this.con.donnee.comptes as List<Compte>).Count == 0)
+                        {
+                            this.con.donnee.comptes = CompteDAO.Lister_Cle();
+                        }
+
+                        // -- Charger la liste des résultats -- //
+                        foreach (var val in (this.con.donnee.comptes as List<Compte>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    id = val.id,
+                                    code = val.code,
+                                    libelle = val.libelle
+                                }
+                            );
+                        }
+                    }
+                    #endregion
+
+                    #region agences
+                    // -- Si la vue est pour le agences -- //
+                    else if (id_vue == "agence")
+                    {
+                        // -- Si la liste des agences en session est vide, la mettre à jour -- //
+                        if ((this.con.donnee.agences as List<Agence>).Count == 0)
+                        {
+                            this.con.donnee.agences = AgenceDAO.Lister();
+                        }
+
+                        // -- Charger la liste des résultats -- //
+                        foreach (var val in (this.con.donnee.agences as List<Agence>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    id = val.id,
+                                    code = val.code,
+                                    libelle = val.libelle
+                                }
+                            );
+                        }
+                    }
+                    #endregion
+                }
+                #endregion
             }
             #region catch & finally
             catch (Exception ex)
@@ -709,6 +803,29 @@ namespace GB.Controllers
                     #endregion
                 }
                 #endregion
+
+                #region ConfigurationBanque-CompteAgence
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_CompteAgence)
+                {
+                    // -- Si la vue est pour le compte -- //
+                    #region comptes
+                    if (id_vue == "compte")
+                    {
+                        // -- Mise à jour de la liste en session -- //
+                        this.con.donnee.comptes = CompteDAO.Lister_Cle();
+                    }
+                    #endregion
+
+                    // -- Si la vue est pour le compte -- //
+                    #region agences
+                    else if (id_vue == "agence")
+                    {
+                        // -- Mise à jour de la liste en session -- //
+                        this.con.donnee.agences = AgenceDAO.Lister();
+                    }
+                    #endregion
+                }
+                #endregion
             }
             #region catch & finally
             catch (Exception ex)
@@ -728,7 +845,7 @@ namespace GB.Controllers
 
         // -- Selectionner un nouvel enregistrement dans la liste -- //
         [HttpPost]
-        public ActionResult Selection_Enregistrement(string code, string id_page)
+        public ActionResult Selection_Enregistrement(string code, string id_page, long? id)
         {
             try
             {
@@ -1081,6 +1198,40 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-CompteAgence
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_CompteAgence)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = CompteAgenceDAO.Object(id ?? 0);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.agence?.code ?? string.Empty,
+                                                        libelle = obj.agence?.libelle ?? string.Empty,
+                                                        type = obj.type,
+                                                        id_agence = obj.id_agence,
+                                                        code_agence = obj.agence?.code ?? null,
+                                                        libelle_agence = obj.agence?.libelle ?? null,
+                                                        id_compte = obj.id_compte,
+                                                        code_compte = obj.compte?.code ?? null,
+                                                        libelle_compte = obj.compte?.libelle ?? null,
+                                                        id_compte_emetteur = obj.id_compte_emetteur ?? 0,
+                                                        code_compte_emetteur = obj.compte_emetteur?.code ?? null,
+                                                        libelle_compte_emetteur = obj.compte_emetteur?.libelle ?? null,
+                                                    }
+                                               );
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -1249,6 +1400,14 @@ namespace GB.Controllers
                 {
                     // -- Service d'enregistrement -- //
                     congeBanqueDAO.Ajouter(GBConvert.JSON_To<CongeBanque>(obj));
+                }
+                #endregion
+
+                #region ConfigurationBanque-CompteAgence
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_CompteAgence)
+                {
+                    // -- Service d'enregistrement -- //
+                    compteAgenceDAO.Ajouter(GBConvert.JSON_To<CompteAgence>(obj));
                 }
                 #endregion
 
@@ -1451,6 +1610,14 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-CompteAgence
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_CompteAgence)
+                {
+                    // -- Service de modification -- //
+                    compteAgenceDAO.Modifier(GBConvert.JSON_To<CompteAgence>(obj));
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -1598,6 +1765,14 @@ namespace GB.Controllers
                 {
                     // -- Service de suppression -- //
                     congeBanqueDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationBanque-CompteAgence
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_CompteAgence)
+                {
+                    // -- Service de suppression -- //
+                    compteAgenceDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -2092,6 +2267,52 @@ namespace GB.Controllers
                                                     }
                                                 }
                                             );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationBanque-CompteAgence
+            else if (id_page == GB_Enum_Menu.ConfigurationBanque_CompteAgence)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Inter_branch_account_management;
+                this.ViewBag.Lang.Inter_branch = App_Lang.Lang.Inter_branch;
+                this.ViewBag.Lang.Issue = App_Lang.Lang.Issue;
+                this.ViewBag.Lang.Operation_type = App_Lang.Lang.Operation_type;
+                this.ViewBag.Lang.Search_by = App_Lang.Lang.Search_by;
+                this.ViewBag.Lang.Agency = App_Lang.Lang.Agency;
+                this.ViewBag.Lang.Account = App_Lang.Lang.Account;
+                this.ViewBag.donnee.HTML_type_compteAgence = GBClass.HTML_type_compteAgence();
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Inter_branch_account_management
+                                                    },
+                                                    Lang = new
+                                                    {
+                                                        Inter_branch    = ViewBag.Lang.Inter_branch,
+                                                        Clearing        = App_Lang.Lang.Clearing,
+                                                    }
+                                                }
+                                            );
+                // -- Vider les données temporaire -- //
+                this.con.Vider_Donnee();
+                // - Mise à jour des données de vue -- //
+                // -- Compte -- //
+                this.con.donnee.comptes = new List<Compte>();
+                // -- Agence -- //
+                this.con.donnee.agences = new List<Agence>();
                 #endregion
             }
             #endregion

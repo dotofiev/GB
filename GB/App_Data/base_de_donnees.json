@@ -1996,6 +1996,17 @@
       "type_operation_compte_gl_et_compte_gl": "false",
       "date_creation": "636670881645418146",
     }
+  ],
+  "comptes_agence": [
+    {
+      "id": "1",
+      "id_compte": "10",
+      "id_compte_emetteur": "10",
+      "id_agence": "1",
+      "id_utilisateur": "1",
+      "type": "TIERS",
+      "date_creation": "636670881645418146"
+    }
   ]
   //"western_union_zones_commissions": [
   //  {

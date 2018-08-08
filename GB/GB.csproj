@@ -203,12 +203,14 @@
     </Compile>
     <Compile Include="Models\ActionFilter\AuthentificationRequis.cs" />
     <Compile Include="Models\ActionFilter\ResponseErreur.cs" />
+    <Compile Include="Models\BO\CompteAgence.cs" />
     <Compile Include="Models\BO\DirectionBudget.cs" />
     <Compile Include="Models\BO\BEACNationalite.cs" />
     <Compile Include="Models\BO\ExerciceFiscal.cs" />
     <Compile Include="Models\BO\CongeBanque.cs" />
     <Compile Include="Models\BO\AutoriteSignature.cs" />
     <Compile Include="Models\BO\ClassificationProvisionsPret.cs" />
+    <Compile Include="Models\DAO\CompteAgenceDAO.cs" />
     <Compile Include="Models\GB\GBControllerUrlJS.cs" />
     <Compile Include="Models\BO\Compte.cs" />
     <Compile Include="Models\BO\WesternUnionZonePays.cs" />
@@ -922,6 +924,7 @@
     <Content Include="Resources\js\Views\ConfigurationOperation-WesternUnionZonePays.js" />
     <Content Include="Resources\js\Views\ConfigurationOperation-Compte.js" />
     <Content Include="Resources\js\Views\ConfigurationOperation-CompteConfiguration.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-CompteAgence.js" />
     <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
@@ -1351,6 +1354,8 @@
     <Content Include="Views\ConfigurationOperation\Compte.cshtml" />
     <Content Include="Views\ConfigurationOperation\CompteConfiguration\_Modals.cshtml" />
     <Content Include="Views\ConfigurationOperation\CompteConfiguration.cshtml" />
+    <Content Include="Views\ConfigurationBanque\CompteAgence\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationBanque\CompteAgence.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

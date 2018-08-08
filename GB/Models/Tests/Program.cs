@@ -111,6 +111,14 @@ namespace GB.Models.Tests
                 l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
                 l.devise = db.devises.FirstOrDefault(ll => ll.id == l.id_devise);
             });
+            // -- CompteAgence -- //
+            db.comptes_agence.ForEach(l =>
+            {
+                l.agence = db.agences.FirstOrDefault(ll => ll.id == l.id_agence);
+                l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
+                l.compte = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte);
+                l.compte_emetteur = db.comptes.FirstOrDefault(ll => ll.id == (l.id_compte_emetteur?? 0));
+            });
         }
     }
 }

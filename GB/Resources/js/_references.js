@@ -367,6 +367,7 @@
 /// <reference path="views/configurationbanque-activiteeconomique.js" />
 /// <reference path="views/configurationbanque-agence.js" />
 /// <reference path="views/configurationbanque-beacnationalite.js" />
+/// <reference path="views/configurationbanque-compteagence.js" />
 /// <reference path="views/configurationbanque-congebanque.js" />
 /// <reference path="views/configurationbanque-devise.js" />
 /// <reference path="views/configurationbanque-institution.js" />

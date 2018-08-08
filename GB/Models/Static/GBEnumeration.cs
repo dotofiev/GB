@@ -22,6 +22,7 @@ namespace GB.Models.Static
         public static string SecuriteUtilisateur_Utilisateur = "SecuriteUtilisateur-Utilisateur";
         public static string ConfigurationBanque_Institution = "ConfigurationBanque-Institution";
         public static string ConfigurationBanque_Agence = "ConfigurationBanque-Agence";
+        public static string ConfigurationBanque_CompteAgence = "ConfigurationBanque-CompteAgence";
         public static string ConfigurationBanque_Devise = "ConfigurationBanque-Devise";
         public static string ConfigurationBanque_Parametre = "ConfigurationBanque-Parametre";
         public static string ConfigurationBanque_ParametreBanque = "ConfigurationBanque-ParametreBanque";
@@ -46,7 +47,7 @@ namespace GB.Models.Static
         public static string ConfigurationOperation_LocalisationActif = "ConfigurationOperation-LocalisationActif";
         public static string ConfigurationOperation_WesternUnionZonePays = "ConfigurationOperation-WesternUnionZonePays";
         public static string ConfigurationOperation_Compte = "ConfigurationOperation-Compte";
-        public static string ConfigurationOperation_CompteConfiguration = "ConfigurationOperation-CompteConfiguration";        
+        public static string ConfigurationOperation_CompteConfiguration = "ConfigurationOperation-CompteConfiguration";       
     }
 
     public enum GB_Enum_Action_Controller

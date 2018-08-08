@@ -10,55 +10,63 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class CompteDAO : DAO
+    public class CompteAgenceDAO : DAO
     {
-        public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_Compte; } }
+        public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_CompteAgence; } }
         public string context_id { get; set; }
         public long id_utilisateur { get; set; }
-        public string form_combo_id { get { return "form_id_compte"; } }
-        public string form_combo_code { get { return "form_code_compte"; } }
-        public string form_name { get { return "compte"; } }
-        public string form_combo_libelle { get { return "form_libelle_compte"; } }
+        public string form_combo_id { get { return "form_id_compteAgence"; } }
+        public string form_combo_code { get { return "form_code_compteAgence"; } }
+        public string form_name { get { return "compteAgence"; } }
+        public string form_combo_libelle { get { return "form_libelle_compteAgence"; } }
 
 
-        public CompteDAO(string context_id, long id_utilisateur)
+        public CompteAgenceDAO(string context_id, long id_utilisateur)
         {
             this.context_id = context_id;
             this.id_utilisateur = id_utilisateur;
         }
 
-        public void Ajouter(List<Compte> objs)
+        public CompteAgenceDAO() { }
+
+        public void Ajouter(CompteAgence obj)
         {
             try
             {
-                // -- Obj utilisateur créateur -- //
-                Utilisateur utilisateur_createur = UtilisateurDAO.Object(id_utilisateur);
-
-                // -- Mise à jour de l'objet devise -- //
-                Devise devise = DeviseDAO.Actif();
-
-                // -- Obj date de creation -- //
-                long date_creation = DateTime.Now.Ticks;
-
-                // -- Mise à joru des données -- //
-                foreach(var obj in objs)
+                // -- Unicité du code -- //
+                if (Program.db.comptes_agence.Exists(l => l.id_agence == obj.id_agence && l.type == obj.type))
                 {
-                    obj.type_operation_compte_client_et_compte_gl = false;
-                    obj.type_operation_compte_gl_et_compte_gl = false;
-                    obj.date_creation = date_creation;
-                    obj.id_utilisateur = id_utilisateur;
-                    obj.utilisateur_createur = utilisateur_createur;
-                    obj.id_devise = devise?.id ?? 0;
-                    obj.devise = devise ?? null;
+                    throw new GBException(App_Lang.Lang.Existing_data + $" [{App_Lang.Lang.Operation_type}]");
                 }
 
+                // -- valider la nécessité du champ compte_emetteur -- //
+                if (obj.type != "COMPENSATION" && (!obj.id_compte_emetteur.HasValue || obj.id_compte_emetteur.Value == 0))
+                {
+                    throw new GBException(App_Lang.Lang.Required_field + $" [{App_Lang.Lang.Issue}]");
+                }
+
+                // -- Mise à jour des valeurs -- //
+                if (obj.type == "COMPENSATION")
+                {
+                    obj.id_compte_emetteur = 0;
+                }
+
+                // -- Définition de l'identifiant -- //
+                obj.Crer_Id();
+
+                // -- Mise à jour des references -- //
+                obj.utilisateur_createur = UtilisateurDAO.Object(this.id_utilisateur);
+                obj.compte = CompteDAO.Object(obj.id_compte);
+                obj.compte_emetteur = CompteDAO.Object((obj.id_compte_emetteur?? 0));
+                obj.agence = AgenceDAO.Object(obj.id_agence);
+
                 // -- Enregistrement de la valeur -- //
-                Program.db.comptes.AddRange(objs);
+                Program.db.comptes_agence.Add(obj);
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
+                applicationMainHub.RechargerCombo(new CompteAgenceDAO());
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
-                applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
                 #endregion
             }
             #region Catch
@@ -82,18 +90,30 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void Modifier(Compte obj, Boolean operation)
+        public void Modifier(CompteAgence obj)
         {
             try
             {
                 // -- Unicité du code -- //
-                if (Program.db.comptes.Exists(l => l.id != obj.id && l.code == obj.code))
+                if (Program.db.comptes_agence.Exists(l => l.id_agence == obj.id_agence && l.type == obj.type && l.id != obj.id))
                 {
-                    throw new GBException(App_Lang.Lang.Existing_data + " [code]");
+                    throw new GBException(App_Lang.Lang.Existing_data + $" [{App_Lang.Lang.Operation_type}]");
+                }
+
+                // -- valider la nécessité du champ compte_emetteur -- //
+                if (obj.type != "COMPENSATION" && (!obj.id_compte_emetteur.HasValue || obj.id_compte_emetteur.Value == 0))
+                {
+                    throw new GBException(App_Lang.Lang.Required_field + $" [{App_Lang.Lang.Issue}]");
+                }
+
+                // -- Mise à jour des valeurs -- //
+                if (obj.type == "COMPENSATION")
+                {
+                    obj.id_compte_emetteur = 0;
                 }
 
                 // -- Modification de la valeur -- //
-                Program.db.comptes
+                Program.db.comptes_agence
                     // -- Spécifier la recherche -- //
                     .Where(l => l.id == obj.id)
                     // -- Lister le résultat -- //
@@ -101,40 +121,19 @@ namespace GB.Models.DAO
                     // -- Parcourir les elements résultats -- //
                     .ForEach(l =>
                     {
-                        // -- Si il s'agit de modifier uniquement les operations -- //
-                        if (operation)
-                        {
-                            // -- Mise à jour de l'enregistrement -- //
-                            l.type_operation_compte_client_et_compte_gl = obj.type_operation_compte_client_et_compte_gl;
-                            l.type_operation_compte_gl_et_compte_gl = obj.type_operation_compte_gl_et_compte_gl;
-                        }
-                        else
-                        {
-                            // -- Mise à jour de l'enregistrement -- //
-                            l.code = obj.code;
-                            l.libelle = obj.libelle;
-                            // -- Vider les paramètre du compte de taille 10 -- //
-                            if (obj.code.Length == 10)
-                            {
-                                l.statut = obj.statut;
-                                l.nature = obj.nature;
-                                l.cle = obj.cle;
-                            }
-                            else
-                            {
-                                l.statut = string.Empty;
-                                l.nature = string.Empty;
-                                l.cle = string.Empty;
-                            }
-                            l.id_devise = obj.id_devise;
-                            l.devise = DeviseDAO.Object(obj.id_devise);
-                        }
+                        // -- Mise à jour de l'enregistrement -- //
+                        l.id_compte = obj.id_compte;
+                        l.id_compte_emetteur = obj.id_compte_emetteur;
+                        l.type = obj.type;
+                        l.compte = CompteDAO.Object(obj.id_compte);
+                        l.agence = AgenceDAO.Object(obj.id_agence);
+                        l.compte_emetteur = CompteDAO.Object((obj.id_compte_emetteur ?? 0));
                     });
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
+                applicationMainHub.RechargerCombo(new CompteAgenceDAO());
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
-                applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
                 #endregion
             }
             #region Catch
@@ -166,13 +165,13 @@ namespace GB.Models.DAO
                 ids.ForEach(id =>
                 {
                     // -- Suppression des valeurs -- //
-                    Program.db.comptes.RemoveAll(l => l.id == id);
+                    Program.db.comptes_agence.RemoveAll(l => l.id == id);
                 });
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
+                applicationMainHub.RechargerCombo(new CompteAgenceDAO());
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
-                applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
                 #endregion
             }
             #region Catch
@@ -196,13 +195,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Compte> Lister()
+        public static List<CompteAgence> Lister()
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.comptes;
+                    Program.db.comptes_agence;
             }
             #region Catch
             catch (Exception ex)
@@ -225,15 +224,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Compte> Lister_Cle()
+        public static CompteAgence Object(string code)
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Lister()
-                        .Where(l => l.code.Length == 10)
-                        .ToList();
+                    Program.db.comptes_agence.FirstOrDefault(l => l.code == code);
             }
             #region Catch
             catch (Exception ex)
@@ -256,13 +253,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Compte Object(string code)
+        public static CompteAgence Object(long id)
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.comptes.FirstOrDefault(l => l.code == code);
+                    Program.db.comptes_agence.FirstOrDefault(l => l.id == id);
             }
             #region Catch
             catch (Exception ex)
@@ -285,13 +282,31 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Compte Object(long id)
+        public static string HTML_Select(string champ)
         {
             try
             {
-                // -- Parcours de la liste -- //
-                return
-                    Program.db.comptes.FirstOrDefault(l => l.id == id);
+                // -- Valeur vide -- //
+                string HTML = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+
+                // -- Ajout des options -- //
+                // -- Pour le champ code -- //
+                if (champ == "code")
+                {
+                    foreach (var val in Lister())
+                    {
+                        HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
+                    }
+                }
+                else if (champ == "libelle")
+                {
+                    foreach (var val in Lister())
+                    {
+                        HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
+                    }
+                }
+
+                return HTML;
             }
             #region Catch
             catch (Exception ex)
@@ -316,7 +331,45 @@ namespace GB.Models.DAO
 
         public dynamic HTML_Select()
         {
-            throw new NotImplementedException();
+            try
+            {
+                // -- Objet dynamic -- //
+                dynamic donnee = new System.Dynamic.ExpandoObject();
+
+                // -- Valeur vide -- //
+                donnee.html_code = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+                donnee.html_libelle = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
+
+                // -- Ajout des options -- //
+
+                foreach (var val in Lister())
+                {
+                    donnee.html_code += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
+                    donnee.html_libelle += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
+                }
+
+                // -- Retourner l'objet -- //
+                return donnee;
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(App_Lang.Lang.Error_message_notification);
+                }
+                else
+                {
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(ex.Message);
+                }
+            }
+            #endregion
         }
     }
 }
