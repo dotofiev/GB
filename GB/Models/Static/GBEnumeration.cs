@@ -32,9 +32,11 @@ namespace GB.Models.Static
         public static string ConfigurationBanque_Ville = "ConfigurationBanque-Ville";
         public static string ConfigurationBanque_ActiviteEconomique = "ConfigurationBanque-ActiviteEconomique";
         public static string ConfigurationBanque_Titre = "ConfigurationBanque-Titre";
+        public static string ConfigurationBanque_Banque = "ConfigurationBanque-Banque";        
         public static string ConfigurationBanque_UniteInstitutionnelle = "ConfigurationBanque-UniteInstitutionnelle";
         public static string ConfigurationBanque_BEACNationalite = "ConfigurationBanque-BEACNationalite";
         public static string ConfigurationBanque_Profitabilite = "ConfigurationBanque-Profitabilite";
+        public static string ConfigurationBanque_CompteBanque = "ConfigurationBanque-CompteBanque";        
         public static string ConfigurationBudget_ExerciceFiscal = "ConfigurationBudget-ExerciceFiscal";
         public static string ConfigurationBudget_DirectionBudget = "ConfigurationBudget-DirectionBudget";
         public static string ConfigurationBanque_CongeBanque = "ConfigurationBanque-CongeBanque";

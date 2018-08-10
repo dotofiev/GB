@@ -10,45 +10,33 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class CompteAgenceDAO : DAO
+    public class CompteBanqueDAO : DAO
     {
-        public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_CompteAgence; } }
+        public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_CompteBanque; } }
         public string context_id { get; set; }
         public long id_utilisateur { get; set; }
-        public string form_combo_id { get { return "form_id_compteAgence"; } }
-        public string form_combo_code { get { return "form_code_compteAgence"; } }
-        public string form_name { get { return "compteAgence"; } }
-        public string form_combo_libelle { get { return "form_libelle_compteAgence"; } }
+        public string form_combo_id { get { return "form_id_compteBanque"; } }
+        public string form_combo_code { get { return "form_code_compteBanque"; } }
+        public string form_name { get { return "compteBanque"; } }
+        public string form_combo_libelle { get { return "form_libelle_compteBanque"; } }
 
 
-        public CompteAgenceDAO(string context_id, long id_utilisateur)
+        public CompteBanqueDAO(string context_id, long id_utilisateur)
         {
             this.context_id = context_id;
             this.id_utilisateur = id_utilisateur;
         }
 
-        public CompteAgenceDAO() { }
+        public CompteBanqueDAO() { }
 
-        public void Ajouter(CompteAgence obj)
+        public void Ajouter(CompteBanque obj)
         {
             try
             {
                 // -- Unicité du code -- //
-                if (Program.db.comptes_agence.Exists(l => l.id_agence == obj.id_agence && l.type == obj.type))
+                if (Program.db.comptes_banque.Exists(l => l.id_banque == obj.id_banque && l.id_compte == obj.id_compte))
                 {
-                    throw new GBException(App_Lang.Lang.Existing_data + $" [{App_Lang.Lang.Operation_type}]");
-                }
-
-                // -- valider la nécessité du champ compte_emetteur -- //
-                if (obj.type != "COMPENSATION" && (!obj.id_compte_emetteur.HasValue || obj.id_compte_emetteur.Value == 0))
-                {
-                    throw new GBException(App_Lang.Lang.Required_field + $" [{App_Lang.Lang.Issue}]");
-                }
-
-                // -- Mise à jour des valeurs -- //
-                if (obj.type == "COMPENSATION")
-                {
-                    obj.id_compte_emetteur = 0;
+                    throw new GBException(App_Lang.Lang.Existing_data + $" [{App_Lang.Lang.Account} {App_Lang.Lang.Bank}]");
                 }
 
                 // -- Définition de l'identifiant -- //
@@ -60,15 +48,14 @@ namespace GB.Models.DAO
                 // -- Mise à jour des references -- //
                 obj.utilisateur_createur = UtilisateurDAO.Object(this.id_utilisateur);
                 obj.compte = CompteDAO.Object(obj.id_compte);
-                obj.compte_emetteur = CompteDAO.Object((obj.id_compte_emetteur?? 0));
-                obj.agence = AgenceDAO.Object(obj.id_agence);
+                obj.banque = BanqueDAO.Object(obj.id_banque);
 
                 // -- Enregistrement de la valeur -- //
-                Program.db.comptes_agence.Add(obj);
+                Program.db.comptes_banque.Add(obj);
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
-                applicationMainHub.RechargerCombo(new CompteAgenceDAO());
+                applicationMainHub.RechargerCombo(new CompteBanqueDAO());
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
                 #endregion
             }
@@ -93,30 +80,18 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void Modifier(CompteAgence obj)
+        public void Modifier(CompteBanque obj)
         {
             try
             {
                 // -- Unicité du code -- //
-                if (Program.db.comptes_agence.Exists(l => l.id_agence == obj.id_agence && l.type == obj.type && l.id != obj.id))
+                if (Program.db.comptes_banque.Exists(l => l.id_banque == obj.id_banque && l.id_compte == obj.id_compte && l.id != obj.id))
                 {
-                    throw new GBException(App_Lang.Lang.Existing_data + $" [{App_Lang.Lang.Operation_type}]");
-                }
-
-                // -- valider la nécessité du champ compte_emetteur -- //
-                if (obj.type != "COMPENSATION" && (!obj.id_compte_emetteur.HasValue || obj.id_compte_emetteur.Value == 0))
-                {
-                    throw new GBException(App_Lang.Lang.Required_field + $" [{App_Lang.Lang.Issue}]");
-                }
-
-                // -- Mise à jour des valeurs -- //
-                if (obj.type == "COMPENSATION")
-                {
-                    obj.id_compte_emetteur = 0;
+                    throw new GBException(App_Lang.Lang.Existing_data + $" [{App_Lang.Lang.Account} {App_Lang.Lang.Bank}]");
                 }
 
                 // -- Modification de la valeur -- //
-                Program.db.comptes_agence
+                Program.db.comptes_banque
                     // -- Spécifier la recherche -- //
                     .Where(l => l.id == obj.id)
                     // -- Lister le résultat -- //
@@ -126,16 +101,14 @@ namespace GB.Models.DAO
                     {
                         // -- Mise à jour de l'enregistrement -- //
                         l.id_compte = obj.id_compte;
-                        l.id_compte_emetteur = obj.id_compte_emetteur;
-                        l.type = obj.type;
+                        l.id_banque = obj.id_banque;
                         l.compte = CompteDAO.Object(obj.id_compte);
-                        l.agence = AgenceDAO.Object(obj.id_agence);
-                        l.compte_emetteur = CompteDAO.Object((obj.id_compte_emetteur ?? 0));
+                        l.banque = BanqueDAO.Object(obj.id_banque);
                     });
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
-                applicationMainHub.RechargerCombo(new CompteAgenceDAO());
+                applicationMainHub.RechargerCombo(new CompteBanqueDAO());
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
                 #endregion
             }
@@ -168,12 +141,12 @@ namespace GB.Models.DAO
                 ids.ForEach(id =>
                 {
                     // -- Suppression des valeurs -- //
-                    Program.db.comptes_agence.RemoveAll(l => l.id == id);
+                    Program.db.comptes_banque.RemoveAll(l => l.id == id);
                 });
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
-                applicationMainHub.RechargerCombo(new CompteAgenceDAO());
+                applicationMainHub.RechargerCombo(new CompteBanqueDAO());
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
                 #endregion
             }
@@ -198,13 +171,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<CompteAgence> Lister()
+        public static List<CompteBanque> Lister()
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.comptes_agence;
+                    Program.db.comptes_banque;
             }
             #region Catch
             catch (Exception ex)
@@ -227,13 +200,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static CompteAgence Object(string code)
+        public static CompteBanque Object(string code)
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.comptes_agence.FirstOrDefault(l => l.code == code);
+                    Program.db.comptes_banque.FirstOrDefault(l => l.code == code);
             }
             #region Catch
             catch (Exception ex)
@@ -256,13 +229,13 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static CompteAgence Object(long id)
+        public static CompteBanque Object(long id)
         {
             try
             {
                 // -- Parcours de la liste -- //
                 return
-                    Program.db.comptes_agence.FirstOrDefault(l => l.id == id);
+                    Program.db.comptes_banque.FirstOrDefault(l => l.id == id);
             }
             #region Catch
             catch (Exception ex)

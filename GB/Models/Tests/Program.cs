@@ -115,9 +115,21 @@ namespace GB.Models.Tests
             db.comptes_agence.ForEach(l =>
             {
                 l.agence = db.agences.FirstOrDefault(ll => ll.id == l.id_agence);
-                l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur);
+                l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur_createur);
                 l.compte = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte);
                 l.compte_emetteur = db.comptes.FirstOrDefault(ll => ll.id == (l.id_compte_emetteur?? 0));
+            });
+            // -- CompteBanque -- //
+            db.comptes_banque.ForEach(l =>
+            {
+                l.banque = db.banques.FirstOrDefault(ll => ll.id == l.id_banque);
+                l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur_createur);
+                l.compte = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte);
+            });
+            // -- Banque -- //
+            db.banques.ForEach(l =>
+            {
+                l.pays = db.pays.FirstOrDefault(ll => ll.id == l.id_pays);
             });
         }
     }

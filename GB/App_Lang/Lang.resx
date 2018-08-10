@@ -873,4 +873,16 @@
   <data name="Profitability_management" xml:space="preserve">
     <value>Profitability management</value>
   </data>
+  <data name="Bank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="Correspondant_bank_management" xml:space="preserve">
+    <value>Correspondant bank management</value>
+  </data>
+  <data name="Correspondent_bank_account" xml:space="preserve">
+    <value>Correspondent bank account</value>
+  </data>
+  <data name="Correspondent_bank_account_management" xml:space="preserve">
+    <value>Correspondent bank account management</value>
+  </data>
 </root>

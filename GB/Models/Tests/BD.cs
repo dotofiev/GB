@@ -42,7 +42,10 @@ namespace GB.Models.Tests
         public List<WesternUnionZonePays> western_union_zones_pays { get; set; }
         public List<Compte> comptes { get; set; }
         public List<CompteAgence> comptes_agence { get; set; }
-        public List<Profitabilite> profitabilites { get; set; }        
+        public List<Profitabilite> profitabilites { get; set; }
+        public List<CompteBanque> comptes_banque { get; set; }
+        public List<Banque> banques { get; set; }
+        
 
         public BD() { }
     }

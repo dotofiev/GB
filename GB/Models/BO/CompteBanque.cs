@@ -8,29 +8,26 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class CompteAgence : BO
+    public class CompteBanque : BO
     {
         public long id_utilisateur_createur { get; set; }
         public long id_compte { get; set; }
-        public long id_agence { get; set; }
-        public long? id_compte_emetteur { get; set; }
+        public long id_banque { get; set; }
         public Compte compte { get; set; }
         public Utilisateur utilisateur_createur { get; set; }
-        public Compte compte_emetteur { get; set; }
-        public Agence agence { get; set; }
-        public string type { get; set; }
+        public Banque banque { get; set; }
         public long date_creation { get; set; }
 
-        public CompteAgence(long id)
+        public CompteBanque(long id)
         {
             this.id = id;
         }
 
-        public CompteAgence() { }
+        public CompteBanque() { }
 
         public override void Crer_Id()
         {
-            this.id = Tests.Program.db.comptes_agence.Count + 1;
+            this.id = Tests.Program.db.comptes_banque.Count + 1;
         }
 
         public static List<string> Classes_references

@@ -234,6 +234,24 @@
       "view": "CongeBanque",
       "id_controller": "3"
     },
+    {
+      "id": "45",
+      "code": "45",
+      "id_groupe_menu": "3",
+      "libelle_en": "Correspondent bank",
+      "libelle_fr": "Banque correspondante",
+      "view": "Banque",
+      "id_controller": "3"
+    },
+    {
+      "id": "44",
+      "code": "44",
+      "id_groupe_menu": "3",
+      "libelle_en": "Correspondent bank account",
+      "libelle_fr": "Compte bancaire correspondant",
+      "view": "CompteBanque",
+      "id_controller": "3"
+    },
 
     // ------------ //
     // -- Parent -- //
@@ -991,6 +1009,26 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "86",
+      "id_role": "1",
+      "id_menu": "44",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "87",
+      "id_role": "1",
+      "id_menu": "45",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
 
 
     // -- Role 2 -- //
@@ -1418,6 +1456,16 @@
       "id": "85",
       "id_role": "2",
       "id_menu": "43",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "88",
+      "id_role": "2",
+      "id_menu": "45",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -2066,6 +2114,71 @@
       "code": "DEPEFF",
       "libelle": "Expenses",
       "type": "EXPENSE"
+    }
+  ],
+  "comptes_banque": [
+    {
+      "id": "1",
+      "id_compte": "10",
+      "id_banque": "1",
+      "utilisateur_createur": "1",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "banques": [
+    {
+      "id": "1",
+      "code": "001",
+      "libelle": "United Bank For Africa Current",
+      "id_pays": "1",
+      "adresse_1": "Bamenda",
+      "adresse_2": "Wum",
+      "ville": "Bamenda"
+    },
+    {
+      "id": "2",
+      "code": "002",
+      "libelle": "United Bank For Africa Current",
+      "id_pays": "1",
+      "adresse_1": "Douaka",
+      "adresse_2": "Wum",
+      "ville": "Douala"
+    },
+    {
+      "id": "3",
+      "code": "003",
+      "libelle": "Wum Area Coop Credit",
+      "id_pays": "1",
+      "adresse_1": "Bamenda",
+      "adresse_2": "Wum",
+      "ville": "Bamenda"
+    },
+    {
+      "id": "4",
+      "code": "004",
+      "libelle": "B.G.F.I. Bank",
+      "id_pays": "1",
+      "adresse_1": "Bamenda",
+      "adresse_2": "",
+      "ville": "Bamenda"
+    },
+    {
+      "id": "5",
+      "code": "005",
+      "libelle": "B.G.F.I. Bank Saving",
+      "id_pays": "1",
+      "adresse_1": "Bamenda",
+      "adresse_2": "Wum",
+      "ville": "Bamenda"
+    },
+    {
+      "id": "6",
+      "code": "006",
+      "libelle": "Nkwen inter Branch",
+      "id_pays": "1",
+      "adresse_1": "Bamenda",
+      "adresse_2": "Nkwen",
+      "ville": "Bamenda"
     }
   ],
   //"western_union_zones_commissions": [

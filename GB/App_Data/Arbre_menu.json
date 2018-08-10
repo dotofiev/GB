@@ -30,6 +30,8 @@
       "Institution",
       "Agence",
       "CompteAgence",
+      "Banque",
+      "CompteBanque",
       "Devise",
       "Parametre",
       "ParametreBanque",

@@ -304,6 +304,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bank.
+        /// </summary>
+        public static string Bank {
+            get {
+                return ResourceManager.GetString("Bank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bank holiday management.
         /// </summary>
         public static string Bank_holiday_management {
@@ -480,6 +489,33 @@ namespace GB.App_Lang {
         public static string Copyright {
             get {
                 return ResourceManager.GetString("Copyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Correspondant bank management.
+        /// </summary>
+        public static string Correspondant_bank_management {
+            get {
+                return ResourceManager.GetString("Correspondant_bank_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Correspondent bank account.
+        /// </summary>
+        public static string Correspondent_bank_account {
+            get {
+                return ResourceManager.GetString("Correspondent_bank_account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Correspondent bank account management.
+        /// </summary>
+        public static string Correspondent_bank_account_management {
+            get {
+                return ResourceManager.GetString("Correspondent_bank_account_management", resourceCulture);
             }
         }
         
