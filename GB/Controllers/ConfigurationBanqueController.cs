@@ -646,7 +646,9 @@ namespace GB.Controllers
                                 col_5 = val.ville,
                                 col_6 = val.adresse_1,
                                 col_7 = val.adresse_2,
-                                col_8 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
+                                col_8 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
+                                col_9 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
+                                col_10 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
                             }
                         );
                     }

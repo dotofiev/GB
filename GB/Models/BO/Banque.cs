@@ -11,11 +11,14 @@ namespace GB.Models.BO
 {
     public class Banque : BO
     {
+        public long id_utilisateur_createur { get; set; }
         public string adresse_1 { get; set; }
         public string adresse_2 { get; set; }
         public string ville { get; set; }
         public long id_pays { get; set; }
+        public Utilisateur utilisateur_createur { get; set; }
         public Pays pays { get; set; }
+        public long date_creation { get; set; }
 
         public Banque(long id)
         {

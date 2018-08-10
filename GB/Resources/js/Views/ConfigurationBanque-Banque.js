@@ -186,7 +186,9 @@ $(
                     { "data": "col_5" },                            // -- ville -- //
                     { "data": "col_6" },                            // -- adresse_1 -- //
                     { "data": "col_7" },                            // -- adresse_2 -- //
-                    { "data": "col_8", "class": "text-center" }     // -- Action -- //
+                    { "data": "col_8" },                            // -- date_creation -- //
+                    { "data": "col_9" },                            // -- utilisateur_createur -- //
+                    { "data": "col_10", "class": "text-center" }     // -- Action -- //
                 ]
             });
 

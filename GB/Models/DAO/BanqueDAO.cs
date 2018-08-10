@@ -38,7 +38,9 @@ namespace GB.Models.DAO
                 }
 
                 // -- Mise à jour des references -- //
+                obj.id_utilisateur_createur = this.id_utilisateur;
                 obj.pays = PaysDAO.Object(obj.id_pays);
+                obj.utilisateur_createur = UtilisateurDAO.Object(this.id_utilisateur);
 
                 // -- Champ obligatoire -- //
                 if (obj.pays == null)
