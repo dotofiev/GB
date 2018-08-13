@@ -28,6 +28,7 @@ $(function () {
                     url != '/ConfigurationBanque/Banque' &&
                     url != '/ConfigurationBanque/CompteAgence' &&
                     url != '/ConfigurationBanque/CompteBanque' &&
+                    url != '/ConfigurationBanque/Societe' &&
                     url != '/ConfigurationBanque/Devise' &&
                     url != '/ConfigurationBanque/ResponsableRelationClient' &&
                     url != '/ConfigurationBanque/Parametre' &&

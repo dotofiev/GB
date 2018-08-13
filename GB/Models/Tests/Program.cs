@@ -132,6 +132,15 @@ namespace GB.Models.Tests
                 l.pays = db.pays.FirstOrDefault(ll => ll.id == l.id_pays);
                 l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur_createur);
             });
+            // -- Societe -- //
+            db.societes.ForEach(l =>
+            {
+                l.agence = db.agences.FirstOrDefault(ll => ll.id == l.id_agence);
+                l.compte_interet_pret = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte_interet_pret);
+                l.compte_paiement = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte_paiement);
+                l.compte_pret = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte_pret);
+                l.compte_transit = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte_transit);
+            });
         }
     }
 }

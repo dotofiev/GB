@@ -81,7 +81,23 @@ namespace GB.Models.Static
                                                                 : donnee == "INSURANCE" ? App_Lang.Lang.Insurance
                                                                                         : string.Empty;
         }
-        
+
+        public static string TypeSociete(string donnee)
+        {
+            return
+                donnee == "Machine Number" ? App_Lang.Lang.Machine_number
+                                          : donnee == "Customer Account Number" ? App_Lang.Lang.Customer_account_number
+                                                                                : string.Empty;
+        }
+
+        public static string BaseCalculSociete(string donnee)
+        {
+            return
+                donnee == "SOLDE" ? "SOLDE"
+                                  : donnee == "SALARY" ? App_Lang.Lang.Salary
+                                                       : string.Empty;
+        }
+
         public static string FormuleClassificationProvisionsPret(string donnee)
         {
             return

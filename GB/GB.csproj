@@ -203,6 +203,7 @@
     </Compile>
     <Compile Include="Models\ActionFilter\AuthentificationRequis.cs" />
     <Compile Include="Models\ActionFilter\ResponseErreur.cs" />
+    <Compile Include="Models\BO\Societe.cs" />
     <Compile Include="Models\BO\CompteBanque.cs" />
     <Compile Include="Models\BO\CompteAgence.cs" />
     <Compile Include="Models\BO\DirectionBudget.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Models\BO\Banque.cs" />
     <Compile Include="Models\BO\ResponsableRelationClient.cs" />
     <Compile Include="Models\BO\Profitabilite.cs" />
+    <Compile Include="Models\DAO\SocieteDAO.cs" />
     <Compile Include="Models\DAO\CompteBanqueDAO.cs" />
     <Compile Include="Models\DAO\CompteAgenceDAO.cs" />
     <Compile Include="Models\DAO\BanqueDAO.cs" />
@@ -905,6 +907,7 @@
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\gb.menu.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-CompteBanque.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-Societe.js" />
     <Content Include="Resources\js\Views\Erreur-Page.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-BEACNationalite.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-UniteInstitutionnelle.js" />
@@ -1377,6 +1380,8 @@
     <Content Include="Views\ConfigurationBanque\Banque.cshtml" />
     <Content Include="Views\ConfigurationBanque\ResponsableRelationClient\_Modals.cshtml" />
     <Content Include="Views\ConfigurationBanque\ResponsableRelationClient.cshtml" />
+    <Content Include="Views\ConfigurationBanque\Societe\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationBanque\Societe.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

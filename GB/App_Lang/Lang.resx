@@ -897,4 +897,34 @@
   <data name="Surname" xml:space="preserve">
     <value>Surname</value>
   </data>
+  <data name="Account_interest_pay" xml:space="preserve">
+    <value>Account interest pay</value>
+  </data>
+  <data name="Account_loan" xml:space="preserve">
+    <value>Account loan</value>
+  </data>
+  <data name="Account_pay" xml:space="preserve">
+    <value>Account pay</value>
+  </data>
+  <data name="Account_transit" xml:space="preserve">
+    <value>Account transit</value>
+  </data>
+  <data name="Calculation_base" xml:space="preserve">
+    <value>Calculation base</value>
+  </data>
+  <data name="Customer_account_number" xml:space="preserve">
+    <value>Customer account number</value>
+  </data>
+  <data name="Machine_number" xml:space="preserve">
+    <value>Machine number</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>Salary</value>
+  </data>
+  <data name="Standing_order_company_info" xml:space="preserve">
+    <value>Standing order company info</value>
+  </data>
+  <data name="Treatment_type" xml:space="preserve">
+    <value>Treatment type</value>
+  </data>
 </root>

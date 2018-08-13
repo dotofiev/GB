@@ -102,6 +102,26 @@ namespace GB.Models.Static
         }
 
         /// <summary>
+        /// Obtenir les options de combo box SOLDE, SALARY
+        /// </summary>
+        public static string HTML_base_de_calcul_societe()
+        {
+            return
+                $"<option value=\"{"SOLDE"}\" title=\"{"SOLDE"}\">{"SOLDE"}</option>" +
+                $"<option value=\"{"SALARY"}\" title=\"{App_Lang.Lang.Salary}\">{App_Lang.Lang.Salary}</option>";
+        }
+
+        /// <summary>
+        /// Obtenir les options de combo box SOLDE, SALARY
+        /// </summary>
+        public static string HTML_type_traitement_calcul_societe()
+        {
+            return
+                $"<option value=\"{"Machine Number"}\" title=\"{App_Lang.Lang.Machine_number}\">{App_Lang.Lang.Machine_number}</option>" +
+                $"<option value=\"{"Customer Account Number"}\" title=\"{App_Lang.Lang.Customer_account_number}\">{App_Lang.Lang.Customer_account_number}</option>";
+        }
+
+        /// <summary>
         /// Obtenir les options de combo box TIERS, FONDS, COMPENSATION, NONMEMBER
         /// </summary>
         public static string HTML_type_profitabilite()

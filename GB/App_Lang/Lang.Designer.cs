@@ -79,6 +79,24 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account interest pay.
+        /// </summary>
+        public static string Account_interest_pay {
+            get {
+                return ResourceManager.GetString("Account_interest_pay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account loan.
+        /// </summary>
+        public static string Account_loan {
+            get {
+                return ResourceManager.GetString("Account_loan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account management.
         /// </summary>
         public static string Account_management {
@@ -93,6 +111,24 @@ namespace GB.App_Lang {
         public static string Account_number {
             get {
                 return ResourceManager.GetString("Account_number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account pay.
+        /// </summary>
+        public static string Account_pay {
+            get {
+                return ResourceManager.GetString("Account_pay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account transit.
+        /// </summary>
+        public static string Account_transit {
+            get {
+                return ResourceManager.GetString("Account_transit", resourceCulture);
             }
         }
         
@@ -385,6 +421,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calculation base.
+        /// </summary>
+        public static string Calculation_base {
+            get {
+                return ResourceManager.GetString("Calculation_base", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
@@ -597,6 +642,15 @@ namespace GB.App_Lang {
         public static string Current_currency {
             get {
                 return ResourceManager.GetString("Current_currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer account number.
+        /// </summary>
+        public static string Customer_account_number {
+            get {
+                return ResourceManager.GetString("Customer_account_number", resourceCulture);
             }
         }
         
@@ -1339,6 +1393,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Machine number.
+        /// </summary>
+        public static string Machine_number {
+            get {
+                return ResourceManager.GetString("Machine_number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Main.
         /// </summary>
         public static string Main {
@@ -1951,6 +2014,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Salary.
+        /// </summary>
+        public static string Salary {
+            get {
+                return ResourceManager.GetString("Salary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -2082,6 +2154,15 @@ namespace GB.App_Lang {
         public static string SMS_banking {
             get {
                 return ResourceManager.GetString("SMS_banking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standing order company info.
+        /// </summary>
+        public static string Standing_order_company_info {
+            get {
+                return ResourceManager.GetString("Standing_order_company_info", resourceCulture);
             }
         }
         
@@ -2253,6 +2334,15 @@ namespace GB.App_Lang {
         public static string Town_management {
             get {
                 return ResourceManager.GetString("Town_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Treatment type.
+        /// </summary>
+        public static string Treatment_type {
+            get {
+                return ResourceManager.GetString("Treatment_type", resourceCulture);
             }
         }
         
