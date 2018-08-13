@@ -19,6 +19,21 @@ namespace GB.Controllers
     {
         #region HttpGet
         [HttpGet]
+        public ActionResult CompteConfiguration()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Exempt_general_leger_account})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationOperation_CompteConfiguration);
+
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult Compte()
         {
             // -- Charger les paramètres par défaut de la page -- //
@@ -377,6 +392,32 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationOperation-CompteConfiguration
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_CompteConfiguration)
+                {
+                    foreach (var val in CompteDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                //col_1 = GBClass.HTML_Checkbox_Table(val.id, "compteConfiguration"),
+                                col_2 = val.code,
+                                col_3 = val.libelle,
+                                col_4 = val.cle,
+                                col_5 = GBToString.Activer_Desactiver(val.type_operation_compte_client_et_compte_gl),
+                                col_6 = GBToString.Activer_Desactiver(val.type_operation_compte_gl_et_compte_gl),
+                                col_7 = GBToString.NatureCompte(val.nature),
+                                col_8 = GBToString.StatutCompte(val.statut),
+                                col_9 = val.devise?.libelle ?? string.Empty,
+                                col_10 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
+                                col_11 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
+                                col_12 = GBClass.HTML_Bouton_Modifier_Table(val.id, val.code)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
                 #region TypePret introuvable
                 else
                 {
@@ -662,6 +703,30 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationOperation-CompteConfiguration
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_CompteConfiguration)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = CompteDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        type_operation_compte_client_et_compte_gl = obj.type_operation_compte_client_et_compte_gl.ToString(),
+                                                        type_operation_compte_gl_et_compte_gl = obj.type_operation_compte_gl_et_compte_gl.ToString(),
+                                                    }
+                                               );
+                }
+                #endregion
+
                 #region TypePret introuvable
                 else
                 {
@@ -791,7 +856,7 @@ namespace GB.Controllers
                     // -- 2, 3 -- //
                     for (int i = 2; i <= 3; i++)
                     {
-                        if ((multi_cas || objet.numero_compte.Length == i) && CompteDAO.Object(objet.numero_compte) == null)
+                        if ((multi_cas || objet.numero_compte.Length == i) && CompteDAO.Object(objet.numero_compte.Substring(0, i)) == null)
                         {
                             (this.con.donnee.nouveau_compte as List<Compte>).Add(
                                 new Compte
@@ -959,7 +1024,15 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_Compte)
                 {
                     // -- Service de modification -- //
-                    compteDAO.Modifier(GBConvert.JSON_To<Compte>(obj));
+                    compteDAO.Modifier(GBConvert.JSON_To<Compte>(obj), false);
+                }
+                #endregion
+
+                #region ConfigurationOperation-CompteConfiguration
+                else if (id_page == GB_Enum_Menu.ConfigurationOperation_CompteConfiguration)
+                {
+                    // -- Service de modification -- //
+                    compteDAO.Modifier(GBConvert.JSON_To<Compte>(obj), true);
                 }
                 #endregion
 
@@ -1561,6 +1634,11 @@ namespace GB.Controllers
                                                         Both = App_Lang.Lang.Both,
                                                         Close = App_Lang.Lang.Close,
                                                         Open = App_Lang.Lang.Open,
+                                                        Required_field = App_Lang.Lang.Required_field,
+                                                        Account = App_Lang.Lang.Account,
+                                                        Name = App_Lang.Lang.Name.ToLower(),
+                                                        Key = App_Lang.Lang.Key,
+                                                        Status = App_Lang.Lang.Status,
                                                     }
                                                 }
                                             );
@@ -1569,6 +1647,44 @@ namespace GB.Controllers
                 // - Mise à jour des données de vue -- //
                 // -- autorisation_disponible -- //
                 this.con.donnee.nouveau_compte = new List<Compte>();
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationOperation-CompteConfiguration
+            else if (id_page == GB_Enum_Menu.ConfigurationOperation_CompteConfiguration)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Account_management;
+                this.ViewBag.Lang.Key = App_Lang.Lang.Key;
+                this.ViewBag.Lang.Status = App_Lang.Lang.Status;
+                this.ViewBag.Lang.Currency = App_Lang.Lang.Currency;
+                this.ViewBag.Lang.Parameters = App_Lang.Lang.Parameters;
+                this.ViewBag.Lang.Account = App_Lang.Lang.Account;
+                this.ViewBag.Lang.Account_number = App_Lang.Lang.Account_number;
+                this.ViewBag.Lang.Generate = App_Lang.Lang.Generate;
+                this.ViewBag.Lang.Length_string_min_2 = App_Lang.Lang.Length_string_min_2;
+                this.ViewBag.Lang.Customer_account_to_GL_account = App_Lang.Lang.Customer_account_to_GL_account;
+                this.ViewBag.Lang.GL_account_to_GL_account = App_Lang.Lang.GL_account_to_GL_account;
+                this.ViewBag.Lang.Operation_type = App_Lang.Lang.Operation_type;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Exempt_general_leger_account
+                                                    }
+                                                }
+                                            );
                 #endregion
             }
             #endregion

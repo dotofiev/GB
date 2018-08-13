@@ -129,15 +129,14 @@ try {
 
         try 
         {
-
             // -- Suppression de l'element dans l'objet JSSession -- //
-            for (var i = 0; i <= table_nouveau_compte.DataTable().rows().length; i++) {
+            for (var i = 0; i <= table_nouveau_compte.DataTable().rows().data().length; i++) {
                 // -- Vérifier l'element -- //
                 if (table_nouveau_compte.DataTable().row(i).data().col_0 === id) {
-                    // -- Supprimer l'element de la table -- //
-                    table_nouveau_compte.DataTable().row(i).remove().draw();
                     // -- Supprimer l'element des nouveaux comptes -- //
                     $GB_DONNEE.Nouveaux_comptes.splice(i, 1);
+                    // -- Supprimer l'element de la table -- //
+                    table_nouveau_compte.DataTable().row(i).remove().draw(false);
                     // -- QUItter la boucle -- //
                     break;
                 }
@@ -259,14 +258,6 @@ $(
                 }
             );
 
-            // -- Lorsque la table est redessiné -- //
-            table_nouveau_compte.on('draw.dt',
-                function () {
-                    // -- Fonction pour initiliser les style css javascript des tables -- //
-                    //gbCharger_Css_Table('nouveau_compte');
-                }
-            );
-
             // -- Table d'affichage des données -- //
             table_nouveau_compte.DataTable({
                 "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, $GB_DONNEE_PARAMETRES.Lang.All]],
@@ -274,6 +265,7 @@ $(
                 "paging": true,
                 "searching": true,
                 "autoWidth": false,
+                "keys": true,
                 "language": {
                     "url": $GB_VAR.url_language_dataTable
                 },
@@ -297,6 +289,28 @@ $(
                     { "data": "col_6" },                            // -- statut -- //
                     { "data": "col_7", "class": "text-center" }    // -- Action -- //
                 ]
+            })
+            .on('key', function (e, datatable, key, cell, originalEvent) { })
+            .on('key-focus', function (e, datatable, cell) {
+                // -- Réccupérer la cellule dans le DOM -- //
+                var td = gbDataTablesConvertCell_To_td(cell);
+                // -- Déclencher le click -- //
+                td.trigger('click');
+                // -- Déclencher le focus -- //
+                td.children().trigger('focus');
+            })
+            .on('key-blur', function (e, datatable, cell) {
+                // -- Réccupérer la cellule dans le DOM -- //
+                var td = gbDataTablesConvertCell_To_td(cell);
+                // -- Perdre le focus pour les input -- //
+                if (td.find('input').length != 0)
+                {
+                    td.find('input').blur();
+                }
+                // -- Quitter si c'est un select -- //
+                else if (td.find('select').length != 0) {
+                    td.find('select').change();
+                }
             });
 
             // -- Lorsqu'un click survient sur une ligne de la table -- //
@@ -304,19 +318,6 @@ $(
                 function () {
                     // -- Selectionner une ligne de la table -- //
                     gbTableSelectionLigne($(this), 'table-nouveau_compte-donnee');
-                }
-            );
-
-            // -- Lorsqu'un double click survient sur une ligne de la table -- //
-            $('#table-nouveau_compte-donnee tbody').on('dblclick', 'tr',
-                function () {
-                    // -- Réccupération des données de la table -- //
-                    var donnees = table_nouveau_compte.DataTable().row(this).data();
-
-                    // -- Vérifie qu'un enregistrement est sélectionné -- //
-                    if (donnees != undefined && donnees != null) {
-
-                    }
                 }
             );
 
@@ -381,14 +382,6 @@ $(
                 function (e) {
                     // -- Désactiver la soumission -- //
                     e.preventDefault();
-
-                    // -- Ecouter la réponse du message de confirmation -- //
-                    if (!$GB_DONNEE.Confirmation_message_box) {
-                        // -- Afficher le message d'action -- //
-                        gbConfirmationAlert_OuiOuNon(null, null, form_generation.attr('id'), null);
-                        // -- Annuler l'action -- //
-                        return false;
-                    }
 
                     // -- Afficher le chargement -- //
                     gbAfficher_Page_Chargement(true, btn_generation.attr('id'));
@@ -532,60 +525,114 @@ $(
             btn_sauvegarder.on("click",
                 function () {
 
-                    // -- Construire les données -- //
-                    var nouveau_compte = [];
-                    gbConsole(table_nouveau_compte.DataTable().rows().length);
-                    // -- Parcours de la table et ajout des données à la liste -- //
-                    for (var i = 0; i <= table_nouveau_compte.DataTable().rows().length; i++) {
-                        // -- Objet de la ligne -- //
-                        var donnee = table_nouveau_compte.DataTable().row(i).data();
-                        if (donnee != undefined && donnee != null) {
-                            gbConsole(donnee);
-                            // -- AJout à la liste -- //
-                            nouveau_compte.push({
-                                id: donnee.col_0,
-                                libelle: donnee.col_3,
-                                cle: donnee.col_4,
-                                nature: donnee.col_5,
-                                statut: donnee.col_6
-                            });
-                        }
-                    }
-
                     // -- Si la taille est supérieurs à 0 -- //
-                    if (nouveau_compte.length == 0) {
+                    if ($GB_DONNEE.Nouveaux_comptes.length == 0) {
                         // -- Afficher message d'erreur -- //
-                        gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.No_item_selected });
+                        gbAlert({ est_echec: true, message: $GB_DONNEE_PARAMETRES.Lang.No_item_selected });
                         // -- Annuler l'action -- //
                         return false;
                     }
-                    gbConsole('Message: ' + $GB_DONNEE.Confirmation_message_box);
+
+                    // -- Message d'erreur potentiel -- //
+                    var message = '<ul>';
+                    // -- Valider les données -- //
+                    for (var i = 0; i < $GB_DONNEE.Nouveaux_comptes.length; i++)
+                    {
+                        // -- Si le libelle n'est pas modifié -- //
+                        if ($GB_DONNEE.Nouveaux_comptes[i].libelle == null || $GB_DONNEE.Nouveaux_comptes[i].libelle == '') {
+                            message +=
+                                '<li>' +
+                                    $GB_DONNEE.Lang.Account + ' <b>' + $GB_DONNEE.Nouveaux_comptes[i].code + '</b> : <i>' +
+                                    $GB_DONNEE.Lang.Required_field + ' [' + $GB_DONNEE.Lang.Name + ']</i>' +
+                                '</li>';
+                        }
+                        // -- Si les champs du compte 10 ne sont pas soumis -- //
+                        if ($GB_DONNEE.Nouveaux_comptes[i].code != null && $GB_DONNEE.Nouveaux_comptes[i].code.length == 10)
+                        {
+                            // -- Si le cle n'est pas modifié -- //
+                            if ($GB_DONNEE.Nouveaux_comptes[i].cle == null || $GB_DONNEE.Nouveaux_comptes[i].cle == '') {
+                                message +=
+                                    '<li>' +
+                                        $GB_DONNEE.Lang.Account + ' <b>' + $GB_DONNEE.Nouveaux_comptes[i].code + '</b> : <i>' +
+                                        $GB_DONNEE.Lang.Required_field + ' [' + $GB_DONNEE.Lang.Key + ']</i>' +
+                                    '</li>';
+                            }
+                            // -- Si le nature n'est pas modifié -- //
+                            if ($GB_DONNEE.Nouveaux_comptes[i].nature == null || $GB_DONNEE.Nouveaux_comptes[i].nature == '') {
+                                message +=
+                                    '<li>' +
+                                        $GB_DONNEE.Lang.Account + ' <b>' + $GB_DONNEE.Nouveaux_comptes[i].code + '</b> : <i>' +
+                                        $GB_DONNEE.Lang.Required_field + ' [' + 'Nature' + ']</i>' +
+                                    '</li>';
+                            }
+                            // -- Si le statut n'est pas modifié -- //
+                            if ($GB_DONNEE.Nouveaux_comptes[i].statut == null || $GB_DONNEE.Nouveaux_comptes[i].statut == '') {
+                                message +=
+                                    '<li>' +
+                                        $GB_DONNEE.Lang.Account + ' <b>' + $GB_DONNEE.Nouveaux_comptes[i].code + '</b> : <i>' +
+                                        $GB_DONNEE.Lang.Required_field + ' [' + $GB_DONNEE.Lang.Status + ']</i>' +
+                                    '</li>';
+                            }
+                        }
+                        // -- Vider les champs non autorisé -- //
+                        else {
+                            $GB_DONNEE.Nouveaux_comptes[i].cle = ''
+                            $GB_DONNEE.Nouveaux_comptes[i].nature = ''
+                            $GB_DONNEE.Nouveaux_comptes[i].statut = '';
+                        }
+                    }
+                    // -- fermeture du message d'erreur potentiel -- //
+                    message += '</ul>';
+
+                    if (message != '<ul></ul>') {
+                        // -- Afficher message d'erreur -- //
+                        gbAlert({ est_echec: true, message: message });
+                        // -- Annuler l'action -- //
+                        return false;
+                    }
+
                     // -- Ecouter la réponse du message de confirmation -- //
                     if (!$GB_DONNEE.Confirmation_message_box) {
                         // -- Afficher le message d'action -- //
-                        gbConfirmationAlert_OuiOuNon(null, null, null, btn_sauvegarder.trigger('click'));
+                        gbConfirmationAlert_OuiOuNon(
+                            null, null, null,
+                            function () {
+                                btn_sauvegarder.trigger('click');
+                            }
+                        );
                         // -- Annuler l'action -- //
                         return false;
                     }
+
+                    // -- Afficher le chargement -- //
+                    gbAfficher_Page_Chargement(true, btn_sauvegarder.attr('id'));
 
                     // -- Ajax -- //
                     $.ajax({
                         type: "POST",
                         url: $GB_DONNEE.Urls.url_controlleur + 'Compte_Enregistrer_Nouveau_Compte',
                         data: {
-                            obj: JSON.stringify(nouveau_compte)
+                            obj: JSON.stringify($GB_DONNEE.Nouveaux_comptes)
                         },
                         success: function (resultat) {
                             // -- Tester si le traitement s'est bien effectué -- //
                             if (!resultat.notification.est_echec) {
+                                // -- Actualiser la table -- //
+                                gbRechargerTable(false);
+                                // -- Réccupérer les comptes -- //
+                                $GB_DONNEE.Nouveaux_comptes = [];
                                 // -- Fermer le modal -- //
                                 modal_form_generation.modal('hide');
                             } else {
                                 // -- Message -- //
                                 gbAlert(resultat.notification);
                             }
+                            // -- Afficher le chargement -- //
+                            gbAfficher_Page_Chargement(false, btn_sauvegarder.attr('id'));
                         },
                         error: function () {
+                            // -- Afficher le chargement -- //
+                            gbAfficher_Page_Chargement(false, btn_sauvegarder.attr('id'));
                             // -- Message -- //
                             gbAlert();
                         }
@@ -630,16 +677,20 @@ $(
 
                         // -- Mise à jour en fonction de l'index -- //
                         if (x == 2) {
-                            $GB_DONNEE.Nouveaux_comptes[y].col_3 = nouvelle_valeur;
+                            $GB_DONNEE.Nouveaux_comptes[y].libelle = nouvelle_valeur;
                         }
                         else if (x == 3) {
-                            $GB_DONNEE.Nouveaux_comptes[y].col_4 = nouvelle_valeur;
+                            // -- Réccupérer le premier caractère et le mettre en majuscule -- //
+                            var premier_caractere = nouvelle_valeur.toString().substr(0, 1).toUpperCase();
+                            $GB_DONNEE.Nouveaux_comptes[y].cle = premier_caractere;
+                            // -- Mise à jour de la table -- //
+                            cell.data(premier_caractere).draw();
                         }
                         else if (x == 4) {
-                            $GB_DONNEE.Nouveaux_comptes[y].col_5 = nouvelle_valeur;
+                            $GB_DONNEE.Nouveaux_comptes[y].nature = nouvelle_valeur;
                         }
                         else if (x == 5) {
-                            $GB_DONNEE.Nouveaux_comptes[y].col_6 = nouvelle_valeur;
+                            $GB_DONNEE.Nouveaux_comptes[y].statut = nouvelle_valeur;
                         }
 
                         // -- Ne pas autorisé la modification des clé, nature et statut pour les comptes non 10 -- //
@@ -648,24 +699,16 @@ $(
                             if (table_nouveau_compte.DataTable().row(y).data().col_0 === ligne.col_0) {
                                 // -- Reset de la valeur -- //
                                 if (x == 3) {
-                                    table_nouveau_compte.DataTable().row(y).data().col_4 = '';
-                                    $GB_DONNEE.Nouveaux_comptes[y].col_4 = '';
+                                    $GB_DONNEE.Nouveaux_comptes[y].cle = '';
                                 }
                                 else if (x == 4) {
-                                    table_nouveau_compte.DataTable().row(y).data().col_5 = '';
-                                    $GB_DONNEE.Nouveaux_comptes[y].col_5 = '';
+                                    $GB_DONNEE.Nouveaux_comptes[y].nature = '';
                                 }
                                 else if (x == 5) {
-                                    table_nouveau_compte.DataTable().row(y).data().col_6 = '';
-                                    $GB_DONNEE.Nouveaux_comptes[y].col_6 = '';
+                                    $GB_DONNEE.Nouveaux_comptes[y].statut = '';
                                 }
                                 // -- Mise à jour de la table -- //
-                                table_nouveau_compte.DataTable()
-                                                    .row(y)
-                                                    .data(
-                                                        table_nouveau_compte.DataTable().row(y).data()
-                                                    )
-                                                    .draw();
+                                cell.data('').draw();
                             }
                         }
                     },
@@ -674,10 +717,6 @@ $(
                     "allowNulls": {
                         "columns": [2, 3, 4, 5],
                         "errorClass": 'error'
-                    },
-                    "confirmationButton": {
-                        "confirmCss": 'btn btn-sm btn-primary',
-                        "cancelCss": 'btn btn-sm btn-danger'
                     },
                     "inputTypes": [
                         {

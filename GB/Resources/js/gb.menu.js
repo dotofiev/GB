@@ -25,7 +25,11 @@ $(function () {
 
                     url != '/ConfigurationBanque/Institution' &&
                     url != '/ConfigurationBanque/Agence' &&
+                    url != '/ConfigurationBanque/Banque' &&
+                    url != '/ConfigurationBanque/CompteAgence' &&
+                    url != '/ConfigurationBanque/CompteBanque' &&
                     url != '/ConfigurationBanque/Devise' &&
+                    url != '/ConfigurationBanque/ResponsableRelationClient' &&
                     url != '/ConfigurationBanque/Parametre' &&
                     url != '/ConfigurationBanque/ParametreBanque' &&
                     url != '/ConfigurationBanque/ProduitClientPhysique' &&
@@ -37,6 +41,7 @@ $(function () {
                     url != '/ConfigurationBanque/UniteInstitutionnelle' &&
                     url != '/ConfigurationBanque/BEACNationalite' &&
                     url != '/ConfigurationBanque/CongeBanque' &&
+                    url != '/ConfigurationBanque/Profitabilite' &&
 
                     url != '/ConfigurationBudget/ExerciceFiscal' &&
                     url != '/ConfigurationBudget/DirectionBudget' &&
@@ -50,7 +55,8 @@ $(function () {
                     url != '/ConfigurationOperation/TypeActif' &&
                     url != '/ConfigurationOperation/LocalisationActif' &&
                     url != '/ConfigurationOperation/WesternUnionZonePays' &&
-                    url != '/ConfigurationOperation/Compte') {
+                    url != '/ConfigurationOperation/Compte' &&
+                    url != '/ConfigurationOperation/CompteConfiguration') {
                     // -- Message -- //
                     gbMessage_Box({ est_echec: null, message: $GB_DONNEE_PARAMETRES.Lang.Maintenance_message });
 

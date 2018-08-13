@@ -112,7 +112,7 @@ namespace GB.Models.SignalR.Hubs
 
         // -- Mise à jour des combo box sur les pages des clients -- //
         #region Mise à jour des combo box sur les pages des clients
-        public static void RechargerCombo(DAO.DAO ObjetDAO)
+        public static void RechargerCombo(DAO.DAO ObjetDAO, Boolean? classCSS = false)
         {
             try
             {
@@ -138,7 +138,8 @@ namespace GB.Models.SignalR.Hubs
                                     select_code = donnee.html_code,
                                     select_libelle = donnee.html_libelle,
                                     form_id = $"#{ObjetDAO.form_combo_id}",
-                                    form_libelle = $"#{ObjetDAO.form_combo_libelle}"
+                                    form_libelle = $"#{ObjetDAO.form_combo_libelle}",
+                                    classCSS = classCSS
                                 }
                             )
                         );

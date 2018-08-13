@@ -13,6 +13,19 @@ var $GB_DONNEE_PARAMETRES = null;
 var fonction_en_Timeout;
 var fonction_en_Interval;
 
+// -- Convertir une cellule de la table en objet du DOM -- //
+function gbDataTablesConvertCell_To_td(cell) {
+
+    try {
+        return $(cell.nodes()[0]);
+    }
+    catch (ex) {
+        // -- Log -- //
+        gbConsole(ex.message);
+    }
+
+}
+
 // -- Mettre la première lettre ne majuscule -- // 
 try {
 
@@ -282,6 +295,27 @@ function gbActiverDesactiverForm(id_form, desactiver) {
 
 }
 
+// -- Mise à jour des attribut exploitatnt le package iCheck -- //
+function gbMiseAJourFormAttribut_iCheck(champs, form_valeurs) {
+
+    try {
+
+        // -- Parcourir les champs à modifier -- //
+        for (var i = 0; i < champs.length; i++) {
+            // -- Vérifier que le cham existe -- //
+            if (form_valeurs[champs[i]]){
+                // -- Mise à jour de ce champ -- //
+                form_valeurs[champs[i]] = (form_valeurs[champs[i]] === 'on');
+            }
+        }
+
+        // -- Retourner le formulaire modifié -- //
+        return form_valeurs;
+
+    } catch (e) { gbConsole(e.message); }
+
+}
+
 // -- Fonction native -- //
 try {
 
@@ -325,8 +359,9 @@ function gbAlert(notification, id_element) {
 
     // -- Afficher l'alert -- //
     $('#' + id_element).html(
-        '<div class="gbalert alert alert-' + ((notification.est_echec) ? 'danger'
-                                                                       : 'success') + ' alert-dismissible fade in" role="alert">' +
+        '<div class="gbalert alert alert-' + ((notification.est_echec != null) ? (notification.est_echec) ? 'danger'
+                                                                                                          : 'success'
+                                                                               : 'info') + ' alert-dismissible fade in" role="alert">' +
             '<div class="row">' +
                 '<div class="col-lg-12">' +
                     '<div class="pull-left">' +

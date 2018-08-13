@@ -49,10 +49,10 @@ namespace GB.Models.DAO
                 Program.db.agences.Add(obj);
 
                 // -- Execution des Hubs -- //
+                #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new AgenceDAO());
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -112,10 +112,10 @@ namespace GB.Models.DAO
                     });
 
                 // -- Execution des Hubs -- //
+                #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new AgenceDAO());
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -150,10 +150,10 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
+                #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new AgenceDAO());
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                #endregion
             }
             #region Catch
             catch (Exception ex)

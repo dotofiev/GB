@@ -1,0 +1,150 @@
+﻿
+<!-- form 1 -->
+<div class="modal fade bs-example-modal-lg" id="modal_form" role="alert" data-backdrop="static" data-keyboard="false">
+    
+    <div class="modal-dialog">
+        
+        <div class="modal-content">
+            
+            <div class="modal-body">
+
+                <!-- Header -->
+                <p style="font-weight: bold; font-size: 18px;">
+                    <!-- Title -->
+                    <span id="modal_form_titre">
+                        <i class="glyphicon glyphicon-info-sign text-info"></i> @ViewBag.Lang.Form
+                    </span>
+                    <!-- Close bouton -->
+                    <button type="button" class="close float-right" data-dismiss="modal" aria-hidden="true" style="font-weight: bold;">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </p>
+
+                <!-- Body -->
+                <div id="modal_form">
+
+                    <form method="post" id="form" name="form" data-parsley-validate>
+
+                        <div class="row">
+
+                            <!-- Id -->
+                            <input type="hidden" id="form_id" name="id" value="0" />
+
+                            <!-- ligne -->
+                            <div class="col-lg-12">
+                                <legend>
+                                    <i class="fa fa-square"></i> @ViewBag.Lang.Customer_relationship_manager
+                                </legend>
+                            </div>
+                            <!-- ./ligne -->
+
+                            <!-- ligne -->
+                            <div class="col-xs-12 col-lg-6">
+                                <div class="form-group">
+                                    <label for="form_nom">@ViewBag.Lang.Name :</label>
+                                    <input class="form-control" type="text" id="form_nom" name="nom" placeholder="@ViewBag.Lang.Name .*" required />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-lg-6">
+                                <div class="form-group">
+                                    <label for="form_prenom">@ViewBag.Lang.Surname :</label>
+                                    <input class="form-control" type="text" id="form_prenom" name="prenom" placeholder="@ViewBag.Lang.Surname .*" required />
+                                </div>
+                            </div>
+                            <!-- ./ligne -->
+
+                            <!-- ligne -->
+                            <div class="col-xs-12 col-lg-4">
+                                <div class="form-group">
+                                    <label for="form_telephone">@ViewBag.Lang.Phone :</label>
+                                    <input class="form-control" type="text" id="form_telephone" name="telephone" placeholder="@ViewBag.Lang.Phone .*" required />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-lg-4">
+                                <div class="form-group">
+                                    <label for="form_email">Email :</label>
+                                    <input class="form-control" type="email" id="form_email" name="email" placeholder="Email .*" required />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-lg-4">
+                                <div class="form-group">
+                                    <label for="form_nid">NID :</label>
+                                    <input class="form-control" type="text" id="form_nid" name="nid" placeholder="NID .*" required />
+                                </div>
+                            </div>
+                            <!-- ./ligne -->
+
+                            <!-- ligne -->
+                            <div class="col-lg-12">
+                                <legend>
+                                    <i class="fa fa-square"></i> @ViewBag.Lang.Guarantor_informations
+                                </legend>
+                            </div>
+                            <!-- ./ligne -->
+
+                            <!-- ligne -->
+                            <div class="col-xs-12 col-lg-6">
+                                <div class="form-group">
+                                    <label for="form_garant">@ViewBag.Lang.Guarantor :</label>
+                                    <input class="form-control" type="text" id="form_garant" name="garant" placeholder="@ViewBag.Lang.Guarantor .*" required />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-lg-6">
+                                <div class="form-group">
+                                    <label for="form_garant_telephone">@ViewBag.Lang.Guarantor_tel :</label>
+                                    <input class="form-control" type="text" id="form_garant_telephone" name="garant_telephone" placeholder="@ViewBag.Lang.Guarantor_tel .*" required />
+                                </div>
+                            </div>
+                            <!-- ./ligne -->
+
+                            <!-- ligne -->
+                            <div class="col-xs-12 col-lg-6">
+                                <div class="form-group">
+                                    <label for="form_champ_1">Shortee amount :</label>
+                                    <input class="form-control" type="text" id="form_champ_1" name="champ_1" placeholder="Shortee amount .*" required />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-lg-6">
+                                <div class="form-group">
+                                    <label for="form_champ_2">Shortee garantee :</label>
+                                    <input class="form-control" type="text" id="form_champ_2" name="champ_2" placeholder="Shortee garantee .*" required />
+                                </div>
+                            </div>
+                            <!-- ./ligne -->
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <!--Alert Message -->
+                <div id="gbAlert"></div>
+
+            </div>
+
+            <div class="modal-footer">
+                
+                <!-- Bouton de fermiture du modal -->
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">
+                    <i class="glyphicon glyphicon-remove"></i> @ViewBag.Lang.Close
+                </button>
+                
+                <!-- Bouton d'enregistrement du formulaire -->
+                <button class="btn btn-default btn-success pull-right" id="btn-enregistrer" type="submit" form="form"
+                        data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> @ViewBag.Lang.Process ...">
+                    <i class="fa fa-check"></i> @ViewBag.Lang.Save
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

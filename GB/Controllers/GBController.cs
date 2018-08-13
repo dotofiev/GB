@@ -24,6 +24,7 @@ namespace GB.Controllers
         public string id_navigateur_client_cookies { get { return this.Request?.Cookies?["id_navigateur_client"]?.Value ?? string.Empty; } set { this.Response.Cookies["id_navigateur_client"].Value = value; } }
         public int id_lang_cookies { get { return Convert.ToInt32(this.Request?.Cookies?["id_lang"]?.Value ?? "0"); } set { this.Response.Cookies["id_lang"].Value = value.ToString(); } }
         public string id_session_cookies { get { return this.Request?.Cookies?["id_session"]?.Value ?? string.Empty; } set { this.Response.Cookies["id_session"].Value = value; } }
+        
         #region DAO
         public PaysDAO paysDAO { get { return new PaysDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
         public TypePretDAO typePretDAO { get { return new TypePretDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
@@ -57,6 +58,11 @@ namespace GB.Controllers
         public AutorisationDAO autorisationDAO { get { return new AutorisationDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
         public UtilisateurDAO utilisateurDAO { get { return new UtilisateurDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
         public ProfessionDAO professionDAO { get { return new ProfessionDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public CompteAgenceDAO compteAgenceDAO { get { return new CompteAgenceDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ProfitabiliteDAO profitabiliteDAO { get { return new ProfitabiliteDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public CompteBanqueDAO compteBanqueDAO { get { return new CompteBanqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public BanqueDAO banqueDAO { get { return new BanqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ResponsableRelationClientDAO responsableRelationClientDAO { get { return new ResponsableRelationClientDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
         #endregion
         #endregion
 
@@ -170,6 +176,7 @@ namespace GB.Controllers
             this.ViewBag.Lang.No        = App_Lang.Lang.No;
             this.ViewBag.Lang.Modify    = App_Lang.Lang.Modify;
             this.ViewBag.Lang.Name = App_Lang.Lang.Name;
+            this.ViewBag.Lang.Surname = App_Lang.Lang.Surname;
             this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
             this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
             this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;

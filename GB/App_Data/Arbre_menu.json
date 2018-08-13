@@ -30,12 +30,18 @@
       "Institution",
       "Agence",
       "CompteAgence",
+      "Banque",
+      "CompteBanque",
       "Devise",
+      "Societe",
+      "SocieteCompte",
+      "ResponsableRelationClient",
       "Parametre",
       "ParametreBanque",
       "ProduitClientPhysique",
       "ProduitClientJudiciaire",
       "ProduitCreation",
+      "Profitabilite",
       "CongeBanque",
       "BEACNationalite",
       "UniteInstitutionnelle",
@@ -72,6 +78,7 @@
       "WesternUnionZonePays",
       "WesternUnionZoneCommission",
       "Compte",
+      "CompteConfiguration",
     ]
   }
 ]

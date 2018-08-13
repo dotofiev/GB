@@ -203,12 +203,22 @@
     </Compile>
     <Compile Include="Models\ActionFilter\AuthentificationRequis.cs" />
     <Compile Include="Models\ActionFilter\ResponseErreur.cs" />
+    <Compile Include="Models\BO\CompteBanque.cs" />
+    <Compile Include="Models\BO\CompteAgence.cs" />
     <Compile Include="Models\BO\DirectionBudget.cs" />
     <Compile Include="Models\BO\BEACNationalite.cs" />
     <Compile Include="Models\BO\ExerciceFiscal.cs" />
     <Compile Include="Models\BO\CongeBanque.cs" />
     <Compile Include="Models\BO\AutoriteSignature.cs" />
     <Compile Include="Models\BO\ClassificationProvisionsPret.cs" />
+    <Compile Include="Models\BO\Banque.cs" />
+    <Compile Include="Models\BO\ResponsableRelationClient.cs" />
+    <Compile Include="Models\BO\Profitabilite.cs" />
+    <Compile Include="Models\DAO\CompteBanqueDAO.cs" />
+    <Compile Include="Models\DAO\CompteAgenceDAO.cs" />
+    <Compile Include="Models\DAO\BanqueDAO.cs" />
+    <Compile Include="Models\DAO\ResponsableRelationClientDAO.cs" />
+    <Compile Include="Models\DAO\ProfitabiliteDAO.cs" />
     <Compile Include="Models\GB\GBControllerUrlJS.cs" />
     <Compile Include="Models\BO\Compte.cs" />
     <Compile Include="Models\BO\WesternUnionZonePays.cs" />
@@ -292,6 +302,7 @@
   <ItemGroup>
     <Content Include="App_Data\Documentation.txt" />
     <Content Include="App_Data\Log.txt" />
+    <Content Include="App_Data\Notes.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Plugins\animate.css\animate.css" />
@@ -322,7 +333,8 @@
     <Content Include="Plugins\datatables\datatables\dataTables.buttons.min.js" />
     <Content Include="Plugins\datatables\datatables\dataTables.cellEdit.js" />
     <Content Include="Plugins\datatables\datatables\dataTables.fixedHeader.min.js" />
-    <Content Include="Plugins\datatables\datatables\dataTables.keyTable.min.js" />
+    <Content Include="Plugins\datatables\datatables\dataTables.keyTable.2.4.1.min.js" />
+    <Content Include="Plugins\datatables\datatables\dataTables.keyTable.2.1.1.min.js" />
     <Content Include="Plugins\datatables\datatables\dataTables.responsive.min.js" />
     <Content Include="Plugins\datatables\datatables\dataTables.scroller.min.js" />
     <Content Include="Plugins\datatables\datatables\fixedHeader.bootstrap.min.css" />
@@ -892,6 +904,7 @@
     <Content Include="Resources\js\bootstrap.js" />
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\gb.menu.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-CompteBanque.js" />
     <Content Include="Resources\js\Views\Erreur-Page.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-BEACNationalite.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-UniteInstitutionnelle.js" />
@@ -920,6 +933,11 @@
     <Content Include="Resources\js\Views\ConfigurationOperation-TypeActif.js" />
     <Content Include="Resources\js\Views\ConfigurationOperation-WesternUnionZonePays.js" />
     <Content Include="Resources\js\Views\ConfigurationOperation-Compte.js" />
+    <Content Include="Resources\js\Views\ConfigurationOperation-CompteConfiguration.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-CompteAgence.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-Profitabilite.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-Banque.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-ResponsableRelationClient.js" />
     <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
@@ -1347,6 +1365,18 @@
     <None Include="Properties\PublishProfiles\release.pubxml" />
     <Content Include="Views\ConfigurationOperation\Compte\_Modals.cshtml" />
     <Content Include="Views\ConfigurationOperation\Compte.cshtml" />
+    <Content Include="Views\ConfigurationOperation\CompteConfiguration\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationOperation\CompteConfiguration.cshtml" />
+    <Content Include="Views\ConfigurationBanque\CompteAgence\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationBanque\CompteAgence.cshtml" />
+    <Content Include="Views\ConfigurationBanque\Profitabilite\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationBanque\Profitabilite.cshtml" />
+    <Content Include="Views\ConfigurationBanque\CompteBanque\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationBanque\CompteBanque.cshtml" />
+    <Content Include="Views\ConfigurationBanque\Banque\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationBanque\Banque.cshtml" />
+    <Content Include="Views\ConfigurationBanque\ResponsableRelationClient\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationBanque\ResponsableRelationClient.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

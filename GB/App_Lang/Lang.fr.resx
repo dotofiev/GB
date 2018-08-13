@@ -829,4 +829,73 @@
   <data name="No_items_have_been_previously_created" xml:space="preserve">
     <value>Aucun élément n'a été préalablement créé</value>
   </data>
+  <data name="Required_field" xml:space="preserve">
+    <value>Champ obligatoire</value>
+  </data>
+  <data name="Customer_account_to_GL_account" xml:space="preserve">
+    <value>Du compte client vers le compte GL</value>
+  </data>
+  <data name="Exempt_general_leger_account" xml:space="preserve">
+    <value>Exempt general leger account</value>
+  </data>
+  <data name="GL_account_to_GL_account" xml:space="preserve">
+    <value>Du compte GL vers le compte GL</value>
+  </data>
+  <data name="Operation_type" xml:space="preserve">
+    <value>Type d'opération</value>
+  </data>
+  <data name="Clearing" xml:space="preserve">
+    <value>Compensation</value>
+  </data>
+  <data name="Funds" xml:space="preserve">
+    <value>Fonds</value>
+  </data>
+  <data name="Inter_branch" xml:space="preserve">
+    <value>Inter branche</value>
+  </data>
+  <data name="Inter_branch_account_management" xml:space="preserve">
+    <value>Gestion de compte inter-branche</value>
+  </data>
+  <data name="Issue" xml:space="preserve">
+    <value>Émission</value>
+  </data>
+  <data name="Non_member" xml:space="preserve">
+    <value>Non membre</value>
+  </data>
+  <data name="Expense" xml:space="preserve">
+    <value>Dépense</value>
+  </data>
+  <data name="Insurance" xml:space="preserve">
+    <value>Assurance</value>
+  </data>
+  <data name="Profitability" xml:space="preserve">
+    <value>Profitabilité</value>
+  </data>
+  <data name="Profitability_management" xml:space="preserve">
+    <value>Gestion des profitabilité</value>
+  </data>
+  <data name="Bank" xml:space="preserve">
+    <value>Banque</value>
+  </data>
+  <data name="Correspondant_bank_management" xml:space="preserve">
+    <value>Gestion des banques correspondante</value>
+  </data>
+  <data name="Correspondent_bank_account" xml:space="preserve">
+    <value>Compte bancaire correspondant</value>
+  </data>
+  <data name="Correspondent_bank_account_management" xml:space="preserve">
+    <value>Compte bancaire correspondant</value>
+  </data>
+  <data name="Customer_relationship_manager" xml:space="preserve">
+    <value>Responsable de la Relation Client</value>
+  </data>
+  <data name="Guarantor" xml:space="preserve">
+    <value>Garant</value>
+  </data>
+  <data name="Guarantor_informations" xml:space="preserve">
+    <value>Informations du garant</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
 </root>

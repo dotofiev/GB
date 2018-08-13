@@ -90,6 +90,29 @@ namespace GB.Models.Static
         }
 
         /// <summary>
+        /// Obtenir les options de combo box TIERS, FONDS, COMPENSATION, NONMEMBER
+        /// </summary>
+        public static string HTML_type_compteAgence()
+        {
+            return
+                $"<option value=\"{"TIERS"}\" title=\"{"TIERS"}\">{"TIERS"}</option>" +
+                $"<option value=\"{"FONDS"}\" title=\"{App_Lang.Lang.Funds}\">{App_Lang.Lang.Funds}</option>" +
+                $"<option value=\"{"COMPENSATION"}\" title=\"{App_Lang.Lang.Clearing}\">{App_Lang.Lang.Clearing}</option>" +
+                $"<option value=\"{"NONMEMBER"}\" title=\"{App_Lang.Lang.Non_member}\">{App_Lang.Lang.Non_member}</option>";
+        }
+
+        /// <summary>
+        /// Obtenir les options de combo box TIERS, FONDS, COMPENSATION, NONMEMBER
+        /// </summary>
+        public static string HTML_type_profitabilite()
+        {
+            return
+                $"<option value=\"{"PROFITABILITY"}\" title=\"{App_Lang.Lang.Profitability}\">{App_Lang.Lang.Funds}</option>" +
+                $"<option value=\"{"EXPENSE"}\" title=\"{App_Lang.Lang.Expense}\">{App_Lang.Lang.Clearing}</option>" +
+                $"<option value=\"{"INSURANCE"}\" title=\"{App_Lang.Lang.Insurance}\">{App_Lang.Lang.Non_member}</option>";
+        }
+        
+        /// <summary>
         /// Obtenir les options de combo box FULL ou DIFFERENTIAL
         /// </summary>
         public static string HTML_Methode_de_sauvegarde()
@@ -298,6 +321,13 @@ namespace GB.Models.Static
         {
             return
                 HTML_Bouton_Modifier_Table(id, code) +
+                HTML_Bouton_Suppression_Table(id);
+        }
+
+        public static string HTML_Bouton_Modifier_Suppression_Table(long id)
+        {
+            return
+                HTML_Bouton_Modifier_Table(id) +
                 HTML_Bouton_Suppression_Table(id);
         }
 

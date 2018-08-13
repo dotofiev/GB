@@ -15,6 +15,8 @@ namespace GB.Models.BO
         public string nature { get; set; }
         public string statut { get; set; }
         public string cle { get; set; }
+        public bool type_operation_compte_client_et_compte_gl { get; set; }
+        public bool type_operation_compte_gl_et_compte_gl { get; set; }
         public long id_devise { get; set; }
         public Devise devise { get; set; }
         public long id_utilisateur { get; set; }

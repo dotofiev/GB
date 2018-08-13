@@ -169,6 +169,15 @@
       "view": "ParametreBanque",
       "id_controller": "3"
     },
+    {
+      "id": "46",
+      "code": "46",
+      "id_groupe_menu": "3",
+      "libelle_en": "Customer relationship",
+      "libelle_fr": "Relation client",
+      "view": "ResponsableRelationClient",
+      "id_controller": "3"
+    },
 
     // ------------ //
     // -- Parent -- //
@@ -213,6 +222,51 @@
       "view": "ProduitCreation",
       "id_controller": "3"
     },
+    {
+      "id": "43",
+      "code": "43",
+      "id_menu_parent": "13",
+      "id_groupe_menu": "3",
+      "libelle_en": "Profitability",
+      "libelle_fr": "Profitabilité",
+      "view": "Profitabilite",
+      "id_controller": "3"
+    },
+    // -- Enfants -- //
+
+    // ------------ //
+    // -- Parent -- //
+    // ------------ //
+    {
+      "id": "47",
+      "code": "47",
+      "id_groupe_menu": "3",
+      "libelle_en": "Standing order company info",
+      "libelle_fr": "Informations sur la société à commande permanente",
+      "view": "",
+      "id_controller": "3"
+    },
+    // -- Enfants -- //
+    {
+      "id": "48",
+      "code": "48",
+      "id_menu_parent": "47",
+      "id_groupe_menu": "3",
+      "libelle_en": "Company info",
+      "libelle_fr": "Sociétés",
+      "view": "Societe",
+      "id_controller": "3"
+    },
+    {
+      "id": "49",
+      "code": "49",
+      "id_menu_parent": "47",
+      "id_groupe_menu": "3",
+      "libelle_en": "Compagnie account services fees",
+      "libelle_fr": "Frais de services de compte de compagnie",
+      "view": "SocieteCompte",
+      "id_controller": "3"
+    },
     // -- Enfants -- //
 
     {
@@ -222,6 +276,24 @@
       "libelle_en": "Bank holidays",
       "libelle_fr": "Congés bancaire",
       "view": "CongeBanque",
+      "id_controller": "3"
+    },
+    {
+      "id": "45",
+      "code": "45",
+      "id_groupe_menu": "3",
+      "libelle_en": "Correspondent bank",
+      "libelle_fr": "Banque correspondante",
+      "view": "Banque",
+      "id_controller": "3"
+    },
+    {
+      "id": "44",
+      "code": "44",
+      "id_groupe_menu": "3",
+      "libelle_en": "Correspondent bank account",
+      "libelle_fr": "Compte bancaire correspondant",
+      "view": "CompteBanque",
       "id_controller": "3"
     },
 
@@ -426,7 +498,7 @@
       "id_controller": "5"
     },
     // -- ./Enfants -- //
-    
+
 
     // ------------ //
     // -- Parent -- //
@@ -462,7 +534,7 @@
       "id_controller": "5"
     },
     // -- ./Enfants -- //
-    
+
 
     // ------------ //
     // -- Parent -- //
@@ -485,6 +557,16 @@
       "libelle_en": "Create account",
       "libelle_fr": "Création des comptes",
       "view": "Compte",
+      "id_controller": "5"
+    },
+    {
+      "id": "42",
+      "code": "42",
+      "id_menu_parent": "40",
+      "id_groupe_menu": "5",
+      "libelle_en": "Exempt general ledger account",
+      "libelle_fr": "Comptes exemptés du grand livre",
+      "view": "CompteConfiguration",
       "id_controller": "5"
     },
     // -- ./Enfants -- //
@@ -951,6 +1033,86 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "82",
+      "id_role": "1",
+      "id_menu": "42",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "83",
+      "id_role": "1",
+      "id_menu": "43",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "86",
+      "id_role": "1",
+      "id_menu": "44",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "87",
+      "id_role": "1",
+      "id_menu": "45",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "93",
+      "id_role": "1",
+      "id_menu": "46",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "94",
+      "id_role": "1",
+      "id_menu": "47",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "95",
+      "id_role": "1",
+      "id_menu": "48",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "96",
+      "id_role": "1",
+      "id_menu": "49",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
 
 
     // -- Role 2 -- //
@@ -1358,6 +1520,76 @@
       "id": "81",
       "id_role": "2",
       "id_menu": "41",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "84",
+      "id_role": "2",
+      "id_menu": "42",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "85",
+      "id_role": "2",
+      "id_menu": "43",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "88",
+      "id_role": "2",
+      "id_menu": "45",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "89",
+      "id_role": "2",
+      "id_menu": "46",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "90",
+      "id_role": "2",
+      "id_menu": "47",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "91",
+      "id_role": "2",
+      "id_menu": "48",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "92",
+      "id_role": "2",
+      "id_menu": "49",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -1907,6 +2139,8 @@
       "nature": "",
       "statut": "",
       "cle": "",
+      "type_operation_compte_client_et_compte_gl": "false",
+      "type_operation_compte_gl_et_compte_gl": "false",
       "date_creation": "636670881645418146",
     },
     {
@@ -1918,6 +2152,8 @@
       "nature": "",
       "statut": "",
       "cle": "",
+      "type_operation_compte_client_et_compte_gl": "true",
+      "type_operation_compte_gl_et_compte_gl": "false",
       "date_creation": "636670881645418146",
     },
     {
@@ -1929,6 +2165,8 @@
       "nature": "",
       "statut": "",
       "cle": "",
+      "type_operation_compte_client_et_compte_gl": "false",
+      "type_operation_compte_gl_et_compte_gl": "false",
       "date_creation": "636670881645418146",
     },
     {
@@ -1940,6 +2178,8 @@
       "nature": "",
       "statut": "",
       "cle": "",
+      "type_operation_compte_client_et_compte_gl": "true",
+      "type_operation_compte_gl_et_compte_gl": "false",
       "date_creation": "636670881645418146",
     },
     {
@@ -1951,6 +2191,8 @@
       "nature": "",
       "statut": "",
       "cle": "",
+      "type_operation_compte_client_et_compte_gl": "true",
+      "type_operation_compte_gl_et_compte_gl": "true",
       "date_creation": "636670881645418146",
     },
     {
@@ -1962,9 +2204,133 @@
       "nature": "Debit",
       "statut": "Open",
       "cle": "A",
+      "type_operation_compte_client_et_compte_gl": "false",
+      "type_operation_compte_gl_et_compte_gl": "false",
       "date_creation": "636670881645418146",
     }
-  ]
+  ],
+  "comptes_agence": [
+    {
+      "id": "1",
+      "id_compte": "10",
+      "id_compte_emetteur": "10",
+      "id_agence": "1",
+      "id_utilisateur": "1",
+      "type": "TIERS",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "profitabilites": [
+    {
+      "id": "1",
+      "code": "ASSURANCE",
+      "libelle": "Insurance collected",
+      "type": "INSURANCE"
+    },
+    {
+      "id": "2",
+      "code": "AUTCOM",
+      "libelle": "Others commissions",
+      "type": "PROFITABILITY"
+    },
+    {
+      "id": "3",
+      "code": "DEPEFF",
+      "libelle": "Expenses",
+      "type": "EXPENSE"
+    }
+  ],
+  "comptes_banque": [
+    {
+      "id": "1",
+      "id_compte": "10",
+      "id_banque": "1",
+      "id_utilisateur_createur": "1",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "banques": [
+    {
+      "id": "1",
+      "code": "001",
+      "libelle": "United Bank For Africa Current",
+      "id_pays": "1",
+      "adresse_1": "Bamenda",
+      "adresse_2": "Wum",
+      "ville": "Bamenda",
+      "id_utilisateur_createur": "1",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "2",
+      "code": "002",
+      "libelle": "United Bank For Africa Current",
+      "id_pays": "1",
+      "adresse_1": "Douaka",
+      "adresse_2": "Wum",
+      "ville": "Douala",
+      "id_utilisateur_createur": "1",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "3",
+      "code": "003",
+      "libelle": "Wum Area Coop Credit",
+      "id_pays": "1",
+      "adresse_1": "Bamenda",
+      "adresse_2": "Wum",
+      "ville": "Bamenda",
+      "id_utilisateur_createur": "1",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "4",
+      "code": "004",
+      "libelle": "B.G.F.I. Bank",
+      "id_pays": "1",
+      "adresse_1": "Bamenda",
+      "adresse_2": "",
+      "ville": "Bamenda",
+      "id_utilisateur_createur": "1",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "5",
+      "code": "005",
+      "libelle": "B.G.F.I. Bank Saving",
+      "id_pays": "1",
+      "adresse_1": "Bamenda",
+      "adresse_2": "Wum",
+      "ville": "Bamenda",
+      "id_utilisateur_createur": "1",
+      "date_creation": "636670881645418146"
+    },
+    {
+      "id": "6",
+      "code": "006",
+      "libelle": "Nkwen inter Branch",
+      "id_pays": "1",
+      "adresse_1": "Bamenda",
+      "adresse_2": "Nkwen",
+      "ville": "Bamenda",
+      "id_utilisateur_createur": "1",
+      "date_creation": "636670881645418146"
+    }
+  ],
+  "responsables_relation_client": [
+    {
+      "id": "1",
+      "nom": "Test",
+      "prenom": "Test",
+      "telephone": "",
+      "email": "",
+      "nid": "",
+      "garant": "",
+      "garant_telephone": "999999999",
+      "champ_1": "",
+      "champ_2": "",
+    }
+  ],
   //"western_union_zones_commissions": [
   //  {
   //    "id": "1",

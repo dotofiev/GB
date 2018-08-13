@@ -22,6 +22,7 @@ namespace GB.Models.Static
         public static string SecuriteUtilisateur_Utilisateur = "SecuriteUtilisateur-Utilisateur";
         public static string ConfigurationBanque_Institution = "ConfigurationBanque-Institution";
         public static string ConfigurationBanque_Agence = "ConfigurationBanque-Agence";
+        public static string ConfigurationBanque_CompteAgence = "ConfigurationBanque-CompteAgence";
         public static string ConfigurationBanque_Devise = "ConfigurationBanque-Devise";
         public static string ConfigurationBanque_Parametre = "ConfigurationBanque-Parametre";
         public static string ConfigurationBanque_ParametreBanque = "ConfigurationBanque-ParametreBanque";
@@ -31,8 +32,11 @@ namespace GB.Models.Static
         public static string ConfigurationBanque_Ville = "ConfigurationBanque-Ville";
         public static string ConfigurationBanque_ActiviteEconomique = "ConfigurationBanque-ActiviteEconomique";
         public static string ConfigurationBanque_Titre = "ConfigurationBanque-Titre";
+        public static string ConfigurationBanque_Banque = "ConfigurationBanque-Banque";        
         public static string ConfigurationBanque_UniteInstitutionnelle = "ConfigurationBanque-UniteInstitutionnelle";
         public static string ConfigurationBanque_BEACNationalite = "ConfigurationBanque-BEACNationalite";
+        public static string ConfigurationBanque_Profitabilite = "ConfigurationBanque-Profitabilite";
+        public static string ConfigurationBanque_CompteBanque = "ConfigurationBanque-CompteBanque";        
         public static string ConfigurationBudget_ExerciceFiscal = "ConfigurationBudget-ExerciceFiscal";
         public static string ConfigurationBudget_DirectionBudget = "ConfigurationBudget-DirectionBudget";
         public static string ConfigurationBanque_CongeBanque = "ConfigurationBanque-CongeBanque";
@@ -46,6 +50,8 @@ namespace GB.Models.Static
         public static string ConfigurationOperation_LocalisationActif = "ConfigurationOperation-LocalisationActif";
         public static string ConfigurationOperation_WesternUnionZonePays = "ConfigurationOperation-WesternUnionZonePays";
         public static string ConfigurationOperation_Compte = "ConfigurationOperation-Compte";
+        public static string ConfigurationOperation_CompteConfiguration = "ConfigurationOperation-CompteConfiguration";
+        public static string ConfigurationBanque_ResponsableRelationClient = "ConfigurationBanque-ResponsableRelationClient";        
     }
 
     public enum GB_Enum_Action_Controller

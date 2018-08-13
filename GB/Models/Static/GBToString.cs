@@ -22,6 +22,13 @@ namespace GB.Models.Static
                        : App_Lang.Lang.Disabled;
         }
 
+        public static string Statut_iCheck(bool donnee)
+        {
+            return
+                donnee ? "check"
+                       : "uncheck";
+        }
+
         public static string MontantToString(object value)
         {
             return
@@ -56,6 +63,25 @@ namespace GB.Models.Static
                                                              : string.Empty;
         }
 
+        public static string TypeCompteAgence(string donnee)
+        {
+            return
+                donnee == "TIERS" ? "Tiers"
+                                  : donnee == "FONDS" ? App_Lang.Lang.Funds
+                                                      : donnee == "COMPENSATION" ? App_Lang.Lang.Clearing
+                                                                                 : donnee == "NONMEMBER" ? App_Lang.Lang.Non_member
+                                                                                                         : string.Empty;
+        }
+
+        public static string TypeProfitabilite(string donnee)
+        {
+            return
+                donnee == "PROFITABILITY" ? App_Lang.Lang.Profitability
+                                          : donnee == "EXPENSE" ? App_Lang.Lang.Expense
+                                                                : donnee == "INSURANCE" ? App_Lang.Lang.Insurance
+                                                                                        : string.Empty;
+        }
+        
         public static string FormuleClassificationProvisionsPret(string donnee)
         {
             return
