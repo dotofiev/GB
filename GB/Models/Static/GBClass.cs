@@ -324,6 +324,13 @@ namespace GB.Models.Static
                 HTML_Bouton_Suppression_Table(id);
         }
 
+        public static string HTML_Bouton_Modifier_Suppression_Table(long id)
+        {
+            return
+                HTML_Bouton_Modifier_Table(id) +
+                HTML_Bouton_Suppression_Table(id);
+        }
+
         /// <summary>
         /// Creation et retour d'un checkbox de selection dans la table 
         /// </summary>

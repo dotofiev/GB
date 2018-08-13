@@ -212,10 +212,12 @@
     <Compile Include="Models\BO\AutoriteSignature.cs" />
     <Compile Include="Models\BO\ClassificationProvisionsPret.cs" />
     <Compile Include="Models\BO\Banque.cs" />
+    <Compile Include="Models\BO\ResponsableRelationClient.cs" />
     <Compile Include="Models\BO\Profitabilite.cs" />
     <Compile Include="Models\DAO\CompteBanqueDAO.cs" />
     <Compile Include="Models\DAO\CompteAgenceDAO.cs" />
     <Compile Include="Models\DAO\BanqueDAO.cs" />
+    <Compile Include="Models\DAO\ResponsableRelationClientDAO.cs" />
     <Compile Include="Models\DAO\ProfitabiliteDAO.cs" />
     <Compile Include="Models\GB\GBControllerUrlJS.cs" />
     <Compile Include="Models\BO\Compte.cs" />
@@ -935,6 +937,7 @@
     <Content Include="Resources\js\Views\ConfigurationBanque-CompteAgence.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Profitabilite.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Banque.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-ResponsableRelationClient.js" />
     <Content Include="Resources\js\Views\SecuriteUtilisateur-Utilisateur.js" />
     <Content Include="Resources\js\Views\Securite-Role.js" />
     <Content Include="Resources\js\Views\Securite-Module.js" />
@@ -1372,6 +1375,8 @@
     <Content Include="Views\ConfigurationBanque\CompteBanque.cshtml" />
     <Content Include="Views\ConfigurationBanque\Banque\_Modals.cshtml" />
     <Content Include="Views\ConfigurationBanque\Banque.cshtml" />
+    <Content Include="Views\ConfigurationBanque\ResponsableRelationClient\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationBanque\ResponsableRelationClient.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

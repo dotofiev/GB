@@ -61,7 +61,8 @@ namespace GB.Controllers
         public CompteAgenceDAO compteAgenceDAO { get { return new CompteAgenceDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
         public ProfitabiliteDAO profitabiliteDAO { get { return new ProfitabiliteDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
         public CompteBanqueDAO compteBanqueDAO { get { return new CompteBanqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public BanqueDAO banqueDAO { get { return new BanqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }        
+        public BanqueDAO banqueDAO { get { return new BanqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ResponsableRelationClientDAO responsableRelationClientDAO { get { return new ResponsableRelationClientDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
         #endregion
         #endregion
 
@@ -175,6 +176,7 @@ namespace GB.Controllers
             this.ViewBag.Lang.No        = App_Lang.Lang.No;
             this.ViewBag.Lang.Modify    = App_Lang.Lang.Modify;
             this.ViewBag.Lang.Name = App_Lang.Lang.Name;
+            this.ViewBag.Lang.Surname = App_Lang.Lang.Surname;
             this.ViewBag.Lang.Name_french = App_Lang.Lang.Name + "-" + App_Lang.Lang.French;
             this.ViewBag.Lang.Name_english = App_Lang.Lang.Name + "-" + App_Lang.Lang.English;
             this.ViewBag.Lang.Creation_date = App_Lang.Lang.Creation_date;

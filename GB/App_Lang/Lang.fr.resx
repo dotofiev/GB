@@ -886,4 +886,16 @@
   <data name="Correspondent_bank_account_management" xml:space="preserve">
     <value>Compte bancaire correspondant</value>
   </data>
+  <data name="Customer_relationship_manager" xml:space="preserve">
+    <value>Responsable de la Relation Client</value>
+  </data>
+  <data name="Guarantor" xml:space="preserve">
+    <value>Garant</value>
+  </data>
+  <data name="Guarantor_informations" xml:space="preserve">
+    <value>Informations du garant</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
 </root>

@@ -637,6 +637,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer relationship manager.
+        /// </summary>
+        public static string Customer_relationship_manager {
+            get {
+                return ResourceManager.GetString("Customer_relationship_manager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data required.
         /// </summary>
         public static string Data_required {
@@ -1047,6 +1056,24 @@ namespace GB.App_Lang {
         public static string Guarantee_type_management {
             get {
                 return ResourceManager.GetString("Guarantee_type_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guarantor.
+        /// </summary>
+        public static string Guarantor {
+            get {
+                return ResourceManager.GetString("Guarantor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guarantor informations.
+        /// </summary>
+        public static string Guarantor_informations {
+            get {
+                return ResourceManager.GetString("Guarantor_informations", resourceCulture);
             }
         }
         
@@ -2109,6 +2136,15 @@ namespace GB.App_Lang {
         public static string Successful {
             get {
                 return ResourceManager.GetString("Successful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surname.
+        /// </summary>
+        public static string Surname {
+            get {
+                return ResourceManager.GetString("Surname", resourceCulture);
             }
         }
         

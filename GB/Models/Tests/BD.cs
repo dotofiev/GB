@@ -45,6 +45,7 @@ namespace GB.Models.Tests
         public List<Profitabilite> profitabilites { get; set; }
         public List<CompteBanque> comptes_banque { get; set; }
         public List<Banque> banques { get; set; }
+        public List<ResponsableRelationClient> responsables_relation_client { get; set; }
         
 
         public BD() { }

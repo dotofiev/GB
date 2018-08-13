@@ -19,6 +19,21 @@ namespace GB.Controllers
     {
         #region HttpGet
         [HttpGet]
+        public ActionResult ResponsableRelationClient()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Customer_relationship_manager})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationBanque_ResponsableRelationClient);
+
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult Banque()
         {
             // -- Charger les paramètres par défaut de la page -- //
@@ -602,7 +617,7 @@ namespace GB.Controllers
                                 col_6 = val.compte_emetteur?.code ?? App_Lang.Lang.Empty,
                                 col_7 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_8 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_9 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
+                                col_9 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id)
                             }
                         );
                     }
@@ -624,7 +639,7 @@ namespace GB.Controllers
                                 col_4 = val.compte?.code ?? App_Lang.Lang.Empty,
                                 col_5 = new DateTime(val.date_creation).ToString(AppSettings.FORMAT_DATE),
                                 col_6 = val.utilisateur_createur?.nom_utilisateur ?? App_Lang.Lang.Empty,
-                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
+                                col_7 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id)
                             }
                         );
                     }
@@ -668,6 +683,32 @@ namespace GB.Controllers
                                 col_3 = val.libelle,
                                 col_4 = GBToString.TypeProfitabilite(val.type),
                                 col_5 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
+                #region ConfigurationBanque-ResponsableRelationClient
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ResponsableRelationClient)
+                {
+                    foreach (var val in ResponsableRelationClientDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_0 = val.id,
+                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "responsableRelationClient"),
+                                col_2 = val.nom,
+                                col_3 = val.prenom,
+                                col_4 = val.telephone,
+                                col_5 = val.email,
+                                col_6 = val.nid,
+                                col_7 = val.garant,
+                                col_8 = val.garant_telephone,
+                                col_9 = val.champ_1,
+                                col_10 = val.champ_2,
+                                col_11 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id)
                             }
                         );
                     }
@@ -1547,6 +1588,37 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-ResponsableRelationClient
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ResponsableRelationClient)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = ResponsableRelationClientDAO.Object(id.Value);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        nom = obj.nom,
+                                                        prenom = obj.prenom,
+                                                        champ_1 = obj.champ_1,
+                                                        champ_2 = obj.champ_2,
+                                                        email = obj.email,
+                                                        garant = obj.garant,
+                                                        garant_telephone = obj.garant_telephone,
+                                                        nid = obj.nid,
+                                                        telephone = obj.telephone,
+                                                    }
+                                               );
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -1747,6 +1819,14 @@ namespace GB.Controllers
                 {
                     // -- Service d'enregistrement -- //
                     profitabiliteDAO.Ajouter(GBConvert.JSON_To<Profitabilite>(obj));
+                }
+                #endregion
+
+                #region ConfigurationBanque-ResponsableRelationClient
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ResponsableRelationClient)
+                {
+                    // -- Service d'enregistrement -- //
+                    responsableRelationClientDAO.Ajouter(GBConvert.JSON_To<ResponsableRelationClient>(obj));
                 }
                 #endregion
 
@@ -1981,6 +2061,14 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-ResponsableRelationClient
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ResponsableRelationClient)
+                {
+                    // -- Service de modification -- //
+                    responsableRelationClientDAO.Modifier(GBConvert.JSON_To<ResponsableRelationClient>(obj));
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -2160,6 +2248,14 @@ namespace GB.Controllers
                 {
                     // -- Service de suppression -- //
                     profitabiliteDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationBanque-ResponsableRelationClient
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_ResponsableRelationClient)
+                {
+                    // -- Service de suppression -- //
+                    responsableRelationClientDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -2800,6 +2896,38 @@ namespace GB.Controllers
                                                     {
                                                         icon = "fa fa-cogs",
                                                         message = App_Lang.Lang.Profitability_management
+                                                    }
+                                                }
+                                            );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationBanque-ResponsableRelationClient
+            else if (id_page == GB_Enum_Menu.ConfigurationBanque_ResponsableRelationClient)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Customer_relationship_manager;
+                this.ViewBag.Lang.Phone = App_Lang.Lang.Phone;
+                this.ViewBag.Lang.Guarantor = App_Lang.Lang.Guarantor;
+                this.ViewBag.Lang.Guarantor_tel = App_Lang.Lang.Phone + " " + App_Lang.Lang.Guarantor.ToLower();
+                this.ViewBag.Lang.Guarantor_informations = App_Lang.Lang.Guarantor_informations;
+                this.ViewBag.Lang.Customer_relationship_manager = App_Lang.Lang.Customer_relationship_manager;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Customer_relationship_manager
                                                     }
                                                 }
                                             );

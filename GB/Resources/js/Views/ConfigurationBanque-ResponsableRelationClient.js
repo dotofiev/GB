@@ -7,15 +7,6 @@ var btn_imprimmer = $('#btn-imprimmer');
 var btn_enregistrer = $('#btn-enregistrer');
 var btn_table;
 var form = $('#form');
-var form_id_agence = $('#form_id_agence');
-var form_code_agence = $('#form_code_agence');
-var form_libelle_agence = $('#form_libelle_agence');
-var form_id_compte = $('#form_id_compte');
-var form_code_compte = $('#form_code_compte');
-var form_libelle_compte = $('#form_libelle_compte');
-var form_id_compte_emetteur = $('#form_id_compte_emetteur');
-var form_code_compte_emetteur = $('#form_code_compte_emetteur');
-var form_libelle_compte_emetteur = $('#form_libelle_compte_emetteur');
 var modal_form = $('#modal_form');
 
 
@@ -38,16 +29,15 @@ try {
                 if (!resultat.notification.est_echec) {
                     // -- Mise à jour de sa valeur dans le formulaire -- //
                     $('#form_id').val(resultat.notification.donnee.id);
-                    $('#form_type').val(resultat.notification.donnee.type);
-                    form_id_agence.val(resultat.notification.donnee.id_agence);
-                    form_code_agence.val(resultat.notification.donnee.code_agence);
-                    form_libelle_agence.val(resultat.notification.donnee.libelle_agence);
-                    form_id_compte.val(resultat.notification.donnee.id_compte);
-                    form_code_compte.val(resultat.notification.donnee.code_compte);
-                    form_libelle_compte.val(resultat.notification.donnee.libelle_compte);
-                    form_id_compte_emetteur.val(resultat.notification.donnee.id_compte_emetteur);
-                    form_code_compte_emetteur.val(resultat.notification.donnee.code_compte_emetteur);
-                    form_libelle_compte_emetteur.val(resultat.notification.donnee.libelle_compte_emetteur);
+                    $('#form_nom').val(resultat.notification.donnee.nom);
+                    $('#form_prenom').val(resultat.notification.donnee.prenom);
+                    $('#form_telephone').val(resultat.notification.donnee.telephone);
+                    $('#form_email').val(resultat.notification.donnee.email);
+                    $('#form_nid').val(resultat.notification.donnee.nid);
+                    $('#form_garant').val(resultat.notification.donnee.garant);
+                    $('#form_garant_telephone').val(resultat.notification.donnee.garant_telephone);
+                    $('#form_champ_1').val(resultat.notification.donnee.champ_1);
+                    $('#form_champ_2').val(resultat.notification.donnee.champ_2);
                     // -- Mise à jour du label du bouton d'enregistrement -- //
                     btn_enregistrer.html('<i class="fa fa-check"></i>' + $GB_DONNEE_PARAMETRES.Lang.Update);
                     // -- Afficher le modal formulaire -- //
@@ -162,7 +152,7 @@ $(
             table.on('draw.dt',
                 function () {
                     // -- Fonction pour initiliser les style css javascript des tables -- //
-                    gbCharger_Css_Table('compteAgence');
+                    gbCharger_Css_Table('responsableRelationClient');
                 }
             );
 
@@ -189,14 +179,16 @@ $(
                 "columns": [
                     { "data": "col_0", "class": "hidden" },         // -- id -- //
                     { "data": "col_1", "width": "20px" },           // -- Checkbox -- //
-                    { "data": "col_2" },                            // -- code_agence -- //
-                    { "data": "col_3" },                            // -- libelle_agence -- //
-                    { "data": "col_4" },                            // -- type -- //
-                    { "data": "col_5" },                            // -- code_compte -- //
-                    { "data": "col_6" },                            // -- code_compte_emetteur -- //
-                    { "data": "col_7" },                            // -- date_creation -- //
-                    { "data": "col_8" },                            // -- utilisateur_createur -- //
-                    { "data": "col_9", "class": "text-center" }     // -- Action -- //
+                    { "data": "col_2" },                            // -- nom -- //
+                    { "data": "col_3" },                            // -- prenom -- //
+                    { "data": "col_4" },                            // -- telephone -- //
+                    { "data": "col_5" },                            // -- email -- //
+                    { "data": "col_6" },                            // -- nid -- //
+                    { "data": "col_7" },                            // -- garant -- //
+                    { "data": "col_8" },                            // -- garant_telephone -- //
+                    { "data": "col_9" },                            // -- champ_1 -- //
+                    { "data": "col_10" },                           // -- champ_2 -- //
+                    { "data": "col_11", "class": "text-center" }    // -- Action -- //
                 ]
             });
 
@@ -330,7 +322,7 @@ $(
             btn_supprimer.on("click",
                 function () {
                     // -- Réccupérer les données electionné -- //
-                    var selection = $('input[name="compteAgence"]:checked');
+                    var selection = $('input[name="responsableRelationClient"]:checked');
 
                     // -- Si la taille est supérieurs à 0 -- //
                     if (selection.length == 0) {
@@ -347,7 +339,7 @@ $(
                     var ids = [];
                     // -- Réccupération des id -- //
                     for (var i = 0; i < selection.length; i++) {
-                        ids.push(selection[i].replace('compteAgence=compteAgence_', ''));
+                        ids.push(selection[i].replace('responsableRelationClient=responsableRelationClient_', ''));
                     }
 
                     // -- SOumettre les données au traitement -- //
@@ -369,173 +361,6 @@ $(
 
                 }
             );
-
-        } catch (e) { gbConsole(e.message); }
-
-        // -- Charger le sur les utilisateur -- //
-        try {
-
-            // -- Recherche par code -- //
-            form_code_agence.easyAutocomplete({
-                url: $GB_DONNEE.Urls.url_ajax_easyAutocomplete + '&id_vue=agence',
-                getValue: function (obj) {
-                    return obj.code;
-                },
-                list: {
-                    onSelectItemEvent: function () {
-                        // -- Mise à jour du champ nom agence -- //
-                        form_libelle_agence.val(form_code_agence.getSelectedItemData().libelle);
-                        // -- Mise à jour de l'identifiant de l'agence -- //
-                        form_id_agence.val(form_code_agence.getSelectedItemData().id);
-                    },
-                    match: {
-                        enabled: true
-                    }
-                },
-                template: {
-                    type: "custom",
-                    method: function (value, item) {
-                        return "<i class=\"fa fa-caret-right\"></i> " + value +
-                               "<br />" +
-                               "<i><b>" + item.libelle + "</b></i>";
-                    }
-                }
-            });
-
-            // -- Recherche par libelle -- //
-            form_libelle_agence.easyAutocomplete({
-                url: $GB_DONNEE.Urls.url_ajax_easyAutocomplete + '&id_vue=agence',
-                getValue: function (obj) {
-                    return obj.libelle;
-                },
-                list: {
-                    onSelectItemEvent: function () {
-                        // -- Mise à jour du champ nom agence -- //
-                        form_code_agence.val(form_libelle_agence.getSelectedItemData().code);
-                        // -- Mise à jour de l'identifiant de l'agence -- //
-                        form_id_agence.val(form_libelle_agence.getSelectedItemData().id);
-                    },
-                    match: {
-                        enabled: true
-                    }
-                },
-                template: {
-                    type: "custom",
-                    method: function (value, item) {
-                        return "<i class=\"fa fa-caret-right\"></i> " + value +
-                               "<br />" +
-                               "<i><b>" + item.code + "</b></i>";
-                    }
-                }
-            });
-
-            // -- Recherche par code -- //
-            form_code_compte.easyAutocomplete({
-                url: $GB_DONNEE.Urls.url_ajax_easyAutocomplete + '&id_vue=compte',
-                getValue: function (obj) {
-                    return obj.code;
-                },
-                list: {
-                    onSelectItemEvent: function () {
-                        // -- Mise à jour du champ nom compte -- //
-                        form_libelle_compte.val(form_code_compte.getSelectedItemData().libelle);
-                        // -- Mise à jour de l'identifiant de l'compte -- //
-                        form_id_compte.val(form_code_compte.getSelectedItemData().id);
-                    },
-                    match: {
-                        enabled: true
-                    }
-                },
-                template: {
-                    type: "custom",
-                    method: function (value, item) {
-                        return "<i class=\"fa fa-caret-right\"></i> " + value +
-                               "<br />" +
-                               "<i><b>" + item.libelle + "</b></i>";
-                    }
-                }
-            });
-
-            // -- Recherche par libelle -- //
-            form_libelle_compte.easyAutocomplete({
-                url: $GB_DONNEE.Urls.url_ajax_easyAutocomplete + '&id_vue=compte',
-                getValue: function (obj) {
-                    return obj.libelle;
-                },
-                list: {
-                    onSelectItemEvent: function () {
-                        // -- Mise à jour du champ nom compte -- //
-                        form_code_compte.val(form_libelle_compte.getSelectedItemData().code);
-                        // -- Mise à jour de l'identifiant de l'compte -- //
-                        form_id_compte.val(form_libelle_compte.getSelectedItemData().id);
-                    },
-                    match: {
-                        enabled: true
-                    }
-                },
-                template: {
-                    type: "custom",
-                    method: function (value, item) {
-                        return "<i class=\"fa fa-caret-right\"></i> " + value +
-                               "<br />" +
-                               "<i><b>" + item.code + "</b></i>";
-                    }
-                }
-            });
-
-            // -- Recherche par code -- //
-            form_code_compte_emetteur.easyAutocomplete({
-                url: $GB_DONNEE.Urls.url_ajax_easyAutocomplete + '&id_vue=compte',
-                getValue: function (obj) {
-                    return obj.code;
-                },
-                list: {
-                    onSelectItemEvent: function () {
-                        // -- Mise à jour du champ nom compte_emetteur -- //
-                        form_libelle_compte_emetteur.val(form_code_compte_emetteur.getSelectedItemData().libelle);
-                        // -- Mise à jour de l'identifiant de l'compte_emetteur -- //
-                        form_id_compte_emetteur.val(form_code_compte_emetteur.getSelectedItemData().id);
-                    },
-                    match: {
-                        enabled: true
-                    }
-                },
-                template: {
-                    type: "custom",
-                    method: function (value, item) {
-                        return "<i class=\"fa fa-caret-right\"></i> " + value +
-                               "<br />" +
-                               "<i><b>" + item.libelle + "</b></i>";
-                    }
-                }
-            });
-
-            // -- Recherche par libelle -- //
-            form_libelle_compte_emetteur.easyAutocomplete({
-                url: $GB_DONNEE.Urls.url_ajax_easyAutocomplete + '&id_vue=compte',
-                getValue: function (obj) {
-                    return obj.libelle;
-                },
-                list: {
-                    onSelectItemEvent: function () {
-                        // -- Mise à jour du champ nom compte_emetteur -- //
-                        form_code_compte_emetteur.val(form_libelle_compte_emetteur.getSelectedItemData().code);
-                        // -- Mise à jour de l'identifiant de l'compte_emetteur -- //
-                        form_id_compte_emetteur.val(form_libelle_compte_emetteur.getSelectedItemData().id);
-                    },
-                    match: {
-                        enabled: true
-                    }
-                },
-                template: {
-                    type: "custom",
-                    method: function (value, item) {
-                        return "<i class=\"fa fa-caret-right\"></i> " + value +
-                               "<br />" +
-                               "<i><b>" + item.code + "</b></i>";
-                    }
-                }
-            });
 
         } catch (e) { gbConsole(e.message); }
 

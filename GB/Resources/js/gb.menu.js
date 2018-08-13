@@ -29,6 +29,7 @@ $(function () {
                     url != '/ConfigurationBanque/CompteAgence' &&
                     url != '/ConfigurationBanque/CompteBanque' &&
                     url != '/ConfigurationBanque/Devise' &&
+                    url != '/ConfigurationBanque/ResponsableRelationClient' &&
                     url != '/ConfigurationBanque/Parametre' &&
                     url != '/ConfigurationBanque/ParametreBanque' &&
                     url != '/ConfigurationBanque/ProduitClientPhysique' &&

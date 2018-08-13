@@ -379,6 +379,7 @@
 /// <reference path="views/configurationbanque-produitclientjudiciaire.js" />
 /// <reference path="views/configurationbanque-produitclientphysique.js" />
 /// <reference path="views/configurationbanque-profitabilite.js" />
+/// <reference path="views/configurationbanque-responsablerelationclient.js" />
 /// <reference path="views/configurationbanque-titre.js" />
 /// <reference path="views/configurationbanque-uniteinstitutionnelle.js" />
 /// <reference path="views/configurationbanque-ville.js" />

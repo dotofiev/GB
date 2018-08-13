@@ -169,6 +169,15 @@
       "view": "ParametreBanque",
       "id_controller": "3"
     },
+    {
+      "id": "46",
+      "code": "46",
+      "id_groupe_menu": "3",
+      "libelle_en": "Customer relationship",
+      "libelle_fr": "Relation client",
+      "view": "ResponsableRelationClient",
+      "id_controller": "3"
+    },
 
     // ------------ //
     // -- Parent -- //
@@ -221,6 +230,41 @@
       "libelle_en": "Profitability",
       "libelle_fr": "Profitabilité",
       "view": "Profitabilite",
+      "id_controller": "3"
+    },
+    // -- Enfants -- //
+
+    // ------------ //
+    // -- Parent -- //
+    // ------------ //
+    {
+      "id": "47",
+      "code": "47",
+      "id_groupe_menu": "3",
+      "libelle_en": "Standing order company info",
+      "libelle_fr": "Informations sur la société à commande permanente",
+      "view": "",
+      "id_controller": "3"
+    },
+    // -- Enfants -- //
+    {
+      "id": "48",
+      "code": "48",
+      "id_menu_parent": "47",
+      "id_groupe_menu": "3",
+      "libelle_en": "Company info",
+      "libelle_fr": "Sociétés",
+      "view": "Societe",
+      "id_controller": "3"
+    },
+    {
+      "id": "49",
+      "code": "49",
+      "id_menu_parent": "47",
+      "id_groupe_menu": "3",
+      "libelle_en": "Compagnie account services fees",
+      "libelle_fr": "Frais de services de compte de compagnie",
+      "view": "SocieteCompte",
       "id_controller": "3"
     },
     // -- Enfants -- //
@@ -454,7 +498,7 @@
       "id_controller": "5"
     },
     // -- ./Enfants -- //
-    
+
 
     // ------------ //
     // -- Parent -- //
@@ -490,7 +534,7 @@
       "id_controller": "5"
     },
     // -- ./Enfants -- //
-    
+
 
     // ------------ //
     // -- Parent -- //
@@ -1029,6 +1073,46 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "93",
+      "id_role": "1",
+      "id_menu": "46",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "94",
+      "id_role": "1",
+      "id_menu": "47",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "95",
+      "id_role": "1",
+      "id_menu": "48",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "96",
+      "id_role": "1",
+      "id_menu": "49",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
 
 
     // -- Role 2 -- //
@@ -1466,6 +1550,46 @@
       "id": "88",
       "id_role": "2",
       "id_menu": "45",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "89",
+      "id_role": "2",
+      "id_menu": "46",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "90",
+      "id_role": "2",
+      "id_menu": "47",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "91",
+      "id_role": "2",
+      "id_menu": "48",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "92",
+      "id_role": "2",
+      "id_menu": "49",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -2191,6 +2315,20 @@
       "ville": "Bamenda",
       "id_utilisateur_createur": "1",
       "date_creation": "636670881645418146"
+    }
+  ],
+  "responsables_relation_client": [
+    {
+      "id": "1",
+      "nom": "Test",
+      "prenom": "Test",
+      "telephone": "",
+      "email": "",
+      "nid": "",
+      "garant": "",
+      "garant_telephone": "999999999",
+      "champ_1": "",
+      "champ_2": "",
     }
   ],
   //"western_union_zones_commissions": [
