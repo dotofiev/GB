@@ -47,6 +47,7 @@ $(function () {
                     url != '/ConfigurationBudget/ExerciceFiscal' &&
                     url != '/ConfigurationBudget/DirectionBudget' &&
                     url != '/ConfigurationBudget/AutoriteSignature' &&
+                    url != '/ConfigurationBudget/ParametreBudgetRevenu' &&
                     
                     url != '/ConfigurationOperation/TypePret' &&
                     url != '/ConfigurationOperation/MotifPret' &&

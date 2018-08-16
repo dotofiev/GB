@@ -928,4 +928,13 @@
   <data name="Treatment_type" xml:space="preserve">
     <value>Type de traitement</value>
   </data>
+  <data name="Budget_profit_center_management" xml:space="preserve">
+    <value>Gestion du centre de profit budgétaire</value>
+  </data>
+  <data name="Control_budget" xml:space="preserve">
+    <value>Contrôler le budget</value>
+  </data>
+  <data name="Cost_center" xml:space="preserve">
+    <value>Center des coûts</value>
+  </data>
 </root>

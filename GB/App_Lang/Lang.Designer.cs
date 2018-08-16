@@ -421,6 +421,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Budget profit center management.
+        /// </summary>
+        public static string Budget_profit_center_management {
+            get {
+                return ResourceManager.GetString("Budget_profit_center_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Calculation base.
         /// </summary>
         public static string Calculation_base {
@@ -493,6 +502,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Control budget.
+        /// </summary>
+        public static string Control_budget {
+            get {
+                return ResourceManager.GetString("Control_budget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Control number of loans.
         /// </summary>
         public static string Control_number_of_loans {
@@ -561,6 +579,15 @@ namespace GB.App_Lang {
         public static string Correspondent_bank_account_management {
             get {
                 return ResourceManager.GetString("Correspondent_bank_account_management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cost center.
+        /// </summary>
+        public static string Cost_center {
+            get {
+                return ResourceManager.GetString("Cost_center", resourceCulture);
             }
         }
         

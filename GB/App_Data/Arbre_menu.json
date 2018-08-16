@@ -59,7 +59,9 @@
     "views": [
       "ExerciceFiscal",
       "DirectionBudget",
-      "AutoriteSignature"
+      "AutoriteSignature",
+      "ParametreBudgetRevenu",
+      "ParametreBudgetFrais"
     ]
   },
   {

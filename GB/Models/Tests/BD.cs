@@ -47,7 +47,8 @@ namespace GB.Models.Tests
         public List<Banque> banques { get; set; }
         public List<ResponsableRelationClient> responsables_relation_client { get; set; }
         public List<Societe> societes { get; set; }
-
+        public List<ParametreBudgetRevenu> parametres_budget_revenus { get; set; }
+        
         public BD() { }
     }
 }

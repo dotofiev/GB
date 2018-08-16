@@ -43,6 +43,7 @@ namespace GB.Models.Static
         public static string ConfigurationBudget_DirectionBudget = "ConfigurationBudget-DirectionBudget";
         public static string ConfigurationBanque_CongeBanque = "ConfigurationBanque-CongeBanque";
         public static string ConfigurationBudget_AutoriteSignature = "ConfigurationBudget-AutoriteSignature";
+        public static string ConfigurationBudget_ParametreBudgetRevenu = "ConfigurationBudget-ParametreBudgetRevenu";        
         public static string ConfigurationOperation_TypePret = "ConfigurationOperation-TypePret";
         public static string ConfigurationOperation_MotifPret = "ConfigurationOperation-MotifPret";
         public static string ConfigurationOperation_ClassificationProvisionsPret = "ConfigurationOperation-ClassificationProvisionsPret";
