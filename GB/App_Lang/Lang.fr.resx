@@ -937,4 +937,7 @@
   <data name="Cost_center" xml:space="preserve">
     <value>Center des coûts</value>
   </data>
+  <data name="Configuring_Budget_lines_for_cost_centers" xml:space="preserve">
+    <value>Configuration des lignes de budget des centres des coûts</value>
+  </data>
 </root>

@@ -141,8 +141,13 @@ namespace GB.Models.Tests
                 l.compte_pret = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte_pret);
                 l.compte_transit = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte_transit);
             });
-            // -- ParametreBudgetRevenuDAO -- //
+            // -- ParametreBudgetRevenu -- //
             db.parametres_budget_revenus.ForEach(l =>
+            {
+                l.compte = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte);
+            });
+            // -- ParametreBudgetFrais -- //
+            db.parametres_budget_frais.ForEach(l =>
             {
                 l.compte = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte);
             });

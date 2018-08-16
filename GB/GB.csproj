@@ -203,6 +203,7 @@
     </Compile>
     <Compile Include="Models\ActionFilter\AuthentificationRequis.cs" />
     <Compile Include="Models\ActionFilter\ResponseErreur.cs" />
+    <Compile Include="Models\BO\ParametreBudgetFrais.cs" />
     <Compile Include="Models\BO\ParametreBudgetRevenu.cs" />
     <Compile Include="Models\BO\Societe.cs" />
     <Compile Include="Models\BO\CompteBanque.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Models\BO\Banque.cs" />
     <Compile Include="Models\BO\ResponsableRelationClient.cs" />
     <Compile Include="Models\BO\Profitabilite.cs" />
+    <Compile Include="Models\DAO\ParametreBudgetFraisDAO.cs" />
     <Compile Include="Models\DAO\ParametreBudgetRevenuDAO.cs" />
     <Compile Include="Models\DAO\SocieteDAO.cs" />
     <Compile Include="Models\DAO\CompteBanqueDAO.cs" />
@@ -908,6 +910,7 @@
     <Content Include="Resources\js\bootstrap.js" />
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\gb.menu.js" />
+    <Content Include="Resources\js\Views\ConfigurationBudget-ParametreBudgetFrais.js" />
     <Content Include="Resources\js\Views\ConfigurationBudget-ParametreBudgetRevenu.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-CompteBanque.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-Societe.js" />
@@ -1387,6 +1390,8 @@
     <Content Include="Views\ConfigurationBanque\Societe.cshtml" />
     <Content Include="Views\ConfigurationBudget\ParametreBudgetRevenu\_Modals.cshtml" />
     <Content Include="Views\ConfigurationBudget\ParametreBudgetRevenu.cshtml" />
+    <Content Include="Views\ConfigurationBudget\ParametreBudgetFrais\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationBudget\ParametreBudgetFrais.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

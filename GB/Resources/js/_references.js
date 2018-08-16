@@ -387,6 +387,7 @@
 /// <reference path="views/configurationbudget-autoritesignature.js" />
 /// <reference path="views/configurationbudget-directionbudget.js" />
 /// <reference path="views/configurationbudget-exercicefiscal.js" />
+/// <reference path="views/configurationbudget-parametrebudgetfrais.js" />
 /// <reference path="views/configurationbudget-parametrebudgetrevenu.js" />
 /// <reference path="views/configurationoperation-classificationprovisionspret.js" />
 /// <reference path="views/configurationoperation-compte.js" />

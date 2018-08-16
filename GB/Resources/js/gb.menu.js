@@ -48,6 +48,7 @@ $(function () {
                     url != '/ConfigurationBudget/DirectionBudget' &&
                     url != '/ConfigurationBudget/AutoriteSignature' &&
                     url != '/ConfigurationBudget/ParametreBudgetRevenu' &&
+                    url != '/ConfigurationBudget/ParametreBudgetFrais' &&
                     
                     url != '/ConfigurationOperation/TypePret' &&
                     url != '/ConfigurationOperation/MotifPret' &&

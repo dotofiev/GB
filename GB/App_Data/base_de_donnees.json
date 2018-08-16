@@ -2462,6 +2462,29 @@
       "libelle": "Others commissions incomming",
       "autoriser_control_budget": "true"
     }
+  ],
+  "parametres_budget_frais": [
+    {
+      "id": "1",
+      "id_compte": "10",
+      "code": "7000",
+      "libelle": "Office expenses",
+      "autoriser_control_budget": "true"
+    },
+    {
+      "id": "2",
+      "id_compte": "10",
+      "code": "B170",
+      "libelle": "Computer/electronic",
+      "autoriser_control_budget": "false"
+    },
+    {
+      "id": "3",
+      "id_compte": "10",
+      "code": "C003",
+      "libelle": "Rent of building",
+      "autoriser_control_budget": "true"
+    }
   ]
   //"western_union_zones_commissions": [
   //  {

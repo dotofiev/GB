@@ -475,6 +475,15 @@ namespace GB.App_Lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Configuration des lignes de budget des centres des coûts.
+        /// </summary>
+        public static string Configuring_Budget_lines_for_cost_centers {
+            get {
+                return ResourceManager.GetString("Configuring_Budget_lines_for_cost_centers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm.
         /// </summary>
         public static string Confirm {
