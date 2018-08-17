@@ -5,6 +5,7 @@ using System.Web;
 using GB.Models.BO;
 using GB.Models.Tests;
 using GB.Models.Static;
+using GB.Models.Entites;
 
 namespace GB.Models.Tests
 {
@@ -151,6 +152,13 @@ namespace GB.Models.Tests
             {
                 l.compte = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte);
             });
+
+            using (BankingEntities db_entiies = new BankingEntities())
+            {
+                db_entiies.Configuration.LazyLoadingEnabled = false;
+
+                var a = db_entiies.agences.ToList();
+            }
         }
     }
 }
