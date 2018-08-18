@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using GB.Models.Entites;
 
 namespace GB.Models.DAO
 {
@@ -50,6 +51,21 @@ namespace GB.Models.DAO
                 {
                     Mise_a_jour_devise_actuelle(obj.id);
                 }
+
+                // -- Définition du context -- //
+                /*
+                using(BankingEntities db = new BankingEntities())
+                {
+                    // -- Désactivation du Lasy loading -- //
+                    db.Configuration.LazyLoadingEnabled = false;
+
+                    // -- Enregistrement de la données -- //
+                    db.devises.Add(obj.ToEntities());
+
+                    // -- Sauvegarder les changements -- //
+                    db.SaveChanges();
+                }
+                */
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
@@ -110,6 +126,39 @@ namespace GB.Models.DAO
                     Mise_a_jour_devise_actuelle(obj.id);
                 }
 
+                // -- Définition du context -- //
+                /*
+                using (BankingEntities db = new BankingEntities())
+                {
+                    // -- Désactivation du Lasy loading -- //
+                    db.Configuration.LazyLoadingEnabled = false;
+
+                    // -- Rechercher l'objet à modifier -- //
+                    devise ancien_obj = db.devises.Find(obj.code);
+
+                    // -- Vérifier que l'objet est retournée -- //
+                    if (ancien_obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Vérifier l'unicité de l'objet -- //
+                    if (db.devises.FirstOrDefault(l => l.devcod == ancien_obj.devcod) != null)
+                    {
+                        throw new GBException(App_Lang.Lang.Existing_data + " [code]");
+                    }
+
+                    // -- Mise à jour de l'ancienne valeur -- //
+                    obj.CopierInEntities(ref ancien_obj);
+
+                    // -- Enregistrement de la données -- //
+                    db.Entry<devise>(ancien_obj).State = System.Data.Entity.EntityState.Modified;
+
+                    // -- Sauvegarder les changements -- //
+                    db.SaveChanges();
+                }
+                */
+
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new DeviseDAO());
@@ -148,6 +197,37 @@ namespace GB.Models.DAO
                     Program.db.devises.RemoveAll(l => l.id == id);
                 });
 
+                // -- Définition du context -- //
+                using (BankingEntities db = new BankingEntities())
+                {
+                    // -- Désactivation du Lasy loading -- //
+                    db.Configuration.LazyLoadingEnabled = false;
+
+                    // -- Rechercher l'objet à modifier -- //
+                    devise ancien_obj = db.devises.Find(obj.code);
+
+                    // -- Vérifier que l'objet est retournée -- //
+                    if (ancien_obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Vérifier l'unicité de l'objet -- //
+                    if (db.devises.FirstOrDefault(l => l.devcod == ancien_obj.devcod) != null)
+                    {
+                        throw new GBException(App_Lang.Lang.Existing_data + " [code]");
+                    }
+
+                    // -- Mise à jour de l'ancienne valeur -- //
+                    obj.CopierInEntities(ref ancien_obj);
+
+                    // -- Enregistrement de la données -- //
+                    db.Entry<devise>(ancien_obj).State = System.Data.Entity.EntityState.Modified;
+
+                    // -- Sauvegarder les changements -- //
+                    db.SaveChanges();
+                }
+
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new DeviseDAO());
@@ -182,6 +262,35 @@ namespace GB.Models.DAO
                 // -- Parcours de la liste -- //
                 return
                     Program.db.devises;
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(App_Lang.Lang.Error_message_notification);
+                }
+                else
+                {
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(ex.Message);
+                }
+            }
+            #endregion
+        }
+
+        public static List<devise> Lister(BankingEntities db)
+        {
+            try
+            {
+                // -- Parcours de la liste -- //
+                return
+                    db.devises.ToList();
             }
             #region Catch
             catch (Exception ex)

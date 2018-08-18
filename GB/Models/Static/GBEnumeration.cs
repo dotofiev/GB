@@ -70,4 +70,10 @@ namespace GB.Models.Static
     {
         Physique,
     }
+
+    public enum GB_Enum_Yes_No
+    {
+        Yes,
+        No
+    }
 }

@@ -152,13 +152,6 @@ namespace GB.Models.Tests
             {
                 l.compte = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte);
             });
-
-            using (BankingEntities db_entiies = new BankingEntities())
-            {
-                db_entiies.Configuration.LazyLoadingEnabled = false;
-
-                var a = db_entiies.agences.ToList();
-            }
         }
     }
 }
