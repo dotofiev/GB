@@ -19,6 +19,36 @@ namespace GB.Controllers
     {
         #region HttpGet
         [HttpGet]
+        public ActionResult ParametreBudgetRevenu()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Budget_profit_center_management})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationBudget_ParametreBudgetRevenu);
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ParametreBudgetFrais()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Configuring_Budget_lines_for_cost_centers})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais);
+
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult ExerciceFiscal()
         {
             // -- Charger les paramètres par défaut de la page -- //
@@ -148,6 +178,46 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBudget-ParametreBudgetRevenu
+                else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetRevenu)
+                {
+                    foreach (var val in ParametreBudgetRevenuDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "parametreBudgetRevenu"),
+                                col_2 = val.code,
+                                col_3 = val.libelle,
+                                col_4 = val.compte?.code ?? App_Lang.Lang.Empty,
+                                col_5 = GBToString.Oui_Non(val.autoriser_control_budget),
+                                col_6 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
+                #region ConfigurationBudget-ParametreBudgetFrais
+                else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais)
+                {
+                    foreach (var val in ParametreBudgetFraisDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "parametreBudgetFrais"),
+                                col_2 = val.code,
+                                col_3 = val.libelle,
+                                col_4 = val.compte?.code ?? App_Lang.Lang.Empty,
+                                col_5 = GBToString.Oui_Non(val.autoriser_control_budget),
+                                col_6 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id, val.code)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
                 #region ExerciceFiscal introuvable
                 else
                 {
@@ -193,6 +263,140 @@ namespace GB.Controllers
             return Json(
                 GBConvert.To_Object(this.ViewBag)
             );
+        }
+
+        // -- Charger les données dans le auto complete -- //
+        public override object Charger_EasyAutocomplete(string id_page, string id_vue)
+        {
+            List<object> donnee = new List<object>();
+
+            try
+            {
+                #region ConfigurationBudget-ParametreBudgetRevenu
+                if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetRevenu)
+                {
+                    // -- Si la vue n'est pas retourné -- //
+                    #region comptes
+                    if (string.IsNullOrEmpty(id_vue))
+                    {
+                        // -- Si la liste des comptes en session est vide, la mettre à jour -- //
+                        if ((this.con.donnee.comptes as List<Compte>).Count == 0)
+                        {
+                            this.con.donnee.comptes = CompteDAO.Lister_Cle();
+                        }
+
+                        // -- Charger la liste des résultats -- //
+                        foreach (var val in (this.con.donnee.comptes as List<Compte>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    id = val.id,
+                                    code = val.code,
+                                    libelle = val.libelle
+                                }
+                            );
+                        }
+                    }
+                    #endregion
+                }
+                #endregion
+
+                #region ConfigurationBudget-ParametreBudgetFrais
+                else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais)
+                {
+                    // -- Si la vue n'est pas retourné -- //
+                    #region comptes
+                    if (string.IsNullOrEmpty(id_vue))
+                    {
+                        // -- Si la liste des comptes en session est vide, la mettre à jour -- //
+                        if ((this.con.donnee.comptes as List<Compte>).Count == 0)
+                        {
+                            this.con.donnee.comptes = CompteDAO.Lister_Cle();
+                        }
+
+                        // -- Charger la liste des résultats -- //
+                        foreach (var val in (this.con.donnee.comptes as List<Compte>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    id = val.id,
+                                    code = val.code,
+                                    libelle = val.libelle
+                                }
+                            );
+                        }
+                    }
+                    #endregion
+                }
+                #endregion
+            }
+            #region catch & finally
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return GBConvert.To_JSONString(donnee);
+        }
+
+        // -- Recharger les données dans le auto complete -- //
+        public override object Recharger_EasyAutocomplete(string id_page, string id_vue)
+        {
+            List<object> donnee = new List<object>();
+
+            try
+            {
+                #region ConfigurationBudget-ParametreBudgetRevenu
+                if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetRevenu)
+                {
+                    // -- Si la vue est pour le compte -- //
+                    #region comptes
+                    if (id_vue == "compte")
+                    {
+                        // -- Mise à jour de la liste en session -- //
+                        this.con.donnee.comptes = CompteDAO.Lister_Cle();
+                    }
+                    #endregion
+                }
+                #endregion
+
+                #region ConfigurationBudget-ParametreBudgetFrais
+                if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais)
+                {
+                    // -- Si la vue est pour le compte -- //
+                    #region comptes
+                    if (id_vue == "compte")
+                    {
+                        // -- Mise à jour de la liste en session -- //
+                        this.con.donnee.comptes = CompteDAO.Lister_Cle();
+                    }
+                    #endregion
+                }
+                #endregion
+            }
+            #region catch & finally
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+                }
+            }
+            #endregion
+
+            // -- Retoure le résultat en objet JSON -- //
+            return GBConvert.To_JSONString(donnee);
         }
 
         // -- Selectionner un nouvel enregistrement dans la liste -- //
@@ -293,6 +497,62 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBudget-ParametreBudgetRevenu
+                else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetRevenu)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = ParametreBudgetRevenuDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle = obj.libelle,
+                                                        autoriser_control_budget = obj.autoriser_control_budget.ToString(),
+                                                        id_compte = obj.id_compte,
+                                                        code_compte = obj.compte?.code ?? null,
+                                                        libelle_compte = obj.compte?.libelle ?? null,
+                                                    }
+                                               );
+                }
+                #endregion
+
+                #region ConfigurationBudget-ParametreBudgetFrais
+                else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = ParametreBudgetFraisDAO.Object(code);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle = obj.libelle,
+                                                        autoriser_control_budget = obj.autoriser_control_budget.ToString(),
+                                                        id_compte = obj.id_compte,
+                                                        code_compte = obj.compte?.code ?? null,
+                                                        libelle_compte = obj.compte?.libelle ?? null,
+                                                    }
+                                               );
+                }
+                #endregion
+
                 #region ExerciceFiscal introuvable
                 else
                 {
@@ -357,6 +617,22 @@ namespace GB.Controllers
                 {
                     // -- Service d'enregistrement -- //
                     autoriteSignatureDAO.Ajouter(GBConvert.JSON_To<AutoriteSignature>(obj));
+                }
+                #endregion
+
+                #region ConfigurationBudget-ParametreBudgetRevenu
+                else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetRevenu)
+                {
+                    // -- Service d'enregistrement -- //
+                    parametreBudgetRevenuDAO.Ajouter(GBConvert.JSON_To<ParametreBudgetRevenu>(obj));
+                }
+                #endregion
+
+                #region ConfigurationBudget-ParametreBudgetFrais
+                else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais)
+                {
+                    // -- Service d'enregistrement -- //
+                    parametreBudgetFraisDAO.Ajouter(GBConvert.JSON_To<ParametreBudgetFrais>(obj));
                 }
                 #endregion
 
@@ -430,6 +706,22 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBudget-ParametreBudgetRevenu
+                else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetRevenu)
+                {
+                    // -- Service de modification -- //
+                    parametreBudgetRevenuDAO.Modifier(GBConvert.JSON_To<ParametreBudgetRevenu>(obj));
+                }
+                #endregion
+
+                #region ConfigurationBudget-ParametreBudgetFrais
+                else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais)
+                {
+                    // -- Service de modification -- //
+                    parametreBudgetFraisDAO.Modifier(GBConvert.JSON_To<ParametreBudgetFrais>(obj));
+                }
+                #endregion
+
                 #region ExerciceFiscal introuvable
                 else
                 {
@@ -497,6 +789,22 @@ namespace GB.Controllers
                 {
                     // -- Service de suppression -- //
                     autoriteSignatureDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationBudget-ParametreBudgetRevenu
+                else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetRevenu)
+                {
+                    // -- Service de suppression -- //
+                    parametreBudgetRevenuDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationBudget-ParametreBudgetFrais
+                else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais)
+                {
+                    // -- Service de suppression -- //
+                    parametreBudgetFraisDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -643,6 +951,80 @@ namespace GB.Controllers
                                                     }
                                                 }
                                             );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationBudget-ParametreBudgetRevenu
+            else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetRevenu)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Budget_profit_center_management;
+                this.ViewBag.Lang.Account = App_Lang.Lang.Account;
+                this.ViewBag.Lang.Control_budget = App_Lang.Lang.Control_budget;
+                this.ViewBag.Lang.Cost_center = App_Lang.Lang.Cost_center;
+                this.ViewBag.Lang.Account = App_Lang.Lang.Account;
+                this.ViewBag.Lang.Search_by = App_Lang.Lang.Search_by;                
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Budget_profit_center_management
+                                                    }
+                                                }
+                                            );
+                // -- Vider les données temporaire -- //
+                this.con.Vider_Donnee();
+                // - Mise à jour des données de vue -- //
+                // -- Compte -- //
+                this.con.donnee.comptes = new List<Compte>();
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationBudget-ParametreBudgetFrais
+            else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Configuring_Budget_lines_for_cost_centers;
+                this.ViewBag.Lang.Account = App_Lang.Lang.Account;
+                this.ViewBag.Lang.Control_budget = App_Lang.Lang.Control_budget;
+                this.ViewBag.Lang.Cost_center = App_Lang.Lang.Cost_center;
+                this.ViewBag.Lang.Account = App_Lang.Lang.Account;
+                this.ViewBag.Lang.Search_by = App_Lang.Lang.Search_by;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Configuring_Budget_lines_for_cost_centers
+                                                    }
+                                                }
+                                            );
+                // -- Vider les données temporaire -- //
+                this.con.Vider_Donnee();
+                // - Mise à jour des données de vue -- //
+                // -- Compte -- //
+                this.con.donnee.comptes = new List<Compte>();
                 #endregion
             }
             #endregion

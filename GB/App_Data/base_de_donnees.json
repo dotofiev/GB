@@ -269,6 +269,41 @@
     },
     // -- Enfants -- //
 
+    // ------------ //
+    // -- Parent -- //
+    // ------------ //
+    {
+      "id": "50",
+      "code": "50",
+      "id_groupe_menu": "4",
+      "libelle_en": "Budget inline parameter",
+      "libelle_fr": "Paramètre en ligne du budget",
+      "view": "",
+      "id_controller": "4"
+    },
+    // -- Enfants -- //
+    {
+      "id": "51",
+      "code": "51",
+      "id_menu_parent": "50",
+      "id_groupe_menu": "4",
+      "libelle_en": "Income",
+      "libelle_fr": "Le revenu",
+      "view": "ParametreBudgetRevenu",
+      "id_controller": "4"
+    },
+    {
+      "id": "52",
+      "code": "52",
+      "id_menu_parent": "50",
+      "id_groupe_menu": "4",
+      "libelle_en": "Expense",
+      "libelle_fr": "Frais",
+      "view": "ParametreBudgetFrais",
+      "id_controller": "4"
+    },
+    // -- Enfants -- //
+
     {
       "id": "17",
       "code": "17",
@@ -1113,6 +1148,36 @@
       "imprimer": "true",
       "lister": "true"
     },
+    {
+      "id": "97",
+      "id_role": "1",
+      "id_menu": "50",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "98",
+      "id_role": "1",
+      "id_menu": "51",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "99",
+      "id_role": "1",
+      "id_menu": "52",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
 
 
     // -- Role 2 -- //
@@ -1590,6 +1655,36 @@
       "id": "92",
       "id_role": "2",
       "id_menu": "49",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "100",
+      "id_role": "2",
+      "id_menu": "50",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "101",
+      "id_role": "2",
+      "id_menu": "51",
+      "ajouter": "true",
+      "modifier": "true",
+      "supprimer": "true",
+      "imprimer": "true",
+      "lister": "true"
+    },
+    {
+      "id": "102",
+      "id_role": "2",
+      "id_menu": "52",
       "ajouter": "true",
       "modifier": "true",
       "supprimer": "true",
@@ -2328,9 +2423,69 @@
       "garant": "",
       "garant_telephone": "999999999",
       "champ_1": "",
-      "champ_2": "",
+      "champ_2": ""
     }
   ],
+  "societes": [
+    {
+      "id": "1",
+      "id_agence": "1",
+      "code": "001",
+      "libelle": "00000001",
+      "id_compte_transit": "10",
+      "id_compte_paiement": "10",
+      "id_compte_pret": "10",
+      "id_compte_interet_pret": "10",
+      "base_de_calcul": "SOLDE",
+      "type_traitement": "Customer Account Number"
+    }
+  ],
+  "parametres_budget_revenus": [
+    {
+      "id": "1",
+      "id_compte": "10",
+      "code": "INC",
+      "libelle": "Interest on overdraft",
+      "autoriser_control_budget": "false"
+    },
+    {
+      "id": "2",
+      "id_compte": "10",
+      "code": "INC01",
+      "libelle": "Account openning commissions",
+      "autoriser_control_budget": "false"
+    },
+    {
+      "id": "3",
+      "id_compte": "10",
+      "code": "INC02",
+      "libelle": "Others commissions incomming",
+      "autoriser_control_budget": "true"
+    }
+  ],
+  "parametres_budget_frais": [
+    {
+      "id": "1",
+      "id_compte": "10",
+      "code": "7000",
+      "libelle": "Office expenses",
+      "autoriser_control_budget": "true"
+    },
+    {
+      "id": "2",
+      "id_compte": "10",
+      "code": "B170",
+      "libelle": "Computer/electronic",
+      "autoriser_control_budget": "false"
+    },
+    {
+      "id": "3",
+      "id_compte": "10",
+      "code": "C003",
+      "libelle": "Rent of building",
+      "autoriser_control_budget": "true"
+    }
+  ]
   //"western_union_zones_commissions": [
   //  {
   //    "id": "1",

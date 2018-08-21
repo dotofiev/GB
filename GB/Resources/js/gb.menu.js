@@ -28,6 +28,7 @@ $(function () {
                     url != '/ConfigurationBanque/Banque' &&
                     url != '/ConfigurationBanque/CompteAgence' &&
                     url != '/ConfigurationBanque/CompteBanque' &&
+                    url != '/ConfigurationBanque/Societe' &&
                     url != '/ConfigurationBanque/Devise' &&
                     url != '/ConfigurationBanque/ResponsableRelationClient' &&
                     url != '/ConfigurationBanque/Parametre' &&
@@ -46,6 +47,8 @@ $(function () {
                     url != '/ConfigurationBudget/ExerciceFiscal' &&
                     url != '/ConfigurationBudget/DirectionBudget' &&
                     url != '/ConfigurationBudget/AutoriteSignature' &&
+                    url != '/ConfigurationBudget/ParametreBudgetRevenu' &&
+                    url != '/ConfigurationBudget/ParametreBudgetFrais' &&
                     
                     url != '/ConfigurationOperation/TypePret' &&
                     url != '/ConfigurationOperation/MotifPret' &&

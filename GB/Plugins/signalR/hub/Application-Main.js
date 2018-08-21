@@ -80,7 +80,9 @@ $(
         $GB_DONNEE_PARAMETRES.applicationMainHub.client.rechargerComboEasyAutocomplete = function (notification) {
             try {
                 // -- Mise à jour des données sur le formulaire si tout ceux ci existe -- //
-                if ($(notification.donnee.form_id).length != 0 && $(notification.donnee.form_code).length != 0 && $(notification.donnee.form_libelle).length != 0) {
+                if (($(notification.donnee.form_id).length != 0 && $(notification.donnee.form_code).length != 0 && $(notification.donnee.form_libelle).length != 0) ||
+                    // -- Mise à jour à travers le css -- //
+                    $('.' + notification.donnee.form_id).length != 0) {
                     // -- Ajax -- //
                     $.ajax({
                         type: "POST",

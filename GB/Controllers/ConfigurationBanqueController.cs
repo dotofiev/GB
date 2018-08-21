@@ -94,6 +94,21 @@ namespace GB.Controllers
         }
 
         [HttpGet]
+        public ActionResult Societe()
+        {
+            // -- Charger les paramètres par défaut de la page -- //
+            Charger_Parametres();
+
+            // -- Titre de la page -- //
+            this.ViewBag.Title = $"GBK - ({App_Lang.Lang.Standing_order_company_info})";
+
+            // -- Charger les paramètres de langue de la page -- //
+            Charger_Langue_Et_Donnees(GB_Enum_Menu.ConfigurationBanque_Societe);
+
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult Institution()
         {
             // -- Charger les paramètres par défaut de la page -- //
@@ -715,6 +730,33 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-Societe
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Societe)
+                {
+                    foreach (var val in SocieteDAO.Lister())
+                    {
+                        donnee.Add(
+                            new
+                            {
+                                col_0 = val.id,
+                                col_1 = GBClass.HTML_Checkbox_Table(val.id, "societe"),
+                                col_2 = val.code,
+                                col_3 = val.libelle,
+                                col_4 = val.agence?.code ?? App_Lang.Lang.Empty,
+                                col_5 = val.agence.libelle ?? App_Lang.Lang.Empty,
+                                col_6 = val.compte_transit?.code ?? App_Lang.Lang.Empty,
+                                col_7 = val.compte_paiement?.code ?? App_Lang.Lang.Empty,
+                                col_8 = val.compte_pret?.code ?? App_Lang.Lang.Empty,
+                                col_9 = val.compte_interet_pret?.code ?? App_Lang.Lang.Empty,
+                                col_10 = GBToString.TypeSociete(val.type_traitement),
+                                col_11 = GBToString.BaseCalculSociete(val.base_de_calcul),
+                                col_12 = GBClass.HTML_Bouton_Modifier_Suppression_Table(val.id)
+                            }
+                        );
+                    }
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -984,6 +1026,61 @@ namespace GB.Controllers
                     #endregion
                 }
                 #endregion
+
+                #region ConfigurationBanque-Societe
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Societe)
+                {
+                    // -- Si la vue n'est pas retourné -- //
+                    #region comptes
+                    if (id_vue == "compte")
+                    {
+                        // -- Si la liste des comptes en session est vide, la mettre à jour -- //
+                        if ((this.con.donnee.comptes as List<Compte>).Count == 0)
+                        {
+                            this.con.donnee.comptes = CompteDAO.Lister_Cle();
+                        }
+
+                        // -- Charger la liste des résultats -- //
+                        foreach (var val in (this.con.donnee.comptes as List<Compte>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    id = val.id,
+                                    code = val.code,
+                                    libelle = val.libelle
+                                }
+                            );
+                        }
+                    }
+                    #endregion
+
+                    #region agences
+                    // -- Si la vue est pour le agences -- //
+                    else if (id_vue == "agence")
+                    {
+                        // -- Si la liste des banques en session est vide, la mettre à jour -- //
+                        if ((this.con.donnee.agences as List<Agence>).Count == 0)
+                        {
+                            this.con.donnee.agences = AgenceDAO.Lister();
+                        }
+
+                        // -- Charger la liste des résultats -- //
+                        foreach (var val in (this.con.donnee.agences as List<Agence>))
+                        {
+                            donnee.Add(
+                                new
+                                {
+                                    id = val.id,
+                                    code = val.code,
+                                    libelle = val.libelle
+                                }
+                            );
+                        }
+                    }
+                    #endregion
+                }
+                #endregion
             }
             #region catch & finally
             catch (Exception ex)
@@ -1095,6 +1192,29 @@ namespace GB.Controllers
                     {
                         // -- Mise à jour de la liste en session -- //
                         this.con.donnee.pays = PaysDAO.Lister();
+                    }
+                    #endregion
+                }
+                #endregion
+
+                #region ConfigurationBanque-Societe
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Societe)
+                {
+                    // -- Si la vue est pour le compte -- //
+                    #region comptes
+                    if (id_vue == "compte")
+                    {
+                        // -- Mise à jour de la liste en session -- //
+                        this.con.donnee.comptes = CompteDAO.Lister_Cle();
+                    }
+                    #endregion
+
+                    // -- Si la vue est pour le agence -- //
+                    #region agences
+                    else if (id_vue == "agence")
+                    {
+                        // -- Mise à jour de la liste en session -- //
+                        this.con.donnee.agences = AgenceDAO.Lister();
                     }
                     #endregion
                 }
@@ -1592,7 +1712,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ResponsableRelationClient)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ResponsableRelationClientDAO.Object(id.Value);
+                    var obj = ResponsableRelationClientDAO.Object(id ?? 0);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1614,6 +1734,52 @@ namespace GB.Controllers
                                                         garant_telephone = obj.garant_telephone,
                                                         nid = obj.nid,
                                                         telephone = obj.telephone,
+                                                    }
+                                               );
+                }
+                #endregion
+
+                #region ConfigurationBanque-Societe
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Societe)
+                {
+                    // -- Mise à jour de l'role dans la session -- //
+                    var obj = SocieteDAO.Object(id ?? 0);
+
+                    // -- Vérifier si l'objet est trouvé -- //
+                    if (obj == null)
+                    {
+                        throw new GBException(App_Lang.Lang.Object_not_found);
+                    }
+
+                    // -- Notificication -- //
+                    this.ViewBag.notification = new GBNotification(
+                                                    new
+                                                    {
+                                                        id = obj.id,
+                                                        code = obj.code,
+                                                        libelle = obj.libelle,
+                                                        type_traitement = obj.type_traitement,
+                                                        base_de_calcul = obj.base_de_calcul,
+
+                                                        id_agence = obj.id_agence,
+                                                        code_agence = obj.agence?.code ?? null,
+                                                        libelle_agence = obj.agence?.libelle ?? null,
+
+                                                        id_compte_interet_pret = obj.id_compte_interet_pret,
+                                                        code_compte_interet_pret = obj.compte_interet_pret?.code ?? null,
+                                                        libelle_compte_interet_pret = obj.compte_interet_pret?.libelle ?? null,
+
+                                                        id_compte_paiement = obj.id_compte_paiement,
+                                                        code_compte_paiement = obj.compte_paiement?.code ?? null,
+                                                        libelle_compte_paiement = obj.compte_paiement?.libelle ?? null,
+
+                                                        id_compte_pret = obj.id_compte_pret,
+                                                        code_compte_pret = obj.compte_pret?.code ?? null,
+                                                        libelle_compte_pret = obj.compte_pret?.libelle ?? null,
+
+                                                        id_compte_transit = obj.id_compte_transit,
+                                                        code_compte_transit = obj.compte_transit?.code ?? null,
+                                                        libelle_compte_transit = obj.compte_transit?.libelle ?? null,
                                                     }
                                                );
                 }
@@ -1827,6 +1993,14 @@ namespace GB.Controllers
                 {
                     // -- Service d'enregistrement -- //
                     responsableRelationClientDAO.Ajouter(GBConvert.JSON_To<ResponsableRelationClient>(obj));
+                }
+                #endregion
+
+                #region ConfigurationBanque-Societe
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Societe)
+                {
+                    // -- Service d'enregistrement -- //
+                    societeDAO.Ajouter(GBConvert.JSON_To<Societe>(obj));
                 }
                 #endregion
 
@@ -2069,6 +2243,14 @@ namespace GB.Controllers
                 }
                 #endregion
 
+                #region ConfigurationBanque-Societe
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Societe)
+                {
+                    // -- Service de modification -- //
+                    societeDAO.Modifier(GBConvert.JSON_To<Societe>(obj));
+                }
+                #endregion
+
                 #region Institution introuvble
                 else
                 {
@@ -2256,6 +2438,14 @@ namespace GB.Controllers
                 {
                     // -- Service de suppression -- //
                     responsableRelationClientDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                }
+                #endregion
+
+                #region ConfigurationBanque-Societe
+                else if (id_page == GB_Enum_Menu.ConfigurationBanque_Societe)
+                {
+                    // -- Service de suppression -- //
+                    societeDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
                 }
                 #endregion
 
@@ -2931,6 +3121,51 @@ namespace GB.Controllers
                                                     }
                                                 }
                                             );
+                #endregion
+            }
+            #endregion
+
+            #region ConfigurationBanque-Societe
+            else if (id_page == GB_Enum_Menu.ConfigurationBanque_Societe)
+            {
+                // -- Langue -- //
+                #region Langue
+                this.ViewBag.Lang.Description_page = $"<i class=\"fa fa-cogs\"></i> " + App_Lang.Lang.Inter_branch_account_management;
+                this.ViewBag.Lang.Search_by = App_Lang.Lang.Search_by;
+                this.ViewBag.Lang.Agency = App_Lang.Lang.Agency;
+                this.ViewBag.Lang.Account = App_Lang.Lang.Account;
+                this.ViewBag.Lang.Treatment_type = App_Lang.Lang.Treatment_type;
+                this.ViewBag.Lang.Calculation_base = App_Lang.Lang.Calculation_base;
+                this.ViewBag.Lang.Account_interest_pay = App_Lang.Lang.Account_interest_pay;
+                this.ViewBag.Lang.Account_loan = App_Lang.Lang.Account_loan;
+                this.ViewBag.Lang.Account_transit = App_Lang.Lang.Account_transit;
+                this.ViewBag.Lang.Account_pay = App_Lang.Lang.Account_pay;
+                #endregion
+
+                // -- Données -- //
+                #region Données
+                this.ViewBag.donnee.HTML_type_traitement_societe = GBClass.HTML_type_traitement_calcul_societe();
+                this.ViewBag.donnee.HTML_base_de_calcul_societe = GBClass.HTML_base_de_calcul_societe();
+                this.ViewBag.GB_DONNEE = GBConvert.To_JSONString(
+                                                new
+                                                {
+                                                    Urls = new GBControllerUrlJS(this, id_page),
+                                                    id_page = id_page,
+                                                    titre = this.ViewBag.Title,
+                                                    description = new
+                                                    {
+                                                        icon = "fa fa-cogs",
+                                                        message = App_Lang.Lang.Inter_branch_account_management
+                                                    }
+                                                }
+                                            );
+                // -- Vider les données temporaire -- //
+                this.con.Vider_Donnee();
+                // - Mise à jour des données de vue -- //
+                // -- Compte -- //
+                this.con.donnee.comptes = new List<Compte>();
+                // -- Agence -- //
+                this.con.donnee.agences = new List<Agence>();
                 #endregion
             }
             #endregion

@@ -66,6 +66,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -203,6 +205,9 @@
     </Compile>
     <Compile Include="Models\ActionFilter\AuthentificationRequis.cs" />
     <Compile Include="Models\ActionFilter\ResponseErreur.cs" />
+    <Compile Include="Models\BO\ParametreBudgetFrais.cs" />
+    <Compile Include="Models\BO\ParametreBudgetRevenu.cs" />
+    <Compile Include="Models\BO\Societe.cs" />
     <Compile Include="Models\BO\CompteBanque.cs" />
     <Compile Include="Models\BO\CompteAgence.cs" />
     <Compile Include="Models\BO\DirectionBudget.cs" />
@@ -214,11 +219,1544 @@
     <Compile Include="Models\BO\Banque.cs" />
     <Compile Include="Models\BO\ResponsableRelationClient.cs" />
     <Compile Include="Models\BO\Profitabilite.cs" />
+    <Compile Include="Models\DAO\ParametreBudgetFraisDAO.cs" />
+    <Compile Include="Models\DAO\ParametreBudgetRevenuDAO.cs" />
+    <Compile Include="Models\DAO\SocieteDAO.cs" />
     <Compile Include="Models\DAO\CompteBanqueDAO.cs" />
     <Compile Include="Models\DAO\CompteAgenceDAO.cs" />
     <Compile Include="Models\DAO\BanqueDAO.cs" />
     <Compile Include="Models\DAO\ResponsableRelationClientDAO.cs" />
     <Compile Include="Models\DAO\ProfitabiliteDAO.cs" />
+    <Compile Include="Models\Entites\AccountInformation.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Actionnaire.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ActiviteEco.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AddAutoCred_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AddBonCaisseCash_S_Trans_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AddBonCaisse_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AddDepotATermeCaisse_S_Trans_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AddDepotATerme_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\agence.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\agencebb.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AgioRservErrorDormAcct.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Application.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ApplicationTable.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AssetLocalisation.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AssetType.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditAgence.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditAutoCred.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditBonCaisse.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditCatCpte.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditClientBnk.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditCompany.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditContentieu.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditCotation.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditCpteClt.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditCpteCltHist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditCredit.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditDepotTerme.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Auditdevise.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditEcritCptable.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditEmploye.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditEmpPrivSet.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Auditfcptg.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditGlHist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditHistoCaisse.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditImpaye.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditIntegrateFile.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditJnalRembLoan.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditOpCaisA.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditOpDiversA.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditPostLoan.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditProduct.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditProductTxn.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditServerStatu.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditStopPayment.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditVaultTxn.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditVirPermanent.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditVirSpont.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AuditVirSpontPer.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AutoCred.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AUTOMATICTRF.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AUTOMATICTRFHIST.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AUTOMATICTRFHISTPRODUCT.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AUTOMATICTRFTPRODUCT.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\AUTOTRANSFERT.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Avaliste.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Avaliste_Delete_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Avaliste_Reverse_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Avaliste_Update_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Billetage.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\BilletHist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\BILLETHISTTEMP.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\billinglist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\BillingOption.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\BillingOptiono.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\BonCaisse.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\BonCaisse_Delete_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\BonCaisse_Filter_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\BonCaisse_Insert_S_Tran_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\BonCaisse_Update_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\BonCaisse_Update_S_Tran_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\BranchAcct.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\BudgetExpense_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\BudgetTrxnProductN_S_Trans_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Caisse.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CaisseMaxLimCusto.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CaisseMaxLimCusto_Update_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CalCulSoldeAgio_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CalCulSoldeWithoutValidate_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CalCulSolde_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CashPymntsRP_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CatCpte.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Category.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CautionAval.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CautionSit.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CC.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ChargeBranchBis_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ChargeBranch_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CheqTrait.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ChequeStock.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Chequier.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\cipcb01.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\cipcb03.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ClientBnk.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ClientBnk1.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ClientBnk_Delete_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ClientBnk_Filter_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ClientBnk_Insert_Migration_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ClientBnk_Insert_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ClientBnk_Update_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CMOpDevise.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\COBACHeader.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Commande.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CommissionSm.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Company.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Compensation.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ComptaCashTransactionBR_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ComptaCivilServant_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ComptaSalaireCompany_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ComptaStandingOrder_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ComptaVirement_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ComptaVirement_S_Trans_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ConfigLoanPurpose.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ConfigTypeLoan.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Contentieu.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Contentieux_Filter_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Contentieux_Insert_S_Trans_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Contentieux_Update_S_Trans_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CorrespBnk.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CorrespTable.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Cotation.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CountryZone.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteClt.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteClt1.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteCltCentral.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteCltClose.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteCltHist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteCltHistArch.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteCltHistArch_Select_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteCltHistb.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteCltHistBBF.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteCltHistRienB.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteCltHist_SelectArch_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteCltHist_SelectNew_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteCltHist_Select_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteCltRienB.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteCltSM.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteClt_Cash_Update_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteClt_Client_Update_S_Trans_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteClt_Close_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteClt_Delete_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteClt_Filter_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteClt_InsertOpen_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CpteCorrespBnk.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Credit.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Credit_Filter_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Credit_Insert_S_Trans_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Credit_Updatebis_S_Trans_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Credit_Update_Contententieu_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Credit_Update_RembAnticipePartiele_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Credit_Update_RembAnticipe_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Credit_Update_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Credit_Update_S_TransCU_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Credit_Update_S_Trans_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CreDoc.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CumulCpteClthist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CumulCpteGlhist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CustomerRelationship.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\CustServiceProductN_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\DataImport.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\DataImportSTO.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\DataImportSTObckp.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\DepotTerme.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\DepotTermeHist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\DepotTerme_Deletebis_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\DepotTerme_Filter_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\DepotTerme_Insert_S_Tran_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\DepotTerme_Update_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\DepotTerme_Update_S_Tran_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\DepRetGeneral.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\DepRetGeneralBi.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\DepTerme_delete_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\DepTerme_Update_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\devise.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Document.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Domiciliation.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\dtproperty.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\EcritCptable.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\EcritCptableBi.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\EcritCptableBisArch.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\EcritCptProv.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\EcritInfoCustomerNew_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\EcritInfoCustomer_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\EmetteurTCSComex.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Employe.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Employe_Delete_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Employe_Filter_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Employe_Insert_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\EMPLOYE_MODULE.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Employe_Update_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\EmpPrivSet.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\EMP_MODULE_MENU.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\EncoursCustomer.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\EODProcess.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\EOYACCOUNTING_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ErrTabSalTemp.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ExcludeProvision.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\exclumanualpostgl.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ExcluTellerPostGL.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\FCashStock.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\FCashVente.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\FCashVente1.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\fclttmp.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\FCltTmpDeb.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\FCltTmpFin.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\fcptg.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Fcptg99.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\fcptgcopec.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\fcptgRienB.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\FCPTGTEMP.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\FcptgTmp.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\fcptg_FilterNew_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\fcptg_Filter_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\fcptg_Insertbis_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\fcptg_Update_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\FCRemb.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\fibane01.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\fibane02.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\FTableAsset.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\FTableBalResultat.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\FTableLiability.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\GarantieAccount.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Garantieso.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Garanti_Delete_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Garanti_Reverse_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Garanti_Update_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Garanty.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\GB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\GB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\GB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\GeneralPara.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\GeneralTrxn.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\GeneralTrxnBi.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\GlHist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\GlHistArch.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\GlHistBi.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\GlHistRienB.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\GlobexBranch.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\HistMp.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\HistoCaisse.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\HistProvLoan.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Immo.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ImmoHist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Impaye.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ImpCpteIndImpCredit_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ImpCpteIndImpNew_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ImpCpteIndImp_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\IncExpAcc.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\InComeloan.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\InComeSM.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Indisponible.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\InsertUpdateCpteClt_Migrate_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\InsertUpdateCpteClt_S_Trans_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Institution.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\IntegrateFile.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\InteretCredit.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\InteretReserv.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\InteretReservBi.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\IntSMSJournal.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\JnalRembLoan.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\JnlInteret.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\JnlInteretEBANKING.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\JnlInteretPerDay.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\JnlInteretSM.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\JourFerie.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\journal.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\JudiciaryInstance.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Jurisdiction.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\LegalOperation.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Litigation.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\LoanPortfolioClassification.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\LoanProvisionClassification.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\LoanRepaymentOpe_ST_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\LoanRepaymentTrf_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\LoanRepayment_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\LoanRepayment_ST_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Log.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\MajCpteClient_S_Trans_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ManageCashier.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ManualCrInterest.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ModifAutoCred_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\MODULE.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\MODULE_MENU.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\MODULE_MENU_TMP.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Mouchard.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\MouchardTransact.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\MoucheSup.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\MouchSec.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\NatBEAC.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\NatJur.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\nomenposte.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\nomenposteOLD.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\OpCaisA.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\OpCaisABi.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\OpCaisB.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\OpDiversA.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\OpDiversABi.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\OpDiversB.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\OpDiversG.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\operationtype.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\optncounter.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\OutGoingSM.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Parametre.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Pay.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PayrollAcct.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PhotoSign.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Piece.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PieceB.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PlageBilling.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PlageCustProdStat.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PorteFeuilleLocal.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PorteFeuillePayement_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PorteFeuille_Insert_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PorteFeuille_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PorteFeuille_Unpaid_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PostHistory.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PostLoan.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Post_Credit_BL_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PreprocesInformation.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Privilege.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PrivLabel.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ProcessBatchSalTransEmp_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ProcessBonCaissePymtEchu_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ProcessDTPymtAnticipation_ST_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ProcessDTPymtEchu_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Product.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ProductAttribute.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ProductAttribute_Delete_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ProductAttribute_Filter_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ProductAttribute_Insert_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ProductAttribute_Update_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ProductTxn.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Product_Delete_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Product_Filter_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Product_Insert_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Product_Update_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PROFITABILITYGROUP.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ProfitabilityM.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PROFITABILITYTYPE.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ProvCommi.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ProvisionAccount.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ProvLoan.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ProvTrCodeAn.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\PS_OPEN_SERVER_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Qualite.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Receptiontrf_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\RecoveContentieux_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\RecoveImpaye_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\RecoveWriteOffContentieux_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\RecoveWriteoffImpaye_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\RecoveWriteOff_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\RegBonCaisseCash_S_Trans_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\RegDepotTermeCash_S_Trans_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\RembAnticipe.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\RemboursementAnticipePartielle_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\RemboursementAnticipe_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\RemDoc.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\RepHeaderName.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Report.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\REserveAcctInfo.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ReserveInterest_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ReturnReservIntAcc_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\SaisieSolde.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\SalEmp.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\SalTemp.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\SalTempBr.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Sp_BudgetTransaction_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Sp_CashComptaNCBonCaissePymt_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Sp_CashComptaNCBonCaisse_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Sp_CashComptaNCDepotTermePymt_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Sp_CashComptaNCTermDep_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\sp_helpdiagrams_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\StandingOrder.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\StopPayment.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\SummaryJnlPartMember.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\sysdiagram.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabAmortLitige.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabAmortLoan.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabbilanconfig.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabBudgetAllocated.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabBudgetTransaction.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabCashOptn.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabCashOptnsReceiv.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabCashOptnsSm.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabCashTrancode.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabClearingRate.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabcodegroup.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabcodegroupOLD.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabcoefccre.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabcoefliquidite.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabColonneTaille.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabComWestern.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabConfigReportCobac.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabConfigReportCobacOLD.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabCostCentre.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabCpteAttente.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabCpteMembretmp.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabCreditError.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabCreditTMP.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TABDEFINEMONTH.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabDifference.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabDirectorate.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabdsdbRate.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabDuplicata.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabEmergencyLoan.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabEmpSalary.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabErrorModifSize.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabExemptBudget.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabexemptcustomeracct.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabExemptEmployee.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabFB.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabFBAuxBal.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabFBClthist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabFBCrDrClt.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabFBCrDrClthist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabFBGlHist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabFiscalMaster.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabFonctionnaire.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabfondspatnet.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabfondssol.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabFrequencyEOD.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabGLAcctExempt.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabGrDec.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabJnlPartMember.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Table_Archive.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabLoanAttribute.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabLoanHandling.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabLoanInsurance.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabloaninterest.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabLoanStudyFee.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabLocationMaster.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TABMEMBERBENEF.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabNatClient.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabratcouvimmo.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabratcouvrisk.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabratlignefin.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabReceiveRate.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabReceiveRateR.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabreport.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabReportMontantCred.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabreportOLD.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabresultsconfig.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabRetourInterBr.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabSalComp.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabServiceMaster.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabSigningAuthority.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabSumImpaye.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabSumIntLoan.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabSundryTransaction.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TabTransferRate.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\tabtreasuryconsult.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TCStock.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TCSVente.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TellerLoanRepayment_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TempTabBadUnpaid.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Titre.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TmpCompareStat.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TMPCREDIT.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TmpCustBalSheet.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TMPCustLoanClassification.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TmpDAteRange.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TmpDormantToClose.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TmpEmpTransaction.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TmpLiqDeclaration.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TmpProfitability.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TMPSM.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TmpStatementIncExp.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Tmp_EcritCptableBis.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Trancode.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TRANSFERPRODUCT.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TransferState.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TransfertVEComex.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TransfExt.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TransForce.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Translate.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TRANS_REF.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Trbillinglist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TrCodeAnnexe.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TrCodeAnnexeo.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\TypeJournal.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\UnionInfo.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\UnitInst.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ValideOpdiversB_Result.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\ValidTable.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\VaultTxn.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\VaultTxnsTEMP.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\Ville.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\VirPermanent.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\VirPermanentHist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\VirRecuComex.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\VirSalaire.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\VirSpont.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\VirSpontPer.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\VirSpontPerHist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\V_AuditBonCaisse.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\V_AuditClientBnk.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\V_AuditContentieux.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\V_AuditCpteclt.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\V_AuditCpteCltHist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\V_AuditCredit.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\V_AuditDepotTerme.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\V_AuditGlHist.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\V_AuditHistoCaisse.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\V_AuditImpayes.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\V_AuditJnalRembLoan.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\WorkStation.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\WriteoffAccount.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entites\WriteOffLoan.cs">
+      <DependentUpon>GB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GB\GBControllerUrlJS.cs" />
     <Compile Include="Models\BO\Compte.cs" />
     <Compile Include="Models\BO\WesternUnionZonePays.cs" />
@@ -305,6 +1843,16 @@
     <Content Include="App_Data\Notes.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Models\Entites\GB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GB.edmx</DependentUpon>
+      <LastGenOutput>GB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Entites\GB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GB.edmx</DependentUpon>
+      <LastGenOutput>GB.cs</LastGenOutput>
+    </Content>
     <Content Include="Plugins\animate.css\animate.css" />
     <Content Include="Plugins\animate.css\animate.min.css" />
     <Content Include="Plugins\animate.css\gulpfile.js" />
@@ -904,7 +2452,10 @@
     <Content Include="Resources\js\bootstrap.js" />
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\gb.menu.js" />
+    <Content Include="Resources\js\Views\ConfigurationBudget-ParametreBudgetFrais.js" />
+    <Content Include="Resources\js\Views\ConfigurationBudget-ParametreBudgetRevenu.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-CompteBanque.js" />
+    <Content Include="Resources\js\Views\ConfigurationBanque-Societe.js" />
     <Content Include="Resources\js\Views\Erreur-Page.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-BEACNationalite.js" />
     <Content Include="Resources\js\Views\ConfigurationBanque-UniteInstitutionnelle.js" />
@@ -1282,6 +2833,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Plugins\bootstrap-daterangepicker\.bower.json" />
@@ -1362,6 +2914,13 @@
     <Content Include="Views\ConfigurationOperation\WesternUnionZonePays.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="Models\Entites\GB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Entites\GB.edmx.diagram">
+      <DependentUpon>GB.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\release.pubxml" />
     <Content Include="Views\ConfigurationOperation\Compte\_Modals.cshtml" />
     <Content Include="Views\ConfigurationOperation\Compte.cshtml" />
@@ -1377,6 +2936,12 @@
     <Content Include="Views\ConfigurationBanque\Banque.cshtml" />
     <Content Include="Views\ConfigurationBanque\ResponsableRelationClient\_Modals.cshtml" />
     <Content Include="Views\ConfigurationBanque\ResponsableRelationClient.cshtml" />
+    <Content Include="Views\ConfigurationBanque\Societe\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationBanque\Societe.cshtml" />
+    <Content Include="Views\ConfigurationBudget\ParametreBudgetRevenu\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationBudget\ParametreBudgetRevenu.cshtml" />
+    <Content Include="Views\ConfigurationBudget\ParametreBudgetFrais\_Modals.cshtml" />
+    <Content Include="Views\ConfigurationBudget\ParametreBudgetFrais.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

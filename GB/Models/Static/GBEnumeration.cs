@@ -36,11 +36,15 @@ namespace GB.Models.Static
         public static string ConfigurationBanque_UniteInstitutionnelle = "ConfigurationBanque-UniteInstitutionnelle";
         public static string ConfigurationBanque_BEACNationalite = "ConfigurationBanque-BEACNationalite";
         public static string ConfigurationBanque_Profitabilite = "ConfigurationBanque-Profitabilite";
-        public static string ConfigurationBanque_CompteBanque = "ConfigurationBanque-CompteBanque";        
+        public static string ConfigurationBanque_CompteBanque = "ConfigurationBanque-CompteBanque";
+        public static string ConfigurationBanque_ResponsableRelationClient = "ConfigurationBanque-ResponsableRelationClient";
+        public static string ConfigurationBanque_Societe = "ConfigurationBanque-Societe";
         public static string ConfigurationBudget_ExerciceFiscal = "ConfigurationBudget-ExerciceFiscal";
         public static string ConfigurationBudget_DirectionBudget = "ConfigurationBudget-DirectionBudget";
         public static string ConfigurationBanque_CongeBanque = "ConfigurationBanque-CongeBanque";
         public static string ConfigurationBudget_AutoriteSignature = "ConfigurationBudget-AutoriteSignature";
+        public static string ConfigurationBudget_ParametreBudgetRevenu = "ConfigurationBudget-ParametreBudgetRevenu";
+        public static string ConfigurationBudget_ParametreBudgetFrais = "ConfigurationBudget-ParametreBudgetFrais";
         public static string ConfigurationOperation_TypePret = "ConfigurationOperation-TypePret";
         public static string ConfigurationOperation_MotifPret = "ConfigurationOperation-MotifPret";
         public static string ConfigurationOperation_ClassificationProvisionsPret = "ConfigurationOperation-ClassificationProvisionsPret";
@@ -51,7 +55,6 @@ namespace GB.Models.Static
         public static string ConfigurationOperation_WesternUnionZonePays = "ConfigurationOperation-WesternUnionZonePays";
         public static string ConfigurationOperation_Compte = "ConfigurationOperation-Compte";
         public static string ConfigurationOperation_CompteConfiguration = "ConfigurationOperation-CompteConfiguration";
-        public static string ConfigurationBanque_ResponsableRelationClient = "ConfigurationBanque-ResponsableRelationClient";        
     }
 
     public enum GB_Enum_Action_Controller
@@ -66,5 +69,11 @@ namespace GB.Models.Static
     public enum GB_Enum_Type_Produit
     {
         Physique,
+    }
+
+    public enum GB_Enum_Yes_No
+    {
+        Yes,
+        No
     }
 }

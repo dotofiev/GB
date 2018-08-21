@@ -63,6 +63,9 @@ namespace GB.Controllers
         public CompteBanqueDAO compteBanqueDAO { get { return new CompteBanqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
         public BanqueDAO banqueDAO { get { return new BanqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
         public ResponsableRelationClientDAO responsableRelationClientDAO { get { return new ResponsableRelationClientDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public SocieteDAO societeDAO { get { return new SocieteDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ParametreBudgetRevenuDAO parametreBudgetRevenuDAO { get { return new ParametreBudgetRevenuDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
+        public ParametreBudgetFraisDAO parametreBudgetFraisDAO { get { return new ParametreBudgetFraisDAO(this.con.hub_id_context, this.con.id_utilisateur); } }        
         #endregion
         #endregion
 
