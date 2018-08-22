@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.Helper;
+using GB.Models.Interfaces;
 using GB.Models.Static;
 using GB.Models.Tests;
 using System;
@@ -9,7 +10,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Parametre : BO
+    public class Parametre : BO, IBO<object>
     {
         public int nombre_ligne_historique_compte { get; set; }
         public bool utilisation_chequier { get; set; }
@@ -39,16 +40,31 @@ namespace GB.Models.BO
         public string lien_sauvegarde_numero_1 { get; set; }
         public string lien_sauvegarde_numero_2 { get; set; }
 
-        public Parametre(long id)
+        public Parametre(string id)
         {
             this.id = id;
         }
 
         public Parametre() { }
 
-        public override void Crer_Id()
+        public void Crer_Id()
         {
-            this.id = Program.db.parametres.Count + 1;
+            this.id = (Program.db.parametres.Count + 1).ToString();
+        }
+
+        public object ToEntities()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FromEntities(object entitie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ModifyEntities(object entitie)
+        {
+            throw new NotImplementedException();
         }
     }
 }

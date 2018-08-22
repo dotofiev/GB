@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.GB;
+using GB.Models.Interfaces;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -10,18 +11,18 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ParametreBudgetFraisDAO : DAO
+    public class ParametreBudgetFraisDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais; } }
         public string context_id { get; set; }
-        public long id_utilisateur { get; set; }
+        public string id_utilisateur { get; set; }
         public string form_combo_id { get { return "form_id_parametreBudgetFrais"; } }
         public string form_combo_code { get { return "form_code_parametreBudgetFrais"; } }
         public string form_name { get { return "parametreBudgetFrais"; } }
         public string form_combo_libelle { get { return "form_libelle_parametreBudgetFrais"; } }
 
 
-        public ParametreBudgetFraisDAO(string context_id, long id_utilisateur)
+        public ParametreBudgetFraisDAO(string context_id, string id_utilisateur)
         {
             this.context_id = context_id;
             this.id_utilisateur = id_utilisateur;
@@ -43,7 +44,7 @@ namespace GB.Models.DAO
                 obj.Crer_Id();
 
                 // -- Mise à jour des references -- //
-                obj.compte = CompteDAO.Object(obj.id_compte);
+                obj.compte = CompteDAO.ObjectId(obj.id_compte);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.parametres_budget_frais.Add(obj);
@@ -96,7 +97,7 @@ namespace GB.Models.DAO
                     {
                         // -- Mise à jour de l'enregistrement -- //
                         l.id_compte = obj.id_compte;
-                        l.compte = CompteDAO.Object(obj.id_compte);
+                        l.compte = CompteDAO.ObjectId(obj.id_compte);
                         l.autoriser_control_budget = obj.autoriser_control_budget;
                         l.code = obj.code;
                         l.libelle = obj.libelle;
@@ -129,7 +130,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void Supprimer(List<long> ids)
+        public void Supprimer(List<string> ids)
         {
             try
             {
@@ -196,7 +197,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static ParametreBudgetFrais Object(string code)
+        public static ParametreBudgetFrais ObjectCode(string code)
         {
             try
             {
@@ -225,7 +226,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static ParametreBudgetFrais Object(long id)
+        public static ParametreBudgetFrais Object(string id)
         {
             try
             {

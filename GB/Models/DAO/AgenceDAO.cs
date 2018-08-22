@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.GB;
+using GB.Models.Interfaces;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -10,18 +11,18 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class AgenceDAO : DAO
+    public class AgenceDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Agence; } }
         public string context_id { get; set; }
-        public long id_utilisateur { get; set; }
+        public string id_utilisateur { get; set; }
         public string form_combo_id { get { return "form_id_agence"; } }
         public string form_combo_code { get { return "form_code_agence"; } }
         public string form_name { get { return "agence"; } }
         public string form_combo_libelle { get { return "form_libelle_agence"; } }
 
 
-        public AgenceDAO(string context_id, long id_utilisateur)
+        public AgenceDAO(string context_id, string id_utilisateur)
         {
             this.context_id = context_id;
             this.id_utilisateur = id_utilisateur;
@@ -43,7 +44,7 @@ namespace GB.Models.DAO
                 obj.Crer_Id();
 
                 // -- Mise à jour des references -- //
-                obj.utilisateur = UtilisateurDAO.Object(obj.id_utilisateur);
+                obj.utilisateur = UtilisateurDAO.ObjectId(obj.id_utilisateur);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.agences.Add(obj);
@@ -98,7 +99,7 @@ namespace GB.Models.DAO
                         l.code = obj.code;
                         l.libelle = obj.libelle;
                         l.id_utilisateur = obj.id_utilisateur;
-                        l.utilisateur = UtilisateurDAO.Object(obj.id_utilisateur);
+                        l.utilisateur = UtilisateurDAO.ObjectId(obj.id_utilisateur);
                         l.adresse = obj.adresse;
                         l.ville = obj.ville;
                         l.bp = obj.bp;
@@ -138,7 +139,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void Supprimer(List<long> ids)
+        public void Supprimer(List<string> ids)
         {
             try
             {
@@ -205,7 +206,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Agence Object(string code)
+        public static Agence ObjectCode(string code)
         {
             try
             {
@@ -234,7 +235,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Agence Object(long id)
+        public static Agence ObjectId(string id)
         {
             try
             {

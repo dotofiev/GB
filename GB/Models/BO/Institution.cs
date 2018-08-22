@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.GB;
+using GB.Models.Interfaces;
 using GB.Models.Static;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Institution : BO
+    public class Institution : BO, IBO<object>
     {
         public string motto { get; set; }
         public string pub { get; set; }
@@ -16,7 +17,7 @@ namespace GB.Models.BO
         public string type { get; set; }
         public GBFichier logo { get; set; }
 
-        public Institution(long id)
+        public Institution(string id)
         {
             this.id = id;
             this.logo = new GBFichier();
@@ -27,9 +28,24 @@ namespace GB.Models.BO
             this.logo = new GBFichier();
         }
 
-        public override void Crer_Id()
+        public void Crer_Id()
         {
-            this.id = Tests.Program.db.institutions.Count + 1;
+            this.id = (Tests.Program.db.institutions.Count + 1).ToString();
+        }
+
+        public object ToEntities()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FromEntities(object entitie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ModifyEntities(object entitie)
+        {
+            throw new NotImplementedException();
         }
     }
 }

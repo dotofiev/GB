@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.Helper;
+using GB.Models.Interfaces;
 using GB.Models.Static;
 using GB.Models.Tests;
 using System;
@@ -9,7 +10,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Menu : BO
+    public class Menu : BO, IBO<object>
     {
         // -- Privé -- //
         private GroupeMenu _groupe_menu { get; set; }
@@ -20,18 +21,18 @@ namespace GB.Models.BO
             set {
                 this._groupe_menu = value;
                 // -- Mise à jour de l'identifiant du controlleur -- //
-                this.id_controller = value?.id ?? 0;
+                this.id_controller = value?.id ?? "0";
             }
         }
         public List<Autorisation> autorisations { get; set; }
         public string view { get; set; }
-        public long id_controller { get; set; }
-        public long id_groupe_menu { get; set; }
-        public Nullable<long> id_menu_parent { get; set; }
+        public string id_controller { get; set; }
+        public string id_groupe_menu { get; set; }
+        public string id_menu_parent { get; set; }
         public Menu menu_parent { get; set; }
         public List<Menu> menus_enfant { get; set; }
 
-        public Menu(long id, string view)
+        public Menu(string id, string view)
         {
             this.id = id;
             this.groupe_menu = new GroupeMenu();
@@ -107,7 +108,7 @@ namespace GB.Models.BO
                         groupe_menus.Add(role_menu.menu.groupe_menu);
                     }
                     // -- Ajout des menus distincs qui n'ont pas de parent -- //
-                    if (!role_menu.menu.id_menu_parent.HasValue)
+                    if (string.IsNullOrEmpty(role_menu.menu.id_menu_parent))
                     {
                         menus.Add(role_menu.menu);
                     }
@@ -138,9 +139,24 @@ namespace GB.Models.BO
             return HTML;
         }
 
-        public override void Crer_Id()
+        public void Crer_Id()
         {
-            this.id = Program.db.menus.Count + 1;
+            this.id = (Program.db.menus.Count + 1).ToString();
+        }
+
+        public object ToEntities()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FromEntities(object entitie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ModifyEntities(object entitie)
+        {
+            throw new NotImplementedException();
         }
     }
 }

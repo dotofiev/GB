@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.GB;
+using GB.Models.Interfaces;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -10,18 +11,18 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class CompteBanqueDAO : DAO
+    public class CompteBanqueDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_CompteBanque; } }
         public string context_id { get; set; }
-        public long id_utilisateur { get; set; }
+        public string id_utilisateur { get; set; }
         public string form_combo_id { get { return "form_id_compteBanque"; } }
         public string form_combo_code { get { return "form_code_compteBanque"; } }
         public string form_name { get { return "compteBanque"; } }
         public string form_combo_libelle { get { return "form_libelle_compteBanque"; } }
 
 
-        public CompteBanqueDAO(string context_id, long id_utilisateur)
+        public CompteBanqueDAO(string context_id, string id_utilisateur)
         {
             this.context_id = context_id;
             this.id_utilisateur = id_utilisateur;
@@ -46,9 +47,9 @@ namespace GB.Models.DAO
                 obj.id_utilisateur_createur = this.id_utilisateur;
 
                 // -- Mise à jour des references -- //
-                obj.utilisateur_createur = UtilisateurDAO.Object(this.id_utilisateur);
-                obj.compte = CompteDAO.Object(obj.id_compte);
-                obj.banque = BanqueDAO.Object(obj.id_banque);
+                obj.utilisateur_createur = UtilisateurDAO.ObjectId(this.id_utilisateur);
+                obj.compte = CompteDAO.ObjectId(obj.id_compte);
+                obj.banque = BanqueDAO.ObjectId(obj.id_banque);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.comptes_banque.Add(obj);
@@ -102,8 +103,8 @@ namespace GB.Models.DAO
                         // -- Mise à jour de l'enregistrement -- //
                         l.id_compte = obj.id_compte;
                         l.id_banque = obj.id_banque;
-                        l.compte = CompteDAO.Object(obj.id_compte);
-                        l.banque = BanqueDAO.Object(obj.id_banque);
+                        l.compte = CompteDAO.ObjectId(obj.id_compte);
+                        l.banque = BanqueDAO.ObjectId(obj.id_banque);
                     });
 
                 // -- Execution des Hubs -- //
@@ -133,7 +134,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void Supprimer(List<long> ids)
+        public void Supprimer(List<string> ids)
         {
             try
             {
@@ -200,7 +201,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static CompteBanque Object(string code)
+        public static CompteBanque ObjectCode(string code)
         {
             try
             {
@@ -229,7 +230,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static CompteBanque Object(long id)
+        public static CompteBanque ObjectId(string id)
         {
             try
             {

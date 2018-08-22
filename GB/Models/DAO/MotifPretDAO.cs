@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.GB;
+using GB.Models.Interfaces;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -10,18 +11,18 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class MotifPretDAO : DAO
+    public class MotifPretDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_MotifPret; } }
         public string context_id { get; set; }
-        public long id_utilisateur { get; set; }
+        public string id_utilisateur { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "motif_pret"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public MotifPretDAO(string context_id, long id_utilisateur)
+        public MotifPretDAO(string context_id, string id_utilisateur)
         {
             this.context_id = context_id;
             this.id_utilisateur = id_utilisateur;
@@ -115,7 +116,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void Supprimer(List<long> ids)
+        public void Supprimer(List<string> ids)
         {
             try
             {
@@ -179,7 +180,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static MotifPret Object(string code)
+        public static MotifPret ObjectCode(string code)
         {
             try
             {
@@ -208,7 +209,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static MotifPret Object(long id)
+        public static MotifPret Object(string id)
         {
             try
             {

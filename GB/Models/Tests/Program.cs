@@ -36,11 +36,11 @@ namespace GB.Models.Tests
             });
             // -- Parent -- //
             db.menus.ForEach(l => {
-                l.menu_parent = db.menus.FirstOrDefault(ll => ll.id == (l.id_menu_parent ?? 0));
+                l.menu_parent = db.menus.FirstOrDefault(ll => ll.id == l.id_menu_parent);
             });
             // -- Enfant -- //
             db.menus.ForEach(l => {
-                l.menus_enfant = db.menus.Where(ll => (ll.id_menu_parent?? 0) == l.id).ToList();
+                l.menus_enfant = db.menus.Where(ll => ll.id_menu_parent == l.id).ToList();
             });
             // -- Autorisation -- //
             db.autorisations.ForEach(l => {
@@ -118,7 +118,7 @@ namespace GB.Models.Tests
                 l.agence = db.agences.FirstOrDefault(ll => ll.id == l.id_agence);
                 l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur_createur);
                 l.compte = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte);
-                l.compte_emetteur = db.comptes.FirstOrDefault(ll => ll.id == (l.id_compte_emetteur?? 0));
+                l.compte_emetteur = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte_emetteur);
             });
             // -- CompteBanque -- //
             db.comptes_banque.ForEach(l =>

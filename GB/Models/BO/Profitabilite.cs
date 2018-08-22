@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.Helper;
+using GB.Models.Interfaces;
 using GB.Models.Static;
 using GB.Models.Tests;
 using System;
@@ -9,20 +10,35 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Profitabilite : BO
+    public class Profitabilite : BO, IBO<object>
     {
         public string type { get; set; }
 
-        public Profitabilite(long id)
+        public Profitabilite(string id)
         {
             this.id = id;
         }
 
         public Profitabilite() { }
 
-        public override void Crer_Id()
+        public void Crer_Id()
         {
-            this.id = Program.db.profitabilites.Count + 1;
+            this.id = (Program.db.profitabilites.Count + 1).ToString();
+        }
+
+        public object ToEntities()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FromEntities(object entitie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ModifyEntities(object entitie)
+        {
+            throw new NotImplementedException();
         }
     }
 }

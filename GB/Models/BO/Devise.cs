@@ -7,24 +7,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using GB.Models.Entites;
+using GB.Models.Interfaces;
 
 namespace GB.Models.BO
 {
-    public class Devise : BO
+    public class Devise : BO, IBO<devise>
     {
         public string signe { get; set; }
         public bool devise_actuelle { get; set; }
+        public long date_creation { get; set; }
 
-        public Devise(long id)
+        public Devise(string id)
         {
             this.id = id;
         }
 
         public Devise() { }
 
-        public override void Crer_Id()
+        public void Crer_Id()
         {
-            this.id = Program.db.devises.Count + 1;
+            this.id = (Program.db.devises.Count + 1).ToString();
         }
 
         public devise ToEntities()
@@ -40,14 +42,25 @@ namespace GB.Models.BO
             };
         }
 
-        public void CopierInEntities(ref devise obj)
+        public void FromEntities(devise entitie)
         {
-            obj.CurrentCurrency = (this.devise_actuelle ? GB_Enum_Yes_No.Yes
-                                                        : GB_Enum_Yes_No.No).ToString();
-            obj.devcod = this.code;
-            obj.devdate = DateTime.Now;
-            obj.devlib = this.libelle;
-            obj.devsign = this.signe;
+            this.id = entitie.devcod;
+            this.code = entitie.devcod;
+            this.libelle = entitie.devlib;
+            this.signe = entitie.devsign;
+            this.devise_actuelle = entitie.CurrentCurrency == "Yes";
+            this.date_creation = entitie.devdate?.Ticks ?? DateTime.Now.Ticks;
+        }
+
+        public void ModifyEntities(devise entitie)
+        {
+            entitie.devcod = this.id;
+            entitie.devcod = this.code;
+            entitie.devlib = this.libelle;
+            entitie.devsign = this.signe;
+            entitie.CurrentCurrency = this.devise_actuelle ? "Yes" 
+                                                           : "No";
+            //entitie.devdate = new DateTime(this.date_creation);
         }
     }
 }

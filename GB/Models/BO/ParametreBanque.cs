@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.Helper;
+using GB.Models.Interfaces;
 using GB.Models.Static;
 using GB.Models.Tests;
 using System;
@@ -9,25 +10,40 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class ParametreBanque : BO
+    public class ParametreBanque : BO, IBO<object>
     {
-        public long id_devise { get; set; }
+        public string id_devise { get; set; }
         public Devise devise { get; set; }
         public double taux { get; set; }
         public int montant { get; set; }
         public int montant_minimal { get; set; }
         public int montant_maximal { get; set; }
 
-        public ParametreBanque(long id)
+        public ParametreBanque(string id)
         {
             this.id = id;
         }
 
         public ParametreBanque() { }
 
-        public override void Crer_Id()
+        public void Crer_Id()
         {
-            this.id = Program.db.parametres_banque.Count + 1;
+            this.id = (Program.db.parametres_banque.Count + 1).ToString();
+        }
+
+        public object ToEntities()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FromEntities(object entitie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ModifyEntities(object entitie)
+        {
+            throw new NotImplementedException();
         }
     }
 }

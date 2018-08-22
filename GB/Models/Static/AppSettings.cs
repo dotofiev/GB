@@ -16,5 +16,6 @@ namespace GB.Models.Static
         public static string FORMAT_DATE { get { return System.Configuration.ConfigurationManager.AppSettings["FORMAT_DATE"]; } }
         public static bool DONNEE_EN_TEMPS_REEL { get { return Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["DONNEE_EN_TEMPS_REEL"]); } }
         public static bool CONNEXION_UTILISATEUR_MULTI_POSTE { get { return Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["CONNEXION_UTILISATEUR_MULTI_POSTE"]); } }
+        public static bool CONNEXION_DB_BANKINGENTITIES { get { return Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["CONNEXION_DB_BANKINGENTITIES"]); } }
     }
 }

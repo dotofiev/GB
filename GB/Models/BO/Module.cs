@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.Helper;
+using GB.Models.Interfaces;
 using GB.Models.Static;
 using GB.Models.Tests;
 using System;
@@ -9,11 +10,11 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Module : BO
+    public class Module : BO, IBO<object>
     {
         public List<GroupeMenu> groupe_menus { get; set; }
 
-        public Module(long id)
+        public Module(string id)
         {
             this.id = id;
             this.groupe_menus = new List<GroupeMenu>();
@@ -48,9 +49,24 @@ namespace GB.Models.BO
                 : string.Empty;
         }
 
-        public override void Crer_Id()
+        public void Crer_Id()
         {
-            this.id = Program.db.modules.Count + 1;
+            this.id = (Program.db.modules.Count + 1).ToString();
+        }
+
+        public object ToEntities()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FromEntities(object entitie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ModifyEntities(object entitie)
+        {
+            throw new NotImplementedException();
         }
     }
 }

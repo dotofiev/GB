@@ -410,7 +410,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationBudget_ExerciceFiscal)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ExerciceFiscalDAO.Object(code);
+                    var obj = ExerciceFiscalDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -443,7 +443,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_DirectionBudget)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = DirectionBudgetDAO.Object(code);
+                    var obj = DirectionBudgetDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -471,7 +471,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_AutoriteSignature)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = AutoriteSignatureDAO.Object(code);
+                    var obj = AutoriteSignatureDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -501,7 +501,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetRevenu)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ParametreBudgetRevenuDAO.Object(code);
+                    var obj = ParametreBudgetRevenuDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -529,7 +529,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ParametreBudgetFraisDAO.Object(code);
+                    var obj = ParametreBudgetFraisDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -772,7 +772,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationBudget_ExerciceFiscal)
                 {
                     // -- Service de suppression -- //
-                    exerciceFiscalDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    exerciceFiscalDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 
@@ -780,7 +780,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_DirectionBudget)
                 {
                     // -- Service de suppression -- //
-                    directionBudgetDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    directionBudgetDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 
@@ -788,7 +788,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_AutoriteSignature)
                 {
                     // -- Service de suppression -- //
-                    autoriteSignatureDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    autoriteSignatureDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 
@@ -796,7 +796,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetRevenu)
                 {
                     // -- Service de suppression -- //
-                    parametreBudgetRevenuDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    parametreBudgetRevenuDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 
@@ -804,7 +804,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais)
                 {
                     // -- Service de suppression -- //
-                    parametreBudgetFraisDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    parametreBudgetFraisDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 

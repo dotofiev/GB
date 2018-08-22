@@ -467,7 +467,7 @@ namespace GB.Controllers
 
         // -- Selectionner un nouvel enregistrement dans la liste -- //
         [HttpPost]
-        public ActionResult Selection_Enregistrement(string code, long? id, string id_page)
+        public ActionResult Selection_Enregistrement(string code, string id, string id_page)
         {
             try
             {
@@ -476,7 +476,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationOperation_TypePret)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = TypePretDAO.Object(code);
+                    var obj = TypePretDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -503,7 +503,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_MotifPret)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = MotifPretDAO.Object(code);
+                    var obj = MotifPretDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -527,7 +527,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_ClassificationProvisionsPret)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ClassificationProvisionsPretDAO.Object(code);
+                    var obj = ClassificationProvisionsPretDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -556,7 +556,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeGarantie)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = TypeGarantieDAO.Object(code);
+                    var obj = TypeGarantieDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -581,7 +581,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = JournalDAO.Object(code);
+                    var obj = JournalDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -605,7 +605,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = TypeActifDAO.Object(code);
+                    var obj = TypeActifDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -629,7 +629,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = LocalisationActifDAO.Object(code);
+                    var obj = LocalisationActifDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -653,7 +653,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = WesternUnionZonePaysDAO.Object(id?? 0);
+                    var obj = WesternUnionZonePaysDAO.ObjectId(id);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -679,7 +679,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_Compte)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = CompteDAO.Object(code);
+                    var obj = CompteDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -707,7 +707,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_CompteConfiguration)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = CompteDAO.Object(code);
+                    var obj = CompteDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -848,7 +848,7 @@ namespace GB.Controllers
                     Boolean multi_cas = objet.numero_compte.Length > 3;
 
                     // -- Initialiser l'id -- //
-                    long id = Program.db.comptes.Max(l => l.id) + 1;
+                    long id = Program.db.comptes.Max(l => Convert.ToInt64(l.id)) + 1;
                     #endregion
 
                     // -- Traitement des cas -- //
@@ -856,14 +856,14 @@ namespace GB.Controllers
                     // -- 2, 3 -- //
                     for (int i = 2; i <= 3; i++)
                     {
-                        if ((multi_cas || objet.numero_compte.Length == i) && CompteDAO.Object(objet.numero_compte.Substring(0, i)) == null)
+                        if ((multi_cas || objet.numero_compte.Length == i) && CompteDAO.ObjectCode(objet.numero_compte.Substring(0, i)) == null)
                         {
                             (this.con.donnee.nouveau_compte as List<Compte>).Add(
                                 new Compte
                                 {
                                     code = objet.numero_compte.Substring(0, i),
                                     libelle = string.Empty,
-                                    id = (id++),
+                                    id = (id++).ToString(),
                                 }
                             );
                         }
@@ -873,28 +873,28 @@ namespace GB.Controllers
                     {
                         if (objet.numero_compte.Length >= i)
                         {
-                            if (multi_cas && CompteDAO.Object(objet.numero_compte.Substring(0, i)) == null)
+                            if (multi_cas && CompteDAO.ObjectCode(objet.numero_compte.Substring(0, i)) == null)
                             {
                                 (this.con.donnee.nouveau_compte as List<Compte>).Add(
                                     new Compte
                                     {
                                         code = objet.numero_compte.Substring(0, i),
                                         libelle = string.Empty,
-                                        id = (id++),
+                                        id = (id++).ToString(),
                                     }
                                 );
                             }
                         }
                     }
                     // -- 10 -- //
-                    if (multi_cas && objet.numero_compte.Length == 10 && CompteDAO.Object(objet.numero_compte) == null)
+                    if (multi_cas && objet.numero_compte.Length == 10 && CompteDAO.ObjectCode(objet.numero_compte) == null)
                     {
                         (this.con.donnee.nouveau_compte as List<Compte>).Add(
                             new Compte
                             {
                                 code = objet.numero_compte,
                                 libelle = string.Empty,
-                                id = (id++),
+                                id = (id++).ToString(),
                                 cle = GBClass.Alea_Cle_Compte()
                             }
                         );
@@ -1151,7 +1151,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationOperation_TypePret)
                 {
                     // -- Service de suppression -- //
-                    typePretDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    typePretDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 
@@ -1159,7 +1159,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_MotifPret)
                 {
                     // -- Service de suppression -- //
-                    motifPretDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    motifPretDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 
@@ -1167,7 +1167,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_ClassificationProvisionsPret)
                 {
                     // -- Service de suppression -- //
-                    classificationProvisionsPretDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    classificationProvisionsPretDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 
@@ -1175,7 +1175,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeGarantie)
                 {
                     // -- Service de suppression -- //
-                    typeGarantieDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    typeGarantieDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 
@@ -1183,7 +1183,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
                 {
                     // -- Service de suppression -- //
-                    journalDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    journalDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 
@@ -1191,7 +1191,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
                 {
                     // -- Service de suppression -- //
-                    typeActifDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    typeActifDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 
@@ -1199,7 +1199,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
                 {
                     // -- Service de suppression -- //
-                    localisationActifDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    localisationActifDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 
@@ -1207,7 +1207,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
                 {
                     // -- Service de suppression -- //
-                    westernUnionZonePaysDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    westernUnionZonePaysDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 
@@ -1215,7 +1215,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_Compte)
                 {
                     // -- Service de suppression -- //
-                    compteDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    compteDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 

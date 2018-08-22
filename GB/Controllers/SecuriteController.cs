@@ -252,7 +252,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.Securite_Module)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ModuleDAO.Object(code);
+                    var obj = ModuleDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -277,7 +277,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.Securite_Role)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = RoleDAO.Object(code);
+                    var obj = RoleDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -302,7 +302,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.Securite_Menu)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = MenuDAO.Object(code);
+                    var obj = MenuDAO.ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -360,12 +360,12 @@ namespace GB.Controllers
 
         // -- Rchercher les autorisations d'un role -- //
         [HttpPost]
-        public ActionResult Role_Rechercher_Autorisation(long id_role)
+        public ActionResult Role_Rechercher_Autorisation(string id_role)
         {
             try
             {
                 // -- Départ de l'id session -- //
-                long id_autorisation = AutorisationDAO.Crer_Id() + 1;
+                long id_autorisation = Convert.ToInt32(AutorisationDAO.Crer_Id()) + 1;
                 // -- Définition de l'id_role rechercher -- //
                 this.con.donnee.id_role = id_role;
                 // -- Mise à jour des autorisation -- //
@@ -381,7 +381,7 @@ namespace GB.Controllers
                            .Select(l =>
                                 new Autorisation()
                                 {
-                                    id = (id_autorisation++),
+                                    id = (id_autorisation++).ToString(),
                                     code = (id_autorisation - 1).ToString(),
                                     ajouter = false,
                                     modifier = false,
@@ -432,7 +432,7 @@ namespace GB.Controllers
             try
             {
                 // -- Mise à jour des autorisation en session -- //
-                GBConvert.JSON_To<List<long>>(ids).ForEach(id_menu =>
+                GBConvert.JSON_To<List<string>>(ids).ForEach(id_menu =>
                 {
                     if (id_action == "1")
                     {
@@ -527,7 +527,7 @@ namespace GB.Controllers
                 else
                 {
                     // -- Convertion de la selection -- //
-                    List<long> ids = GBConvert.JSON_To<List<long>>(data);
+                    List<string> ids = GBConvert.JSON_To<List<string>>(data);
 
                     // -- Suppression dans les autorisation temporaire -- //
                     (this.con.donnee.autorisation as List<Autorisation>).RemoveAll(l => ids.Count(ll => ll == l.id_menu) != 0);
@@ -538,7 +538,7 @@ namespace GB.Controllers
                         (this.con.donnee.autorisation_disponible as List<Autorisation>).Add(
                             new Autorisation
                             {
-                                id = 0,
+                                id = "0",
                                 id_menu = id_menu,
                                 id_role = Convert.ToInt64(this.con.donnee.id_role),
                                 ajouter = false,
@@ -593,7 +593,7 @@ namespace GB.Controllers
                 Verifier_Autorisation(GB_Enum_Action_Controller.Modifier);
 
                 // -- Mise à jour des traitements -- //
-                autorisationDAO.Modifier((this.con.donnee.autorisation as List<Autorisation>), (long)this.con.donnee.id_role);
+                autorisationDAO.Modifier((this.con.donnee.autorisation as List<Autorisation>), this.con.donnee.id_role);
 
                 // -- Notificication -- //
                 this.ViewBag.notification = new GBNotification(false);
@@ -778,7 +778,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.Securite_Module)
                 {
                     // -- Service de suppression -- //
-                    moduleDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    moduleDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 
@@ -786,7 +786,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.Securite_Role)
                 {
                     // -- Service de suppression -- //
-                    roleDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    roleDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 
@@ -794,7 +794,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.Securite_Menu)
                 {
                     // -- Service de suppression -- //
-                    menuDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    menuDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 
@@ -837,14 +837,14 @@ namespace GB.Controllers
 
         // -- Retourner le fichier de la langue à affecter aux tables de données -- //
         [HttpPost]
-        public ActionResult Arbre_Menu(long? id_controller)
+        public ActionResult Arbre_Menu(string id_controller)
         {
             try
             {
                 // -- Resultat -- //
                 string donnee = $"<option value=\"\" title=\"{App_Lang.Lang.Select}...\">{App_Lang.Lang.Select}...</option>";
 
-                if (id_controller.HasValue)
+                if (!string.IsNullOrEmpty(id_controller))
                 {
                     // -- réccupération du contenu JSON -- //
                     dynamic dynamic_obj = JsonConvert.DeserializeObject(System.IO.File.ReadAllText(url_data + "arbre_menu.json"));
@@ -853,7 +853,7 @@ namespace GB.Controllers
                     for (int i = 0; i < (dynamic_obj as Newtonsoft.Json.Linq.JArray).Count; i++)
                     {
                         // -- Vérifier si c'est le bon controlleur -- //
-                        if (id_controller.Value == Convert.ToInt64((dynamic_obj[i]["controller"]["id"] as Newtonsoft.Json.Linq.JValue).Value))
+                        if (id_controller == Convert.ToString((dynamic_obj[i]["controller"]["id"] as Newtonsoft.Json.Linq.JValue).Value))
                         {
                             // -- Parcourir les vues -- //
                             foreach (var vue in (dynamic_obj[i]["views"] as Newtonsoft.Json.Linq.JArray))

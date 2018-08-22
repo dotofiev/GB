@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.GB;
+using GB.Models.Interfaces;
 using GB.Models.Static;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,12 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class CompteAgence : BO
+    public class CompteAgence : BO, IBO<object>
     {
-        public long id_utilisateur_createur { get; set; }
-        public long id_compte { get; set; }
-        public long id_agence { get; set; }
-        public long? id_compte_emetteur { get; set; }
+        public string id_utilisateur_createur { get; set; }
+        public string id_compte { get; set; }
+        public string id_agence { get; set; }
+        public string id_compte_emetteur { get; set; }
         public Compte compte { get; set; }
         public Utilisateur utilisateur_createur { get; set; }
         public Compte compte_emetteur { get; set; }
@@ -21,16 +22,31 @@ namespace GB.Models.BO
         public string type { get; set; }
         public long date_creation { get; set; }
 
-        public CompteAgence(long id)
+        public CompteAgence(string id)
         {
             this.id = id;
         }
 
         public CompteAgence() { }
 
-        public override void Crer_Id()
+        public void Crer_Id()
         {
-            this.id = Tests.Program.db.comptes_agence.Count + 1;
+            this.id = (Tests.Program.db.comptes_agence.Count + 1).ToString();
+        }
+
+        public object ToEntities()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FromEntities(object entitie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ModifyEntities(object entitie)
+        {
+            throw new NotImplementedException();
         }
 
         public static List<string> Classes_references

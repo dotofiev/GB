@@ -1,6 +1,7 @@
 ﻿using GB.Models.BO;
 using GB.Models.DAO;
 using GB.Models.GB;
+using GB.Models.Interfaces;
 using GB.Models.Static;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
@@ -112,7 +113,7 @@ namespace GB.Models.SignalR.Hubs
 
         // -- Mise à jour des combo box sur les pages des clients -- //
         #region Mise à jour des combo box sur les pages des clients
-        public static void RechargerCombo(DAO.DAO ObjetDAO, Boolean? classCSS = false)
+        public static void RechargerCombo(IDAO ObjetDAO, Boolean? classCSS = false)
         {
             try
             {
@@ -191,7 +192,7 @@ namespace GB.Models.SignalR.Hubs
 
         // -- Mise à jour des combox box easyAutocomplete chez tous les clients présent sur la page -- //
         #region Mise à jour des combox box easyAutocomplete chez tous les clients présent sur la page
-        public static void RechargerComboEasyAutocomplete(DAO.DAO ObjetDAO, string context_id)
+        public static void RechargerComboEasyAutocomplete(IDAO ObjetDAO, string context_id)
         {
             try
             {

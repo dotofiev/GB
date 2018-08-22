@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.GB;
+using GB.Models.Interfaces;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -10,18 +11,18 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class CompteAgenceDAO : DAO
+    public class CompteAgenceDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_CompteAgence; } }
         public string context_id { get; set; }
-        public long id_utilisateur { get; set; }
+        public string id_utilisateur { get; set; }
         public string form_combo_id { get { return "form_id_compteAgence"; } }
         public string form_combo_code { get { return "form_code_compteAgence"; } }
         public string form_name { get { return "compteAgence"; } }
         public string form_combo_libelle { get { return "form_libelle_compteAgence"; } }
 
 
-        public CompteAgenceDAO(string context_id, long id_utilisateur)
+        public CompteAgenceDAO(string context_id, string id_utilisateur)
         {
             this.context_id = context_id;
             this.id_utilisateur = id_utilisateur;
@@ -40,7 +41,7 @@ namespace GB.Models.DAO
                 }
 
                 // -- valider la nécessité du champ compte_emetteur -- //
-                if (obj.type != "COMPENSATION" && (!obj.id_compte_emetteur.HasValue || obj.id_compte_emetteur.Value == 0))
+                if (obj.type != "COMPENSATION" && (string.IsNullOrEmpty(obj.id_compte_emetteur) || Convert.ToInt64(obj.id_compte_emetteur) == 0))
                 {
                     throw new GBException(App_Lang.Lang.Required_field + $" [{App_Lang.Lang.Issue}]");
                 }
@@ -48,7 +49,7 @@ namespace GB.Models.DAO
                 // -- Mise à jour des valeurs -- //
                 if (obj.type == "COMPENSATION")
                 {
-                    obj.id_compte_emetteur = 0;
+                    obj.id_compte_emetteur = "0";
                 }
 
                 // -- Définition de l'identifiant -- //
@@ -58,10 +59,10 @@ namespace GB.Models.DAO
                 obj.id_utilisateur_createur = this.id_utilisateur;
 
                 // -- Mise à jour des references -- //
-                obj.utilisateur_createur = UtilisateurDAO.Object(this.id_utilisateur);
-                obj.compte = CompteDAO.Object(obj.id_compte);
-                obj.compte_emetteur = CompteDAO.Object((obj.id_compte_emetteur?? 0));
-                obj.agence = AgenceDAO.Object(obj.id_agence);
+                obj.utilisateur_createur = UtilisateurDAO.ObjectId(this.id_utilisateur);
+                obj.compte = CompteDAO.ObjectId(obj.id_compte);
+                obj.compte_emetteur = CompteDAO.ObjectId(obj.id_compte_emetteur);
+                obj.agence = AgenceDAO.ObjectId(obj.id_agence);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.comptes_agence.Add(obj);
@@ -104,7 +105,7 @@ namespace GB.Models.DAO
                 }
 
                 // -- valider la nécessité du champ compte_emetteur -- //
-                if (obj.type != "COMPENSATION" && (!obj.id_compte_emetteur.HasValue || obj.id_compte_emetteur.Value == 0))
+                if (obj.type != "COMPENSATION" && (string.IsNullOrEmpty(obj.id_compte_emetteur) || Convert.ToInt64(obj.id_compte_emetteur) == 0))
                 {
                     throw new GBException(App_Lang.Lang.Required_field + $" [{App_Lang.Lang.Issue}]");
                 }
@@ -112,7 +113,7 @@ namespace GB.Models.DAO
                 // -- Mise à jour des valeurs -- //
                 if (obj.type == "COMPENSATION")
                 {
-                    obj.id_compte_emetteur = 0;
+                    obj.id_compte_emetteur = "0";
                 }
 
                 // -- Modification de la valeur -- //
@@ -128,9 +129,9 @@ namespace GB.Models.DAO
                         l.id_compte = obj.id_compte;
                         l.id_compte_emetteur = obj.id_compte_emetteur;
                         l.type = obj.type;
-                        l.compte = CompteDAO.Object(obj.id_compte);
-                        l.agence = AgenceDAO.Object(obj.id_agence);
-                        l.compte_emetteur = CompteDAO.Object((obj.id_compte_emetteur ?? 0));
+                        l.compte = CompteDAO.ObjectId(obj.id_compte);
+                        l.agence = AgenceDAO.ObjectId(obj.id_agence);
+                        l.compte_emetteur = CompteDAO.ObjectId(obj.id_compte_emetteur);
                     });
 
                 // -- Execution des Hubs -- //
@@ -160,7 +161,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void Supprimer(List<long> ids)
+        public void Supprimer(List<string> ids)
         {
             try
             {
@@ -227,7 +228,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static CompteAgence Object(string code)
+        public static CompteAgence ObjectCode(string code)
         {
             try
             {
@@ -256,7 +257,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static CompteAgence Object(long id)
+        public static CompteAgence ObjectId(string id)
         {
             try
             {

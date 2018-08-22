@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.GB;
+using GB.Models.Interfaces;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -10,18 +11,18 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class SocieteDAO : DAO
+    public class SocieteDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Societe; } }
         public string context_id { get; set; }
-        public long id_utilisateur { get; set; }
+        public string id_utilisateur { get; set; }
         public string form_combo_id { get { return "form_id_societe"; } }
         public string form_combo_code { get { return "form_code_societe"; } }
         public string form_name { get { return "societe"; } }
         public string form_combo_libelle { get { return "form_libelle_societe"; } }
 
 
-        public SocieteDAO(string context_id, long id_utilisateur)
+        public SocieteDAO(string context_id, string id_utilisateur)
         {
             this.context_id = context_id;
             this.id_utilisateur = id_utilisateur;
@@ -43,11 +44,11 @@ namespace GB.Models.DAO
                 obj.Crer_Id();
 
                 // -- Mise à jour des references -- //
-                obj.compte_interet_pret = CompteDAO.Object(obj.id_compte_interet_pret);
-                obj.compte_paiement = CompteDAO.Object(obj.id_compte_paiement);
-                obj.compte_pret = CompteDAO.Object(obj.id_compte_pret);
-                obj.compte_transit = CompteDAO.Object(obj.id_compte_transit);
-                obj.agence = AgenceDAO.Object(obj.id_agence);
+                obj.compte_interet_pret = CompteDAO.ObjectId(obj.id_compte_interet_pret);
+                obj.compte_paiement = CompteDAO.ObjectId(obj.id_compte_paiement);
+                obj.compte_pret = CompteDAO.ObjectId(obj.id_compte_pret);
+                obj.compte_transit = CompteDAO.ObjectId(obj.id_compte_transit);
+                obj.agence = AgenceDAO.ObjectId(obj.id_agence);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.societes.Add(obj);
@@ -104,11 +105,11 @@ namespace GB.Models.DAO
                         l.id_compte_pret = obj.id_compte_pret;
                         l.id_compte_transit = obj.id_compte_transit;
                         l.id_agence = obj.id_agence;
-                        l.compte_interet_pret = CompteDAO.Object(obj.id_compte_interet_pret);
-                        l.compte_paiement = CompteDAO.Object(obj.id_compte_paiement);
-                        l.compte_pret = CompteDAO.Object(obj.id_compte_pret);
-                        l.compte_transit = CompteDAO.Object(obj.id_compte_transit);
-                        l.agence = AgenceDAO.Object(obj.id_agence);
+                        l.compte_interet_pret = CompteDAO.ObjectId(obj.id_compte_interet_pret);
+                        l.compte_paiement = CompteDAO.ObjectId(obj.id_compte_paiement);
+                        l.compte_pret = CompteDAO.ObjectId(obj.id_compte_pret);
+                        l.compte_transit = CompteDAO.ObjectId(obj.id_compte_transit);
+                        l.agence = AgenceDAO.ObjectId(obj.id_agence);
                         l.type_traitement = obj.type_traitement;
                         l.base_de_calcul = obj.base_de_calcul;
                         l.code = obj.code;
@@ -142,7 +143,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void Supprimer(List<long> ids)
+        public void Supprimer(List<string> ids)
         {
             try
             {
@@ -209,7 +210,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Societe Object(string code)
+        public static Societe ObjectCode(string code)
         {
             try
             {
@@ -238,7 +239,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Societe Object(long id)
+        public static Societe ObjectId(string id)
         {
             try
             {

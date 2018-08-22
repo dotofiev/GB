@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.GB;
+using GB.Models.Interfaces;
 using GB.Models.Static;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,9 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Agence : BO
+    public class Agence : BO, IBO<object>
     {
-        public long id_utilisateur { get; set; }
+        public string id_utilisateur { get; set; }
         public Utilisateur utilisateur { get; set; }
         public string adresse { get; set; }
         public string ville { get; set; }
@@ -23,16 +24,31 @@ namespace GB.Models.BO
         public string ip { get; set; }
         public string mot_de_passe { get; set; }
 
-        public Agence(long id)
+        public Agence(string id)
         {
             this.id = id;
         }
 
         public Agence() { }
 
-        public override void Crer_Id()
+        public void Crer_Id()
         {
-            this.id = Tests.Program.db.agences.Count + 1;
+            this.id = (Tests.Program.db.agences.Count + 1).ToString();
+        }
+
+        public object ToEntities()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FromEntities(object entitie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ModifyEntities(object entitie)
+        {
+            throw new NotImplementedException();
         }
 
         public static List<string> Classes_references
