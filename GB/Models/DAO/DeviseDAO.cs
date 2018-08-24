@@ -35,6 +35,7 @@ namespace GB.Models.DAO
         {
             try
             {
+                #region Processus de teste
                 // -- Si l'application est branché à la base de données -- //
                 if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
                 {
@@ -56,6 +57,9 @@ namespace GB.Models.DAO
                         Mise_a_jour_devise_actuelle(obj.id);
                     }
                 }
+                #endregion
+
+                #region Processus fonctionnel
                 else
                 {
                     // -- Définition du context -- //
@@ -67,10 +71,17 @@ namespace GB.Models.DAO
                         // -- Enregistrement de la données -- //
                         db.devises.Add(obj.ToEntities());
 
+                        // -- Mise à jour de la devise atuelle -- //
+                        if (obj.devise_actuelle)
+                        {
+                            Mise_a_jour_devise_actuelle(obj.id, db);
+                        }
+
                         // -- Sauvegarder les changements -- //
                         db.SaveChanges();
                     }
                 }
+                #endregion
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
@@ -103,6 +114,7 @@ namespace GB.Models.DAO
         {
             try
             {
+                #region Processus de teste
                 // -- Si l'application est branché à la base de données -- //
                 if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
                 {
@@ -134,6 +146,9 @@ namespace GB.Models.DAO
                         Mise_a_jour_devise_actuelle(obj.id);
                     }
                 }
+                #endregion
+
+                #region Processus fonctionnel
                 else
                 {
                     // -- Définition du context -- //
@@ -157,10 +172,17 @@ namespace GB.Models.DAO
                         // -- Enregistrement de la données -- //
                         db.Entry<devise>(ancien_obj).State = System.Data.Entity.EntityState.Modified;
 
+                        // -- Mise à jour de la devise atuelle -- //
+                        if (obj.devise_actuelle)
+                        {
+                            Mise_a_jour_devise_actuelle(obj.id, db);
+                        }
+
                         // -- Sauvegarder les changements -- //
                         db.SaveChanges();
                     }
                 }
+                #endregion
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
@@ -194,6 +216,7 @@ namespace GB.Models.DAO
             try
             {
                 // -- Si l'application est branché à la base de données -- //
+                #region Processus de teste
                 if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
                 {
                     // -- Parcours de la liste des id -- //
@@ -203,6 +226,9 @@ namespace GB.Models.DAO
                         Program.db.devises.RemoveAll(l => l.id == id);
                     });
                 }
+                #endregion
+
+                #region Processus fonctionnel
                 else
                 {
                     // -- Définition du context -- //
@@ -217,10 +243,14 @@ namespace GB.Models.DAO
                             db.devises.Where(l => ids.Count(ll => ll.Equals(l.devcod)) != 0)
                         );
 
+                        // -- Mise à jour de la devise atuelle -- //
+                        Mise_a_jour_devise_actuelle(null, db, ids);
+
                         // -- Sauvegarder les changements -- //
                         db.SaveChanges();
                     }
                 }
+                #endregion
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
@@ -253,6 +283,7 @@ namespace GB.Models.DAO
         {
             try
             {
+                #region Processus de teste
                 // -- Si l'application est branché à la base de données -- //
                 if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
                 {
@@ -260,6 +291,9 @@ namespace GB.Models.DAO
                     return
                         Program.db.devises;
                 }
+                #endregion
+
+                #region Processus fonctionnel
                 else
                 {
                     // -- Définition du context -- //
@@ -274,6 +308,7 @@ namespace GB.Models.DAO
                             ).ToList();
                     }
                 }
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -300,6 +335,7 @@ namespace GB.Models.DAO
         {
             try
             {
+                #region Processus de teste
                 // -- Si l'application est branché à la base de données -- //
                 if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
                 {
@@ -307,6 +343,9 @@ namespace GB.Models.DAO
                     return
                         Program.db.devises.FirstOrDefault(l => l.devise_actuelle);
                 }
+                #endregion
+
+                #region Processus fonctionnel
                 else
                 {
                     // -- Définition du context -- //
@@ -321,6 +360,7 @@ namespace GB.Models.DAO
                             );
                     }
                 }
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -347,6 +387,7 @@ namespace GB.Models.DAO
         {
             try
             {
+                #region Processus de teste
                 // -- Si l'application est branché à la base de données -- //
                 if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
                 {
@@ -354,6 +395,9 @@ namespace GB.Models.DAO
                     return
                         Program.db.devises.FirstOrDefault(l => l.code == code);
                 }
+                #endregion
+
+                #region Processus fonctionnel
                 else
                 {
                     // -- Définition du context -- //
@@ -368,6 +412,7 @@ namespace GB.Models.DAO
                             );
                     }
                 }
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -393,6 +438,7 @@ namespace GB.Models.DAO
         {
             try
             {
+                #region Processus de teste
                 // -- Si l'application est branché à la base de données -- //
                 if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
                 {
@@ -400,6 +446,9 @@ namespace GB.Models.DAO
                     return
                         Program.db.devises.FirstOrDefault(l => l.id == id);
                 }
+                #endregion
+
+                #region Processus fonctionnel
                 else
                 {
                     // -- Définition du context -- //
@@ -414,6 +463,7 @@ namespace GB.Models.DAO
                             );
                     }
                 }
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -440,6 +490,7 @@ namespace GB.Models.DAO
         {
             try
             {
+                #region Processus de teste
                 // -- Si l'application est branché à la base de données -- //
                 if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
                 {
@@ -458,6 +509,9 @@ namespace GB.Models.DAO
                         }
                     );
                 }
+                #endregion
+
+                #region Processus fonctionnel
                 else
                 {
                     // -- Définition du context -- //
@@ -483,6 +537,73 @@ namespace GB.Models.DAO
 
                         // -- Sauvegarder les changements -- //
                         db.SaveChanges();
+                    }
+                }
+                #endregion
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(App_Lang.Lang.Error_message_notification);
+                }
+                else
+                {
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(ex.Message);
+                }
+            }
+            #endregion
+        }
+
+        private static void Mise_a_jour_devise_actuelle(string id, BankingEntities db, List<string> ids_supprimer = null)
+        {
+            try
+            {
+                // -- Si l'identifiant est retournée - //
+                if (id != null)
+                {
+                    // -- Rechercher l'objet à modifier -- //
+                    db.devises.Where(l => l.devcod != id && l.CurrentCurrency == "Yes")
+                        .ToList()
+                        .ForEach(ancien_obj =>
+                        {
+                            // -- Vérifier que l'objet est retournée -- //
+                            if (ancien_obj != null)
+                            {
+                                // -- Mise à jour de l'ancienne valeur -- //
+                                ancien_obj.CurrentCurrency = "No";
+
+                                // -- Enregistrement de la données -- //
+                                db.Entry<devise>(ancien_obj).State = System.Data.Entity.EntityState.Modified;
+                            }
+                        });
+                }
+                else
+                {
+                    // -- Vérifier si il n'existe plus de devise active -- //
+                    if(db.devises.Where(l => ids_supprimer.Count(ll => ll == l.devcod) == 0).Count(l => l.CurrentCurrency == "Yes") == 0)
+                    {
+                        // -- Réccupérer une devise à définir comme active -- //
+                        devise ancien_obj = db.devises.FirstOrDefault(l => ids_supprimer.Count(ll => ll == l.devcod) == 0);
+
+                        // -- Si la devise n'est pas trouvée -- //
+                        if(ancien_obj == null)
+                        {
+                            return;
+                        }
+                        
+                        // -- Mise à jour de l'ancienne valeur -- //
+                        ancien_obj.CurrentCurrency = "Yes";
+
+                        // -- Enregistrement de la données -- //
+                        db.Entry<devise>(ancien_obj).State = System.Data.Entity.EntityState.Modified;
                     }
                 }
             }

@@ -264,7 +264,7 @@ namespace GB.Models.Static
                     <i class=""fa fa-minus text-danger""></i>
                 </button>"
                 .Replace("{id}", id.ToString())
-                .Replace("{ids}", GBConvert.To_JavaScript(new string[] { id }))
+                .Replace("{ids}", $"['{id}']")
                 .Replace("{Lang.Delete}", App_Lang.Lang.Delete);
         }
         public static string HTML_Bouton_Suppression_Table(string id, string nom_fonction)
@@ -279,7 +279,7 @@ namespace GB.Models.Static
                 </button>"
                 .Replace("{fonction}", nom_fonction)
                 .Replace("{id}", id.ToString())
-                .Replace("{ids}", GBConvert.To_JavaScript(new string[] { id }))
+                .Replace("{ids}", $"['{id}']")
                 .Replace("{Lang.Delete}", App_Lang.Lang.Delete);
         }
 
