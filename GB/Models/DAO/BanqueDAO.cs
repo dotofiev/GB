@@ -14,18 +14,16 @@ namespace GB.Models.DAO
     public class BanqueDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Banque; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return "form_id_banque"; } }
         public string form_combo_code { get { return "form_code_banque"; } }
         public string form_name { get { return "banque"; } }
         public string form_combo_libelle { get { return "form_libelle_banque"; } }
 
 
-        public BanqueDAO(string context_id, string id_utilisateur)
+        public BanqueDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
         public void Ajouter(Banque obj)
@@ -39,9 +37,9 @@ namespace GB.Models.DAO
                 }
 
                 // -- Mise à jour des references -- //
-                obj.id_utilisateur_createur = this.id_utilisateur;
+                obj.id_utilisateur_createur = this.connexion.id_utilisateur;
                 obj.pays = PaysDAO.ObjectId(obj.id_pays);
-                obj.utilisateur_createur = UtilisateurDAO.ObjectId(this.id_utilisateur);
+                obj.utilisateur_createur = UtilisateurDAO.ObjectId(this.connexion.id_utilisateur);
 
                 // -- Champ obligatoire -- //
                 if (obj.pays == null)
@@ -56,7 +54,7 @@ namespace GB.Models.DAO
                 Program.db.banques.Add(obj);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -108,7 +106,7 @@ namespace GB.Models.DAO
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -143,7 +141,7 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)

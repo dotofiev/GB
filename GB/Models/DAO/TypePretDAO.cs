@@ -14,18 +14,16 @@ namespace GB.Models.DAO
     public class TypePretDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_TypePret; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "type_pret"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public TypePretDAO(string context_id, string id_utilisateur)
+        public TypePretDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
         public void Ajouter(TypePret obj)
@@ -45,7 +43,7 @@ namespace GB.Models.DAO
                 Program.db.types_pret.Add(obj);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -96,7 +94,7 @@ namespace GB.Models.DAO
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -131,7 +129,7 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)

@@ -14,18 +14,16 @@ namespace GB.Models.DAO
     public class DirectionBudgetDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBudget_DirectionBudget; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "direction_budget"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public DirectionBudgetDAO(string context_id, string id_utilisateur)
+        public DirectionBudgetDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
         public void Ajouter(DirectionBudget obj)
@@ -48,7 +46,7 @@ namespace GB.Models.DAO
                 Program.db.direction_dudget.Add(obj);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -101,7 +99,7 @@ namespace GB.Models.DAO
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -136,7 +134,7 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)

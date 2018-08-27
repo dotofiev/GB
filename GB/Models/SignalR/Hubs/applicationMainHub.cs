@@ -128,7 +128,7 @@ namespace GB.Models.SignalR.Hubs
                         // -- Les clients -- //
                         .Clients
                         // -- Spécification à tous les clients sauf moi -- //
-                        //.AllExcept(new string[] { context_id })
+                        //.AllExcept(new string[] { connexion })
                         // -- Spécifier à tous les clients -- //
                         .All
                         // -- Méthode à éexecuter chez le client -- //

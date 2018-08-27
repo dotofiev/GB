@@ -9,24 +9,23 @@ using System.Linq;
 using System.Web;
 using GB.Models.Entites;
 using GB.Models.Interfaces;
+using System.Data.Entity.Core.Objects;
 
 namespace GB.Models.DAO
 {
     public class DeviseDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Devise; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return "form_id_devise"; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "devise"; } }
         public string form_combo_libelle { get { return "form_libelle_devise"; } }
 
 
-        public DeviseDAO(string context_id, string id_utilisateur)
+        public DeviseDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
         public DeviseDAO() { }
@@ -68,8 +67,12 @@ namespace GB.Models.DAO
                         // -- Désactivation du Lasy loading -- //
                         db.Configuration.LazyLoadingEnabled = false;
 
+                        // -- Définition des variables -- //
+                        Dictionary<string, object> parametres = new Dictionary<string, object>();
+                        parametres.Add("date_creation", this.connexion.date_serveur);
+
                         // -- Enregistrement de la données -- //
-                        db.devises.Add(obj.ToEntities());
+                        db.devises.Add(obj.ToEntities(parametres));
 
                         // -- Mise à jour de la devise atuelle -- //
                         if (obj.devise_actuelle)
@@ -86,7 +89,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new DeviseDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -187,7 +190,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new DeviseDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -255,7 +258,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new DeviseDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch

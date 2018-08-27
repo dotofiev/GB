@@ -12,12 +12,14 @@ namespace GB.Models.GB
     {
         // -- Privé -- //
         private DateTime _date_connexion { get; set; }
+        private DateTime _date_serveur { get; set; }
         private string _id_utilisateur { get; set; }
         private string _id_role { get; set; }
         private string _compte { get; set; }
         private string _mot_de_passe { get; set; }
         private string _url_photo_profil { get; set; }
         private string _nom_utilisateur { get; set; }
+        private string _nom_ordinateur { get; set; }
         private dynamic _donnee { get; set; }
         private string _session_id { get; set; }
         private string _id_navigateur_client { get; set; }
@@ -28,9 +30,11 @@ namespace GB.Models.GB
         public string mot_de_passe { get { return _mot_de_passe; } }
         public string url_photo_profil { get { return _url_photo_profil; } }
         public string nom_utilisateur { get { return _nom_utilisateur; } }
+        public string nom_ordinateur { get { return _nom_ordinateur; } }
         public string session_id { get { return _session_id; } }
         public string id_navigateur_client { get { return _id_navigateur_client; } }
         public DateTime date_connexion { get { return _date_connexion; } }
+        public DateTime date_serveur { get { return _date_serveur; } }
         public string id_utilisateur { get { return _id_utilisateur; } }
         public string hub_id_context { get { return _hub_id_context; } }
         public string id_role { get { return _id_role; } }
@@ -76,6 +80,16 @@ namespace GB.Models.GB
         public void Charger_ConnectionId_Hub(string context_id)
         {
             this._hub_id_context = context_id;
+        }
+
+        public void ChargerDateServeur(DateTime valeur)
+        {
+            this._date_serveur = valeur;
+        }
+
+        public void ChargerNomOrdinateur(string valeur)
+        {
+            this._nom_ordinateur = valeur;
         }
         #endregion
     }

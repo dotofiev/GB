@@ -14,18 +14,16 @@ namespace GB.Models.DAO
     public class CompteDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_Compte; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return "form_id_compte"; } }
         public string form_combo_code { get { return "form_code_compte"; } }
         public string form_name { get { return "compte"; } }
         public string form_combo_libelle { get { return "form_libelle_compte"; } }
 
 
-        public CompteDAO(string context_id, string id_utilisateur)
+        public CompteDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
         public void Ajouter(List<Compte> objs)
@@ -33,7 +31,7 @@ namespace GB.Models.DAO
             try
             {
                 // -- Obj utilisateur créateur -- //
-                Utilisateur utilisateur_createur = UtilisateurDAO.ObjectId(id_utilisateur);
+                Utilisateur utilisateur_createur = UtilisateurDAO.ObjectId(this.connexion.id_utilisateur);
 
                 // -- Mise à jour de l'objet devise -- //
                 Devise devise = DeviseDAO.Actif();
@@ -47,7 +45,7 @@ namespace GB.Models.DAO
                     obj.type_operation_compte_client_et_compte_gl = false;
                     obj.type_operation_compte_gl_et_compte_gl = false;
                     obj.date_creation = date_creation;
-                    obj.id_utilisateur = id_utilisateur;
+                    obj.id_utilisateur = this.connexion.id_utilisateur;
                     obj.utilisateur_createur = utilisateur_createur;
                     obj.id_devise = devise?.id;
                     obj.devise = devise ?? null;
@@ -58,8 +56,8 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
-                applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
+                applicationMainHub.RechargerComboEasyAutocomplete(this, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -134,8 +132,8 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
-                applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
+                applicationMainHub.RechargerComboEasyAutocomplete(this, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -172,8 +170,8 @@ namespace GB.Models.DAO
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
-                applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
+                applicationMainHub.RechargerComboEasyAutocomplete(this, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch

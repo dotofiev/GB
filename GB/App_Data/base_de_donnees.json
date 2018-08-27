@@ -1743,7 +1743,8 @@
       "code": "001",
       "libelle": "Franc Communautaire Financière Africain",
       "signe": "FCFA",
-      "devise_actuelle": "true"
+      "devise_actuelle": "true",
+      "date_creation": "636670881645418146"
     }
   ],
   "parametres": [

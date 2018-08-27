@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using GB.Models.Entites;
 using GB.Models.Interfaces;
+using System.Data.Entity.Core.Objects;
 
 namespace GB.Models.BO
 {
@@ -29,16 +30,16 @@ namespace GB.Models.BO
             this.id = (Program.db.devises.Count + 1).ToString();
         }
 
-        public devise ToEntities()
+        public devise ToEntities(Dictionary<string, object> parametres = null)
         {
             return new devise
             {
                 CurrentCurrency = (this.devise_actuelle ? GB_Enum_Yes_No.Yes
                                                         : GB_Enum_Yes_No.No).ToString(),
-                devcod = this.code,
-                devdate = DateTime.Now,
-                devlib = this.libelle,
-                devsign = this.signe
+                devcod          = this.code,
+                devdate         = parametres["date_creation"] as DateTime?,
+                devlib          = this.libelle,
+                devsign         = this.signe
             };
         }
 
@@ -60,6 +61,7 @@ namespace GB.Models.BO
             entitie.devsign = this.signe;
             entitie.CurrentCurrency = this.devise_actuelle ? "Yes" 
                                                            : "No";
+            // -- Non autorisé -- //
             //entitie.devdate = new DateTime(this.date_creation);
         }
     }

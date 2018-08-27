@@ -14,18 +14,16 @@ namespace GB.Models.DAO
     public class CompteAgenceDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_CompteAgence; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return "form_id_compteAgence"; } }
         public string form_combo_code { get { return "form_code_compteAgence"; } }
         public string form_name { get { return "compteAgence"; } }
         public string form_combo_libelle { get { return "form_libelle_compteAgence"; } }
 
 
-        public CompteAgenceDAO(string context_id, string id_utilisateur)
+        public CompteAgenceDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
         public CompteAgenceDAO() { }
@@ -56,10 +54,10 @@ namespace GB.Models.DAO
                 obj.Crer_Id();
 
                 // -- Mise à jour du créateur -- //
-                obj.id_utilisateur_createur = this.id_utilisateur;
+                obj.id_utilisateur_createur = this.connexion.id_utilisateur;
 
                 // -- Mise à jour des references -- //
-                obj.utilisateur_createur = UtilisateurDAO.ObjectId(this.id_utilisateur);
+                obj.utilisateur_createur = UtilisateurDAO.ObjectId(this.connexion.id_utilisateur);
                 obj.compte = CompteDAO.ObjectId(obj.id_compte);
                 obj.compte_emetteur = CompteDAO.ObjectId(obj.id_compte_emetteur);
                 obj.agence = AgenceDAO.ObjectId(obj.id_agence);
@@ -70,7 +68,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new CompteAgenceDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -137,7 +135,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new CompteAgenceDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -175,7 +173,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new CompteAgenceDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch

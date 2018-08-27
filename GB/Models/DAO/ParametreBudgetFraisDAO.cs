@@ -14,18 +14,16 @@ namespace GB.Models.DAO
     public class ParametreBudgetFraisDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return "form_id_parametreBudgetFrais"; } }
         public string form_combo_code { get { return "form_code_parametreBudgetFrais"; } }
         public string form_name { get { return "parametreBudgetFrais"; } }
         public string form_combo_libelle { get { return "form_libelle_parametreBudgetFrais"; } }
 
 
-        public ParametreBudgetFraisDAO(string context_id, string id_utilisateur)
+        public ParametreBudgetFraisDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
         public ParametreBudgetFraisDAO() { }
@@ -52,7 +50,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new ParametreBudgetFraisDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -106,7 +104,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new ParametreBudgetFraisDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -144,7 +142,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new ParametreBudgetFraisDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch

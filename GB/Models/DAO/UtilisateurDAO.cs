@@ -15,18 +15,16 @@ namespace GB.Models.DAO
     public class UtilisateurDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.SecuriteUtilisateur_Utilisateur; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return "form_id_utilisateur"; } }
         public string form_combo_code { get { return "form_code_utilisateur"; } }
         public string form_name { get { return "utilisateur"; } }
         public string form_combo_libelle { get { return "form_libelle_utilisateur"; } }
 
 
-        public UtilisateurDAO(string context_id, string id_utilisateur)
+        public UtilisateurDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
         public void Ajouter(Utilisateur obj)
@@ -52,10 +50,10 @@ namespace GB.Models.DAO
                 Program.db.utilisateurs.Add(obj);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
+                applicationMainHub.RechargerComboEasyAutocomplete(this, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -121,10 +119,10 @@ namespace GB.Models.DAO
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
+                applicationMainHub.RechargerComboEasyAutocomplete(this, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -159,10 +157,10 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerComboEasyAutocomplete(this, this.context_id);
+                applicationMainHub.RechargerComboEasyAutocomplete(this, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)

@@ -14,18 +14,18 @@ namespace GB.Models.DAO
     public class InstitutionDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Institution; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
+        public Utilisateur utilisateur { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "institution"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public InstitutionDAO(string context_id, string id_utilisateur)
+        public InstitutionDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
+            this.utilisateur = utilisateur;
         }
 
         public void Ajouter(Institution obj)
@@ -45,7 +45,7 @@ namespace GB.Models.DAO
                 Program.db.institutions.Add(obj);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -101,7 +101,7 @@ namespace GB.Models.DAO
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -136,7 +136,7 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)

@@ -26,46 +26,46 @@ namespace GB.Controllers
         public string id_session_cookies { get { return this.Request?.Cookies?["id_session"]?.Value ?? string.Empty; } set { this.Response.Cookies["id_session"].Value = value; } }
         
         #region DAO
-        public PaysDAO paysDAO { get { return new PaysDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public TypePretDAO typePretDAO { get { return new TypePretDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public MotifPretDAO motifPretDAO { get { return new MotifPretDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ClassificationProvisionsPretDAO classificationProvisionsPretDAO { get { return new ClassificationProvisionsPretDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public TypeGarantieDAO typeGarantieDAO { get { return new TypeGarantieDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public JournalDAO journalDAO { get { return new JournalDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public TypeActifDAO typeActifDAO { get { return new TypeActifDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public LocalisationActifDAO localisationActifDAO { get { return new LocalisationActifDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public WesternUnionZonePaysDAO westernUnionZonePaysDAO { get { return new WesternUnionZonePaysDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public CompteDAO compteDAO { get { return new CompteDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public DeviseDAO deviseDAO { get { return new DeviseDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public InstitutionDAO institutionDAO { get { return new InstitutionDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public AgenceDAO agenceDAO { get { return new AgenceDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ParametreBanqueDAO parametreBancaireDAO { get { return new ParametreBanqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ProduitPhysiqueDAO produitPhysiqueDAO { get { return new ProduitPhysiqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ProduitJudiciaireDAO produitJudiciaireDAO { get { return new ProduitJudiciaireDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public VilleDAO villeDAO { get { return new VilleDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ActiviteEconomiqueDAO activiteEconomiqueDAO { get { return new ActiviteEconomiqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public TitreDAO titreDAO { get { return new TitreDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public UniteInstitutionnelleDAO uniteInstitutionnelleDAO { get { return new UniteInstitutionnelleDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public BEACNationaliteDAO bEACNationaliteDAO { get { return new BEACNationaliteDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public CongeBanqueDAO congeBanqueDAO { get { return new CongeBanqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ParametreDAO parametreDAO { get { return new ParametreDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ExerciceFiscalDAO exerciceFiscalDAO { get { return new ExerciceFiscalDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public DirectionBudgetDAO directionBudgetDAO { get { return new DirectionBudgetDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public AutoriteSignatureDAO autoriteSignatureDAO { get { return new AutoriteSignatureDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public RoleDAO roleDAO { get { return new RoleDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public MenuDAO menuDAO { get { return new MenuDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ModuleDAO moduleDAO { get { return new ModuleDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public AutorisationDAO autorisationDAO { get { return new AutorisationDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public UtilisateurDAO utilisateurDAO { get { return new UtilisateurDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ProfessionDAO professionDAO { get { return new ProfessionDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public CompteAgenceDAO compteAgenceDAO { get { return new CompteAgenceDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ProfitabiliteDAO profitabiliteDAO { get { return new ProfitabiliteDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public CompteBanqueDAO compteBanqueDAO { get { return new CompteBanqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public BanqueDAO banqueDAO { get { return new BanqueDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ResponsableRelationClientDAO responsableRelationClientDAO { get { return new ResponsableRelationClientDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public SocieteDAO societeDAO { get { return new SocieteDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ParametreBudgetRevenuDAO parametreBudgetRevenuDAO { get { return new ParametreBudgetRevenuDAO(this.con.hub_id_context, this.con.id_utilisateur); } }
-        public ParametreBudgetFraisDAO parametreBudgetFraisDAO { get { return new ParametreBudgetFraisDAO(this.con.hub_id_context, this.con.id_utilisateur); } }        
+        public PaysDAO paysDAO { get { return new PaysDAO(this.con); } }
+        public TypePretDAO typePretDAO { get { return new TypePretDAO(this.con); } }
+        public MotifPretDAO motifPretDAO { get { return new MotifPretDAO(this.con); } }
+        public ClassificationProvisionsPretDAO classificationProvisionsPretDAO { get { return new ClassificationProvisionsPretDAO(this.con); } }
+        public TypeGarantieDAO typeGarantieDAO { get { return new TypeGarantieDAO(this.con); } }
+        public JournalDAO journalDAO { get { return new JournalDAO(this.con); } }
+        public TypeActifDAO typeActifDAO { get { return new TypeActifDAO(this.con); } }
+        public LocalisationActifDAO localisationActifDAO { get { return new LocalisationActifDAO(this.con); } }
+        public WesternUnionZonePaysDAO westernUnionZonePaysDAO { get { return new WesternUnionZonePaysDAO(this.con); } }
+        public CompteDAO compteDAO { get { return new CompteDAO(this.con); } }
+        public DeviseDAO deviseDAO { get { return new DeviseDAO(this.con); } }
+        public InstitutionDAO institutionDAO { get { return new InstitutionDAO(this.con); } }
+        public AgenceDAO agenceDAO { get { return new AgenceDAO(this.con); } }
+        public ParametreBanqueDAO parametreBancaireDAO { get { return new ParametreBanqueDAO(this.con); } }
+        public ProduitPhysiqueDAO produitPhysiqueDAO { get { return new ProduitPhysiqueDAO(this.con); } }
+        public ProduitJudiciaireDAO produitJudiciaireDAO { get { return new ProduitJudiciaireDAO(this.con); } }
+        public VilleDAO villeDAO { get { return new VilleDAO(this.con); } }
+        public ActiviteEconomiqueDAO activiteEconomiqueDAO { get { return new ActiviteEconomiqueDAO(this.con); } }
+        public TitreDAO titreDAO { get { return new TitreDAO(this.con); } }
+        public UniteInstitutionnelleDAO uniteInstitutionnelleDAO { get { return new UniteInstitutionnelleDAO(this.con); } }
+        public BEACNationaliteDAO bEACNationaliteDAO { get { return new BEACNationaliteDAO(this.con); } }
+        public CongeBanqueDAO congeBanqueDAO { get { return new CongeBanqueDAO(this.con); } }
+        public ParametreDAO parametreDAO { get { return new ParametreDAO(this.con); } }
+        public ExerciceFiscalDAO exerciceFiscalDAO { get { return new ExerciceFiscalDAO(this.con); } }
+        public DirectionBudgetDAO directionBudgetDAO { get { return new DirectionBudgetDAO(this.con); } }
+        public AutoriteSignatureDAO autoriteSignatureDAO { get { return new AutoriteSignatureDAO(this.con); } }
+        public RoleDAO roleDAO { get { return new RoleDAO(this.con); } }
+        public MenuDAO menuDAO { get { return new MenuDAO(this.con); } }
+        public ModuleDAO moduleDAO { get { return new ModuleDAO(this.con); } }
+        public AutorisationDAO autorisationDAO { get { return new AutorisationDAO(this.con); } }
+        public UtilisateurDAO utilisateurDAO { get { return new UtilisateurDAO(this.con); } }
+        public ProfessionDAO professionDAO { get { return new ProfessionDAO(this.con); } }
+        public CompteAgenceDAO compteAgenceDAO { get { return new CompteAgenceDAO(this.con); } }
+        public ProfitabiliteDAO profitabiliteDAO { get { return new ProfitabiliteDAO(this.con); } }
+        public CompteBanqueDAO compteBanqueDAO { get { return new CompteBanqueDAO(this.con); } }
+        public BanqueDAO banqueDAO { get { return new BanqueDAO(this.con); } }
+        public ResponsableRelationClientDAO responsableRelationClientDAO { get { return new ResponsableRelationClientDAO(this.con); } }
+        public SocieteDAO societeDAO { get { return new SocieteDAO(this.con); } }
+        public ParametreBudgetRevenuDAO parametreBudgetRevenuDAO { get { return new ParametreBudgetRevenuDAO(this.con); } }
+        public ParametreBudgetFraisDAO parametreBudgetFraisDAO { get { return new ParametreBudgetFraisDAO(this.con); } }        
         #endregion
         #endregion
 
