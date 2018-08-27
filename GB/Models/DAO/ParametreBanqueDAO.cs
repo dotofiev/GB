@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.GB;
+using GB.Models.Interfaces;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -10,18 +11,18 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ParametreBanqueDAO : DAO
+    public class ParametreBanqueDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_ParametreBanque; } }
         public string context_id { get; set; }
-        public long id_utilisateur { get; set; }
+        public string id_utilisateur { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "parametre_banque"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public ParametreBanqueDAO(string context_id, long id_utilisateur)
+        public ParametreBanqueDAO(string context_id, string id_utilisateur)
         {
             this.context_id = context_id;
             this.id_utilisateur = id_utilisateur;
@@ -41,7 +42,7 @@ namespace GB.Models.DAO
                 obj.Crer_Id();
 
                 // -- Mise à jour des references -- //
-                obj.devise = DeviseDAO.Object(obj.id_devise);
+                obj.devise = DeviseDAO.ObjectId(obj.id_devise);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.parametres_banque.Add(obj);
@@ -97,7 +98,7 @@ namespace GB.Models.DAO
                         l.montant_minimal = obj.montant_minimal;
                         l.montant_maximal = obj.montant_maximal;
                         l.id_devise = obj.id_devise;
-                        l.devise = DeviseDAO.Object(obj.id_devise);
+                        l.devise = DeviseDAO.ObjectId(obj.id_devise);
                     });
 
                 // -- Execution des Hubs -- //
@@ -124,7 +125,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void Supprimer(List<long> ids)
+        public void Supprimer(List<string> ids)
         {
             try
             {
@@ -188,7 +189,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static ParametreBanque Object(string code)
+        public static ParametreBanque ObjectCode(string code)
         {
             try
             {

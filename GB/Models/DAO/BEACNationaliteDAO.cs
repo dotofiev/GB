@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.GB;
+using GB.Models.Interfaces;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -10,24 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class BEACNationaliteDAO : DAO
+    public class BEACNationaliteDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_BEACNationalite; } }
         public string context_id { get; set; }
-        public long id_utilisateur { get; set; }
+        public string id_utilisateur { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "beac_nationalite"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public BEACNationaliteDAO(string context_id, long id_utilisateur)
+        public BEACNationaliteDAO(string context_id, string id_utilisateur)
         {
             this.context_id = context_id;
             this.id_utilisateur = id_utilisateur;
         }
 
-        public void Ajouter(BEACNationalite obj, long id_utilisateur)
+        public void Ajouter(BEACNationalite obj, string id_utilisateur)
         {
             try
             {
@@ -45,7 +46,7 @@ namespace GB.Models.DAO
 
                 // -- Mise à jour des refenreces -- //
                 obj.id_utilisateur = id_utilisateur;
-                obj.utilisateur_createur = UtilisateurDAO.Object(id_utilisateur);
+                obj.utilisateur_createur = UtilisateurDAO.ObjectId(id_utilisateur);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.nationalites_beac.Add(obj);
@@ -123,7 +124,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void Supprimer(List<long> ids)
+        public void Supprimer(List<string> ids)
         {
             try
             {
@@ -187,7 +188,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static BEACNationalite Object(string code)
+        public static BEACNationalite ObjectCode(string code)
         {
             try
             {

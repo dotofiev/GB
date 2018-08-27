@@ -20,7 +20,7 @@ namespace GB.Controllers
         #region Variables
         public GBConnexion con { get { return Session["Connexion"] as GBConnexion; } set { Session["Connexion"] = value; } }
         public int id_lang { get { if (Session["id_lang"] == null) { return 0; } else { return (int)Session["id_lang"]; } } set { Session["id_lang"] = value; } }
-        public long id_menu_actif { get { if (Session["id_menu_actif"] == null) { return 0; } else { return (long)Session["id_menu_actif"]; } } set { Session["id_menu_actif"] = value; } }
+        public string id_menu_actif { get { if (Session["id_menu_actif"] == null) { return "0"; } else { return (string)Session["id_menu_actif"]; } } set { Session["id_menu_actif"] = value; } }
         public string id_navigateur_client_cookies { get { return this.Request?.Cookies?["id_navigateur_client"]?.Value ?? string.Empty; } set { this.Response.Cookies["id_navigateur_client"].Value = value; } }
         public int id_lang_cookies { get { return Convert.ToInt32(this.Request?.Cookies?["id_lang"]?.Value ?? "0"); } set { this.Response.Cookies["id_lang"].Value = value.ToString(); } }
         public string id_session_cookies { get { return this.Request?.Cookies?["id_session"]?.Value ?? string.Empty; } set { this.Response.Cookies["id_session"].Value = value; } }

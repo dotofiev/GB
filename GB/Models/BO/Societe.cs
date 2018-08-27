@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.GB;
+using GB.Models.Interfaces;
 using GB.Models.Static;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,13 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Societe : BO
+    public class Societe : BO, IBO<object>
     {
-        public long id_agence { get; set; }
-        public long id_compte_transit { get; set; }
-        public long id_compte_paiement { get; set; }
-        public long id_compte_pret { get; set; }
-        public long id_compte_interet_pret { get; set; }
+        public string id_agence { get; set; }
+        public string id_compte_transit { get; set; }
+        public string id_compte_paiement { get; set; }
+        public string id_compte_pret { get; set; }
+        public string id_compte_interet_pret { get; set; }
         public Compte compte_transit { get; set; }
         public Compte compte_paiement { get; set; }
         public Compte compte_pret { get; set; }
@@ -23,16 +24,31 @@ namespace GB.Models.BO
         public string base_de_calcul { get; set; }
         public string type_traitement { get; set; }
 
-        public Societe(long id)
+        public Societe(string id)
         {
             this.id = id;
         }
 
         public Societe() { }
 
-        public override void Crer_Id()
+        public void Crer_Id()
         {
-            this.id = Tests.Program.db.societes.Count + 1;
+            this.id = (Tests.Program.db.societes.Count + 1).ToString();
+        }
+
+        public object ToEntities()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FromEntities(object entitie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ModifyEntities(object entitie)
+        {
+            throw new NotImplementedException();
         }
 
         public static List<string> Classes_references

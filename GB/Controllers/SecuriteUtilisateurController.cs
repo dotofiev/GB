@@ -251,7 +251,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.SecuriteUtilisateur_Utilisateur)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = UtilisateurDAO.Object(compte);
+                    var obj = UtilisateurDAO.ObjectId(compte);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -440,7 +440,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.SecuriteUtilisateur_Utilisateur)
                 {
                     // -- Service de suppression -- //
-                    utilisateurDAO.Supprimer(GBConvert.JSON_To<List<long>>(ids));
+                    utilisateurDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 

@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.Helper;
+using GB.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,19 +8,19 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class GroupeMenu : BO
+    public class GroupeMenu : BO, IBO<object>
     {
-        public long id_module { get; set; }
+        public string id_module { get; set; }
         public Module module { get; set; }
         public List<Menu> menus { get; set; }
         public string icon { get; set; }
         public string controller { get; set; }
 
-        public GroupeMenu(long id, string controller)
+        public GroupeMenu(string id, string controller)
         {
             this.id = id;
             this.menus = new List<Menu>();
-            this.module = new Module(0);
+            this.module = new Module("0");
             this.icon = string.Empty;
             this.controller = controller;
         }
@@ -62,9 +63,24 @@ namespace GB.Models.BO
                 : string.Empty;
         }
 
-        public override void Crer_Id()
+        public void Crer_Id()
         {
 
+        }
+
+        public object ToEntities()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FromEntities(object entitie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ModifyEntities(object entitie)
+        {
+            throw new NotImplementedException();
         }
     }
 }

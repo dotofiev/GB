@@ -12,8 +12,8 @@ namespace GB.Models.GB
     {
         // -- Privé -- //
         private DateTime _date_connexion { get; set; }
-        private long _id_utilisateur { get; set; }
-        private long _id_role { get; set; }
+        private string _id_utilisateur { get; set; }
+        private string _id_role { get; set; }
         private string _compte { get; set; }
         private string _mot_de_passe { get; set; }
         private string _url_photo_profil { get; set; }
@@ -31,9 +31,9 @@ namespace GB.Models.GB
         public string session_id { get { return _session_id; } }
         public string id_navigateur_client { get { return _id_navigateur_client; } }
         public DateTime date_connexion { get { return _date_connexion; } }
-        public long id_utilisateur { get { return _id_utilisateur; } }
+        public string id_utilisateur { get { return _id_utilisateur; } }
         public string hub_id_context { get { return _hub_id_context; } }
-        public long id_role { get { return _id_role; } }
+        public string id_role { get { return _id_role; } }
         public dynamic donnee { get { return _donnee; } }
 
         // -- Constructeur -- //
@@ -62,8 +62,8 @@ namespace GB.Models.GB
             this._compte = null;
             this._mot_de_passe = null;
             this._date_connexion = DateTime.Now;
-            this._id_utilisateur = 0;
-            this._id_role = 0;
+            this._id_utilisateur = "0";
+            this._id_role = "0";
             this._nom_utilisateur = string.Empty;
             this._url_photo_profil = "~/Resources/images/png/Utilisateur.png";
         }

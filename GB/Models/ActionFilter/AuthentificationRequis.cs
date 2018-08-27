@@ -19,7 +19,7 @@ namespace GB.Models.ActionFilter
                 GBConnexion con = context.HttpContext.Session["Connexion"] as GBConnexion;
 
                 // -- Teste si l'utilisateur est authentifié -- //
-                if ((con?.id_utilisateur ?? 0) == 0)
+                if ((con?.id_utilisateur ?? "0") == "0")
                 {
                     // -- Mise à jour de la route -- //
                     context.Result = new RedirectResult("/Home/Authentication");

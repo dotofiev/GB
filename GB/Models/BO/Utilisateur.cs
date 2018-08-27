@@ -8,12 +8,12 @@ namespace GB.Models.BO
 {
     public class Utilisateur
     {
-        public long id_utilisateur { get; set; }
-        public long id_role { get; set; }
-        public long id_agence { get; set; }
-        public long id_profession { get; set; }
-        public long id_pouvoir { get; set; }
-        public long id_autorite_signature { get; set; }
+        public string id_utilisateur { get; set; }
+        public string id_role { get; set; }
+        public string id_agence { get; set; }
+        public string id_profession { get; set; }
+        public string id_pouvoir { get; set; }
+        public string id_autorite_signature { get; set; }
         public string compte { get; set; }
         public string mot_de_passe { get; set; }
         public string nom_utilisateur { get; set; }
@@ -34,7 +34,7 @@ namespace GB.Models.BO
 
         public void Crer_Id()
         {
-            this.id_utilisateur = Program.db.utilisateurs.Count + 1;
+            this.id_utilisateur = (Program.db.utilisateurs.Count + 1).ToString();
         }
     }
 }

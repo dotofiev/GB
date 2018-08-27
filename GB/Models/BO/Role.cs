@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.Interfaces;
 using GB.Models.Static;
 using System;
 using System.Collections.Generic;
@@ -7,11 +8,11 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Role : BO
+    public class Role : BO, IBO<object>
     {
         public List<Autorisation> role_menus { get; set; }
 
-        public Role(long id)
+        public Role(string id)
         {
             this.id = id;
             this.role_menus = new List<Autorisation>();
@@ -22,9 +23,24 @@ namespace GB.Models.BO
             this.role_menus = new List<Autorisation>();
         }
 
-        public override void Crer_Id()
+        public void Crer_Id()
         {
-            this.id = Tests.Program.db.roles.Count + 1;
+            this.id = (Tests.Program.db.roles.Count + 1).ToString();
+        }
+
+        public object ToEntities()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FromEntities(object entitie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ModifyEntities(object entitie)
+        {
+            throw new NotImplementedException();
         }
     }
 }

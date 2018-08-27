@@ -1,4 +1,5 @@
-﻿using GB.Models.Static;
+﻿using GB.Models.Interfaces;
+using GB.Models.Static;
 using GB.Models.Tests;
 using System;
 using System.Collections.Generic;
@@ -7,10 +8,10 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Autorisation : BO
+    public class Autorisation : BO, IBO<object>
     {
-        public long id_role { get; set; }
-        public long id_menu { get; set; }
+        public string id_role { get; set; }
+        public string id_menu { get; set; }
         public Role role { get; set; }
         public Menu menu { get; set; }
         public bool ajouter { get; set; }
@@ -19,7 +20,7 @@ namespace GB.Models.BO
         public bool imprimer { get; set; }
         public bool lister { get; set; }
 
-        public Autorisation(long id, long id_role, long id_menu, string view)
+        public Autorisation(string id, string id_role, string id_menu, string view)
         {
             this.id = id;
             this.role = new Role(id_role);
@@ -31,9 +32,24 @@ namespace GB.Models.BO
             this.menu = new Menu();
         }
 
-        public override void Crer_Id()
+        public void Crer_Id()
         {
-            this.id = Program.db.autorisations.Count + 1;
+            this.id = (Program.db.autorisations.Count + 1).ToString();
+        }
+
+        public object ToEntities()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FromEntities(object entitie)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ModifyEntities(object entitie)
+        {
+            throw new NotImplementedException();
         }
 
         public static List<string> Classes_references

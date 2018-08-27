@@ -6,6 +6,8 @@ using GB.Models.BO;
 using GB.Models.Tests;
 using GB.Models.Static;
 using GB.Models.Entites;
+using GB.Models.DAO;
+using System.Data.Entity.Core.Objects;
 
 namespace GB.Models.Tests
 {
@@ -36,11 +38,11 @@ namespace GB.Models.Tests
             });
             // -- Parent -- //
             db.menus.ForEach(l => {
-                l.menu_parent = db.menus.FirstOrDefault(ll => ll.id == (l.id_menu_parent ?? 0));
+                l.menu_parent = db.menus.FirstOrDefault(ll => ll.id == l.id_menu_parent);
             });
             // -- Enfant -- //
             db.menus.ForEach(l => {
-                l.menus_enfant = db.menus.Where(ll => (ll.id_menu_parent?? 0) == l.id).ToList();
+                l.menus_enfant = db.menus.Where(ll => ll.id_menu_parent == l.id).ToList();
             });
             // -- Autorisation -- //
             db.autorisations.ForEach(l => {
@@ -118,7 +120,7 @@ namespace GB.Models.Tests
                 l.agence = db.agences.FirstOrDefault(ll => ll.id == l.id_agence);
                 l.utilisateur_createur = db.utilisateurs.FirstOrDefault(ll => ll.id_utilisateur == l.id_utilisateur_createur);
                 l.compte = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte);
-                l.compte_emetteur = db.comptes.FirstOrDefault(ll => ll.id == (l.id_compte_emetteur?? 0));
+                l.compte_emetteur = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte_emetteur);
             });
             // -- CompteBanque -- //
             db.comptes_banque.ForEach(l =>
@@ -152,6 +154,37 @@ namespace GB.Models.Tests
             {
                 l.compte = db.comptes.FirstOrDefault(ll => ll.id == l.id_compte);
             });
+
+            #region Test
+            using (BankingEntities db = new BankingEntities())
+            {
+                //string pc_InLOGIN = "99999";
+                //string pc_InORDINATEUR = "POKA-PC";
+                //string pc_Languag = "fr";
+
+                //ObjectParameter pc_OutSERVERDATE = null;
+                //ObjectParameter pc_OutSERVERBACKDATE = null;
+                //ObjectParameter pc_OutSERVEROPEN = null;
+                //ObjectParameter pc_OutBACKOPEN = null;
+                //ObjectParameter pc_OutBACKDATEWK = null;
+                //ObjectParameter pc_OutMSG = null;
+                //ObjectParameter pc_OutPWD = null;
+                //ObjectParameter pc_OutLECT = null;
+
+                //ObjectParameter nOM = null;
+                //ObjectParameter sECURITYLEVEL = null;
+                //ObjectParameter aGENCE = null;
+                //ObjectParameter pRIVILEGE = null;
+                //ObjectParameter mAXAMOUNT = null;
+                //ObjectParameter cODECAISSE = null;
+                //ObjectParameter eMPACCESS = null;
+
+                //db.PS_LOGIN_USER(
+                //    pc_InLOGIN, pc_InORDINATEUR, pc_Languag, pc_OutSERVERDATE, pc_OutSERVERBACKDATE, pc_OutSERVEROPEN, pc_OutBACKOPEN,
+                //    pc_OutBACKDATEWK, pc_OutMSG, pc_OutPWD, aGENCE, nOM, sECURITYLEVEL, pRIVILEGE, mAXAMOUNT, cODECAISSE, eMPACCESS, pc_OutLECT
+                //);
+            }
+            #endregion
         }
     }
 }

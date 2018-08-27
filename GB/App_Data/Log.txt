@@ -278,3 +278,31 @@ Nom du paramètre : length
 -----------------------
 06/08/2018 08:57:14.691 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:f4nae4aehm1trf1zg2ipfnkj} 
 -----------------------
+24/08/2018 13:53:24.785 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+24/08/2018 13:53:29.126 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:2jrrju0g3ipgcw1eu54vkrm3} 
+-----------------------
+24/08/2018 14:01:49.139 | INFO | [25] | GB.MvcApplication.Session_OnStart | Début session: {session:2jrrju0g3ipgcw1eu54vkrm3} 
+-----------------------
+24/08/2018 14:01:49.178 | INFO | [24] | GB.MvcApplication.Session_OnEnd | Fin session: {session:2jrrju0g3ipgcw1eu54vkrm3} 
+-----------------------
+24/08/2018 14:11:18.959 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+24/08/2018 14:11:19.447 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:2jrrju0g3ipgcw1eu54vkrm3} 
+-----------------------
+24/08/2018 14:21:43.381 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+24/08/2018 14:21:43.749 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:2jrrju0g3ipgcw1eu54vkrm3} 
+-----------------------
+24/08/2018 14:27:51.802 | ERROR | [13] | GB.Models.DAO.DeviseDAO.Ajouter | System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at GB.Models.DAO.DeviseDAO.Ajouter(Devise obj) in E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\DeviseDAO.cs:line 81 
+-----------------------
+24/08/2018 14:29:23.036 | ERROR | [12] | GB.Models.DAO.DeviseDAO.Ajouter | System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at GB.Models.DAO.DeviseDAO.Ajouter(Devise obj) in E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\DeviseDAO.cs:line 81 
+-----------------------

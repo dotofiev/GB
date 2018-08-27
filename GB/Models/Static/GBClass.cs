@@ -253,7 +253,7 @@ namespace GB.Models.Static
         /// <summary>
         /// Creation et retour d'un bouton de suppression à afficher dans la table 
         /// </summary>
-        public static string HTML_Bouton_Suppression_Table(long id)
+        public static string HTML_Bouton_Suppression_Table(string id)
         {
             return
                 @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
@@ -264,10 +264,10 @@ namespace GB.Models.Static
                     <i class=""fa fa-minus text-danger""></i>
                 </button>"
                 .Replace("{id}", id.ToString())
-                .Replace("{ids}", GBConvert.To_JavaScript(new long[] { id }))
+                .Replace("{ids}", $"['{id}']")
                 .Replace("{Lang.Delete}", App_Lang.Lang.Delete);
         }
-        public static string HTML_Bouton_Suppression_Table(long id, string nom_fonction)
+        public static string HTML_Bouton_Suppression_Table(string id, string nom_fonction)
         {
             return
                 @"<button type=""button"" id=""table_donnee_supprimer_id_{id}""
@@ -279,14 +279,14 @@ namespace GB.Models.Static
                 </button>"
                 .Replace("{fonction}", nom_fonction)
                 .Replace("{id}", id.ToString())
-                .Replace("{ids}", GBConvert.To_JavaScript(new long[] { id }))
+                .Replace("{ids}", $"['{id}']")
                 .Replace("{Lang.Delete}", App_Lang.Lang.Delete);
         }
 
         /// <summary>
         /// Creation et retour d'un bouton de modification à à afficher dans la table 
         /// </summary>
-        public static string HTML_Bouton_Modifier_Table(long id)
+        public static string HTML_Bouton_Modifier_Table(string id)
         {
             return
                 @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
@@ -303,7 +303,7 @@ namespace GB.Models.Static
         /// <summary>
         /// Creation et retour d'un bouton de modification à à afficher dans la table 
         /// </summary>
-        public static string HTML_Bouton_Selection_Table(long id)
+        public static string HTML_Bouton_Selection_Table(string id)
         {
             return
                 @"<button type=""button"" id=""table_donnee_selection_id_{id}""
@@ -319,7 +319,7 @@ namespace GB.Models.Static
         /// <summary>
         /// Creation et retour d'un bouton de modification à à afficher dans la table 
         /// </summary>
-        public static string HTML_Bouton_Modifier_Table(long id, string code)
+        public static string HTML_Bouton_Modifier_Table(string id, string code)
         {
             return
                 @"<button type=""button"" id=""table_donnee_modifier_id_{id}""
@@ -337,14 +337,14 @@ namespace GB.Models.Static
         /// <summary>
         /// Creation et retour des boutons de suppression et de modification à afficher dans la table 
         /// </summary>
-        public static string HTML_Bouton_Modifier_Suppression_Table(long id, string code)
+        public static string HTML_Bouton_Modifier_Suppression_Table(string id, string code)
         {
             return
                 HTML_Bouton_Modifier_Table(id, code) +
                 HTML_Bouton_Suppression_Table(id);
         }
 
-        public static string HTML_Bouton_Modifier_Suppression_Table(long id)
+        public static string HTML_Bouton_Modifier_Suppression_Table(string id)
         {
             return
                 HTML_Bouton_Modifier_Table(id) +
@@ -354,7 +354,7 @@ namespace GB.Models.Static
         /// <summary>
         /// Creation et retour d'un checkbox de selection dans la table 
         /// </summary>
-        public static string HTML_Checkbox_Table(long id, string name)
+        public static string HTML_Checkbox_Table(string id, string name)
         {
             return
                 $"<input type=\"checkbox\" class=\"flat\" name=\"{name}\" value=\"{name}_{id}\">";

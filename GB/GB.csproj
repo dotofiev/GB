@@ -1816,7 +1816,7 @@
     <Compile Include="Models\DAO\ParametreBanqueDAO.cs" />
     <Compile Include="Models\DAO\ParametreDAO.cs" />
     <Compile Include="Models\DAO\ProfessionDAO.cs" />
-    <Compile Include="Models\DAO\DAO.cs" />
+    <Compile Include="Models\Interfaces\IDAO.cs" />
     <Compile Include="Models\DAO\ModuleDAO.cs" />
     <Compile Include="Models\DAO\MenuDAO.cs" />
     <Compile Include="Models\DAO\AutorisationDAO.cs" />
@@ -1826,6 +1826,7 @@
     <Compile Include="Models\DAO\RoleDAO.cs" />
     <Compile Include="Models\DAO\UtilisateurDAO.cs" />
     <Compile Include="Models\Helper\LangHelper.cs" />
+    <Compile Include="Models\Interfaces\IBO.cs" />
     <Compile Include="Models\SignalR\Hubs\applicationMainHub.cs" />
     <Compile Include="Models\Static\AppSettings.cs" />
     <Compile Include="Models\Static\GBEnumeration.cs" />

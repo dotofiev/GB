@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.GB;
+using GB.Models.Interfaces;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -10,18 +11,18 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class CongeBanqueDAO : DAO
+    public class CongeBanqueDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_CongeBanque; } }
         public string context_id { get; set; }
-        public long id_utilisateur { get; set; }
+        public string id_utilisateur { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "conge_banque"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public CongeBanqueDAO(string context_id, long id_utilisateur)
+        public CongeBanqueDAO(string context_id, string id_utilisateur)
         {
             this.context_id = context_id;
             this.id_utilisateur = id_utilisateur;
@@ -49,7 +50,7 @@ namespace GB.Models.DAO
                 }
 
                 // -- Mise à jour reference -- //
-                obj.utilisateur_createur = UtilisateurDAO.Object(obj.id_utilisateur);
+                obj.utilisateur_createur = UtilisateurDAO.ObjectId(obj.id_utilisateur);
 
                 // -- Définition de la date de création -- //
                 obj.date_creation = DateTime.Now.Ticks;
@@ -141,7 +142,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void Supprimer(List<long> ids)
+        public void Supprimer(List<string> ids)
         {
             try
             {
@@ -205,7 +206,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static CongeBanque Object(string code)
+        public static CongeBanque ObjectCode(string code)
         {
             try
             {

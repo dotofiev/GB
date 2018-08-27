@@ -1,5 +1,6 @@
 ﻿using GB.Models.BO;
 using GB.Models.GB;
+using GB.Models.Interfaces;
 using GB.Models.SignalR.Hubs;
 using GB.Models.Static;
 using GB.Models.Tests;
@@ -10,18 +11,18 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class CompteDAO : DAO
+    public class CompteDAO : IDAO
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_Compte; } }
         public string context_id { get; set; }
-        public long id_utilisateur { get; set; }
+        public string id_utilisateur { get; set; }
         public string form_combo_id { get { return "form_id_compte"; } }
         public string form_combo_code { get { return "form_code_compte"; } }
         public string form_name { get { return "compte"; } }
         public string form_combo_libelle { get { return "form_libelle_compte"; } }
 
 
-        public CompteDAO(string context_id, long id_utilisateur)
+        public CompteDAO(string context_id, string id_utilisateur)
         {
             this.context_id = context_id;
             this.id_utilisateur = id_utilisateur;
@@ -32,7 +33,7 @@ namespace GB.Models.DAO
             try
             {
                 // -- Obj utilisateur créateur -- //
-                Utilisateur utilisateur_createur = UtilisateurDAO.Object(id_utilisateur);
+                Utilisateur utilisateur_createur = UtilisateurDAO.ObjectId(id_utilisateur);
 
                 // -- Mise à jour de l'objet devise -- //
                 Devise devise = DeviseDAO.Actif();
@@ -48,7 +49,7 @@ namespace GB.Models.DAO
                     obj.date_creation = date_creation;
                     obj.id_utilisateur = id_utilisateur;
                     obj.utilisateur_createur = utilisateur_createur;
-                    obj.id_devise = devise?.id ?? 0;
+                    obj.id_devise = devise?.id;
                     obj.devise = devise ?? null;
                 }
 
@@ -127,7 +128,7 @@ namespace GB.Models.DAO
                                 l.cle = string.Empty;
                             }
                             l.id_devise = obj.id_devise;
-                            l.devise = DeviseDAO.Object(obj.id_devise);
+                            l.devise = DeviseDAO.ObjectId(obj.id_devise);
                         }
                     });
 
@@ -158,7 +159,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void Supprimer(List<long> ids)
+        public void Supprimer(List<string> ids)
         {
             try
             {
@@ -256,7 +257,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Compte Object(string code)
+        public static Compte ObjectCode(string code)
         {
             try
             {
@@ -285,7 +286,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Compte Object(long id)
+        public static Compte ObjectId(string id)
         {
             try
             {
