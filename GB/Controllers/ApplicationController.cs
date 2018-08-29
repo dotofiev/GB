@@ -60,11 +60,11 @@ namespace GB.Controllers
             if (id_page == "Application-Main")
             {
                 // -- Nom de l'utilisateur connecté -- //
-                this.ViewBag.donnee.nom_utilisateur = this.con.nom_utilisateur;
+                this.ViewBag.donnee.nom_utilisateur = this.con.utilisateur.nom_utilisateur;
                 // -- Photo de l'utilisateur connecté -- //
                 this.ViewBag.donnee.url_photo_profil = this.con.url_photo_profil;
                 // -- Charger les menus de l'utilisateur -- //
-                this.ViewBag.Menus = Menu.Source(AutorisationDAO.Lister(this.con.id_role));
+                this.ViewBag.Menus = Menu.Source(AutorisationDAO.Lister(this.con.utilisateur.id_role));
 
                 // -- Langue -- //
                 #region Langue
@@ -106,8 +106,8 @@ namespace GB.Controllers
                                                     DUREE_VISIBILITE_MESSAGE_BOX = AppSettings.DUREE_VISIBILITE_MESSAGE_BOX,
                                                     TAILLE_MAX_IMAGE_IMPORTATION = AppSettings.TAILLE_MAX_IMAGE_IMPORTATION,
                                                     UTILISATEUR = new {
-                                                        id_utilisateur = this.con.id_utilisateur,
-                                                        nom_utilisateur = this.con.nom_utilisateur
+                                                        id_utilisateur = this.con.utilisateur.id_utilisateur,
+                                                        nom_utilisateur = this.con.utilisateur.nom_utilisateur
                                                     }
                                                 }
                                             );

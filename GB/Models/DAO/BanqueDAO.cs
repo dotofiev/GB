@@ -37,9 +37,9 @@ namespace GB.Models.DAO
                 }
 
                 // -- Mise à jour des references -- //
-                obj.id_utilisateur_createur = this.connexion.id_utilisateur;
-                obj.pays = PaysDAO.ObjectId(obj.id_pays);
-                obj.utilisateur_createur = UtilisateurDAO.ObjectId(this.connexion.id_utilisateur);
+                obj.id_utilisateur_createur = this.connexion.utilisateur.id_utilisateur;
+                obj.pays = PAYSDAO.ObjectId(obj.id_pays);
+                obj.utilisateur_createur = UtilisateurDAO.ObjectId(this.connexion.utilisateur.id_utilisateur);
 
                 // -- Champ obligatoire -- //
                 if (obj.pays == null)
@@ -102,7 +102,7 @@ namespace GB.Models.DAO
                         l.adresse_1 = obj.adresse_1;
                         l.adresse_2 = obj.adresse_2;
                         l.ville = obj.ville;
-                        l.pays = PaysDAO.ObjectId(obj.id_pays);
+                        l.pays = PAYSDAO.ObjectId(obj.id_pays);
                     });
 
                 // -- Execution des Hubs -- //

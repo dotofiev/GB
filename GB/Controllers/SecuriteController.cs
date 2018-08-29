@@ -75,7 +75,7 @@ namespace GB.Controllers
             try
             {
                 // -- Vérifier l'autorisation de l'action -- //
-                AutorisationDAO.Verification_Autorisation(id_menu_actif, this.con.id_role, GB_Enum_Action_Controller.Lister, ref autorisation_refuse);
+                AutorisationDAO.Verification_Autorisation(id_menu_actif, this.con.utilisateur.id_role, GB_Enum_Action_Controller.Lister, ref autorisation_refuse);
 
                 List<object> donnee = new List<object>();
 
@@ -538,7 +538,7 @@ namespace GB.Controllers
                         (this.con.donnee.autorisation_disponible as List<Autorisation>).Add(
                             new Autorisation
                             {
-                                id = "0",
+                                id = GBClass.id_par_defaut,
                                 id_menu = id_menu,
                                 id_role = Convert.ToInt64(this.con.donnee.id_role),
                                 ajouter = false,

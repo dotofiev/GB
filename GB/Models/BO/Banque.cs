@@ -19,7 +19,7 @@ namespace GB.Models.BO
         public string ville { get; set; }
         public string id_pays { get; set; }
         public Utilisateur utilisateur_createur { get; set; }
-        public Pays pays { get; set; }
+        public PAYS pays { get; set; }
         public long date_creation { get; set; }
 
         public Banque(string id)

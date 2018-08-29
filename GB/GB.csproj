@@ -205,6 +205,8 @@
     </Compile>
     <Compile Include="Models\ActionFilter\AuthentificationRequis.cs" />
     <Compile Include="Models\ActionFilter\ResponseErreur.cs" />
+    <Compile Include="Models\BO\CAISSE.cs" />
+    <Compile Include="Models\BO\QUALITE.cs" />
     <Compile Include="Models\BO\ParametreBudgetFrais.cs" />
     <Compile Include="Models\BO\ParametreBudgetRevenu.cs" />
     <Compile Include="Models\BO\Societe.cs" />
@@ -219,6 +221,8 @@
     <Compile Include="Models\BO\Banque.cs" />
     <Compile Include="Models\BO\ResponsableRelationClient.cs" />
     <Compile Include="Models\BO\Profitabilite.cs" />
+    <Compile Include="Models\DAO\CAISSEDAO.cs" />
+    <Compile Include="Models\DAO\QUALITEDAO.cs" />
     <Compile Include="Models\DAO\ParametreBudgetFraisDAO.cs" />
     <Compile Include="Models\DAO\ParametreBudgetRevenuDAO.cs" />
     <Compile Include="Models\DAO\SocieteDAO.cs" />
@@ -1772,7 +1776,7 @@
     <Compile Include="Models\BO\Devise.cs" />
     <Compile Include="Models\BO\ActiviteEconomique.cs" />
     <Compile Include="Models\BO\Ville.cs" />
-    <Compile Include="Models\BO\Pays.cs" />
+    <Compile Include="Models\BO\PAYS.cs" />
     <Compile Include="Models\BO\ProduitJudiciaire.cs" />
     <Compile Include="Models\BO\ProduitPhysique.cs" />
     <Compile Include="Models\BO\ParametreBanque.cs" />
@@ -1810,7 +1814,7 @@
     <Compile Include="Models\DAO\ActiviteEconomiqueDAO.cs" />
     <Compile Include="Models\DAO\ExerciceFiscalDAO.cs" />
     <Compile Include="Models\DAO\VilleDAO.cs" />
-    <Compile Include="Models\DAO\PaysDAO.cs" />
+    <Compile Include="Models\DAO\PAYSDAO.cs" />
     <Compile Include="Models\DAO\ProduitJudiciaireDAO.cs" />
     <Compile Include="Models\DAO\ProduitPhysiqueDAO.cs" />
     <Compile Include="Models\DAO\ParametreBanqueDAO.cs" />

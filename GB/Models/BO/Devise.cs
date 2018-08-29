@@ -25,6 +25,24 @@ namespace GB.Models.BO
 
         public Devise() { }
 
+        public Devise(devise entitie)
+        {
+            try
+            {
+                this.id = entitie.devcod;
+                this.code = entitie.devcod;
+                this.libelle = entitie.devlib;
+                this.signe = entitie.devsign;
+                this.devise_actuelle = entitie.CurrentCurrency == "Yes";
+                this.date_creation = entitie.devdate?.Ticks ?? DateTime.Now.Ticks;
+            }
+            catch (Exception ex)
+            {
+                // -- Log -- //
+                GBClass.Log.Error(ex);
+            }
+        }
+
         public void Crer_Id()
         {
             this.id = (Program.db.devises.Count + 1).ToString();

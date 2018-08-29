@@ -46,7 +46,7 @@ namespace GB.Models.DAO
                 obj.Crer_Id();
 
                 // -- Mise à jour reference pays -- //
-                obj.pays = PaysDAO.ObjectId(obj.id_pays);
+                obj.pays = PAYSDAO.ObjectId(obj.id_pays);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.western_union_zones_pays.Add(obj);
@@ -96,7 +96,7 @@ namespace GB.Models.DAO
                     {
                         // -- Mise à jour de l'enregistrement -- //
                         l.id_pays = obj.id_pays;
-                        l.pays = PaysDAO.ObjectId(obj.id_pays);
+                        l.pays = PAYSDAO.ObjectId(obj.id_pays);
                         l.zone = obj.zone;
                     });
 

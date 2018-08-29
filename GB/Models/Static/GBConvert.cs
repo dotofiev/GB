@@ -215,5 +215,13 @@ namespace GB.Models.Static
             return
                 DateTime.ParseExact(date, "dd/MM/yyyy", provider);
         }
+
+        /// <summary>Conversion d'une date en string en date C# </summary>
+        public static DateTime? To_DateTime(long valeur)
+        {
+            return
+                (valeur != 0) ? new Nullable<DateTime>(new DateTime(valeur))
+                              : null;
+        }
     }
 }

@@ -137,7 +137,7 @@ namespace GB.Controllers
             this.ViewBag.Id_page = id_page;
 
             // -- Définition du menu actif -- //
-            id_menu_actif = "0";
+            id_menu_actif = GBClass.id_par_defaut;
 
             #region Home-Authentication
             if (id_page == GB_Enum_Menu.Home_Authentication)

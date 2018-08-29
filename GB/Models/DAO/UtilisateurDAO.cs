@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.Entites;
 using GB.Models.GB;
 using GB.Models.Interfaces;
 using GB.Models.SignalR.Hubs;
@@ -31,28 +32,54 @@ namespace GB.Models.DAO
         {
             try
             {
-                // -- Unicité du code -- //
-                if (Program.db.utilisateurs.Exists(l => l.compte == obj.compte))
+                #region Processus de teste
+                // -- Si l'application est branché à la base de données -- //
+                if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
                 {
-                    throw new GBException(App_Lang.Lang.Existing_data + " [compte]");
+                    // -- Unicité du code -- //
+                    if (Program.db.utilisateurs.Exists(l => l.compte == obj.compte))
+                    {
+                        throw new GBException(App_Lang.Lang.Existing_data + " [compte]");
+                    }
+
+                    // -- Mise àj our des references -- //
+                    obj.agence = AgenceDAO.ObjectId(obj.id_agence);
+                    obj.profession = ProfessionDAO.ObjectId(obj.id_profession);
+                    obj.autorite_signature = AutoriteSignatureDAO.ObjectId(obj.id_autorite_signature);
+                    obj.date_mise_a_jour_mot_de_passe = DateTime.Now.AddMonths(obj.duree_mot_de_passe).Ticks;
+
+                    // -- Définition de l'identifiant -- //
+                    obj.Crer_Id();
+
+                    // -- Enregistrement de la valeur -- //
+                    Program.db.utilisateurs.Add(obj);
                 }
+                #endregion
 
-                // -- Mise àj our des references -- //
-                obj.agence = AgenceDAO.ObjectId(obj.id_agence);
-                obj.profession = ProfessionDAO.ObjectId(obj.id_profession);
-                obj.autorite_signature = AutoriteSignatureDAO.ObjectId(obj.id_autorite_signature);
-                obj.date_mise_a_jour_mot_de_passe = DateTime.Now.AddMonths(obj.duree_mot_de_passe).Ticks;
+                #region Processus fonctionnel
+                else
+                {
+                    // -- Définition du context -- //
+                    using (BankingEntities db = new BankingEntities())
+                    {
+                        // -- Désactivation du Lasy loading -- //
+                        db.Configuration.LazyLoadingEnabled = false;
 
-                // -- Définition de l'identifiant -- //
-                obj.Crer_Id();
+                        // -- Définition des variables -- //
+                        Dictionary<string, object> parametres = new Dictionary<string, object>();
+                        parametres.Add("date_creation", this.connexion.date_serveur);
 
-                // -- Enregistrement de la valeur -- //
-                Program.db.utilisateurs.Add(obj);
+                        // -- Enregistrement de la données -- //
+                        db.Employes.Add(obj.ToEntities(parametres));
+
+                        // -- Sauvegarder les changements -- //
+                        db.SaveChanges();
+                    }
+                }
+                #endregion
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerComboEasyAutocomplete(this, this.connexion.hub_id_context);
             }
             #region Catch
@@ -80,48 +107,82 @@ namespace GB.Models.DAO
         {
             try
             {
-                // -- Unicité du code -- //
-                if (Program.db.utilisateurs.Exists(l => l.id_utilisateur != obj.id_utilisateur && l.compte == obj.compte))
+                #region Processus de teste
+                // -- Si l'application est branché à la base de données -- //
+                if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
                 {
-                    throw new GBException(App_Lang.Lang.Existing_data + " [compte]");
-                }
-
-                // -- Modification de la valeur -- //
-                Program.db.utilisateurs
-                    // -- Spécifier la recherche -- //
-                    .Where(l => l.id_utilisateur == obj.id_utilisateur)
-                    // -- Lister le résultat -- //
-                    .ToList()
-                    // -- Parcourir les elements résultats -- //
-                    .ForEach(l =>
+                    // -- Unicité du code -- //
+                    if (Program.db.utilisateurs.Exists(l => l.id_utilisateur != obj.id_utilisateur && l.compte == obj.compte))
                     {
+                        throw new GBException(App_Lang.Lang.Existing_data + " [compte]");
+                    }
+
+                    // -- Modification de la valeur -- //
+                    Program.db.utilisateurs
+                        // -- Spécifier la recherche -- //
+                        .Where(l => l.id_utilisateur == obj.id_utilisateur)
+                        // -- Lister le résultat -- //
+                        .ToList()
+                        // -- Parcourir les elements résultats -- //
+                        .ForEach(l =>
+                        {
                         // -- Mise à jour de l'enregistrement -- //
                         l.compte = obj.compte;
-                        l.nom_utilisateur = obj.nom_utilisateur;
-                        l.id_agence = obj.id_agence;
-                        l.agence = AgenceDAO.ObjectId(obj.id_agence);
-                        l.id_profession = obj.id_profession;
-                        l.profession = ProfessionDAO.ObjectId(obj.id_profession);
-                        l.id_autorite_signature = obj.id_autorite_signature;
-                        l.autorite_signature = AutoriteSignatureDAO.ObjectId(obj.id_autorite_signature);
-                        l.ouverture_back_date = obj.ouverture_back_date;
-                        l.ouverture_back_date_travail = obj.ouverture_back_date_travail;
-                        l.ouverture_branch = obj.ouverture_branch;
-                        l.est_connecte = obj.est_connecte;
-                        l.est_suspendu = obj.est_suspendu;
-                        l.duree_mot_de_passe = obj.duree_mot_de_passe;
-                        l.date_mise_a_jour_mot_de_passe = DateTime.Now.AddMonths(obj.duree_mot_de_passe).Ticks;
+                            l.nom_utilisateur = obj.nom_utilisateur;
+                            l.id_agence = obj.id_agence;
+                            l.agence = AgenceDAO.ObjectId(obj.id_agence);
+                            l.id_profession = obj.id_profession;
+                            l.profession = ProfessionDAO.ObjectId(obj.id_profession);
+                            l.id_autorite_signature = obj.id_autorite_signature;
+                            l.autorite_signature = AutoriteSignatureDAO.ObjectId(obj.id_autorite_signature);
+                            l.ouverture_back_date = obj.ouverture_back_date;
+                            l.ouverture_back_date_travail = obj.ouverture_back_date_travail;
+                            l.ouverture_branch = obj.ouverture_branch;
+                            l.est_connecte = obj.est_connecte;
+                            l.est_suspendu = obj.est_suspendu;
+                            l.duree_mot_de_passe = obj.duree_mot_de_passe;
+                            l.date_mise_a_jour_mot_de_passe = DateTime.Now.AddMonths(obj.duree_mot_de_passe).Ticks;
                         // -- Mise à jour du mot de passe -- //
                         if (obj.modifier_mot_de_passe)
+                            {
+                                l.mot_de_passe = obj.mot_de_passe;
+                            }
+                        });
+                }
+                #endregion
+
+                #region Processus fonctionnel
+                else
+                {
+                    // -- Définition du context -- //
+                    using (BankingEntities db = new BankingEntities())
+                    {
+                        // -- Désactivation du Lasy loading -- //
+                        db.Configuration.LazyLoadingEnabled = false;
+
+                        // -- Rechercher l'objet à modifier -- //
+                        Employe ancien_obj = db.Employes.Find(obj.code);
+
+                        // -- Vérifier que l'objet est retournée -- //
+                        if (ancien_obj == null)
                         {
-                            l.mot_de_passe = obj.mot_de_passe;
+                            throw new GBException(App_Lang.Lang.Object_not_found);
                         }
-                    });
+
+                        // -- Mise à jour de l'ancienne valeur -- //
+                        obj.ModifyEntities(ancien_obj);
+
+                        // -- Enregistrement de la données -- //
+                        db.Entry<Employe>(ancien_obj).State = System.Data.Entity.EntityState.Modified;
+
+                        // -- Sauvegarder les changements -- //
+                        db.SaveChanges();
+                    }
+                }
+                #endregion
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerComboEasyAutocomplete(this, this.connexion.hub_id_context);
             }
             #region Catch
@@ -149,17 +210,42 @@ namespace GB.Models.DAO
         {
             try
             {
-                // -- Parcours de la liste des id -- //
-                ids.ForEach(id =>
+                #region Processus de teste
+                // -- Si l'application est branché à la base de données -- //
+                if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
                 {
-                    // -- Suppression des valeurs -- //
-                    Program.db.utilisateurs.RemoveAll(l => l.id_utilisateur == id);
-                });
+                    // -- Parcours de la liste des id -- //
+                    ids.ForEach(id =>
+                    {
+                        // -- Suppression des valeurs -- //
+                        Program.db.utilisateurs.RemoveAll(l => l.id_utilisateur == id);
+                    });
+                }
+                #endregion
+
+                #region Processus fonctionnel
+                else
+                {
+                    // -- Définition du context -- //
+                    using (BankingEntities db = new BankingEntities())
+                    {
+                        // -- Désactivation du Lasy loading -- //
+                        db.Configuration.LazyLoadingEnabled = false;
+
+                        // -- Supprimer la liste -- //
+                        db.Employes.RemoveRange(
+                            // -- Réccupérer les éléments à supprimer -- //
+                            db.Employes.Where(l => ids.Count(ll => ll.Equals(l.Matricule)) != 0)
+                        );
+
+                        // -- Sauvegarder les changements -- //
+                        db.SaveChanges();
+                    }
+                }
+                #endregion
 
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerComboEasyAutocomplete(this, this.connexion.hub_id_context);
             }
             #region Catch
@@ -187,9 +273,32 @@ namespace GB.Models.DAO
         {
             try
             {
-                // -- Parcours de la liste -- //
-                return
+                #region Processus de teste
+                // -- Si l'application est branché à la base de données -- //
+                if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
+                {
+                    // -- Parcours de la liste -- //
+                    return
                     Program.db.utilisateurs;
+                }
+                #endregion
+
+                #region Processus fonctionnel
+                else
+                {
+                    // -- Définition du context -- //
+                    using (BankingEntities db = new BankingEntities())
+                    {
+                        // -- Désactivation du Lasy loading -- //
+                        db.Configuration.LazyLoadingEnabled = false;
+
+                        return
+                            FromEntities(
+                                db.Employes.ToList()
+                            ).ToList();
+                    }
+                }
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -216,9 +325,30 @@ namespace GB.Models.DAO
         {
             try
             {
-                // -- Vérifier l'existance -- //
-                return
-                    Program.db.utilisateurs.Exists(l => l.compte == compte && l.mot_de_passe == mot_de_passe);
+                #region Processus de teste
+                // -- Si l'application est branché à la base de données -- //
+                if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
+                {
+                    // -- Vérifier l'existance -- //
+                    return
+                        Program.db.utilisateurs.Exists(l => l.compte == compte && l.mot_de_passe == mot_de_passe);
+                }
+                #endregion
+
+                #region Processus fonctionnel
+                else
+                {
+                    // -- Définition du context -- //
+                    using (BankingEntities db = new BankingEntities())
+                    {
+                        // -- Désactivation du Lasy loading -- //
+                        db.Configuration.LazyLoadingEnabled = false;
+
+                        return
+                            db.Employes.Count(l => l.Matricule == compte && l.MotPasse == mot_de_passe) != 0;
+                    }
+                }
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -245,9 +375,32 @@ namespace GB.Models.DAO
         {
             try
             {
-                // -- Vérifier l'existance -- //
-                return
-                    Program.db.utilisateurs.FirstOrDefault(l => l.compte == compte && l.mot_de_passe == mot_de_passe);
+                #region Processus de teste
+                // -- Si l'application est branché à la base de données -- //
+                if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
+                {
+                    // -- Vérifier l'existance -- //
+                    return
+                        Program.db.utilisateurs.FirstOrDefault(l => l.compte == compte && l.mot_de_passe == mot_de_passe);
+                }
+                #endregion
+
+                #region Processus fonctionnel
+                else
+                {
+                    // -- Définition du context -- //
+                    using (BankingEntities db = new BankingEntities())
+                    {
+                        // -- Désactivation du Lasy loading -- //
+                        db.Configuration.LazyLoadingEnabled = false;
+
+                        return
+                            new Utilisateur(
+                                db.Employes.FirstOrDefault(l => l.Matricule == compte && l.MotPasse == mot_de_passe)
+                            );
+                    }
+                }
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -273,9 +426,32 @@ namespace GB.Models.DAO
         {
             try
             {
-                // -- Vérifier l'existance -- //
-                return
+                #region Processus de teste
+                // -- Si l'application est branché à la base de données -- //
+                if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
+                {
+                    // -- Vérifier l'existance -- //
+                    return
                     Program.db.utilisateurs.FirstOrDefault(l => l.compte == compte);
+                }
+                #endregion
+
+                #region Processus fonctionnel
+                else
+                {
+                    // -- Définition du context -- //
+                    using (BankingEntities db = new BankingEntities())
+                    {
+                        // -- Désactivation du Lasy loading -- //
+                        db.Configuration.LazyLoadingEnabled = false;
+
+                        return
+                            new Utilisateur(
+                                db.Employes.FirstOrDefault(l => l.Matricule == compte)
+                            );
+                    }
+                }
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -301,9 +477,32 @@ namespace GB.Models.DAO
         {
             try
             {
-                // -- Vérifier l'existance -- //
-                return
+                #region Processus de teste
+                // -- Si l'application est branché à la base de données -- //
+                if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
+                {
+                    // -- Vérifier l'existance -- //
+                    return
                     Program.db.utilisateurs.FirstOrDefault(l => l.id_utilisateur == id_utilisateur);
+                }
+                #endregion
+
+                #region Processus fonctionnel
+                else
+                {
+                    // -- Définition du context -- //
+                    using (BankingEntities db = new BankingEntities())
+                    {
+                        // -- Désactivation du Lasy loading -- //
+                        db.Configuration.LazyLoadingEnabled = false;
+
+                        return
+                            new Utilisateur(
+                                db.Employes.FirstOrDefault(l => l.Matricule == id_utilisateur)
+                            );
+                    }
+                }
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -355,7 +554,7 @@ namespace GB.Models.DAO
                 }
 
                 // -- Vérifier si l'utilisateur est déjà connecté et si dans ce cas la connexion multiple est activée -- //
-                if (applicationMainHub.Hubs_Connexion.Exists(l => l.id_utilisateur == utilisateur.id_utilisateur) && !AppSettings.CONNEXION_UTILISATEUR_MULTI_POSTE)
+                if (applicationMainHub.Hubs_Connexion.Exists(l => (l.utilisateur?.id_utilisateur ?? GBClass.id_par_defaut) == utilisateur.id_utilisateur) && !AppSettings.CONNEXION_UTILISATEUR_MULTI_POSTE)
                 {
                     // -- Exception -- //
                     throw new GBException(App_Lang.Lang.Authentication_failed_5);
@@ -389,6 +588,17 @@ namespace GB.Models.DAO
         public dynamic HTML_Select()
         {
             throw new NotImplementedException();
+        }
+
+        public static IEnumerable<Utilisateur> FromEntities(List<Employe> listObj)
+        {
+            foreach (var obj in listObj)
+            {
+                if (obj == null)
+                    continue;
+
+                yield return new Utilisateur(obj);
+            }
         }
     }
 }

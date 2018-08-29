@@ -31,7 +31,7 @@ namespace GB.Models.DAO
             try
             {
                 // -- Obj utilisateur créateur -- //
-                Utilisateur utilisateur_createur = UtilisateurDAO.ObjectId(this.connexion.id_utilisateur);
+                Utilisateur utilisateur_createur = UtilisateurDAO.ObjectId(this.connexion.utilisateur.id_utilisateur);
 
                 // -- Mise à jour de l'objet devise -- //
                 Devise devise = DeviseDAO.Actif();
@@ -45,7 +45,7 @@ namespace GB.Models.DAO
                     obj.type_operation_compte_client_et_compte_gl = false;
                     obj.type_operation_compte_gl_et_compte_gl = false;
                     obj.date_creation = date_creation;
-                    obj.id_utilisateur = this.connexion.id_utilisateur;
+                    obj.id_utilisateur = this.connexion.utilisateur.id_utilisateur;
                     obj.utilisateur_createur = utilisateur_createur;
                     obj.id_devise = devise?.id;
                     obj.devise = devise ?? null;

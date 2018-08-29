@@ -15,7 +15,7 @@ namespace GB.Models.BO
     {
         
         public string id_pays { get; set; }
-        public Pays pays { get; set; }
+        public PAYS pays { get; set; }
         public string zone { get; set; }
 
         public WesternUnionZonePays(string id)

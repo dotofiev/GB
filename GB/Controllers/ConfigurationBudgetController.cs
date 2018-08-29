@@ -105,7 +105,7 @@ namespace GB.Controllers
             try
             {
                 // -- Vérifier l'autorisation de l'action -- //
-                AutorisationDAO.Verification_Autorisation(id_menu_actif, this.con.id_role, GB_Enum_Action_Controller.Lister, ref autorisation_refuse);
+                AutorisationDAO.Verification_Autorisation(id_menu_actif, this.con.utilisateur.id_role, GB_Enum_Action_Controller.Lister, ref autorisation_refuse);
 
                 List<object> donnee = new List<object>();
 

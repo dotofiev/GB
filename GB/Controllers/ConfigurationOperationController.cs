@@ -180,7 +180,7 @@ namespace GB.Controllers
             try
             {
                 // -- Vérifier l'autorisation de l'action -- //
-                AutorisationDAO.Verification_Autorisation(id_menu_actif, this.con.id_role, GB_Enum_Action_Controller.Lister, ref autorisation_refuse);
+                AutorisationDAO.Verification_Autorisation(id_menu_actif, this.con.utilisateur.id_role, GB_Enum_Action_Controller.Lister, ref autorisation_refuse);
 
                 List<object> donnee = new List<object>();
 
@@ -798,7 +798,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeGarantie)
                 {
                     // -- Service d'enregistrement -- //
-                    typeGarantieDAO.Ajouter(GBConvert.JSON_To<TypeGarantie>(obj), this.con.id_utilisateur);
+                    typeGarantieDAO.Ajouter(GBConvert.JSON_To<TypeGarantie>(obj), this.con.utilisateur.id_utilisateur);
                 }
                 #endregion
 
@@ -1270,13 +1270,13 @@ namespace GB.Controllers
                     if (string.IsNullOrEmpty(id_vue))
                     {
                         // -- Si la liste des pays en session est vide, la mettre à jour -- //
-                        if ((this.con.donnee.pays as List<Pays>).Count == 0)
+                        if ((this.con.donnee.pays as List<PAYS>).Count == 0)
                         {
-                            this.con.donnee.pays = PaysDAO.Lister();
+                            this.con.donnee.pays = PAYSDAO.Lister();
                         }
 
                         // -- Charger la liste des résultats -- //
-                        foreach (var val in (this.con.donnee.pays as List<Pays>))
+                        foreach (var val in (this.con.donnee.pays as List<PAYS>))
                         {
                             donnee.Add(
                                 new
@@ -1323,7 +1323,7 @@ namespace GB.Controllers
                     if (id_vue == "pays")
                     {
                         // -- Mise à jour de la liste en session -- //
-                        this.con.donnee.pays = PaysDAO.Lister();
+                        this.con.donnee.pays = PAYSDAO.Lister();
                     }
                     #endregion
                 }
@@ -1587,7 +1587,7 @@ namespace GB.Controllers
                 this.con.Vider_Donnee();
                 // - Mise à jour des données de vue -- //
                 // -- Pays -- //
-                this.con.donnee.pays = new List<Pays>();
+                this.con.donnee.pays = new List<PAYS>();
                 #endregion
             }
             #endregion

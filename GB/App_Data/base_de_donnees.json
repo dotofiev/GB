@@ -2486,6 +2486,15 @@
       "libelle": "Rent of building",
       "autoriser_control_budget": "true"
     }
+  ],
+  "caisses": [
+    {
+      "id": "1",
+      "id_devise": "1",
+      "code": "CA01",
+      "libelle": "Cashier 01",
+      "montant_depart": "0"
+    }
   ]
   //"western_union_zones_commissions": [
   //  {

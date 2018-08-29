@@ -358,7 +358,7 @@ namespace GB.Models.DAO
                         db.Configuration.LazyLoadingEnabled = false;
 
                         return
-                            FromEntities(
+                            new Devise(
                                 db.devises.FirstOrDefault(l => l.CurrentCurrency == "Yes")
                             );
                     }
@@ -410,7 +410,7 @@ namespace GB.Models.DAO
                         db.Configuration.LazyLoadingEnabled = false;
 
                         return
-                            FromEntities(
+                            new Devise(
                                 db.devises.Find(code)
                             );
                     }
@@ -461,7 +461,7 @@ namespace GB.Models.DAO
                         db.Configuration.LazyLoadingEnabled = false;
 
                         return
-                            FromEntities(
+                            new Devise(
                                 db.devises.Find(id)
                             );
                     }
@@ -721,39 +721,14 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Devise FromEntities(devise obj)
-        {
-            return
-                obj == null ? null
-                            :
-                new Devise
-                {
-                    id = obj.devcod,
-                    code = obj.devcod,
-                    devise_actuelle = obj.CurrentCurrency == "Yes",
-                    libelle = obj.devlib,
-                    signe = obj.devsign,
-                    date_creation = obj.devdate?.Ticks ?? DateTime.Now.Ticks
-                };
-        }
-
         public static IEnumerable<Devise> FromEntities(List<devise> listObj)
         {
-            foreach (devise obj in listObj)
+            foreach (var obj in listObj)
             {
                 if (obj == null)
                     continue;
 
-                yield return
-                    new Devise
-                    {
-                        id = obj.devcod,
-                        code = obj.devcod,
-                        devise_actuelle = obj.CurrentCurrency == "Yes",
-                        libelle = obj.devlib,
-                        signe = obj.devsign,
-                        date_creation = obj.devdate?.Ticks ?? DateTime.Now.Ticks
-                    };
+                yield return new Devise(obj);
             }
         }
     }

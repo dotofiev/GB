@@ -42,10 +42,10 @@ namespace GB.Models.DAO
                 obj.Crer_Id();
 
                 // -- Mise à jour du créateur -- //
-                obj.id_utilisateur_createur = this.connexion.id_utilisateur;
+                obj.id_utilisateur_createur = this.connexion.utilisateur.id_utilisateur;
 
                 // -- Mise à jour des references -- //
-                obj.utilisateur_createur = UtilisateurDAO.ObjectId(this.connexion.id_utilisateur);
+                obj.utilisateur_createur = UtilisateurDAO.ObjectId(this.connexion.utilisateur.id_utilisateur);
                 obj.compte = CompteDAO.ObjectId(obj.id_compte);
                 obj.banque = BanqueDAO.ObjectId(obj.id_banque);
 

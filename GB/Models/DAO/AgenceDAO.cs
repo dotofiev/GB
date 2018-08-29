@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.Entites;
 using GB.Models.GB;
 using GB.Models.Interfaces;
 using GB.Models.SignalR.Hubs;
@@ -32,20 +33,48 @@ namespace GB.Models.DAO
         {
             try
             {
-                // -- Unicité du code -- //
-                if (Program.db.agences.Exists(l => l.code == obj.code))
+                #region Processus de teste
+                // -- Si l'application est branché à la base de données -- //
+                if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
                 {
-                    throw new GBException(App_Lang.Lang.Existing_data + " [code]");
+                    // -- Unicité du code -- //
+                    if (Program.db.agences.Exists(l => l.code == obj.code))
+                    {
+                        throw new GBException(App_Lang.Lang.Existing_data + " [code]");
+                    }
+
+                    // -- Définition de l'identifiant -- //
+                    obj.Crer_Id();
+
+                    // -- Mise à jour des references -- //
+                    obj.utilisateur = UtilisateurDAO.ObjectId(obj.id_utilisateur);
+
+                    // -- Enregistrement de la valeur -- //
+                    Program.db.agences.Add(obj);
                 }
+                #endregion
 
-                // -- Définition de l'identifiant -- //
-                obj.Crer_Id();
+                #region Processus fonctionnel
+                else
+                {
+                    // -- Définition du context -- //
+                    using (BankingEntities db = new BankingEntities())
+                    {
+                        // -- Désactivation du Lasy loading -- //
+                        db.Configuration.LazyLoadingEnabled = false;
 
-                // -- Mise à jour des references -- //
-                obj.utilisateur = UtilisateurDAO.ObjectId(obj.id_utilisateur);
+                        // -- Définition des variables -- //
+                        Dictionary<string, object> parametres = new Dictionary<string, object>();
+                        parametres.Add("date_creation", this.connexion.date_serveur);
 
-                // -- Enregistrement de la valeur -- //
-                Program.db.agences.Add(obj);
+                        // -- Enregistrement de la données -- //
+                        db.agences.Add(obj.ToEntities(parametres));
+
+                        // -- Sauvegarder les changements -- //
+                        db.SaveChanges();
+                    }
+                }
+                #endregion
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
@@ -78,37 +107,73 @@ namespace GB.Models.DAO
         {
             try
             {
-                // -- Unicité du code -- //
-                if (Program.db.agences.Exists(l => l.id != obj.id && l.code == obj.code))
+                #region Processus de teste
+                // -- Si l'application est branché à la base de données -- //
+                if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
                 {
-                    throw new GBException(App_Lang.Lang.Existing_data + " [code]");
-                }
-
-                // -- Modification de la valeur -- //
-                Program.db.agences
-                    // -- Spécifier la recherche -- //
-                    .Where(l => l.id == obj.id)
-                    // -- Lister le résultat -- //
-                    .ToList()
-                    // -- Parcourir les elements résultats -- //
-                    .ForEach(l =>
+                    // -- Unicité du code -- //
+                    if (Program.db.agences.Exists(l => l.id != obj.id && l.code == obj.code))
                     {
+                        throw new GBException(App_Lang.Lang.Existing_data + " [code]");
+                    }
+
+                    // -- Modification de la valeur -- //
+                    Program.db.agences
+                        // -- Spécifier la recherche -- //
+                        .Where(l => l.id == obj.id)
+                        // -- Lister le résultat -- //
+                        .ToList()
+                        // -- Parcourir les elements résultats -- //
+                        .ForEach(l =>
+                        {
                         // -- Mise à jour de l'enregistrement -- //
                         l.code = obj.code;
-                        l.libelle = obj.libelle;
-                        l.id_utilisateur = obj.id_utilisateur;
-                        l.utilisateur = UtilisateurDAO.ObjectId(obj.id_utilisateur);
-                        l.adresse = obj.adresse;
-                        l.ville = obj.ville;
-                        l.bp = obj.bp;
-                        l.telephone = obj.telephone;
-                        l.pays = obj.pays;
-                        l.fax = obj.fax;
-                        l.cobac_id = obj.cobac_id;
-                        l.beac_id = obj.beac_id;
-                        l.ip = obj.ip;
-                        l.mot_de_passe = obj.mot_de_passe;
-                    });
+                            l.libelle = obj.libelle;
+                            l.id_utilisateur = obj.id_utilisateur;
+                            l.utilisateur = UtilisateurDAO.ObjectId(obj.id_utilisateur);
+                            l.adresse = obj.adresse;
+                            l.ville = obj.ville;
+                            l.bp = obj.bp;
+                            l.telephone = obj.telephone;
+                            l.pays = obj.pays;
+                            l.fax = obj.fax;
+                            l.cobac_id = obj.cobac_id;
+                            l.beac_id = obj.beac_id;
+                            l.ip = obj.ip;
+                            l.mot_de_passe = obj.mot_de_passe;
+                        });
+                }
+                #endregion
+
+                #region Processus fonctionnel
+                else
+                {
+                    // -- Définition du context -- //
+                    using (BankingEntities db = new BankingEntities())
+                    {
+                        // -- Désactivation du Lasy loading -- //
+                        db.Configuration.LazyLoadingEnabled = false;
+
+                        // -- Rechercher l'objet à modifier -- //
+                        agence ancien_obj = db.agences.Find(obj.code);
+
+                        // -- Vérifier que l'objet est retournée -- //
+                        if (ancien_obj == null)
+                        {
+                            throw new GBException(App_Lang.Lang.Object_not_found);
+                        }
+
+                        // -- Mise à jour de l'ancienne valeur -- //
+                        obj.ModifyEntities(ancien_obj);
+
+                        // -- Enregistrement de la données -- //
+                        db.Entry<agence>(ancien_obj).State = System.Data.Entity.EntityState.Modified;
+
+                        // -- Sauvegarder les changements -- //
+                        db.SaveChanges();
+                    }
+                }
+                #endregion
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
@@ -141,12 +206,39 @@ namespace GB.Models.DAO
         {
             try
             {
-                // -- Parcours de la liste des id -- //
-                ids.ForEach(id =>
+                #region Processus de teste
+                // -- Si l'application est branché à la base de données -- //
+                if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
                 {
-                    // -- Suppression des valeurs -- //
-                    Program.db.agences.RemoveAll(l => l.id == id);
-                });
+                    // -- Parcours de la liste des id -- //
+                    ids.ForEach(id =>
+                    {
+                        // -- Suppression des valeurs -- //
+                        Program.db.agences.RemoveAll(l => l.id == id);
+                    });
+                }
+                #endregion
+
+                #region Processus fonctionnel
+                else
+                {
+                    // -- Définition du context -- //
+                    using (BankingEntities db = new BankingEntities())
+                    {
+                        // -- Désactivation du Lasy loading -- //
+                        db.Configuration.LazyLoadingEnabled = false;
+
+                        // -- Supprimer la liste -- //
+                        db.agences.RemoveRange(
+                            // -- Réccupérer les éléments à supprimer -- //
+                            db.agences.Where(l => ids.Count(ll => ll.Equals(l.agcod)) != 0)
+                        );
+
+                        // -- Sauvegarder les changements -- //
+                        db.SaveChanges();
+                    }
+                }
+                #endregion
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
@@ -179,9 +271,33 @@ namespace GB.Models.DAO
         {
             try
             {
-                // -- Parcours de la liste -- //
-                return
-                    Program.db.agences;
+                #region Processus de teste
+                // -- Si l'application est branché à la base de données -- //
+                if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
+                {
+                    // -- Parcours de la liste -- //
+                    return
+                        Program.db.agences;
+
+                }
+                #endregion
+
+                #region Processus fonctionnel
+                else
+                {
+                    // -- Définition du context -- //
+                    using (BankingEntities db = new BankingEntities())
+                    {
+                        // -- Désactivation du Lasy loading -- //
+                        db.Configuration.LazyLoadingEnabled = false;
+
+                        return
+                            FromEntities(
+                                db.agences.ToList()
+                            ).ToList();
+                    }
+                }
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -208,9 +324,32 @@ namespace GB.Models.DAO
         {
             try
             {
-                // -- Parcours de la liste -- //
-                return
-                    Program.db.agences.FirstOrDefault(l => l.code == code);
+                #region Processus de teste
+                // -- Si l'application est branché à la base de données -- //
+                if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
+                {
+                    // -- Parcours de la liste -- //
+                    return
+                        Program.db.agences.FirstOrDefault(l => l.code == code);
+                }
+                #endregion
+
+                #region Processus fonctionnel
+                else
+                {
+                    // -- Définition du context -- //
+                    using (BankingEntities db = new BankingEntities())
+                    {
+                        // -- Désactivation du Lasy loading -- //
+                        db.Configuration.LazyLoadingEnabled = false;
+
+                        return
+                            new Agence(
+                                db.agences.Find(code)
+                            );
+                    }
+                }
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -237,9 +376,32 @@ namespace GB.Models.DAO
         {
             try
             {
-                // -- Parcours de la liste -- //
-                return
-                    Program.db.agences.FirstOrDefault(l => l.id == id);
+                #region Processus de teste
+                // -- Si l'application est branché à la base de données -- //
+                if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
+                {
+                    // -- Parcours de la liste -- //
+                    return
+                        Program.db.agences.FirstOrDefault(l => l.id == id);
+                }
+                #endregion
+
+                #region Processus fonctionnel
+                else
+                {
+                    // -- Définition du context -- //
+                    using (BankingEntities db = new BankingEntities())
+                    {
+                        // -- Désactivation du Lasy loading -- //
+                        db.Configuration.LazyLoadingEnabled = false;
+
+                        return
+                            new Agence(
+                                db.agences.Find(id)
+                            );
+                    }
+                }
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -350,6 +512,17 @@ namespace GB.Models.DAO
                 }
             }
             #endregion
+        }
+
+        public static IEnumerable<Agence> FromEntities(List<agence> listObj)
+        {
+            foreach (var obj in listObj)
+            {
+                if (obj == null)
+                    continue;
+
+                yield return new Agence(obj);
+            }
         }
     }
 }
