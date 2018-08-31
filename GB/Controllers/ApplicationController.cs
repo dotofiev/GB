@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace GB.Controllers
 {
-    [AuthentificationRequis]
+    [AuthentificationRequisFilter]
     public class ApplicationController : GBController
     {
         #region HttpGet

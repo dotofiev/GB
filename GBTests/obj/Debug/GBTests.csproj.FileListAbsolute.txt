@@ -1,5 +1,0 @@
-E:\DOCUMENTS\Better Planning\Global Bank\GB\GBTests\bin\Debug\GBTests.dll
-E:\DOCUMENTS\Better Planning\Global Bank\GB\GBTests\bin\Debug\GBTests.pdb
-E:\DOCUMENTS\Better Planning\Global Bank\GB\GBTests\obj\Debug\GBTests.csprojResolveAssemblyReference.cache
-E:\DOCUMENTS\Better Planning\Global Bank\GB\GBTests\obj\Debug\GBTests.dll
-E:\DOCUMENTS\Better Planning\Global Bank\GB\GBTests\obj\Debug\GBTests.pdb

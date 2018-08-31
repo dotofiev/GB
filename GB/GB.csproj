@@ -203,8 +203,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ActionFilter\AuthentificationRequis.cs" />
-    <Compile Include="Models\ActionFilter\ResponseErreur.cs" />
+    <Compile Include="Models\ActionFilter\AuthentificationRequisFilter.cs" />
+    <Compile Include="Models\ActionFilter\ResponseErreurFilter.cs" />
     <Compile Include="Models\BO\CAISSE.cs" />
     <Compile Include="Models\BO\QUALITE.cs" />
     <Compile Include="Models\BO\ParametreBudgetFrais.cs" />

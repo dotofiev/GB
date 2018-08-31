@@ -200,7 +200,7 @@ namespace GB
                             );
 
                 // -- Mise à jour du filtre de réponse -- //
-                Response.Filter = new ResponseErreur(Response.Filter, dt);
+                Response.Filter = new ResponseErreurFilter(Response.Filter, dt);
             }
             catch (Exception ex)
             {

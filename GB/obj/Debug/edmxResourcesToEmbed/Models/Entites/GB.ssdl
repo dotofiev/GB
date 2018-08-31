@@ -6359,12 +6359,9 @@ warning 6002: The table/view 'Banking.dbo.PayrollAcct' does not have a primary k
     <Property Name="LibCpteGl" Type="nvarchar" MaxLength="100" />
     <Property Name="CodeMaj" Type="char" MaxLength="1" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'Banking.dbo.Pays' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Pays">
     <Key>
       <PropertyRef Name="Pays" />
-      <PropertyRef Name="Designation" />
     </Key>
     <Property Name="Pays" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Designation" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -22801,6 +22798,7 @@ warning 6035: The relationship 'FK_TabConfigReportCobac_Nomenposte' has columns 
     <EntitySet Name="OpDiversG" EntityType="Self.OpDiversG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OutGoingSMS" EntityType="Self.OutGoingSMS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Parametre" EntityType="Self.Parametre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pays" EntityType="Self.Pays" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PhotoSign" EntityType="Self.PhotoSign" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Piece" EntityType="Self.Piece" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PieceB" EntityType="Self.PieceB" Schema="dbo" store:Type="Tables" />
@@ -25278,14 +25276,6 @@ warning 6035: The relationship 'FK_TabConfigReportCobac_Nomenposte' has columns 
     [PayrollAcct].[LibCpteGl] AS [LibCpteGl], 
     [PayrollAcct].[CodeMaj] AS [CodeMaj]
     FROM [dbo].[PayrollAcct] AS [PayrollAcct]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="Pays" EntityType="Self.Pays" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Pays].[Pays] AS [Pays], 
-    [Pays].[Designation] AS [Designation], 
-    [Pays].[PhoneId] AS [PhoneId], 
-    [Pays].[DateCreation] AS [DateCreation]
-    FROM [dbo].[Pays] AS [Pays]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="PostHistory" EntityType="Self.PostHistory" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 

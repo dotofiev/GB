@@ -35,8 +35,10 @@ namespace GB.Controllers
             applicationMainHub.MiseAJourHubs_Connexion(this.con);
 
             // -- Test -- //
-            this.ViewBag.Test.compte = Program.db?.utilisateurs?[0]?.compte ?? string.Empty;
-            this.ViewBag.Test.mot_de_passe = Program.db?.utilisateurs?[0]?.mot_de_passe ?? string.Empty;
+            this.ViewBag.Test.compte = (AppSettings.CONNEXION_DB_BANKINGENTITIES) ? "99999" 
+                                                                                  : Program.db?.utilisateurs?[0]?.compte ?? string.Empty;
+            this.ViewBag.Test.mot_de_passe = (AppSettings.CONNEXION_DB_BANKINGENTITIES) ? "admin" 
+                                                                                        : Program.db?.utilisateurs?[0]?.mot_de_passe ?? string.Empty;
 
             return View();
         }

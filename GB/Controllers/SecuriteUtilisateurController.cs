@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace GB.Controllers
 {
-    [AuthentificationRequis]
+    [AuthentificationRequisFilter]
     public class SecuriteUtilisateurController : GBController
     {
         #region HttpGet

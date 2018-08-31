@@ -60,7 +60,7 @@ namespace GB.Models.BO
                 // -- ? cptecltres -- //
                 //this. = entitie.cptecltres;
                 this.id_utilisateur = entitie.Employe;
-                //this.utilisateur = UtilisateurDAO.ObjectId(this.id_utilisateur);
+                this.utilisateur = UtilisateurDAO.ObjectId(this.id_utilisateur, false);
                 // -- ? BranchSituation -- //
                 //this. = entitie.BranchSituation;
                 // -- ? DateDerFerm -- //

@@ -8,7 +8,7 @@ var form = $('#form');
 // -- Lorsque le document est chargé -- //
 $(
     function () {
-        gbConsole('La cache fonctionne et a bien été vidé');
+
         // -- Lorsque le formulaire d'authentification est soumis -- //
         try {
 

@@ -14,8 +14,6 @@ namespace GB.Models.BO
 {
     public class QUALITE : BO, IBO<Qualite>
     {
-        public int series { get; set; }
-
         public QUALITE(string id)
         {
             this.id = id;
@@ -25,11 +23,10 @@ namespace GB.Models.BO
         {
             try
             {
-                this.id = entitie.Qualite1;
+                this.id = entitie.Series.ToString();
                 this.code = entitie.Qualite1;
                 this.libelle_fr = entitie.LibQualite;
                 this.libelle_en = entitie.LibQualiteEn;
-                this.series = entitie.Series;
             }
             catch (Exception ex)
             {
@@ -52,17 +49,17 @@ namespace GB.Models.BO
                 LibQualite = this.libelle_fr,
                 LibQualiteEn = this.libelle_en,
                 Qualite1 = this.code,
-                Series = this.series
+                // -- Identifiant autoincrémentable -- //
+                Series = 0
             };
         }
 
         public void FromEntities(Qualite entitie)
         {
-            this.id = entitie.Qualite1;
+            this.id = entitie.Series.ToString();
             this.code = entitie.Qualite1;
             this.libelle_fr = entitie.LibQualite;
             this.libelle_en = entitie.LibQualiteEn;
-            this.series = entitie.Series;
         }
 
         public void ModifyEntities(Qualite entitie)
@@ -70,7 +67,8 @@ namespace GB.Models.BO
             entitie.Qualite1 = this.code;
             entitie.LibQualite = this.libelle_fr;
             entitie.LibQualiteEn = this.libelle_en;
-            entitie.Series = this.series;
+            // -- Identifiant autoincrémentable -- //
+            // entitie.Series = this.series;
         }
     }
 }

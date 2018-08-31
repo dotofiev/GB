@@ -481,3 +481,470 @@ Nom du paramètre : length
 -----------------------
 29/08/2018 17:46:39.488 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:gmkkowt10c1klqtjwwh3wpf2} 
 -----------------------
+30/08/2018 10:57:18.887 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+30/08/2018 10:57:19.330 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:gmkkowt10c1klqtjwwh3wpf2} 
+-----------------------
+30/08/2018 10:57:47.580 | ERROR | [5] | GB.Models.BO.Utilisateur..ctor | System.NullReferenceException: La référence d'objet n'est pas définie à une instance d'un objet.
+   à GB.Models.BO.Utilisateur..ctor(Employe entitie) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\BO\Utilisateur.cs:ligne 62 
+-----------------------
+30/08/2018 10:58:05.898 | ERROR | [5] | GB.Models.DAO.QUALITEDAO.ObjectCode | System.ArgumentException: The type of one of the primary key values did not match the type defined in the entity. See inner exception for details.
+Nom du paramètre : keyValues ---> System.Data.Entity.Core.EntitySqlException: The argument types 'Edm.Int32' and 'Edm.String' are incompatible for this operation. Near WHERE predicate, line 1, column 72.
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertEqualCompArgs(BuiltInExpr astBuiltInExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.<CreateBuiltInExprConverter>b__83(BuiltInExpr bltInExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertBuiltIn(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.Convert(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertValueExpressionAllowUntypedNulls(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertValueExpression(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ProcessWhereHavingClausePredicate(DbExpressionBinding source, Node predicate, ErrorContext errCtx, String bindingNameTemplate, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertQueryExpr(Node expr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.Convert(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertValueExpressionAllowUntypedNulls(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertQueryStatementToDbExpression(Statement astStatement, SemanticResolver sr, List`1& functionDefs)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.AnalyzeQueryCommand(Node astExpr)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.<AnalyzeQueryExpressionSemantics>b__8(SemanticAnalyzer analyzer, Node astExpr)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.AnalyzeSemanticsCommon[TResult](Node astExpr, Perspective perspective, ParserOptions parserOptions, IEnumerable`1 parameters, IEnumerable`1 variables, Func`3 analysisFunction)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.AnalyzeQueryExpressionSemantics(Node astQueryCommand, Perspective perspective, ParserOptions parserOptions, IEnumerable`1 parameters, IEnumerable`1 variables)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.<>c__DisplayClass4.<CompileQueryCommandLambda>b__3(Node astCommand, ParserOptions validatedParserOptions)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.CompileCommon[TResult](String commandText, ParserOptions parserOptions, Func`3 compilationFunction)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.CompileQueryCommandLambda(String queryCommandText, Perspective perspective, ParserOptions parserOptions, IEnumerable`1 parameters, IEnumerable`1 variables)
+   à System.Data.Entity.Core.Objects.EntitySqlQueryState.Parse()
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateInlineQueryOfT(ObjectQuery inlineQuery)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.ConstantTranslator.TypedTranslate(ExpressionConverter parent, ConstantExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryMergeAsTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryMergeAsTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
+   à System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   à System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   à System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   à System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   à System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   à System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__2[TResult](IEnumerable`1 sequence)
+   à System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   à System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   à System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source)
+   à System.Data.Entity.Internal.Linq.InternalSet`1.FindInStore(WrappedEntityKey key, String keyValuesParamName)
+   --- Fin de la trace de la pile d'exception interne ---
+   à System.Data.Entity.Internal.Linq.InternalSet`1.FindInStore(WrappedEntityKey key, String keyValuesParamName)
+   à System.Data.Entity.Internal.Linq.InternalSet`1.Find(Object[] keyValues)
+   à System.Data.Entity.DbSet`1.Find(Object[] keyValues)
+   à GB.Models.DAO.QUALITEDAO.ObjectCode(String code) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\QUALITEDAO.cs:ligne 329 
+-----------------------
+30/08/2018 10:58:05.954 | ERROR | [5] | GB.Models.BO.Utilisateur..ctor | GB.Models.GB.GBException: _afficher_Une erreur est survenue lors du traitement, veuillez contacter l'administrateur.
+   à GB.Models.DAO.QUALITEDAO.ObjectCode(String code) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\QUALITEDAO.cs:ligne 347
+   à GB.Models.BO.Utilisateur..ctor(Employe entitie) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\BO\Utilisateur.cs:ligne 68 
+-----------------------
+30/08/2018 10:58:46.972 | ERROR | [5] | GB.Models.DAO.QUALITEDAO.ObjectCode | System.ArgumentException: The type of one of the primary key values did not match the type defined in the entity. See inner exception for details.
+Nom du paramètre : keyValues ---> System.Data.Entity.Core.EntitySqlException: The argument types 'Edm.Int32' and 'Edm.String' are incompatible for this operation. Near WHERE predicate, line 1, column 72.
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertEqualCompArgs(BuiltInExpr astBuiltInExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.<CreateBuiltInExprConverter>b__83(BuiltInExpr bltInExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertBuiltIn(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.Convert(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertValueExpressionAllowUntypedNulls(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertValueExpression(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ProcessWhereHavingClausePredicate(DbExpressionBinding source, Node predicate, ErrorContext errCtx, String bindingNameTemplate, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertQueryExpr(Node expr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.Convert(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertValueExpressionAllowUntypedNulls(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertQueryStatementToDbExpression(Statement astStatement, SemanticResolver sr, List`1& functionDefs)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.AnalyzeQueryCommand(Node astExpr)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.<AnalyzeQueryExpressionSemantics>b__8(SemanticAnalyzer analyzer, Node astExpr)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.AnalyzeSemanticsCommon[TResult](Node astExpr, Perspective perspective, ParserOptions parserOptions, IEnumerable`1 parameters, IEnumerable`1 variables, Func`3 analysisFunction)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.AnalyzeQueryExpressionSemantics(Node astQueryCommand, Perspective perspective, ParserOptions parserOptions, IEnumerable`1 parameters, IEnumerable`1 variables)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.<>c__DisplayClass4.<CompileQueryCommandLambda>b__3(Node astCommand, ParserOptions validatedParserOptions)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.CompileCommon[TResult](String commandText, ParserOptions parserOptions, Func`3 compilationFunction)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.CompileQueryCommandLambda(String queryCommandText, Perspective perspective, ParserOptions parserOptions, IEnumerable`1 parameters, IEnumerable`1 variables)
+   à System.Data.Entity.Core.Objects.EntitySqlQueryState.Parse()
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateInlineQueryOfT(ObjectQuery inlineQuery)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.ConstantTranslator.TypedTranslate(ExpressionConverter parent, ConstantExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryMergeAsTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryMergeAsTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
+   à System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   à System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   à System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   à System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   à System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   à System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__2[TResult](IEnumerable`1 sequence)
+   à System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   à System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   à System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source)
+   à System.Data.Entity.Internal.Linq.InternalSet`1.FindInStore(WrappedEntityKey key, String keyValuesParamName)
+   --- Fin de la trace de la pile d'exception interne ---
+   à System.Data.Entity.Internal.Linq.InternalSet`1.FindInStore(WrappedEntityKey key, String keyValuesParamName)
+   à System.Data.Entity.Internal.Linq.InternalSet`1.Find(Object[] keyValues)
+   à System.Data.Entity.DbSet`1.Find(Object[] keyValues)
+   à GB.Models.DAO.QUALITEDAO.ObjectCode(String code) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\QUALITEDAO.cs:ligne 329 
+-----------------------
+30/08/2018 10:58:47.129 | ERROR | [5] | GB.Models.BO.Utilisateur..ctor | GB.Models.GB.GBException: _afficher_Une erreur est survenue lors du traitement, veuillez contacter l'administrateur.
+   à GB.Models.DAO.QUALITEDAO.ObjectCode(String code) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\QUALITEDAO.cs:ligne 347
+   à GB.Models.BO.Utilisateur..ctor(Employe entitie) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\BO\Utilisateur.cs:ligne 68 
+-----------------------
+30/08/2018 11:02:13.685 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+30/08/2018 11:02:13.982 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:gmkkowt10c1klqtjwwh3wpf2} 
+-----------------------
+30/08/2018 11:02:35.298 | ERROR | [6] | GB.Models.BO.Utilisateur..ctor | System.NullReferenceException: La référence d'objet n'est pas définie à une instance d'un objet.
+   à GB.Models.BO.Utilisateur..ctor(Employe entitie) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\BO\Utilisateur.cs:ligne 61 
+-----------------------
+30/08/2018 11:02:48.777 | ERROR | [6] | GB.Models.DAO.QUALITEDAO.ObjectCode | System.ArgumentException: The type of one of the primary key values did not match the type defined in the entity. See inner exception for details.
+Nom du paramètre : keyValues ---> System.Data.Entity.Core.EntitySqlException: The argument types 'Edm.Int32' and 'Edm.String' are incompatible for this operation. Near WHERE predicate, line 1, column 72.
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertEqualCompArgs(BuiltInExpr astBuiltInExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.<CreateBuiltInExprConverter>b__83(BuiltInExpr bltInExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertBuiltIn(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.Convert(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertValueExpressionAllowUntypedNulls(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertValueExpression(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ProcessWhereHavingClausePredicate(DbExpressionBinding source, Node predicate, ErrorContext errCtx, String bindingNameTemplate, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertQueryExpr(Node expr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.Convert(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertValueExpressionAllowUntypedNulls(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertQueryStatementToDbExpression(Statement astStatement, SemanticResolver sr, List`1& functionDefs)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.AnalyzeQueryCommand(Node astExpr)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.<AnalyzeQueryExpressionSemantics>b__8(SemanticAnalyzer analyzer, Node astExpr)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.AnalyzeSemanticsCommon[TResult](Node astExpr, Perspective perspective, ParserOptions parserOptions, IEnumerable`1 parameters, IEnumerable`1 variables, Func`3 analysisFunction)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.AnalyzeQueryExpressionSemantics(Node astQueryCommand, Perspective perspective, ParserOptions parserOptions, IEnumerable`1 parameters, IEnumerable`1 variables)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.<>c__DisplayClass4.<CompileQueryCommandLambda>b__3(Node astCommand, ParserOptions validatedParserOptions)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.CompileCommon[TResult](String commandText, ParserOptions parserOptions, Func`3 compilationFunction)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.CompileQueryCommandLambda(String queryCommandText, Perspective perspective, ParserOptions parserOptions, IEnumerable`1 parameters, IEnumerable`1 variables)
+   à System.Data.Entity.Core.Objects.EntitySqlQueryState.Parse()
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateInlineQueryOfT(ObjectQuery inlineQuery)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.ConstantTranslator.TypedTranslate(ExpressionConverter parent, ConstantExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryMergeAsTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryMergeAsTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
+   à System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   à System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   à System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   à System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   à System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   à System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__2[TResult](IEnumerable`1 sequence)
+   à System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   à System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   à System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source)
+   à System.Data.Entity.Internal.Linq.InternalSet`1.FindInStore(WrappedEntityKey key, String keyValuesParamName)
+   --- Fin de la trace de la pile d'exception interne ---
+   à System.Data.Entity.Internal.Linq.InternalSet`1.FindInStore(WrappedEntityKey key, String keyValuesParamName)
+   à System.Data.Entity.Internal.Linq.InternalSet`1.Find(Object[] keyValues)
+   à System.Data.Entity.DbSet`1.Find(Object[] keyValues)
+   à GB.Models.DAO.QUALITEDAO.ObjectCode(String code) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\QUALITEDAO.cs:ligne 329 
+-----------------------
+30/08/2018 11:02:48.809 | ERROR | [6] | GB.Models.BO.Utilisateur..ctor | GB.Models.GB.GBException: _afficher_Une erreur est survenue lors du traitement, veuillez contacter l'administrateur.
+   à GB.Models.DAO.QUALITEDAO.ObjectCode(String code) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\QUALITEDAO.cs:ligne 347
+   à GB.Models.BO.Utilisateur..ctor(Employe entitie) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\BO\Utilisateur.cs:ligne 67 
+-----------------------
+30/08/2018 11:03:04.637 | ERROR | [6] | GB.Models.DAO.QUALITEDAO.ObjectCode | System.ArgumentException: The type of one of the primary key values did not match the type defined in the entity. See inner exception for details.
+Nom du paramètre : keyValues ---> System.Data.Entity.Core.EntitySqlException: The argument types 'Edm.Int32' and 'Edm.String' are incompatible for this operation. Near WHERE predicate, line 1, column 72.
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertEqualCompArgs(BuiltInExpr astBuiltInExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.<CreateBuiltInExprConverter>b__83(BuiltInExpr bltInExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertBuiltIn(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.Convert(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertValueExpressionAllowUntypedNulls(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertValueExpression(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ProcessWhereHavingClausePredicate(DbExpressionBinding source, Node predicate, ErrorContext errCtx, String bindingNameTemplate, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertQueryExpr(Node expr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.Convert(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertValueExpressionAllowUntypedNulls(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertQueryStatementToDbExpression(Statement astStatement, SemanticResolver sr, List`1& functionDefs)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.AnalyzeQueryCommand(Node astExpr)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.<AnalyzeQueryExpressionSemantics>b__8(SemanticAnalyzer analyzer, Node astExpr)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.AnalyzeSemanticsCommon[TResult](Node astExpr, Perspective perspective, ParserOptions parserOptions, IEnumerable`1 parameters, IEnumerable`1 variables, Func`3 analysisFunction)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.AnalyzeQueryExpressionSemantics(Node astQueryCommand, Perspective perspective, ParserOptions parserOptions, IEnumerable`1 parameters, IEnumerable`1 variables)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.<>c__DisplayClass4.<CompileQueryCommandLambda>b__3(Node astCommand, ParserOptions validatedParserOptions)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.CompileCommon[TResult](String commandText, ParserOptions parserOptions, Func`3 compilationFunction)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.CompileQueryCommandLambda(String queryCommandText, Perspective perspective, ParserOptions parserOptions, IEnumerable`1 parameters, IEnumerable`1 variables)
+   à System.Data.Entity.Core.Objects.EntitySqlQueryState.Parse()
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateInlineQueryOfT(ObjectQuery inlineQuery)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.ConstantTranslator.TypedTranslate(ExpressionConverter parent, ConstantExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryMergeAsTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryMergeAsTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
+   à System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   à System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   à System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   à System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   à System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   à System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__2[TResult](IEnumerable`1 sequence)
+   à System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   à System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   à System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source)
+   à System.Data.Entity.Internal.Linq.InternalSet`1.FindInStore(WrappedEntityKey key, String keyValuesParamName)
+   --- Fin de la trace de la pile d'exception interne ---
+   à System.Data.Entity.Internal.Linq.InternalSet`1.FindInStore(WrappedEntityKey key, String keyValuesParamName)
+   à System.Data.Entity.Internal.Linq.InternalSet`1.Find(Object[] keyValues)
+   à System.Data.Entity.DbSet`1.Find(Object[] keyValues)
+   à GB.Models.DAO.QUALITEDAO.ObjectCode(String code) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\QUALITEDAO.cs:ligne 329 
+-----------------------
+30/08/2018 11:03:04.681 | ERROR | [6] | GB.Models.BO.Utilisateur..ctor | GB.Models.GB.GBException: _afficher_Une erreur est survenue lors du traitement, veuillez contacter l'administrateur.
+   à GB.Models.DAO.QUALITEDAO.ObjectCode(String code) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\QUALITEDAO.cs:ligne 347
+   à GB.Models.BO.Utilisateur..ctor(Employe entitie) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\BO\Utilisateur.cs:ligne 67 
+-----------------------
+30/08/2018 11:11:57.867 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+30/08/2018 11:11:58.119 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:gmkkowt10c1klqtjwwh3wpf2} 
+-----------------------
+30/08/2018 11:12:38.114 | ERROR | [6] | GB.Models.BO.Utilisateur..ctor | System.NullReferenceException: La référence d'objet n'est pas définie à une instance d'un objet.
+   à GB.Models.BO.Utilisateur..ctor(Employe entitie) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\BO\Utilisateur.cs:ligne 61 
+-----------------------
+30/08/2018 11:13:06.826 | ERROR | [7] | GB.Models.DAO.QUALITEDAO.ObjectCode | System.ArgumentException: The type of one of the primary key values did not match the type defined in the entity. See inner exception for details.
+Nom du paramètre : keyValues ---> System.Data.Entity.Core.EntitySqlException: The argument types 'Edm.Int32' and 'Edm.String' are incompatible for this operation. Near WHERE predicate, line 1, column 72.
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertEqualCompArgs(BuiltInExpr astBuiltInExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.<CreateBuiltInExprConverter>b__83(BuiltInExpr bltInExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertBuiltIn(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.Convert(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertValueExpressionAllowUntypedNulls(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertValueExpression(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ProcessWhereHavingClausePredicate(DbExpressionBinding source, Node predicate, ErrorContext errCtx, String bindingNameTemplate, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertQueryExpr(Node expr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.Convert(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertValueExpressionAllowUntypedNulls(Node astExpr, SemanticResolver sr)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.ConvertQueryStatementToDbExpression(Statement astStatement, SemanticResolver sr, List`1& functionDefs)
+   à System.Data.Entity.Core.Common.EntitySql.SemanticAnalyzer.AnalyzeQueryCommand(Node astExpr)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.<AnalyzeQueryExpressionSemantics>b__8(SemanticAnalyzer analyzer, Node astExpr)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.AnalyzeSemanticsCommon[TResult](Node astExpr, Perspective perspective, ParserOptions parserOptions, IEnumerable`1 parameters, IEnumerable`1 variables, Func`3 analysisFunction)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.AnalyzeQueryExpressionSemantics(Node astQueryCommand, Perspective perspective, ParserOptions parserOptions, IEnumerable`1 parameters, IEnumerable`1 variables)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.<>c__DisplayClass4.<CompileQueryCommandLambda>b__3(Node astCommand, ParserOptions validatedParserOptions)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.CompileCommon[TResult](String commandText, ParserOptions parserOptions, Func`3 compilationFunction)
+   à System.Data.Entity.Core.Common.EntitySql.CqlQuery.CompileQueryCommandLambda(String queryCommandText, Perspective perspective, ParserOptions parserOptions, IEnumerable`1 parameters, IEnumerable`1 variables)
+   à System.Data.Entity.Core.Objects.EntitySqlQueryState.Parse()
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateInlineQueryOfT(ObjectQuery inlineQuery)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.ConstantTranslator.TypedTranslate(ExpressionConverter parent, ConstantExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryMergeAsTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryMergeAsTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   à System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
+   à System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   à System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   à System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   à System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   à System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   à System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   à System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__2[TResult](IEnumerable`1 sequence)
+   à System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   à System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   à System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source)
+   à System.Data.Entity.Internal.Linq.InternalSet`1.FindInStore(WrappedEntityKey key, String keyValuesParamName)
+   --- Fin de la trace de la pile d'exception interne ---
+   à System.Data.Entity.Internal.Linq.InternalSet`1.FindInStore(WrappedEntityKey key, String keyValuesParamName)
+   à System.Data.Entity.Internal.Linq.InternalSet`1.Find(Object[] keyValues)
+   à System.Data.Entity.DbSet`1.Find(Object[] keyValues)
+   à GB.Models.DAO.QUALITEDAO.ObjectCode(String code) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\QUALITEDAO.cs:ligne 329 
+-----------------------
+30/08/2018 11:13:14.414 | ERROR | [7] | GB.Models.BO.Utilisateur..ctor | GB.Models.GB.GBException: _afficher_Une erreur est survenue lors du traitement, veuillez contacter l'administrateur.
+   à GB.Models.DAO.QUALITEDAO.ObjectCode(String code) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\QUALITEDAO.cs:ligne 347
+   à GB.Models.BO.Utilisateur..ctor(Employe entitie) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\BO\Utilisateur.cs:ligne 67 
+-----------------------
+30/08/2018 11:30:00.818 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+30/08/2018 11:30:01.075 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:gmkkowt10c1klqtjwwh3wpf2} 
+-----------------------
+30/08/2018 11:30:34.973 | ERROR | [6] | GB.Models.BO.Utilisateur..ctor | System.NullReferenceException: La référence d'objet n'est pas définie à une instance d'un objet.
+   à GB.Models.BO.Utilisateur..ctor(Employe entitie) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\BO\Utilisateur.cs:ligne 61 
+-----------------------
+30/08/2018 11:36:34.673 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:a2cyab44qeh42gmvqo4ww0j1} 
+-----------------------
+30/08/2018 11:39:54.578 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+30/08/2018 11:39:54.849 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:ni25cesdj5a4yynhdutoleud} 
+-----------------------
+30/08/2018 11:44:56.416 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+30/08/2018 11:44:56.671 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:gkovcjtouie3fhbyd24qpugx} 
+-----------------------
+30/08/2018 11:48:05.054 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+30/08/2018 11:48:05.300 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:gkovcjtouie3fhbyd24qpugx} 
+-----------------------
+30/08/2018 11:48:51.495 | ERROR | [5] | GB.Models.DAO.PAYSDAO.Ajouter | System.Data.Entity.Infrastructure.DbUpdateException: Unable to update the EntitySet 'Pays' because it has a DefiningQuery and no <InsertFunction> element exists in the <ModificationFunctionMapping> element to support the current operation. ---> System.Data.Entity.Core.UpdateException: Unable to update the EntitySet 'Pays' because it has a DefiningQuery and no <InsertFunction> element exists in the <ModificationFunctionMapping> element to support the current operation.
+   à System.Data.Entity.SqlServer.SqlGen.DmlSqlGenerator.ExpressionTranslator.Visit(DbScanExpression expression)
+   à System.Data.Entity.Core.Common.CommandTrees.DbScanExpression.Accept(DbExpressionVisitor visitor)
+   à System.Data.Entity.SqlServer.SqlGen.DmlSqlGenerator.GenerateInsertSql(DbInsertCommandTree tree, SqlGenerator sqlGenerator, List`1& parameters, Boolean generateReturningSql, Boolean upperCaseKeywords, Boolean createParameters)
+   à System.Data.Entity.SqlServer.SqlGen.SqlGenerator.GenerateSql(DbCommandTree tree, SqlVersion sqlVersion, List`1& parameters, CommandType& commandType, HashSet`1& paramsToForceNonUnicode)
+   à System.Data.Entity.SqlServer.SqlProviderServices.CreateCommand(DbProviderManifest providerManifest, DbCommandTree commandTree)
+   à System.Data.Entity.SqlServer.SqlProviderServices.CreateDbCommandDefinition(DbProviderManifest providerManifest, DbCommandTree commandTree)
+   à System.Data.Entity.Core.Common.DbProviderServices.CreateDbCommandDefinition(DbProviderManifest providerManifest, DbCommandTree commandTree, DbInterceptionContext interceptionContext)
+   à System.Data.Entity.Core.Common.DbProviderServices.CreateCommandDefinition(DbCommandTree commandTree, DbInterceptionContext interceptionContext)
+   à System.Data.Entity.Core.Common.DbProviderServices.CreateCommand(DbCommandTree commandTree, DbInterceptionContext interceptionContext)
+   à System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.CreateCommand(DbModificationCommandTree commandTree)
+   à System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.CreateCommand(Dictionary`2 identifierValues)
+   à System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   à System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   à System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   à System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   à System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   à System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   à System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   à System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   à System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   à System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   à System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   à System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   à System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- Fin de la trace de la pile d'exception interne ---
+   à System.Data.Entity.Internal.InternalContext.SaveChanges()
+   à System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   à System.Data.Entity.DbContext.SaveChanges()
+   à GB.Models.DAO.PAYSDAO.Ajouter(PAYS obj) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\PAYSDAO.cs:ligne 76 
+-----------------------
+30/08/2018 11:49:40.927 | ERROR | [7] | GB.Models.DAO.PAYSDAO.ObjectCode | System.ArgumentException: The number of primary key values passed must match number of primary key values defined on the entity.
+Nom du paramètre : keyValues
+   à System.Data.Entity.Internal.WrappedEntityKey..ctor(EntitySet entitySet, String entitySetName, Object[] keyValues, String keyValuesParamName)
+   à System.Data.Entity.Internal.Linq.InternalSet`1.Find(Object[] keyValues)
+   à System.Data.Entity.DbSet`1.Find(Object[] keyValues)
+   à GB.Models.DAO.PAYSDAO.ObjectCode(String code) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\PAYSDAO.cs:ligne 336 
+-----------------------
+30/08/2018 11:49:45.119 | ERROR | [8] | GB.Models.DAO.PAYSDAO.ObjectCode | System.ArgumentException: The number of primary key values passed must match number of primary key values defined on the entity.
+Nom du paramètre : keyValues
+   à System.Data.Entity.Internal.WrappedEntityKey..ctor(EntitySet entitySet, String entitySetName, Object[] keyValues, String keyValuesParamName)
+   à System.Data.Entity.Internal.Linq.InternalSet`1.Find(Object[] keyValues)
+   à System.Data.Entity.DbSet`1.Find(Object[] keyValues)
+   à GB.Models.DAO.PAYSDAO.ObjectCode(String code) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\PAYSDAO.cs:ligne 336 
+-----------------------
+30/08/2018 11:54:14.689 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+30/08/2018 11:54:14.973 | INFO | [6] | GB.MvcApplication.Session_OnStart | Début session: {session:gkovcjtouie3fhbyd24qpugx} 
+-----------------------
+30/08/2018 11:55:40.218 | ERROR | [8] | GB.Models.DAO.PAYSDAO.Ajouter | System.Data.Entity.Infrastructure.DbUpdateException: Unable to update the EntitySet 'Pays' because it has a DefiningQuery and no <InsertFunction> element exists in the <ModificationFunctionMapping> element to support the current operation. ---> System.Data.Entity.Core.UpdateException: Unable to update the EntitySet 'Pays' because it has a DefiningQuery and no <InsertFunction> element exists in the <ModificationFunctionMapping> element to support the current operation.
+   à System.Data.Entity.SqlServer.SqlGen.DmlSqlGenerator.ExpressionTranslator.Visit(DbScanExpression expression)
+   à System.Data.Entity.Core.Common.CommandTrees.DbScanExpression.Accept(DbExpressionVisitor visitor)
+   à System.Data.Entity.SqlServer.SqlGen.DmlSqlGenerator.GenerateInsertSql(DbInsertCommandTree tree, SqlGenerator sqlGenerator, List`1& parameters, Boolean generateReturningSql, Boolean upperCaseKeywords, Boolean createParameters)
+   à System.Data.Entity.SqlServer.SqlGen.SqlGenerator.GenerateSql(DbCommandTree tree, SqlVersion sqlVersion, List`1& parameters, CommandType& commandType, HashSet`1& paramsToForceNonUnicode)
+   à System.Data.Entity.SqlServer.SqlProviderServices.CreateCommand(DbProviderManifest providerManifest, DbCommandTree commandTree)
+   à System.Data.Entity.SqlServer.SqlProviderServices.CreateDbCommandDefinition(DbProviderManifest providerManifest, DbCommandTree commandTree)
+   à System.Data.Entity.Core.Common.DbProviderServices.CreateDbCommandDefinition(DbProviderManifest providerManifest, DbCommandTree commandTree, DbInterceptionContext interceptionContext)
+   à System.Data.Entity.Core.Common.DbProviderServices.CreateCommandDefinition(DbCommandTree commandTree, DbInterceptionContext interceptionContext)
+   à System.Data.Entity.Core.Common.DbProviderServices.CreateCommand(DbCommandTree commandTree, DbInterceptionContext interceptionContext)
+   à System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.CreateCommand(DbModificationCommandTree commandTree)
+   à System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.CreateCommand(Dictionary`2 identifierValues)
+   à System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   à System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   à System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.<Update>b__2(UpdateTranslator ut)
+   à System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update[T](T noChangesResult, Func`2 updateFunction)
+   à System.Data.Entity.Core.EntityClient.Internal.EntityAdapter.Update()
+   à System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStore>b__35()
+   à System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   à System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction)
+   à System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass2a.<SaveChangesInternal>b__27()
+   à System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   à System.Data.Entity.Core.Objects.ObjectContext.SaveChangesInternal(SaveOptions options, Boolean executeInExistingTransaction)
+   à System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   à System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- Fin de la trace de la pile d'exception interne ---
+   à System.Data.Entity.Internal.InternalContext.SaveChanges()
+   à System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   à System.Data.Entity.DbContext.SaveChanges()
+   à GB.Models.DAO.PAYSDAO.Ajouter(PAYS obj) dans E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\Models\DAO\PAYSDAO.cs:ligne 76 
+-----------------------
+30/08/2018 12:13:00.895 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+30/08/2018 12:13:01.214 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:rb5eo4kwygecklabjjrgrtc5} 
+-----------------------
+30/08/2018 12:23:40.309 | INFO | [29] | GB.MvcApplication.Session_OnEnd | Fin session: {session:rb5eo4kwygecklabjjrgrtc5} 
+-----------------------
+30/08/2018 12:23:40.385 | INFO | [28] | GB.MvcApplication.Session_OnStart | Début session: {session:rb5eo4kwygecklabjjrgrtc5} 
+-----------------------
+30/08/2018 12:29:00.491 | INFO | [42] | GB.MvcApplication.Session_OnEnd | Fin session: {session:rb5eo4kwygecklabjjrgrtc5} 
+-----------------------
+30/08/2018 14:09:32.702 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+30/08/2018 14:09:33.842 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:0ajdoyuxrpeait1xab1jxjo3} 
+-----------------------
+30/08/2018 14:15:00.112 | INFO | [12] | GB.MvcApplication.Session_OnEnd | Fin session: {session:0ajdoyuxrpeait1xab1jxjo3} 
+-----------------------
+30/08/2018 15:26:40.883 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+30/08/2018 15:26:44.454 | INFO | [8] | GB.MvcApplication.Session_OnStart | Début session: {session:0ajdoyuxrpeait1xab1jxjo3} 
+-----------------------
+30/08/2018 15:32:00.098 | INFO | [12] | GB.MvcApplication.Session_OnEnd | Fin session: {session:0ajdoyuxrpeait1xab1jxjo3} 
+-----------------------
+30/08/2018 16:35:50.100 | INFO | [40] | GB.MvcApplication.Session_OnStart | Début session: {session:0ajdoyuxrpeait1xab1jxjo3} 
+-----------------------
+30/08/2018 16:41:21.336 | INFO | [44] | GB.MvcApplication.Session_OnEnd | Fin session: {session:0ajdoyuxrpeait1xab1jxjo3} 
+-----------------------
+30/08/2018 16:41:21.382 | INFO | [47] | GB.MvcApplication.Session_OnStart | Début session: {session:0ajdoyuxrpeait1xab1jxjo3} 
+-----------------------
+30/08/2018 16:46:41.380 | INFO | [39] | GB.MvcApplication.Session_OnEnd | Fin session: {session:0ajdoyuxrpeait1xab1jxjo3} 
+-----------------------

@@ -78,11 +78,11 @@ namespace GB.Models.DAO
                 }
                 #endregion
 
+                #region Execution des Hubs
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerComboEasyAutocomplete(this, this.connexion.hub_id_context);
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -166,11 +166,11 @@ namespace GB.Models.DAO
                 }
                 #endregion
 
+                #region Execution des Hubs
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerComboEasyAutocomplete(this, this.connexion.hub_id_context);
+                #endregion
             }
             #region Catch
             catch (Exception ex)
@@ -231,11 +231,11 @@ namespace GB.Models.DAO
                 }
                 #endregion
 
+                #region Execution des Hubs
                 // -- Execution des Hubs -- //
                 applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
-
-                // -- Execution des Hubs -- //
                 applicationMainHub.RechargerComboEasyAutocomplete(this, this.connexion.hub_id_context);
+                #endregion
             }
             #region Catch
             catch (Exception ex)

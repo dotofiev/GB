@@ -422,7 +422,7 @@ namespace GB.Models.DAO
             }
             #endregion
         }
-        public static Utilisateur ObjectCode(string compte)
+        public static Utilisateur ObjectCode(string compte, bool ajouter_reference = true)
         {
             try
             {
@@ -447,7 +447,8 @@ namespace GB.Models.DAO
 
                         return
                             new Utilisateur(
-                                db.Employes.FirstOrDefault(l => l.Matricule == compte)
+                                db.Employes.FirstOrDefault(l => l.Matricule == compte),
+                                ajouter_reference
                             );
                     }
                 }
@@ -473,7 +474,7 @@ namespace GB.Models.DAO
             }
             #endregion
         }
-        public static Utilisateur ObjectId(string id_utilisateur)
+        public static Utilisateur ObjectId(string id_utilisateur, bool ajouter_reference = true)
         {
             try
             {
@@ -498,7 +499,8 @@ namespace GB.Models.DAO
 
                         return
                             new Utilisateur(
-                                db.Employes.FirstOrDefault(l => l.Matricule == id_utilisateur)
+                                db.Employes.FirstOrDefault(l => l.Matricule == id_utilisateur),
+                                ajouter_reference
                             );
                     }
                 }
@@ -547,7 +549,7 @@ namespace GB.Models.DAO
                 }
 
                 // -- Vérifier la duré de vie du mot de passe -- //
-                if (utilisateur.date_mise_a_jour_mot_de_passe <= DateTime.Now.Ticks)
+                if (new TimeSpan(DateTime.Now.Ticks - utilisateur.date_mise_a_jour_mot_de_passe).Days > utilisateur.duree_mot_de_passe)
                 {
                     // -- Exception -- //
                     throw new GBException(App_Lang.Lang.Authentication_failed_3);

@@ -42,7 +42,6 @@ namespace GB.Models.BO
         public long date_creation { get; set; }
         public long date_suspension { get; set; }
         public long date_serveur { get; set; }
-        public long date_attribution_mot_de_passe { get; set; }
         public long date_transfert { get; set; }
         public long date_compta { get; set; }
         public string employe { get; set; }
@@ -55,21 +54,23 @@ namespace GB.Models.BO
 
         public Utilisateur() { }
 
-        public Utilisateur(Employe entitie)
+        public Utilisateur(Employe entitie, bool ajouter_reference = true)
         {
             try
             {
-                this.id = entitie.Matricule;
+                this.id_utilisateur = entitie.Matricule;
                 this.code = entitie.Matricule;
                 this.id_agence = entitie.Agence;
-                this.agence = AgenceDAO.ObjectCode(entitie.Agence);
+                this.agence = (ajouter_reference) ? AgenceDAO.ObjectCode(entitie.Agence)
+                                                  : null;
                 this.nom_utilisateur = entitie.NomEmploye;
                 this.id_qualite = entitie.Qualite;
-                this.qualite = QUALITEDAO.ObjectCode(this.id_qualite);
+                this.qualite = (ajouter_reference) ? QUALITEDAO.ObjectCode(this.id_qualite)
+                                                   : null;
                 this.niveau_securite = entitie.SecurityLevel ?? 0;
                 this.mot_de_passe = entitie.MotPasse;
                 this.date_creation = entitie.DateCreation?.Ticks ?? 0;
-                this.date_attribution_mot_de_passe = entitie.DateAttMP?.Ticks ?? 0;
+                this.date_mise_a_jour_mot_de_passe = entitie.DateAttMP?.Ticks ?? 0;
                 this.est_suspendu = entitie.Suspension;
                 this.duree_mot_de_passe = entitie.DureeMP?? 0;
                 this.employe = entitie.Employe1;
@@ -88,7 +89,9 @@ namespace GB.Models.BO
                 this.ouverture_back_date = entitie.BackDAte == "Yes";
                 this.ouverture_back_date_travail = entitie.BackDAteWk == "Yes";
                 this.id_autorite_signature = entitie.Auth;
-                this.autorite_signature = AutoriteSignatureDAO.ObjectCode(this.id_autorite_signature);
+                this.autorite_signature = (ajouter_reference) ? AutoriteSignatureDAO.ObjectCode(this.id_autorite_signature)
+                                                              : null;
+                this.id_role = "1";
             }
             catch (Exception ex)
             {
@@ -114,7 +117,7 @@ namespace GB.Models.BO
                 BackDAteWk = this.ouverture_back_date_travail ? "Yes"
                                                               : "No",
                 ComputerName = this.nom_ordinateur,
-                DateAttMP = GBConvert.To_DateTime(this.date_attribution_mot_de_passe),
+                DateAttMP = GBConvert.To_DateTime(this.date_mise_a_jour_mot_de_passe),
                 DATECOMPTA = GBConvert.To_DateTime(this.date_compta),
                 DateCreation = GBConvert.To_DateTime(this.date_creation),
                 DateSuspension = GBConvert.To_DateTime(this.date_suspension),
@@ -144,7 +147,7 @@ namespace GB.Models.BO
         {
             try
             {
-                this.id = entitie.Matricule;
+                this.id_utilisateur = entitie.Matricule;
                 this.code = entitie.Matricule;
                 this.id_agence = entitie.Agence;
                 this.agence = AgenceDAO.ObjectCode(entitie.Agence);
@@ -154,7 +157,7 @@ namespace GB.Models.BO
                 this.niveau_securite = entitie.SecurityLevel ?? 0;
                 this.mot_de_passe = entitie.MotPasse;
                 this.date_creation = entitie.DateCreation?.Ticks ?? 0;
-                this.date_attribution_mot_de_passe = entitie.DateAttMP?.Ticks ?? 0;
+                this.date_mise_a_jour_mot_de_passe = entitie.DateAttMP?.Ticks ?? 0;
                 this.est_suspendu = entitie.Suspension;
                 this.duree_mot_de_passe = entitie.DureeMP ?? 0;
                 this.employe = entitie.Employe1;
@@ -174,6 +177,7 @@ namespace GB.Models.BO
                 this.ouverture_back_date_travail = entitie.BackDAteWk == "Yes";
                 this.id_autorite_signature = entitie.Auth;
                 this.autorite_signature = AutoriteSignatureDAO.ObjectCode(this.id_autorite_signature);
+                this.id_role = "1";
             }
             catch (Exception ex)
             {
@@ -192,7 +196,7 @@ namespace GB.Models.BO
             entitie.BackDAteWk = this.ouverture_back_date_travail ? "Yes"
                                                           : "No";
             entitie.ComputerName = this.nom_ordinateur;
-            entitie.DateAttMP = GBConvert.To_DateTime(this.date_attribution_mot_de_passe);
+            entitie.DateAttMP = GBConvert.To_DateTime(this.date_mise_a_jour_mot_de_passe);
             entitie.DATECOMPTA = GBConvert.To_DateTime(this.date_compta);
             entitie.DateCreation = GBConvert.To_DateTime(this.date_creation);
             entitie.DateSuspension = GBConvert.To_DateTime(this.date_suspension);

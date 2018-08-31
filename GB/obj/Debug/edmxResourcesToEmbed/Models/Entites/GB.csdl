@@ -3033,6 +3033,15 @@
     <Property Name="DateCreation" Type="DateTime" Precision="3" />
     <Property Name="Employe" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
   </EntityType>
+  <EntityType Name="Pay">
+    <Key>
+      <PropertyRef Name="Pays" />
+    </Key>
+    <Property Name="Pays" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreation" Type="DateTime" Precision="3" />
+  </EntityType>
   <EntityType Name="PhotoSign">
     <Key>
       <PropertyRef Name="PhotoId" />
@@ -7711,16 +7720,6 @@
     <Property Name="LibCpteGl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="CodeMaj" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
   </EntityType>
-  <EntityType Name="Pay">
-    <Key>
-      <PropertyRef Name="Pays" />
-      <PropertyRef Name="Designation" />
-    </Key>
-    <Property Name="Pays" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PhoneId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="DateCreation" Type="DateTime" Precision="3" />
-  </EntityType>
   <EntityType Name="PostHistory">
     <Key>
       <PropertyRef Name="Agence" />
@@ -9956,6 +9955,7 @@
     <EntitySet Name="OpDiversGs" EntityType="Self.OpDiversG" />
     <EntitySet Name="OutGoingSMS" EntityType="Self.OutGoingSM" />
     <EntitySet Name="Parametres" EntityType="Self.Parametre" />
+    <EntitySet Name="Pays" EntityType="Self.Pay" />
     <EntitySet Name="PhotoSigns" EntityType="Self.PhotoSign" />
     <EntitySet Name="Pieces" EntityType="Self.Piece" />
     <EntitySet Name="PieceBs" EntityType="Self.PieceB" />
@@ -10141,7 +10141,6 @@
     <EntitySet Name="operationtypes" EntityType="Self.operationtype" />
     <EntitySet Name="optncounters" EntityType="Self.optncounter" />
     <EntitySet Name="PayrollAccts" EntityType="Self.PayrollAcct" />
-    <EntitySet Name="Pays" EntityType="Self.Pay" />
     <EntitySet Name="PostHistories" EntityType="Self.PostHistory" />
     <EntitySet Name="ProfitabilityMs" EntityType="Self.ProfitabilityM" />
     <EntitySet Name="RemDocs" EntityType="Self.RemDoc" />

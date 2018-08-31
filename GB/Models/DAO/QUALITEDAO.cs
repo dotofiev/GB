@@ -124,7 +124,7 @@ namespace GB.Models.DAO
                             l.code = obj.code;
                             l.libelle_fr = obj.libelle_fr;
                             l.libelle_en = obj.libelle_en;
-                            l.series = obj.series;
+                            l.id = obj.id;
                         });
                 }
                 #endregion
@@ -328,7 +328,7 @@ namespace GB.Models.DAO
 
                         return
                             new QUALITE(
-                                db.Qualites.Find(code)
+                                db.Qualites.FirstOrDefault(l => l.Qualite1 == code)
                             );
                     }
                 }

@@ -70,6 +70,14 @@ namespace GB.Models.Static
                     typeof(object)
                 );
         }
+        public static T To_Object_2<T>(dynamic dObject)
+        {
+            return
+                new JavaScriptSerializer().Deserialize(
+                    JsonConvert.SerializeObject(dObject),
+                    typeof(T)
+                );
+        }
         public static T To_Object<T>(object Object)
         {
             return
