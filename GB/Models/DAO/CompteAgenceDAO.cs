@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class CompteAgenceDAO : IDAO
+    public class CompteAgenceDAO : IDAO<CompteAgence>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_CompteAgence; } }
         public GBConnexion connexion { get; set; }
@@ -28,7 +28,7 @@ namespace GB.Models.DAO
 
         public CompteAgenceDAO() { }
 
-        public void Ajouter(CompteAgence obj)
+        public void Ajouter(CompteAgence obj, string id_utilisateur = null)
         {
             try
             {
@@ -57,10 +57,10 @@ namespace GB.Models.DAO
                 obj.id_utilisateur_createur = this.connexion.utilisateur.id_utilisateur;
 
                 // -- Mise à jour des references -- //
-                obj.utilisateur_createur = UtilisateurDAO.ObjectId(this.connexion.utilisateur.id_utilisateur);
-                obj.compte = CompteDAO.ObjectId(obj.id_compte);
-                obj.compte_emetteur = CompteDAO.ObjectId(obj.id_compte_emetteur);
-                obj.agence = AgenceDAO.ObjectId(obj.id_agence);
+                obj.utilisateur_createur = new UtilisateurDAO().ObjectId(this.connexion.utilisateur.id_utilisateur);
+                obj.compte = new CompteDAO().ObjectId(obj.id_compte);
+                obj.compte_emetteur = new CompteDAO().ObjectId(obj.id_compte_emetteur);
+                obj.agence = new AgenceDAO().ObjectId(obj.id_agence);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.comptes_agence.Add(obj);
@@ -127,9 +127,9 @@ namespace GB.Models.DAO
                         l.id_compte = obj.id_compte;
                         l.id_compte_emetteur = obj.id_compte_emetteur;
                         l.type = obj.type;
-                        l.compte = CompteDAO.ObjectId(obj.id_compte);
-                        l.agence = AgenceDAO.ObjectId(obj.id_agence);
-                        l.compte_emetteur = CompteDAO.ObjectId(obj.id_compte_emetteur);
+                        l.compte = new CompteDAO().ObjectId(obj.id_compte);
+                        l.agence = new AgenceDAO().ObjectId(obj.id_agence);
+                        l.compte_emetteur = new CompteDAO().ObjectId(obj.id_compte_emetteur);
                     });
 
                 // -- Execution des Hubs -- //
@@ -197,7 +197,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<CompteAgence> Lister()
+        public List<CompteAgence> Lister()
         {
             try
             {
@@ -226,7 +226,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static CompteAgence ObjectCode(string code)
+        public CompteAgence ObjectCode(string code)
         {
             try
             {
@@ -255,7 +255,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static CompteAgence ObjectId(string id)
+        public CompteAgence ObjectId(string id)
         {
             try
             {
@@ -295,14 +295,14 @@ namespace GB.Models.DAO
                 // -- Pour le champ code -- //
                 if (champ == "code")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new CompteAgenceDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
                     }
                 }
                 else if (champ == "libelle")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new CompteAgenceDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                     }

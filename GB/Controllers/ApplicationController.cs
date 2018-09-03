@@ -64,7 +64,7 @@ namespace GB.Controllers
                 // -- Photo de l'utilisateur connecté -- //
                 this.ViewBag.donnee.url_photo_profil = this.con.url_photo_profil;
                 // -- Charger les menus de l'utilisateur -- //
-                this.ViewBag.Menus = Menu.Source(AutorisationDAO.Lister(this.con.utilisateur.id_role));
+                this.ViewBag.Menus = Menu.Source(autorisationDAO.Lister(this.con.utilisateur.id_role));
 
                 // -- Langue -- //
                 #region Langue

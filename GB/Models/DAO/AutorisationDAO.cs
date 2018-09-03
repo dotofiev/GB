@@ -10,7 +10,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class AutorisationDAO : IDAO
+    public class AutorisationDAO : IDAO<Autorisation>
     {
         public string id_page { get { return string.Empty; } }
         public GBConnexion connexion { get; set; }
@@ -108,7 +108,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public void Ajouter(Autorisation obj)
+        public void Ajouter(Autorisation obj, string id_utilisateur = null)
         {
             try
             {
@@ -230,7 +230,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Autorisation> Lister()
+        public List<Autorisation> Lister()
         {
             try
             {
@@ -259,7 +259,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Autorisation> Lister(string id_role)
+        public List<Autorisation> Lister(string id_role)
         {
             try
             {
@@ -288,7 +288,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Autorisation ObjectCode(string code)
+        public Autorisation ObjectCode(string code)
         {
             try
             {
@@ -347,6 +347,16 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Modifier(Autorisation obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Autorisation ObjectId(string id)
         {
             throw new NotImplementedException();
         }

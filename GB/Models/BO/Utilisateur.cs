@@ -61,11 +61,11 @@ namespace GB.Models.BO
                 this.id_utilisateur = entitie.Matricule;
                 this.code = entitie.Matricule;
                 this.id_agence = entitie.Agence;
-                this.agence = (ajouter_reference) ? AgenceDAO.ObjectCode(entitie.Agence)
+                this.agence = (ajouter_reference) ? new AgenceDAO().ObjectCode(entitie.Agence)
                                                   : null;
                 this.nom_utilisateur = entitie.NomEmploye;
                 this.id_qualite = entitie.Qualite;
-                this.qualite = (ajouter_reference) ? QUALITEDAO.ObjectCode(this.id_qualite)
+                this.qualite = (ajouter_reference) ? new QUALITEDAO().ObjectCode(this.id_qualite)
                                                    : null;
                 this.niveau_securite = entitie.SecurityLevel ?? 0;
                 this.mot_de_passe = entitie.MotPasse;
@@ -89,7 +89,7 @@ namespace GB.Models.BO
                 this.ouverture_back_date = entitie.BackDAte == "Yes";
                 this.ouverture_back_date_travail = entitie.BackDAteWk == "Yes";
                 this.id_autorite_signature = entitie.Auth;
-                this.autorite_signature = (ajouter_reference) ? AutoriteSignatureDAO.ObjectCode(this.id_autorite_signature)
+                this.autorite_signature = (ajouter_reference) ? new AutoriteSignatureDAO().ObjectCode(this.id_autorite_signature)
                                                               : null;
                 this.id_role = "1";
             }
@@ -150,10 +150,10 @@ namespace GB.Models.BO
                 this.id_utilisateur = entitie.Matricule;
                 this.code = entitie.Matricule;
                 this.id_agence = entitie.Agence;
-                this.agence = AgenceDAO.ObjectCode(entitie.Agence);
+                this.agence = new AgenceDAO().ObjectCode(entitie.Agence);
                 this.nom_utilisateur = entitie.NomEmploye;
                 this.id_qualite = entitie.Qualite;
-                this.qualite = QUALITEDAO.ObjectCode(this.id_qualite);
+                this.qualite = new QUALITEDAO().ObjectCode(this.id_qualite);
                 this.niveau_securite = entitie.SecurityLevel ?? 0;
                 this.mot_de_passe = entitie.MotPasse;
                 this.date_creation = entitie.DateCreation?.Ticks ?? 0;
@@ -176,7 +176,7 @@ namespace GB.Models.BO
                 this.ouverture_back_date = entitie.BackDAte == "Yes";
                 this.ouverture_back_date_travail = entitie.BackDAteWk == "Yes";
                 this.id_autorite_signature = entitie.Auth;
-                this.autorite_signature = AutoriteSignatureDAO.ObjectCode(this.id_autorite_signature);
+                this.autorite_signature = new AutoriteSignatureDAO().ObjectCode(this.id_autorite_signature);
                 this.id_role = "1";
             }
             catch (Exception ex)

@@ -13,7 +13,7 @@ using System.Data.Entity.Core.Objects;
 
 namespace GB.Models.DAO
 {
-    public class CAISSEDAO : IDAO
+    public class CAISSEDAO : IDAO<CAISSE>
     {
         public string id_page { get { return string.Empty; } }
         public GBConnexion connexion { get; set; }
@@ -30,7 +30,7 @@ namespace GB.Models.DAO
 
         public CAISSEDAO() { }
 
-        public void Ajouter(CAISSE obj)
+        public void Ajouter(CAISSE obj, string id_utilisateur = null)
         {
             try
             {
@@ -253,7 +253,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<CAISSE> Lister()
+        public List<CAISSE> Lister()
         {
             try
             {
@@ -305,7 +305,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static CAISSE ObjectCode(string code)
+        public CAISSE ObjectCode(string code)
         {
             try
             {
@@ -356,7 +356,7 @@ namespace GB.Models.DAO
             }
             #endregion
         }
-        public static CAISSE ObjectId(string id)
+        public CAISSE ObjectId(string id)
         {
             try
             {
@@ -419,14 +419,14 @@ namespace GB.Models.DAO
                 // -- Pour le champ code -- //
                 if (champ == "code")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new CAISSEDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
                     }
                 }
                 else if (champ == "libelle")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new CAISSEDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                     }

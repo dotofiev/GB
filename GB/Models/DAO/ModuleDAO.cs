@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ModuleDAO : IDAO
+    public class ModuleDAO : IDAO<Module>
     {
         public string id_page { get { return GB_Enum_Menu.Securite_Module; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(Module obj)
+        public ModuleDAO() { }
+
+        public void Ajouter(Module obj, string id_utilisateur = null)
         {
             try
             {
@@ -150,7 +152,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Module> Lister()
+        public List<Module> Lister()
         {
             try
             {
@@ -179,7 +181,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Module ObjectCode(string code)
+        public Module ObjectCode(string code)
         {
             try
             {
@@ -209,6 +211,11 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Module ObjectId(string id)
         {
             throw new NotImplementedException();
         }

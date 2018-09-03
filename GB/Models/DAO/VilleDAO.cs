@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class VilleDAO : IDAO
+    public class VilleDAO : IDAO<Ville>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Ville; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(Ville obj, string id_utilisateur)
+        public VilleDAO() { }
+
+        public void Ajouter(Ville obj, string id_utilisateur = null)
         {
             try
             {
@@ -44,7 +46,7 @@ namespace GB.Models.DAO
 
                 // -- Mise à jour des refenreces -- //
                 obj.id_utilisateur = id_utilisateur;
-                obj.utilisateur_createur = UtilisateurDAO.ObjectId(id_utilisateur);
+                obj.utilisateur_createur = new UtilisateurDAO().ObjectId(id_utilisateur);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.villes.Add(obj);
@@ -165,7 +167,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Ville> Lister()
+        public List<Ville> Lister()
         {
             try
             {
@@ -194,7 +196,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Ville ObjectCode(string code)
+        public Ville ObjectCode(string code)
         {
             try
             {
@@ -224,6 +226,11 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Ville ObjectId(string id)
         {
             throw new NotImplementedException();
         }

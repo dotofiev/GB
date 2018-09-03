@@ -30,7 +30,7 @@ namespace GB.Tests.Models.DAO
             deviseDAO.Ajouter(obj);
 
             // -- Test du résultat -- //
-            Assert.IsNotNull(DeviseDAO.ObjectCode(obj.code));
+            Assert.IsNotNull(deviseDAO.ObjectCode(obj.code));
         }
 
         [TestMethod]

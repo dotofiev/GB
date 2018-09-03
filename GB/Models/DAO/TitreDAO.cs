@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class TitreDAO : IDAO
+    public class TitreDAO : IDAO<Titre>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Titre; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(Titre obj, string id_utilisateur)
+        public TitreDAO() { }
+
+        public void Ajouter(Titre obj, string id_utilisateur = null)
         {
             try
             {
@@ -44,7 +46,7 @@ namespace GB.Models.DAO
 
                 // -- Mise à jour des refenreces -- //
                 obj.id_utilisateur = id_utilisateur;
-                obj.utilisateur_createur = UtilisateurDAO.ObjectId(id_utilisateur);
+                obj.utilisateur_createur = new UtilisateurDAO().ObjectId(id_utilisateur);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.titres.Add(obj);
@@ -157,7 +159,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Titre> Lister()
+        public List<Titre> Lister()
         {
             try
             {
@@ -186,7 +188,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Titre ObjectCode(string code)
+        public Titre ObjectCode(string code)
         {
             try
             {
@@ -216,6 +218,11 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Titre ObjectId(string id)
         {
             throw new NotImplementedException();
         }

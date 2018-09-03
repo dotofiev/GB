@@ -12,7 +12,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class AutoriteSignatureDAO : IDAO
+    public class AutoriteSignatureDAO : IDAO<AutoriteSignature>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBudget_AutoriteSignature; } }
         public GBConnexion connexion { get; set; }
@@ -27,7 +27,11 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(AutoriteSignature obj)
+        public AutoriteSignatureDAO()
+        {
+        }
+
+        public void Ajouter(AutoriteSignature obj, string id_utilisateur = null)
         {
             try
             {
@@ -256,7 +260,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<AutoriteSignature> Lister()
+        public List<AutoriteSignature> Lister()
         {
             try
             {
@@ -308,7 +312,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static AutoriteSignature ObjectCode(string code)
+        public AutoriteSignature ObjectCode(string code)
         {
             try
             {
@@ -360,7 +364,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static AutoriteSignature ObjectId(string id)
+        public AutoriteSignature ObjectId(string id)
         {
             try
             {

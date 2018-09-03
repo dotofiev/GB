@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ProfessionDAO : IDAO
+    public class ProfessionDAO : IDAO<Profession>
     {
         public string id_page { get { return string.Empty; } }
         public GBConnexion connexion { get; set; }
@@ -28,7 +28,7 @@ namespace GB.Models.DAO
 
         public ProfessionDAO() { }
 
-        public void Ajouter(Profession obj)
+        public void Ajouter(Profession obj, string id_utilisateur = null)
         {
             try
             {
@@ -160,7 +160,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Profession> Lister()
+        public List<Profession> Lister()
         {
             try
             {
@@ -189,7 +189,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Profession ObjectCode(string code)
+        public Profession ObjectCode(string code)
         {
             try
             {
@@ -218,7 +218,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Profession ObjectId(string id)
+        public Profession ObjectId(string id)
         {
             try
             {
@@ -258,14 +258,14 @@ namespace GB.Models.DAO
                 // -- Pour le champ code -- //
                 if (champ == "code")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new ProfessionDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
                     }
                 }
                 else if (champ == "libelle")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new ProfessionDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                     }

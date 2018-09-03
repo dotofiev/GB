@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class InstitutionDAO : IDAO
+    public class InstitutionDAO : IDAO<Institution>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Institution; } }
         public GBConnexion connexion { get; set; }
@@ -28,7 +28,9 @@ namespace GB.Models.DAO
             this.utilisateur = utilisateur;
         }
 
-        public void Ajouter(Institution obj)
+        public InstitutionDAO() { }
+
+        public void Ajouter(Institution obj, string id_utilisateur = null)
         {
             try
             {
@@ -159,7 +161,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Institution> Lister()
+        public List<Institution> Lister()
         {
             try
             {
@@ -188,7 +190,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Institution ObjectCode(string code)
+        public Institution ObjectCode(string code)
         {
             try
             {
@@ -217,7 +219,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Institution Object(string id)
+        public Institution ObjectId(string id)
         {
             try
             {

@@ -12,7 +12,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class PAYSDAO : IDAO
+    public class PAYSDAO : IDAO<PAYS>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Pays; } }
         public GBConnexion connexion { get; set; }
@@ -27,7 +27,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(PAYS obj)
+        public PAYSDAO() { }
+
+        public void Ajouter(PAYS obj, string id_utilisateur = null)
         {
             try
             {
@@ -49,7 +51,7 @@ namespace GB.Models.DAO
 
                     // -- Mise à jour des refenreces -- //
                     obj.id_utilisateur = this.connexion.utilisateur.id_utilisateur;
-                    obj.utilisateur_createur = UtilisateurDAO.ObjectId(this.connexion.utilisateur.id_utilisateur);
+                    obj.utilisateur_createur = new UtilisateurDAO().ObjectId(this.connexion.utilisateur.id_utilisateur);
 
                     // -- Enregistrement de la valeur -- //
                     Program.db.pays.Add(obj);
@@ -258,7 +260,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<PAYS> Lister()
+        public List<PAYS> Lister()
         {
             try
             {
@@ -310,7 +312,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static PAYS ObjectCode(string code)
+        public PAYS ObjectCode(string code)
         {
             try
             {
@@ -362,7 +364,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static PAYS ObjectId(string id)
+        public PAYS ObjectId(string id)
         {
             try
             {

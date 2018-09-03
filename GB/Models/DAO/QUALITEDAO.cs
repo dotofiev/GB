@@ -13,7 +13,7 @@ using System.Data.Entity.Core.Objects;
 
 namespace GB.Models.DAO
 {
-    public class QUALITEDAO : IDAO
+    public class QUALITEDAO : IDAO<QUALITE>
     {
         public string id_page { get { return string.Empty; } }
         public GBConnexion connexion { get; set; }
@@ -30,7 +30,7 @@ namespace GB.Models.DAO
 
         public QUALITEDAO() { }
 
-        public void Ajouter(QUALITE obj)
+        public void Ajouter(QUALITE obj, string id_utilisateur = null)
         {
             try
             {
@@ -251,7 +251,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<QUALITE> Lister()
+        public List<QUALITE> Lister()
         {
             try
             {
@@ -303,7 +303,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static QUALITE ObjectCode(string code)
+        public QUALITE ObjectCode(string code)
         {
             try
             {
@@ -354,7 +354,7 @@ namespace GB.Models.DAO
             }
             #endregion
         }
-        public static QUALITE ObjectId(string id)
+        public QUALITE ObjectId(string id)
         {
             try
             {
@@ -417,14 +417,14 @@ namespace GB.Models.DAO
                 // -- Pour le champ code -- //
                 if (champ == "code")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new QUALITEDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
                     }
                 }
                 else if (champ == "libelle")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new QUALITEDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                     }

@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class CompteDAO : IDAO
+    public class CompteDAO : IDAO<Compte>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_Compte; } }
         public GBConnexion connexion { get; set; }
@@ -26,12 +26,14 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
+        public CompteDAO() { }
+
         public void Ajouter(List<Compte> objs)
         {
             try
             {
                 // -- Obj utilisateur créateur -- //
-                Utilisateur utilisateur_createur = UtilisateurDAO.ObjectId(this.connexion.utilisateur.id_utilisateur);
+                Utilisateur utilisateur_createur = new UtilisateurDAO().ObjectId(this.connexion.utilisateur.id_utilisateur);
 
                 // -- Mise à jour de l'objet devise -- //
                 Devise devise = DeviseDAO.Actif();
@@ -126,7 +128,7 @@ namespace GB.Models.DAO
                                 l.cle = string.Empty;
                             }
                             l.id_devise = obj.id_devise;
-                            l.devise = DeviseDAO.ObjectId(obj.id_devise);
+                            l.devise = new DeviseDAO().ObjectId(obj.id_devise);
                         }
                     });
 
@@ -195,7 +197,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Compte> Lister()
+        public List<Compte> Lister()
         {
             try
             {
@@ -230,7 +232,7 @@ namespace GB.Models.DAO
             {
                 // -- Parcours de la liste -- //
                 return
-                    Lister()
+                    new CompteDAO().Lister()
                         .Where(l => l.code.Length == 10)
                         .ToList();
             }
@@ -255,7 +257,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Compte ObjectCode(string code)
+        public Compte ObjectCode(string code)
         {
             try
             {
@@ -284,7 +286,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Compte ObjectId(string id)
+        public Compte ObjectId(string id)
         {
             try
             {
@@ -314,6 +316,16 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Ajouter(Compte obj, string id_utilisateur = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Modifier(Compte obj)
         {
             throw new NotImplementedException();
         }

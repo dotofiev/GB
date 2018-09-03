@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class TypeGarantieDAO : IDAO
+    public class TypeGarantieDAO : IDAO<TypeGarantie>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_TypeGarantie; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(TypeGarantie obj, string id_utilisateur)
+        public TypeGarantieDAO() { }
+
+        public void Ajouter(TypeGarantie obj, string id_utilisateur = null)
         {
             try
             {
@@ -44,7 +46,7 @@ namespace GB.Models.DAO
 
                 // -- Mise à jour des refenreces -- //
                 obj.id_utilisateur = id_utilisateur;
-                obj.utilisateur_createur = UtilisateurDAO.ObjectId(id_utilisateur);
+                obj.utilisateur_createur = new UtilisateurDAO().ObjectId(id_utilisateur);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.types_garantie.Add(obj);
@@ -158,7 +160,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<TypeGarantie> Lister()
+        public List<TypeGarantie> Lister()
         {
             try
             {
@@ -187,7 +189,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static TypeGarantie ObjectCode(string code)
+        public TypeGarantie ObjectCode(string code)
         {
             try
             {
@@ -216,7 +218,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static TypeGarantie ObjectId(string id)
+        public TypeGarantie ObjectId(string id)
         {
             try
             {

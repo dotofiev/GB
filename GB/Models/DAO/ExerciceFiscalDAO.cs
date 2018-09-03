@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ExerciceFiscalDAO : IDAO
+    public class ExerciceFiscalDAO : IDAO<ExerciceFiscal>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBudget_ExerciceFiscal; } }
         public GBConnexion connexion { get; set; }
@@ -28,7 +28,7 @@ namespace GB.Models.DAO
 
         public ExerciceFiscalDAO() { }
 
-        public void Ajouter(ExerciceFiscal obj)
+        public void Ajouter(ExerciceFiscal obj, string id_utilisateur = null)
         {
             try
             {
@@ -186,7 +186,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<ExerciceFiscal> Lister()
+        public List<ExerciceFiscal> Lister()
         {
             try
             {
@@ -215,7 +215,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static ExerciceFiscal ObjectCode(string code)
+        public ExerciceFiscal ObjectCode(string code)
         {
             try
             {
@@ -244,7 +244,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static ExerciceFiscal Object(string id)
+        public ExerciceFiscal ObjectId(string id)
         {
             try
             {
@@ -284,14 +284,14 @@ namespace GB.Models.DAO
                 // -- Pour le champ code -- //
                 if (champ == "code")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new ExerciceFiscalDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
                     }
                 }
                 else if (champ == "libelle")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new ExerciceFiscalDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                     }

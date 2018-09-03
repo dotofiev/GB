@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class RoleDAO : IDAO
+    public class RoleDAO : IDAO<Role>
     {
         public string id_page { get { return GB_Enum_Menu.Securite_Role; } }
         public GBConnexion connexion { get; set; }
@@ -28,7 +28,7 @@ namespace GB.Models.DAO
 
         public RoleDAO() { }
 
-        public void Ajouter(Role obj)
+        public void Ajouter(Role obj, string id_utilisateur = null)
         {
             try
             {
@@ -161,7 +161,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Role> Lister()
+        public List<Role> Lister()
         {
             try
             {
@@ -190,7 +190,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Role ObjectCode(string code)
+        public Role ObjectCode(string code)
         {
             try
             {
@@ -219,7 +219,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Role Object(string id)
+        public Role ObjectId(string id)
         {
             try
             {

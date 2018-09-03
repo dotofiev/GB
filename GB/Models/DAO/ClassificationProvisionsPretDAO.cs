@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ClassificationProvisionsPretDAO : IDAO
+    public class ClassificationProvisionsPretDAO : IDAO<ClassificationProvisionsPret>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_ClassificationProvisionsPret; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,11 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(ClassificationProvisionsPret obj)
+        public ClassificationProvisionsPretDAO()
+        {
+        }
+
+        public void Ajouter(ClassificationProvisionsPret obj, string id_utilisateur = null)
         {
             try
             {
@@ -154,7 +158,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<ClassificationProvisionsPret> Lister()
+        public List<ClassificationProvisionsPret> Lister()
         {
             try
             {
@@ -183,7 +187,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static ClassificationProvisionsPret ObjectCode(string code)
+        public ClassificationProvisionsPret ObjectCode(string code)
         {
             try
             {
@@ -242,6 +246,11 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ClassificationProvisionsPret ObjectId(string id)
         {
             throw new NotImplementedException();
         }

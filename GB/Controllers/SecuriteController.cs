@@ -83,7 +83,7 @@ namespace GB.Controllers
                 #region Securite-Module
                 if (id_page == GB_Enum_Menu.Securite_Module)
                 {
-                    foreach (var val in ModuleDAO.Lister())
+                    foreach (var val in moduleDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -105,7 +105,7 @@ namespace GB.Controllers
                     // -- Si la vue n'est pas soumise -- //
                     if (string.IsNullOrEmpty(id_vue))
                     {
-                        foreach (var val in RoleDAO.Lister())
+                        foreach (var val in roleDAO.Lister())
                         {
                             donnee.Add(
                                 new
@@ -175,7 +175,7 @@ namespace GB.Controllers
                 #region Securite-Menu
                 else if (id_page == GB_Enum_Menu.Securite_Menu)
                 {
-                    foreach (var val in MenuDAO.Lister())
+                    foreach (var val in menuDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -252,7 +252,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.Securite_Module)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ModuleDAO.ObjectCode(code);
+                    var obj = new ModuleDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -277,7 +277,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.Securite_Role)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = RoleDAO.ObjectCode(code);
+                    var obj = new RoleDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -302,7 +302,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.Securite_Menu)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = MenuDAO.ObjectCode(code);
+                    var obj = new MenuDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -370,11 +370,11 @@ namespace GB.Controllers
                 this.con.donnee.id_role = id_role;
                 // -- Mise à jour des autorisation -- //
                 this.con.donnee.autorisation = new List<Autorisation>();
-                (this.con.donnee.autorisation as List<Autorisation>).AddRange(AutorisationDAO.Lister(id_role));
+                (this.con.donnee.autorisation as List<Autorisation>).AddRange(autorisationDAO.Lister(id_role));
                 // -- Mise à jour des autorisation disponible -- //
                 this.con.donnee.autorisation_disponible = new List<Autorisation>();
                 (this.con.donnee.autorisation_disponible as List<Autorisation>).AddRange(
-                    MenuDAO.Lister()
+                    menuDAO.Lister()
                            .Where(l =>
                                 (this.con.donnee.autorisation as List<Autorisation>).Count(ll => ll.id == l.id) == 0
                            )
@@ -391,7 +391,7 @@ namespace GB.Controllers
                                     id_menu = l.id,
                                     id_role = id_role,
                                     menu = l,
-                                    role = RoleDAO.Object(id_role)
+                                    role = new RoleDAO().ObjectId(id_role)
                                 }
                             )
                 );
@@ -514,8 +514,8 @@ namespace GB.Controllers
                     selection.ForEach(l =>
                     {
                         l.id_role = Convert.ToInt64(this.con.donnee.id_role);
-                        l.role = RoleDAO.Object(Convert.ToInt64(this.con.donnee.id_role));
-                        l.menu = MenuDAO.Object(l.id_menu);
+                        l.role = new RoleDAO().ObjectId(this.con.donnee.id_role);
+                        l.menu = new MenuDAO().ObjectId(l.id_menu);
                     });
 
                     // -- AJout dans les autorisation temporaire -- //
@@ -546,8 +546,8 @@ namespace GB.Controllers
                                 supprimer = false,
                                 imprimer = false,
                                 lister = false,
-                                role = RoleDAO.Object(Convert.ToInt64(this.con.donnee.id_role)),
-                                menu = MenuDAO.Object(id_menu)
+                                role = new RoleDAO().ObjectId(this.con.donnee.id_role),
+                                menu = new MenuDAO().ObjectId(id_menu)
                             }
                         );
                     });

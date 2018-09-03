@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class JournalDAO : IDAO
+    public class JournalDAO : IDAO<Journal>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_Journal; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(Journal obj)
+        public JournalDAO() { }
+
+        public void Ajouter(Journal obj, string id_utilisateur = null)
         {
             try
             {
@@ -152,7 +154,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Journal> Lister()
+        public List<Journal> Lister()
         {
             try
             {
@@ -181,7 +183,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Journal ObjectCode(string code)
+        public Journal ObjectCode(string code)
         {
             try
             {
@@ -210,7 +212,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Journal ObjectId(string id)
+        public Journal ObjectId(string id)
         {
             try
             {

@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class BanqueDAO : IDAO
+    public class BanqueDAO : IDAO<Banque>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Banque; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(Banque obj)
+        public BanqueDAO() { }
+
+        public void Ajouter(Banque obj, string id_utilisateur = null)
         {
             try
             {
@@ -38,8 +40,8 @@ namespace GB.Models.DAO
 
                 // -- Mise à jour des references -- //
                 obj.id_utilisateur_createur = this.connexion.utilisateur.id_utilisateur;
-                obj.pays = PAYSDAO.ObjectId(obj.id_pays);
-                obj.utilisateur_createur = UtilisateurDAO.ObjectId(this.connexion.utilisateur.id_utilisateur);
+                obj.pays = new PAYSDAO().ObjectId(obj.id_pays);
+                obj.utilisateur_createur = new UtilisateurDAO().ObjectId(this.connexion.utilisateur.id_utilisateur);
 
                 // -- Champ obligatoire -- //
                 if (obj.pays == null)
@@ -102,7 +104,7 @@ namespace GB.Models.DAO
                         l.adresse_1 = obj.adresse_1;
                         l.adresse_2 = obj.adresse_2;
                         l.ville = obj.ville;
-                        l.pays = PAYSDAO.ObjectId(obj.id_pays);
+                        l.pays = new PAYSDAO().ObjectId(obj.id_pays);
                     });
 
                 // -- Execution des Hubs -- //
@@ -164,7 +166,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Banque> Lister()
+        public List<Banque> Lister()
         {
             try
             {
@@ -193,7 +195,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Banque ObjectCode(string code)
+        public Banque ObjectCode(string code)
         {
             try
             {
@@ -222,7 +224,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Banque ObjectId(string id)
+        public Banque ObjectId(string id)
         {
             try
             {

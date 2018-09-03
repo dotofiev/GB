@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class CompteBanqueDAO : IDAO
+    public class CompteBanqueDAO : IDAO<CompteBanque>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_CompteBanque; } }
         public GBConnexion connexion { get; set; }
@@ -28,7 +28,7 @@ namespace GB.Models.DAO
 
         public CompteBanqueDAO() { }
 
-        public void Ajouter(CompteBanque obj)
+        public void Ajouter(CompteBanque obj, string id_utilisateur = null)
         {
             try
             {
@@ -45,9 +45,9 @@ namespace GB.Models.DAO
                 obj.id_utilisateur_createur = this.connexion.utilisateur.id_utilisateur;
 
                 // -- Mise à jour des references -- //
-                obj.utilisateur_createur = UtilisateurDAO.ObjectId(this.connexion.utilisateur.id_utilisateur);
-                obj.compte = CompteDAO.ObjectId(obj.id_compte);
-                obj.banque = BanqueDAO.ObjectId(obj.id_banque);
+                obj.utilisateur_createur = new UtilisateurDAO().ObjectId(this.connexion.utilisateur.id_utilisateur);
+                obj.compte = new CompteDAO().ObjectId(obj.id_compte);
+                obj.banque = new BanqueDAO().ObjectId(obj.id_banque);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.comptes_banque.Add(obj);
@@ -101,8 +101,8 @@ namespace GB.Models.DAO
                         // -- Mise à jour de l'enregistrement -- //
                         l.id_compte = obj.id_compte;
                         l.id_banque = obj.id_banque;
-                        l.compte = CompteDAO.ObjectId(obj.id_compte);
-                        l.banque = BanqueDAO.ObjectId(obj.id_banque);
+                        l.compte = new CompteDAO().ObjectId(obj.id_compte);
+                        l.banque = new BanqueDAO().ObjectId(obj.id_banque);
                     });
 
                 // -- Execution des Hubs -- //
@@ -170,7 +170,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<CompteBanque> Lister()
+        public List<CompteBanque> Lister()
         {
             try
             {
@@ -199,7 +199,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static CompteBanque ObjectCode(string code)
+        public CompteBanque ObjectCode(string code)
         {
             try
             {
@@ -228,7 +228,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static CompteBanque ObjectId(string id)
+        public CompteBanque ObjectId(string id)
         {
             try
             {
@@ -268,14 +268,14 @@ namespace GB.Models.DAO
                 // -- Pour le champ code -- //
                 if (champ == "code")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new CompteBanqueDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
                     }
                 }
                 else if (champ == "libelle")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new CompteBanqueDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                     }

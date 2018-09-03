@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class UniteInstitutionnelleDAO : IDAO
+    public class UniteInstitutionnelleDAO : IDAO<UniteInstitutionnelle>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_UniteInstitutionnelle; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(UniteInstitutionnelle obj, string id_utilisateur)
+        public UniteInstitutionnelleDAO() { }
+
+        public void Ajouter(UniteInstitutionnelle obj, string id_utilisateur = null)
         {
             try
             {
@@ -44,7 +46,7 @@ namespace GB.Models.DAO
 
                 // -- Mise à jour des refenreces -- //
                 obj.id_utilisateur = id_utilisateur;
-                obj.utilisateur_createur = UtilisateurDAO.ObjectId(id_utilisateur);
+                obj.utilisateur_createur = new UtilisateurDAO().ObjectId(id_utilisateur);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.unites_institutionnelle.Add(obj);
@@ -157,7 +159,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<UniteInstitutionnelle> Lister()
+        public List<UniteInstitutionnelle> Lister()
         {
             try
             {
@@ -186,7 +188,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static UniteInstitutionnelle ObjectCode(string code)
+        public UniteInstitutionnelle ObjectCode(string code)
         {
             try
             {
@@ -216,6 +218,11 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public UniteInstitutionnelle ObjectId(string id)
         {
             throw new NotImplementedException();
         }

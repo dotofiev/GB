@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ParametreDAO : IDAO
+    public class ParametreDAO : IDAO<Parametre>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Parametre; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Modifier(Parametre obj)
+        public ParametreDAO() { }
+
+        public void Modifier(Parametre obj, string id_utilisateur = null)
         {
             try
             {
@@ -100,7 +102,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Parametre> Lister()
+        public List<Parametre> Lister()
         {
             try
             {
@@ -129,7 +131,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Parametre ObjectCode(string code)
+        public Parametre ObjectCode(string code)
         {
             try
             {
@@ -217,6 +219,26 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Ajouter(Parametre obj, string id_utilisateur = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Modifier(Parametre obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Supprimer(List<string> ids)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Parametre ObjectId(string id)
         {
             throw new NotImplementedException();
         }

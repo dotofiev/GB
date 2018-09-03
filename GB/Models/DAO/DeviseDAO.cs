@@ -13,7 +13,7 @@ using System.Data.Entity.Core.Objects;
 
 namespace GB.Models.DAO
 {
-    public class DeviseDAO : IDAO
+    public class DeviseDAO : IDAO<Devise>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Devise; } }
         public GBConnexion connexion { get; set; }
@@ -30,7 +30,7 @@ namespace GB.Models.DAO
 
         public DeviseDAO() { }
 
-        public void Ajouter(Devise obj)
+        public void Ajouter(Devise obj, string id_utilisateur = null)
         {
             try
             {
@@ -282,7 +282,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Devise> Lister()
+        public List<Devise> Lister()
         {
             try
             {
@@ -386,7 +386,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Devise ObjectCode(string code)
+        public Devise ObjectCode(string code)
         {
             try
             {
@@ -437,7 +437,7 @@ namespace GB.Models.DAO
             }
             #endregion
         }
-        public static Devise ObjectId(string id)
+        public Devise ObjectId(string id)
         {
             try
             {
@@ -642,14 +642,14 @@ namespace GB.Models.DAO
                 // -- Pour le champ code -- //
                 if (champ == "code")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new DeviseDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
                     }
                 }
                 else if (champ == "libelle")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new DeviseDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                     }

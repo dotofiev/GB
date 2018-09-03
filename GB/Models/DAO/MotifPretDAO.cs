@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class MotifPretDAO : IDAO
+    public class MotifPretDAO : IDAO<MotifPret>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_MotifPret; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(MotifPret obj)
+        public MotifPretDAO() { }
+
+        public void Ajouter(MotifPret obj, string id_utilisateur = null)
         {
             try
             {
@@ -149,7 +151,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<MotifPret> Lister()
+        public List<MotifPret> Lister()
         {
             try
             {
@@ -178,7 +180,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static MotifPret ObjectCode(string code)
+        public MotifPret ObjectCode(string code)
         {
             try
             {
@@ -207,7 +209,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static MotifPret Object(string id)
+        public MotifPret ObjectId(string id)
         {
             try
             {

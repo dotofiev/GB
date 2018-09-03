@@ -26,7 +26,7 @@ namespace GB.Controllers
         public string id_session_cookies { get { return this.Request?.Cookies?["id_session"]?.Value ?? string.Empty; } set { this.Response.Cookies["id_session"].Value = value; } }
         
         #region DAO
-        public PAYSDAO paysDAO { get { return new PAYSDAO(this.con); } }
+        public PAYSDAO pAYSDAO { get { return new PAYSDAO(this.con); } }
         public TypePretDAO typePretDAO { get { return new TypePretDAO(this.con); } }
         public MotifPretDAO motifPretDAO { get { return new MotifPretDAO(this.con); } }
         public ClassificationProvisionsPretDAO classificationProvisionsPretDAO { get { return new ClassificationProvisionsPretDAO(this.con); } }
@@ -65,7 +65,8 @@ namespace GB.Controllers
         public ResponsableRelationClientDAO responsableRelationClientDAO { get { return new ResponsableRelationClientDAO(this.con); } }
         public SocieteDAO societeDAO { get { return new SocieteDAO(this.con); } }
         public ParametreBudgetRevenuDAO parametreBudgetRevenuDAO { get { return new ParametreBudgetRevenuDAO(this.con); } }
-        public ParametreBudgetFraisDAO parametreBudgetFraisDAO { get { return new ParametreBudgetFraisDAO(this.con); } }        
+        public ParametreBudgetFraisDAO parametreBudgetFraisDAO { get { return new ParametreBudgetFraisDAO(this.con); } }
+        public ParametreBanqueDAO parametreBanqueDAO { get { return new ParametreBanqueDAO(this.con); } }        
         #endregion
         #endregion
 

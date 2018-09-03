@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class TypePretDAO : IDAO
+    public class TypePretDAO : IDAO<TypePret>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_TypePret; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(TypePret obj)
+        public TypePretDAO() { }
+
+        public void Ajouter(TypePret obj, string id_utilisateur = null)
         {
             try
             {
@@ -152,7 +154,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<TypePret> Lister()
+        public List<TypePret> Lister()
         {
             try
             {
@@ -181,7 +183,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static TypePret ObjectCode(string code)
+        public TypePret ObjectCode(string code)
         {
             try
             {
@@ -211,6 +213,11 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public TypePret ObjectId(string id)
         {
             throw new NotImplementedException();
         }

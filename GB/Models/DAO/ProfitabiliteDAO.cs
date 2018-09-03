@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ProfitabiliteDAO : IDAO
+    public class ProfitabiliteDAO : IDAO<Profitabilite>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Profitabilite; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(Profitabilite obj)
+        public ProfitabiliteDAO() { }
+
+        public void Ajouter(Profitabilite obj, string id_utilisateur = null)
         {
             try
             {
@@ -150,7 +152,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Profitabilite> Lister()
+        public List<Profitabilite> Lister()
         {
             try
             {
@@ -179,7 +181,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Profitabilite ObjectCode(string code)
+        public Profitabilite ObjectCode(string code)
         {
             try
             {
@@ -209,6 +211,11 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Profitabilite ObjectId(string id)
         {
             throw new NotImplementedException();
         }

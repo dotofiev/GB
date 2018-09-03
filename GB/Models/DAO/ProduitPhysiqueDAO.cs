@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ProduitPhysiqueDAO : IDAO
+    public class ProduitPhysiqueDAO : IDAO<ProduitPhysique>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_ProduitClientPhysique; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(ProduitPhysique obj)
+        public ProduitPhysiqueDAO() { }
+
+        public void Ajouter(ProduitPhysique obj, string id_utilisateur = null)
         {
             try
             {
@@ -152,7 +154,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<ProduitPhysique> Lister()
+        public List<ProduitPhysique> Lister()
         {
             try
             {
@@ -181,7 +183,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static ProduitPhysique ObjectCode(string code)
+        public ProduitPhysique ObjectCode(string code)
         {
             try
             {
@@ -211,6 +213,11 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ProduitPhysique ObjectId(string id)
         {
             throw new NotImplementedException();
         }

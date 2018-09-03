@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class TypeActifDAO : IDAO
+    public class TypeActifDAO : IDAO<TypeActif>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_TypeActif; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(TypeActif obj)
+        public TypeActifDAO() { }
+
+        public void Ajouter(TypeActif obj, string id_utilisateur = null)
         {
             try
             {
@@ -152,7 +154,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<TypeActif> Lister()
+        public List<TypeActif> Lister()
         {
             try
             {
@@ -181,7 +183,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static TypeActif ObjectCode(string code)
+        public TypeActif ObjectCode(string code)
         {
             try
             {
@@ -210,7 +212,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static TypeActif ObjectId(string id)
+        public TypeActif ObjectId(string id)
         {
             try
             {

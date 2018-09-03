@@ -338,7 +338,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-Institution
                 if (id_page == GB_Enum_Menu.ConfigurationBanque_Institution)
                 {
-                    foreach (var val in InstitutionDAO.Lister())
+                    foreach (var val in institutionDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -361,7 +361,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-Agence
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
                 {
-                    foreach (var val in AgenceDAO.Lister())
+                    foreach (var val in agenceDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -390,7 +390,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-Devise
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Devise)
                 {
-                    foreach (var val in DeviseDAO.Lister())
+                    foreach (var val in deviseDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -410,7 +410,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-ParametreBanque
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
                 {
-                    foreach (var val in ParametreBanqueDAO.Lister())
+                    foreach (var val in parametreBanqueDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -433,7 +433,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-ProduitClientPhysique
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientPhysique)
                 {
-                    foreach (var val in ProduitPhysiqueDAO.Lister())
+                    foreach (var val in produitPhysiqueDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -452,7 +452,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-ProduitClientJudiciaire
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientJudiciaire)
                 {
-                    foreach (var val in ProduitJudiciaireDAO.Lister())
+                    foreach (var val in produitJudiciaireDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -473,7 +473,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-Pays
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Pays)
                 {
-                    foreach (var val in PAYSDAO.Lister())
+                    foreach (var val in pAYSDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -494,7 +494,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-Ville
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Ville)
                 {
-                    foreach (var val in VilleDAO.Lister())
+                    foreach (var val in villeDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -514,7 +514,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-ActiviteEconomique
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ActiviteEconomique)
                 {
-                    foreach (var val in ActiviteEconomiqueDAO.Lister())
+                    foreach (var val in activiteEconomiqueDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -535,7 +535,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-Titre
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Titre)
                 {
-                    foreach (var val in TitreDAO.Lister())
+                    foreach (var val in titreDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -556,7 +556,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-UniteInstitutionnelle
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_UniteInstitutionnelle)
                 {
-                    foreach (var val in UniteInstitutionnelleDAO.Lister())
+                    foreach (var val in uniteInstitutionnelleDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -577,7 +577,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-BEACNationalite
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_BEACNationalite)
                 {
-                    foreach (var val in BEACNationaliteDAO.Lister())
+                    foreach (var val in bEACNationaliteDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -598,7 +598,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-CongeBanque
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_CongeBanque)
                 {
-                    foreach (var val in CongeBanqueDAO.Lister())
+                    foreach (var val in congeBanqueDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -618,7 +618,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-CompteAgence
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_CompteAgence)
                 {
-                    foreach (var val in CompteAgenceDAO.Lister())
+                    foreach (var val in compteAgenceDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -642,7 +642,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-CompteBanque
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_CompteBanque)
                 {
-                    foreach (var val in CompteBanqueDAO.Lister())
+                    foreach (var val in compteBanqueDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -664,7 +664,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-Banque
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Banque)
                 {
-                    foreach (var val in BanqueDAO.Lister())
+                    foreach (var val in banqueDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -688,7 +688,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-Profitabilite
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Profitabilite)
                 {
-                    foreach (var val in ProfitabiliteDAO.Lister())
+                    foreach (var val in profitabiliteDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -707,7 +707,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-ResponsableRelationClient
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ResponsableRelationClient)
                 {
-                    foreach (var val in ResponsableRelationClientDAO.Lister())
+                    foreach (var val in responsableRelationClientDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -733,7 +733,7 @@ namespace GB.Controllers
                 #region ConfigurationBanque-Societe
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Societe)
                 {
-                    foreach (var val in SocieteDAO.Lister())
+                    foreach (var val in societeDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -821,7 +821,7 @@ namespace GB.Controllers
                         // -- Si la liste des utilisateurs en session est vide, la mettre à jour -- //
                         if ((this.con.donnee.utilisateurs as List<Utilisateur>).Count == 0)
                         {
-                            this.con.donnee.utilisateurs = UtilisateurDAO.Lister();
+                            this.con.donnee.utilisateurs = utilisateurDAO.Lister();
                         }
 
                         // -- Charger la liste des résultats -- //
@@ -846,7 +846,7 @@ namespace GB.Controllers
                         // -- Si la liste des pays en session est vide, la mettre à jour -- //
                         if ((this.con.donnee.pays as List<PAYS>).Count == 0)
                         {
-                            this.con.donnee.pays = PAYSDAO.Lister();
+                            this.con.donnee.pays = pAYSDAO.Lister();
                         }
 
                         // -- Charger la liste des résultats -- //
@@ -869,7 +869,7 @@ namespace GB.Controllers
                         // -- Si la liste des villes en session est vide, la mettre à jour -- //
                         if ((this.con.donnee.villes as List<Ville>).Count == 0)
                         {
-                            this.con.donnee.villes = VilleDAO.Lister();
+                            this.con.donnee.villes = villeDAO.Lister();
                         }
 
                         // -- Charger la liste des résultats -- //
@@ -922,7 +922,7 @@ namespace GB.Controllers
                         // -- Si la liste des agences en session est vide, la mettre à jour -- //
                         if ((this.con.donnee.agences as List<Agence>).Count == 0)
                         {
-                            this.con.donnee.agences = AgenceDAO.Lister();
+                            this.con.donnee.agences = agenceDAO.Lister();
                         }
 
                         // -- Charger la liste des résultats -- //
@@ -977,7 +977,7 @@ namespace GB.Controllers
                         // -- Si la liste des banques en session est vide, la mettre à jour -- //
                         if ((this.con.donnee.banques as List<Banque>).Count == 0)
                         {
-                            this.con.donnee.banques = BanqueDAO.Lister();
+                            this.con.donnee.banques = banqueDAO.Lister();
                         }
 
                         // -- Charger la liste des résultats -- //
@@ -1007,7 +1007,7 @@ namespace GB.Controllers
                         // -- Si la liste des pays en session est vide, la mettre à jour -- //
                         if ((this.con.donnee.pays as List<PAYS>).Count == 0)
                         {
-                            this.con.donnee.pays = PAYSDAO.Lister();
+                            this.con.donnee.pays = pAYSDAO.Lister();
                         }
 
                         // -- Charger la liste des résultats -- //
@@ -1062,7 +1062,7 @@ namespace GB.Controllers
                         // -- Si la liste des banques en session est vide, la mettre à jour -- //
                         if ((this.con.donnee.agences as List<Agence>).Count == 0)
                         {
-                            this.con.donnee.agences = AgenceDAO.Lister();
+                            this.con.donnee.agences = agenceDAO.Lister();
                         }
 
                         // -- Charger la liste des résultats -- //
@@ -1113,7 +1113,7 @@ namespace GB.Controllers
                     if (id_vue == "utilisateur")
                     {
                         // -- Mise à jour de la liste en session -- //
-                        this.con.donnee.utilisateurs = UtilisateurDAO.Lister();
+                        this.con.donnee.utilisateurs = utilisateurDAO.Lister();
                     }
                     #endregion
 
@@ -1122,7 +1122,7 @@ namespace GB.Controllers
                     else if (id_vue == "pays")
                     {
                         // -- Mise à jour de la liste en session -- //
-                        this.con.donnee.pays = PAYSDAO.Lister();
+                        this.con.donnee.pays = pAYSDAO.Lister();
                     }
                     #endregion
 
@@ -1131,7 +1131,7 @@ namespace GB.Controllers
                     else if (id_vue == "ville")
                     {
                         // -- Mise à jour de la liste en session -- //
-                        this.con.donnee.villes = VilleDAO.Lister();
+                        this.con.donnee.villes = villeDAO.Lister();
                     }
                     #endregion
                 }
@@ -1154,7 +1154,7 @@ namespace GB.Controllers
                     else if (id_vue == "agence")
                     {
                         // -- Mise à jour de la liste en session -- //
-                        this.con.donnee.agences = AgenceDAO.Lister();
+                        this.con.donnee.agences = agenceDAO.Lister();
                     }
                     #endregion
                 }
@@ -1177,7 +1177,7 @@ namespace GB.Controllers
                     else if (id_vue == "banque")
                     {
                         // -- Mise à jour de la liste en session -- //
-                        this.con.donnee.banques = BanqueDAO.Lister();
+                        this.con.donnee.banques = banqueDAO.Lister();
                     }
                     #endregion
                 }
@@ -1191,7 +1191,7 @@ namespace GB.Controllers
                     if (id_vue == "pays")
                     {
                         // -- Mise à jour de la liste en session -- //
-                        this.con.donnee.pays = PAYSDAO.Lister();
+                        this.con.donnee.pays = pAYSDAO.Lister();
                     }
                     #endregion
                 }
@@ -1214,7 +1214,7 @@ namespace GB.Controllers
                     else if (id_vue == "agence")
                     {
                         // -- Mise à jour de la liste en session -- //
-                        this.con.donnee.agences = AgenceDAO.Lister();
+                        this.con.donnee.agences = agenceDAO.Lister();
                     }
                     #endregion
                 }
@@ -1247,7 +1247,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationBanque_Institution)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = InstitutionDAO.ObjectCode(code);
+                    var obj = new InstitutionDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1280,7 +1280,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Agence)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = AgenceDAO.ObjectCode(code);
+                    var obj = new AgenceDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1317,7 +1317,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Devise)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = DeviseDAO.ObjectCode(code);
+                    var obj = new DeviseDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1343,7 +1343,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ParametreBanque)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ParametreBanqueDAO.ObjectCode(code);
+                    var obj = new ParametreBanqueDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1372,7 +1372,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientPhysique)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ProduitPhysiqueDAO.ObjectCode(code);
+                    var obj = new ProduitPhysiqueDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1396,7 +1396,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ProduitClientJudiciaire)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ProduitJudiciaireDAO.ObjectCode(code);
+                    var obj = new ProduitJudiciaireDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1421,7 +1421,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Pays)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = PAYSDAO.ObjectCode(code);
+                    var obj = new PAYSDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1446,7 +1446,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Ville)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = VilleDAO.ObjectCode(code);
+                    var obj = new VilleDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1470,7 +1470,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ActiviteEconomique)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ActiviteEconomiqueDAO.ObjectCode(code);
+                    var obj = new ActiviteEconomiqueDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1495,7 +1495,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Titre)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = TitreDAO.ObjectCode(code);
+                    var obj = new TitreDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1520,7 +1520,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_UniteInstitutionnelle)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = UniteInstitutionnelleDAO.ObjectCode(code);
+                    var obj = new UniteInstitutionnelleDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1545,7 +1545,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_BEACNationalite)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = BEACNationaliteDAO.ObjectCode(code);
+                    var obj = new BEACNationaliteDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1570,7 +1570,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_CongeBanque)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = CongeBanqueDAO.ObjectCode(code);
+                    var obj = new CongeBanqueDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1595,7 +1595,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_CompteAgence)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = CompteAgenceDAO.ObjectId(id);
+                    var obj = new CompteAgenceDAO().ObjectId(id);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1629,7 +1629,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_CompteBanque)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = CompteBanqueDAO.ObjectId(id);
+                    var obj = new CompteBanqueDAO().ObjectId(id);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1657,7 +1657,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Banque)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = BanqueDAO.ObjectCode(code);
+                    var obj = new BanqueDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1687,7 +1687,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Profitabilite)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ProfitabiliteDAO.ObjectCode(code);
+                    var obj = new ProfitabiliteDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1712,7 +1712,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_ResponsableRelationClient)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ResponsableRelationClientDAO.ObjectId(id);
+                    var obj = new ResponsableRelationClientDAO().ObjectId(id);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1743,7 +1743,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Societe)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = SocieteDAO.ObjectId(id);
+                    var obj = new SocieteDAO().ObjectId(id);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -1904,7 +1904,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Pays)
                 {
                     // -- Service d'enregistrement -- //
-                    paysDAO.Ajouter(GBConvert.JSON_To<PAYS>(obj));
+                    pAYSDAO.Ajouter(GBConvert.JSON_To<PAYS>(obj));
                 }
                 #endregion
 
@@ -2151,7 +2151,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Pays)
                 {
                     // -- Service de modification -- //
-                    paysDAO.Modifier(GBConvert.JSON_To<PAYS>(obj));
+                    pAYSDAO.Modifier(GBConvert.JSON_To<PAYS>(obj));
                 }
                 #endregion
 
@@ -2349,7 +2349,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBanque_Pays)
                 {
                     // -- Service de suppression -- //
-                    paysDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
+                    pAYSDAO.Supprimer(GBConvert.JSON_To<List<string>>(ids));
                 }
                 #endregion
 

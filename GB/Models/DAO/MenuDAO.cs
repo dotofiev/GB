@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class MenuDAO : IDAO
+    public class MenuDAO : IDAO<Menu>
     {
         public string id_page { get { return GB_Enum_Menu.Securite_Menu; } }
         public GBConnexion connexion { get; set; }
@@ -28,7 +28,9 @@ namespace GB.Models.DAO
             this.utilisateur = utilisateur;
         }
 
-        public void Ajouter(Menu obj)
+        public MenuDAO() { }
+
+        public void Ajouter(Menu obj, string id_utilisateur = null)
         {
             try
             {
@@ -170,7 +172,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Menu> Lister()
+        public List<Menu> Lister()
         {
             try
             {
@@ -199,7 +201,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Menu ObjectCode(string code)
+        public Menu ObjectCode(string code)
         {
             try
             {
@@ -257,7 +259,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Menu Object(string id_menu)
+        public Menu ObjectId(string id_menu)
         {
             try
             {

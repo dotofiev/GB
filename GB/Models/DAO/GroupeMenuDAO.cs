@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class GroupeMenuDAO : IDAO
+    public class GroupeMenuDAO : IDAO<GroupeMenu>
     {
         public string id_page { get { return string.Empty; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(GroupeMenu obj)
+        public GroupeMenuDAO() { }
+
+        public void Ajouter(GroupeMenu obj, string id_utilisateur = null)
         {
             try
             {
@@ -159,7 +161,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<GroupeMenu> Lister()
+        public List<GroupeMenu> Lister()
         {
             try
             {
@@ -188,7 +190,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static GroupeMenu ObjectCode(string code)
+        public GroupeMenu ObjectCode(string code)
         {
             try
             {
@@ -217,7 +219,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static GroupeMenu Object(string id)
+        public GroupeMenu Object(string id)
         {
             try
             {
@@ -257,7 +259,7 @@ namespace GB.Models.DAO
                 if (champ == "code")
                 {
                     // -- Ajout des options -- //
-                    foreach (var val in Lister())
+                    foreach (var val in new GroupeMenuDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
                     }
@@ -266,7 +268,7 @@ namespace GB.Models.DAO
                 else if (champ == "libelle")
                 {
                     // -- Ajout des options -- //
-                    foreach (var val in Lister())
+                    foreach (var val in new GroupeMenuDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{((LangHelper.CurrentCulture == 0) ? val.libelle_en : val.libelle_fr)}\">{((LangHelper.CurrentCulture == 0) ? val.libelle_en : val.libelle_fr)}</option>";
                     }
@@ -336,6 +338,11 @@ namespace GB.Models.DAO
                 }
             }
             #endregion
+        }
+
+        public GroupeMenu ObjectId(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

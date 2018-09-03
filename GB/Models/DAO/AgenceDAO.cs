@@ -12,7 +12,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class AgenceDAO : IDAO
+    public class AgenceDAO : IDAO<Agence>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Agence; } }
         public GBConnexion connexion { get; set; }
@@ -29,7 +29,7 @@ namespace GB.Models.DAO
 
         public AgenceDAO() { }
 
-        public void Ajouter(Agence obj)
+        public void Ajouter(Agence obj, string id_utilisateur = null)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace GB.Models.DAO
                     obj.Crer_Id();
 
                     // -- Mise à jour des references -- //
-                    obj.utilisateur = UtilisateurDAO.ObjectId(obj.id_utilisateur);
+                    obj.utilisateur = new UtilisateurDAO().ObjectId(obj.id_utilisateur);
 
                     // -- Enregistrement de la valeur -- //
                     Program.db.agences.Add(obj);
@@ -130,7 +130,7 @@ namespace GB.Models.DAO
                         l.code = obj.code;
                             l.libelle = obj.libelle;
                             l.id_utilisateur = obj.id_utilisateur;
-                            l.utilisateur = UtilisateurDAO.ObjectId(obj.id_utilisateur);
+                            l.utilisateur = new UtilisateurDAO().ObjectId(obj.id_utilisateur);
                             l.adresse = obj.adresse;
                             l.ville = obj.ville;
                             l.bp = obj.bp;
@@ -267,7 +267,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Agence> Lister()
+        public List<Agence> Lister()
         {
             try
             {
@@ -320,7 +320,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Agence ObjectCode(string code)
+        public Agence ObjectCode(string code)
         {
             try
             {
@@ -372,7 +372,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Agence ObjectId(string id)
+        public Agence ObjectId(string id)
         {
             try
             {
@@ -435,14 +435,14 @@ namespace GB.Models.DAO
                 // -- Pour le champ code -- //
                 if (champ == "code")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new AgenceDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
                     }
                 }
                 else if (champ == "libelle")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new AgenceDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                     }

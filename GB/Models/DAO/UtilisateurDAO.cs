@@ -13,7 +13,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class UtilisateurDAO : IDAO
+    public class UtilisateurDAO : IDAO<Utilisateur>
     {
         public string id_page { get { return GB_Enum_Menu.SecuriteUtilisateur_Utilisateur; } }
         public GBConnexion connexion { get; set; }
@@ -28,7 +28,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(Utilisateur obj)
+        public UtilisateurDAO() { }
+
+        public void Ajouter(Utilisateur obj, string id_utilisateur = null)
         {
             try
             {
@@ -43,9 +45,9 @@ namespace GB.Models.DAO
                     }
 
                     // -- Mise àj our des references -- //
-                    obj.agence = AgenceDAO.ObjectId(obj.id_agence);
-                    obj.profession = ProfessionDAO.ObjectId(obj.id_profession);
-                    obj.autorite_signature = AutoriteSignatureDAO.ObjectId(obj.id_autorite_signature);
+                    obj.agence = new AgenceDAO().ObjectId(obj.id_agence);
+                    obj.profession = new ProfessionDAO().ObjectId(obj.id_profession);
+                    obj.autorite_signature = new AutoriteSignatureDAO().ObjectId(obj.id_autorite_signature);
                     obj.date_mise_a_jour_mot_de_passe = DateTime.Now.AddMonths(obj.duree_mot_de_passe).Ticks;
 
                     // -- Définition de l'identifiant -- //
@@ -130,11 +132,11 @@ namespace GB.Models.DAO
                         l.compte = obj.compte;
                             l.nom_utilisateur = obj.nom_utilisateur;
                             l.id_agence = obj.id_agence;
-                            l.agence = AgenceDAO.ObjectId(obj.id_agence);
+                            l.agence = new AgenceDAO().ObjectId(obj.id_agence);
                             l.id_profession = obj.id_profession;
-                            l.profession = ProfessionDAO.ObjectId(obj.id_profession);
+                            l.profession = new ProfessionDAO().ObjectId(obj.id_profession);
                             l.id_autorite_signature = obj.id_autorite_signature;
-                            l.autorite_signature = AutoriteSignatureDAO.ObjectId(obj.id_autorite_signature);
+                            l.autorite_signature = new AutoriteSignatureDAO().ObjectId(obj.id_autorite_signature);
                             l.ouverture_back_date = obj.ouverture_back_date;
                             l.ouverture_back_date_travail = obj.ouverture_back_date_travail;
                             l.ouverture_branch = obj.ouverture_branch;
@@ -269,7 +271,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Utilisateur> Lister()
+        public List<Utilisateur> Lister()
         {
             try
             {
@@ -474,7 +476,7 @@ namespace GB.Models.DAO
             }
             #endregion
         }
-        public static Utilisateur ObjectId(string id_utilisateur, bool ajouter_reference = true)
+        public Utilisateur ObjectId(string id_utilisateur, bool ajouter_reference = true)
         {
             try
             {
@@ -601,6 +603,16 @@ namespace GB.Models.DAO
 
                 yield return new Utilisateur(obj);
             }
+        }
+
+        public Utilisateur ObjectCode(string code)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Utilisateur ObjectId(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

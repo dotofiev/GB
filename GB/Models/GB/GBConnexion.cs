@@ -50,14 +50,7 @@ namespace GB.Models.GB
         public void Authentification(Utilisateur utilisateur)
         {
             #region Réccupération de l'utilisateur
-            this._utilisateur = new Utilisateur
-            {
-                compte = utilisateur.compte,
-                mot_de_passe = utilisateur.mot_de_passe,
-                id_utilisateur = utilisateur.id_utilisateur,
-                id_role = utilisateur.id_role,
-                nom_utilisateur = utilisateur.nom_utilisateur
-            };
+            this._utilisateur = utilisateur;
             #endregion
 
             #region Réccupération de la date de connexion

@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class LocalisationActifDAO : IDAO
+    public class LocalisationActifDAO : IDAO<LocalisationActif>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_LocalisationActif; } }
         public GBConnexion connexion { get; set; }
@@ -26,7 +26,9 @@ namespace GB.Models.DAO
             this.connexion = con;
         }
 
-        public void Ajouter(LocalisationActif obj)
+        public LocalisationActifDAO() { }
+
+        public void Ajouter(LocalisationActif obj, string id_utilisateur = null)
         {
             try
             {
@@ -152,7 +154,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<LocalisationActif> Lister()
+        public List<LocalisationActif> Lister()
         {
             try
             {
@@ -181,7 +183,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static LocalisationActif ObjectCode(string code)
+        public LocalisationActif ObjectCode(string code)
         {
             try
             {
@@ -210,7 +212,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static LocalisationActif ObjectId(string id)
+        public LocalisationActif ObjectId(string id)
         {
             try
             {
