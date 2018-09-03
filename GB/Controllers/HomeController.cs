@@ -46,15 +46,15 @@ namespace GB.Controllers
 
         #region HttpPost
         [HttpPost]
-        public ActionResult Connexion(string compte, string mot_de_passe)
+        public ActionResult Connexion(string compte, string mot_de_passe, string langue)
         {
             try
             {
                 // -- Réccupération du l'utilisateur authentifié -- //
-                Utilisateur utilisateur = UtilisateurDAO.Authentification(compte, mot_de_passe);
+                Utilisateur utilisateur = UtilisateurDAO.Authentification(compte, mot_de_passe, langue);
 
                 // -- Authentifier l'objet connexion -- //
-                this.con.Authentification(utilisateur);
+                this.con.Authentification(utilisateur, langue);
 
                 // -- Notification -- //
                 this.ViewBag.notification = new GBNotification(

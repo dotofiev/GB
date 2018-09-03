@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class ResponsableRelationClient : BO, IBO<object>
+    public class ResponsableRelationClient : BOClass, IBO<object>
     {
         public string nom { get; set; }
         public string prenom { get; set; }

@@ -10,7 +10,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Societe : BO, IBO<object>
+    public class Societe : BOClass, IBO<object>
     {
         public string id_agence { get; set; }
         public string id_compte_transit { get; set; }

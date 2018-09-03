@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class ParametreBudgetRevenu : BO, IBO<object>
+    public class ParametreBudgetRevenu : BOClass, IBO<object>
     {
         public string id_compte { get; set; }
         public Compte compte { get; set; }

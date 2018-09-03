@@ -22,6 +22,7 @@ namespace GB.Models.GB
         private string _session_id { get; set; }
         private string _id_navigateur_client { get; set; }
         private string _hub_id_context { get; set; }
+        private GB_Enum_Code_Langue _langue { get; set; }
 
         // -- Public -- //
         public string url_photo_profil { get { return _url_photo_profil; } }
@@ -34,6 +35,7 @@ namespace GB.Models.GB
         public Utilisateur utilisateur { get { return _utilisateur; } }
         public string hub_id_context { get { return _hub_id_context; } }
         public dynamic donnee { get { return _donnee; } }
+        public GB_Enum_Code_Langue langue { get { return _langue; } }
 
         // -- Constructeur -- //
         public GBConnexion(string session_id, string id_navigateur_client)
@@ -47,7 +49,7 @@ namespace GB.Models.GB
         }
 
         #region Méthodes
-        public void Authentification(Utilisateur utilisateur)
+        public void Authentification(Utilisateur utilisateur, string id_lang)
         {
             #region Réccupération de l'utilisateur
             this._utilisateur = utilisateur;
@@ -62,7 +64,12 @@ namespace GB.Models.GB
             #endregion
 
             #region Récupération de la dévise courante
-            this._devise = DeviseDAO.Actif();
+            this._devise = new DeviseDAO().Actif();
+            #endregion
+
+            #region Réccupération de la langue en session
+            _langue = (id_lang == "0") ? GB_Enum_Code_Langue.en
+                                       : GB_Enum_Code_Langue.fr;
             #endregion
 
             #region Réccupération de la date serveur

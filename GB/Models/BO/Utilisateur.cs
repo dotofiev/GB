@@ -10,7 +10,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Utilisateur : BO, IBO<Employe>
+    public class Utilisateur : BOClass, IBO<Employe>
     {
         public string id_utilisateur { get; set; }
         public string id_role { get; set; }

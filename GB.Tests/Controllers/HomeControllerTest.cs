@@ -11,13 +11,17 @@ namespace GB.Tests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
+        // -- Paramètre de test -- //
+        private GBConnexion con { get; set; }
+        private HomeController controller { get; set; }
+
         [TestMethod]
         public void ConnexionTest()
         {
             // -- Controlleur à tester -- //
-            MvcApplication app = new MvcApplication();
-
-            var controller = new HomeController();
+            this.con = new GBConnexion("test", "test");
+            this.controller = new HomeController();
+            this.controller.con = this.con;
 
             // -- Parametres de test -- //
             string compteTest = "99999", mot_de_passeTest = "admin";
@@ -28,7 +32,7 @@ namespace GB.Tests.Controllers
                                     );
 
             // -- Test du résultat -- //
-            Assert.AreEqual(donnee.est_echec, false);
+            Assert.IsTrue(donnee.est_echec == false);
         }
     }
 }

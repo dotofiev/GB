@@ -2654,7 +2654,7 @@ namespace GB.Controllers
                                                         icon = "fa fa-cogs",
                                                         message = App_Lang.Lang.General_banking_parameters
                                                     },
-                                                    parametre = ParametreDAO.Object()
+                                                    parametre = parametreDAO.Object()
                                                 }
                                             );
                 #endregion

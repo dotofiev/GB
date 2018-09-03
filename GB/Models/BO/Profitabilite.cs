@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Profitabilite : BO, IBO<object>
+    public class Profitabilite : BOClass, IBO<object>
     {
         public string type { get; set; }
 

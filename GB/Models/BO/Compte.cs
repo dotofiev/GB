@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Compte : BO, IBO<object>
+    public class Compte : BOClass, IBO<object>
     {
         public string numero_compte { get; set; }
         public string nature { get; set; }

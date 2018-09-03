@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Journal : BO, IBO<object>
+    public class Journal : BOClass, IBO<object>
     {
         public long date_creation { get; set; }
         

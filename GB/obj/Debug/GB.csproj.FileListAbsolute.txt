@@ -1,6 +1,3 @@
-E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\GB.App_Lang.Lang.resources
-E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\GB.App_Lang.Lang.fr.resources
-E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\GB.csproj.GenerateResource.Cache
 E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\roslyn\csc.exe
 E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -74,6 +71,9 @@ E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\Microsoft.Owin.Security.OAuth
 E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\Microsoft.Owin.Security.Google.xml
 E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\Microsoft.Owin.Security.Twitter.xml
 E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\GB.App_Lang.Lang.resources
+E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\GB.App_Lang.Lang.fr.resources
+E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\GB.csproj.GenerateResource.Cache
 E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\fr\GB.resources.dll
 E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\GB.dll
 E:\DOCUMENTS\Better Planning\Global Bank\GB\GB\obj\Debug\GB.pdb

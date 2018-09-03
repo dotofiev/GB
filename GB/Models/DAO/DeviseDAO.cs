@@ -334,7 +334,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Devise Actif()
+        public Devise Actif()
         {
             try
             {
@@ -409,10 +409,12 @@ namespace GB.Models.DAO
                         // -- Désactivation du Lasy loading -- //
                         db.Configuration.LazyLoadingEnabled = false;
 
+                        // -- Réccupération de la valeur à retourner -- //
+                        var value = db.devises.Find(code);
+
                         return
-                            new Devise(
-                                db.devises.Find(code)
-                            );
+                            value != null ? new Devise(value)
+                                          : null;
                     }
                 }
                 #endregion
@@ -460,10 +462,12 @@ namespace GB.Models.DAO
                         // -- Désactivation du Lasy loading -- //
                         db.Configuration.LazyLoadingEnabled = false;
 
+                        // -- Réccupération de la valeur à retourner -- //
+                        var value = db.devises.Find(id);
+
                         return
-                            new Devise(
-                                db.devises.Find(id)
-                            );
+                            value != null ? new Devise(value)
+                                          : null;
                     }
                 }
                 #endregion

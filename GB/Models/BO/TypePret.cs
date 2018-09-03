@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class TypePret : BO, IBO<object>
+    public class TypePret : BOClass, IBO<object>
     {
         public int periode_debut { get; set; }
         public int periode_fin { get; set; }

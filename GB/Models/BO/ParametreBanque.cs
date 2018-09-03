@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class ParametreBanque : BO, IBO<object>
+    public class ParametreBanque : BOClass, IBO<object>
     {
         public string id_devise { get; set; }
         public Devise devise { get; set; }

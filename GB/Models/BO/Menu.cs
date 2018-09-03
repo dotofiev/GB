@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Menu : BO, IBO<object>
+    public class Menu : BOClass, IBO<object>
     {
         // -- Privé -- //
         private GroupeMenu _groupe_menu { get; set; }

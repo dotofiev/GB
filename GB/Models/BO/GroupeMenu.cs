@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class GroupeMenu : BO, IBO<object>
+    public class GroupeMenu : BOClass, IBO<object>
     {
         public string id_module { get; set; }
         public Module module { get; set; }

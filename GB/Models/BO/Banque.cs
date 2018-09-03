@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Banque : BO, IBO<object>
+    public class Banque : BOClass, IBO<object>
     {
         public string id_utilisateur_createur { get; set; }
         public string adresse_1 { get; set; }

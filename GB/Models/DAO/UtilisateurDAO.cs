@@ -8,6 +8,7 @@ using GB.Models.Tests;
 using Microsoft.AspNet.SignalR.Hubs;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Web;
 
@@ -529,7 +530,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Utilisateur Authentification(string compte, string mot_de_passe)
+        public static Utilisateur Authentification(string compte, string mot_de_passe, string id_lang, string nom_ordinateur = "POKA-PC")
         {
             try
             {
@@ -563,6 +564,45 @@ namespace GB.Models.DAO
                     // -- Exception -- //
                     throw new GBException(App_Lang.Lang.Authentication_failed_5);
                 }
+
+                // -- Mise à jour du nom de l'ordinateur -- //
+                utilisateur.nom_ordinateur = nom_ordinateur;
+
+                // -- Gestion de l'authentification en base -- //
+                #region Gestion de l'authentification en base
+                ObjectParameter pc_OutSERVERDATE = null; // +- (Agence
+                ObjectParameter pc_OutSERVERBACKDATE = null; // +- (Agence
+                ObjectParameter pc_OutSERVEROPEN = null; // +- (Agence
+                ObjectParameter pc_OutBACKOPEN = null; // +- (Agence
+                ObjectParameter pc_OutBACKDATEWK = null; // +- (Agence
+                ObjectParameter pc_OutMSG = null; // -- Message d'erreur
+                ObjectParameter pc_OutPWD = null; // -- 
+                ObjectParameter pc_OutLECT = null; // -- Code erreur
+
+                ObjectParameter nOM = null; // -- Nom utilisateur (emplo
+                ObjectParameter sECURITYLEVEL = null; // -- Code securit (emplo
+                ObjectParameter aGENCE = null; // -- Code agence
+                ObjectParameter pRIVILEGE = null; // -- Code privie (emplo
+                ObjectParameter mAXAMOUNT = null; // -- 
+                ObjectParameter cODECAISSE = null; // -- code caisse 
+                ObjectParameter eMPACCESS = null; // --
+
+                // -- Définition du context -- //
+                using (BankingEntities db = new BankingEntities())
+                {
+                    // -- Désactivation du Lasy loading -- //
+                    db.Configuration.LazyLoadingEnabled = false;
+
+                    // -- Execution de la procédure stocké qu'authentification -- //
+                    db.PS_LOGIN_USER(
+                        utilisateur.code, utilisateur.nom_ordinateur, (id_lang == "1") ? "fr" 
+                                                                                       : "en", 
+                        pc_OutSERVERDATE, pc_OutSERVERBACKDATE, pc_OutSERVEROPEN, pc_OutBACKOPEN,
+                        pc_OutBACKDATEWK, pc_OutMSG, pc_OutPWD, aGENCE, nOM, sECURITYLEVEL, 
+                        pRIVILEGE, mAXAMOUNT, cODECAISSE, eMPACCESS, pc_OutLECT
+                    );
+                }
+                #endregion
 
                 // -- Revoyé l'utilisateur pour l'authentification -- //
                 return

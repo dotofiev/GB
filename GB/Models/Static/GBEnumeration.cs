@@ -11,6 +11,12 @@ namespace GB.Models.Static
         public static string Anglais    = "en-US";
     }
 
+    public enum GB_Enum_Code_Langue
+    {
+        fr,
+        en
+    }
+
     public static class GB_Enum_Menu
     {
         public static string Erreur_Page = "Erreur-Page";

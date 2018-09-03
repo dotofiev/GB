@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Autorisation : BO, IBO<object>
+    public class Autorisation : BOClass, IBO<object>
     {
         public string id_role { get; set; }
         public string id_menu { get; set; }

@@ -1784,7 +1784,7 @@
     <Compile Include="Models\BO\Profession.cs" />
     <Compile Include="Models\BO\Autorisation.cs" />
     <Compile Include="Models\GB\GBConnexion.cs" />
-    <Compile Include="Models\BO\BO.cs" />
+    <Compile Include="Models\BO\BOClass.cs" />
     <Compile Include="Models\BO\GroupeMenu.cs" />
     <Compile Include="Models\BO\Menu.cs" />
     <Compile Include="Models\BO\Module.cs" />

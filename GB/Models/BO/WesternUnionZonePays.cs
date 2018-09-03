@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class WesternUnionZonePays : BO, IBO<object>
+    public class WesternUnionZonePays : BOClass, IBO<object>
     {
         
         public string id_pays { get; set; }

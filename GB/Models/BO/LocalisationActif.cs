@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class LocalisationActif : BO, IBO<object>
+    public class LocalisationActif : BOClass, IBO<object>
     {
         public long date_creation { get; set; }
         

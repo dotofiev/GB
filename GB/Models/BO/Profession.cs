@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Profession : BO, IBO<object>
+    public class Profession : BOClass, IBO<object>
     {
         public Profession(string id)
         {

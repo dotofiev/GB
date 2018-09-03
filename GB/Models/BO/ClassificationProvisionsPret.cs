@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class ClassificationProvisionsPret : BO, IBO<object>
+    public class ClassificationProvisionsPret : BOClass, IBO<object>
     {
         public int nombre_jour_debut { get; set; }
         public int nombre_jour_fin { get; set; }

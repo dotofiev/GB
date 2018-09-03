@@ -12,7 +12,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class PAYS : BO, IBO<Pay>
+    public class PAYS : BOClass, IBO<Pay>
     {
         public string code_telephone { get; set; }
         public long date_creation { get; set; }

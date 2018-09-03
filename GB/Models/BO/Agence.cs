@@ -12,7 +12,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Agence : BO, IBO<agence>
+    public class Agence : BOClass, IBO<agence>
     {
         public string id_utilisateur { get; set; }
         public Utilisateur utilisateur { get; set; }

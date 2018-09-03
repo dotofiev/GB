@@ -36,7 +36,7 @@ namespace GB.Models.DAO
                 Utilisateur utilisateur_createur = new UtilisateurDAO().ObjectId(this.connexion.utilisateur.id_utilisateur);
 
                 // -- Mise à jour de l'objet devise -- //
-                Devise devise = DeviseDAO.Actif();
+                Devise devise = new DeviseDAO().Actif();
 
                 // -- Obj date de creation -- //
                 long date_creation = DateTime.Now.Ticks;

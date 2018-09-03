@@ -92,6 +92,7 @@
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Models\DAO\ActiviteEconomiqueDAOTest.cs" />
     <Compile Include="Models\DAO\DeviseDAOTest.cs" />
+    <Compile Include="Models\DAO\ParametreDAOTest.cs" />
     <Compile Include="Models\Interfaces\IDAOTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

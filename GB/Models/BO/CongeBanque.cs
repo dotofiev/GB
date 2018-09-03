@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class CongeBanque : BO, IBO<object>
+    public class CongeBanque : BOClass, IBO<object>
     {
         public int jour { get; set; }
         public int mois { get; set; }

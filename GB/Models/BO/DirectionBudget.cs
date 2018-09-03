@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class DirectionBudget : BO, IBO<object>
+    public class DirectionBudget : BOClass, IBO<object>
     {
         public string chef { get; set; }
         public string telephone { get; set; }

@@ -948,3 +948,11 @@ Nom du paramètre : keyValues
 -----------------------
 30/08/2018 16:46:41.380 | INFO | [39] | GB.MvcApplication.Session_OnEnd | Fin session: {session:0ajdoyuxrpeait1xab1jxjo3} 
 -----------------------
+03/09/2018 14:04:00.367 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+03/09/2018 14:04:03.081 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:0ajdoyuxrpeait1xab1jxjo3} 
+-----------------------
+03/09/2018 17:43:25.640 | INFO | [1] | GB.MvcApplication.Application_Start | Démarrage de l'application 
+-----------------------
+03/09/2018 17:43:27.903 | INFO | [5] | GB.MvcApplication.Session_OnStart | Début session: {session:0ajdoyuxrpeait1xab1jxjo3} 
+-----------------------

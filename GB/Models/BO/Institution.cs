@@ -10,7 +10,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Institution : BO, IBO<object>
+    public class Institution : BOClass, IBO<object>
     {
         public string motto { get; set; }
         public string pub { get; set; }

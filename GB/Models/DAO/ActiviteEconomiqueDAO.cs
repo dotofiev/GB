@@ -326,10 +326,12 @@ namespace GB.Models.DAO
                         // -- Désactivation du Lasy loading -- //
                         db.Configuration.LazyLoadingEnabled = false;
 
+                        // -- Réccupération de la valeur à retourner -- //
+                        var value = db.ActiviteEcoes.Find(code);
+
                         return
-                            new ActiviteEconomique(
-                                db.ActiviteEcoes.Find(code)
-                            );
+                            value != null ? new ActiviteEconomique(value) 
+                                          : null;
                     }
                 }
                 #endregion
@@ -373,7 +375,56 @@ namespace GB.Models.DAO
 
         public ActiviteEconomique ObjectId(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                #region Processus de teste
+                // -- Si l'application est branché à la base de données -- //
+                if (!AppSettings.CONNEXION_DB_BANKINGENTITIES)
+                {
+                    // -- Parcours de la liste -- //
+                    return
+                        Program.db.activites_economique.FirstOrDefault(l => l.code == id);
+                }
+                #endregion
+
+                #region Processus fonctionnel
+                else
+                {
+                    // -- Définition du context -- //
+                    using (BankingEntities db = new BankingEntities())
+                    {
+                        // -- Désactivation du Lasy loading -- //
+                        db.Configuration.LazyLoadingEnabled = false;
+
+                        // -- Réccupération de la valeur à retourner -- //
+                        var value = db.ActiviteEcoes.Find(id);
+
+                        return
+                            value != null ? new ActiviteEconomique(value)
+                                          : null;
+                    }
+                }
+                #endregion
+            }
+            #region Catch
+            catch (Exception ex)
+            {
+                // -- Vérifier la nature de l'exception -- //
+                if (!GBException.Est_GBexception(ex))
+                {
+                    // -- Log -- //
+                    GBClass.Log.Error(ex);
+
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(App_Lang.Lang.Error_message_notification);
+                }
+                else
+                {
+                    // -- Renvoyer l'exception -- //
+                    throw new GBException(ex.Message);
+                }
+            }
+            #endregion
         }
     }
 }

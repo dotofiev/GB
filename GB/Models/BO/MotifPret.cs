@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class MotifPret : BO, IBO<object>
+    public class MotifPret : BOClass, IBO<object>
     {
         public MotifPret(string id)
         {

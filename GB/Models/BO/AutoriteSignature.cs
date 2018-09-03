@@ -12,7 +12,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class AutoriteSignature : BO, IBO<tabSigningAuthority>
+    public class AutoriteSignature : BOClass, IBO<tabSigningAuthority>
     {
         public double montant_signature { get; set; }
         public long limite_decouvert_client { get; set; }

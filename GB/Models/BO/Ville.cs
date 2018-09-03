@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class Ville : BO, IBO<object>
+    public class Ville : BOClass, IBO<object>
     {
         public long date_creation { get; set; }
         public string id_utilisateur { get; set; }

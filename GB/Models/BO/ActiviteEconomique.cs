@@ -13,7 +13,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class ActiviteEconomique : BO, IBO<ActiviteEco>
+    public class ActiviteEconomique : BOClass, IBO<ActiviteEco>
     {
         public long date_creation { get; set; }
         public string id_utilisateur { get; set; }
@@ -61,7 +61,6 @@ namespace GB.Models.BO
 
         public void FromEntities(ActiviteEco entitie)
         {
-
             this.id = entitie.ActiviteEco1;
             this.code = entitie.ActiviteEco1;
             this.libelle_en = entitie.DesignAnglais;
@@ -73,11 +72,9 @@ namespace GB.Models.BO
         {
             try
             {
-                this.id = entitie.ActiviteEco1;
-                this.code = entitie.ActiviteEco1;
-                this.libelle_fr = entitie.Designation;
-                this.libelle_en = entitie.DesignAnglais;
-                this.date_creation = entitie.DateCreation?.Ticks ?? DateTime.Now.Ticks;
+                entitie.ActiviteEco1 = this.code;
+                entitie.Designation = this.libelle_fr;
+                entitie.DesignAnglais = this.libelle_en;
             }
             catch (Exception ex)
             {
@@ -96,5 +93,20 @@ namespace GB.Models.BO
                     };
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            return
+                this.id == (obj as ActiviteEconomique).id &&
+                this.code == (obj as ActiviteEconomique).id &&
+                this.libelle_en == (obj as ActiviteEconomique).libelle_en &&
+                this.libelle_fr == (obj as ActiviteEconomique).libelle_fr;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
     }
 }

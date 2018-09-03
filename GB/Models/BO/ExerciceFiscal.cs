@@ -8,7 +8,7 @@ using System.Data.Entity.Core.Objects;
 
 namespace GB.Models.BO
 {
-    public class ExerciceFiscal : BO, IBO<object>
+    public class ExerciceFiscal : BOClass, IBO<object>
     {
         public string statut { get; set; }
         public string budget_id { get; set; }

@@ -12,7 +12,7 @@ using System.Data.Entity.Core.Objects;
 
 namespace GB.Models.BO
 {
-    public class Devise : BO, IBO<devise>
+    public class Devise : BOClass, IBO<devise>
     {
         public string signe { get; set; }
         public bool devise_actuelle { get; set; }
@@ -81,6 +81,21 @@ namespace GB.Models.BO
                                                            : "No";
             // -- Non autorisé -- //
             //entitie.devdate = new DateTime(this.date_creation);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return
+                this.id == (obj as Devise).id &&
+                this.code == (obj as Devise).id &&
+                this.libelle == (obj as Devise).libelle &&
+                this.devise_actuelle == (obj as Devise).devise_actuelle &&
+                this.signe == (obj as Devise).signe;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

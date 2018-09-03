@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class ProduitPhysique : BO, IBO<object>
+    public class ProduitPhysique : BOClass, IBO<object>
     {
         public string type { get; set; }
 

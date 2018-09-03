@@ -11,7 +11,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class TypeGarantie : BO, IBO<object>
+    public class TypeGarantie : BOClass, IBO<object>
     {
         public string nature { get; set; }
         public long date_creation { get; set; }

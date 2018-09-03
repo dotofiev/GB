@@ -12,7 +12,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class QUALITE : BO, IBO<Qualite>
+    public class QUALITE : BOClass, IBO<Qualite>
     {
         public QUALITE(string id)
         {

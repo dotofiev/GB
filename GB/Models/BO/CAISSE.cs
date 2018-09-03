@@ -12,7 +12,7 @@ using System.Web;
 
 namespace GB.Models.BO
 {
-    public class CAISSE : BO, IBO<Caisse>
+    public class CAISSE : BOClass, IBO<Caisse>
     {
         public string id_compte { get; set; }
         public string id_devise { get; set; }
