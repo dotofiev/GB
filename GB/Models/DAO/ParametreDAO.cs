@@ -11,24 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ParametreDAO : IDAO
+    public class ParametreDAO : IDAO<Parametre>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Parametre; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "parametre"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public ParametreDAO(string context_id, string id_utilisateur)
+        public ParametreDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
-        public void Modifier(Parametre obj)
+        public ParametreDAO() { }
+
+        public void Modifier(Parametre obj, string id_utilisateur = null)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace GB.Models.DAO
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -102,7 +102,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Parametre> Lister()
+        public List<Parametre> Lister()
         {
             try
             {
@@ -131,7 +131,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Parametre ObjectCode(string code)
+        public Parametre ObjectCode(string code)
         {
             try
             {
@@ -219,6 +219,26 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Ajouter(Parametre obj, string id_utilisateur = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Modifier(Parametre obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Supprimer(List<string> ids)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Parametre ObjectId(string id)
         {
             throw new NotImplementedException();
         }

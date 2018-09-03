@@ -11,26 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ParametreBudgetFraisDAO : IDAO
+    public class ParametreBudgetFraisDAO : IDAO<ParametreBudgetFrais>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return "form_id_parametreBudgetFrais"; } }
         public string form_combo_code { get { return "form_code_parametreBudgetFrais"; } }
         public string form_name { get { return "parametreBudgetFrais"; } }
         public string form_combo_libelle { get { return "form_libelle_parametreBudgetFrais"; } }
 
 
-        public ParametreBudgetFraisDAO(string context_id, string id_utilisateur)
+        public ParametreBudgetFraisDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
         public ParametreBudgetFraisDAO() { }
 
-        public void Ajouter(ParametreBudgetFrais obj)
+        public void Ajouter(ParametreBudgetFrais obj, string id_utilisateur = null)
         {
             try
             {
@@ -44,7 +42,7 @@ namespace GB.Models.DAO
                 obj.Crer_Id();
 
                 // -- Mise à jour des references -- //
-                obj.compte = CompteDAO.ObjectId(obj.id_compte);
+                obj.compte = new CompteDAO().ObjectId(obj.id_compte);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.parametres_budget_frais.Add(obj);
@@ -52,7 +50,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new ParametreBudgetFraisDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -97,7 +95,7 @@ namespace GB.Models.DAO
                     {
                         // -- Mise à jour de l'enregistrement -- //
                         l.id_compte = obj.id_compte;
-                        l.compte = CompteDAO.ObjectId(obj.id_compte);
+                        l.compte = new CompteDAO().ObjectId(obj.id_compte);
                         l.autoriser_control_budget = obj.autoriser_control_budget;
                         l.code = obj.code;
                         l.libelle = obj.libelle;
@@ -106,7 +104,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new ParametreBudgetFraisDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -144,7 +142,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new ParametreBudgetFraisDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -168,7 +166,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<ParametreBudgetFrais> Lister()
+        public List<ParametreBudgetFrais> Lister()
         {
             try
             {
@@ -197,7 +195,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static ParametreBudgetFrais ObjectCode(string code)
+        public ParametreBudgetFrais ObjectCode(string code)
         {
             try
             {
@@ -226,7 +224,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static ParametreBudgetFrais Object(string id)
+        public ParametreBudgetFrais ObjectId(string id)
         {
             try
             {
@@ -266,14 +264,14 @@ namespace GB.Models.DAO
                 // -- Pour le champ code -- //
                 if (champ == "code")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new ParametreBudgetFraisDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
                     }
                 }
                 else if (champ == "libelle")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new ParametreBudgetFraisDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                     }

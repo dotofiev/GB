@@ -15,7 +15,10 @@ namespace GB.Models.Static
         public static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         // -- Déclarer une instance de log4net -- //
-        public static readonly Random random = new Random();
+        public static Random random { get { return new Random(); } }
+
+        // -- Valeur de l'identifiant à retourner par défaut -- //
+        public static string id_par_defaut { get { return "0"; } }
 
         /// <summary>
         /// Vérifie qu'une adresse site web est existante

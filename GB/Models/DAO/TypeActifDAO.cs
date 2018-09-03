@@ -11,24 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class TypeActifDAO : IDAO
+    public class TypeActifDAO : IDAO<TypeActif>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_TypeActif; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "type_actif"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public TypeActifDAO(string context_id, string id_utilisateur)
+        public TypeActifDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
-        public void Ajouter(TypeActif obj)
+        public TypeActifDAO() { }
+
+        public void Ajouter(TypeActif obj, string id_utilisateur = null)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace GB.Models.DAO
                 Program.db.types_actif.Add(obj);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -96,7 +96,7 @@ namespace GB.Models.DAO
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -131,7 +131,7 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -154,7 +154,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<TypeActif> Lister()
+        public List<TypeActif> Lister()
         {
             try
             {
@@ -183,7 +183,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static TypeActif ObjectCode(string code)
+        public TypeActif ObjectCode(string code)
         {
             try
             {
@@ -212,7 +212,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static TypeActif ObjectId(string id)
+        public TypeActif ObjectId(string id)
         {
             try
             {

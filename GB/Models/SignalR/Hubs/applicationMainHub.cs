@@ -113,7 +113,7 @@ namespace GB.Models.SignalR.Hubs
 
         // -- Mise à jour des combo box sur les pages des clients -- //
         #region Mise à jour des combo box sur les pages des clients
-        public static void RechargerCombo(IDAO ObjetDAO, Boolean? classCSS = false)
+        public static void RechargerCombo<T>(IDAO<T> ObjetDAO, Boolean? classCSS = false)
         {
             try
             {
@@ -128,7 +128,7 @@ namespace GB.Models.SignalR.Hubs
                         // -- Les clients -- //
                         .Clients
                         // -- Spécification à tous les clients sauf moi -- //
-                        //.AllExcept(new string[] { context_id })
+                        //.AllExcept(new string[] { connexion })
                         // -- Spécifier à tous les clients -- //
                         .All
                         // -- Méthode à éexecuter chez le client -- //
@@ -192,7 +192,7 @@ namespace GB.Models.SignalR.Hubs
 
         // -- Mise à jour des combox box easyAutocomplete chez tous les clients présent sur la page -- //
         #region Mise à jour des combox box easyAutocomplete chez tous les clients présent sur la page
-        public static void RechargerComboEasyAutocomplete(IDAO ObjetDAO, string context_id)
+        public static void RechargerComboEasyAutocomplete<T>(IDAO<T> ObjetDAO, string context_id)
         {
             try
             {

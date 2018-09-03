@@ -22,7 +22,7 @@ namespace GB.Models.Tests
         public List<ParametreBanque> parametres_banque { get; set; }
         public List<ProduitPhysique> produits_physique { get; set; }
         public List<ProduitJudiciaire> produits_judiciare { get; set; }
-        public List<Pays> pays { get; set; }
+        public List<PAYS> pays { get; set; }
         public List<Ville> villes { get; set; }
         public List<ActiviteEconomique> activites_economique { get; set; }
         public List<Titre> titres { get; set; }
@@ -49,7 +49,9 @@ namespace GB.Models.Tests
         public List<Societe> societes { get; set; }
         public List<ParametreBudgetRevenu> parametres_budget_revenus { get; set; }
         public List<ParametreBudgetFrais> parametres_budget_frais { get; set; }
-
+        public List<CAISSE> caisses { get; set; }
+        public List<QUALITE> qualites { get; set; }
+        
         public BD() { }
     }
 }

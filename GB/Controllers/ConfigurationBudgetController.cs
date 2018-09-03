@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace GB.Controllers
 {
-    [AuthentificationRequis]
+    [AuthentificationRequisFilter]
     public class ConfigurationBudgetController : GBController
     {
         #region HttpGet
@@ -105,7 +105,7 @@ namespace GB.Controllers
             try
             {
                 // -- Vérifier l'autorisation de l'action -- //
-                AutorisationDAO.Verification_Autorisation(id_menu_actif, this.con.id_role, GB_Enum_Action_Controller.Lister, ref autorisation_refuse);
+                AutorisationDAO.Verification_Autorisation(id_menu_actif, this.con.utilisateur.id_role, GB_Enum_Action_Controller.Lister, ref autorisation_refuse);
 
                 List<object> donnee = new List<object>();
 
@@ -113,7 +113,7 @@ namespace GB.Controllers
                 #region ConfigurationBudget-ExerciceFiscal
                 if (id_page == GB_Enum_Menu.ConfigurationBudget_ExerciceFiscal)
                 {
-                    foreach (var val in ExerciceFiscalDAO.Lister())
+                    foreach (var val in exerciceFiscalDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -135,7 +135,7 @@ namespace GB.Controllers
                 #region ConfigurationBudget-DirectionBudget
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_DirectionBudget)
                 {
-                    foreach (var val in DirectionBudgetDAO.Lister())
+                    foreach (var val in directionBudgetDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -157,7 +157,7 @@ namespace GB.Controllers
                 #region ConfigurationBudget-AutoriteSignature
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_AutoriteSignature)
                 {
-                    foreach (var val in AutoriteSignatureDAO.Lister())
+                    foreach (var val in autoriteSignatureDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -181,7 +181,7 @@ namespace GB.Controllers
                 #region ConfigurationBudget-ParametreBudgetRevenu
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetRevenu)
                 {
-                    foreach (var val in ParametreBudgetRevenuDAO.Lister())
+                    foreach (var val in parametreBudgetRevenuDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -201,7 +201,7 @@ namespace GB.Controllers
                 #region ConfigurationBudget-ParametreBudgetFrais
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais)
                 {
-                    foreach (var val in ParametreBudgetFraisDAO.Lister())
+                    foreach (var val in parametreBudgetFraisDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -410,7 +410,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationBudget_ExerciceFiscal)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ExerciceFiscalDAO.ObjectCode(code);
+                    var obj = new ExerciceFiscalDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -443,7 +443,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_DirectionBudget)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = DirectionBudgetDAO.ObjectCode(code);
+                    var obj = new DirectionBudgetDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -471,7 +471,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_AutoriteSignature)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = AutoriteSignatureDAO.ObjectCode(code);
+                    var obj = new AutoriteSignatureDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -501,7 +501,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetRevenu)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ParametreBudgetRevenuDAO.ObjectCode(code);
+                    var obj = new ParametreBudgetRevenuDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -529,7 +529,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationBudget_ParametreBudgetFrais)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ParametreBudgetFraisDAO.ObjectCode(code);
+                    var obj = new ParametreBudgetFraisDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)

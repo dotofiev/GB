@@ -35,8 +35,10 @@ namespace GB.Controllers
             applicationMainHub.MiseAJourHubs_Connexion(this.con);
 
             // -- Test -- //
-            this.ViewBag.Test.compte = Program.db?.utilisateurs?[0]?.compte ?? string.Empty;
-            this.ViewBag.Test.mot_de_passe = Program.db?.utilisateurs?[0]?.mot_de_passe ?? string.Empty;
+            this.ViewBag.Test.compte = (AppSettings.CONNEXION_DB_BANKINGENTITIES) ? "99999" 
+                                                                                  : Program.db?.utilisateurs?[0]?.compte ?? string.Empty;
+            this.ViewBag.Test.mot_de_passe = (AppSettings.CONNEXION_DB_BANKINGENTITIES) ? "admin" 
+                                                                                        : Program.db?.utilisateurs?[0]?.mot_de_passe ?? string.Empty;
 
             return View();
         }
@@ -137,7 +139,7 @@ namespace GB.Controllers
             this.ViewBag.Id_page = id_page;
 
             // -- Définition du menu actif -- //
-            id_menu_actif = "0";
+            id_menu_actif = GBClass.id_par_defaut;
 
             #region Home-Authentication
             if (id_page == GB_Enum_Menu.Home_Authentication)

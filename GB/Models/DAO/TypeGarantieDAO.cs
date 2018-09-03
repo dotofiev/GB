@@ -11,24 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class TypeGarantieDAO : IDAO
+    public class TypeGarantieDAO : IDAO<TypeGarantie>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_TypeGarantie; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "type_garantie"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public TypeGarantieDAO(string context_id, string id_utilisateur)
+        public TypeGarantieDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
-        public void Ajouter(TypeGarantie obj, string id_utilisateur)
+        public TypeGarantieDAO() { }
+
+        public void Ajouter(TypeGarantie obj, string id_utilisateur = null)
         {
             try
             {
@@ -46,13 +46,13 @@ namespace GB.Models.DAO
 
                 // -- Mise à jour des refenreces -- //
                 obj.id_utilisateur = id_utilisateur;
-                obj.utilisateur_createur = UtilisateurDAO.ObjectId(id_utilisateur);
+                obj.utilisateur_createur = new UtilisateurDAO().ObjectId(id_utilisateur);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.types_garantie.Add(obj);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -102,7 +102,7 @@ namespace GB.Models.DAO
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -137,7 +137,7 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -160,7 +160,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<TypeGarantie> Lister()
+        public List<TypeGarantie> Lister()
         {
             try
             {
@@ -189,7 +189,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static TypeGarantie ObjectCode(string code)
+        public TypeGarantie ObjectCode(string code)
         {
             try
             {
@@ -218,7 +218,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static TypeGarantie ObjectId(string id)
+        public TypeGarantie ObjectId(string id)
         {
             try
             {

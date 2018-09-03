@@ -70,6 +70,14 @@ namespace GB.Models.Static
                     typeof(object)
                 );
         }
+        public static T To_Object_2<T>(dynamic dObject)
+        {
+            return
+                new JavaScriptSerializer().Deserialize(
+                    JsonConvert.SerializeObject(dObject),
+                    typeof(T)
+                );
+        }
         public static T To_Object<T>(object Object)
         {
             return
@@ -214,6 +222,14 @@ namespace GB.Models.Static
         {
             return
                 DateTime.ParseExact(date, "dd/MM/yyyy", provider);
+        }
+
+        /// <summary>Conversion d'une date en string en date C# </summary>
+        public static DateTime? To_DateTime(long valeur)
+        {
+            return
+                (valeur != 0) ? new Nullable<DateTime>(new DateTime(valeur))
+                              : null;
         }
     }
 }

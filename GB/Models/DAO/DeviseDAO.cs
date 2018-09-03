@@ -9,29 +9,28 @@ using System.Linq;
 using System.Web;
 using GB.Models.Entites;
 using GB.Models.Interfaces;
+using System.Data.Entity.Core.Objects;
 
 namespace GB.Models.DAO
 {
-    public class DeviseDAO : IDAO
+    public class DeviseDAO : IDAO<Devise>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Devise; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return "form_id_devise"; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "devise"; } }
         public string form_combo_libelle { get { return "form_libelle_devise"; } }
 
 
-        public DeviseDAO(string context_id, string id_utilisateur)
+        public DeviseDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
         public DeviseDAO() { }
 
-        public void Ajouter(Devise obj)
+        public void Ajouter(Devise obj, string id_utilisateur = null)
         {
             try
             {
@@ -68,8 +67,12 @@ namespace GB.Models.DAO
                         // -- Désactivation du Lasy loading -- //
                         db.Configuration.LazyLoadingEnabled = false;
 
+                        // -- Définition des variables -- //
+                        Dictionary<string, object> parametres = new Dictionary<string, object>();
+                        parametres.Add("date_creation", this.connexion.date_serveur);
+
                         // -- Enregistrement de la données -- //
-                        db.devises.Add(obj.ToEntities());
+                        db.devises.Add(obj.ToEntities(parametres));
 
                         // -- Mise à jour de la devise atuelle -- //
                         if (obj.devise_actuelle)
@@ -86,7 +89,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new DeviseDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -187,7 +190,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new DeviseDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -255,7 +258,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new DeviseDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -279,7 +282,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Devise> Lister()
+        public List<Devise> Lister()
         {
             try
             {
@@ -355,7 +358,7 @@ namespace GB.Models.DAO
                         db.Configuration.LazyLoadingEnabled = false;
 
                         return
-                            FromEntities(
+                            new Devise(
                                 db.devises.FirstOrDefault(l => l.CurrentCurrency == "Yes")
                             );
                     }
@@ -383,7 +386,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Devise ObjectCode(string code)
+        public Devise ObjectCode(string code)
         {
             try
             {
@@ -407,7 +410,7 @@ namespace GB.Models.DAO
                         db.Configuration.LazyLoadingEnabled = false;
 
                         return
-                            FromEntities(
+                            new Devise(
                                 db.devises.Find(code)
                             );
                     }
@@ -434,7 +437,7 @@ namespace GB.Models.DAO
             }
             #endregion
         }
-        public static Devise ObjectId(string id)
+        public Devise ObjectId(string id)
         {
             try
             {
@@ -458,7 +461,7 @@ namespace GB.Models.DAO
                         db.Configuration.LazyLoadingEnabled = false;
 
                         return
-                            FromEntities(
+                            new Devise(
                                 db.devises.Find(id)
                             );
                     }
@@ -639,14 +642,14 @@ namespace GB.Models.DAO
                 // -- Pour le champ code -- //
                 if (champ == "code")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new DeviseDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
                     }
                 }
                 else if (champ == "libelle")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new DeviseDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                     }
@@ -718,39 +721,14 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Devise FromEntities(devise obj)
-        {
-            return
-                obj == null ? null
-                            :
-                new Devise
-                {
-                    id = obj.devcod,
-                    code = obj.devcod,
-                    devise_actuelle = obj.CurrentCurrency == "Yes",
-                    libelle = obj.devlib,
-                    signe = obj.devsign,
-                    date_creation = obj.devdate?.Ticks ?? DateTime.Now.Ticks
-                };
-        }
-
         public static IEnumerable<Devise> FromEntities(List<devise> listObj)
         {
-            foreach (devise obj in listObj)
+            foreach (var obj in listObj)
             {
                 if (obj == null)
                     continue;
 
-                yield return
-                    new Devise
-                    {
-                        id = obj.devcod,
-                        code = obj.devcod,
-                        devise_actuelle = obj.CurrentCurrency == "Yes",
-                        libelle = obj.devlib,
-                        signe = obj.devsign,
-                        date_creation = obj.devdate?.Ticks ?? DateTime.Now.Ticks
-                    };
+                yield return new Devise(obj);
             }
         }
     }

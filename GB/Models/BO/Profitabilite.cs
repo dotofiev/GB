@@ -5,6 +5,7 @@ using GB.Models.Static;
 using GB.Models.Tests;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Web;
 
@@ -26,7 +27,7 @@ namespace GB.Models.BO
             this.id = (Program.db.profitabilites.Count + 1).ToString();
         }
 
-        public object ToEntities()
+        public object ToEntities(Dictionary<string, object> parametres = null)
         {
             throw new NotImplementedException();
         }

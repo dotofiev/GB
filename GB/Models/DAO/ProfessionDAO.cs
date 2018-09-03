@@ -11,26 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ProfessionDAO : IDAO
+    public class ProfessionDAO : IDAO<Profession>
     {
         public string id_page { get { return string.Empty; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return "form_id_profession"; } }
         public string form_combo_code { get { return "form_code_profession"; } }
         public string form_name { get { return "profession"; } }
         public string form_combo_libelle { get { return "form_libelle_profession"; } }
 
 
-        public ProfessionDAO(string context_id, string id_utilisateur)
+        public ProfessionDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
         public ProfessionDAO() { }
 
-        public void Ajouter(Profession obj)
+        public void Ajouter(Profession obj, string id_utilisateur = null)
         {
             try
             {
@@ -50,7 +48,7 @@ namespace GB.Models.DAO
                 applicationMainHub.RechargerCombo(new ProfessionDAO());
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -101,7 +99,7 @@ namespace GB.Models.DAO
                 applicationMainHub.RechargerCombo(new ProfessionDAO());
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -139,7 +137,7 @@ namespace GB.Models.DAO
                 applicationMainHub.RechargerCombo(new ProfessionDAO());
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -162,7 +160,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Profession> Lister()
+        public List<Profession> Lister()
         {
             try
             {
@@ -191,7 +189,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Profession ObjectCode(string code)
+        public Profession ObjectCode(string code)
         {
             try
             {
@@ -220,7 +218,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Profession ObjectId(string id)
+        public Profession ObjectId(string id)
         {
             try
             {
@@ -260,14 +258,14 @@ namespace GB.Models.DAO
                 // -- Pour le champ code -- //
                 if (champ == "code")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new ProfessionDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
                     }
                 }
                 else if (champ == "libelle")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new ProfessionDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                     }

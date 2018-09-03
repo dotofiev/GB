@@ -3,6 +3,7 @@ using GB.Models.Helper;
 using GB.Models.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Web;
 
@@ -68,7 +69,7 @@ namespace GB.Models.BO
 
         }
 
-        public object ToEntities()
+        public object ToEntities(Dictionary<string, object> parametres = null)
         {
             throw new NotImplementedException();
         }

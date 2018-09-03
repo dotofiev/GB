@@ -11,24 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class JournalDAO : IDAO
+    public class JournalDAO : IDAO<Journal>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_Journal; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "journal"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public JournalDAO(string context_id, string id_utilisateur)
+        public JournalDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
-        public void Ajouter(Journal obj)
+        public JournalDAO() { }
+
+        public void Ajouter(Journal obj, string id_utilisateur = null)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace GB.Models.DAO
                 Program.db.journaux.Add(obj);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -96,7 +96,7 @@ namespace GB.Models.DAO
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -131,7 +131,7 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -154,7 +154,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Journal> Lister()
+        public List<Journal> Lister()
         {
             try
             {
@@ -183,7 +183,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Journal ObjectCode(string code)
+        public Journal ObjectCode(string code)
         {
             try
             {
@@ -212,7 +212,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Journal ObjectId(string id)
+        public Journal ObjectId(string id)
         {
             try
             {

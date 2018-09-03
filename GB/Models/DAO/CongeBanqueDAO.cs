@@ -11,24 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class CongeBanqueDAO : IDAO
+    public class CongeBanqueDAO : IDAO<CongeBanque>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_CongeBanque; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "conge_banque"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public CongeBanqueDAO(string context_id, string id_utilisateur)
+        public CongeBanqueDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
-        public void Ajouter(CongeBanque obj)
+        public CongeBanqueDAO() { }
+
+        public void Ajouter(CongeBanque obj, string id_utilisateur = null)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace GB.Models.DAO
                 }
 
                 // -- Mise à jour reference -- //
-                obj.utilisateur_createur = UtilisateurDAO.ObjectId(obj.id_utilisateur);
+                obj.utilisateur_createur = new UtilisateurDAO().ObjectId(obj.id_utilisateur);
 
                 // -- Définition de la date de création -- //
                 obj.date_creation = DateTime.Now.Ticks;
@@ -59,7 +59,7 @@ namespace GB.Models.DAO
                 Program.db.conges_banque.Add(obj);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -119,7 +119,7 @@ namespace GB.Models.DAO
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -154,7 +154,7 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -177,7 +177,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<CongeBanque> Lister()
+        public List<CongeBanque> Lister()
         {
             try
             {
@@ -206,7 +206,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static CongeBanque ObjectCode(string code)
+        public CongeBanque ObjectCode(string code)
         {
             try
             {
@@ -236,6 +236,11 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public CongeBanque ObjectId(string id)
         {
             throw new NotImplementedException();
         }

@@ -11,26 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class SocieteDAO : IDAO
+    public class SocieteDAO : IDAO<Societe>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Societe; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return "form_id_societe"; } }
         public string form_combo_code { get { return "form_code_societe"; } }
         public string form_name { get { return "societe"; } }
         public string form_combo_libelle { get { return "form_libelle_societe"; } }
 
 
-        public SocieteDAO(string context_id, string id_utilisateur)
+        public SocieteDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
         public SocieteDAO() { }
 
-        public void Ajouter(Societe obj)
+        public void Ajouter(Societe obj, string id_utilisateur = null)
         {
             try
             {
@@ -44,11 +42,11 @@ namespace GB.Models.DAO
                 obj.Crer_Id();
 
                 // -- Mise à jour des references -- //
-                obj.compte_interet_pret = CompteDAO.ObjectId(obj.id_compte_interet_pret);
-                obj.compte_paiement = CompteDAO.ObjectId(obj.id_compte_paiement);
-                obj.compte_pret = CompteDAO.ObjectId(obj.id_compte_pret);
-                obj.compte_transit = CompteDAO.ObjectId(obj.id_compte_transit);
-                obj.agence = AgenceDAO.ObjectId(obj.id_agence);
+                obj.compte_interet_pret = new CompteDAO().ObjectId(obj.id_compte_interet_pret);
+                obj.compte_paiement = new CompteDAO().ObjectId(obj.id_compte_paiement);
+                obj.compte_pret = new CompteDAO().ObjectId(obj.id_compte_pret);
+                obj.compte_transit = new CompteDAO().ObjectId(obj.id_compte_transit);
+                obj.agence = new AgenceDAO().ObjectId(obj.id_agence);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.societes.Add(obj);
@@ -56,7 +54,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new SocieteDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -105,11 +103,11 @@ namespace GB.Models.DAO
                         l.id_compte_pret = obj.id_compte_pret;
                         l.id_compte_transit = obj.id_compte_transit;
                         l.id_agence = obj.id_agence;
-                        l.compte_interet_pret = CompteDAO.ObjectId(obj.id_compte_interet_pret);
-                        l.compte_paiement = CompteDAO.ObjectId(obj.id_compte_paiement);
-                        l.compte_pret = CompteDAO.ObjectId(obj.id_compte_pret);
-                        l.compte_transit = CompteDAO.ObjectId(obj.id_compte_transit);
-                        l.agence = AgenceDAO.ObjectId(obj.id_agence);
+                        l.compte_interet_pret = new CompteDAO().ObjectId(obj.id_compte_interet_pret);
+                        l.compte_paiement = new CompteDAO().ObjectId(obj.id_compte_paiement);
+                        l.compte_pret = new CompteDAO().ObjectId(obj.id_compte_pret);
+                        l.compte_transit = new CompteDAO().ObjectId(obj.id_compte_transit);
+                        l.agence = new AgenceDAO().ObjectId(obj.id_agence);
                         l.type_traitement = obj.type_traitement;
                         l.base_de_calcul = obj.base_de_calcul;
                         l.code = obj.code;
@@ -119,7 +117,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new SocieteDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -157,7 +155,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new SocieteDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -181,7 +179,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Societe> Lister()
+        public List<Societe> Lister()
         {
             try
             {
@@ -210,7 +208,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Societe ObjectCode(string code)
+        public Societe ObjectCode(string code)
         {
             try
             {
@@ -239,7 +237,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Societe ObjectId(string id)
+        public Societe ObjectId(string id)
         {
             try
             {
@@ -279,14 +277,14 @@ namespace GB.Models.DAO
                 // -- Pour le champ code -- //
                 if (champ == "code")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new SocieteDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
                     }
                 }
                 else if (champ == "libelle")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new SocieteDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                     }

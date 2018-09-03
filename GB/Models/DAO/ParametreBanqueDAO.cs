@@ -11,24 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ParametreBanqueDAO : IDAO
+    public class ParametreBanqueDAO : IDAO<ParametreBanque>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_ParametreBanque; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "parametre_banque"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public ParametreBanqueDAO(string context_id, string id_utilisateur)
+        public ParametreBanqueDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
-        public void Ajouter(ParametreBanque obj)
+        public ParametreBanqueDAO() { }
+
+        public void Ajouter(ParametreBanque obj, string id_utilisateur = null)
         {
             try
             {
@@ -42,13 +42,13 @@ namespace GB.Models.DAO
                 obj.Crer_Id();
 
                 // -- Mise à jour des references -- //
-                obj.devise = DeviseDAO.ObjectId(obj.id_devise);
+                obj.devise = new DeviseDAO().ObjectId(obj.id_devise);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.parametres_banque.Add(obj);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -98,11 +98,11 @@ namespace GB.Models.DAO
                         l.montant_minimal = obj.montant_minimal;
                         l.montant_maximal = obj.montant_maximal;
                         l.id_devise = obj.id_devise;
-                        l.devise = DeviseDAO.ObjectId(obj.id_devise);
+                        l.devise = new DeviseDAO().ObjectId(obj.id_devise);
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -137,7 +137,7 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -160,7 +160,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<ParametreBanque> Lister()
+        public List<ParametreBanque> Lister()
         {
             try
             {
@@ -189,7 +189,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static ParametreBanque ObjectCode(string code)
+        public ParametreBanque ObjectCode(string code)
         {
             try
             {
@@ -219,6 +219,11 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ParametreBanque ObjectId(string id)
         {
             throw new NotImplementedException();
         }

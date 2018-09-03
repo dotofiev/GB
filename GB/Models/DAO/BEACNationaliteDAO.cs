@@ -11,24 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class BEACNationaliteDAO : IDAO
+    public class BEACNationaliteDAO : IDAO<BEACNationalite>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_BEACNationalite; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "beac_nationalite"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public BEACNationaliteDAO(string context_id, string id_utilisateur)
+        public BEACNationaliteDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
-        public void Ajouter(BEACNationalite obj, string id_utilisateur)
+        public BEACNationaliteDAO() { }
+
+        public void Ajouter(BEACNationalite obj, string id_utilisateur = null)
         {
             try
             {
@@ -46,13 +46,13 @@ namespace GB.Models.DAO
 
                 // -- Mise à jour des refenreces -- //
                 obj.id_utilisateur = id_utilisateur;
-                obj.utilisateur_createur = UtilisateurDAO.ObjectId(id_utilisateur);
+                obj.utilisateur_createur = new UtilisateurDAO().ObjectId(id_utilisateur);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.nationalites_beac.Add(obj);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -101,7 +101,7 @@ namespace GB.Models.DAO
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -136,7 +136,7 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -159,7 +159,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<BEACNationalite> Lister()
+        public List<BEACNationalite> Lister()
         {
             try
             {
@@ -188,7 +188,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static BEACNationalite ObjectCode(string code)
+        public BEACNationalite ObjectCode(string code)
         {
             try
             {
@@ -218,6 +218,11 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public BEACNationalite ObjectId(string id)
         {
             throw new NotImplementedException();
         }

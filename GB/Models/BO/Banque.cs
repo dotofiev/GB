@@ -5,6 +5,7 @@ using GB.Models.Static;
 using GB.Models.Tests;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Web;
 
@@ -18,7 +19,7 @@ namespace GB.Models.BO
         public string ville { get; set; }
         public string id_pays { get; set; }
         public Utilisateur utilisateur_createur { get; set; }
-        public Pays pays { get; set; }
+        public PAYS pays { get; set; }
         public long date_creation { get; set; }
 
         public Banque(string id)
@@ -33,7 +34,7 @@ namespace GB.Models.BO
             this.id = (Program.db.banques.Count + 1).ToString();
         }
 
-        public object ToEntities()
+        public object ToEntities(Dictionary<string, object> parametres = null)
         {
             throw new NotImplementedException();
         }

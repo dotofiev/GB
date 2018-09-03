@@ -11,24 +11,26 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class DirectionBudgetDAO : IDAO
+    public class DirectionBudgetDAO : IDAO<DirectionBudget>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBudget_DirectionBudget; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "direction_budget"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public DirectionBudgetDAO(string context_id, string id_utilisateur)
+        public DirectionBudgetDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
-        public void Ajouter(DirectionBudget obj)
+        public DirectionBudgetDAO()
+        {
+        }
+
+        public void Ajouter(DirectionBudget obj, string id_utilisateur = null)
         {
             try
             {
@@ -42,13 +44,13 @@ namespace GB.Models.DAO
                 obj.Crer_Id();
 
                 // -- Mise à jour des refenreces -- //
-                obj.exercice_fiscal = ExerciceFiscalDAO.Object(obj.id_exercice_fiscal);
+                obj.exercice_fiscal = new ExerciceFiscalDAO().ObjectId(obj.id_exercice_fiscal);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.direction_dudget.Add(obj);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -97,11 +99,11 @@ namespace GB.Models.DAO
                         l.telephone = obj.telephone;
                         l.remarque = obj.remarque;
                         l.id_exercice_fiscal = obj.id_exercice_fiscal;
-                        l.exercice_fiscal = ExerciceFiscalDAO.Object(obj.id_exercice_fiscal);
+                        l.exercice_fiscal = new ExerciceFiscalDAO().ObjectId(obj.id_exercice_fiscal);
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -136,7 +138,7 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -159,7 +161,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<DirectionBudget> Lister()
+        public List<DirectionBudget> Lister()
         {
             try
             {
@@ -188,7 +190,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static DirectionBudget ObjectCode(string code)
+        public DirectionBudget ObjectCode(string code)
         {
             try
             {
@@ -218,6 +220,11 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public DirectionBudget ObjectId(string id)
         {
             throw new NotImplementedException();
         }

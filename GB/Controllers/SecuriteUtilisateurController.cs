@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace GB.Controllers
 {
-    [AuthentificationRequis]
+    [AuthentificationRequisFilter]
     public class SecuriteUtilisateurController : GBController
     {
         #region HttpGet
@@ -45,7 +45,7 @@ namespace GB.Controllers
             try
             {
                 // -- Vérifier l'autorisation de l'action -- //
-                AutorisationDAO.Verification_Autorisation(id_menu_actif, this.con.id_role, GB_Enum_Action_Controller.Lister, ref autorisation_refuse);
+                AutorisationDAO.Verification_Autorisation(id_menu_actif, this.con.utilisateur.id_role, GB_Enum_Action_Controller.Lister, ref autorisation_refuse);
 
                 List<object> donnee = new List<object>();
 
@@ -56,7 +56,7 @@ namespace GB.Controllers
                     // -- Si la vue n'est pas soumise -- //
                     if (string.IsNullOrEmpty(id_vue))
                     {
-                        foreach (var val in UtilisateurDAO.Lister())
+                        foreach (var val in utilisateurDAO.Lister())
                         {
                             donnee.Add(
                                 new
@@ -80,7 +80,7 @@ namespace GB.Controllers
                     }
                     else if (id_vue == "autoriteSignature")
                     {
-                        foreach (var val in AutoriteSignatureDAO.Lister())
+                        foreach (var val in autoriteSignatureDAO.Lister())
                         {
                             donnee.Add(
                                 new
@@ -167,7 +167,7 @@ namespace GB.Controllers
                         // -- Si la liste des autorites_signature en session est vide, la mettre à jour -- //
                         if ((this.con.donnee.autorites_signature as List<AutoriteSignature>).Count == 0)
                         {
-                            this.con.donnee.autorites_signature = AutoriteSignatureDAO.Lister();
+                            this.con.donnee.autorites_signature = autoriteSignatureDAO.Lister();
                         }
 
                         // -- Charger la liste des résultats -- //
@@ -218,7 +218,7 @@ namespace GB.Controllers
                     if (id_vue == "autorite_signature")
                     {
                         // -- Mise à jour de la liste en session -- //
-                        this.con.donnee.autorites_signature = AutoriteSignatureDAO.Lister();
+                        this.con.donnee.autorites_signature = autoriteSignatureDAO.Lister();
                     }
                     #endregion
                 }
@@ -251,7 +251,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.SecuriteUtilisateur_Utilisateur)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = UtilisateurDAO.ObjectId(compte);
+                    var obj = new UtilisateurDAO().ObjectId(compte);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)

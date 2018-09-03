@@ -162,22 +162,22 @@ namespace GB.Models.Tests
                 //string pc_InORDINATEUR = "POKA-PC";
                 //string pc_Languag = "fr";
 
-                //ObjectParameter pc_OutSERVERDATE = null;
-                //ObjectParameter pc_OutSERVERBACKDATE = null;
-                //ObjectParameter pc_OutSERVEROPEN = null;
-                //ObjectParameter pc_OutBACKOPEN = null;
-                //ObjectParameter pc_OutBACKDATEWK = null;
-                //ObjectParameter pc_OutMSG = null;
-                //ObjectParameter pc_OutPWD = null;
-                //ObjectParameter pc_OutLECT = null;
+                //ObjectParameter pc_OutSERVERDATE = null; // +- (Agence
+                //ObjectParameter pc_OutSERVERBACKDATE = null; // +- (Agence
+                //ObjectParameter pc_OutSERVEROPEN = null; // +- (Agence
+                //ObjectParameter pc_OutBACKOPEN = null; // +- (Agence
+                //ObjectParameter pc_OutBACKDATEWK = null; // +- (Agence
+                //ObjectParameter pc_OutMSG = null; // -- Message d'erreur
+                //ObjectParameter pc_OutPWD = null; // -- 
+                //ObjectParameter pc_OutLECT = null; // -- Code erreur
 
-                //ObjectParameter nOM = null;
-                //ObjectParameter sECURITYLEVEL = null;
-                //ObjectParameter aGENCE = null;
-                //ObjectParameter pRIVILEGE = null;
-                //ObjectParameter mAXAMOUNT = null;
-                //ObjectParameter cODECAISSE = null;
-                //ObjectParameter eMPACCESS = null;
+                //ObjectParameter nOM = null; // -- Nom utilisateur (emplo
+                //ObjectParameter sECURITYLEVEL = null; // -- Code securit (emplo
+                //ObjectParameter aGENCE = null; // -- Code agence
+                //ObjectParameter pRIVILEGE = null; // -- Code privie (emplo
+                //ObjectParameter mAXAMOUNT = null; // -- 
+                //ObjectParameter cODECAISSE = null; // -- code caisse 
+                //ObjectParameter eMPACCESS = null; // --
 
                 //db.PS_LOGIN_USER(
                 //    pc_InLOGIN, pc_InORDINATEUR, pc_Languag, pc_OutSERVERDATE, pc_OutSERVERBACKDATE, pc_OutSERVEROPEN, pc_OutBACKOPEN,

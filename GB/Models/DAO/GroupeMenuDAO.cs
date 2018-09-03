@@ -11,24 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class GroupeMenuDAO : IDAO
+    public class GroupeMenuDAO : IDAO<GroupeMenu>
     {
         public string id_page { get { return string.Empty; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return "form_id_groupeMenu"; } }
         public string form_combo_code { get { return "form_code_groupeMenu"; } }
         public string form_name { get { return "groupe_menu"; } }
         public string form_combo_libelle { get { return "form_libelle_groupeMenu"; } }
 
 
-        public GroupeMenuDAO(string context_id, string id_utilisateur)
+        public GroupeMenuDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
-        public void Ajouter(GroupeMenu obj)
+        public GroupeMenuDAO() { }
+
+        public void Ajouter(GroupeMenu obj, string id_utilisateur = null)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace GB.Models.DAO
                 //applicationMainHub.RechargerCombo(new ExerciceFiscalDAO());
 
                 //// -- Execution des Hubs -- //
-                //applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                //applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -100,7 +100,7 @@ namespace GB.Models.DAO
                 //applicationMainHub.RechargerCombo(new ExerciceFiscalDAO());
 
                 //// -- Execution des Hubs -- //
-                //applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                //applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -138,7 +138,7 @@ namespace GB.Models.DAO
                 //applicationMainHub.RechargerCombo(new ExerciceFiscalDAO());
 
                 //// -- Execution des Hubs -- //
-                //applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                //applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -161,7 +161,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<GroupeMenu> Lister()
+        public List<GroupeMenu> Lister()
         {
             try
             {
@@ -190,7 +190,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static GroupeMenu ObjectCode(string code)
+        public GroupeMenu ObjectCode(string code)
         {
             try
             {
@@ -219,7 +219,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static GroupeMenu Object(string id)
+        public GroupeMenu Object(string id)
         {
             try
             {
@@ -259,7 +259,7 @@ namespace GB.Models.DAO
                 if (champ == "code")
                 {
                     // -- Ajout des options -- //
-                    foreach (var val in Lister())
+                    foreach (var val in new GroupeMenuDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
                     }
@@ -268,7 +268,7 @@ namespace GB.Models.DAO
                 else if (champ == "libelle")
                 {
                     // -- Ajout des options -- //
-                    foreach (var val in Lister())
+                    foreach (var val in new GroupeMenuDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{((LangHelper.CurrentCulture == 0) ? val.libelle_en : val.libelle_fr)}\">{((LangHelper.CurrentCulture == 0) ? val.libelle_en : val.libelle_fr)}</option>";
                     }
@@ -338,6 +338,11 @@ namespace GB.Models.DAO
                 }
             }
             #endregion
+        }
+
+        public GroupeMenu ObjectId(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

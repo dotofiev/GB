@@ -3027,6 +3027,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Pays">
+      <EntityTypeMapping TypeName="BankingModel.Pay">
+        <MappingFragment StoreEntitySet="Pays">
+          <ScalarProperty Name="Pays" ColumnName="Pays" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="PhoneId" ColumnName="PhoneId" />
+          <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="PhotoSigns">
       <EntityTypeMapping TypeName="BankingModel.PhotoSign">
         <MappingFragment StoreEntitySet="PhotoSign">
@@ -7577,16 +7587,6 @@
           <ScalarProperty Name="CleCpte" ColumnName="CleCpte" />
           <ScalarProperty Name="LibCpteGl" ColumnName="LibCpteGl" />
           <ScalarProperty Name="CodeMaj" ColumnName="CodeMaj" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Pays">
-      <EntityTypeMapping TypeName="BankingModel.Pay">
-        <MappingFragment StoreEntitySet="Pays">
-          <ScalarProperty Name="Pays" ColumnName="Pays" />
-          <ScalarProperty Name="Designation" ColumnName="Designation" />
-          <ScalarProperty Name="PhoneId" ColumnName="PhoneId" />
-          <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -11,24 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ModuleDAO : IDAO
+    public class ModuleDAO : IDAO<Module>
     {
         public string id_page { get { return GB_Enum_Menu.Securite_Module; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "module"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public ModuleDAO(string context_id, string id_utilisateur)
+        public ModuleDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
-        public void Ajouter(Module obj)
+        public ModuleDAO() { }
+
+        public void Ajouter(Module obj, string id_utilisateur = null)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace GB.Models.DAO
                 Program.db.modules.Add(obj);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -94,7 +94,7 @@ namespace GB.Models.DAO
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -129,7 +129,7 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -152,7 +152,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Module> Lister()
+        public List<Module> Lister()
         {
             try
             {
@@ -181,7 +181,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Module ObjectCode(string code)
+        public Module ObjectCode(string code)
         {
             try
             {
@@ -211,6 +211,11 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Module ObjectId(string id)
         {
             throw new NotImplementedException();
         }

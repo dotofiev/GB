@@ -11,24 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class ProfitabiliteDAO : IDAO
+    public class ProfitabiliteDAO : IDAO<Profitabilite>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_Profitabilite; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return "form_id_profitabilite"; } }
         public string form_combo_code { get { return "form_code_profitabilite"; } }
         public string form_name { get { return "profitabilite"; } }
         public string form_combo_libelle { get { return "form_libelle_profitabilite"; } }
 
 
-        public ProfitabiliteDAO(string context_id, string id_utilisateur)
+        public ProfitabiliteDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
-        public void Ajouter(Profitabilite obj)
+        public ProfitabiliteDAO() { }
+
+        public void Ajouter(Profitabilite obj, string id_utilisateur = null)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace GB.Models.DAO
                 Program.db.profitabilites.Add(obj);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -94,7 +94,7 @@ namespace GB.Models.DAO
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -129,7 +129,7 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -152,7 +152,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<Profitabilite> Lister()
+        public List<Profitabilite> Lister()
         {
             try
             {
@@ -181,7 +181,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static Profitabilite ObjectCode(string code)
+        public Profitabilite ObjectCode(string code)
         {
             try
             {
@@ -211,6 +211,11 @@ namespace GB.Models.DAO
         }
 
         public dynamic HTML_Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Profitabilite ObjectId(string id)
         {
             throw new NotImplementedException();
         }

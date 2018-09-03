@@ -1,4 +1,5 @@
 ﻿using GB.Models.BO;
+using GB.Models.Entites;
 using GB.Models.GB;
 using GB.Models.Helper;
 using GB.Models.Interfaces;
@@ -6,12 +7,13 @@ using GB.Models.Static;
 using GB.Models.Tests;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Web;
 
 namespace GB.Models.BO
 {
-    public class ActiviteEconomique : BO, IBO<object>
+    public class ActiviteEconomique : BO, IBO<ActiviteEco>
     {
         public long date_creation { get; set; }
         public string id_utilisateur { get; set; }
@@ -24,24 +26,64 @@ namespace GB.Models.BO
 
         public ActiviteEconomique() { }
 
+        public ActiviteEconomique(ActiviteEco entitie)
+        {
+            try
+            {
+                this.id = entitie.ActiviteEco1;
+                this.code = entitie.ActiviteEco1;
+                this.libelle_fr = entitie.Designation;
+                this.libelle_en = entitie.DesignAnglais;
+                this.date_creation = entitie.DateCreation?.Ticks ?? DateTime.Now.Ticks;
+            }
+            catch (Exception ex)
+            {
+                // -- Log -- //
+                GBClass.Log.Error(ex);
+            }
+        }
+
         public void Crer_Id()
         {
             this.id = (Program.db.activites_economique.Count + 1).ToString();
         }
 
-        public object ToEntities()
+        public ActiviteEco ToEntities(Dictionary<string, object> parametres = null)
         {
-            throw new NotImplementedException();
+            return new ActiviteEco
+            {
+                ActiviteEco1 = this.code,
+                DesignAnglais = this.libelle_en,
+                Designation = this.libelle_fr,
+                DateCreation = parametres["date_creation"] as DateTime?
+            };
         }
 
-        public void FromEntities(object entitie)
+        public void FromEntities(ActiviteEco entitie)
         {
-            throw new NotImplementedException();
+
+            this.id = entitie.ActiviteEco1;
+            this.code = entitie.ActiviteEco1;
+            this.libelle_en = entitie.DesignAnglais;
+            this.libelle_fr = entitie.Designation;
+            this.date_creation = entitie.DateCreation?.Ticks ?? DateTime.Now.Ticks;
         }
 
-        public void ModifyEntities(object entitie)
+        public void ModifyEntities(ActiviteEco entitie)
         {
-            throw new NotImplementedException();
+            try
+            {
+                this.id = entitie.ActiviteEco1;
+                this.code = entitie.ActiviteEco1;
+                this.libelle_fr = entitie.Designation;
+                this.libelle_en = entitie.DesignAnglais;
+                this.date_creation = entitie.DateCreation?.Ticks ?? DateTime.Now.Ticks;
+            }
+            catch (Exception ex)
+            {
+                // -- Log -- //
+                GBClass.Log.Error(ex);
+            }
         }
 
         public static List<string> Classes_references

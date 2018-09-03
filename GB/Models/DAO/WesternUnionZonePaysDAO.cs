@@ -11,24 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class WesternUnionZonePaysDAO : IDAO
+    public class WesternUnionZonePaysDAO : IDAO<WesternUnionZonePays>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return string.Empty; } }
         public string form_combo_code { get { return string.Empty; } }
         public string form_name { get { return "western_union_zone_pays"; } }
         public string form_combo_libelle { get { return string.Empty; } }
 
 
-        public WesternUnionZonePaysDAO(string context_id, string id_utilisateur)
+        public WesternUnionZonePaysDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
-        public void Ajouter(WesternUnionZonePays obj)
+        public WesternUnionZonePaysDAO() { }
+
+        public void Ajouter(WesternUnionZonePays obj, string id_utilisateur = null)
         {
             try
             {
@@ -48,13 +48,13 @@ namespace GB.Models.DAO
                 obj.Crer_Id();
 
                 // -- Mise à jour reference pays -- //
-                obj.pays = PaysDAO.ObjectId(obj.id_pays);
+                obj.pays = new PAYSDAO().ObjectId(obj.id_pays);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.western_union_zones_pays.Add(obj);
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -98,12 +98,12 @@ namespace GB.Models.DAO
                     {
                         // -- Mise à jour de l'enregistrement -- //
                         l.id_pays = obj.id_pays;
-                        l.pays = PaysDAO.ObjectId(obj.id_pays);
+                        l.pays = new PAYSDAO().ObjectId(obj.id_pays);
                         l.zone = obj.zone;
                     });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -138,7 +138,7 @@ namespace GB.Models.DAO
                 });
 
                 // -- Execution des Hubs -- //
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
             }
             #region Catch
             catch (Exception ex)
@@ -161,7 +161,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<WesternUnionZonePays> Lister()
+        public List<WesternUnionZonePays> Lister()
         {
             try
             {
@@ -190,7 +190,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static WesternUnionZonePays ObjectCode(string code)
+        public WesternUnionZonePays ObjectCode(string code)
         {
             try
             {
@@ -219,7 +219,7 @@ namespace GB.Models.DAO
             #endregion
         }
         
-        public static WesternUnionZonePays ObjectId(string id)
+        public WesternUnionZonePays ObjectId(string id)
         {
             try
             {

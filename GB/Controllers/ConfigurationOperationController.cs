@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace GB.Controllers
 {
-    [AuthentificationRequis]
+    [AuthentificationRequisFilter]
     public class ConfigurationOperationController : GBController
     {
         #region HttpGet
@@ -180,7 +180,7 @@ namespace GB.Controllers
             try
             {
                 // -- Vérifier l'autorisation de l'action -- //
-                AutorisationDAO.Verification_Autorisation(id_menu_actif, this.con.id_role, GB_Enum_Action_Controller.Lister, ref autorisation_refuse);
+                AutorisationDAO.Verification_Autorisation(id_menu_actif, this.con.utilisateur.id_role, GB_Enum_Action_Controller.Lister, ref autorisation_refuse);
 
                 List<object> donnee = new List<object>();
 
@@ -188,7 +188,7 @@ namespace GB.Controllers
                 #region ConfigurationOperation-TypePret
                 if (id_page == GB_Enum_Menu.ConfigurationOperation_TypePret)
                 {
-                    foreach (var val in TypePretDAO.Lister())
+                    foreach (var val in typePretDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -209,7 +209,7 @@ namespace GB.Controllers
                 #region ConfigurationOperation-MotifPret
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_MotifPret)
                 {
-                    foreach (var val in MotifPretDAO.Lister())
+                    foreach (var val in motifPretDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -227,7 +227,7 @@ namespace GB.Controllers
                 #region ConfigurationOperation-ClassificationProvisionsPret
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_ClassificationProvisionsPret)
                 {
-                    foreach (var val in ClassificationProvisionsPretDAO.Lister())
+                    foreach (var val in classificationProvisionsPretDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -250,7 +250,7 @@ namespace GB.Controllers
                 #region ConfigurationOperation-TypeGarantie
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeGarantie)
                 {
-                    foreach (var val in TypeGarantieDAO.Lister())
+                    foreach (var val in typeGarantieDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -272,7 +272,7 @@ namespace GB.Controllers
                 #region ConfigurationOperation-Journal
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
                 {
-                    foreach (var val in JournalDAO.Lister())
+                    foreach (var val in journalDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -291,7 +291,7 @@ namespace GB.Controllers
                 #region ConfigurationOperation-TypeActif
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
                 {
-                    foreach (var val in TypeActifDAO.Lister())
+                    foreach (var val in typeActifDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -310,7 +310,7 @@ namespace GB.Controllers
                 #region ConfigurationOperation-LocalisationActif
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
                 {
-                    foreach (var val in LocalisationActifDAO.Lister())
+                    foreach (var val in localisationActifDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -329,7 +329,7 @@ namespace GB.Controllers
                 #region ConfigurationOperation-WesternUnionZonePays
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
                 {
-                    foreach (var val in WesternUnionZonePaysDAO.Lister())
+                    foreach (var val in westernUnionZonePaysDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -351,7 +351,7 @@ namespace GB.Controllers
                     // -- Si la vue n'est pas soumise -- //
                     if (string.IsNullOrEmpty(id_vue))
                     {
-                        foreach (var val in CompteDAO.Lister())
+                        foreach (var val in compteDAO.Lister())
                         {
                             donnee.Add(
                                 new
@@ -395,7 +395,7 @@ namespace GB.Controllers
                 #region ConfigurationOperation-CompteConfiguration
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_CompteConfiguration)
                 {
-                    foreach (var val in CompteDAO.Lister())
+                    foreach (var val in compteDAO.Lister())
                     {
                         donnee.Add(
                             new
@@ -476,7 +476,7 @@ namespace GB.Controllers
                 if (id_page == GB_Enum_Menu.ConfigurationOperation_TypePret)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = TypePretDAO.ObjectCode(code);
+                    var obj = new TypePretDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -503,7 +503,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_MotifPret)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = MotifPretDAO.ObjectCode(code);
+                    var obj = new MotifPretDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -527,7 +527,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_ClassificationProvisionsPret)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = ClassificationProvisionsPretDAO.ObjectCode(code);
+                    var obj = new ClassificationProvisionsPretDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -556,7 +556,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeGarantie)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = TypeGarantieDAO.ObjectCode(code);
+                    var obj = new TypeGarantieDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -581,7 +581,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_Journal)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = JournalDAO.ObjectCode(code);
+                    var obj = new JournalDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -605,7 +605,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeActif)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = TypeActifDAO.ObjectCode(code);
+                    var obj = new TypeActifDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -629,7 +629,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_LocalisationActif)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = LocalisationActifDAO.ObjectCode(code);
+                    var obj = new LocalisationActifDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -653,7 +653,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_WesternUnionZonePays)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = WesternUnionZonePaysDAO.ObjectId(id);
+                    var obj = new WesternUnionZonePaysDAO().ObjectId(id);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -679,7 +679,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_Compte)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = CompteDAO.ObjectCode(code);
+                    var obj = new CompteDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -707,7 +707,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_CompteConfiguration)
                 {
                     // -- Mise à jour de l'role dans la session -- //
-                    var obj = CompteDAO.ObjectCode(code);
+                    var obj = new CompteDAO().ObjectCode(code);
 
                     // -- Vérifier si l'objet est trouvé -- //
                     if (obj == null)
@@ -798,7 +798,7 @@ namespace GB.Controllers
                 else if (id_page == GB_Enum_Menu.ConfigurationOperation_TypeGarantie)
                 {
                     // -- Service d'enregistrement -- //
-                    typeGarantieDAO.Ajouter(GBConvert.JSON_To<TypeGarantie>(obj), this.con.id_utilisateur);
+                    typeGarantieDAO.Ajouter(GBConvert.JSON_To<TypeGarantie>(obj), this.con.utilisateur.id_utilisateur);
                 }
                 #endregion
 
@@ -856,7 +856,7 @@ namespace GB.Controllers
                     // -- 2, 3 -- //
                     for (int i = 2; i <= 3; i++)
                     {
-                        if ((multi_cas || objet.numero_compte.Length == i) && CompteDAO.ObjectCode(objet.numero_compte.Substring(0, i)) == null)
+                        if ((multi_cas || objet.numero_compte.Length == i) && new CompteDAO().ObjectCode(objet.numero_compte.Substring(0, i)) == null)
                         {
                             (this.con.donnee.nouveau_compte as List<Compte>).Add(
                                 new Compte
@@ -873,7 +873,7 @@ namespace GB.Controllers
                     {
                         if (objet.numero_compte.Length >= i)
                         {
-                            if (multi_cas && CompteDAO.ObjectCode(objet.numero_compte.Substring(0, i)) == null)
+                            if (multi_cas && new CompteDAO().ObjectCode(objet.numero_compte.Substring(0, i)) == null)
                             {
                                 (this.con.donnee.nouveau_compte as List<Compte>).Add(
                                     new Compte
@@ -887,7 +887,7 @@ namespace GB.Controllers
                         }
                     }
                     // -- 10 -- //
-                    if (multi_cas && objet.numero_compte.Length == 10 && CompteDAO.ObjectCode(objet.numero_compte) == null)
+                    if (multi_cas && objet.numero_compte.Length == 10 && new CompteDAO().ObjectCode(objet.numero_compte) == null)
                     {
                         (this.con.donnee.nouveau_compte as List<Compte>).Add(
                             new Compte
@@ -1270,13 +1270,13 @@ namespace GB.Controllers
                     if (string.IsNullOrEmpty(id_vue))
                     {
                         // -- Si la liste des pays en session est vide, la mettre à jour -- //
-                        if ((this.con.donnee.pays as List<Pays>).Count == 0)
+                        if ((this.con.donnee.pays as List<PAYS>).Count == 0)
                         {
-                            this.con.donnee.pays = PaysDAO.Lister();
+                            this.con.donnee.pays = pAYSDAO.Lister();
                         }
 
                         // -- Charger la liste des résultats -- //
-                        foreach (var val in (this.con.donnee.pays as List<Pays>))
+                        foreach (var val in (this.con.donnee.pays as List<PAYS>))
                         {
                             donnee.Add(
                                 new
@@ -1323,7 +1323,7 @@ namespace GB.Controllers
                     if (id_vue == "pays")
                     {
                         // -- Mise à jour de la liste en session -- //
-                        this.con.donnee.pays = PaysDAO.Lister();
+                        this.con.donnee.pays = pAYSDAO.Lister();
                     }
                     #endregion
                 }
@@ -1587,7 +1587,7 @@ namespace GB.Controllers
                 this.con.Vider_Donnee();
                 // - Mise à jour des données de vue -- //
                 // -- Pays -- //
-                this.con.donnee.pays = new List<Pays>();
+                this.con.donnee.pays = new List<PAYS>();
                 #endregion
             }
             #endregion

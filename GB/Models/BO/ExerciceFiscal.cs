@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using GB.Models.Tests;
 using GB.Models.Interfaces;
+using System.Data.Entity.Core.Objects;
 
 namespace GB.Models.BO
 {
@@ -19,7 +20,7 @@ namespace GB.Models.BO
             this.id = (Program.db.exercices_fiscal.Count + 1).ToString();
         }
 
-        public object ToEntities()
+        public object ToEntities(Dictionary<string, object> parametres = null)
         {
             throw new NotImplementedException();
         }

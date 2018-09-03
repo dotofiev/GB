@@ -148,6 +148,7 @@ namespace GB.Models.Entites
         public virtual DbSet<OpDiversG> OpDiversGs { get; set; }
         public virtual DbSet<OutGoingSM> OutGoingSMS { get; set; }
         public virtual DbSet<Parametre> Parametres { get; set; }
+        public virtual DbSet<Pay> Pays { get; set; }
         public virtual DbSet<PhotoSign> PhotoSigns { get; set; }
         public virtual DbSet<Piece> Pieces { get; set; }
         public virtual DbSet<PieceB> PieceBs { get; set; }
@@ -333,7 +334,6 @@ namespace GB.Models.Entites
         public virtual DbSet<operationtype> operationtypes { get; set; }
         public virtual DbSet<optncounter> optncounters { get; set; }
         public virtual DbSet<PayrollAcct> PayrollAccts { get; set; }
-        public virtual DbSet<Pay> Pays { get; set; }
         public virtual DbSet<PostHistory> PostHistories { get; set; }
         public virtual DbSet<ProfitabilityM> ProfitabilityMs { get; set; }
         public virtual DbSet<RemDoc> RemDocs { get; set; }

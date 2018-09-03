@@ -11,26 +11,24 @@ using System.Web;
 
 namespace GB.Models.DAO
 {
-    public class CompteAgenceDAO : IDAO
+    public class CompteAgenceDAO : IDAO<CompteAgence>
     {
         public string id_page { get { return GB_Enum_Menu.ConfigurationBanque_CompteAgence; } }
-        public string context_id { get; set; }
-        public string id_utilisateur { get; set; }
+        public GBConnexion connexion { get; set; }
         public string form_combo_id { get { return "form_id_compteAgence"; } }
         public string form_combo_code { get { return "form_code_compteAgence"; } }
         public string form_name { get { return "compteAgence"; } }
         public string form_combo_libelle { get { return "form_libelle_compteAgence"; } }
 
 
-        public CompteAgenceDAO(string context_id, string id_utilisateur)
+        public CompteAgenceDAO(GBConnexion con)
         {
-            this.context_id = context_id;
-            this.id_utilisateur = id_utilisateur;
+            this.connexion = con;
         }
 
         public CompteAgenceDAO() { }
 
-        public void Ajouter(CompteAgence obj)
+        public void Ajouter(CompteAgence obj, string id_utilisateur = null)
         {
             try
             {
@@ -56,13 +54,13 @@ namespace GB.Models.DAO
                 obj.Crer_Id();
 
                 // -- Mise à jour du créateur -- //
-                obj.id_utilisateur_createur = this.id_utilisateur;
+                obj.id_utilisateur_createur = this.connexion.utilisateur.id_utilisateur;
 
                 // -- Mise à jour des references -- //
-                obj.utilisateur_createur = UtilisateurDAO.ObjectId(this.id_utilisateur);
-                obj.compte = CompteDAO.ObjectId(obj.id_compte);
-                obj.compte_emetteur = CompteDAO.ObjectId(obj.id_compte_emetteur);
-                obj.agence = AgenceDAO.ObjectId(obj.id_agence);
+                obj.utilisateur_createur = new UtilisateurDAO().ObjectId(this.connexion.utilisateur.id_utilisateur);
+                obj.compte = new CompteDAO().ObjectId(obj.id_compte);
+                obj.compte_emetteur = new CompteDAO().ObjectId(obj.id_compte_emetteur);
+                obj.agence = new AgenceDAO().ObjectId(obj.id_agence);
 
                 // -- Enregistrement de la valeur -- //
                 Program.db.comptes_agence.Add(obj);
@@ -70,7 +68,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new CompteAgenceDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -129,15 +127,15 @@ namespace GB.Models.DAO
                         l.id_compte = obj.id_compte;
                         l.id_compte_emetteur = obj.id_compte_emetteur;
                         l.type = obj.type;
-                        l.compte = CompteDAO.ObjectId(obj.id_compte);
-                        l.agence = AgenceDAO.ObjectId(obj.id_agence);
-                        l.compte_emetteur = CompteDAO.ObjectId(obj.id_compte_emetteur);
+                        l.compte = new CompteDAO().ObjectId(obj.id_compte);
+                        l.agence = new AgenceDAO().ObjectId(obj.id_agence);
+                        l.compte_emetteur = new CompteDAO().ObjectId(obj.id_compte_emetteur);
                     });
 
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new CompteAgenceDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -175,7 +173,7 @@ namespace GB.Models.DAO
                 // -- Execution des Hubs -- //
                 #region Execution des Hubs
                 applicationMainHub.RechargerCombo(new CompteAgenceDAO());
-                applicationMainHub.RechargerTable(this.id_page, this.context_id);
+                applicationMainHub.RechargerTable(this.id_page, this.connexion.hub_id_context);
                 #endregion
             }
             #region Catch
@@ -199,7 +197,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static List<CompteAgence> Lister()
+        public List<CompteAgence> Lister()
         {
             try
             {
@@ -228,7 +226,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static CompteAgence ObjectCode(string code)
+        public CompteAgence ObjectCode(string code)
         {
             try
             {
@@ -257,7 +255,7 @@ namespace GB.Models.DAO
             #endregion
         }
 
-        public static CompteAgence ObjectId(string id)
+        public CompteAgence ObjectId(string id)
         {
             try
             {
@@ -297,14 +295,14 @@ namespace GB.Models.DAO
                 // -- Pour le champ code -- //
                 if (champ == "code")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new CompteAgenceDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.code}\">{val.code}</option>";
                     }
                 }
                 else if (champ == "libelle")
                 {
-                    foreach (var val in Lister())
+                    foreach (var val in new CompteAgenceDAO().Lister())
                     {
                         HTML += $"<option value=\"{val.id}\" title=\"{val.libelle}\">{val.libelle}</option>";
                     }
